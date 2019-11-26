@@ -1,0 +1,253 @@
+---
+title: "Intro to R - Session Two"
+output:
+ html_document: 
+    theme: united
+    highlight: tango
+    toc: yes
+    toc_float: yes
+    number_sections: true
+---
+```{r, echo=FALSE}
+htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Session Two.
+
+***
+
+## Learning Objectives
+**The goal of this session is to:**
+
+* Be able to create vectors to store data.
+* Understand the indexing system in R.
+* Be able to select elements from vectors.
+* Understand how Vectors Operate.
+
+
+***
+
+## Recap on Vectors
+
+* All elements in a vector must have the same type/class
+* They are created using the  `c()` function, which stands for combine.
+* Elements within the vector are separated by `commas`
+
+You will be dealing a lot with vectors so we will go through some exercises on how to operate with them.
+
+***
+## Vectors
+
+In the previous section we looked at data types, where we said;
+
+```{r}
+
+a <- 10
+
+```
+Suppose you wanted to store more than one value for 10. e.g values between 10-50
+
+```{r, eval=FALSE}
+
+a <- 10, 20, 30, 40, 50
+
+a <- (10, 20, 30,40,50)
+
+
+```
+
+### The c() Function {.tabset .tabset-fade}
+
+The code above will not work, which is where the c() funtion comes in. 
+
+#### Question
+
+Use the help section in R to find out what the c() function does.
+
+```{r, eval=TRUE}
+
+?c()
+
+```
+
+#### Show Answer
+```{r}
+
+?c()
+
+#or
+
+help(c)
+
+```
+The c() function is used for creating a vector in R.
+
+### Creating Vectors {.tabset .tabset-fade}
+
+There are several other ways of creating a vector:
+
+You can create a vector by using the the assignement operator.
+or you can use the sequence function seq().
+
+We can also use the **:** to create a vector of consecutive numbers.
+
+```{r}
+
+my_first_vector <- c(1,2,3,4,5)
+
+my_first_vector
+
+my_second_vector <- seq(2,6, by=2)
+
+my_second_vector
+
+my_third_vector <- 6:10
+
+my_third_vector
+
+```
+#### **Question**
+
+In your script leave yourself a comment to remind that this exercise is about vectors.
+
+Create 2 vectors, one numeric and one character, e.g favourate_movies and lucky_numbers. (Feel free to be creative here)
+
+Now combine the 2 vectors to create a new vector.
+
+Find out what kind of vector your new vector is.
+
+```{r, eval=FALSE}
+
+favourate_movies <- c("Frozen", "The Lion King", "Moana") 
+  
+lucky_numbers <- c(7, 12, 15)   
+
+```
+
+#### **Show Answer**
+
+We can see below that our new vector is a character vector, as vectors are supposed to be of the same data type, R will convert the data of the 2 vectors to be the same, this is known as **coercion.**
+
+```{r}
+favourate_movies <- c("Frozen", "The Lion King", "Moana") 
+  
+lucky_numbers <- c(7, 12, 15)   
+
+movies_and_numbers <- c(favourate_movies,lucky_numbers)
+
+typeof(movies_and_numbers)
+
+```
+
+
+## Vector Operations {.tabset .tabset-fade}
+
+As we know vector in R is a data element so we can perform arithmetic operations on vector in R such as addition, subtraction and multiplication.
+
+As R is a vectorised language, this means operations are applied to each element of the vector automatically, without the need to loop through the vector.
+
+This enables us to perfom calculations much faster.
+
+```{r}
+
+vector_addition <- my_first_vector + my_third_vector
+
+vector_multiplication <- my_first_vector * my_third_vector
+
+
+```
+
+### **Question**
+
+Try and add my_first_vector and my_second_vector.
+
+Can you figure out what has happened?
+
+
+
+```{r, eval=FALSE}
+
+vector_after_addition <- my_first_vector + my_second_vector
+
+vector_after_addition  
+
+```
+
+### **Show Answer**
+
+When we try to add vectors of different length the R gives a warning message as the longer object length is not a multiple of the shorter object length.
+
+As we can see R has recycled the elements in the shorter vector.
+
+
+```{r}
+vector_after_addition <- my_first_vector + my_second_vector
+
+vector_after_addition  
+
+   
+```
+## Vector Indexing{.tabset .tabset-fade}
+
+Elements in a vector can be selected using `[ ]`.
+
+Note that R indexes from 1 (not 0 like other languages).
+
+As an example, going back to my favourate movies, to pick the second item in the list, I would simply, use the square bracketS and reference **2** as shown below.
+
+```{r}
+
+favourate_movies[2] 
+
+
+```
+
+
+
+### **Question**
+
+Create another vector containing days of the week (Monday - Sunday).
+
+Select the third day of the week.
+
+Select the week days.
+
+Select Tuesday and Thursday.
+
+```{r, eval=FALSE}
+
+days_of_the_week <- 
+  
+
+```
+
+### **Show Answer**
+
+
+```{r}
+days_of_the_week <- c("Monday","Tuesday",
+                      "Wednesday","Thursday",
+                      "Friday","Saturday",
+                      "Sunday")
+
+
+# 3rd day
+days_of_the_week[3]
+
+
+# week days
+days_of_the_week[1:5]
+
+#Tuesday and Thursday
+
+days_of_the_week[c(2,4)] 
+  # Here we create a selection 
+  # vector inside the [].
+```
+

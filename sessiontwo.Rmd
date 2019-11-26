@@ -1,0 +1,297 @@
+---
+title: "Intro to R - Session Two"
+output:
+ html_document: 
+    theme: united
+    highlight: tango
+    toc: yes
+    toc_float: yes
+    number_sections: true
+---
+```{r, echo=FALSE}
+htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+# Session Two.
+
+***
+
+## Learning Objectives
+**The goal of this session is to:**
+
+* Be able to create vectors to store data.
+* Understand the indexing system in R.
+* Be able to select elements from vectors.
+* Understand how Vectors Operate.
+* Understand the difference between Data frames vs Tibbles.
+
+
+## Recap on Vectors
+
+* All elements in a vector must have the same type/class
+* They are created using the  `c()` function, which stands for combine.
+* Elements within the vector are separated by `commas`
+
+You will be dealing a lot with vectors so we will go through some exercises on how to operate with them.
+    
+### Vectors Practice
+
+In your script leave yourself a comment to remind that this exercise is about vectors.
+
+#### Creating Vectors {.tabset .tabset-fade}
+
+##### Exercise
+
+```{r, eval = F}
+
+#Exercise 2 -Vectors
+
+
+```
+
+
+Use the combine function to create some Vectors called,
+
+`days_of_the_week <-`
+
+`numbers <-`
+
+##### Answers
+
+```{r, eval = F}
+#Exercise 2 -Vectors
+
+days_of_the_week <- c("Monday","Tuesday",
+                      "Wednesday","Thursday",
+                      "Friday","Saturday",
+                      "Sunday")
+
+numbers <- 1:20
+
+
+```
+
+## Vector Operations {.tabset .tabset-fade .tabset-pills}
+
+Now create 2 new vectors using arithmetic on the numbers Vector
+
+### Exercise
+```{r}
+
+#even_numbers <- 
+
+
+#odd_numbers <- 
+
+
+```
+
+
+### Answers
+
+```{r echo=TRUE}
+
+numbers <- 1:20
+
+even_numbers <- numbers*2
+
+odd_numbers <- numbers*2 - 1
+
+```
+
+## Vectors Operations 2 {.tabset .tabset-fade .tabset-pills}
+
+### Exercise
+```{r}
+
+# What does the code below do?
+
+vector1 <- c(4:10)
+
+mean(vector1)
+
+#Create a Vector which subtracts the mean of vector1 from each element of vector1.
+
+#Minus_mean <- 
+ 
+
+```
+ 
+ 
+ 
+
+### Answers
+
+```{r echo=TRUE}
+
+vector1 <- c(4:10)
+
+mean(vector1)
+
+
+minus_mean <- vector1 - mean(vector1)
+
+minus_mean
+
+```
+
+
+
+
+## Vectors Operations 3 {.tabset .tabset-fade .tabset-pills}
+
+As R is a vectorised language, this means operations are applied to each element of the vector automatically, without the need to loop through the vector.
+
+### Exercise
+```{r}
+#Create a vector assigned to 'a' with the numbers 1 to 5
+
+#a <- 
+
+#Make another vector assignred to 'b' with the numbers 1 to 3
+  
+#b <- 
+  
+#Add 'a' and 'b' together
+
+#a + b
+
+#Can you work out what has happened?
+
+#Try again with 'a' as the numbers 1 to 6.
+  
+  
+ 
+ 
+
+```
+ 
+ 
+
+### Answers
+
+```{r echo=TRUE}
+
+a <- 1:5
+
+b <- 1:3
+
+a+b
+
+# This gives the following warning:
+# [1] 2 4 6 5 7
+# Warning message:
+#   In a + b : longer object length is 
+# not a multiple of shorter object length
+
+a <- 1:6
+
+a+b
+
+# This doesn't give a warning.
+# We need to be careful that objects 
+# have the same number of items.
+
+```
+All of the operations we have seen above were performed in an **element-wise** manner. This means the operation was performed on each respective element from each vector. In R this is implemented with a lot of flexibiliy. e.g. We could perform operations with vectors of different sizes. Other languages may not have the same flexibility and will give you an error.
+
+
+
+## Vectors Indexing {.tabset .tabset-fade .tabset-pills}
+
+Selecting elements from a vector, Notice that R indexes from 1 (not 0 like other languages).
+
+We select elements with `[ ]`
+
+### Exercise
+```{r}
+
+# try selecting the 3rd element from days_of_the_week
+
+#days_of_the_week[]
+
+#find out how to select muiltiple elements from a vector, can you select;
+
+#The week days
+
+# Tuesday and Thursday
+  
+  
+
+```
+ 
+ 
+
+### Answers
+
+```{r echo=TRUE}
+
+days_of_the_week <- c("Monday","Tuesday",
+                      "Wednesday","Thursday",
+                      "Friday","Saturday",
+                      "Sunday")
+
+
+# 3rd day
+days_of_the_week[3]
+# week days
+days_of_the_week[1:5]
+# Tuesday and Thursday
+days_of_the_week[c(2,4)] 
+  # Here we create a selection 
+  # vector inside the [].
+
+```
+
+## Data Frames and Tibbles {.tabset .tabset-fade .tabset-pills}
+
+**Recap on Data Frames**
+
+* Can hold variables of different types
+* Columns are variables 
+* Rows are instances
+
+In the next session we are going to use special type of data frames called **tibbles.**
+
+They are becoming a standard way to work with data, they are very useful when working with large data sets.
+ 
+**The key benefits of tibbles are;**
+
+* The class of each column is displayed above it.
+
+* The dimensions of the tibble are shown at the top.
+
+* Prints the first 10 rows by default.
+
+* You can only view columns that fit on the screen.
+
+
+### Tibble
+
+for more information type `vignette("tibble")` in your script.
+
+```{r}
+
+library(tibble)
+
+as_tibble(iris)
+
+
+```
+
+### Data Frame
+```{r}
+
+iris
+  
+```
+
+
