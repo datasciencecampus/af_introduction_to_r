@@ -1,48 +1,67 @@
 ---
-title: "Intro to R - Session 1"
+title: "Intro to R - Session One"
 output:
   html_document: 
-    theme: cerulean
+    theme: united
+    highlight: tango
     toc: yes
-    toc_depth: 3
     toc_float: yes
+    number_sections: true
 ---
+
+```{r, echo=FALSE}
+htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-![](Images/logo.PNG)  ![](Images/ons.PNG)
+
+
+
 
 # Session One.
 
+***
 ## Learning Objectives
-The goal of this session is to:
+**The goal of this session is to**
 
 * Be familiar with R and R Studio.
 * Understand the Key Benefits of using R.
 * Know where to get help.
 * Discover R's basic data types and structures.
-* Creating Variables.
+* Be able to create Variables.
 
-    
+ ***
+ 
 ## What is R?
 
 
-R is a programming language, you can use it for statistical analysis, data manipulation and visualiasation.
+R is a **programming language**, you can use it for statistical analysis, data manipulation and visualiasation.
 
-Why Use R?
+R is an interpreted language. This means you have to type in commands written in R code.
+
+**Why Use R?**
 
 * Free and open source.
-* Great Community Support.
+* Great Community Support, diverse and welcoming community. e.g. #rstats twitter community, numerous [ R Meet Ups](https://www.meetup.com/topics/r-programming-language/) 
 * Lots of packages available.
 * Cross Platform, i.e Windows, Linux, OS.
-* R has extensive and powerful graphics abilities.
+* R has extensive and powerful graphics abilities. e.g [ The BBC use R to produce their graphics](https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535)
+* Powerful tool for communicating results, ie. [RMarkdown](https://rmarkdown.rstudio.com/)  makes its easy to turn your files into PDF'S, Powerpoint presentations and [Shiny](https://shiny.rstudio.com/) allows you to make beautiful interactive apps and dashboards.
 
 ## Using R Studio
 
-![](Images/studio.PNG)
+R is a programming language that runs computations while RStudio is an integrated development environment (IDE) that provides an interface by adding many convenient features and tools.
 
+
+![](Images/studio2.PNG)
+
+***
 
 **Code Editor**
   -  This is where you will do the majority of your coding.
@@ -51,10 +70,12 @@ Why Use R?
   - This is where calculations take place, you can also code here, but not easy to correct.
   
 **Environment/History**
-  - This shows the previous code you were working on, any objects, i.e variables, data frames.
+  - This shows the previous code you were working on, any objects (Where values are saved in R), i.e variables, data frames.
   
 **Files/Help/Packages**
   - This shows the files, packages and help documentation
+  
+  
 
 For more information about R, you can find the RStudio Cheat Sheet under the Help -> **Cheatsheet.**
 
@@ -62,83 +83,161 @@ For more information about R, you can find the RStudio Cheat Sheet under the Hel
 
 ## The Console
 
-Try out some arimetic in your console;
+Try out some arimetic in your console; type the expression and hit `enter`.
 
-## Exercise one, Basic Arithmetic {.tabset .tabset-fade .tabset-pills}
+### Exercise, Basic Arithmetic. {.tabset .tabset-fade}
 
-### Questions
+#### **Questions** {-}
 ```{r, eval = F}
 
-25*15
+25 * 15
 
-(76 + 94)^3
 
-97623/9
+(76 + 94) ^ 3
 
-2+4*
 
-23-6; 36*5    
+97623 / 9
+
+
+2 + 4 *
+  
+
+23 - 6; 36 * 5    
   
 
 ```
 
-### Answer
-```{r, echo=TRUE, highlight.output=TRUE}
+#### **Show Answer** {-}
+```{r echo=TRUE, message=TRUE, warning=TRUE, highlight.output=TRUE, paged.print=TRUE}
 
-25*15
+25 * 15
 
-(76 + 94)^3
 
-97623/9
+(76 + 94) ^ 3
+
+
+97623 / 9
+
+
+2 + 4 *
+  
+
+23 - 6; 36 * 5 
+
 ```
-Note that if a "+" appears instead of the command prompt, this means that the statement you submitted was incomplete. For example, it might be missing a closing bracket.
+
+
+Note that if a **"+"** appears instead of the command prompt, this means that the statement you submitted was incomplete. Here **2+4* **, is incomplete.
+
+We can complete the expression or press `esc` in our console to reset.
 
 A semi colon allows multiple commands to be entered on the same line before processing.
 
+***
+
 ## The Code Editor
 
-A script is just a plain text file which we write our code in.
+A **script** is just a plain text file which we write our code in.
 
 You can type code and save it for later.
 
-You can add comments to your code using #. R will ignore anything to the right of the # symbol.
+You can add comments to your code using **#**. R will ignore anything to the right of the **# symbol**.
 
-Create a new script, choose a sensible name (e.g. intro.R)
+
+### Exercise, Creating a Script {.tabset .tabset-fade}
+
+#### **Questions**{-}
+Create a new script, choose a sensible name (e.g. intro.R).
+
+Save your script **CTRL + S**.
+
+Add a relevant comment at the top of your script.
 
 Try out some arithmetic as before.
 
-This time around to run the code you need to select the section you want to run and then press CTRL + ENTER.
+This time around to run the code you need to select the section you want to run and then press **CTRL + ENTER.**
 
+#### **Show Answer**{-}
+
+```{r, eval=FALSE}
+
+#R can be used as a calculator
+
+25 * 15
+
+
+(76 + 94) ^ 3
+
+
+97623 / 9
+
+
+2 + 4 *
+  
+
+23 - 6; 36 * 5
+
+
+
+```
 ***
+
 ## The Environment Window
 
-Shows all the objects that you have created or working with.
+Shows all the **objects** that you have created or working with.
 
-we can assign these objects names, this is called a variable.
+We can assign these objects names, this is called a **VARIABLE**.
 
 They are used to store data and can be changed according to your need.
 
-Once an object has been created it will appear in your Environment window which helps you keep track of what objects you have in your current workspace
+Once an object has been created it will appear in your Environment window which helps you keep track of what objects you have in your current workspace.
 
-we assign variables using the assignemt operator,(short cut is ALT + MINUS)
+We assign variables using the assignemt operator ` <- `,(short cut is **ALT + MINUS)**.
 
-Assigning a variable provides no output. To see the variable, you need to call it.
+Assigning a variable provides no output. To see the variable, you need to call it. You can do this by running the name of the variable.
 
-### Excerise 2. Creating Variables
+### Exercise, Creating Variables. {.tabset .tabset-fade}
 
-```{r}
-myVariable <-1+3
+#### **Questions**{-}
 
-another_variable <- 2*4
+Store as a variable the **sum of 1 + 3**, call it **myVariable**
+
+and another variable **2 - 4**, call it **another_variable**
+
+```{r, eval=FALSE}
+
+myVariable  <- 
+
+another_variable  <-  
 
 
 ```
 
-A note on Variable Names:
+#### **Show Answer**{-}
+```{r echo=TRUE, message=TRUE}
+
+myVariable  <- 1 + 3
+
+myVariable
+
+another_variable  <-  2 - 4
+
+
+another_variable
+
+
+```
+
+**A note on Variable Names:**
+
 Choosing variable names is one of the most difficult bits of programming; choose something that that is descriptive, recognisable. 
+
 *camelCase vs. snake_case*
+
 It doesn't really matter which you use, just be consistent.
-Can not start with a number.
+
+Variables can not start with a number, symbol (except `_` ) or a reserved word like `TRUE`
+
 R is case sensitive!
 
 ***
@@ -147,32 +246,56 @@ R is case sensitive!
 
 Working with R chances are you are going to get stuck at some point and will need help, these are some of the resources available.
 
-- **Cheat Sheets**
+**Cheat Sheets**
 
 You can access thes by clicking on **Help** and then **Cheetsheets**.
 
-- **R Documentation **
+**R Documentation **
 
-By typing in the search box, you can also use the console to access help.Try and type the command below in the console.
+By typing in the search box, you can also use the console to access help.
 
-```{r, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+Try and type the command below in the console.
 
-?vector or help(vector)
+```{r, eval=FALSE}
 
-?list or help(list)
+
+?mean 
+
+or 
+
+help(mean)
+
+?median 
+
+or 
+
+help(median)
+
 
 ```
 
-- **Stack Overflow**
+**Stack Overflow**
 
-Great site to check if anyone has has a simmilar problem to you, and see how they got around it.
+[Stack Overflow](https://stackoverflow.com/) is a great site to check if anyone has has a simmilar problem to you, and see how they got around it.
 
-- **Yammer**
+**Yammer**
 
-Within Ons we have 2 groups on Yammer, the **R User Group** which you can post any issues you are facing and people will suggests solutions and the **Coding in the Kitchen** group which is used to share tips and best practice.
+Within Ons we have 2 groups on Yammer, 
 
+* The **R User Group** which you can post any issues you are facing and people will suggests solutions
+
+* The **Coding in the Kitchen** group which is used to share tips and best practice.
+
+
+**Cross Goverment Data Science Slack**
+
+[The Cross Goverment Data Science Slack](https://govdatascience.slack.com/) is a place to talk to other people working with Data across government.
+
+
+***
 
 ## Data Types/Classes
+
 To get the best out of R, you will need to have a strong understanding of the basic data types and structures and how to operate on them.
 
 Different processes apply to different types of data.
@@ -181,31 +304,62 @@ Different Types have different properties; if you try to add 1 + "two", you will
 
 Some of R basic data types are;
 
-- **Characters/text**
-needs to surrounded in single `''` or double quotes `""`, that how R understands its a character.
+**Characters - chr**
 
-- **Numeric**
+‘**need** to be surrounded in… **that is** how R understands **it’s** a character’
+
+**Numeric - num (sometimes int/dbl)**
+
+Numbers in R are grouped together. You may also see 
+
+* int for interger (Whole numbers with no decimal place, they are denoted in R by an L at the end of the number.)
+
+* dbl for double point floating number (decimal).
+
+These different types exist in R for operations behind the scenes. We don't need to worry about them too much at the moment.
 
 
-- **Interger**
+**Interger**
+
 Whole numbers with no decimal place, they are denoted in R by an L at the end of the number.
 
-- **Logical,(also know as Booleans)**
-have to be capital letters or can be abbreviated to T or F
+**Logical,(also know as Booleans)**
+
+Capital letters `TRUE` or `FALSE` or can be abbreviated to `T` or `F`
+
 They are special R data types - not strings! So they don't need '' or "" around them.
 
-They also have numerical value behind them - TRUE is 1 and FALSE is 0.
+They also have numerical value behind them - `TRUE` is 1 and `FALSE` is 0.
 
 
-![](Images/datatypes.PNG)
+```{r, eval=FALSE}
+
+Character example "ONS"
+
+Numeric example 10.1
+
+Interger example 10L
+
+Logical example TRUE, FALSE
 
 
-## Examples of Data Types {.tabset .tabset-fade .tabset-pills}
 
-### Code
+```
+
+
+
+
+### Exercise of Data Types {.tabset .tabset-fade}
+
+
+
+#### **Questions**{-}
+
+What is the data type of the following?
+
 ```{r}
 
-a <- "ten"
+a <- "10"
 
 b <- 10L
 
@@ -213,21 +367,37 @@ c <- 10
 
 d <- TRUE
 
+e <- "ten"
+
+f <- "T"
+
+g <- F
+
 
 
 
 ```
 
 
-### Result
+#### **Show Answer** {-}
+
+typeof determines the (R internal) type or storage mode of any object
+
 ```{r}
-class(a)
 
-class(b)
+typeof(a)
 
-class(c)
+typeof(b)
 
-class(d)
+typeof(c)
+
+typeof(d)
+
+typeof(e)
+
+typeof(f)
+
+typeof(g)
 
 
 ```
@@ -241,7 +411,7 @@ R organises these in certain structures.
 
 This is how R stores data in a way that we manipulate and work with it.
 
-some of R data structures are;
+Some of R data structures are:
 
 - **Vector**
 
@@ -252,9 +422,19 @@ some of R data structures are;
 - **Dataframe**
 
 ***
-## Examples of Data Structures {.tabset .tabset-fade .tabset-pills}
+### Examples of Data Structures {.tabset .tabset-fade .tabset-pills}
 
-### Vector
+#### **Vector**{-}
+One dimension set of  data of the same type.
+
+The **'c'** is very important.
+
+Some in-built vectors, type code below;
+
+**letters**
+
+
+**month.name**
 
 ```{r}
 Numerical_Vector <- c(1,2,3,4,5,6,7,8,9,10)
@@ -265,49 +445,62 @@ Character_Vector <- c("Cardiff", "Newport", "Bristol")
 
 
 ```
-one column/row data of the same type/class
 
 
-### Matrix
+#### **Matrix**{-}
 
-```{r}
+Two dimensional set of data of the same type.
 
-matrix (c(3:14), nrow = 4, byrow = TRUE)
+In other words, matrix is a combination of two or more vectors with the same data type.
+
+```{r echo=FALSE}
+
+my_matrix <- matrix (c(3:14), nrow = 4, byrow = TRUE)
+
+my_matrix
+
+```
+
+#### **List**{-}
+
+One dimension set of data, of different types.
+
+```{r echo=TRUE}
+
+my_first_list <- list(1,2,3,4, "two")
+
+my_second_list <- list("ONS", 10, TRUE)
+
+my_first_list
+
+my_second_list
 
 
 ```
-multiple columns and rows of data, same type/class 
-
-### List
-
-```{r}
-
-list(1,2,3,4, "two")
-
-list("ONS", 10, TRUE)
 
 
-```
-one column/row, different data types/classes
+#### **Dataframe**{-}
+It’s a two dimensiona collection of rows and columns of data, where rows are observations, and columns are variables. Also that unlike a Matrix, column data types are independent, each one can be anything.
+
+R has lots of inbult dataframes you can access by typing **data()**
 
 
-### Dataframe
-
-```{r}
+```{r paged.print=TRUE}
 
 mtcars
 
+
 ```
-
-multiple columns/rows of data, multiple types/classes.
-
-combination of vectors
 
 ***
 
-## Operators In R {.tabset .tabset-fade .tabset-pills}
+## Operators In R. {.tabset .tabset-fade}
 
-### Numerical Operators
+R has several operators to perfom mathematical and logical operations.
+
+### **Numerical Operators**{-}
+
+These operators are used to carry out mathematical operations.
 
 Operator   | Description
 :---------:|:------------:
@@ -315,9 +508,11 @@ Operator   | Description
      -     | Subtraction
      *     | Multiplication
      /     | Division
-  ^ or **  | Exponents
+     ^     | Exponents
 
-### Logical Operators
+### **Logical Operators**{-}
+
+The result of a logical comparison is a TRUE or FALSE result.
 
 Logical Operator| Description
 :--------------:|:------------:
@@ -325,8 +520,63 @@ Logical Operator| Description
        <=       | Less Than or Equal To
        \>       | Greater Than
        >=       | Greater Than or Equal To
-    == or **    | Equal To
+       ==       | Equal To
        !=       | Not Equal To
        \|       | Or
         &       | And    
 
+
+
+#### Exercise, Logical Operators {.tabset .tabset-fade .tabset-pills}{-}
+
+What do think will be the result of the following comparisons?
+
+##### **Questions**{-}
+
+```{r, eval = F}
+
+4 > 4
+
+"Oliver" == "oliver"
+
+6 <= 9
+
+2+6 != 26
+
+TRUE > FALSE
+
+1 > 0
+
+
+```
+
+##### **Answers**{-}
+
+```{r}
+
+4 > 4
+
+"Oliver" == "oliver"
+
+6 <= 9
+
+2+6 != 26
+
+TRUE > FALSE
+
+1 > 0
+
+
+```
+
+***
+
+## Summary
+
+You should now be;
+
+* Be familiar with using R Studio.
+* Understand at least 4 Key Benefits of using R.
+* Know where to get help.
+* Discover R's basic data types and structures.
+* Be able to create Variables.
