@@ -20,41 +20,42 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
-
-
-
 # Session One.
 
 ***
-## Learning Objectives
+## Learning Objectives.
 **The goal of this session is to**
 
 * Be familiar with R and R Studio.
 * Understand the Key Benefits of using R.
 * Know where to get help.
-* Discover R's basic data types and structures.
+* Discover R's basic data types.
 * Be able to create Variables.
 
  ***
  
-## What is R?
+## What is R and background?
 
 
 R is a **programming language**, you can use it for statistical analysis, data manipulation and visualiasation.
 
+R was initially written by **Ross Ihaka and Robert Gentleman** at the Department of Statistics of the University of Auckland in New Zealand.It is named partly after the first names of the first two R authors.
+
 R is an interpreted language. This means you have to type in commands written in R code.
+
+As of November 2019, R ranks 16th in the [TIOBE index](https://www.tiobe.com/tiobe-index/) , a measure of popularity of programming languages.
+
 
 **Why Use R?**
 
-* Free and open source.
-* Great Community Support, diverse and welcoming community. e.g. #rstats twitter community, numerous [ R Meet Ups](https://www.meetup.com/topics/r-programming-language/) 
-* Lots of packages available.
+* Free and open source, people can modify and share because its design is publicly accessible.
+* Great Community Support, diverse and welcoming community. e.g. #rstats twitter community, numerous [ R Meet Ups](https://www.meetup.com/topics/r-programming-language/). 
+* Lots of [packages available](https://cran.r-project.org/web/packages/available_packages_by_name.html)
 * Cross Platform, i.e Windows, Linux, OS.
 * R has extensive and powerful graphics abilities. e.g [ The BBC use R to produce their graphics](https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535)
 * Powerful tool for communicating results, ie. [RMarkdown](https://rmarkdown.rstudio.com/)  makes its easy to turn your files into PDF'S, Powerpoint presentations and [Shiny](https://shiny.rstudio.com/) allows you to make beautiful interactive apps and dashboards.
 
-## Using R Studio
+## Using R Studio.
 
 R is a programming language that runs computations while RStudio is an integrated development environment (IDE) that provides an interface by adding many convenient features and tools.
 
@@ -81,7 +82,7 @@ For more information about R, you can find the RStudio Cheat Sheet under the Hel
 
 ***
 
-## The Console
+## The Console.
 
 Try out some arimetic in your console; type the expression and hit `enter`.
 
@@ -135,7 +136,7 @@ A semi colon allows multiple commands to be entered on the same line before proc
 
 ***
 
-## The Code Editor
+## The Code Editor.
 
 A **script** is just a plain text file which we write our code in.
 
@@ -182,7 +183,7 @@ This time around to run the code you need to select the section you want to run 
 ```
 ***
 
-## The Environment Window
+## The Environment Window.
 
 Shows all the **objects** that you have created or working with.
 
@@ -196,6 +197,11 @@ We assign variables using the assignemt operator ` <- `,(short cut is **ALT + MI
 
 Assigning a variable provides no output. To see the variable, you need to call it. You can do this by running the name of the variable.
 
+Once you've created objects you can view them in your environment window in the top right pane of `RStudio`.
+
+You may also want to remove a variable, in which case you need the `rm()` function:
+
+
 ### Exercise, Creating Variables. {.tabset .tabset-fade}
 
 #### **Questions**{-}
@@ -204,11 +210,15 @@ Store as a variable the **sum of 1 + 3**, call it **myVariable**
 
 and another variable **2 - 4**, call it **another_variable**
 
+Use the remove function to remove a variable.
+
 ```{r, eval=FALSE}
 
 myVariable  <- 
 
-another_variable  <-  
+another_variable  <- 
+  
+rm(name_of_variable)  
 
 
 ```
@@ -225,6 +235,7 @@ another_variable  <-  2 - 4
 
 another_variable
 
+rm(myVariable)
 
 ```
 
@@ -242,7 +253,7 @@ R is case sensitive!
 
 ***
 
-## Help
+## Help.
 
 Working with R chances are you are going to get stuck at some point and will need help, these are some of the resources available.
 
@@ -291,10 +302,16 @@ Within Ons we have 2 groups on Yammer,
 
 [The Cross Goverment Data Science Slack](https://govdatascience.slack.com/) is a place to talk to other people working with Data across government.
 
+The **GSS Training team – gss.capability@ons.gov.uk**
+
+If you have any issues with this course; or notice any errors, please contact the training team on the email above. The training team are also here to help with any R questions you have after you have completed the course.
+
+Please be aware that due to training commitments there may be a small wait before we respond to your query. We also expect that you have attempted to solve your query yourself before contacting us.
+
 
 ***
 
-## Data Types/Classes
+## Data Types/Classes.
 
 To get the best out of R, you will need to have a strong understanding of the basic data types and structures and how to operate on them.
 
@@ -332,6 +349,7 @@ They are special R data types - not strings! So they don't need '' or "" around 
 They also have numerical value behind them - `TRUE` is 1 and `FALSE` is 0.
 
 
+**Simplified, that means numbers, text and true/false values**.
 ```{r, eval=FALSE}
 
 Character example "ONS"
@@ -341,7 +359,6 @@ Numeric example 10.1
 Interger example 10L
 
 Logical example TRUE, FALSE
-
 
 
 ```
@@ -404,179 +421,49 @@ typeof(g)
 
 ***
 
-## Data Structures
-We dont work with single data values, we often work with a combination or collection of data.
+### Data Type Conversion
 
-R organises these in certain structures.
-
-This is how R stores data in a way that we manipulate and work with it.
-
-Some of R data structures are:
-
-- **Vector**
-
-- **Matrix**
-
-- **List**
-
-- **Dataframe**
-
-***
-### Examples of Data Structures {.tabset .tabset-fade .tabset-pills}
-
-#### **Vector**{-}
-One dimension set of  data of the same type.
-
-The **'c'** is very important.
-
-Some in-built vectors, type code below;
-
-**letters**
-
-
-**month.name**
+We could also convert values from type to another, suppose we wanted to convert **a** (above) to numeric.
 
 ```{r}
-Numerical_Vector <- c(1,2,3,4,5,6,7,8,9,10)
 
-Logical_Vector <- c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE)
+a <- "10"
 
-Character_Vector <- c("Cardiff", "Newport", "Bristol")
-
+typeof(a)
 
 ```
 
+In order to convert the data, you need to use the **as** function. As part of this function, you specify the data type you are converting to.
 
-#### **Matrix**{-}
+**as.numeric to convert to Numeric.**
 
-Two dimensional set of data of the same type.
+**as.character to convert to Characters.**
 
-In other words, matrix is a combination of two or more vectors with the same data type.
+**as.logical to convert to Logical.**
 
-```{r echo=FALSE}
-
-my_matrix <- matrix (c(3:14), nrow = 4, byrow = TRUE)
-
-my_matrix
-
-```
-
-#### **List**{-}
-
-One dimension set of data, of different types.
-
-```{r echo=TRUE}
-
-my_first_list <- list(1,2,3,4, "two")
-
-my_second_list <- list("ONS", 10, TRUE)
-
-my_first_list
-
-my_second_list
-
-
-```
-
-
-#### **Dataframe**{-}
-It’s a two dimensiona collection of rows and columns of data, where rows are observations, and columns are variables. Also that unlike a Matrix, column data types are independent, each one can be anything.
-
-R has lots of inbult dataframes you can access by typing **data()**
-
-
-```{r paged.print=TRUE}
-
-mtcars
-
-
-```
-
-***
-
-## Operators In R. {.tabset .tabset-fade}
-
-R has several operators to perfom mathematical and logical operations.
-
-### **Numerical Operators**{-}
-
-These operators are used to carry out mathematical operations.
-
-Operator   | Description
-:---------:|:------------:
-     +     | Addition
-     -     | Subtraction
-     *     | Multiplication
-     /     | Division
-     ^     | Exponents
-
-### **Logical Operators**{-}
-
-The result of a logical comparison is a TRUE or FALSE result.
-
-Logical Operator| Description
-:--------------:|:------------:
-        <       | Less Than
-       <=       | Less Than or Equal To
-       \>       | Greater Than
-       >=       | Greater Than or Equal To
-       ==       | Equal To
-       !=       | Not Equal To
-       \|       | Or
-        &       | And    
-
-
-
-#### Exercise, Logical Operators {.tabset .tabset-fade .tabset-pills}{-}
-
-What do think will be the result of the following comparisons?
-
-##### **Questions**{-}
-
-```{r, eval = F}
-
-4 > 4
-
-"Oliver" == "oliver"
-
-6 <= 9
-
-2+6 != 26
-
-TRUE > FALSE
-
-1 > 0
-
-
-```
-
-##### **Answers**{-}
+#### Example {-}
 
 ```{r}
 
-4 > 4
+a <- "10"
 
-"Oliver" == "oliver"
+typeof(a)
 
-6 <= 9
+new_a <- as.numeric(a)
 
-2+6 != 26
-
-TRUE > FALSE
-
-1 > 0
-
+typeof(new_a)
 
 ```
 
-***
+We’ll look at some other ways to do convert types later in the course.
 
-## Summary
+
+## Summary.
 
 You should now be;
 
 * Be familiar with using R Studio.
 * Understand at least 4 Key Benefits of using R.
 * Know where to get help.
-* Discover R's basic data types and structures.
+* Discover R's basic data types.
 * Be able to create Variables.

@@ -1615,183 +1615,282 @@ div.tocify {
 <h2><span class="header-section-number">1.1</span> Learning Objectives</h2>
 <p><strong>The goal of this session is to:</strong></p>
 <ul>
+<li>Be familliar with data structures in R.</li>
 <li>Be able to create vectors to store data.</li>
-<li>Understand the indexing system in R.</li>
 <li>Be able to select elements from vectors.</li>
 <li>Understand how Vectors Operate.</li>
-<li>Understand the difference between Data frames vs Tibbles.</li>
+<li>Be familiar with data frames and tibbles.</li>
 </ul>
+<hr />
 </div>
-<div id="recap-on-vectors" class="section level2">
-<h2><span class="header-section-number">1.2</span> Recap on Vectors</h2>
+<div id="data-structures." class="section level2">
+<h2><span class="header-section-number">1.2</span> Data Structures.</h2>
+<p>We dont work with single data values, we often work with a combination or collection of data.</p>
+<p>R organises these in certain structures.</p>
+<p>This is how R stores data in a way that we manipulate and work with it.</p>
+<p>Some of R data structures are:</p>
 <ul>
-<li>All elements in a vector must have the same type/class</li>
+<li><p><strong>Vector</strong></p></li>
+<li><p><strong>Matrix</strong></p></li>
+<li><p><strong>List</strong></p></li>
+<li><p><strong>Dataframe</strong></p></li>
+</ul>
+<hr />
+<div id="examples-of-data-structures" class="section level3 tabset tabset-fade tabset-pills">
+<h3><span class="header-section-number">1.2.1</span> Examples of Data Structures</h3>
+<div id="vector" class="section level4 unnumbered">
+<h4><strong>Vector</strong></h4>
+<p>One dimension set of data of the same type.</p>
+<p>The <code>c()</code> is very important.</p>
+<p>Some in-built vectors, type code below;</p>
+<p><strong>letters</strong></p>
+<p><strong>month.name</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">Numerical_Vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3">Logical_Vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb1-4" title="4"></a>
+<a class="sourceLine" id="cb1-5" title="5">Character_Vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Cardiff&quot;</span>, <span class="st">&quot;Newport&quot;</span>, <span class="st">&quot;Bristol&quot;</span>)</a></code></pre></div>
+</div>
+<div id="matrix" class="section level4 unnumbered">
+<h4><strong>Matrix</strong></h4>
+<p>Two dimensional set of data of the same type.</p>
+<p>In other words, matrix is a combination of two or more vectors with the same data type.</p>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    3    4    5
+## [2,]    6    7    8
+## [3,]    9   10   11
+## [4,]   12   13   14</code></pre>
+</div>
+<div id="list" class="section level4 unnumbered">
+<h4><strong>List</strong></h4>
+<p>One dimension set of data, of different types.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">my_first_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>, <span class="st">&quot;two&quot;</span>)</a>
+<a class="sourceLine" id="cb3-2" title="2"></a>
+<a class="sourceLine" id="cb3-3" title="3">my_second_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;ONS&quot;</span>, <span class="dv">10</span>, <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb3-4" title="4"></a>
+<a class="sourceLine" id="cb3-5" title="5">my_first_list</a></code></pre></div>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 3
+## 
+## [[4]]
+## [1] 4
+## 
+## [[5]]
+## [1] &quot;two&quot;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">my_second_list</a></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;ONS&quot;
+## 
+## [[2]]
+## [1] 10
+## 
+## [[3]]
+## [1] TRUE</code></pre>
+</div>
+<div id="dataframe" class="section level4 unnumbered">
+<h4><strong>Dataframe</strong></h4>
+<p>It’s a two dimensiona collection of rows and columns of data, where rows are observations, and columns are variables. Also that unlike a Matrix, column data types are independent, each one can be anything.</p>
+<p>R has lots of inbult dataframes you can access by typing <strong>data()</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">mtcars</a></code></pre></div>
+<pre><code>##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</code></pre>
+<hr />
+</div>
+</div>
+</div>
+<div id="vectors" class="section level2">
+<h2><span class="header-section-number">1.3</span> Vectors</h2>
+<ul>
+<li>All elements in a vector must have the same type/class.</li>
 <li>They are created using the <code>c()</code> function, which stands for combine.</li>
-<li>Elements within the vector are separated by <code>commas</code></li>
+<li>Elements within the vector are separated by <code>commas</code>.</li>
 </ul>
 <p>You will be dealing a lot with vectors so we will go through some exercises on how to operate with them.</p>
-<div id="vectors-practice" class="section level3">
-<h3><span class="header-section-number">1.2.1</span> Vectors Practice</h3>
-<p>In your script leave yourself a comment to remind that this exercise is about vectors.</p>
-<div id="creating-vectors" class="section level4 tabset tabset-fade">
-<h4><span class="header-section-number">1.2.1.1</span> Creating Vectors</h4>
-<div id="exercise" class="section level5">
-<h5><span class="header-section-number">1.2.1.1.1</span> Exercise</h5>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#Exercise 2 -Vectors</span></a></code></pre></div>
-<p>Use the combine function to create some Vectors called,</p>
-<p><code>days_of_the_week &lt;-</code></p>
-<p><code>numbers &lt;-</code></p>
-</div>
-<div id="answers" class="section level5">
-<h5><span class="header-section-number">1.2.1.1.2</span> Answers</h5>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co">#Exercise 2 -Vectors</span></a>
-<a class="sourceLine" id="cb2-2" title="2"></a>
-<a class="sourceLine" id="cb2-3" title="3">days_of_the_week &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Monday&quot;</span>,<span class="st">&quot;Tuesday&quot;</span>,</a>
-<a class="sourceLine" id="cb2-4" title="4">                      <span class="st">&quot;Wednesday&quot;</span>,<span class="st">&quot;Thursday&quot;</span>,</a>
-<a class="sourceLine" id="cb2-5" title="5">                      <span class="st">&quot;Friday&quot;</span>,<span class="st">&quot;Saturday&quot;</span>,</a>
-<a class="sourceLine" id="cb2-6" title="6">                      <span class="st">&quot;Sunday&quot;</span>)</a>
-<a class="sourceLine" id="cb2-7" title="7"></a>
-<a class="sourceLine" id="cb2-8" title="8">numbers &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span></a></code></pre></div>
-</div>
-</div>
-</div>
-</div>
-<div id="vector-operations" class="section level2 tabset tabset-fade tabset-pills">
-<h2><span class="header-section-number">1.3</span> Vector Operations</h2>
-<p>Now create 2 new vectors using arithmetic on the numbers Vector</p>
-<div id="exercise-1" class="section level3">
-<h3><span class="header-section-number">1.3.1</span> Exercise</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co">#even_numbers &lt;- </span></a>
-<a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3"></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="co">#odd_numbers &lt;- </span></a></code></pre></div>
-</div>
-<div id="answers-1" class="section level3">
-<h3><span class="header-section-number">1.3.2</span> Answers</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">numbers &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">20</span></a>
-<a class="sourceLine" id="cb4-2" title="2"></a>
-<a class="sourceLine" id="cb4-3" title="3">even_numbers &lt;-<span class="st"> </span>numbers<span class="op">*</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb4-4" title="4"></a>
-<a class="sourceLine" id="cb4-5" title="5">odd_numbers &lt;-<span class="st"> </span>numbers<span class="op">*</span><span class="dv">2</span> <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
-</div>
-</div>
-<div id="vectors-operations-2" class="section level2 tabset tabset-fade tabset-pills">
-<h2><span class="header-section-number">1.4</span> Vectors Operations 2</h2>
-<div id="exercise-2" class="section level3">
-<h3><span class="header-section-number">1.4.1</span> Exercise</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># What does the code below do?</span></a>
-<a class="sourceLine" id="cb5-2" title="2"></a>
-<a class="sourceLine" id="cb5-3" title="3">vector1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span><span class="op">:</span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb5-4" title="4"></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="kw">mean</span>(vector1)</a></code></pre></div>
-<pre><code>## [1] 7</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co">#Create a Vector which subtracts the mean of vector1 from each element of vector1.</span></a>
-<a class="sourceLine" id="cb7-2" title="2"></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="co">#Minus_mean &lt;- </span></a></code></pre></div>
-</div>
-<div id="answers-2" class="section level3">
-<h3><span class="header-section-number">1.4.2</span> Answers</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">vector1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span><span class="op">:</span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb8-2" title="2"></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="kw">mean</span>(vector1)</a></code></pre></div>
-<pre><code>## [1] 7</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">minus_mean &lt;-<span class="st"> </span>vector1 <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(vector1)</a>
+<p>In the previous section we looked at data types, where we said;</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">a &lt;-<span class="st"> </span><span class="dv">10</span></a></code></pre></div>
+<p>Suppose you wanted to store more than one value for 10. e.g values between 10-50</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">a &lt;-<span class="st"> </span><span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span></a>
 <a class="sourceLine" id="cb10-2" title="2"></a>
-<a class="sourceLine" id="cb10-3" title="3">minus_mean</a></code></pre></div>
-<pre><code>## [1] -3 -2 -1  0  1  2  3</code></pre>
+<a class="sourceLine" id="cb10-3" title="3">a &lt;-<span class="st"> </span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>)</a></code></pre></div>
+<div id="the-c-function" class="section level3 tabset tabset-fade">
+<h3><span class="header-section-number">1.3.1</span> The c() Function</h3>
+<p>The code above will not work, which is where the c() funtion comes in.</p>
+<div id="question" class="section level4 unnumbered">
+<h4><strong>Question</strong></h4>
+<p>Use the help section in R to find out what the c() function does.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">c</span>()</a></code></pre></div>
 </div>
-</div>
-<div id="vectors-operations-3" class="section level2 tabset tabset-fade tabset-pills">
-<h2><span class="header-section-number">1.5</span> Vectors Operations 3</h2>
-<p>As R is a vectorised language, this means operations are applied to each element of the vector automatically, without the need to loop through the vector.</p>
-<div id="exercise-3" class="section level3">
-<h3><span class="header-section-number">1.5.1</span> Exercise</h3>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co">#Create a vector assigned to &#39;a&#39; with the numbers 1 to 5</span></a>
+<div id="show-answer" class="section level4 unnumbered">
+<h4><strong>Show Answer</strong></h4>
+<p>The c() function is used for creating a vector in R.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">?<span class="kw">c</span>()</a>
 <a class="sourceLine" id="cb12-2" title="2"></a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="co">#a &lt;- </span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="co">#or</span></a>
 <a class="sourceLine" id="cb12-4" title="4"></a>
-<a class="sourceLine" id="cb12-5" title="5"><span class="co">#Make another vector assignred to &#39;b&#39; with the numbers 1 to 3</span></a>
-<a class="sourceLine" id="cb12-6" title="6">  </a>
-<a class="sourceLine" id="cb12-7" title="7"><span class="co">#b &lt;- </span></a>
-<a class="sourceLine" id="cb12-8" title="8">  </a>
-<a class="sourceLine" id="cb12-9" title="9"><span class="co">#Add &#39;a&#39; and &#39;b&#39; together</span></a>
-<a class="sourceLine" id="cb12-10" title="10"></a>
-<a class="sourceLine" id="cb12-11" title="11"><span class="co">#a + b</span></a>
-<a class="sourceLine" id="cb12-12" title="12"></a>
-<a class="sourceLine" id="cb12-13" title="13"><span class="co">#Can you work out what has happened?</span></a>
-<a class="sourceLine" id="cb12-14" title="14"></a>
-<a class="sourceLine" id="cb12-15" title="15"><span class="co">#Try again with &#39;a&#39; as the numbers 1 to 6.</span></a></code></pre></div>
+<a class="sourceLine" id="cb12-5" title="5"><span class="kw">help</span>(c)</a></code></pre></div>
 </div>
-<div id="answers-3" class="section level3">
-<h3><span class="header-section-number">1.5.2</span> Answers</h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
+</div>
+<div id="creating-vectors" class="section level3 tabset tabset-fade">
+<h3><span class="header-section-number">1.3.2</span> Creating Vectors</h3>
+<p>There are several other ways of creating a vector:</p>
+<p>You can create a vector by using the the <strong>assignement operator</strong> or you can use the sequence function <strong>seq().</strong></p>
+<p>We can also use the <strong>colon</strong> to create a vector of consecutive numbers.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">sample_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</a>
 <a class="sourceLine" id="cb13-2" title="2"></a>
-<a class="sourceLine" id="cb13-3" title="3">b &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb13-4" title="4"></a>
-<a class="sourceLine" id="cb13-5" title="5">a<span class="op">+</span>b</a></code></pre></div>
-<pre><code>## Warning in a + b: longer object length is not a multiple of shorter object
-## length</code></pre>
-<pre><code>## [1] 2 4 6 5 7</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># This gives the following warning:</span></a>
-<a class="sourceLine" id="cb16-2" title="2"><span class="co"># [1] 2 4 6 5 7</span></a>
-<a class="sourceLine" id="cb16-3" title="3"><span class="co"># Warning message:</span></a>
-<a class="sourceLine" id="cb16-4" title="4"><span class="co">#   In a + b : longer object length is </span></a>
-<a class="sourceLine" id="cb16-5" title="5"><span class="co"># not a multiple of shorter object length</span></a>
-<a class="sourceLine" id="cb16-6" title="6"></a>
-<a class="sourceLine" id="cb16-7" title="7">a &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">6</span></a>
-<a class="sourceLine" id="cb16-8" title="8"></a>
-<a class="sourceLine" id="cb16-9" title="9">a<span class="op">+</span>b</a></code></pre></div>
-<pre><code>## [1] 2 4 6 5 7 9</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># This doesn&#39;t give a warning.</span></a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="co"># We need to be careful that objects </span></a>
-<a class="sourceLine" id="cb18-3" title="3"><span class="co"># have the same number of items.</span></a></code></pre></div>
-<p>All of the operations we have seen above were performed in an <strong>element-wise</strong> manner. This means the operation was performed on each respective element from each vector. In R this is implemented with a lot of flexibiliy. e.g. We could perform operations with vectors of different sizes. Other languages may not have the same flexibility and will give you an error.</p>
+<a class="sourceLine" id="cb13-3" title="3">sample_vector</a></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">sequence_vector &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2</span>,<span class="dv">6</span>, <span class="dt">by=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb15-2" title="2"></a>
+<a class="sourceLine" id="cb15-3" title="3">sequence_vector</a></code></pre></div>
+<pre><code>## [1] 2 4 6</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">colon_vector &lt;-<span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb17-2" title="2"></a>
+<a class="sourceLine" id="cb17-3" title="3">colon_vector</a></code></pre></div>
+<pre><code>## [1]  6  7  8  9 10</code></pre>
+<div id="question-1" class="section level4 unnumbered">
+<h4><strong>Question</strong></h4>
+<p>In your script leave yourself a comment to remind that this exercise is about vectors.</p>
+<p>Create 2 vectors, one numeric and one character, e.g favourate_movies and lucky_numbers. <code>(Feel free to be creative here)</code></p>
+<p>Now combine the 2 vectors to create a new vector.</p>
+<p>Find out what kind of vector your new vector is.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">favourate_movies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Frozen&quot;</span>, <span class="st">&quot;The Lion King&quot;</span>, <span class="st">&quot;The Godfather&quot;</span> <span class="st">&quot;Moana&quot;</span>, <span class="st">&quot;The Dark Night&quot;</span>, <span class="st">&quot;sharknado&quot;</span>) </a>
+<a class="sourceLine" id="cb19-2" title="2">  </a>
+<a class="sourceLine" id="cb19-3" title="3">lucky_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">1</span>, <span class="dv">11</span>)   </a></code></pre></div>
 </div>
-</div>
-<div id="vectors-indexing" class="section level2 tabset tabset-fade tabset-pills">
-<h2><span class="header-section-number">1.6</span> Vectors Indexing</h2>
-<p>Selecting elements from a vector, Notice that R indexes from 1 (not 0 like other languages).</p>
-<p>We select elements with <code>[ ]</code></p>
-<div id="exercise-4" class="section level3">
-<h3><span class="header-section-number">1.6.1</span> Exercise</h3>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># try selecting the 3rd element from days_of_the_week</span></a>
-<a class="sourceLine" id="cb19-2" title="2"></a>
-<a class="sourceLine" id="cb19-3" title="3"><span class="co">#days_of_the_week[]</span></a>
-<a class="sourceLine" id="cb19-4" title="4"></a>
-<a class="sourceLine" id="cb19-5" title="5"><span class="co">#find out how to select muiltiple elements from a vector, can you select;</span></a>
-<a class="sourceLine" id="cb19-6" title="6"></a>
-<a class="sourceLine" id="cb19-7" title="7"><span class="co">#The week days</span></a>
-<a class="sourceLine" id="cb19-8" title="8"></a>
-<a class="sourceLine" id="cb19-9" title="9"><span class="co"># Tuesday and Thursday</span></a></code></pre></div>
-</div>
-<div id="answers-4" class="section level3">
-<h3><span class="header-section-number">1.6.2</span> Answers</h3>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">days_of_the_week &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Monday&quot;</span>,<span class="st">&quot;Tuesday&quot;</span>,</a>
-<a class="sourceLine" id="cb20-2" title="2">                      <span class="st">&quot;Wednesday&quot;</span>,<span class="st">&quot;Thursday&quot;</span>,</a>
-<a class="sourceLine" id="cb20-3" title="3">                      <span class="st">&quot;Friday&quot;</span>,<span class="st">&quot;Saturday&quot;</span>,</a>
-<a class="sourceLine" id="cb20-4" title="4">                      <span class="st">&quot;Sunday&quot;</span>)</a>
-<a class="sourceLine" id="cb20-5" title="5"></a>
+<div id="show-answer-1" class="section level4 unnumbered">
+<h4><strong>Show Answer</strong></h4>
+<p>We can see below that our new vector is a character vector, as vectors are supposed to be of the same data type, R will convert the data of the 2 vectors to be the same, this is known as <strong>coercion.</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co">#This exercise is about vectors</span></a>
+<a class="sourceLine" id="cb20-2" title="2"></a>
+<a class="sourceLine" id="cb20-3" title="3">favourate_movies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Frozen&quot;</span>, <span class="st">&quot;The Lion King&quot;</span>, <span class="st">&quot;The Godfather&quot;</span>, <span class="st">&quot;Moana&quot;</span>, <span class="st">&quot;The Dark Night&quot;</span>, <span class="st">&quot;sharknado&quot;</span>)  </a>
+<a class="sourceLine" id="cb20-4" title="4">  </a>
+<a class="sourceLine" id="cb20-5" title="5">lucky_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">1</span>, <span class="dv">11</span>)     </a>
 <a class="sourceLine" id="cb20-6" title="6"></a>
-<a class="sourceLine" id="cb20-7" title="7"><span class="co"># 3rd day</span></a>
-<a class="sourceLine" id="cb20-8" title="8">days_of_the_week[<span class="dv">3</span>]</a></code></pre></div>
+<a class="sourceLine" id="cb20-7" title="7">movies_and_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(favourate_movies,lucky_numbers)</a>
+<a class="sourceLine" id="cb20-8" title="8"></a>
+<a class="sourceLine" id="cb20-9" title="9"><span class="kw">typeof</span>(movies_and_numbers)</a></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+</div>
+</div>
+</div>
+<div id="vector-operations" class="section level2 tabset tabset-fade">
+<h2><span class="header-section-number">1.4</span> Vector Operations</h2>
+<p>As we know vector in R is a data element so we can perform arithmetic operations on vector in R such as addition, subtraction and multiplication.</p>
+<p>As R is a vectorised language, this means operations are applied to each element of the vector automatically, without the need to loop through the vector.</p>
+<p>This enables us to perfom calculations much faster.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">sample_vector</a></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">colon_vector</a></code></pre></div>
+<pre><code>## [1]  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">vector_addition &lt;-<span class="st"> </span>sample_vector <span class="op">+</span><span class="st"> </span>colon_vector</a>
+<a class="sourceLine" id="cb26-2" title="2"></a>
+<a class="sourceLine" id="cb26-3" title="3">vector_addition</a></code></pre></div>
+<pre><code>## [1]  7  9 11 13 15</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">vector_multiplication &lt;-<span class="st"> </span>sample_vector <span class="op">*</span><span class="st"> </span>colon_vector</a>
+<a class="sourceLine" id="cb28-2" title="2"></a>
+<a class="sourceLine" id="cb28-3" title="3">vector_multiplication</a></code></pre></div>
+<pre><code>## [1]  6 14 24 36 50</code></pre>
+<div id="question-2" class="section level3 unnumbered">
+<h3><strong>Question</strong></h3>
+<p>Try and add sample_vector and sequence_vector.</p>
+<p>Can you figure out what has happened?</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">vector_after_addition &lt;-<span class="st"> </span>sample_vector <span class="op">+</span><span class="st"> </span>sequence_vector</a>
+<a class="sourceLine" id="cb30-2" title="2"></a>
+<a class="sourceLine" id="cb30-3" title="3">vector_after_addition  </a></code></pre></div>
+</div>
+<div id="show-answer-2" class="section level3 unnumbered">
+<h3><strong>Show Answer</strong></h3>
+<p>When we try to add vectors of different length the R gives a warning message as the longer object length is not a multiple of the shorter object length.</p>
+<p>As we can see R has recycled the elements in the shorter vector.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">vector_after_addition &lt;-<span class="st"> </span>sample_vector <span class="op">+</span><span class="st"> </span>sequence_vector</a></code></pre></div>
+<pre><code>## Warning in sample_vector + sequence_vector: longer object length is not a
+## multiple of shorter object length</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">vector_after_addition  </a></code></pre></div>
+<pre><code>## [1] 3 6 9 6 9</code></pre>
+</div>
+</div>
+<div id="accessing-vectors" class="section level2 tabset tabset-fade">
+<h2><span class="header-section-number">1.5</span> Accessing Vectors</h2>
+<p>Elements in a vector can be selected using <code>[ ]</code>.</p>
+<p>Note that R indexes from 1 (not 0 like other languages).</p>
+<p>As an example, going back to my favourate movies, to pick the second item in the list, I would simply, use the square bracketS and reference <strong>2</strong> as shown below.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">favourate_movies[<span class="dv">2</span>] </a></code></pre></div>
+<pre><code>## [1] &quot;The Lion King&quot;</code></pre>
+<div id="question-3" class="section level3 unnumbered">
+<h3><strong>Question</strong></h3>
+<p>Create another vector containing days of the week (Monday - Sunday).</p>
+<p>Select the third day of the week.</p>
+<p>Select the week days.</p>
+<p>Select Tuesday and Thursday.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">days_of_the_week &lt;-<span class="st"> </span></a></code></pre></div>
+</div>
+<div id="show-answer-3" class="section level3 unnumbered">
+<h3><strong>Show Answer</strong></h3>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">days_of_the_week &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Monday&quot;</span>,<span class="st">&quot;Tuesday&quot;</span>,</a>
+<a class="sourceLine" id="cb38-2" title="2">                      <span class="st">&quot;Wednesday&quot;</span>,<span class="st">&quot;Thursday&quot;</span>,</a>
+<a class="sourceLine" id="cb38-3" title="3">                      <span class="st">&quot;Friday&quot;</span>,<span class="st">&quot;Saturday&quot;</span>,</a>
+<a class="sourceLine" id="cb38-4" title="4">                      <span class="st">&quot;Sunday&quot;</span>)</a>
+<a class="sourceLine" id="cb38-5" title="5"></a>
+<a class="sourceLine" id="cb38-6" title="6"></a>
+<a class="sourceLine" id="cb38-7" title="7"><span class="co"># 3rd day</span></a>
+<a class="sourceLine" id="cb38-8" title="8">days_of_the_week[<span class="dv">3</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;Wednesday&quot;</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># week days</span></a>
-<a class="sourceLine" id="cb22-2" title="2">days_of_the_week[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># week days</span></a>
+<a class="sourceLine" id="cb40-2" title="2">days_of_the_week[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;Monday&quot;    &quot;Tuesday&quot;   &quot;Wednesday&quot; &quot;Thursday&quot;  &quot;Friday&quot;</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co"># Tuesday and Thursday</span></a>
-<a class="sourceLine" id="cb24-2" title="2">days_of_the_week[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] </a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="co">#Tuesday and Thursday</span></a>
+<a class="sourceLine" id="cb42-2" title="2"></a>
+<a class="sourceLine" id="cb42-3" title="3">days_of_the_week[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] </a></code></pre></div>
 <pre><code>## [1] &quot;Tuesday&quot;  &quot;Thursday&quot;</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">  <span class="co"># Here we create a selection </span></a>
-<a class="sourceLine" id="cb26-2" title="2">  <span class="co"># vector inside the [].</span></a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">  <span class="co"># Here we create a selection </span></a>
+<a class="sourceLine" id="cb44-2" title="2">  <span class="co"># vector inside the [].</span></a></code></pre></div>
+<hr />
 </div>
 </div>
 <div id="data-frames-and-tibbles" class="section level2 tabset tabset-fade tabset-pills">
-<h2><span class="header-section-number">1.7</span> Data Frames and Tibbles</h2>
-<p><strong>Recap on Data Frames</strong></p>
+<h2><span class="header-section-number">1.6</span> Data Frames and Tibbles</h2>
+<p>Data frames are like the tables we are used to from Excel and other programs.</p>
 <ul>
 <li>Can hold variables of different types</li>
 <li>Columns are variables</li>
-<li>Rows are instances</li>
+<li>Rows are observations</li>
 </ul>
 <p>In the next session we are going to use special type of data frames called <strong>tibbles.</strong></p>
 <p>They are becoming a standard way to work with data, they are very useful when working with large data sets.</p>
@@ -1802,12 +1901,12 @@ div.tocify {
 <li><p>Prints the first 10 rows by default.</p></li>
 <li><p>You can only view columns that fit on the screen.</p></li>
 </ul>
-<div id="tibble" class="section level3">
-<h3><span class="header-section-number">1.7.1</span> Tibble</h3>
+<div id="tibble" class="section level3 unnumbered">
+<h3>Tibble</h3>
 <p>for more information type <code>vignette(&quot;tibble&quot;)</code> in your script.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">library</span>(tibble)</a>
-<a class="sourceLine" id="cb27-2" title="2"></a>
-<a class="sourceLine" id="cb27-3" title="3"><span class="kw">as_tibble</span>(iris)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">library</span>(tibble)</a>
+<a class="sourceLine" id="cb45-2" title="2"></a>
+<a class="sourceLine" id="cb45-3" title="3"><span class="kw">as_tibble</span>(iris)</a></code></pre></div>
 <pre><code>## # A tibble: 150 x 5
 ##    Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 ##           &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
@@ -1823,9 +1922,9 @@ div.tocify {
 ## 10          4.9         3.1          1.5         0.1 setosa 
 ## # ... with 140 more rows</code></pre>
 </div>
-<div id="data-frame" class="section level3">
-<h3><span class="header-section-number">1.7.2</span> Data Frame</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">iris</a></code></pre></div>
+<div id="data-frame" class="section level3 unnumbered">
+<h3>Data Frame</h3>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1">iris</a></code></pre></div>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
 ## 1            5.1         3.5          1.4         0.2     setosa
 ## 2            4.9         3.0          1.4         0.2     setosa
@@ -1978,6 +2077,37 @@ div.tocify {
 ## 149          6.2         3.4          5.4         2.3  virginica
 ## 150          5.9         3.0          5.1         1.8  virginica</code></pre>
 </div>
+</div>
+<div id="creating-tibbles" class="section level2">
+<h2><span class="header-section-number">1.7</span> Creating Tibbles</h2>
+<p>We can create them manually using the <code>tibble</code> function. Alternatively <code>data.frame</code> will create a dataframe.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">chocolate_bar &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;turkish Delight&quot;</span>, <span class="st">&quot;milky way&quot;</span>, <span class="st">&quot;bounty&quot;</span>, <span class="st">&quot;toblerone&quot;</span>, <span class="st">&quot;mars&quot;</span>, <span class="st">&quot;snickers&quot;</span>, <span class="st">&quot;fudge&quot;</span>) </a>
+<a class="sourceLine" id="cb49-2" title="2"></a>
+<a class="sourceLine" id="cb49-3" title="3">rating &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;best&quot;</span>, <span class="st">&quot;decent&quot;</span>, <span class="st">&quot;terrible&quot;</span>, <span class="st">&quot;awful&quot;</span>, <span class="st">&quot;nice&quot;</span>, <span class="st">&quot;okay&quot;</span>, <span class="st">&quot;worst&quot;</span>)</a>
+<a class="sourceLine" id="cb49-4" title="4"></a>
+<a class="sourceLine" id="cb49-5" title="5"><span class="kw">tibble</span>(chocolate_bar, rating)</a></code></pre></div>
+<pre><code>## # A tibble: 7 x 2
+##   chocolate_bar   rating  
+##   &lt;chr&gt;           &lt;chr&gt;   
+## 1 turkish Delight best    
+## 2 milky way       decent  
+## 3 bounty          terrible
+## 4 toblerone       awful   
+## 5 mars            nice    
+## 6 snickers        okay    
+## 7 fudge           worst</code></pre>
+</div>
+<div id="summary." class="section level2">
+<h2><span class="header-section-number">1.8</span> Summary.</h2>
+<p>You should now;</p>
+<ul>
+<li>Be able to create a vector.</li>
+<li>Be able to select items within a vector.</li>
+<li>Be able to understand how vectors operate in terms of vector arithmetic.</li>
+<li>Be familliar with data structures in R.</li>
+<li>Understand how Vectors Operate.</li>
+<li>Be familiar with data frames and tibbles.</li>
+</ul>
 </div>
 </div>
 

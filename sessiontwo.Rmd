@@ -18,8 +18,6 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
-
 # Session Two.
 
 ***
@@ -27,213 +25,312 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Learning Objectives
 **The goal of this session is to:**
 
+
+* Be familliar with data structures in R.
 * Be able to create vectors to store data.
-* Understand the indexing system in R.
 * Be able to select elements from vectors.
 * Understand how Vectors Operate.
-* Understand the difference between Data frames vs Tibbles.
+* Be familiar with data frames and tibbles.
 
 
-## Recap on Vectors
+***
 
-* All elements in a vector must have the same type/class
+## Data Structures.
+We dont work with single data values, we often work with a combination or collection of data.
+
+R organises these in certain structures.
+
+This is how R stores data in a way that we manipulate and work with it.
+
+Some of R data structures are:
+
+- **Vector**
+
+- **Matrix**
+
+- **List**
+
+- **Dataframe**
+
+***
+### Examples of Data Structures {.tabset .tabset-fade .tabset-pills}
+
+#### **Vector**{-}
+One dimension set of  data of the same type.
+
+The `c()` is very important.
+
+Some in-built vectors, type code below;
+
+**letters**
+
+
+**month.name**
+
+```{r}
+Numerical_Vector <- c(1,2,3,4,5,6,7,8,9,10)
+
+Logical_Vector <- c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE)
+
+Character_Vector <- c("Cardiff", "Newport", "Bristol")
+
+
+```
+
+
+#### **Matrix**{-}
+
+Two dimensional set of data of the same type.
+
+In other words, matrix is a combination of two or more vectors with the same data type.
+
+```{r echo=FALSE}
+
+my_matrix <- matrix (c(3:14), nrow = 4, byrow = TRUE)
+
+my_matrix
+
+```
+
+#### **List**{-}
+
+One dimension set of data, of different types.
+
+```{r echo=TRUE}
+
+my_first_list <- list(1,2,3,4, "two")
+
+my_second_list <- list("ONS", 10, TRUE)
+
+my_first_list
+
+my_second_list
+
+
+```
+
+
+#### **Dataframe**{-}
+It’s a two dimensiona collection of rows and columns of data, where rows are observations, and columns are variables. Also that unlike a Matrix, column data types are independent, each one can be anything.
+
+R has lots of inbult dataframes you can access by typing **data()**
+
+
+```{r paged.print=TRUE}
+
+mtcars
+
+
+```
+
+
+***
+## Vectors
+
+* All elements in a vector must have the same type/class.
 * They are created using the  `c()` function, which stands for combine.
-* Elements within the vector are separated by `commas`
+* Elements within the vector are separated by `commas`.
 
 You will be dealing a lot with vectors so we will go through some exercises on how to operate with them.
-    
-### Vectors Practice
+
+In the previous section we looked at data types, where we said;
+
+```{r}
+
+a <- 10
+
+```
+Suppose you wanted to store more than one value for 10. e.g values between 10-50
+
+```{r, eval=FALSE}
+
+a <- 10, 20, 30, 40, 50
+
+a <- (10, 20, 30,40,50)
+
+
+```
+
+### The c() Function {.tabset .tabset-fade}
+
+The code above will not work, which is where the c() funtion comes in. 
+
+#### **Question** {-}
+
+Use the help section in R to find out what the c() function does.
+
+```{r, eval=F}
+
+c()
+
+```
+
+#### **Show Answer** {-}
+
+The c() function is used for creating a vector in R.
+
+```{r}
+
+?c()
+
+#or
+
+help(c)
+
+```
+
+
+### Creating Vectors {.tabset .tabset-fade}
+
+There are several other ways of creating a vector:
+
+You can create a vector by using the the **assignement operator**
+or you can use the sequence function **seq().**
+
+We can also use the **colon** to create a vector of consecutive numbers.
+
+```{r}
+
+sample_vector <- c(1,2,3,4,5)
+
+sample_vector
+
+sequence_vector <- seq(2,6, by=2)
+
+sequence_vector
+
+colon_vector <- 6:10
+
+colon_vector
+
+```
+#### **Question**{-}
 
 In your script leave yourself a comment to remind that this exercise is about vectors.
 
-#### Creating Vectors {.tabset .tabset-fade}
+Create 2 vectors, one numeric and one character, e.g favourate_movies and lucky_numbers. `(Feel free to be creative here)`
 
-##### Exercise
+Now combine the 2 vectors to create a new vector.
 
-```{r, eval = F}
+Find out what kind of vector your new vector is.
 
-#Exercise 2 -Vectors
+```{r, eval=FALSE}
 
-
-```
-
-
-Use the combine function to create some Vectors called,
-
-`days_of_the_week <-`
-
-`numbers <-`
-
-##### Answers
-
-```{r, eval = F}
-#Exercise 2 -Vectors
-
-days_of_the_week <- c("Monday","Tuesday",
-                      "Wednesday","Thursday",
-                      "Friday","Saturday",
-                      "Sunday")
-
-numbers <- 1:20
-
+favourate_movies <- c("Frozen", "The Lion King", "The Godfather" "Moana", "The Dark Night", "sharknado") 
+  
+lucky_numbers <- c(7, 12, 15, 1, 11)   
 
 ```
 
-## Vector Operations {.tabset .tabset-fade .tabset-pills}
+#### **Show Answer**{-}
 
-Now create 2 new vectors using arithmetic on the numbers Vector
+We can see below that our new vector is a character vector, as vectors are supposed to be of the same data type, R will convert the data of the 2 vectors to be the same, this is known as **coercion.**
 
-### Exercise
 ```{r}
+#This exercise is about vectors
 
-#even_numbers <- 
+favourate_movies <- c("Frozen", "The Lion King", "The Godfather", "Moana", "The Dark Night", "sharknado")  
+  
+lucky_numbers <- c(7, 12, 15, 1, 11)     
 
+movies_and_numbers <- c(favourate_movies,lucky_numbers)
 
-#odd_numbers <- 
-
-
-```
-
-
-### Answers
-
-```{r echo=TRUE}
-
-numbers <- 1:20
-
-even_numbers <- numbers*2
-
-odd_numbers <- numbers*2 - 1
-
-```
-
-## Vectors Operations 2 {.tabset .tabset-fade .tabset-pills}
-
-### Exercise
-```{r}
-
-# What does the code below do?
-
-vector1 <- c(4:10)
-
-mean(vector1)
-
-#Create a Vector which subtracts the mean of vector1 from each element of vector1.
-
-#Minus_mean <- 
- 
-
-```
- 
- 
- 
-
-### Answers
-
-```{r echo=TRUE}
-
-vector1 <- c(4:10)
-
-mean(vector1)
-
-
-minus_mean <- vector1 - mean(vector1)
-
-minus_mean
+typeof(movies_and_numbers)
 
 ```
 
 
+## Vector Operations {.tabset .tabset-fade}
 
-
-## Vectors Operations 3 {.tabset .tabset-fade .tabset-pills}
+As we know vector in R is a data element so we can perform arithmetic operations on vector in R such as addition, subtraction and multiplication.
 
 As R is a vectorised language, this means operations are applied to each element of the vector automatically, without the need to loop through the vector.
 
-### Exercise
-```{r}
-#Create a vector assigned to 'a' with the numbers 1 to 5
+This enables us to perfom calculations much faster.
 
-#a <- 
-
-#Make another vector assignred to 'b' with the numbers 1 to 3
-  
-#b <- 
-  
-#Add 'a' and 'b' together
-
-#a + b
-
-#Can you work out what has happened?
-
-#Try again with 'a' as the numbers 1 to 6.
-  
-  
- 
- 
-
-```
- 
- 
-
-### Answers
-
-```{r echo=TRUE}
-
-a <- 1:5
-
-b <- 1:3
-
-a+b
-
-# This gives the following warning:
-# [1] 2 4 6 5 7
-# Warning message:
-#   In a + b : longer object length is 
-# not a multiple of shorter object length
-
-a <- 1:6
-
-a+b
-
-# This doesn't give a warning.
-# We need to be careful that objects 
-# have the same number of items.
-
-```
-All of the operations we have seen above were performed in an **element-wise** manner. This means the operation was performed on each respective element from each vector. In R this is implemented with a lot of flexibiliy. e.g. We could perform operations with vectors of different sizes. Other languages may not have the same flexibility and will give you an error.
-
-
-
-## Vectors Indexing {.tabset .tabset-fade .tabset-pills}
-
-Selecting elements from a vector, Notice that R indexes from 1 (not 0 like other languages).
-
-We select elements with `[ ]`
-
-### Exercise
 ```{r}
 
-# try selecting the 3rd element from days_of_the_week
+sample_vector
 
-#days_of_the_week[]
+colon_vector
 
-#find out how to select muiltiple elements from a vector, can you select;
+vector_addition <- sample_vector + colon_vector
 
-#The week days
+vector_addition
 
-# Tuesday and Thursday
-  
+vector_multiplication <- sample_vector * colon_vector
+
+vector_multiplication
+
+```
+
+### **Question**{-}
+
+Try and add sample_vector and sequence_vector.
+
+Can you figure out what has happened?
+
+
+```{r, eval=FALSE}
+
+vector_after_addition <- sample_vector + sequence_vector
+
+vector_after_addition  
+
+```
+
+### **Show Answer**{-}
+
+When we try to add vectors of different length the R gives a warning message as the longer object length is not a multiple of the shorter object length.
+
+As we can see R has recycled the elements in the shorter vector.
+
+
+```{r}
+vector_after_addition <- sample_vector + sequence_vector
+
+vector_after_addition  
+   
+```
+## Accessing Vectors {.tabset .tabset-fade}
+
+
+Elements in a vector can be selected using `[ ]`.
+
+Note that R indexes from 1 (not 0 like other languages).
+
+As an example, going back to my favourate movies, to pick the second item in the list, I would simply, use the square bracketS and reference **2** as shown below.
+
+```{r}
+
+favourate_movies[2] 
+
+
+```
+
+
+
+### **Question**{-}
+
+Create another vector containing days of the week (Monday - Sunday).
+
+Select the third day of the week.
+
+Select the week days.
+
+Select Tuesday and Thursday.
+
+```{r, eval=FALSE}
+
+days_of_the_week <- 
   
 
 ```
- 
- 
 
-### Answers
+### **Show Answer**{-}
 
-```{r echo=TRUE}
 
+```{r}
 days_of_the_week <- c("Monday","Tuesday",
                       "Wednesday","Thursday",
                       "Friday","Saturday",
@@ -242,22 +339,27 @@ days_of_the_week <- c("Monday","Tuesday",
 
 # 3rd day
 days_of_the_week[3]
+
+
 # week days
 days_of_the_week[1:5]
-# Tuesday and Thursday
+
+#Tuesday and Thursday
+
 days_of_the_week[c(2,4)] 
   # Here we create a selection 
   # vector inside the [].
-
 ```
+
+***
 
 ## Data Frames and Tibbles {.tabset .tabset-fade .tabset-pills}
 
-**Recap on Data Frames**
+Data frames are like the tables we are used to from Excel and other programs.
 
 * Can hold variables of different types
 * Columns are variables 
-* Rows are instances
+* Rows are observations
 
 In the next session we are going to use special type of data frames called **tibbles.**
 
@@ -274,7 +376,7 @@ They are becoming a standard way to work with data, they are very useful when wo
 * You can only view columns that fit on the screen.
 
 
-### Tibble
+### Tibble {-}
 
 for more information type `vignette("tibble")` in your script.
 
@@ -287,11 +389,37 @@ as_tibble(iris)
 
 ```
 
-### Data Frame
-```{r}
+### Data Frame {-}
+```{r} 
 
 iris
   
 ```
 
+## Creating Tibbles
+
+We can create them manually using the `tibble` function. Alternatively `data.frame` will create a dataframe.
+
+```{r}
+
+chocolate_bar <- c("turkish Delight", "milky way", "bounty", "toblerone", "mars", "snickers", "fudge") 
+
+rating <- c("best", "decent", "terrible", "awful", "nice", "okay", "worst")
+
+tibble(chocolate_bar, rating)
+
+
+```
+
+
+## Summary.
+
+You should now;
+
+* Be able to create a vector.
+* Be able to select items within a vector.
+* Be able to understand how vectors operate in terms of vector arithmetic.
+* Be familliar with data structures in R.
+* Understand how Vectors Operate.
+* Be familiar with data frames and tibbles.
 
