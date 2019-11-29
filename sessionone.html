@@ -1627,14 +1627,14 @@ div.tocify {
 <h2><span class="header-section-number">1.2</span> What is R and background?</h2>
 <p>R is a <strong>programming language</strong>, you can use it for statistical analysis, data manipulation and visualiasation.</p>
 <p>R was initially written by <strong>Ross Ihaka and Robert Gentleman</strong> at the Department of Statistics of the University of Auckland in New Zealand.It is named partly after the first names of the first two R authors.</p>
-<p>R is an interpreted language. This means you have to type in commands written in R code.</p>
+<p>R is an interpreted language. This means it doesn’t need to be converted into separate files your machine can read in order to be run, the machine interprets it for you.</p>
 <p>As of November 2019, R ranks 16th in the <a href="https://www.tiobe.com/tiobe-index/">TIOBE index</a> , a measure of popularity of programming languages.</p>
 <p><strong>Why Use R?</strong></p>
 <ul>
 <li>Free and open source, people can modify and share because its design is publicly accessible.</li>
 <li>Great Community Support, diverse and welcoming community. e.g. #rstats twitter community, numerous <a href="https://www.meetup.com/topics/r-programming-language/">R Meet Ups</a>.</li>
-<li>Lots of <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">packages available</a></li>
-<li>Cross Platform, i.e Windows, Linux, OS.</li>
+<li>There are lots of <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">packages available</a> which contain implimentations of processes and ready-made functions you might find useful</li>
+<li>Cross Platform, it can be used across a range of opperating systems i.e Windows, Linux, OS.</li>
 <li>R has extensive and powerful graphics abilities. e.g <a href="https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535">The BBC use R to produce their graphics</a></li>
 <li>Powerful tool for communicating results, ie. <a href="https://rmarkdown.rstudio.com/">RMarkdown</a> makes its easy to turn your files into PDF’S, Powerpoint presentations and <a href="https://shiny.rstudio.com/">Shiny</a> allows you to make beautiful interactive apps and dashboards.</li>
 </ul>
@@ -1646,8 +1646,8 @@ div.tocify {
 <hr />
 <p><strong>Code Editor</strong> - This is where you will do the majority of your coding.</p>
 <p><strong>Console</strong> - This is where calculations take place, you can also code here, but not easy to correct.</p>
-<p><strong>Environment/History</strong> - This shows the previous code you were working on, any objects (Where values are saved in R), i.e variables, data frames.</p>
-<p><strong>Files/Help/Packages</strong> - This shows the files, packages and help documentation</p>
+<p><strong>Environment/History</strong> - This shows the previous code you were working on, and any storage of objects you are using i.e variables, data frames.</p>
+<p><strong>Files/Help/Packages</strong> - This shows the files, packages and help documentation.</p>
 <p>For more information about R, you can find the RStudio Cheat Sheet under the Help -&gt; <strong>Cheatsheet.</strong></p>
 <hr />
 </div>
@@ -1696,17 +1696,17 @@ div.tocify {
 <div id="the-code-editor." class="section level2">
 <h2><span class="header-section-number">1.5</span> The Code Editor.</h2>
 <p>A <strong>script</strong> is just a plain text file which we write our code in.</p>
-<p>You can type code and save it for later.</p>
+<p>This means you can type code and save it for later, and run it all at once instead of a line at a time.</p>
 <p>You can add comments to your code using <strong>#</strong>. R will ignore anything to the right of the <strong># symbol</strong>.</p>
 <div id="exercise-creating-a-script" class="section level3 tabset tabset-fade">
 <h3><span class="header-section-number">1.5.1</span> Exercise, Creating a Script</h3>
 <div id="questions-1" class="section level4 unnumbered">
 <h4><strong>Questions</strong></h4>
-<p>Create a new script, choose a sensible name (e.g. intro.R).</p>
+<p>Create a new script, choose a sensible name (e.g. intro.R). The “.R” denotes that it is a R file.</p>
 <p>Save your script <strong>CTRL + S</strong>.</p>
 <p>Add a relevant comment at the top of your script.</p>
 <p>Try out some arithmetic as before.</p>
-<p>This time around to run the code you need to select the section you want to run and then press <strong>CTRL + ENTER.</strong></p>
+<p>To run the code this time you need to select the section you want to run and then press <strong>CTRL + ENTER.</strong></p>
 </div>
 <div id="show-answer-1" class="section level4 unnumbered">
 <h4><strong>Show Answer</strong></h4>
@@ -1731,20 +1731,20 @@ div.tocify {
 </div>
 <div id="the-environment-window." class="section level2">
 <h2><span class="header-section-number">1.6</span> The Environment Window.</h2>
-<p>Shows all the <strong>objects</strong> that you have created or working with.</p>
+<p>Shows all the <strong>objects</strong> that you have created or are working with.</p>
 <p>We can assign these objects names, this is called a <strong>VARIABLE</strong>.</p>
 <p>They are used to store data and can be changed according to your need.</p>
 <p>Once an object has been created it will appear in your Environment window which helps you keep track of what objects you have in your current workspace.</p>
-<p>We assign variables using the assignemt operator <code>&lt;-</code>,(short cut is <strong>ALT + MINUS)</strong>.</p>
+<p>We assign variables using the assignemt operator <code>&lt;-</code>, (the shortcut is <strong>ALT + MINUS)</strong>.</p>
 <p>Assigning a variable provides no output. To see the variable, you need to call it. You can do this by running the name of the variable.</p>
 <p>Once you’ve created objects you can view them in your environment window in the top right pane of <code>RStudio</code>.</p>
-<p>You may also want to remove a variable, in which case you need the <code>rm()</code> function:</p>
+<p>You may also want to remove a variable, in which case you need the <code>rm()</code> command. You put the nameof the variable that you want to remove within the parentheses.</p>
 <div id="exercise-creating-variables." class="section level3 tabset tabset-fade">
 <h3><span class="header-section-number">1.6.1</span> Exercise, Creating Variables.</h3>
 <div id="questions-2" class="section level4 unnumbered">
 <h4><strong>Questions</strong></h4>
 <p>Store as a variable the <strong>sum of 1 + 3</strong>, call it <strong>myVariable</strong></p>
-<p>and another variable <strong>2 - 4</strong>, call it <strong>another_variable</strong></p>
+<p>and another variable <strong>2 - 4</strong>, call it <strong>another_variable</strong>.</p>
 <p>Use the remove function to remove a variable.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">myVariable  &lt;-<span class="st"> </span></a>
 <a class="sourceLine" id="cb12-2" title="2"></a>
@@ -1764,11 +1764,13 @@ div.tocify {
 <a class="sourceLine" id="cb15-4" title="4">another_variable</a></code></pre></div>
 <pre><code>## [1] -2</code></pre>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">rm</span>(myVariable)</a></code></pre></div>
+<hr />
 <p><strong>A note on Variable Names:</strong></p>
 <p>Choosing variable names is one of the most difficult bits of programming; choose something that that is descriptive, recognisable.</p>
 <p><em>camelCase vs. snake_case</em></p>
 <p>It doesn’t really matter which you use, just be consistent.</p>
-<p>Variables can not start with a number, symbol (except <code>_</code> ) or a reserved word like <code>TRUE</code></p>
+<p>Variables can not start with a number, symbol (except <code>_</code> ) or a reserved word like <code>TRUE</code>.</p>
+<p>Variables can not contain a space within them such as <code>the number</code>.</p>
 <p>R is case sensitive!</p>
 <hr />
 </div>
@@ -1796,7 +1798,7 @@ div.tocify {
 <p><strong>Stack Overflow</strong></p>
 <p><a href="https://stackoverflow.com/">Stack Overflow</a> is a great site to check if anyone has has a simmilar problem to you, and see how they got around it.</p>
 <p><strong>Yammer</strong></p>
-<p>Within Ons we have 2 groups on Yammer,</p>
+<p>Within ONS we have two groups on Yammer,</p>
 <ul>
 <li><p>The <strong>R User Group</strong> which you can post any issues you are facing and people will suggests solutions</p></li>
 <li><p>The <strong>Coding in the Kitchen</strong> group which is used to share tips and best practice.</p></li>
@@ -1812,24 +1814,25 @@ div.tocify {
 <h2><span class="header-section-number">1.8</span> Data Types/Classes.</h2>
 <p>To get the best out of R, you will need to have a strong understanding of the basic data types and structures and how to operate on them.</p>
 <p>Different processes apply to different types of data.</p>
-<p>Different Types have different properties; if you try to add 1 + “two”, you will get an error due to a mismatch of data types.</p>
+<p>Different data types have different properties; if you try to add 1 + “two”, you will get an error due to a mismatch of types.</p>
 <p>Some of R basic data types are;</p>
 <p><strong>Characters - chr</strong></p>
-<p>‘<strong>need</strong> to be surrounded in… <strong>that is</strong> how R understands <strong>it’s</strong> a character’</p>
+<p>‘<strong>need</strong> to be surrounded by quotation marks <strong>that is</strong> how R understands <strong>it is</strong> a character’</p>
 <p><strong>Numeric - num (sometimes int/dbl)</strong></p>
 <p>Numbers in R are grouped together. You may also see</p>
 <ul>
-<li><p>int for interger (Whole numbers with no decimal place, they are denoted in R by an L at the end of the number.)</p></li>
-<li><p>dbl for double point floating number (decimal).</p></li>
+<li><p>int for integer (whole numbers with no decimal place, they are denoted in R by an L at the end of the number).</p></li>
+<li><p>dbl for double point floating number (a decimal).</p></li>
 </ul>
 <p>These different types exist in R for operations behind the scenes. We don’t need to worry about them too much at the moment.</p>
 <p><strong>Interger</strong></p>
 <p>Whole numbers with no decimal place, they are denoted in R by an L at the end of the number.</p>
-<p><strong>Logical,(also know as Booleans)</strong></p>
+<p><strong>Logic Statements</strong></p>
+<p>These are also known as boolians.</p>
 <p>Capital letters <code>TRUE</code> or <code>FALSE</code> or can be abbreviated to <code>T</code> or <code>F</code></p>
 <p>They are special R data types - not strings! So they don’t need ’’ or &quot;&quot; around them.</p>
 <p>They also have numerical value behind them - <code>TRUE</code> is 1 and <code>FALSE</code> is 0.</p>
-<p><strong>Simplified, that means numbers, text and true/false values</strong>.</p>
+<p><strong>Simplified, data types are: numbers, text and TRUE/FALSE values</strong>.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">Character example <span class="st">&quot;ONS&quot;</span></a>
 <a class="sourceLine" id="cb19-2" title="2"></a>
 <a class="sourceLine" id="cb19-3" title="3">Numeric example <span class="fl">10.1</span></a>
@@ -1858,7 +1861,7 @@ div.tocify {
 </div>
 <div id="show-answer-3" class="section level4 unnumbered">
 <h4><strong>Show Answer</strong></h4>
-<p>typeof determines the (R internal) type or storage mode of any object</p>
+<p>The typeof notation determines the (R internal) type or storage mode of any object.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">typeof</span>(a)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">typeof</span>(b)</a></code></pre></div>
@@ -1878,12 +1881,12 @@ div.tocify {
 </div>
 <div id="data-type-conversion" class="section level3">
 <h3><span class="header-section-number">1.8.2</span> Data Type Conversion</h3>
-<p>We could also convert values from type to another, suppose we wanted to convert <strong>a</strong> (above) to numeric.</p>
+<p>We could also convert values from one type to another, suppose we wanted to convert <strong>a</strong> (above) to numeric.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">a &lt;-<span class="st"> &quot;10&quot;</span></a>
 <a class="sourceLine" id="cb35-2" title="2"></a>
 <a class="sourceLine" id="cb35-3" title="3"><span class="kw">typeof</span>(a)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<p>In order to convert the data, you need to use the <strong>as</strong> function. As part of this function, you specify the data type you are converting to.</p>
+<p>In order to convert the data, you need to use the <strong>as</strong> function. As part of this command, you specify the data type you are converting to. The commands are as follows:</p>
 <p><strong>as.numeric to convert to Numeric.</strong></p>
 <p><strong>as.character to convert to Characters.</strong></p>
 <p><strong>as.logical to convert to Logical.</strong></p>
@@ -1897,7 +1900,7 @@ div.tocify {
 <a class="sourceLine" id="cb39-2" title="2"></a>
 <a class="sourceLine" id="cb39-3" title="3"><span class="kw">typeof</span>(new_a)</a></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
-<p>We’ll look at some other ways to do convert types later in the course.</p>
+<p>We will look at some other ways to do convert types later in the course.</p>
 </div>
 </div>
 </div>
