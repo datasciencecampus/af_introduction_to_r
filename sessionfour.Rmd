@@ -1,0 +1,186 @@
+---
+title: "Intro to R - Session 3"
+output:
+  html_document: 
+    theme: cerulean
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+![](Images/logo.PNG)  ![](Images/ons.PNG)
+
+# Session Three.
+
+## Learning Objectives
+**The goal of this session is to:**
+
+* Have an understanding of what packages are.
+* Be able to load and install a package.
+* Be able to check package versions and R version.
+* Be able to import data from multiple formarts.
+* Be able to inspect loaded data and select elements    within the dataframe.
+* Be able to export data.
+
+
+##  Column Names
+
+Previously we showed you how to select column names in a dataframe.
+
+We selected the first column of the school dataset.
+
+If we try and run the code below, it wont work, because there is a space between the 2 words.
+
+**dataframe$columnname**
+
+```{r, eval = F}
+
+school$School name
+
+``` 
+
+The code below, will work,
+
+notice the special marks around **`School name`**
+
+R deals with the spaces by using the 2 back ticks - key above the tab key on left hand side.
+
+
+```{r, eval = F}
+
+
+
+school$`School name`
+
+```
+
+
+If column names have spaces and you keep them- must use backticks.
+
+However best practice - remove spaces and symbols
+
+we use the janitor package to do this.
+
+```{r message=FALSE, warning=FALSE}
+library (janitor)
+
+library( readr)
+
+school <- read_csv("Intro_to_R/Data/schools_data.csv",
+                   na=c("", " ", "NULL"))
+
+school <- clean_names(school)
+
+```
+we can see how the names have changed, clean_names() from janitor removes spaces, symbols
+changes to lower case and makes all cols start with letters.
+
+
+```{r}
+
+names(school)
+
+```
+
+This is the default setting, you can change this to other options available
+
+```{r, eval=FALSE}
+
+clean_names(dat, case = c("snake", "lower_camel",
+  "upper_camel", "screaming_snake", "lower_upper", "upper_lower",
+  "all_caps", "small_camel", "big_camel"))
+
+school <- clean_names(school, case = c("screaming_snake"))
+
+```
+
+We can also do change the column names using GSUB.
+
+Used on the column names - but can be used on text columns too.
+
+```{r, eval=FALSE}
+
+# This code substitutes the second item
+# in place of the first, in the data
+
+names(school) <- gsub(" ", "_", names(school))
+names(school) <- gsub("," , "", names(school) )
+names(school) <- gsub("-" , "_", names(school))
+
+# This code changes to lower case
+
+names(school) <- tolower(names(school)) 
+
+# We're using gsub and tolower here on the
+# (column/variable) names
+# We can also use it on full columns
+
+school$school_name <- tolower(school$school_name)  # lower school names
+
+```
+
+## Data Manipulation with DPLYR 
+
+Dplyr makes data manipulation much easier and makes the code more readable.
+
+we will use dplyr to;
+
+* Arrange/sort data
+
+* Select data
+
+* Filter data
+
+* Mutate/Create new variables
+
+* Join data
+
+* Group by/ Summarise
+
+## Sorting Data {.tabset .tabset-fade .tabset-pills}
+
+To sort data we use the code below,
+
+**sorted_data <- arrange(.data= , column)**
+
+
+### Example
+
+```{r, eval=FALSE} 
+
+library(dplyr)
+
+school_sorted <- arrange(.data = school,
+                         overall_effectiveness)
+
+
+school_sorted$overall_effectiveness
+
+# If we don't specify it's ascending order
+
+# To arrange in descending order.
+
+school_sorted <- arrange(.data = school,   
+                         desc(overall_effectiveness)) 
+
+```
+### Show Result
+
+```{r message=FALSE, warning=FALSE} 
+
+library(dplyr)
+
+school_sorted <- arrange(.data = school,
+                         overall_effectiveness)
+
+
+school_sorted$overall_effectiveness
+
+
+
+```
+
