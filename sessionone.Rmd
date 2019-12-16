@@ -314,7 +314,7 @@ Please be aware that due to training commitments there may be a small wait befor
 
 ***
 
-## Data Types/Classes.
+## Data Types.
 
 To get the best out of R, you will need to have a strong understanding of the basic data types and structures and how to operate on them.
 
