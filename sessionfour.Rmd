@@ -1,20 +1,25 @@
 ---
-title: "Intro to R - Session 3"
+title: "Intro to R - Session Four"
 output:
   html_document: 
-    theme: cerulean
+    theme: united
+    highlight: tango
     toc: yes
-    toc_depth: 3
     toc_float: yes
+    number_sections: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+```{r, echo=FALSE, eval=FALSE}
+htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
 
-![](Images/logo.PNG)  ![](Images/ons.PNG)
 
-# Session Three.
+# Session Four.
 
 ## Learning Objectives
 **The goal of this session is to:**
@@ -23,164 +28,425 @@ knitr::opts_chunk$set(echo = TRUE)
 * Be able to load and install a package.
 * Be able to check package versions and R version.
 * Be able to import data from multiple formarts.
-* Be able to inspect loaded data and select elements    within the dataframe.
+* Be able to inspect loaded data and select elements within the dataframe.
 * Be able to export data.
 
+## Column Names
 
-##  Column Names
+In the previous section we looked at reading data into R and also insepcting it. In this section we are going to look at how to manipulate it.
 
-Previously we showed you how to select column names in a dataframe.
+If you remember in the previous session we stated that every column in a data frame is a variable and its good practice to not have spaces within variable
+names.
 
-We selected the first column of the school dataset.
+This also makes it easier for us to call on the variables when we need to use them.
 
-If we try and run the code below, it wont work, because there is a space between the 2 words.
 
-**dataframe$columnname**
+
+### Example
+
+For example if we wanted to pick the `school name` column from the school dataset. The code below does not work. 
 
 ```{r, eval = F}
 
 school$School name
 
-``` 
+```
 
-The code below, will work,
-
-notice the special marks around **`School name`**
-
-R deals with the spaces by using the 2 back ticks - key above the tab key on left hand side.
-
+To get around this we enclose `school name` with back ticks like the code below ( key above the tab key on left hand side)
 
 ```{r, eval = F}
-
-
 
 school$`School name`
 
 ```
 
+If you column names have spaces and you keep them, you must use backticks.
+However its good practise to remove spaces and symbols.
 
-If column names have spaces and you keep them- must use backticks.
+### Cleaning Column Names {.tabset .tabset-fade}
 
-However best practice - remove spaces and symbols
 
-we use the janitor package to do this.
+#### Janitor Package
 
-```{r message=FALSE, warning=FALSE}
-library (janitor)
+The Janitor package offers a lot functions to manipulate data, in this session we use to to clean our dataset names.
 
-library( readr)
+We can the names of  our dataset with the `clean names`function as shown below.
 
-school <- read_csv("Intro_to_R/Data/schools_data.csv",
-                   na=c("", " ", "NULL"))
+
+```{r, eval = F}
+
 
 school <- clean_names(school)
 
 ```
-we can see how the names have changed, clean_names() from janitor removes spaces, symbols
-changes to lower case and makes all cols start with letters.
 
+`clean_names()` removes spaces, symbols, changes to lower case and makes all cols start with letters.
 
-```{r}
+This is the default setting other options we could use are;
 
-names(school)
+```{r, eval = F}
 
-```
-
-This is the default setting, you can change this to other options available
-
-```{r, eval=FALSE}
-
-clean_names(dat, case = c("snake", "lower_camel",
+clean_names("snake", "lower_camel",
   "upper_camel", "screaming_snake", "lower_upper", "upper_lower",
-  "all_caps", "small_camel", "big_camel"))
-
-school <- clean_names(school, case = c("screaming_snake"))
+  "all_caps", "small_camel", "big_camel", "mixed",)
 
 ```
 
-We can also do change the column names using GSUB.
 
-Used on the column names - but can be used on text columns too.
+#### Gsub
 
-```{r, eval=FALSE}
+We can also do this using gsub. Gsub here isused on the column names, but can be used on text columns too.
 
-# This code substitutes the second item
-# in place of the first, in the data
+The code below #substitutes the second item in place of the first, in the data.
+
+
+```{r, eval = F}
 
 names(school) <- gsub(" ", "_", names(school))
 names(school) <- gsub("," , "", names(school) )
 names(school) <- gsub("-" , "_", names(school))
 
-# This code changes to lower case
+
+
+```
+This code changes to lower case.
+
+
+```{r, eval = F}
 
 names(school) <- tolower(names(school)) 
 
-# We're using gsub and tolower here on the
-# (column/variable) names
-# We can also use it on full columns
 
-school$school_name <- tolower(school$school_name)  # lower school names
+```
+We can also rename column name.
+
+```{r, eval = F}
+
+school <- rename(school, study_programmes_16_19 = study_programmes)
 
 ```
 
-## Data Manipulation with DPLYR 
+We can also use it on full columns.
+ 
+ ```{r, eval = F}
 
-Dplyr makes data manipulation much easier and makes the code more readable.
-
-we will use dplyr to;
-
-* Arrange/sort data
-
-* Select data
-
-* Filter data
-
-* Mutate/Create new variables
-
-* Join data
-
-* Group by/ Summarise
-
-## Sorting Data {.tabset .tabset-fade .tabset-pills}
-
-To sort data we use the code below,
-
-**sorted_data <- arrange(.data= , column)**
+school$school_name <- tolower(school$school_name) 
 
 
-### Example
+```
 
-```{r, eval=FALSE} 
+## Dplyr
 
-library(dplyr)
+This is one of the most powerful tools in the tidyverse which makes data manipulation easy and code easy to read.
+
+We are going to look at the following,
+
+1. arrange/sort
+2. select
+3. filter
+4. mutate
+5. joining data
+
+Dplyr functions(verbs) all have the same structure.
+
+ ```{r, eval = F}
+
+verb(data, more information)
+
+
+```
+
+
+### Arrange
+
+`arrange()` lets you sort data by a variable.
+
+#### Example {.tabset .tabset-fade}
+
+We can sort the column `overall_effectiness`  with code below.
+
+ ```{r, eval = F}
 
 school_sorted <- arrange(.data = school,
                          overall_effectiveness)
 
 
-school_sorted$overall_effectiveness
+```
 
-# If we don't specify it's ascending order
+`.data` is the argument name for the data argument in dplyr.
 
-# To arrange in descending order.
+It's optional but can help us to read code more effectivly.
+
+ ```{r, eval = F}
+
+school_sorted <- arrange(.data = school,
+                         overall_effectiveness)
+
+
+```
+If we don't specify  the default is to sort in ascending order.
+
+To sort in descending order, we use the code below,
+
+ ```{r, eval = F}
 
 school_sorted <- arrange(.data = school,   
-                         desc(overall_effectiveness)) 
+                         desc(overall_effectiveness))
+
 
 ```
-### Show Result
 
-```{r message=FALSE, warning=FALSE} 
+##### **Question**
 
-library(dplyr)
+1.Can you sort the school data set by ofsted region and local authority.
 
-school_sorted <- arrange(.data = school,
+2.Can you sort the school data set by ofsted region and local authority in descending order for both variables.
+
+
+
+##### **Show Answer**
+
+Sorting by multiple variables, arranged them within each other. i.e it will sort the data by ofsted_region first and then within each region it will sort by local authority.
+
+ ```{r, eval = F}
+
+school_sorted2 <- arrange(.data =  school,
+                          ofsted_region,
+                          local_authority)
+                          
+```
+To sort both descinding order we have to  to use desc around each column name.
+
+If you only had one `desc` on the ofsted_region, it will show Ofsted Region in desc, but local authority in asc.
+
+ ```{r, eval = F}
+
+school_sorted <- arrange(.data = school, 
+                         desc(ofsted_region),
+                         desc(local_authority))
+                          
+
+
+```
+
+### Select
+
+`select()`  lets you pick columns by specifying the column names. Previously we selected columns using the `$` symbol.
+
+#### Example.
+
+We can select the multiple columns using the column names  with the code below,
+
+```{r, eval = F}
+
+name_region <- select(.data = school,
+                     school_name, ofsted_region)
+
+
+
+
+current_rating <- select(.data = school, 
+                         school_name,
+                         local_authority, 
                          overall_effectiveness)
-
-
-school_sorted$overall_effectiveness
-
+                          
 
 
 ```
 
+We can also select using columns using numbers, positive numbers and negative numbers to drop.
+
+For example code below will select the first 4 columns and then column 7
+
+```{r, eval = F}
+
+select(.data = school, 1:4, 7)
+                    
+                    
+```
+
+We can select all columns, except column 2.
+
+```{r, eval = F}
+
+select(.data = school, -2)
+                    
+                    
+```
+
+We can also drop columns using the names.
+
+```{r, eval = F}
+
+select(.data = school, -local_authority, -school_name)
+                    
+                    
+```
+### Filter
+
+`filter()` selects the rows from the data which meet the condition given which We specify using logical statements.
+Our logical statements are:
+
+| Symbol | Meaning|   
+|------------|------------|
+| ==       | Is equivalent to|
+| !=| Does not Equal|
+|> |Greater than|
+|>=| Greater than or equivalent too|
+|< |Less Than|
+|<= |Less Than or equivalent too| 
+
+
+**Remember that `==` is to test equality and `=` is to assign something.**
+
+#### Example Single Conditional Filtering {.tabset .tabset-fade}
+We can filter out a new dataset where deprivation idex is equal to 1.
+
+The code below, we are creating a new dataset called `deprivation_1`, by filtering through the school data and picking all the rows where the `deprivation_index` is equal to 1.
+This is refered to as single conditional filtering as we only have one condition.
+
+```{r, eval = F}
+
+deprivation_1 <- filter(.data = school,
+                    deprivation_index == 1 )
+                    
+                    
+```
+
+Quick  way to check that the filter worked, we can see all unique values, in the dataset above. using the `unique()` function.
+
+```{r, eval = F}
+
+ unique(deprivation_1$deprivation_index)    
+
+```
+
+One trick you can use `filter()` is to remove missin values.Usually missing values are coded as `Na`. We can removes rows that contain `Na`'s by using `is.na()` function.
+##### **Question**
+
+**Can you create a new data set called `big_schools` by filtering the shool data set, to have only the schools which have 2000 or more pupils**
+
+##### **Show Answer**
+
+The code below, we are creating a new dataset called `big_schools`, by filtering through the school data and picking all the rows where the `total_number_of_pupils` is equal to or greater than `2000`.
+
+```{r, eval = F}
+
+ big_schools <- filter(.data = school,
+                  total_number_of_pupils >= 2000) 
+
+```
+#### Multiple Conditional Filtering {.tabset .tabset-fade}
+
+Just as we can filter by one condition we can also filter by multiple conditions.
+
+**The | (Shift and \ key) means an OR relationship**
+
+**The & (Shift and 7) indicates an AND relationship**
+
+These are called chaining operators.
+
+##### **Question**
+
+**Can you create a new data set called `mainstream` by filtering the shool data set, to have only the schools which are primary or secondary school**
+
+##### **Show Answer**
+
+The code below, we are creating a newdataset called `mainstream` by filtering the school dataset to have only the schools which are either primary or secondary school, using the `phase_of_education` variable.
+
+```{r, eval = F}
+mainstream <- filter(.data = school, 
+                     phase_of_education == "Primary" |
+                       phase_of_education == "Secondary")
+ 
+```
+
+or
+
+
+```{r, eval = F}
+
+mainstream2 <- filter(.data = school,
+                     phase_of_education %in%
+                        c("Primary","Secondary"))
+```
+
+%in% is shorthand for filtering multiple values in a chr column
+
+Quick  way to check that the filter worked, we can see all unique values, in the dataset above. using the `unique()` function.
+
+```{r, eval = F}
+
+unique(mainstream$phase_of_education)
+  
+
+```
+
+### Mutate
+
+This is one of the most useful command. This is used to transform variables in your data to create new ones.
+
+#### Example.{.tabset .tabset-fade}
+
+The code below is creating a new column  called `outstanding` into our dataset. This new column is filled when the condition specified matches `overall_effectiness==1`
+
+In this example we have used a conditon here, but you could also have mathematical formula inplace.
+
+```{r, eval = F}
+
+school <- mutate(.data = school,
+                 outstanding =  # new column name
+                   overall_effectiveness==1) # new column contents
+```
+
+##### **Question**
+
+**Create a new column in the school dataset, called `nursery`, using the `phase_of_education` is equal to nursery and the `early_years_provision` is less than 5 years** 
+
+##### **Show Answer**
+
+The code below is using the school dataset and creating a new column called `nursery`, which is filled the the multiple condition of `phase_of_education` is equal nursery or `early_years_provision` is less than 5 years
+
+```{r, eval = F}
+
+school <- mutate(.data = school,   
+                 nursery =   # my new column name 
+                   phase_of_education == "Nursery" |   # | stands for OR
+                   early_years_provision < 5)
+
+head(school)
+
+```
+
+#### Deleting Data
+
+We can also use the `mutate()` function to delete data
+
+For example we previously added a new column called `nursery` to our school dataset.
+
+We can quickly see the names of our dataset using the the `names()` function.
+
+```{r, eval = F}
+
+names(school)
+
+```
+We can delete the column using the code below.
+
+We take the school dataset and equal the column we want to delete with `NULL`.
+
+```{r, eval = F}
+
+school <- mutate(.data = school, nursery = NULL)
+
+names(school)
+
+```
+
+Alternatively this will work too.
+
+```{r, eval = F}
+
+school$nursery <- NULL
+
+```
