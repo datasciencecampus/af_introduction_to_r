@@ -1,0 +1,183 @@
+---
+title: "Pre-Course Information"
+output:
+  html_document: 
+    theme: united
+    highlight: tango
+    toc: yes
+    toc_float: yes
+    number_sections: true
+---
+
+```{r, echo=FALSE}
+htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
+
+
+
+## General Information
+
+This is an introductory level course for Introduction to R. This course will cover basic concepts and give you the confidence to work independently.
+
+In this course we emphasise the application of skills, and building confidence and resilience in programming in R so that you can continue to learn back at your desk. 
+
+It is essential that you have frequent opportunities to practice what you have learn from day 1, as this is how you will embed your learning. 
+
+The 2-day course involves practical exercises throughout and coursework which should be completed ready for the second day. 
+
+There is also a session on the second day to play with your own data.
+
+***
+
+## Pre-Course Checklist:
+
+* Install the new RStudio bundle on your laptop `(see instructions below)`
+
+* Complete this pre-course questionnaire:[Smart Survey](https://www.smartsurvey.co.uk/s/7L80I/)  
+
+* Bring your laptop, charger, and your WIFI connector (contact Learning Academy immediately if you do not have a laptop)
+
+* Please bring with you a water bottle, and a mug for hot drinks (not provided – however you have access to a hot water boiler. Please bring your own supplies) 
+
+* Arrive 10 – 15 minutes before the course starts to get set up and ready to learn
+
+***
+
+## Install R and R studio via the Service Desk:
+
+I want something > Other > Other – Item not listed.
+
+
+![](Images/installR.PNG)
+
+
+In the box enter the text:
+
+“Hi, Please can I have the New RStudio Bundle?
+
+My ID is <your id>
+
+My asset number is <ONS……>
+
+“As agreed with Management, the new RStudio Bundle has to be installed to the end-user’ 
+
+ONS Laptop”
+
+Thanks”
+
+### Set up R Studio
+
+The [Wiki pages](https://collaborate2.ons.gov.uk/confluence/display/WIKIRS/1+-+RStudio+New+Bundle) (section 1.2) will help you to self install and run RStudio on your machine once your service desk request has been completed. 
+
+Please email Mario Coluzzi if you cannot access this page, and with any issues you have with your RStudio install.
+
+### Get Artifactory Hashed Password
+
+Artifactory is used to store all available packages, and must be linked to your RStudio install. 
+
+Visit http://art-p-01/artifactory/webapp/#/login and login with your Windows username and password. 
+
+If this does not work, you will need to request access via the service desk – 
+
+**I Want Something -> Software / Applications -> Product Support -> Artifactory -> Generic Support -> “In the further details box: Need access to artifactory to install R Packages”.** 
+
+Once logged into artifactory, 
+
+* Click your username in the top right hand corner.
+
+* Enter your password again and press “unlock”.
+
+* Press the copy icon next to the Encrypted Password (to the right of the eye, the icon looks like a pair of documents.
+
+Now this is on your clipboard, it is ready to use in RStudio
+
+### Running RStudio
+
+* Double click the RStudio shortcut on your desktop, and press Open on the warning popup.
+
+* Click Settings on the window that appears.
+
+* Enter your windows username into the Username box.
+
+* Copy your Hashed Password into the Hashtag box.
+
+* Select R.3.4.0 from the New Library drop down menu on the right hand side. 
+Press Save, and then, Run Application. 
+
+
+**Note: Any time you change your windows password you will need to generate a new hashed password from artifactory and replace the old version by following the instructions for Get Artifactory Hashed Password and Running RStudio again.** 
+
+### Old R Studio Install Instructions
+
+This set up will allow you to download and install packages for R if you have the old RStudio install rather than the new bundle.
+
+**If you load RStudio from your desktop you have the new version and can ignore these instructions.**
+
+We do highly recommend that you request the new bundle of RStudio.
+
+**You MUST complete all steps!**
+
+* On your D drive create a folder called R,
+
+* Inside that create a folder called lib, and open that folder.
+
+* Copy the .Rprofile from here to your D/R/Lib folder. Save it as .Rprofile .
+Make sure it has the dot at the front!
+
+* In your start menu, locate RStudio, right click and pin to start menu.
+
+* Open your start menu and right click on RStudio, then go to properties.
+
+* Where it says start in delete the contents, replace with D:\R\lib and click apply.
+
+* Go to http://art-p-01/artifactory/webapp/#/login, log in with your Windows username and password.
+
+* Click on your user name (top right), retype your password.
+
+* Next to Encrypted Password click the copy button (the clipboard).
+
+* Now open the .Rprofile in notepad,replace username with your username and hashedPassword with what you copied from the artifactory and save.
+
+
+**You need to always start R from the pin in your start menu.**
+
+
+## Course Materials
+
+
+### Example Data Sets
+
+During the course we will be exploring many of the data sets built into R you can find these by typing data() into the console in RStudio.
+We will also be using the following files: 
+
+* schools data
+
+* Joining Data 1 
+
+* Joining Data 2
+
+* Police Data. 
+
+These are avaialable on the drive, Intro to R - Data.
+
+Please save them somewhere appropriate. 
+
+### Course Files
+
+You may also wish to access the course for answers during the course. 
+
+These can be found in the “Sessions” folder. 
+
+The training material is also avalible in the “Course Materials” folder.
+These and the data are accessible from the Intro to R folder in the Shared Network Drive.
+
+
+
+
+
+
+
+
+

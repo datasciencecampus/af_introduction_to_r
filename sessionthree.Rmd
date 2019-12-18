@@ -1,20 +1,27 @@
 ---
-title: "Intro to R - Session 3"
+title: "Intro to R - Session Three"
 output:
   html_document: 
-    theme: cerulean
+    theme: united
+    highlight: tango
     toc: yes
-    toc_depth: 3
     toc_float: yes
+    number_sections: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+```{r, echo=FALSE}
+htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
 
-![](Images/logo.PNG)  ![](Images/ons.PNG)
 
-# Session Three.
+
+# Session Three
+
 
 ## Learning Objectives
 **The goal of this session is to:**
@@ -22,16 +29,50 @@ knitr::opts_chunk$set(echo = TRUE)
 * Have an understanding of what packages are.
 * Be able to load and install a package.
 * Be able to check package versions and R version.
-* Be able to import data from multiple formarts.
-* Be able to inspect loaded data and select elements    within the dataframe.
+* Be able to import data from multiple formats.
+* Be able to inspect loaded data and select elements within the dataframe.
 * Be able to export data.
+
+
+## Projects{.tabset .tabset-fade}
+
+### Non-Ons {-}
+
+It is highly recommended to manage your R work in projects. When you’re starting work on a new project, choose ‘New project…’ from the File menu and ‘New Directory’ to create a directory for the project (probably on your OneDrive). If you already have data related to the project in an existing diretory, you can choose that option instead.
+
+To work on this project in the future, you can select ‘Open Project…’ or ‘Recent Projects’ from the File menu and browse to the desired project.
+
+This will ensure that your working directory will be set to the project folder, meaning you won’t have to worry about full file paths for data you are reading in or writing to that same folder
+
+### ONS {-}
+
+Within ONS, the default R working directory is within the `C` drive. 
+
+**C drive -> My_RStudio -> Workspace**
+
+It is good practice to organise your folders. 
+
+As shown in the example below, where you include all files to a project in the same folder `Project A`
+
+![](Images/level1.PNG)
+
+Within the folder, it is good practice to further organise your files within folders, as shown below.
+
+The data folder would contain your raw and processed data.
+
+Images would contains any photos you are using.
+
+Scripts would contain all the R files. You don't have to stick with this exact folder structure, you could add in additional folders, e.g an output folder. 
+
+![](Images/level2.PNG)
+
 
 
 ## Packages
 
 Our default R installation – often referred to as “base R” gives us a lot of functionality.
 
-A lot of this code has been around since R’s early days, back in 1993. However, if we want to do more complicated, newer or exciting things with our code we can install packages.
+A lot of this code has been around since R’s early days, back to when it was created in 1993. However, if we want to do more complicated, newer or more exciting things with our code we can install packages to achieve these goals.
 
 Packages are a collection of functions, compiled code and sometimes data sets which are stored in a “library” of code within R.
 
@@ -39,26 +80,31 @@ In order to use a package, we first need to download it.
 R installs packages from (CRAN)[ https://cran.r-project.org/] – The Comprehensive R Network.
 
 Your department may have a slightly different way of installing packages.
-R has over 15,000 packages on CRAN, so it would be impossible to have them all downloaded to your machine. You can also install packages that are not part of CRAN; but please be aware of the source and quality, like any software these can damage your machine if they are malicious.
+R has over 15,000 packages on CRAN, so it would be impossible to have them all downloaded on your machine. You can also install packages that are not part of CRAN; but please be aware of the source and quality, like any software these can damage your machine if they are malicious.
 
 ***
 
 ## ONS Note!
 
-Within ONS we use a mirrored version of CRAN called Artifactory. Behind the scenes our R installation is set to install from Artifcactory rather than CRAN. 
+Within ONS we use a mirrored version of CRAN on our software repository called Artifactory. Behind the scenes our R installation is set to install from Artifcactory rather than CRAN. 
 
-This requires our up to date windows username and password. Without this the package will not install. This is why it’s important for ONS staff to make sure their password is up to date in either your settings or your .RProfile.
+This requires our up to date windows username and password. Without this the package will not install. This is why it is important for ONS staff to make sure their password is up to date in either your settings or your .RProfile.
 
 ## Installing Packages {.tabset .tabset-fade .tabset-pills}
 
-To install a package, we use the code
-
-install.packages(pkgs = “package_name” , dependencies = TRUE, type = “win.binary”)
+To install a package, we use the code below. It is important we use this WHOLE line of code every time we install a package. 
 
 
-### Package Installation Exercise
+```{r, eval = F}
 
-Try installing the packages;
+install.packages(“package_name” , dependencies = TRUE, type = “win.binary”)
+
+```
+
+
+### Question {-}
+
+Try installing the packages below using the R console.
 
 “readr”
 
@@ -70,10 +116,10 @@ Try installing the packages;
 
 “ggplot2”
 
-Run them line by line – this makes it easy to spot any error messages.
+**Run them line by line – this makes it easy to spot any error messages.**
 
 
-### Code
+### Show Answer {-}
 
 ```{r, eval = F}
 
@@ -90,30 +136,40 @@ install.packages("ggplot2", dependencies = TRUE, type = "win.binary")
 
 ```
 
-Successful installation should finish.
+Successful installation should finish with message as below.
 
-**The downloaded binary packages are in**
+```{r echo=FALSE}
 
-## Loading Packages {.tabset .tabset-fade .tabset-pills}
+install.packages("readr", dependencies = TRUE, type = "win.binary")
+
+
+```
+
+
+## Loading Packages {.tabset .tabset-fade}
 
 If you think of packages as owning a book. You purchase (install) the book once, and after that when you need to reference it you can pick it off your bookshelf. In R we call this loading.
-You should always load packages at the top of your script.
+**You should always load packages at the top of your script.**
 
-To load a package, use the code
+To load a package, use the code below;
 
-**library(package_name) **
+```{r eval=FALSE}
+
+library(readr)
+
+```
 
 Note here there are no quotes around the package name.
 
-### Loading Packages Exercise
+### Question {-}
 
-Try loading the packages
+Now try to load the packages below.
 
 readr
 
 readxl
 
-### Code
+### Show Answer {-}
 
 ```{r, eval = F}
 
@@ -124,17 +180,17 @@ library(readxl)
 ```
 
 ## When to load specific packages
-Returning to our book analogy not all of the books you own are relevant to your project. If you’re working on a gardening project a cookbook isn’t very helpful and you wouldn’t use it. It’s exactly the same for your R project.
-We’re not using GGplot2, Dplyr or Janitor in these sessions so we’ll not load them in to this session yet.
+Returning to our book analogy, not all of the books you own are relevant to your project. If you are working on a gardening project, a cookbook isn’t very helpful and you wouldn’t need to use it. It’s exactly the same for your R project.
+We’re not using ggplot2, dplyr or janitor in these sessions so we are not going to load them yet.
 
-##  R and Package Versions {.tabset .tabset-fade .tabset-pills}
+##  R and Package Versions {.tabset .tabset-fade}
 You may get a message that says
 package ‘readr’ was built under R version 3.4.4 
 
 This means that we are using an older version of R than the one the package is built for.
 
 
-### Check R Version
+### Check R Version{-}
 We can check our R Version by running the command 
 version
 in the console.
@@ -146,12 +202,12 @@ version
 ```
 
 
-You can see that am running version 3.4.4, dont worry if you are running an older version.
+I am running version 3.4.4, dont worry if you are running an older version.
 
-Most packages are fully backwards compatible, so this is something to be aware of but we need to worry about it too much.
+Most packages are fully backwards compatible, so this is something to be aware of but we do not need to worry about it too much.
 
 
-### Check Package Version
+### Check Package Version{-}
 To check the version of a package you can type
 
 
@@ -163,16 +219,9 @@ packageVersion("dplyr")
 
 ```
 
-You should always check if you’re working collaboratively that you’re using the same versions of packages for reproducibility.
+If you are working collaboratively you should always check that you are all using the same versions of packages. This helps with the reproducability of your results and allows everyone on a team to work with the code.
 
-### Masked Objects
-
-```{r}
-
-library(dplyr)
-
-
-```
+### Masked Objects{-}
 
 Some packages overwrite or “mask” functions from other existing packages.
 
@@ -180,120 +229,283 @@ The filter function from stats deals with Linear Filtering on a Time Series
 
 Dplyr’s version of filter selects rows based on specific conditions.
 
-As you can imagine these both take very different parameters – so it’s important to know that after we’ve loaded the Dplyr package it will assume we want to use the dplyr version of filter – NOT the one from the stats package.
-
-
-## Importing Data {.tabset .tabset-fade .tabset-pills}
-
-We are going practise loading data using the readr and readxl packages.
-
-readr is for flat files, csv
-
-readxl is for excel
-
-Before loading your data you need to know where it is stored and what kind of file it.
-
-Another thing you need to consider is if there is missing values in the data.
-
-
-
-### Importing CSV Files 
-
-To load a csv file we use the code below,
-
-**dataframe_name <- read_csv("file_path", additional_arguments)**
-
-```{r}
-
-
-
-library(readr)
-
-school <- read_csv("Data/schools_data.csv")
-
-#school <- read_csv("/Git/Intro_to_R_Refresh/Data/schools_data.csv")
-```
-You will need to change the file path to your location
-
-Remember / only and, quotes around the path and file name
-
-and extension (e.g - .csv)
-
-
-You will have noticed that we had some parsing failures after reading the file in, could you take a look at the column **deprivation Index**
-
-```{r}
-
-
-
-View(school)
-
-
-```
-
-**what type of data is this column?**
-
-**What type of data has R set it to be?**
-
-
-I need to specify my missing values to ensure my data reads in ok. 
-
-
-```{r}
-library( readr)
-
-school <- read_csv("Intro_to_R/Data/schools_data.csv",
-                   na=c("", " ", "NULL"))
-
-
-
-```
-
-
-### Importing Excel Files
-
-To load an excel file we use the code below,
-
-**dataframe_name <- read_excel("file_path", additional_arguments)**
-
+As you can imagine these both take very different parameters – so it is important to know what we have maked. This is because after we have loaded the dplyr package it will assume we want to use the dplyr version of filter – NOT the one from the stats package.
 
 ```{r}
 
 library(dplyr)
 
-library(readxl)
 
-excel_sheets("Intro_to_R/Data/police_data.xlsx")
+```
 
-police_data <- read_excel("Intro_to_R/Data/police_data.xlsx",
-                      sheet=2, range = "A5:AA48")
 
-str(police_data)
+
+
+## Importing Data 
+
+We are going to practise loading data using the `readr` and `readxl` packages.
+
+`readr` is for flat files such as a .csv. This "flat" means there is only one set of data in the file.
+
+`readxl` is for excel files. These are not flat files as the can contain different sheets within them which correspond to different data sets.
+
+### Readr {-}
+
+The package provides a fast and friendly way to read data, csv, tsv formats, it converts the data into tibbles.
+
+For this section we are going to use the `read_csv` function. Note that there other functions like read_tsv() and read_delim() within the package. They are very similar, once you can use one of them, you can easily use the others.
+
+
+Before loading your data you need to know where it is stored and what kind of file it.
+
+Another thing you need to consider is if there are missing values in the data. Missing values in R are denoted by `na`.
+
+
+
+### Importing CSV Files {-}
+
+To load a csv file we use the code below.
+
+```{r eval=FALSE}
+
+dataframe_name <- read_csv("file_path")
+
+```
+
+The first thing you need to specify is the file path (where the file is stored).
+
+**File paths In R**
+
+In windows file paths are specified using back slashes.
+In R a backslash already has a meaning, this means we use a forward slash or two back slashes instead.
+
+**Things To Keep in Mind**
+
+Readr will assume that the first row of your data is the headings of the columns.
+
+Readr will automatically try and guess the data types in your columns, i.e if a column has only numerical data, it will be classed as numeric or if it only contains logical values it will be classed as logical. If the values do not match then R keeps them as characters.
+
+It is good practise to check your column data types, just incase R chose the wrong type automatically.
+
+#### Example {.tabset .tabset-fade}
+
+Load the schools data using the code below,
+
+You will need to change the file path to your location
+
+You will have noticed that we had some parsing failures after reading the file in.
+
+```{r}
+
+#install.packages("readr", dependencies = TRUE, type = "win.binary")
+
+#library(readr)
+
+#school <- read_csv("Data/schools_data.csv")
+
+getwd()
+
+
+```
+To look at the data in R we use the `View` command as below
+
+```{r eval=FALSE}
+
+
+View(dataframe_name)
+
+
+```
+```{r}
+
+
+
+#View(school)
 
 
 ```
 
-### Reading Url Files
+##### Question {-}
 
-You can also read in URLs too, see code below;
+Have a look at the column `Deprivation index` in your excel file.
+
+**What type of data is this column?**
+
+**Then `View` the column in R to see the data type R has set itto be.**
+
+##### Show Answer {-}
+
+The data is numeric data.
+
+![](Images/Deprivation _index.PNG)
+
+
+```{r}
+
+
+
+#View(school)
+
+
+```
+
+We can see that R has classes the column as character because of the `NULL`
+
+We can easily correct this by adding an additional arguement when the reading the data to specify that `NULL` is a missing value.
+
+
+
+```{r eval=FALSE}
+library(readr)
+
+school <- read_csv("Data/schools_data.csv",
+                   na=c("", " ", "NULL"))
+
+
+```
+
+### Readxl{-}
+
+We use readxl to read excel data into R, it supports both `.xls` and `.xlsx` formats.
+
+### Importing Excel Files {.tabset .tabset-fade}
+
+To load an excel file we use the code below,
+
+```{r eval=FALSE}
+
+dataframe_name <- read_excel("file_path")
+
+```  
+
+One handy thing to know is the `excel_sheets()` function.
+
+As excel files often have multiple sheets, this function will provide the names without having to open the file.
+
+We run this function with the code below.
+
+```{r eval=FALSE}
+
+excel_sheets("filePath")
+
+```
+
+
+#### Question{-}
+
+Read in the excel file Police data.
+
+Use the `excel_sheets` function to see the names of the sheets in the police data.
+
+
+#### Show answer{-}
+
+```{r eval=FALSE}
+
+library(readxl)
+
+police_data <- read_excel("Data/police_data.xlsx")
+
+excel_sheets("Data/police_data.xlsx")
+
+```
+
+#### Question{-}
+
+After reading in the file our data should look like this.
+
+![](Images/police_data_sheet_1.PNG)
+
+This is the first sheet in our excel which is just the notes.
+
+If we dont specify the default setting from readxl is to give us the first sheet.
+
+**Can you add an additional arguement in the read_excel funtion to read in the second sheet (Table P1) from the police data.**
+
+
+#### Show Answer{-}
+
+Alternatively you could use the name of the rather than the number. 
+
+This would be useful if you have alot of sheets.
+
+```{r, eval=FALSE}
+
+library(readxl)
+
+police_data <- read_excel("Data/police_data.xlsx",
+                      sheet=2)
+
+```
+#### Question{-}
+
+Our file should now look like this,
+
+![](Images/sheet_2.PNG)
+
+As we can see the top columns are mostly blank with no real significant data, to get around this we can add in a range of columns and rows that have the data we want to analyse.
+
+**Can you add an addtional argument in the `read_excel` function to read the second sheet (Table P1), and have the row4 as the column headings from the police data.**
+
+
+#### Show Answer{-}
+
+```{r, eval=FALSE}
+
+library(readxl)
+
+police_data <- read_excel("Data/police_data.xlsx",
+                      sheet=2, range = "A5:AA48")
+
+```
+### Reading Url Files{-}
+
+You can also read in URLs, see code below.
 
                    
-```{r}
-library( readr)
+```{r eval=FALSE}
+
+library(readr)
 
 #school <- read_csv(url("https://share.sp.ons.statistics.gov.uk/sites/KLC/LeAc/AnLe/CPD_Shared/Programming_Courses/R_Intro_Ruth/schools_inspection_data.csv"),
                   # na=c("", " ", "NULL"))
 
 ```                   
 
-## Viewing the Files
+## Exploring the Data.{.tabset .tabset-fade}
 
-After the files have been imported in R, its good practise to inspect it.
+After the files have been imported into R, it is good practise to inspect the data.
 
-we can do this by typing the commands below,
+We can do this by typing the commands below.
 
-                   
-```{r}
+**Have a play around with each command and see if you can figure out what they are doing.**
+
+### Functions {-}
+
+```{r eval=FALSE}
+
+library(dplyr)
+
+str(school)
+
+glimpse(school)  
+
+head(school) 
+
+tail(school) 
+
+dim(school) 
+
+school[1,1] 
+
+school[3:6, ] 
+
+
+```
+
+### Show Answer {-}
+
+```{r eval=FALSE}
 
 library(dplyr)
 
@@ -301,7 +513,7 @@ str(school) # Structure of the table
 
 glimpse(school)  # Similar to str - from dplyr package
 
-#View(school)  # Pops file into a Viewer.
+View(school)  # Pops file into a Viewer.
 
 head(school) #top of the table
 
@@ -315,18 +527,17 @@ school[1,1] #selecting the first row and column
 
 school[3:6, ] #selescting row 3 to 6 and all columns
 
-#school$URN  #Selecting columns
 
+```
+## Exporting Data.
 
-``` 
-## Exporting Data
-
-Exporting tables works in much  in the same way.
+Exporting tables works in much the same way as importing it.
 
 **write_csv(data_frame, "file path.extension")**
 
-```{r}
+```{r eval=FALSE}
 
-write_csv(police_data, "Intro_to_R/Data/test.csv")
+write_csv(police_data, "Data/test.csv")
 
-```  
+```
+Our dataframe `police_data` would now be stored as test.csv in the /Data/ folder.
