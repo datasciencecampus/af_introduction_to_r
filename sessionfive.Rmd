@@ -22,10 +22,10 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 # Session Five.
 
 ## Learning Objectives
-**The goal of this session is to:**
+**The goals of this session are to:**
 
-* Understand to obtain summary statistics
-* Be able to use R functions to obtain descriptive statistics
+* Understand how to obtain summary statistics.
+* Be able to use R functions to obtain descriptive statistics.
 * Be able to aggregate data in a data frame.
 
 
@@ -50,24 +50,18 @@ Clean the names of the `school` dataset using the janitor package.
 ### **Show Answer**
 
 ```{r message=FALSE, warning=FALSE}
-#loading libraries
-
+# Loading libraries
 library(readr)
 library(janitor)
 library(dplyr)
 library(ggplot2)
 
-#Reading in the data
-
+# Reading in the data
 school <- read_csv("Data/schools_data.csv", 
                    na=c("", " ", "NULL"))
 
-
 # clean the names using Janitor
-
 school <- clean_names(school)
-
-
 ```
 ## Summary Statistics.
 
@@ -75,10 +69,10 @@ Summary statistics summarize large amounts of data by describing key characteris
 
 We can use the `summary()` function which returns the,
 
-- minimum value
+- Minimum value
 - 1st quartile 25% value
-- median 50% value
-- mean the avarage
+- Median 50% value
+- Mean, the unweighted average
 - 3rd quartile 75% value
 - Maximum value
 - NA'S number of missing values.
@@ -95,8 +89,8 @@ Some R functions for computing descriptive statistics.
 | Minimum            | min()      |
 | Maximum            | maximum()  |
 | Range              | range()    |
-| quartiles          | quartile   |
-| quantiles          | quantiles  |
+| Quartiles          | quartile   |
+| Quantiles          | quantiles  |
 | Standard Deviation | sd()       |
 | Variance           | var()      |
 | Summary            | summary()  |
@@ -104,20 +98,15 @@ Some R functions for computing descriptive statistics.
 
 ### Mean
 
-The mean is the average value.
+The mean is the unweighted average value.
 
 We can calculate the mean by using the `mean()` function.
-
-Loading libraries and data.
-
-
 
 The code below is calculating the mean for the `total_number_of_pupils` column. 
 
 ```{r}
 
-#Calculate the mean
-
+# Calculate the mean
 mean(school$total_number_of_pupils) 
 
 ```
@@ -135,13 +124,13 @@ summary(school$total_number_of_pupils)
 
 We can see that we have got 275 missing values.
 
-To be able to calculate our mean we need to remove them form the calculation and we can do this by adding an arguement `na.rm = TRUE`
-**na.rm = TRUE**, stands for remove missing values(na stands for missing values and rm is remove), this removes them before calculating the mean and not from the dataset.
+To be able to calculate our mean we need to remove them from the calculation and we can do this by adding an argument within the function: `na.rm = TRUE`.
+
+**na.rm = TRUE**means remove missing values (na stands for missing values and rm is remove), this removes the missing values before calculating the mean, not removing the values from the dataset.
 
 ```{r}
 
-#Calculate the mean
-
+# Calculate the mean
 mean(school$total_number_of_pupils, na.rm=TRUE) 
 
 ```
@@ -158,33 +147,35 @@ The code below is calculating the median for the `total_number_of_pupils` column
 
 ```{r}
 
- median(school$total_number_of_pupils, na.rm = TRUE)
+# Calculate the median
+median(school$total_number_of_pupils, na.rm = TRUE)
 
 ```
 
 ### Mode
 
-The mode is a summary statistic that is used rarely in practice, this is simply the most frequent value.
+The mode summary statistic is simply the most frequent value in a set of data.
 
-If you noticed on my table of summary statistics, you will have noticed i had no function for calculating the mode.
+If you noticed on my table of summary statistics, you will have noticed there was no function for calculating the mode.
 
 Base R does not provide a function for finding the mode.
 
 We would have to use a package to calculate the mode or write our own function.
 
-The `function mfv()`, for most frequent value, `[in modeest package]` can be used to find the statistical mode.
+The function `mfv()`, for most frequent value, `[in modeest package]` can be used to find the statistical mode.
 
-Throughout the course we have used already set functions, we are going to look at mode function and writting our own functions in the next session.
+Throughout the course we have used functions that have already been made for us, we are going to look at the mode function and writting our own functions in the next session.
 
 ### Minimum, Maximum and Range{.tabset .tabset-fade}
 
 #### Minimum
 
-This is the lowest value.
+This is the lowest value in the data set.
 We can calculate the minimum using the `min()` function.
 
 ```{r}
 
+# Calculate the minimum value
 min(school$total_number_of_pupils, na.rm = TRUE)
 
 ```
@@ -192,10 +183,11 @@ min(school$total_number_of_pupils, na.rm = TRUE)
 There is a PRU - Pupil Referal Unit that has 0 pupils
 
 #### Maximum
-This is the highest value.
+This is the highest value in the data set.
 We can calculate the maximum using the `max()` function.
 ```{r}
 
+# calculate the maximum value 
 max(school$total_number_of_pupils, na.rm = TRUE)
 
 ```
@@ -204,6 +196,7 @@ This is the difference between the highest and lowest values.
 We can calculate the range using the `range()` function.
 ```{r}
 
+# Calculate the range
 range(school$total_number_of_pupils, na.rm = TRUE)
 
 ```
@@ -227,7 +220,7 @@ quantile(school$total_number_of_pupils,
 #### Quartiles
 Quartiles are another way in which a data set can be sub-divided.
 Quartiles are a type of quantile but instead of splitting the data into
-one hundred equal parts it splits it into four equal parts.
+one hundred equal parts it splits the set into four equal parts.
 
 ```{r}
 
@@ -257,30 +250,30 @@ We can calculate the variance using the `var()` function.
 var(school$total_number_of_pupils, na.rm = T)
 
 ```
-## Agreggations(groupby/summarise){.tabset .tabset-fade}
+## Aggregations (groupby/summarise){.tabset .tabset-fade}
 
-We might want to work with our data by one or more variables. The `group_by()` function allows us to 
-aggregate our data.It groups the observations and then summarises them.
+We might want to work with our data using one or more variables. The `group_by()` function allows us to aggregate our data.It groups the observations which then allows us to summarise them.
 
-The code below is creating a new dataset called `school_group_phase_of_education` from the `school` dataset, and then ( %>% ) grouping by the `phase_of_education` variable and then ( %>% ) summarising by the mean_number_of_pupils
+The code below creates a new dataset called `school_group_phase_of_education` from the `school` dataset, and then ( %>% ) grouping by the `phase_of_education` variable and then ( %>% ) summarising by the mean_number_of_pupils.
 
 ```{r}
 school_group_phase_of_education <- school %>% 
   group_by(phase_of_education) %>% 
   summarise("mean_number_of_pupils" = mean(total_number_of_pupils , na.rm = T))
 
+# Calling the object to display it
 school_group_phase_of_education
 
 ```
 
-Visualise that.(We will see how ggplot2 works later, for now you can just run this code to create a bar chart)
+We can now visualise that information.(We will see how `ggplot2` works later, for now you can just run this code to create a bar chart)
 
 ```{r}
 
 ggplot(school_group_phase_of_education,
-       aes(x= phase_of_education,
-           y= mean_number_of_pupils))+
-  geom_col(aes(fill=phase_of_education))
+        aes(x = phase_of_education,
+            y = mean_number_of_pupils))+
+        geom_col(aes(fill=phase_of_education))
 
 ```
 
@@ -292,63 +285,65 @@ The code below is creating a new dataset called `school_group_phase_of_education
 ```{r}
 
 school_group_phase_of_education_and_deprivation_index <- school %>% 
-  group_by(phase_of_education, deprivation_index) %>% 
-  summarise("mean_number_of_pupils" = mean( total_number_of_pupils , na.rm = T))
+    group_by(phase_of_education, deprivation_index) %>% 
+    summarise("mean_number_of_pupils" = mean(total_number_of_pupils, na.rm = TRUE))
 
+# Calling the object to display it
 school_group_phase_of_education_and_deprivation_index
 
 ```
 There are a few `NA's` and `NaN's` in here, let's investigate. 
-(`NA` stands for not available and `NAN` stands for not a number e.g. 0/0)
+(`NA` stands for not available and `NaN` stands for not a number e.g. 0/0)
 
-lets have a look at the Primary schools with schools with no recorded `deprivation index.`
+Lets have a look at the Primary schools with no recorded `deprivation index.`
 
 The code below is creating a new dataset called `Primary_schools_with_no_deprivation_index`, from the school dataset, by filtering the `phase_of_education` on the conditions that its equal to primary school and is a missing value.
 
 ```{r message=FALSE, warning=FALSE}
 
-Primary_schools_with_no_deprivation_index <- filter(school, phase_of_education == "Primary"
-            & is.na(deprivation_index))
-
-
+Primary_schools_with_no_deprivation_index <- filter(school, 
+                                                    phase_of_education == "Primary"
+                                                    & is.na(deprivation_index))
 
 head(Primary_schools_with_no_deprivation_index)
 ```
 
-We can see that we have a lot of missing values.
+We can see that we have a lot of missing values in this set.
 
 We can decide to drop the missing values.
 
 
-The code below is creating a new dataset called `school_with_no_missing_values_for_deprivation_index`, from the school_group_phase_of_education_and_deprivation_index` dataset, by filtering on the condition that is it a missing value.
+The code below is creating a new dataset called `school_with_no_missing_values_for_deprivation_index`, from the `school_group_phase_of_education_and_deprivation_index` dataset, by filtering on the condition that is it a missing value. The `!` symbol indicates a NOT condition. 
 
 ```{r message=FALSE, warning=FALSE}
 
-school_with_no_missing_values_for_deprivation_index <- filter(school_group_phase_of_education_and_deprivation_index, !is.na(deprivation_index)==TRUE)
+school_with_no_missing_values_for_deprivation_index <- filter(school_group_phase_of_education_and_deprivation_index, 
+       !is.na(deprivation_index)==TRUE)
 
-
+# Displaying the values of the data frame
 school_with_no_missing_values_for_deprivation_index
 ```
 
-We can visualise this, again we will look at data visualisation in a later session, so dont worry about understanding the code at this point in time.
+We can visualise this, again we will look at data visualisation in a later session, so don't worry about understanding the code at this point in time.
 
 ```{r message=FALSE, warning=FALSE}
 
-ggplot(school_with_no_missing_values_for_deprivation_index, aes(x = deprivation_index, y = mean_number_of_pupils)) +
-  geom_point(aes(col = phase_of_education), size=10)
+ggplot(school_with_no_missing_values_for_deprivation_index, 
+       aes(x = deprivation_index,
+           y = mean_number_of_pupils)) +
+      geom_point(aes(col = phase_of_education), size=10)
 
 ```
 
 
-Obtaining frequencies of Obtaining frequncies of categoricals can be done with `count()` function.
+Obtaining frequncies of categoricals can be done with the `count()` function.
 
 ```{r message=FALSE, warning=FALSE}
-
-
 phase_of_education_frequency <- school %>% 
   group_by(phase_of_education) %>% 
   count()
 
+# Display the data frame values
 phase_of_education_frequency
 ```
 
@@ -356,7 +351,7 @@ phase_of_education_frequency
 
 Lets now practise using the `group_by`.
 
-**Can you use the `group_by` function to group by local authority, and show the median number of pupils and mean number of pupils.**
+**Can you use the `group_by` function to group by local authority, show the median number of pupils and mean number of pupils.**
 
 ### **Show Answer**
 
@@ -364,9 +359,9 @@ Lets now practise using the `group_by`.
 
 aggregate_results <- school %>% 
        group_by(local_authority) %>% 
-       summarise("median_number_pupils" = median(total_number_of_pupils,na.rm = T ), "mean_number_of_pupils"= mean(total_number_of_pupils, na.rm = T)) 
+       summarise("median_number_pupils" = median(total_number_of_pupils, na.rm = TRUE),                            "mean_number_of_pupils"= mean(total_number_of_pupils, na.rm = TRUE)) 
       
-
+# Display results
 aggregate_results
 
 ```
