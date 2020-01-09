@@ -25,12 +25,17 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 
 **The goal of this session is to:**
 
-* Have an understanding of what packages are.
-* Be able to load and install a package.
-* Be able to check package versions and R version.
-* Be able to import data from multiple formarts.
-* Be able to inspect loaded data and select elements within the dataframe.
-* Be able to export data.
+* Be able to use conditional statements, i.e, if, else and elseif statements
+
+* Be able to use loops, i.e for loops and while loops
+
+* Know what functions are.
+
+* Understand why we need to use functions.
+
+* Be able to write functions.
+
+* Have a basic understanding of scoping within functions.
 
 
 ## CONDITIONAL STATEMENTS.
@@ -92,7 +97,7 @@ Commands
 
 `If statements` on their own do not work with vectorised arguments. They will only work with a single element and not a vector of elements. If applied to a vector it will only check the first obersevation, if this doesnt meet the condtion then no statements will be executed, you will get an error/warning.
 
-#### Example
+#### **Example**
 
 We can look at the example below, lets say we set our `height` as 6.
 
@@ -105,7 +110,9 @@ Our Command is if `height is equal to 6` to `print me too`
 height <- 6
 
 if(height == 6){
+  
   print("me too!")
+  
 }
 
 ```
@@ -123,7 +130,9 @@ If (logical condition){
   
 Commands
   
-}else{New command
+}else{
+  
+  New command
   }
 
 ```
@@ -131,7 +140,7 @@ Commands
 All we have added is else and an additional commands.
 Else has to be on the same line as the closing bracket or else wont work.
 
-#### Example
+#### **Example**
 
 Going back to our previous example in which we said `height <-6`.
 
@@ -149,9 +158,13 @@ The first condition is FALSE (height ==6 ), hence it executes the else statement
 height <- 7
 
 if(height == 6){
+  
   print("me too!")
+  
 }else{
+  
   print("Not my height")
+  
   }
 
 ```
@@ -174,37 +187,46 @@ If (logical condition){
 Commands- executed if logical condition is true
   
 }else if( second condition) {
+  
   commands- executed if the logical condition is false and second condtion is true
+  
 }else if (third condition){
+  
   commands- executed if logical condition and second condition are false
+  
 } else {
+  
   commands- executed when all conditions are false
 }
 
 ```
 
-#### Example
+#### **Example**
 ```{r}
 
 height <- 9
 
 if (height == 6){
+  
   print("me too!, my height is 6")
   
-}else if( height == 7) { print(
-  "me too!, my height is 7")
+}else if( height == 7) { 
+  
+  print("me too!, my height is 7")
  
-}else if (height == 8){print(
-  "me too!, my height is 8")
+}else if (height == 8){
+  
+  print("me too!, my height is 8")
   
 }else {
+  
   print("Not my height")
   
 }
 
 ```
 
-#### Exercise{.tabset .tabset-fade}
+#### **Exercise**{.tabset .tabset-fade}
 
 ##### **Question**
 
@@ -232,22 +254,39 @@ It should also print the grade and an optional comment on the grade.
 grade <- c(56)
 
 if (grade <= 40 & grade >=0){
+  
   print("You have absolutely Failed!!")
+  
   print("We are really sorry for you")
+  
 }else if (grade <= 50 & grade >=41){
+  
   print("You have got a D")
+  
   print("Need to work harder")
+  
 }else if (grade <= 60 & grade >=51){
+  
   print("You have got a C")
+  
   print("Not bad, can do better")
+  
 }else if(grade <= 70 & grade >=61){
+  
   print("You have got a B")
+  
   print("Well done")
+  
 }else if (grade >= 71 & grade <=100){
+  
   print("You have got an A")
+  
   print("Congratulations, this is excellent")
+  
 } else {
+  
   print("Error, grades can not be less than 0 or more than 100")
+  
   }
 
 
@@ -283,6 +322,7 @@ They follow the basic structure below,
 ```{r, eval=FALSE}
 
 for (Variable in Vector){
+  
   commands
 }
 
@@ -316,7 +356,9 @@ We will now run our `for loop` on our vector.
 
 
 for( i in example_vector ){
+  
   print( i + 1 )
+  
 }
 
 ```
@@ -336,14 +378,16 @@ we cant really use our put like this as it just prints to the console, if we wan
 ```{r, eval=FALSE}
 
 for( i in example_vector ){
+  
   odd_numbers <- append(odd_numbers, i + 1 )
+  
 }
 
 odd_numbers
 
 ```
 
-The code above will not work as odd_numbers does not exist outside the brackets, to solve this issue we create an empty vector, called `odd_numbers` and we add our results into in using the `append function`.
+The code above will not work as odd_numbers does not exist outside the brackets **We will look at this under function scoping below **, to solve this issue we create an empty vector, called `odd_numbers` and we add our results into in using the `append function`.
 
 **append() function simply adds elements to a vector.**.
 
@@ -352,16 +396,15 @@ The code above will not work as odd_numbers does not exist outside the brackets,
 odd_numbers <- c()
 
 for( i in example_vector ){
+  
   odd_numbers <- append(odd_numbers, i + 1 )
+  
 }
 
 odd_numbers
 
 ```
 
-##### **Question**
-
-##### **Show Answer**
 
 #### While loops{.tabset .tabset-fade}
 
@@ -374,7 +417,9 @@ They follow the basic structure below,
 ```{r, eval=FALSE}
 
 while (logical condition){
+  
   commands
+  
 }
 
 
@@ -400,8 +445,11 @@ lets look at an example,
 x <- 2
 
 while(x<6){
+  
   print(x)
+  
   x <- x+1
+  
 }
 
 
@@ -435,8 +483,11 @@ while(x<6){
 y <- 2
 
 while(y<6){
+  
   y <- y+1
+  
   print(y)
+  
 }
 
 
@@ -450,8 +501,11 @@ while(y<6){
 y <- 2
 
 while(y<6){
+  
   y <- y+1
+  
   print(y)
+  
 }
 
 
@@ -489,8 +543,11 @@ temperature <- 40
 
 # Code the while loop
 while (temperature > 20) {
+  
   print("It way too hot!")
+  
   temperature <- temperature - 2
+  
 }
 
 # Print out the temperature variable
@@ -513,13 +570,489 @@ create a for loop with an if and else statement shows that if you order more tha
 number_of_takeaways_ordered <-c(1,2,3,4,5,6,7)
 
 for (i in number_of_takeaways_ordered){
+  
   if (i > 3){
+    
     print("too many")
+    
   }else{
+    
   print("enough")
+    
   }
+  
   print(i)
+  
 }
 
 ```
+##### **Question**
+
+Can you write an loop with a if and else statement, that prints out numbers from 1 to 30.
+
+But for multiples of 3 print `fizz` instead of the number
+
+For multiples of 5 print `Buzz`
+
+And for multiples of both 3 and 5, print `fizzBuzz`
+
+##### **Show Answer**
+
+```{r, eval=FALSE}
+
+for (i in 1:30){
+  
+  if(i%%3 == 0 & i%%5 == 0) {
+    print('FizzBuzz')
+  }
+  else if(i%%3 == 0) {
+    print('Fizz')
+  }
+  else if (i%%5 == 0){
+    print('Buzz')
+  }
+  else {
+    print(i)
+  }
+  
+}
+
+```
+
+first thing we do is create the index.
+
+```{r}
+
+for (i in 1:30){
+  
+print (i)
+  
+}
+
+```
+
+We then need to find the multiples of 3, we will use the `%%` modulo operator, which returns the remainder of a division.
+
+If a number is a multiple of another number it will return a 0.
+
+The code below, will divide the numbers between 1 and 30 by 3 and if the result is 0, it will print `fizz` and if not print the number.
+
+```{r}
+
+for (i in 1:30){
+  
+  if (i %% 3 == 0){
+    
+    print ("Fizz")}else
+      
+      print(i)
+  
+}
+
+```
+
+Simmilary for the multiples of 5, the code below will divide the numbers between 1 and 30 by 5 and if the result is 0, it will print `Buzz` and if not the number.
+
+```{r}
+
+for (i in 1:30){
+  
+  if (i %% 5 == 0){
+    
+    print ("Buzz")}else
+      
+      print(i)
+}
+
+```
+
+Now for the `fizzbuzz` 
+
+We need to have the if statement to check if `i` is multiple of 3 and 5 before it checks them individually.
+
+If it is a multiple of 3 and 5, the loop will reset and go to the next value in the range .
+
+If not it will try 5 and then 3.
+
+If none are multiples of `i` it will print `i` and go on to the next value in the range until the end.
+
+```{r}
+
+for (i in 1:30){
+  
+  if(i%%3 == 0 & i%%5 == 0) {
+    print('FizzBuzz')
+  }
+  else if(i%%3 == 0) {
+    print('Fizz')
+  }
+  else if (i%%5 == 0){
+    print('Buzz')
+  }
+  else {
+    print(i)
+  }
+  
+}
+
+```
+
+## FUNCTIONS
+
+We have previously used preset functions (from Base R or from packages) In R already, e.g `excel_sheets()`, `help()`,`merge()`,`clean_names()`, we are now going to look at creating our own functions,which we call **user defined functions**.
+
+We can see that basically a function takes and **input**, perfoms some **commands** and produces an **output**.
+
+### Why we use functions
+
+- They make code shorter and easier to understand.
+
+- Make it easier to update code, as only need to change one place
+
+- Helps reduce errors caused from copied and pasted code.
+
+### Basic Structure of a function
+
+Basic structure of a function looks like below,
+
+```{r, eval=FALSE}
+
+function_name <- function(input){
+  
+  statements of what the function is doing
+  
+}
+
+
+```
+So, it will have a;
+
+- `function name`
+
+- `Parameters/Arguments/Inputs` 
+
+- `Function body`
+
+
+### Function Name
+
+Always good practise for the function name to be what the function going to do, should be short.
+
+It can be any valid variable name. This is assigned by the assignment operator and for R to know its a function you need to use word `function` as above.
+
+### Inputs/Parameters/Arguments
+
+These are the inputs of a function, these are set in the `()` brackets, sometimes referred to as `arguments` or `parameters`.
+These can be any R object, data frames, numbers etc, separated by commas.
+
+The statements in the body are indented by two spaces, which makes the code easier to read but does not affect how the code operates.
+
+**Arguments are optional; that is, a function may contain no arguments, we will look at an example.** 
+
+**Some arguments have default values specified, we will look at an example.**
+
+
+### Function body
+ These are statements of what you want a function to do, they are set in the curly brackets. This can be long or short, its ideal for a function to do only one thing.
+ 
+ Variables created within the function body do not exist outside it.
+
+### Examples{.tabset .tabset-fade}
+
+#### **Function with no Arguments**
+
+```{r}
+
+#Creating a function
+
+sayHello <-  function(){
+  
+  print("Hello there !")
+  
+}
+
+
+#Calling a function
+
+sayHello()
+
+```
+
+Once we run our function, it gets created in the environment window ready for us to use it, to use it, termed **calling a function**
+
+We simply just type it.
+
+As this function has no inputs, we dont need to specify anything within the brackets.
+
+#### **Function with a default value**
+
+If you remember form the previous session where we talked about getting summary statistics, where we calculated the`Standard deviation`, from the `school` dataset from the `total number of pupils`.
+
+We used the `sd()` function, in which our input was the `total number of pupils`, we had another input which was `na.rm = TRUE`. (removed missing values from the calculation.)
+
+```{r, eval=FALSE}
+
+
+sd(school$total_number_of_pupils, na.rm = TRUE)
+
+
+```
+
+If we look at the `sd()` function in detail.
+
+```{r, eval=F}
+
+?sd
+
+```
+
+
+![](Images/sd.PNG)
+
+We can see that in the usage, it states that,
+
+```{r, eval=F}
+
+sd(x, na.rm = FALSE)
+
+```
+
+The function has 2 arguments, `x` and `na.rm = FALSE`
+
+- So `x` needs to be defined by us.
+
+- But `na.rm = FALSE`, Already has a value specified. Not including this argument when using the function wont cause an error.
+
+We can do this for our user defined functions too, using the basic structure below,
+
+```{r, eval=FALSE}
+
+function_name <- function(first_argument, second_argument = a_defined_value){
+  
+  statements of what the function is doing
+  
+}
+
+```
+
+Looking our example below, 
+
+- we have created our function `function_with_default_value`
+
+- our arguments are `x` and `xlabel1= "I am adding my X label here"`, which i have already predefined. so where ever I state `xlabel1` i will get "I am adding my X label here"`
+
+- I have added a print command for `x`
+
+- And then a `hist` function which prints a histogram, on `x` and uses the default value, for the `xlab`
+
+- I have then called the function on R's default dataset `iris` using the `Sepal.Length` column.
+
+```{r}
+
+function_with_default_value <- function(x, xlabel1= "I am adding my X label here"){
+  
+    print(summary(x))
+  
+    hist(x, xlab = xlabel1)
+   
+  }
+  
+function_with_default_value(iris$Sepal.Length)
+
+```
+
+
+#### **Mode function example**
+
+If you remember form the previous session on summary statistics, we said there is no function for calculating the mode in, you would to have either use a package or create your own function.
+
+Notice that we're using capital M to avoid overwriting the base R `mode() function`
+
+
+```{r, eval=F}
+
+Mode <- function(x) {  # name the function, function has on paramater (x)
+  
+  unique_values <- na.omit(unique(x) ) # find the unique values of x - omiting missing
+  
+  table_with_frequency <- tabulate(match(x, table_with_frequency)) # create a table with the frequency
+  
+  maximum_value <- unique_values[which.max(table_with_frequency)]
+  
+  return(maximum_value) # return the max value
+}
+
+
+#creating a vector
+
+test_vector <- c(1,1,1,1,2,2,3,4,5)
+
+#Calling our function on the vector
+
+Mode(test_vector)
+
+```
+### Exercise {.tabset .tabset-fade}
+
+#### **Question**
+
+If we remember the exercise  we did with the loop which prints `fizz`, `Buzz` and `FizzBuzz`.
+
+We could alternatively write a function.
+
+Can you write a function, that will take an numerical input, i.e a vector of numbers from 1 to 30.
+
+But for multiples of 3 print fizz instead of the number
+
+For multiples of 5 print Buzz
+
+And for multiples of both 3 and 5, print fizzBuzz
+
+
+
+
+#### **Show Answer**
+
+```{r}
+
+# define the function
+fizz_buzz <- function(number_sequence_f){
+  if(number_sequence_f%%3 == 0 & number_sequence_f%%5 == 0) {
+    print('FizzBuzz')
+  }
+  else if(number_sequence_f%%3 == 0) {
+    print('Fizz')
+  }
+  else if (number_sequence_f%%5 == 0){
+    print('Buzz')
+  }
+  else {
+    print(number_sequence_f)
+  }
+  
+}
+
+#Create a vector
+
+vector_to_test_function <- 1:30
+
+#Apply it to our vectors
+
+sapply (vector_to_test_function, fizz_buzz)
+
+
+```
+
+
+### Function Scoping
+
+Simmilar to the loops in the session above, where we said, `odd_numbers` does not exist outside the function.
+
+```
+for( i in example_vector ){
+
+  odd_numbers <- append(odd_numbers, i + 1 )
+  
+}
+
+odd_numbers
+
+```
+
+function scoping implies that variables defined inside the function do not exist outside it, i.e Variables created inside the function are local to that function and NOT visible outside of the function.
+
+When we write and run a function, R creates a new, temporary environment for the function.
+The function environment is temporary and stops existing after the function is run.
+
+### Example
+
+Lets look at an example.
+
+If you run the code below, it will return an error stating that object z is not defined, even though we have defined within the function as `z <- 5`
+
+```{r, eval=FALSE}
+
+scope_example <- function(){
+  
+  z <- 5
+  
+  return(z)
+}
+
+z
+
+```
+
+### Exercise {.tabset .tabset-fade}
+
+#### **Question**
+
+What would you expect the function below to return?
+
+
+```{r, eval=FALSE}
+
+#Creating function which adds 1 to x
+
+add_one <- function(x) {
+  
+  x <- 1+x
+  
+  x
+}
+
+#creating a vector
+
+y <- c(1,2,3)
+
+#Calling the function on our vector
+
+add_one(y)
+
+```
+
+#### **Show Answer**
+
+```{r}
+
+#Creating function which adds 1 to x
+
+add_one <- function(x) {
+  
+  x <- 1+x
+  
+  x
+}
+
+#creating a vector
+
+y <- c(1,2,3)
+
+#Calling the function on our vector
+
+add_one(y)
+
+z <- add_one(y)
+
+```
+
+We can see that our function returns the same values for the vector `y` 
+
+as `x` was defined inside the add_one function and therefore it is not accessible outside of that function
+
+## SUMMARY
+
+We have looked at lot in this session, You should now be;
+
+* **Be able to use conditional statements, i.e, if, else and elseif statements**
+
+* **Be able to use loops, i.e for loops and while loops**
+
+* **Know what functions are.**
+
+* **Understand why we need to use functions.**
+
+* **Be able to write functions.**
+
+* **Have a basic understanding of scoping within functions.**
 
