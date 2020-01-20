@@ -93,7 +93,7 @@ union_joined <- read_csv("Data/union_data.csv")
 
 In the previous section we looked at reading data into R and also inspecting it. In this section we are going to look at how to manipulate it.
 
-If you remember in the previous session we stated that every column in a data frame is a variable and it is good practice to not have spaces within variable names.
+In the previous session we stated that every column in a data frame is a variable and it is good practice to not have spaces within variable names.
 
 This makes it easier for us to call on the variables when we need to use them.
 
@@ -126,12 +126,12 @@ However its good practise to remove spaces and symbols.
 
 The `janitor` package offers many functions used to manipulate data, in this session we will use the library to to clean our data set names.
 
-We can clearn the names of our dataset with the `clean_names()` function as shown below.
+We can clean the names of our dataset with the `clean_names()` function as shown below.
 
 
 ```{r}
 
-# Apply the function to the data set
+# Apply the function to the data set.
 school <- clean_names(school)
 
 
@@ -253,7 +253,7 @@ We can sort the column `overall_effectiness` with code below.
 
 # We input the data we want to sort, and what we are going to sort it by.
 school_sorted <- arrange(.data = school,
-                         overall_effectiveness)
+                          overall_effectiveness)
 
 # This shows us some of the sorted data.
 head(school_sorted$overall_effectiveness, n = 10)
@@ -263,7 +263,7 @@ head(school$overall_effectiveness, n = 10)
 
 ```
 
-`.data` is the argument name for the data argument in dplyr.
+`.data` is the argument name for the data argument in `dplyr`.
 
 It is optional, but can help us read the code more effectivly.
 
@@ -274,7 +274,7 @@ To sort in descending order, we use the code below:
 ```{r}
 
 school_sorted <- arrange(.data = school,   
-                         desc(overall_effectiveness))
+                          desc(overall_effectiveness))
 
 head(school_sorted$overall_effectiveness, n = 10)
 
@@ -304,7 +304,7 @@ school_sorted <- arrange(.data =  school,
 head(school_sorted, n = 10)
 
 ```
-To sort both descending order we have to use `desc` around each column name.
+To sort both descending order we have to use `desc()` around each column name.
 
 If you only had one `desc` on the `ofsted_region`, it will show Ofsted region in descending order, but local authority in ascending.
 
@@ -332,7 +332,7 @@ We can select the multiple columns using the column names with the code below,
 
 # Input which data set and columns.
 name_region <- select(.data = school,
-                     school_name, ofsted_region)
+                        school_name, ofsted_region)
 
 # Output the variable.
 name_region
@@ -340,9 +340,9 @@ name_region
 
 # We can select as many columns as we like by naming them one by one.
 current_rating <- select(.data = school, 
-                         school_name,
-                         local_authority, 
-                         overall_effectiveness)
+                          school_name,
+                          local_authority, 
+                          overall_effectiveness)
 
 # Output the variable.
 current_rating
@@ -354,13 +354,13 @@ We can also select the columns using numbers, positive numbers and negative numb
 For example the code below will select the first 4 columns and then column 7.
 
 ```{r}
-# We can both use regular sequences with ":" and spefic numbers.
+# We can both use regular sequences with ":" and specific numbers.
 select(.data = school, 1:4, 7)
                     
                     
 ```
 
-We can select all columns, except column 2.
+In this example we select all columns, except column 2.
 
 ```{r}
 
@@ -412,14 +412,14 @@ This is refered to as single conditional filtering as we only have one condition
 ```{r}
 
 deprivation_initial <- filter(.data = school,
-                    deprivation_index == 1 )
+                              deprivation_index == 1 )
                     
 
 head(deprivation_initial, n = 10)
 
 ```
 
-A quick way to check that the filter worked is to look at all the unique values, in the data set above. using the `unique()` function.
+A quick way to check that the filter worked is to look at all the unique values, in the data set above, using the `unique()` function.
 
 ```{r}
 
@@ -491,7 +491,8 @@ mainstream_alternative
 We have a quick way to check that the filter worked, we can see all the unique values in the data set above. Again, this is done using the `unique()` function.
 
 ```{r}
-# Returns the set of unique values in the data set
+
+# Returns the set of unique values in the data set.
 unique(mainstream$phase_of_education)
   
 
@@ -514,13 +515,13 @@ names(school)
 
 ```
 
-The code below creates a new column  called `outstanding` into our dataset. This new column is filled with `TRUE/FALSE` when the condition specified matches `overall_effectiness == `.
+The code below creates a new column  called `outstanding` into our dataset. This new column is filled with `TRUE/FALSE` when the condition specified matches `overall_effectiness == 1`.
 
 In this example we have used a conditon, but you could also have mathematical formulas inplace. We can see below that we now have 20 columns.
 
 ```{r}
 
-# Fill the new column "outstanding" with TRUE/FALSE when overall_effectiveness == 1
+# Fill the new column "outstanding" with TRUE/FALSE when overall_effectiveness == 1.
 school <- mutate(.data = school,
                   outstanding = 
                     overall_effectiveness == 1)
@@ -534,7 +535,7 @@ names(school)
 
 ##### **Question**
 
-**Create a new column in the school dataset, called `nursery`. Using the `phase_of_education` when it is equal to nursery *and* the `early_years_provision` is less than 5 years** 
+**Create a new column in the school dataset, called `nursery`. Using the `phase_of_education` when it is equal to nursery *or* the `early_years_provision` is less than 5 years** 
 
 ##### **Show Answer**
 
@@ -542,6 +543,7 @@ The code below is using the school data set and creating a new column called `nu
 
 ```{r}
 
+# Create a new column using multiple conditional statements.
 school <- mutate(.data = school,   
                  nursery =   # my new column name 
                    phase_of_education == "Nursery" | # Two conditions combined by the OR operator
@@ -571,6 +573,7 @@ We take the school data set and set equal the column we want to delete to `NULL`
 
 ```{r}
 
+# Setting a column = NULL effectively removes it. 
 school <- mutate(.data = school, nursery = NULL)
 
 names(school)
@@ -605,7 +608,7 @@ create a new column called `total_number_of_pupils_rounded` which is equal to ro
 
 filter the column `phase_of_education` by meeting the condition `secondary`.
 
-Notice how the `mutate() and `filter()` functions don't use the data argument as it already included in the pipe.
+Notice how the `mutate()` and `filter()` functions don't use the data argument as it already included in the pipe.
 
 **%>%** allows you to combine multiple commands and the makes the code quite easy to read.
 
@@ -634,8 +637,8 @@ Lets practice piping a few `dplyr` functions.
 
 greenwich_schools <- school %>%
          filter(ofsted_region =="London" &
-                  local_authority =="Greenwich")%>%
-         arrange(desc(total_number_of_pupils))%>%
+                  local_authority =="Greenwich") %>%
+         arrange(desc(total_number_of_pupils)) %>%
          select(school_name,total_number_of_pupils, deprivation_index)
 
 greenwich_schools
@@ -643,7 +646,7 @@ greenwich_schools
 
 ## Joining Data
 
-Let’s have a look at the two `joining_data`  data frames.
+Let’s have a look at the two `joining_data` data frames.
 
 In `joining_data1` we have the columns **name, animal and age.**
 
@@ -696,7 +699,7 @@ Let’s look at how we do this "left" merge in code. We’re going to use `left_
 
 ```{r}
 
-# The first data frame is the one on the left
+# The first data frame is the one on the left.
 join_left <- left_join(joining_data1, 
                         joining_data2,
                         by = "name")
@@ -714,9 +717,8 @@ This is shown below.
 ```{r, eval=F}
 
 # Joining using multiple columns
-join_left <- left_join(joining_data1, 
-                   joining_data2,
-                  by =c ("column name", "column name"))
+join_left <- left_join(joining_data1, joining_data2,
+                        by = c("column name", "column name"))
 
 join_left
 
