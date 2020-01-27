@@ -58,7 +58,7 @@ library(ggplot2)
 
 # Reading in the data.
 school <- read_csv("Data/schools_data.csv", 
-                   na=c("", " ", "NULL"))
+                   na = c("", " ", "NULL"))
 
 # Clean the names using janitor.
 school <- clean_names(school)
@@ -82,7 +82,7 @@ We can also get these indepently.
 Some R functions for computing descriptive statistics.
 
 | Description        | R function |
-| -----------        | -----------|
+| :----------        | :----------|
 | Mean               | mean()     |
 | Median             | median()   |
 | Mode               | **???**    |
@@ -131,7 +131,7 @@ To be able to calculate our mean we need to remove them from the calculation. We
 ```{r}
 
 # Calculate the mean
-mean(school$total_number_of_pupils, na.rm=TRUE) 
+mean(school$total_number_of_pupils, na.rm = TRUE) 
 
 ```
 ### Median
@@ -258,8 +258,8 @@ The code below creates a new dataset called `school_group_phase_of_education` fr
 
 ```{r}
 school_group_phase_of_education <- school %>% 
-  group_by(phase_of_education) %>% 
-  summarise("mean_number_of_pupils" = mean(total_number_of_pupils , na.rm = TRUE))
+                        group_by(phase_of_education) %>% 
+                        summarise("mean_number_of_pupils" = mean(total_number_of_pupils, na.rm = TRUE))
 
 # Calling the object to display it.
 school_group_phase_of_education
@@ -286,8 +286,8 @@ The code below is creating a new dataset called `school_group_phase_of_education
 ```{r}
 
 school_group_phase_of_education_and_deprivation_index <- school %>% 
-    group_by(phase_of_education, deprivation_index) %>% 
-    summarise("mean_number_of_pupils" = mean(total_number_of_pupils, na.rm = TRUE))
+                          group_by(phase_of_education, deprivation_index) %>% 
+                          summarise("mean_number_of_pupils" = mean(total_number_of_pupils, na.rm = TRUE))
 
 # Calling the object to display it
 school_group_phase_of_education_and_deprivation_index
@@ -320,7 +320,7 @@ The code below is creating a new dataset called `school_with_no_missing_values_f
 ```{r message=FALSE, warning=FALSE}
 
 school_with_no_missing_values_for_deprivation_index <- filter(school_group_phase_of_education_and_deprivation_index, 
-       !is.na(deprivation_index)==TRUE)
+                                                               !is.na(deprivation_index) == TRUE)
 
 # Displaying the values of the data frame.
 school_with_no_missing_values_for_deprivation_index
@@ -333,7 +333,7 @@ We can visualise this, again we will look at data visualisation in a later sessi
 ggplot(school_with_no_missing_values_for_deprivation_index, 
        aes(x = deprivation_index,
            y = mean_number_of_pupils)) +
-      geom_point(aes(col = phase_of_education), size=10)
+      geom_point(aes(col = phase_of_education), size = 10)
 
 ```
 
@@ -363,7 +363,7 @@ Lets now practise using the `group_by` function.
 
 aggregate_results <- school %>% 
        group_by(local_authority) %>% 
-       summarise("median_number_pupils" = median(total_number_of_pupils, na.rm = TRUE),                            "mean_number_of_pupils"= mean(total_number_of_pupils, na.rm = TRUE)) 
+       summarise("median_number_pupils" = median(total_number_of_pupils, na.rm = TRUE),                            "mean_number_of_pupils"=        mean(total_number_of_pupils, na.rm = TRUE)) 
       
 # Display results
 aggregate_results
