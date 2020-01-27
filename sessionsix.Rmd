@@ -83,7 +83,7 @@ They follow the basic structure below,
 
 ```{r, eval=FALSE}
 
-if(logical condition){
+if (logical condition) { 
   
   Commands
   
@@ -109,7 +109,7 @@ Our Command is if `height is equal to 6` to `print "me also!"`
 
 height <- 6
 
-if (height == 6){
+if (height == 6) { 
   
   print("me also!")
   
@@ -126,7 +126,7 @@ They follow the basic structure below,
 
 ```{r, eval=FALSE}
 
-if (logical condition){
+if (logical condition) { 
   
   Commands
   
@@ -157,7 +157,7 @@ The first condition is `FALSE` (`height == 6`), hence it executes the `else` sta
 
 height <- 7
 
-if (height == 6){
+if (height == 6) { 
   
   print("me also!")
   
@@ -182,15 +182,15 @@ It’s important that the `else if` keyword comes on the same line as the closin
 
 ```{r, eval=FALSE}
 
-if (logical condition){
+if (logical condition) { 
   
   Commands - executed if logical condition is true
   
-} else if (second condition){
+} else if (second condition) { 
   
   Commands - executed if the logical condition is false and second condtion is true
   
-} else if (third condition){
+} else if (third condition) { 
   
   Commands - executed if logical condition and second condition are false
   
@@ -207,15 +207,15 @@ if (logical condition){
 
 height <- 9
 
-if (height == 6){
+if (height == 6) { 
   
   print("me also! my height is 6")
   
-} else if (height == 7){ 
+} else if (height == 7) { 
   
   print("me also! my height is 7")
  
-} else if (height == 8){
+} else if (height == 8) { 
   
   print("me also! my height is 8")
   
@@ -254,31 +254,31 @@ It should also print the grade and an optional comment on the grade.
 ```{r}
 grade <- c(56)
 
-if (grade <= 40 & grade >=0){
+if (grade <= 40 & grade >=0) { 
   
   print("You have absolutely failed!")
   
   print("We are really sorry for you")
   
-} else if (grade <= 50 & grade >=41){
+} else if (grade <= 50 & grade >=41) { 
   
   print("You have got a D")
   
   print("Need to work harder")
   
-} else if (grade <= 60 & grade >=51){
+} else if (grade <= 60 & grade >=51) { 
   
   print("You have got a C")
   
   print("Not bad, can do better")
   
-} else if (grade <= 70 & grade >=61){
+} else if (grade <= 70 & grade >=61) { 
   
   print("You have got a B")
   
   print("Well done")
   
-} else if (grade >= 71 & grade <=100){
+} else if (grade >= 71 & grade <=100) { 
   
   print("You have got an A")
   
@@ -324,7 +324,7 @@ They follow the basic structure below,
 
 ```{r, eval=FALSE}
 
-for (Variable in Vector){
+for (Variable in Vector) { 
   
   commands
   
@@ -359,7 +359,7 @@ We will now run our `for` loop on our vector.
 ```{r}
 
 
-for(i in example_vector){
+for (i in example_vector) { 
   
   print(i + 1)
   
@@ -381,7 +381,7 @@ We cant really use our output like this as it just prints to the console, if we 
 
 ```{r, eval=FALSE}
 
-for (i in example_vector){
+for (i in example_vector) { 
   
   odd_numbers <- append(odd_numbers, i + 1)
   
@@ -399,7 +399,7 @@ The code above will not work as odd_numbers does not exist outside the brackets 
 
 odd_numbers <- c()
 
-for (i in example_vector){
+for (i in example_vector) { 
   
   odd_numbers <- append(odd_numbers, i + 1)
   
@@ -420,7 +420,7 @@ They follow the basic structure below,
 
 ```{r, eval=FALSE}
 
-while (logical condition){
+while (logical condition) { 
   
   commands
   
@@ -432,9 +432,9 @@ while (logical condition){
 
 - followed by the `()` brackets in which we specify our logical condition, using the **conditional operators**.
 
-- and then `{}`, which hold our commands. These commands will be run repeatedly in order of appearance while the specified condtion is TRUE.
+- and then `{}`, which surrounds our commands. These commands will be run repeatedly in order as long as the specified condtion is `TRUE`.
 
-lets look at an example,
+lets look at an example:
 
 - If we say `x` is equal to 2.
 
@@ -448,12 +448,11 @@ lets look at an example,
 
 x <- 2
 
-while(x < 6){
+while (x < 6) { 
   
   print(x)
   
   x <- x + 1
-  
 }
 
 
@@ -467,28 +466,28 @@ while(x < 6){
 
 - We can move on to the next part of the loop, which is `print(x)`, where `x` is equal to `2`. (This is our first 2 in the output)
 
-- The next step is to override the value of `x` by adding a `1`. **(x <- x+1)**
+- The next step is to override the value of `x` by adding a `1`. (`x <- x + 1`)
 
-- As our new `x` value is still less than `6`, the condition is TRUE, so it will print `x` which is now `3` and get a new value for `x` (`x <- x+1`), which will now be `4`.
+- As our new `x` value is still less than `6`, the condition is `TRUE`, so it will print `x` which is now `3` and get a new value for `x` (`x <- x + 1`), which will now be `4`.
 
-- This continues until we get to `x` is `5`, this passes the fist conditional statement `x < 6` so it will print a `5` but after we add the `1` `x <- x+1 ` and `x` becomes `6`, it is not less than `6`, so it fails the first conditional statement and the loop cannot continue, hence our results are between `2-5`.
+- This continues until we get to `x` is `5`, this passes the fist conditional statement `x < 6` so it will print a `5` but after we add the `1`, (`x <- x + 1`) and `x` becomes `6`, it is not less than `6`, so it fails the first conditional statement and the loop cannot continue, hence our results are between `2-5`.
 
 
 **The order of the commands is important.**
 
 ##### **Question**
 
-- Can you work out what the ouput would be if we reversed the order of the commands?. i.e, start with the  `y <- y+1` and then `print x`
+- Can you work out what the ouput would be if we reversed the order of the commands?. i.e, start with `y <- y + 1` and then `print(x)`
 
-- What would happen if we removed the line of code `y <- y+1`
+- What would happen if we removed the line of code `y <- y + 1`
 
 ```{r, eval=FALSE}
 
 y <- 2
 
-while(y<6){
+while (y < 6) { 
   
-  y <- y+1
+  y <- y + 1
   
   print(y)
   
@@ -504,9 +503,9 @@ while(y<6){
 
 y <- 2
 
-while(y<6){
+while (y < 6) { 
   
-  y <- y+1
+  y <- y + 1
   
   print(y)
   
@@ -514,31 +513,33 @@ while(y<6){
 
 
 ```
-- As we can see we now get values between 3 and 5.
+- As we can see we now get values between `3` and `5`.
 
-- So we start we with y is equal to 2, which passes the first condition `y<6`
+- So we start we with `y` is equal to `2`, which passes the first condition `y < 6`.
 
-- We then add a 1 to it `y <- y+1`, so 2 + 1. Which is equal to 3.
+- We then add a `1` to it `y <- y + 1`, so `2 + 1`. Which is equal to `3`.
 
-- Our fist output is 3
+- Our fist output is `3`.
 
 - And that continues on.
 
--For the next question, if we removed the code `y <- y+1` y would always be less than 6 and you will be stuck in an infinite loop, as R will keep running the code. You will have to hit the stop sign to exit the loop.
+- For the next question, if we removed the code `y <- y + 1`, `y` would always be less than `6` and the program would be stuck in an infinite loop, as R will keep running the code. You will have to hit the stop sign to exit the loop.
+
 
 #### Exercise loops{.tabset .tabset-fade}
 
 
-
 ##### **Question**
 
-Code a while loop with the following characteristics:
+Code a `while` loop with the following characteristics:
 
-- The condition of the `while` loop, should check if the temperature is hiegher than 20
+- Assign the value of a variable `temperature` to be 40.
+
+- The condition of the `while` loop, should check if the temperature is higher than `20`
 
 - The first command in the body should print out `"Its way too hot!"`
 
-- The next command should decrease the `temperature` by 2 and assign this new value to `temperature` again.
+- The next command should decrease the `temperature` by `2` and assign this new value to `temperature` again.
 
 ##### **Show Answer**
 
@@ -561,25 +562,25 @@ temperature
 
 ##### **Question**
 
-We can combile a `loop` and and `if else statement`.
+We can combile a `loop` and and `if else statements`.
 
-create a vector, with values from 1-7 and assign it to number_of_takeaways_ordered 
+- Create a vector, with values from `1-7` and assign it to `number_of_takeaways_ordered`.
 
-create a for loop with an if and else statement shows that if you order more than 2 takeaways a week it print too many and if you order less than two it prints enough.
+- Create a `for` loop with an `if` and `else` statement shows that if you order more than `2` takeaways a week it will print `"too many"` and if you order less than two it prints `"enough"`.
 
 ##### **Show Answer**
 
 ```{r}
 
-number_of_takeaways_ordered <-c(1,2,3,4,5,6,7)
+number_of_takeaways_ordered <- c(1, 2, 3, 4, 5, 6, 7)
 
-for (i in number_of_takeaways_ordered){
+for (i in number_of_takeaways_ordered) { 
   
-  if (i > 3){
+  if (i > 3) { 
     
     print("too many")
     
-  }else{
+  } else { 
     
   print("enough")
     
@@ -592,30 +593,34 @@ for (i in number_of_takeaways_ordered){
 ```
 ##### **Question**
 
-Can you write an loop with a if and else statement, that prints out numbers from 1 to 30.
+Can you write an loop with a `if` and `else` statement, that prints out numbers from `1` to `30`.
 
-But for multiples of 3 print `fizz` instead of the number
+But for multiples of `3` print `Fizz` instead of the number
 
-For multiples of 5 print `Buzz`
+For multiples of `5` print `Buzz`
 
-And for multiples of both 3 and 5, print `fizzBuzz`
+And for multiples of both `3` and `5`, print `FizzBuzz`
 
 ##### **Show Answer**
 
 ```{r, eval=FALSE}
 
-for (i in 1:30){
+for (i in 1:30) { 
   
-  if(i%%3 == 0 & i%%5 == 0) {
+  if (i %% 3 == 0 & i %% 5 == 0) {
+    
     print('FizzBuzz')
   }
-  else if(i%%3 == 0) {
+  else if (i %% 3 == 0) {
+    
     print('Fizz')
   }
-  else if (i%%5 == 0){
+  else if (i %% 5 == 0) { 
+    
     print('Buzz')
   }
   else {
+    
     print(i)
   }
   
@@ -623,77 +628,87 @@ for (i in 1:30){
 
 ```
 
-first thing we do is create the index.
+The first thing we do is we assign the element within the sequence.
 
 ```{r}
 
-for (i in 1:30){
+for (i in 1:30) { 
   
-print (i)
+  print(i)
   
 }
 
 ```
 
-We then need to find the multiples of 3, we will use the `%%` modulo operator, which returns the remainder of a division.
+We then need to find the multiples of `3`, we will use the `%%` modulo operator, which returns the remainder of a division.
 
-If a number is a multiple of another number it will return a 0.
+If a number is a multiple of another number it will return a `0`.
 
-The code below, will divide the numbers between 1 and 30 by 3 and if the result is 0, it will print `fizz` and if not print the number.
+The code below, will apply the modulo to the numbers between `1` and `30` by `3` and if the remainder is `0`, it will print `Fizz` and if not print the number.
 
 ```{r}
 
-for (i in 1:30){
+for (i in 1:30) { 
   
-  if (i %% 3 == 0){
+  if (i %% 3 == 0) { 
     
-    print ("Fizz")}else
+    print ("Fizz")
+  
+  } else {
       
       print(i)
+  }
   
 }
 
 ```
 
-Simmilary for the multiples of 5, the code below will divide the numbers between 1 and 30 by 5 and if the result is 0, it will print `Buzz` and if not the number.
+Simmilary for the multiples of `5`, the code below will divide the numbers between `1` and `30` by `5` and if the remainder is `0`, it will print `Buzz` and if not, the number.
 
 ```{r}
 
-for (i in 1:30){
+for (i in 1:30) { 
   
-  if (i %% 5 == 0){
+  if (i %% 5 == 0) { 
     
-    print ("Buzz")}else
+    print ("Buzz")
+  
+  } else {
       
       print(i)
+  }
 }
 
 ```
 
-Now for the `fizzbuzz` 
+Now for the `FizzBuzz` 
 
-We need to have the if statement to check if `i` is multiple of 3 and 5 before it checks them individually.
+We need to have the `if` statement to check if `i` is multiple of `3` and `5` before it checks them individually.
 
-If it is a multiple of 3 and 5, the loop will reset and go to the next value in the range .
+If it is a multiple of `3` and `5`, the loop will reset and go to the next value in the range.
 
-If not it will try 5 and then 3.
+If not it will try `5` and then `3`.
 
 If none are multiples of `i` it will print `i` and go on to the next value in the range until the end.
 
 ```{r}
 
-for (i in 1:30){
+for (i in 1:30) { 
   
-  if(i%%3 == 0 & i%%5 == 0) {
+  if (i %% 3 == 0 & i %% 5 == 0) {
+    
     print('FizzBuzz')
   }
-  else if(i%%3 == 0) {
+  else if (i %% 3 == 0) {
+    
     print('Fizz')
   }
-  else if (i%%5 == 0){
+  else if (i %% 5 == 0) {
+    
     print('Buzz')
   }
   else {
+    
     print(i)
   }
   
@@ -721,7 +736,7 @@ Basic structure of a function looks like below,
 
 ```{r, eval=FALSE}
 
-function_name <- function(input){
+function_name <- function(input) { 
   
   statements of what the function is doing
   
@@ -769,7 +784,7 @@ The statements in the body are indented by two spaces, which makes the code easi
 
 #Creating a function
 
-sayHello <-  function(){
+sayHello <-  function() { 
   
   print("Hello there !")
   
@@ -831,7 +846,7 @@ We can do this for our user defined functions too, using the basic structure bel
 
 ```{r, eval=FALSE}
 
-function_name <- function(first_argument, second_argument = a_defined_value){
+function_name <- function(first_argument, second_argument = a_defined_value) { 
   
   statements of what the function is doing
   
@@ -853,7 +868,7 @@ Looking our example below,
 
 ```{r}
 
-function_with_default_value <- function(x, xlabel1= "I am adding my X label here"){
+function_with_default_value <- function(x, xlabel1= "I am adding my X label here") { 
   
     print(summary(x))
   
@@ -920,14 +935,14 @@ And for multiples of both 3 and 5, print fizzBuzz
 ```{r}
 
 # define the function
-fizz_buzz <- function(number_sequence_f){
-  if(number_sequence_f%%3 == 0 & number_sequence_f%%5 == 0) {
+fizz_buzz <- function(number_sequence_f) { 
+  if (number_sequence_f%%3 == 0 & number_sequence_f%%5 == 0) {
     print('FizzBuzz')
   }
-  else if(number_sequence_f%%3 == 0) {
+  else if (number_sequence_f%%3 == 0) {
     print('Fizz')
   }
-  else if (number_sequence_f%%5 == 0){
+  else if (number_sequence_f%%5 == 0) { 
     print('Buzz')
   }
   else {
@@ -953,7 +968,7 @@ sapply (vector_to_test_function, fizz_buzz)
 Simmilar to the loops in the session above, where we said, `odd_numbers` does not exist outside the function.
 
 ```
-for( i in example_vector ){
+for ( i in example_vector ) { 
 
   odd_numbers <- append(odd_numbers, i + 1 )
   
@@ -976,7 +991,7 @@ If you run the code below, it will return an error stating that object z is not 
 
 ```{r, eval=FALSE}
 
-scope_example <- function(){
+scope_example <- function() { 
   
   z <- 5
   
