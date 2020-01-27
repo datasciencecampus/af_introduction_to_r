@@ -14,8 +14,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 ```{r, echo=FALSE}
 htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
-               alt = 'logo', 
-               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+               alt = "logo", 
+               style = "position:absolute; top:0; right:0; padding:10px; width:200px;")
 ```
 
 
@@ -51,7 +51,7 @@ We use comparison and logical operators.
 ### Comparison Operators
 
 | Operator | Description | 
-| ------ |:------:| 
+| ------ |:------| 
 |   ==   | equal to | 
 |  !=    | not equal to |   
 | <      | less than|
@@ -74,7 +74,7 @@ You might want an action to be perfomed depending on the outcome, to be able to 
 
 - *else* statement
 
-- *elseif* statement
+- *else if* statement
 
 ### IF statement
 
@@ -85,7 +85,7 @@ They follow the basic structure below,
 
 if (logical condition) { 
   
-  Commands
+  commands
   
 }
 
@@ -93,7 +93,7 @@ if (logical condition) {
 
 - So, `if` followed by round brackets, in which we enter our logical condition 
 
-- then curly brackets in which we enter a series of commands. It's good practice to put the commands on a new line as it is easier to read. Notice the code is also indented so we can see that it is part of the *if* statement.
+- then curly brackets in which we enter a series of commands. It"s good practice to put the commands on a new line as it is easier to read. Notice the code is also indented so we can see that it is part of the *if* statement.
 
 *if* statements on their own do not work with vectorised arguments. They will only work with a single element and not a vector of elements. If applied to a vector it will only check the first element. If this does not meet the condtion then no statements will be executed, you will get an error/warning.
 
@@ -103,7 +103,7 @@ We can look at the example below, lets say we set our `height` as 6.
 
 Our condition is `height is equal to 6`
 
-Our Command is if `height is equal to 6` to `print "me also!"`
+Our command is if `height is equal to 6` to `print "me also!"`
 
 ```{r}
 
@@ -128,11 +128,11 @@ They follow the basic structure below,
 
 if (logical condition) { 
   
-  Commands
+  commands
   
 } else {
   
-  Other Commands
+  other commands
 }
 
 ```
@@ -300,9 +300,9 @@ A loop is a way to repeat a sequence of instructions under certain conditions.
 
 They allow you to automate parts of your code that are in need of repetition.
 
-In R you have multiple options when repeating operations, `vectorized operations`, `for loops`, and `apply functions`.
+In R you have multiple options when repeating operations, `vectorised operations`, `for loops`, and `apply functions`.
 
-We covered 'vectorized operations` in session 2 (section 1.4), we will look at loops in this session and we will not cover the apply functions in this course.
+We covered "vectorised operations" in Session 2 (section 1.4), we will look at loops in this session and we will not cover the apply functions in this course.
 
 ### Types of loops
  
@@ -609,15 +609,15 @@ for (i in 1:30) {
   
   if (i %% 3 == 0 & i %% 5 == 0) {
     
-    print('FizzBuzz')
+    print("FizzBuzz")
   }
   else if (i %% 3 == 0) {
     
-    print('Fizz')
+    print("Fizz")
   }
   else if (i %% 5 == 0) { 
     
-    print('Buzz')
+    print("Buzz")
   }
   else {
     
@@ -675,7 +675,7 @@ for (i in 1:30) {
   
   } else {
       
-      print(i)
+    print(i)
   }
 }
 
@@ -697,15 +697,15 @@ for (i in 1:30) {
   
   if (i %% 3 == 0 & i %% 5 == 0) {
     
-    print('FizzBuzz')
+    print("FizzBuzz")
   }
   else if (i %% 3 == 0) {
     
-    print('Fizz')
+    print("Fizz")
   }
   else if (i %% 5 == 0) {
     
-    print('Buzz')
+    print("Buzz")
   }
   else {
     
@@ -718,17 +718,19 @@ for (i in 1:30) {
 
 ## FUNCTIONS
 
-We have previously used preset functions (from Base R or from packages) In R already, e.g `excel_sheets()`, `help()`,`merge()`,`clean_names()`, we are now going to look at creating our own functions,which we call **user defined functions**.
+We have previously used ready-made functions (from Base R or from packages) In R already, e.g `excel_sheets()`, `help()`,`merge()`,`clean_names()`, `mean()`, we are now going to look at creating our own functions, which we call **user defined functions**.
 
-We can see that basically a function takes and **input**, perfoms some **commands** and produces an **output**.
+We can see that basically a function takes an **input**, perfoms some **commands** and produces an **output**.
 
 ### Why we use functions
 
 - They make code shorter and easier to understand.
 
-- Make it easier to update code, as only need to change one place
+- They make it easier to update code, as we only need to change one place.
 
-- Helps reduce errors caused from copied and pasted code.
+- Functions alow us to easily repeat commands.
+
+- They help reduce errors caused from copied and pasted code.
 
 ### Basic Structure of a function
 
@@ -740,41 +742,47 @@ function_name <- function(input) {
   
   statements of what the function is doing
   
+  return(the function output)
+  
 }
 
 
 ```
 So, it will have a;
 
-- `function name`
+- `Function name`
 
 - `Parameters/Arguments/Inputs` 
 
 - `Function body`
 
+- `Output of the function`
+
 
 ### Function Name
 
-Always good practise for the function name to be what the function going to do, should be short.
+Always good practice for the function name to be what the function going to do, it should be short but clear.
 
-It can be any valid variable name. This is assigned by the assignment operator and for R to know its a function you need to use word `function` as above.
+It can be any valid variable name. This is assigned by the assignment operator. For R to know the variable is a function you need to use word `function` as above.
 
 ### Inputs/Parameters/Arguments
 
-These are the inputs of a function, these are set in the `()` brackets, sometimes referred to as `arguments` or `parameters`.
-These can be any R object, data frames, numbers etc, separated by commas.
+These are the inputs of a function, they are set in the `()` brackets, sometimes referred to as `arguments` or `parameters`.
+
+These can be any R object, data frames, numbers or others, separated by commas.
 
 The statements in the body are indented by two spaces, which makes the code easier to read but does not affect how the code operates.
 
 **Arguments are optional; that is, a function may contain no arguments, we will look at an example.** 
 
-**Some arguments have default values specified, we will look at an example.**
+**Some arguments have default values specified, we will look at an example of this.**
 
 
 ### Function body
- These are statements of what you want a function to do, they are set in the curly brackets. This can be long or short, its ideal for a function to do only one thing.
+
+These are statements of what you want a function to do, they are set in the curly brackets. This can be long or short, its ideal for a function to do only one thing.
  
- Variables created within the function body do not exist outside it.
+Variables created within the function body do not exist outside it, and therefore cannot be accessed.
 
 ### Examples{.tabset .tabset-fade}
 
@@ -797,17 +805,17 @@ sayHello()
 
 ```
 
-Once we run our function, it gets created in the environment window ready for us to use it, to use it, termed **calling a function**
+Once we run our function, it gets created in the environment window ready for us to use, in order to use it, termed **calling a function**
 
-We simply just type it.
+we simply type it.
 
-As this function has no inputs, we dont need to specify anything within the brackets.
+As this function has no inputs, we don"t need to specify anything within the brackets.
 
 #### **Function with a default value**
 
-If you remember form the previous session where we talked about getting summary statistics, where we calculated the`Standard deviation`, from the `school` dataset from the `total number of pupils`.
+If you remember from the previous session where we talked about getting summary statistics, where we calculated the`standard deviation`, using the `school` dataset from the `total_number_of_pupils`.
 
-We used the `sd()` function, in which our input was the `total number of pupils`, we had another input which was `na.rm = TRUE`. (removed missing values from the calculation.)
+We used the `sd()` function, in which our input was the `total_number_of_pupils`, we had another input which was `na.rm = TRUE`. (removed missing values from the calculation.)
 
 ```{r, eval=FALSE}
 
@@ -836,97 +844,101 @@ sd(x, na.rm = FALSE)
 
 ```
 
-The function has 2 arguments, `x` and `na.rm = FALSE`
+The function has 2 arguments, `x` and `na.rm = FALSE`.
 
-- So `x` needs to be defined by us.
+- The `x` needs to be defined by us.
 
-- But `na.rm = FALSE`, Already has a value specified. Not including this argument when using the function wont cause an error.
+- But `na.rm = FALSE`, Already has a value specified. Not including this argument when using the function will not cause an error.
 
 We can do this for our user defined functions too, using the basic structure below,
 
 ```{r, eval=FALSE}
 
-function_name <- function(first_argument, second_argument = a_defined_value) { 
+function_name <- function(first_argument, second_argument = a_default_defined_value) { 
   
   statements of what the function is doing
+  
+  return(the function output)
   
 }
 
 ```
 
-Looking our example below, 
+Looking at our example below, 
 
-- we have created our function `function_with_default_value`
+- We have created our function `function_with_default_value`.
 
-- our arguments are `x` and `xlabel1= "I am adding my X label here"`, which i have already predefined. so where ever I state `xlabel1` i will get "I am adding my X label here"`
+- Our arguments are `x` and `xlabel1 = "I am adding my X label here"`, which i have already predefined. So wherever I state `xlabel1` I will get `"I am adding my X label here"`
 
 - I have added a print command for `x`
 
 - And then a `hist` function which prints a histogram, on `x` and uses the default value, for the `xlab`
 
-- I have then called the function on R's default dataset `iris` using the `Sepal.Length` column.
+- I have then called the function on R"s default dataset `iris` using the `Sepal.Length` column.
 
 ```{r}
 
-function_with_default_value <- function(x, xlabel1= "I am adding my X label here") { 
+function_with_default_value <- function(x, xlabel1 = "I am adding my X label here") { 
   
     print(summary(x))
   
     hist(x, xlab = xlabel1)
    
-  }
+}
   
 function_with_default_value(iris$Sepal.Length)
 
 ```
 
 
-#### **Mode function example**
+#### **Pythagoras Function Example**
 
-If you remember form the previous session on summary statistics, we said there is no function for calculating the mode in, you would to have either use a package or create your own function.
+We are now going to write a function that uses Pythagoras" theorem in order to calculate the hypotenuse (longest side) of a right angle triangle given the two other sides. The equation is given as $$a^2 + b^2 = c^2$$ where $a$, $b$ are the two known sides and $c$ is the longest side. In order to find the value of $c$ we can rearange the formula to $$c = \sqrt{a^2 + b^2}$$
 
-Notice that we're using capital M to avoid overwriting the base R `mode() function`
+The function will input values of $a$ and $b$ and then return the value of $c$ below.
 
 
 ```{r, eval=F}
 
-Mode <- function(x) {  # name the function, function has on paramater (x)
+# Function to calculate the value of the hypotenuse
+find_the_hypotenuse <- function(a_value, b_value) {
   
-  unique_values <- na.omit(unique(x) ) # find the unique values of x - omiting missing
+  # Calculate the values of a^2 + b^2
+  squared_sum_of_values <- a_value^2 + b_value^2
   
-  table_with_frequency <- tabulate(match(x, table_with_frequency)) # create a table with the frequency
+  # Calculate the value of c using the square root function `sqrt()`
+  c_value <- sqrt(squared_sum_of_values)
   
-  maximum_value <- unique_values[which.max(table_with_frequency)]
-  
-  return(maximum_value) # return the max value
+  # Return the output value of our function.
+  return(c_value)
 }
 
 
-#creating a vector
+# Assign test values to make sure our function works
 
-test_vector <- c(1,1,1,1,2,2,3,4,5)
+a_test <- 3
+b_test <- 4
 
-#Calling our function on the vector
+# This should give us a value of c = 5
 
-Mode(test_vector)
+find_the_hypotenuse(a_test, b_test)
 
 ```
 ### Exercise {.tabset .tabset-fade}
 
 #### **Question**
 
-If we remember the exercise  we did with the loop which prints `fizz`, `Buzz` and `FizzBuzz`.
+If we remember the exercise we did using the loop which prints `Fizz`, `Buzz` and `FizzBuzz`.
 
 We could alternatively write a function.
 
-Can you write a function, that will take an numerical input, i.e a vector of numbers from 1 to 30.
+Can you write a function, that will take an numerical input, a vector of numbers from 1 to 30.
 
-But for multiples of 3 print fizz instead of the number
+But for multiples of `3` print `Fizz` instead of the number.
 
-For multiples of 5 print Buzz
+For multiples of `5` print `Buzz`.
 
-And for multiples of both 3 and 5, print fizzBuzz
-
+And for multiples of both `3` and `5`, print `FizzBuzz`.
 
 
 
@@ -934,30 +946,40 @@ And for multiples of both 3 and 5, print fizzBuzz
 
 ```{r}
 
-# define the function
-fizz_buzz <- function(number_sequence_f) { 
-  if (number_sequence_f%%3 == 0 & number_sequence_f%%5 == 0) {
-    print('FizzBuzz')
+# Define the function
+fizz_buzz <- function(sequence_of_numbers) { 
+  # Loop over all the numbers in the sequence vector
+  for(each_number in sequence_of_numbers) {
+    # Multiple of 3 and 5 condition
+    if (each_number %% 3 == 0 & each_number %% 5 == 0) {
+      print("FizzBuzz")
+      
+    }
+    # Multiple of 5 condition
+    else if (each_number %% 5 == 0) {
+      print("Fizz")
+      
+    }
+    # Multiple of 3 condition
+    else if (each_number %% 3 == 0) { 
+      print("Buzz")
+    }
+    # Multiple of neither condition
+    else {
+      print(each_number)
+    }
+  # End the for loop
   }
-  else if (number_sequence_f%%3 == 0) {
-    print('Fizz')
-  }
-  else if (number_sequence_f%%5 == 0) { 
-    print('Buzz')
-  }
-  else {
-    print(number_sequence_f)
-  }
-  
+# End the function
 }
 
-#Create a vector
+# Create a vector
 
-vector_to_test_function <- 1:30
+vector_to_test_fizz_buzz <- 1:30
 
-#Apply it to our vectors
+#Apply the function to our vector
 
-sapply (vector_to_test_function, fizz_buzz)
+fizz_buzz(vector_to_test_fizz_buzz)
 
 
 ```
@@ -965,12 +987,12 @@ sapply (vector_to_test_function, fizz_buzz)
 
 ### Function Scoping
 
-Simmilar to the loops in the session above, where we said, `odd_numbers` does not exist outside the function.
+Simmilar to the loops in the session above, where we said, the variable `odd_numbers` does not exist outside the function.
 
-```
-for ( i in example_vector ) { 
+```{r}
+for(i in example_vector) { 
 
-  odd_numbers <- append(odd_numbers, i + 1 )
+  odd_numbers <- append(odd_numbers, i + 1)
   
 }
 
@@ -978,16 +1000,17 @@ odd_numbers
 
 ```
 
-function scoping implies that variables defined inside the function do not exist outside it, i.e Variables created inside the function are local to that function and NOT visible outside of the function.
+function scoping implies that variables defined inside the function do not exist outside it. Variables created inside the function are local to that function and NOT accesssible outside of the function.
 
 When we write and run a function, R creates a new, temporary environment for the function.
-The function environment is temporary and stops existing after the function is run.
+
+The function environment is temporary and stops existing after the function is run. We cannot access anything withing the function that was not returned by it using the `return` command.
 
 ### Example
 
 Lets look at an example.
 
-If you run the code below, it will return an error stating that object z is not defined, even though we have defined within the function as `z <- 5`
+If you run the code below, it will return an error stating that object z is not defined, even though we have defined within the function as `z <- 5`. If we wanted to access that value of `z` we would have to run the function and assign the output to a new variable.
 
 ```{r, eval=FALSE}
 
@@ -1015,18 +1038,18 @@ What would you expect the function below to return?
 
 add_one <- function(x) {
   
-  x <- 1+x
+  x <- 1 + x
   
   x
 }
 
 #creating a vector
 
-y <- c(1,2,3)
+test_vector <- c(1, 2, 3)
 
 #Calling the function on our vector
 
-add_one(y)
+add_one(test_vector)
 
 ```
 
@@ -1038,34 +1061,34 @@ add_one(y)
 
 add_one <- function(x) {
   
-  x <- 1+x
+  x <- 1 + x
   
   x
 }
 
 #creating a vector
 
-y <- c(1,2,3)
+test_vector <- c(1,2,3)
 
 #Calling the function on our vector
 
-add_one(y)
+add_one(test_vector)
 
-z <- add_one(y)
+z <- add_one(test_vector)
 
 ```
 
-We can see that our function returns the same values for the vector `y` 
+We can see that our function returns the same values for the vector `test_vector` 
 
-as `x` was defined inside the add_one function and therefore it is not accessible outside of that function
+as `x` was defined inside the `add_one` function and therefore it is not accessible outside of that function
 
 ## SUMMARY
 
-We have looked at lot in this session, You should now be;
+We have looked at lot in this session, You should now be:
 
-* **Be able to use conditional statements, i.e, if, else and elseif statements**
+* **Be able to use conditional statements; if, else and else if statements.**
 
-* **Be able to use loops, i.e for loops and while loops**
+* **Be able to use loops; for loops and while loops.**
 
 * **Know what functions are.**
 
