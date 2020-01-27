@@ -73,7 +73,7 @@ library(dplyr)
 # Read in data
 
 school <- read_csv("Data/schools_data.csv", 
-                   na=c("", " ", "NULL"))
+                   na = c("", " ", "NULL"))
 
 joining_data1 <- read_csv("Data/joining_data1.csv") 
 
@@ -297,7 +297,7 @@ Sorting by multiple variables, arranged them within each other. meaning it will 
 ```{r}
 
 # Sort the school data based on two variables.
-school_sorted <- arrange(.data =  school,
+school_sorted <- arrange(.data = school,
                           ofsted_region,
                           local_authority)
                           
@@ -332,7 +332,7 @@ We can select the multiple columns using the column names with the code below,
 
 # Input which data set and columns.
 name_region <- select(.data = school,
-                        school_name, ofsted_region)
+                      school_name, ofsted_region)
 
 # Output the variable.
 name_region
@@ -388,7 +388,7 @@ Given some variable `x` and `y`.
 The logical statements in the language include:
 
 | Symbol | Meaning|   
-|------------|------------|
+|:--------:|:----------|
 |`x ==  y`     | `x` is exactly equal to `y`|
 | `x != y`       | `x` does not equal `y`|
 | `x > y`      | `x` is greater than `y`|
@@ -440,7 +440,7 @@ In the code below, we are creating a new data set called `big_schools`, by filte
 # Our conditional statement means our new data set will only
 # contain data where the condition is TRUE.
 big_schools <- filter(.data = school,
-                  total_number_of_pupils >= 2000)
+                      total_number_of_pupils >= 2000)
 
 big_schools
 
@@ -636,10 +636,10 @@ Lets practice piping a few `dplyr` functions.
 ```{r}
 
 greenwich_schools <- school %>%
-         filter(ofsted_region =="London" &
-                  local_authority =="Greenwich") %>%
-         arrange(desc(total_number_of_pupils)) %>%
-         select(school_name,total_number_of_pupils, deprivation_index)
+               filter(ofsted_region =="London" &
+                        local_authority =="Greenwich") %>%
+               arrange(desc(total_number_of_pupils)) %>%
+               select(school_name,total_number_of_pupils, deprivation_index)
 
 greenwich_schools
 ```
@@ -753,7 +753,7 @@ Use the help function to explore solutions to this.
 #### **Show Answer**
 ```{r}
 # We can join two columns that are named differently.
-marvel_left_join <- left_join(marvel_left,marvel_right, by = c("name", "year"="release_year"))
+marvel_left_join <- left_join(marvel_left, marvel_right, by = c("name", "year"="release_year"))
 
 marvel_left_join
 ```

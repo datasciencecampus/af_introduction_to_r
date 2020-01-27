@@ -1655,7 +1655,7 @@ div.tocify {
 <a class="sourceLine" id="cb1-8" title="8"><span class="co"># Read in data</span></a>
 <a class="sourceLine" id="cb1-9" title="9"></a>
 <a class="sourceLine" id="cb1-10" title="10">school &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Data/schools_data.csv&quot;</span>, </a>
-<a class="sourceLine" id="cb1-11" title="11">                   <span class="dt">na=</span><span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot; &quot;</span>, <span class="st">&quot;NULL&quot;</span>))</a>
+<a class="sourceLine" id="cb1-11" title="11">                   <span class="dt">na =</span> <span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot; &quot;</span>, <span class="st">&quot;NULL&quot;</span>))</a>
 <a class="sourceLine" id="cb1-12" title="12"></a>
 <a class="sourceLine" id="cb1-13" title="13">joining_data1 &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Data/joining_data1.csv&quot;</span>) </a>
 <a class="sourceLine" id="cb1-14" title="14"></a>
@@ -1671,7 +1671,7 @@ div.tocify {
 <div id="column-names" class="section level2">
 <h2><span class="header-section-number">1.3</span> Column Names</h2>
 <p>In the previous section we looked at reading data into R and also inspecting it. In this section we are going to look at how to manipulate it.</p>
-<p>If you remember in the previous session we stated that every column in a data frame is a variable and it is good practice to not have spaces within variable names.</p>
+<p>In the previous session we stated that every column in a data frame is a variable and it is good practice to not have spaces within variable names.</p>
 <p>This makes it easier for us to call on the variables when we need to use them.</p>
 <div id="example" class="section level3">
 <h3><span class="header-section-number">1.3.1</span> Example</h3>
@@ -1686,8 +1686,8 @@ div.tocify {
 <div id="janitor-package" class="section level4">
 <h4><span class="header-section-number">1.3.2.1</span> <code>janitor</code> Package</h4>
 <p>The <code>janitor</code> package offers many functions used to manipulate data, in this session we will use the library to to clean our data set names.</p>
-<p>We can clearn the names of our dataset with the <code>clean_names()</code> function as shown below.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># Apply the function to the data set</span></a>
+<p>We can clean the names of our dataset with the <code>clean_names()</code> function as shown below.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># Apply the function to the data set.</span></a>
 <a class="sourceLine" id="cb4-2" title="2">school &lt;-<span class="st"> </span><span class="kw">clean_names</span>(school)</a>
 <a class="sourceLine" id="cb4-3" title="3"></a>
 <a class="sourceLine" id="cb4-4" title="4"></a>
@@ -1764,7 +1764,7 @@ div.tocify {
 <p>We can sort the column <code>overall_effectiness</code> with code below.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># We input the data we want to sort, and what we are going to sort it by.</span></a>
 <a class="sourceLine" id="cb14-2" title="2">school_sorted &lt;-<span class="st"> </span><span class="kw">arrange</span>(<span class="dt">.data =</span> school,</a>
-<a class="sourceLine" id="cb14-3" title="3">                         overall_effectiveness)</a>
+<a class="sourceLine" id="cb14-3" title="3">                          overall_effectiveness)</a>
 <a class="sourceLine" id="cb14-4" title="4"></a>
 <a class="sourceLine" id="cb14-5" title="5"><span class="co"># This shows us some of the sorted data.</span></a>
 <a class="sourceLine" id="cb14-6" title="6"><span class="kw">head</span>(school_sorted<span class="op">$</span>overall_effectiveness, <span class="dt">n =</span> <span class="dv">10</span>)</a></code></pre></div>
@@ -1772,12 +1772,12 @@ div.tocify {
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># This shows us some of the unsorted data.</span></a>
 <a class="sourceLine" id="cb16-2" title="2"><span class="kw">head</span>(school<span class="op">$</span>overall_effectiveness, <span class="dt">n =</span> <span class="dv">10</span>)</a></code></pre></div>
 <pre><code>##  [1] 1 1 2 2 2 2 2 2 2 2</code></pre>
-<p><code>.data</code> is the argument name for the data argument in dplyr.</p>
+<p><code>.data</code> is the argument name for the data argument in <code>dplyr</code>.</p>
 <p>It is optional, but can help us read the code more effectivly.</p>
 <p>If we don’t specify how we are sorting, the default is to sort in ascending order.</p>
 <p>To sort in descending order, we use the code below:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">school_sorted &lt;-<span class="st"> </span><span class="kw">arrange</span>(<span class="dt">.data =</span> school,   </a>
-<a class="sourceLine" id="cb18-2" title="2">                         <span class="kw">desc</span>(overall_effectiveness))</a>
+<a class="sourceLine" id="cb18-2" title="2">                          <span class="kw">desc</span>(overall_effectiveness))</a>
 <a class="sourceLine" id="cb18-3" title="3"></a>
 <a class="sourceLine" id="cb18-4" title="4"><span class="kw">head</span>(school_sorted<span class="op">$</span>overall_effectiveness, <span class="dt">n =</span> <span class="dv">10</span>)</a></code></pre></div>
 <pre><code>##  [1] 4 4 4 4 4 4 4 4 4 4</code></pre>
@@ -1794,7 +1794,7 @@ div.tocify {
 <h5><span class="header-section-number">1.4.1.1.2</span> <strong>Show Answer</strong></h5>
 <p>Sorting by multiple variables, arranged them within each other. meaning it will sort the data by <code>ofsted_region</code> first and then within each region it will sort by local authority.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># Sort the school data based on two variables.</span></a>
-<a class="sourceLine" id="cb22-2" title="2">school_sorted &lt;-<span class="st"> </span><span class="kw">arrange</span>(<span class="dt">.data =</span>  school,</a>
+<a class="sourceLine" id="cb22-2" title="2">school_sorted &lt;-<span class="st"> </span><span class="kw">arrange</span>(<span class="dt">.data =</span> school,</a>
 <a class="sourceLine" id="cb22-3" title="3">                          ofsted_region,</a>
 <a class="sourceLine" id="cb22-4" title="4">                          local_authority)</a>
 <a class="sourceLine" id="cb22-5" title="5">                          </a>
@@ -1821,7 +1821,7 @@ div.tocify {
 ## #   effectiveness_of_leadership_and_management &lt;dbl&gt;,
 ## #   personal_development_behaviour_and_welfare &lt;dbl&gt;,
 ## #   early_years_provision &lt;dbl&gt;, x16_19_study_programmes &lt;dbl&gt;</code></pre>
-<p>To sort both descending order we have to use <code>desc</code> around each column name.</p>
+<p>To sort both descending order we have to use <code>desc()</code> around each column name.</p>
 <p>If you only had one <code>desc</code> on the <code>ofsted_region</code>, it will show Ofsted region in descending order, but local authority in ascending.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co"># Sorting both variables in descending order.</span></a>
 <a class="sourceLine" id="cb24-2" title="2">school_sorted &lt;-<span class="st"> </span><span class="kw">arrange</span>(<span class="dt">.data =</span> school, </a>
@@ -1863,7 +1863,7 @@ div.tocify {
 <p>We can select the multiple columns using the column names with the code below,</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Input which data set and columns.</span></a>
 <a class="sourceLine" id="cb26-2" title="2">name_region &lt;-<span class="st"> </span><span class="kw">select</span>(<span class="dt">.data =</span> school,</a>
-<a class="sourceLine" id="cb26-3" title="3">                     school_name, ofsted_region)</a>
+<a class="sourceLine" id="cb26-3" title="3">                      school_name, ofsted_region)</a>
 <a class="sourceLine" id="cb26-4" title="4"></a>
 <a class="sourceLine" id="cb26-5" title="5"><span class="co"># Output the variable.</span></a>
 <a class="sourceLine" id="cb26-6" title="6">name_region</a></code></pre></div>
@@ -1883,9 +1883,9 @@ div.tocify {
 ## # ... with 21,955 more rows</code></pre>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># We can select as many columns as we like by naming them one by one.</span></a>
 <a class="sourceLine" id="cb28-2" title="2">current_rating &lt;-<span class="st"> </span><span class="kw">select</span>(<span class="dt">.data =</span> school, </a>
-<a class="sourceLine" id="cb28-3" title="3">                         school_name,</a>
-<a class="sourceLine" id="cb28-4" title="4">                         local_authority, </a>
-<a class="sourceLine" id="cb28-5" title="5">                         overall_effectiveness)</a>
+<a class="sourceLine" id="cb28-3" title="3">                          school_name,</a>
+<a class="sourceLine" id="cb28-4" title="4">                          local_authority, </a>
+<a class="sourceLine" id="cb28-5" title="5">                          overall_effectiveness)</a>
 <a class="sourceLine" id="cb28-6" title="6"></a>
 <a class="sourceLine" id="cb28-7" title="7"><span class="co"># Output the variable.</span></a>
 <a class="sourceLine" id="cb28-8" title="8">current_rating</a></code></pre></div>
@@ -1905,7 +1905,7 @@ div.tocify {
 ## # ... with 21,955 more rows</code></pre>
 <p>We can also select the columns using numbers, positive numbers and negative numbers to drop.</p>
 <p>For example the code below will select the first 4 columns and then column 7.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># We can both use regular sequences with &quot;:&quot; and spefic numbers.</span></a>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># We can both use regular sequences with &quot;:&quot; and specific numbers.</span></a>
 <a class="sourceLine" id="cb30-2" title="2"><span class="kw">select</span>(<span class="dt">.data =</span> school, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">7</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 21,965 x 5
 ##       urn school_name       ofsted_region local_authority total_number_of_~
@@ -1921,7 +1921,7 @@ div.tocify {
 ##  9 100012 Carlton Primary ~ London        Camden                        371
 ## 10 100013 Edith Neville Pr~ London        Camden                        221
 ## # ... with 21,955 more rows</code></pre>
-<p>We can select all columns, except column 2.</p>
+<p>In this example we select all columns, except column 2.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># The negative indicates which columns we do not want.</span></a>
 <a class="sourceLine" id="cb32-2" title="2"><span class="kw">select</span>(<span class="dt">.data =</span> school, <span class="dv">-2</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 21,965 x 18
@@ -1981,46 +1981,46 @@ div.tocify {
 <table>
 <thead>
 <tr class="header">
-<th>Symbol</th>
-<th>Meaning</th>
+<th align="center">Symbol</th>
+<th align="left">Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>x ==  y</code></td>
-<td><code>x</code> is exactly equal to <code>y</code></td>
+<td align="center"><code>x ==  y</code></td>
+<td align="left"><code>x</code> is exactly equal to <code>y</code></td>
 </tr>
 <tr class="even">
-<td><code>x != y</code></td>
-<td><code>x</code> does not equal <code>y</code></td>
+<td align="center"><code>x != y</code></td>
+<td align="left"><code>x</code> does not equal <code>y</code></td>
 </tr>
 <tr class="odd">
-<td><code>x &gt; y</code></td>
-<td><code>x</code> is greater than <code>y</code></td>
+<td align="center"><code>x &gt; y</code></td>
+<td align="left"><code>x</code> is greater than <code>y</code></td>
 </tr>
 <tr class="even">
-<td><code>x &gt;= y</code></td>
-<td><code>x</code> is greater than or equal to <code>y</code></td>
+<td align="center"><code>x &gt;= y</code></td>
+<td align="left"><code>x</code> is greater than or equal to <code>y</code></td>
 </tr>
 <tr class="odd">
-<td><code>x &lt; y</code></td>
-<td><code>x</code> is less than <code>y</code></td>
+<td align="center"><code>x &lt; y</code></td>
+<td align="left"><code>x</code> is less than <code>y</code></td>
 </tr>
 <tr class="even">
-<td><code>x &lt;= y</code></td>
-<td><code>x</code> is less than or equal to<code>|  |</code>x &amp; y<code>| ``x</code> and <code>y</code></td>
+<td align="center"><code>x &lt;= y</code></td>
+<td align="left"><code>x</code> is less than or equal to<code>|  |</code>x &amp; y<code>| ``x</code> and <code>y</code></td>
 </tr>
 <tr class="odd">
-<td><code>!x</code></td>
-<td>not <code>x</code></td>
+<td align="center"><code>!x</code></td>
+<td align="left">not <code>x</code></td>
 </tr>
 <tr class="even">
-<td>is.na()</td>
-<td>is NA</td>
+<td align="center">is.na()</td>
+<td align="left">is NA</td>
 </tr>
 <tr class="odd">
-<td><code>x\|y</code></td>
-<td><code>x</code> or <code>y</code></td>
+<td align="center"><code>x\|y</code></td>
+<td align="left"><code>x</code> or <code>y</code></td>
 </tr>
 </tbody>
 </table>
@@ -2031,7 +2031,7 @@ div.tocify {
 <p>We can filter out a new data set where deprivation index is equal to 1.</p>
 <p>This is refered to as single conditional filtering as we only have one condition.</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">deprivation_initial &lt;-<span class="st"> </span><span class="kw">filter</span>(<span class="dt">.data =</span> school,</a>
-<a class="sourceLine" id="cb36-2" title="2">                    deprivation_index <span class="op">==</span><span class="st"> </span><span class="dv">1</span> )</a>
+<a class="sourceLine" id="cb36-2" title="2">                              deprivation_index <span class="op">==</span><span class="st"> </span><span class="dv">1</span> )</a>
 <a class="sourceLine" id="cb36-3" title="3">                    </a>
 <a class="sourceLine" id="cb36-4" title="4"></a>
 <a class="sourceLine" id="cb36-5" title="5"><span class="kw">head</span>(deprivation_initial, <span class="dt">n =</span> <span class="dv">10</span>)</a></code></pre></div>
@@ -2057,7 +2057,7 @@ div.tocify {
 ## #   effectiveness_of_leadership_and_management &lt;dbl&gt;,
 ## #   personal_development_behaviour_and_welfare &lt;dbl&gt;,
 ## #   early_years_provision &lt;dbl&gt;, x16_19_study_programmes &lt;dbl&gt;</code></pre>
-<p>A quick way to check that the filter worked is to look at all the unique values, in the data set above. using the <code>unique()</code> function.</p>
+<p>A quick way to check that the filter worked is to look at all the unique values, in the data set above, using the <code>unique()</code> function.</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">unique</span>(deprivation_initial<span class="op">$</span>deprivation_index)    </a></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <div id="question-2" class="section level5">
@@ -2070,7 +2070,7 @@ div.tocify {
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># Our conditional statement means our new data set will only</span></a>
 <a class="sourceLine" id="cb40-2" title="2"><span class="co"># contain data where the condition is TRUE.</span></a>
 <a class="sourceLine" id="cb40-3" title="3">big_schools &lt;-<span class="st"> </span><span class="kw">filter</span>(<span class="dt">.data =</span> school,</a>
-<a class="sourceLine" id="cb40-4" title="4">                  total_number_of_pupils <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2000</span>)</a>
+<a class="sourceLine" id="cb40-4" title="4">                      total_number_of_pupils <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2000</span>)</a>
 <a class="sourceLine" id="cb40-5" title="5"></a>
 <a class="sourceLine" id="cb40-6" title="6">big_schools</a></code></pre></div>
 <pre><code>## # A tibble: 30 x 19
@@ -2171,7 +2171,7 @@ div.tocify {
 ## #   early_years_provision &lt;dbl&gt;, x16_19_study_programmes &lt;dbl&gt;</code></pre>
 <p><code>%in%</code> is shorthand for filtering multiple values in a <code>chr</code> column.</p>
 <p>We have a quick way to check that the filter worked, we can see all the unique values in the data set above. Again, this is done using the <code>unique()</code> function.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="co"># Returns the set of unique values in the data set</span></a>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="co"># Returns the set of unique values in the data set.</span></a>
 <a class="sourceLine" id="cb46-2" title="2"><span class="kw">unique</span>(mainstream<span class="op">$</span>phase_of_education)</a></code></pre></div>
 <pre><code>## [1] &quot;Primary&quot;   &quot;Secondary&quot;</code></pre>
 </div>
@@ -2204,9 +2204,9 @@ div.tocify {
 ## [17] &quot;personal_development_behaviour_and_welfare&quot; 
 ## [18] &quot;early_years_provision&quot;                      
 ## [19] &quot;x16_19_study_programmes&quot;</code></pre>
-<p>The code below creates a new column called <code>outstanding</code> into our dataset. This new column is filled with <code>TRUE/FALSE</code> when the condition specified matches <code>overall_effectiness ==</code>.</p>
+<p>The code below creates a new column called <code>outstanding</code> into our dataset. This new column is filled with <code>TRUE/FALSE</code> when the condition specified matches <code>overall_effectiness == 1</code>.</p>
 <p>In this example we have used a conditon, but you could also have mathematical formulas inplace. We can see below that we now have 20 columns.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="co"># Fill the new column &quot;outstanding&quot; with TRUE/FALSE when overall_effectiveness == 1</span></a>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="co"># Fill the new column &quot;outstanding&quot; with TRUE/FALSE when overall_effectiveness == 1.</span></a>
 <a class="sourceLine" id="cb50-2" title="2">school &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> school,</a>
 <a class="sourceLine" id="cb50-3" title="3">                  <span class="dt">outstanding =</span> </a>
 <a class="sourceLine" id="cb50-4" title="4">                    overall_effectiveness <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</a>
@@ -2236,17 +2236,18 @@ div.tocify {
 ## [20] &quot;outstanding&quot;</code></pre>
 <div id="question-4" class="section level5">
 <h5><span class="header-section-number">1.4.4.1.1</span> <strong>Question</strong></h5>
-<p><strong>Create a new column in the school dataset, called <code>nursery</code>. Using the <code>phase_of_education</code> when it is equal to nursery <em>and</em> the <code>early_years_provision</code> is less than 5 years</strong></p>
+<p><strong>Create a new column in the school dataset, called <code>nursery</code>. Using the <code>phase_of_education</code> when it is equal to nursery <em>or</em> the <code>early_years_provision</code> is less than 5 years</strong></p>
 </div>
 <div id="show-answer-4" class="section level5">
 <h5><span class="header-section-number">1.4.4.1.2</span> <strong>Show Answer</strong></h5>
 <p>The code below is using the school data set and creating a new column called <code>nursery</code>, which is filled the the multiple condition of <code>phase_of_education == &quot;Nursery&quot;</code> or <code>early_years_provision &lt;= 5</code>.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">school &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> school,   </a>
-<a class="sourceLine" id="cb54-2" title="2">                 <span class="dt">nursery =</span>   <span class="co"># my new column name </span></a>
-<a class="sourceLine" id="cb54-3" title="3">                   phase_of_education <span class="op">==</span><span class="st"> &quot;Nursery&quot;</span> <span class="op">|</span><span class="st"> </span><span class="co"># Two conditions combined by the OR operator</span></a>
-<a class="sourceLine" id="cb54-4" title="4"><span class="st">                   </span>early_years_provision <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb54-5" title="5"></a>
-<a class="sourceLine" id="cb54-6" title="6"><span class="kw">head</span>(school<span class="op">$</span>nursery, <span class="dt">n =</span> <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="co"># Create a new column using multiple conditional statements.</span></a>
+<a class="sourceLine" id="cb54-2" title="2">school &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> school,   </a>
+<a class="sourceLine" id="cb54-3" title="3">                 <span class="dt">nursery =</span>   <span class="co"># my new column name </span></a>
+<a class="sourceLine" id="cb54-4" title="4">                   phase_of_education <span class="op">==</span><span class="st"> &quot;Nursery&quot;</span> <span class="op">|</span><span class="st"> </span><span class="co"># Two conditions combined by the OR operator</span></a>
+<a class="sourceLine" id="cb54-5" title="5"><span class="st">                   </span>early_years_provision <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb54-6" title="6"></a>
+<a class="sourceLine" id="cb54-7" title="7"><span class="kw">head</span>(school<span class="op">$</span>nursery, <span class="dt">n =</span> <span class="dv">10</span>)</a></code></pre></div>
 <pre><code>##  [1] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE</code></pre>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="kw">names</span>(school)</a></code></pre></div>
 <pre><code>##  [1] &quot;urn&quot;                                        
@@ -2301,9 +2302,10 @@ div.tocify {
 ## [21] &quot;nursery&quot;</code></pre>
 <p>We can delete the column using the code below.</p>
 <p>We take the school data set and set equal the column we want to delete to <code>NULL</code>.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">school &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> school, <span class="dt">nursery =</span> <span class="ot">NULL</span>)</a>
-<a class="sourceLine" id="cb60-2" title="2"></a>
-<a class="sourceLine" id="cb60-3" title="3"><span class="kw">names</span>(school)</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="co"># Setting a column = NULL effectively removes it. </span></a>
+<a class="sourceLine" id="cb60-2" title="2">school &lt;-<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">.data =</span> school, <span class="dt">nursery =</span> <span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb60-3" title="3"></a>
+<a class="sourceLine" id="cb60-4" title="4"><span class="kw">names</span>(school)</a></code></pre></div>
 <pre><code>##  [1] &quot;urn&quot;                                        
 ##  [2] &quot;school_name&quot;                                
 ##  [3] &quot;ofsted_region&quot;                              
@@ -2340,7 +2342,7 @@ div.tocify {
 <p>take the school data set and create a new data set called <code>school_one</code> <strong>%&gt;%</strong> <em>(and then)</em></p>
 <p>create a new column called <code>total_number_of_pupils_rounded</code> which is equal to rounding the total number of pupils <strong>%&gt;%</strong> <em>(and then)</em></p>
 <p>filter the column <code>phase_of_education</code> by meeting the condition <code>secondary</code>.</p>
-<p>Notice how the <code>mutate() and</code>filter()` functions don’t use the data argument as it already included in the pipe.</p>
+<p>Notice how the <code>mutate()</code> and <code>filter()</code> functions don’t use the data argument as it already included in the pipe.</p>
 <p><strong>%&gt;%</strong> allows you to combine multiple commands and the makes the code quite easy to read.</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">school_one &lt;-<span class="st"> </span>school <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb63-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_number_of_pupils_rounded =</span> <span class="kw">round</span>(total_number_of_pupils)) <span class="op">%&gt;%</span></a>
@@ -2380,10 +2382,10 @@ div.tocify {
 <div id="show-answer-5" class="section level5">
 <h5><span class="header-section-number">1.4.5.1.2</span> <strong>Show Answer</strong></h5>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1">greenwich_schools &lt;-<span class="st"> </span>school <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb67-2" title="2"><span class="st">         </span><span class="kw">filter</span>(ofsted_region <span class="op">==</span><span class="st">&quot;London&quot;</span> <span class="op">&amp;</span></a>
-<a class="sourceLine" id="cb67-3" title="3"><span class="st">                  </span>local_authority <span class="op">==</span><span class="st">&quot;Greenwich&quot;</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb67-4" title="4"><span class="st">         </span><span class="kw">arrange</span>(<span class="kw">desc</span>(total_number_of_pupils))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb67-5" title="5"><span class="st">         </span><span class="kw">select</span>(school_name,total_number_of_pupils, deprivation_index)</a>
+<a class="sourceLine" id="cb67-2" title="2"><span class="st">               </span><span class="kw">filter</span>(ofsted_region <span class="op">==</span><span class="st">&quot;London&quot;</span> <span class="op">&amp;</span></a>
+<a class="sourceLine" id="cb67-3" title="3"><span class="st">                        </span>local_authority <span class="op">==</span><span class="st">&quot;Greenwich&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb67-4" title="4"><span class="st">               </span><span class="kw">arrange</span>(<span class="kw">desc</span>(total_number_of_pupils)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb67-5" title="5"><span class="st">               </span><span class="kw">select</span>(school_name,total_number_of_pupils, deprivation_index)</a>
 <a class="sourceLine" id="cb67-6" title="6"></a>
 <a class="sourceLine" id="cb67-7" title="7">greenwich_schools</a></code></pre></div>
 <pre><code>## # A tibble: 87 x 3
@@ -2447,7 +2449,7 @@ div.tocify {
 <p>“Catalie Portman” has data in all columns, as she appears in both the “left” and “right”.</p>
 <p>“Spiderpig” doesn’t have any data in this one. We’re only taking data from the “left”, and he’s only in the “right”.</p>
 <p>Let’s look at how we do this “left” merge in code. We’re going to use <code>left_join()</code> and do a “left” join.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="co"># The first data frame is the one on the left</span></a>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="co"># The first data frame is the one on the left.</span></a>
 <a class="sourceLine" id="cb73-2" title="2">join_left &lt;-<span class="st"> </span><span class="kw">left_join</span>(joining_data1, </a>
 <a class="sourceLine" id="cb73-3" title="3">                        joining_data2,</a>
 <a class="sourceLine" id="cb73-4" title="4">                        <span class="dt">by =</span> <span class="st">&quot;name&quot;</span>)</a>
@@ -2466,11 +2468,10 @@ div.tocify {
 <p>If we’re joining on more than one column we can specify using the parameter <code>by = c(vector))</code>.</p>
 <p>This is shown below.</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="co"># Joining using multiple columns</span></a>
-<a class="sourceLine" id="cb75-2" title="2">join_left &lt;-<span class="st"> </span><span class="kw">left_join</span>(joining_data1, </a>
-<a class="sourceLine" id="cb75-3" title="3">                   joining_data2,</a>
-<a class="sourceLine" id="cb75-4" title="4">                  <span class="dt">by =</span><span class="kw">c</span> (<span class="st">&quot;column name&quot;</span>, <span class="st">&quot;column name&quot;</span>))</a>
-<a class="sourceLine" id="cb75-5" title="5"></a>
-<a class="sourceLine" id="cb75-6" title="6">join_left</a></code></pre></div>
+<a class="sourceLine" id="cb75-2" title="2">join_left &lt;-<span class="st"> </span><span class="kw">left_join</span>(joining_data1, joining_data2,</a>
+<a class="sourceLine" id="cb75-3" title="3">                        <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;column name&quot;</span>, <span class="st">&quot;column name&quot;</span>))</a>
+<a class="sourceLine" id="cb75-4" title="4"></a>
+<a class="sourceLine" id="cb75-5" title="5">join_left</a></code></pre></div>
 <div id="exercise-1" class="section level3 tabset tabset-fade">
 <h3><span class="header-section-number">1.5.1</span> Exercise</h3>
 <div id="question-6" class="section level4">
@@ -2511,7 +2512,7 @@ div.tocify {
 <div id="show-answer-7" class="section level4">
 <h4><span class="header-section-number">1.5.2.2</span> <strong>Show Answer</strong></h4>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="co"># We can join two columns that are named differently.</span></a>
-<a class="sourceLine" id="cb78-2" title="2">marvel_left_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(marvel_left,marvel_right, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;year&quot;</span>=<span class="st">&quot;release_year&quot;</span>))</a>
+<a class="sourceLine" id="cb78-2" title="2">marvel_left_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(marvel_left, marvel_right, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;year&quot;</span>=<span class="st">&quot;release_year&quot;</span>))</a>
 <a class="sourceLine" id="cb78-3" title="3"></a>
 <a class="sourceLine" id="cb78-4" title="4">marvel_left_join</a></code></pre></div>
 <pre><code>## # A tibble: 20 x 5
