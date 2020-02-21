@@ -533,7 +533,7 @@ This effectively pulls out the vector stored in the first position in the list a
 
 ***
 
-## Named Lists
+## Named Lists{.tabset .tabset-fade}
 
 In R certain data structures have an attribute called `names`. They allow us to label (or name) each element held by a data structure. We can do this by using the `names()` function. The `names()` function allows us to get or set the name attribute of a data structure.
 
@@ -619,7 +619,15 @@ str(list3)
 
 
 ***
+### **Exercise**{-}
 
+**List Exercises.**
+
+
+
+### **Show Answer**{-}
+
+***
 ## Adding Elements to a List
 
 Similar to vectors again, to add an element, we can either index to a blank space in the list or use the `append()` function:
