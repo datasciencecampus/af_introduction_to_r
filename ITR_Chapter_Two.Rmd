@@ -30,6 +30,7 @@ knitr::opts_chunk$set(echo = TRUE)
 * Be able to create vectors to store data.
 * Be able to select elements from vectors.
 * Understand how vectors operate.
+* Be familliar with lists
 * Be familiar with data frames and tibbles.
 
 
@@ -623,12 +624,61 @@ str(list3)
 
 **List Exercises.**
 
+Create the list below
+
+```{r}
+
+chocolate <- list(brand="celebrations", 
+                  chocolate_bar=c("mars", "milky way", "bounty", "twix"), 
+                  rating=c("worst",  "terrible", "awful", "nice", "best"))
+
+```
+
+Find out the names of the list, using the `names()` function
+
+Check the structure using the `str()` function
+
+Select chocolate bars
+
+Select your favourate chocolate from the options
+
+
 
 
 ### **Show Answer**{-}
 
+```{r}
+
+chocolate <- list(brand="celebrations", 
+                  chocolate_bar=c("mars", "milky way", "bounty", "twix"), 
+                  rating=c("worst",  "terrible", "awful", "nice", "best"))
+
+
+
+#find out the names 
+
+names(chocolate)
+
+#check the structure
+str(chocolate)
+
+
+#select chocolate bars
+
+chocolate[2]
+
+#select your favourate chocolate bar
+
+chocolate[[2]][3]
+
+```
+
+
+
+
+
 ***
-## Adding Elements to a List
+## Adding Elements to a List{.tabset .tabset-fade}
 
 Similar to vectors again, to add an element, we can either index to a blank space in the list or use the `append()` function:
 
@@ -656,7 +706,36 @@ empty_list
 ```
 ***
 
-# Data Structure Conversion
+
+### **Exercise**{-}
+
+**List Exercises.**
+
+
+
+Using the list we created above `chocolate`, add item called price
+
+add a new chocolate bar
+
+
+
+### **Show Answer**{-}
+
+```{r, eval=FALSE}
+
+#update the list
+
+my_list_5[4] <- "new"
+
+my_list_5 <- append(my_list_5, "new tow")
+
+
+```
+
+
+
+
+# Data Structure Conversion{.tabset .tabset-fade}
 
 ## Vector to list
 
@@ -723,7 +802,7 @@ as_tibble(iris)
 ```
 ***
 
-# Summary.
+# Summary-Data Structures
 
 You should now:
 

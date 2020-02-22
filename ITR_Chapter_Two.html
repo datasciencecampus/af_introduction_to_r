@@ -1585,6 +1585,7 @@ div.tocify {
 <li>Be able to create vectors to store data.</li>
 <li>Be able to select elements from vectors.</li>
 <li>Understand how vectors operate.</li>
+<li>Be familliar with lists</li>
 <li>Be familiar with data frames and tibbles.</li>
 </ul>
 <hr />
@@ -2049,18 +2050,51 @@ div.tocify {
 <div id="exercise-5" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <p><strong>List Exercises.</strong></p>
+<p>Create the list below</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1">chocolate &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">brand=</span><span class="st">&quot;celebrations&quot;</span>, </a>
+<a class="sourceLine" id="cb91-2" title="2">                  <span class="dt">chocolate_bar=</span><span class="kw">c</span>(<span class="st">&quot;mars&quot;</span>, <span class="st">&quot;milky way&quot;</span>, <span class="st">&quot;bounty&quot;</span>, <span class="st">&quot;twix&quot;</span>), </a>
+<a class="sourceLine" id="cb91-3" title="3">                  <span class="dt">rating=</span><span class="kw">c</span>(<span class="st">&quot;worst&quot;</span>,  <span class="st">&quot;terrible&quot;</span>, <span class="st">&quot;awful&quot;</span>, <span class="st">&quot;nice&quot;</span>, <span class="st">&quot;best&quot;</span>))</a></code></pre></div>
+<p>Find out the names of the list, using the <code>names()</code> function</p>
+<p>Check the structure using the <code>str()</code> function</p>
+<p>Select chocolate bars</p>
+<p>Select your favourate chocolate from the options</p>
 </div>
 <div id="show-answer-5" class="section level3 unnumbered">
 <h3><strong>Show Answer</strong></h3>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1">chocolate &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">brand=</span><span class="st">&quot;celebrations&quot;</span>, </a>
+<a class="sourceLine" id="cb92-2" title="2">                  <span class="dt">chocolate_bar=</span><span class="kw">c</span>(<span class="st">&quot;mars&quot;</span>, <span class="st">&quot;milky way&quot;</span>, <span class="st">&quot;bounty&quot;</span>, <span class="st">&quot;twix&quot;</span>), </a>
+<a class="sourceLine" id="cb92-3" title="3">                  <span class="dt">rating=</span><span class="kw">c</span>(<span class="st">&quot;worst&quot;</span>,  <span class="st">&quot;terrible&quot;</span>, <span class="st">&quot;awful&quot;</span>, <span class="st">&quot;nice&quot;</span>, <span class="st">&quot;best&quot;</span>))</a>
+<a class="sourceLine" id="cb92-4" title="4"></a>
+<a class="sourceLine" id="cb92-5" title="5"></a>
+<a class="sourceLine" id="cb92-6" title="6"></a>
+<a class="sourceLine" id="cb92-7" title="7"><span class="co">#find out the names </span></a>
+<a class="sourceLine" id="cb92-8" title="8"></a>
+<a class="sourceLine" id="cb92-9" title="9"><span class="kw">names</span>(chocolate)</a></code></pre></div>
+<pre><code>## [1] &quot;brand&quot;         &quot;chocolate_bar&quot; &quot;rating&quot;</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="co">#check the structure</span></a>
+<a class="sourceLine" id="cb94-2" title="2"><span class="kw">str</span>(chocolate)</a></code></pre></div>
+<pre><code>## List of 3
+##  $ brand        : chr &quot;celebrations&quot;
+##  $ chocolate_bar: chr [1:4] &quot;mars&quot; &quot;milky way&quot; &quot;bounty&quot; &quot;twix&quot;
+##  $ rating       : chr [1:5] &quot;worst&quot; &quot;terrible&quot; &quot;awful&quot; &quot;nice&quot; ...</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1"><span class="co">#select chocolate bars</span></a>
+<a class="sourceLine" id="cb96-2" title="2"></a>
+<a class="sourceLine" id="cb96-3" title="3">chocolate[<span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## $chocolate_bar
+## [1] &quot;mars&quot;      &quot;milky way&quot; &quot;bounty&quot;    &quot;twix&quot;</code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1"><span class="co">#select your favourate chocolate bar</span></a>
+<a class="sourceLine" id="cb98-2" title="2"></a>
+<a class="sourceLine" id="cb98-3" title="3">chocolate[[<span class="dv">2</span>]][<span class="dv">3</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;bounty&quot;</code></pre>
 <hr />
 </div>
 </div>
-<div id="adding-elements-to-a-list" class="section level2">
+<div id="adding-elements-to-a-list" class="section level2 tabset tabset-fade">
 <h2><span class="header-section-number">4.5</span> Adding Elements to a List</h2>
 <p>Similar to vectors again, to add an element, we can either index to a blank space in the list or use the <code>append()</code> function:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1">list1[<span class="dv">3</span>]&lt;-<span class="st">&quot;new&quot;</span></a>
-<a class="sourceLine" id="cb91-2" title="2"></a>
-<a class="sourceLine" id="cb91-3" title="3">list1</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1">list1[<span class="dv">3</span>]&lt;-<span class="st">&quot;new&quot;</span></a>
+<a class="sourceLine" id="cb100-2" title="2"></a>
+<a class="sourceLine" id="cb100-3" title="3">list1</a></code></pre></div>
 <pre><code>## [[1]]
 ##  [1]  1  2  3  4  5  6  7  8  9 10
 ## 
@@ -2069,7 +2103,7 @@ div.tocify {
 ## 
 ## [[3]]
 ## [1] &quot;new&quot;</code></pre>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1"><span class="kw">append</span>(list1, list2)</a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1"><span class="kw">append</span>(list1, list2)</a></code></pre></div>
 <pre><code>## [[1]]
 ##  [1]  1  2  3  4  5  6  7  8  9 10
 ## 
@@ -2092,8 +2126,8 @@ div.tocify {
 ## [1] 26</code></pre>
 <p>Occasionally appending to a data data structure is fine, but doing so repeatedly is computationally expensive. So it is best to create a list as long as its final desired size and then fill it in using the appropriate indices.</p>
 <p>To create an empty list of a certain size we have to use the <code>vector()</code> function like before. This time our <code>mode</code> will be <code>list</code> and our <code>length</code> would be whatever we desire.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1">empty_list &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&quot;list&quot;</span>,<span class="dt">length =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb95-2" title="2">empty_list</a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1">empty_list &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&quot;list&quot;</span>,<span class="dt">length =</span> <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb104-2" title="2">empty_list</a></code></pre></div>
 <pre><code>## [[1]]
 ## NULL
 ## 
@@ -2106,9 +2140,23 @@ div.tocify {
 ## [[4]]
 ## NULL</code></pre>
 <hr />
+<div id="exercise-6" class="section level3 unnumbered">
+<h3><strong>Exercise</strong></h3>
+<p><strong>List Exercises.</strong></p>
+<p>Using the list we created above <code>chocolate</code>, add item called price</p>
+<p>add a new chocolate bar</p>
+</div>
+<div id="show-answer-6" class="section level3 unnumbered">
+<h3><strong>Show Answer</strong></h3>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1"><span class="co">#update the list</span></a>
+<a class="sourceLine" id="cb106-2" title="2"></a>
+<a class="sourceLine" id="cb106-3" title="3">my_list_<span class="dv">5</span>[<span class="dv">4</span>] &lt;-<span class="st"> &quot;new&quot;</span></a>
+<a class="sourceLine" id="cb106-4" title="4"></a>
+<a class="sourceLine" id="cb106-5" title="5">my_list_<span class="dv">5</span> &lt;-<span class="st"> </span><span class="kw">append</span>(my_list_<span class="dv">5</span>, <span class="st">&quot;new tow&quot;</span>)</a></code></pre></div>
 </div>
 </div>
-<div id="data-structure-conversion" class="section level1">
+</div>
+<div id="data-structure-conversion" class="section level1 tabset tabset-fade">
 <h1><span class="header-section-number">5</span> Data Structure Conversion</h1>
 <div id="vector-to-list" class="section level2">
 <h2><span class="header-section-number">5.1</span> Vector to list</h2>
@@ -2148,7 +2196,7 @@ div.tocify {
 <hr />
 <div id="data-frame" class="section level2 unnumbered">
 <h2>Data Frame</h2>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1">iris</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1">iris</a></code></pre></div>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
 ## 1            5.1         3.5          1.4         0.2     setosa
 ## 2            4.9         3.0          1.4         0.2     setosa
@@ -2321,8 +2369,8 @@ div.tocify {
 <hr />
 </div>
 </div>
-<div id="summary." class="section level1">
-<h1><span class="header-section-number">7</span> Summary.</h1>
+<div id="summary-data-structures" class="section level1">
+<h1><span class="header-section-number">7</span> Summary-Data Structures</h1>
 <p>You should now:</p>
 <ul>
 <li>Be able to create a vector.</li>
