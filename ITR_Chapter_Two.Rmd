@@ -23,12 +23,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Learning Objectives
 <br />
+
 **The goal of this session is to:**
 
 
 * Be familliar with data structures in R.
-* Be able to create vectors to store data.
-* Be able to select elements from vectors.
 * Understand how vectors operate.
 * Be familliar with lists
 * Be familiar with data frames and tibbles.
@@ -49,7 +48,7 @@ R stores this data so that  we can manipulate and work with it.
 # Vectors
 <br />
 
-Now it's time to almost forget everything you've just learned... In R the most fundamental object is a vector. To the extent all the data types we have seen so far have all been vectors. This is because R is a vectorised language. This is a really powerful concept that may seem foreign right now, but it should make more sense as we move on. 
+>Now it's time to almost forget everything you've just learned... In R the most fundamental object is a vector. To the extent all the data types we have seen so far have all been vectors. This is because R is a vectorised language. This is a really powerful concept that may seem foreign right now, but it should make more sense as we move on. 
 
 
 In the previous section we looked at data types, where we said we could assign a name to a value.
@@ -196,7 +195,7 @@ Play around with the `mode` and `length` parameters. (Try: mode = integer, doubl
 
 ```{r, eval=FALSE}
 
-favourate_movies <- c("Frozen", "The Lion King", "Moana", "The Dark Night") 
+favourite_movies <- c("Frozen", "The Lion King", "Moana", "The Dark Knight") 
 
   
 lucky_numbers <- c(7, 12, 15, 1) 
@@ -217,7 +216,7 @@ We can see below that our new vector is a character vector, as vectors are suppo
 ```{r}
 #This exercise is about vectors
 
-favourite_movies <- c("Frozen", "The Lion King", "Moana", "The Dark Night")  
+favourite_movies <- c("Frozen", "The Lion King", "Moana", "The Dark Knight")  
   
 lucky_numbers <- c(7, 12, 15, 1)     
 
@@ -233,7 +232,12 @@ typeof(movies_and_numbers)
 
 ## Vectorised Language{.tabset .tabset-fade}
 
+
+<br />
+
 Vectors aren't just containers for homogeneous data. As R is a vectorised language, this means operations are applied to each element of the vector automatically, without the need to loop through the vector. 
+
+<br />
 
 Since all the objects we have seen so far (integer, double, logical and character) have all been secretly vectors, that means all the operations we have performed so far have been vectorised operations! i.e. The operations will scale to an `n` sized vector, rather than the individual elements we have worked with thus far. Let's explore!
 
@@ -313,7 +317,7 @@ Elements in a vector can be selected using `[ ]`, this is called slicing. We are
 
 Note that R indexes from 1 (not 0 like other languages).
 
-As an example, going back to my favourate movies, to pick the second item in the list, I would simply, use the square brackets and reference **2** as shown below.
+As an example, going back to my favourite movies, to pick the second item in the list, I would simply, use the square brackets and reference **2** as shown below.
 
 ```{r}
 
@@ -437,7 +441,7 @@ Lists are really useful, flexible data structures. Their elements can be any obj
 
 ```{r, eval=FALSE}
 
-favourate_movies <- c("Frozen", "The Lion King", "Moana", "The Dark Night") 
+favourite_movies <- c("Frozen", "The Lion King", "Moana", "The Dark Knight") 
 
   
 lucky_numbers <- c(7, 12, 15, 1) 
@@ -454,7 +458,7 @@ my_list_of_movies_and_numbers <-
 ```{r}
 
 
-my_list_of_movies_and_numbers <- list(7, 12, 15, 1,"Frozen", "The Lion King", "Moana", "The Dark Night") 
+my_list_of_movies_and_numbers <- list(7, 12, 15, 1,"Frozen", "The Lion King", "Moana", "The Dark Knight") 
 
 ```
 
@@ -497,9 +501,9 @@ my_list_of_movies_and_numbers[[1]]
 
 **Chained Indexing.**
 
-Like we said that lists can contain anything.
+* Like we said that lists can contain anything.
 
-If the element we select is another data structure, then we can also immediately index the selected data structure by using chained indexing.
+* If the element we select is another data structure, then we can also immediately index the selected data structure by using chained indexing.
 
 ### **Show Example**{-}
 
@@ -507,20 +511,20 @@ Below am creating a list of my 2 vectors, named it my list 2.
 
 ```{r}
 
-favourate_movies <- c("Frozen", "The Lion King", "Moana", "The Dark Night") 
+favourite_movies <- c("Frozen", "The Lion King", "Moana", "The Dark Knight") 
 
   
 lucky_numbers <- c(7, 12, 15, 1) 
 
 
-my_list_2 <- list(favourate_movies, lucky_numbers)
+my_list_2 <- list(favourite_movies, lucky_numbers)
 
 my_list_2
  
 
 ```
 
-So if i wanted to select the 4th item from the favourate_movies, i would type the code below,
+So if i wanted to select the 4th item from the favourite_movies, i would type the code below,
 
 
 ```{r}
@@ -624,7 +628,7 @@ str(list3)
 
 **List Exercises.**
 
-Create the list below
+* Create the list below
 
 ```{r}
 
@@ -634,13 +638,13 @@ chocolate <- list(brand="celebrations",
 
 ```
 
-Find out the names of the list, using the `names()` function
+* Find out the names of the list, using the `names()` function
 
-Check the structure using the `str()` function
+* Check the structure using the `str()` function
 
-Select chocolate bars
+* Select chocolate bars
 
-Select your favourate chocolate from the options
+* Select your favourite chocolate from the options
 
 
 
@@ -667,7 +671,7 @@ str(chocolate)
 
 chocolate[2]
 
-#select your favourate chocolate bar
+#select your favourite chocolate bar
 
 chocolate[[2]][3]
 
@@ -713,9 +717,9 @@ empty_list
 
 
 
-Using the list we created above `chocolate`, add item called price
+* Using the list we created above `chocolate`, add item called price.
 
-add a new chocolate bar
+* Add a new chocolate bar.
 
 
 
@@ -725,10 +729,13 @@ add a new chocolate bar
 
 #update the list
 
-my_list_5[4] <- "new"
+chocolate[[4]] <- (price="price")
 
-my_list_5 <- append(my_list_5, "new tow")
 
+chocolate <- append(chocolate, "price")
+
+
+chocolate[[2]][4] <- "turkish delight"
 
 ```
 
@@ -739,11 +746,11 @@ my_list_5 <- append(my_list_5, "new tow")
 
 ## Vector to list
 
-use `as.list()`
+* Use `as.list()`
 
 ## list to vector
 
-depending on your needs use `unlist` or `as.vector()`
+* Depending on your needs use `unlist` or `as.vector()`
 
 ***
 
@@ -781,6 +788,9 @@ They are becoming a standard way to work with data, they are very useful when wo
 
 ***
 
+Below is an example of a what a dataframe and tibble look like, I have used the same dataset.
+
+
 ## Data Frame {-}
 ```{r} 
 
@@ -804,15 +814,36 @@ as_tibble(iris)
 
 # Summary-Data Structures
 
-You should now:
+<br>
 
-* Be able to create a vector.
-* Be able to select items within a vector.
-* Be able to understand how vectors operate in terms of vector arithmetic.
-* Be familliar with data structures in R.
-* Understand how vectors operate.
+>We have covered a lot material in R and yet there is still so much more to cover in terms of functionality, as R has so much to offer. By no means are you expected to remember all the above, but as we move forward, it is important you remain aware of:
+
+
+* How to create a vector using `c()` function.
+
+* All elements in the vector must be of the same type and R WILL force that on you.
+
+* The different types of vectors: Double, Integer, Logical, Character and Factor.
+
+* We can find out what type of by using the `typeof()` function. 
+
+* We can convert from on type of vector to another using `as.` functions. 
+
+* Vectors are the most fundamental object type available in R as it's a vectorised language.
+
+* All operations can be applied to their respective vector type.
+
+* Lists are similar to vectors but can store a mixture of data types and objects.
+
+* We can name (or label) list elements for meaningful indexing.
+
 * Be familiar with data frames and tibbles.
 
+
+<br />
+
+
+>We could carry on exploring all the functionality available through vectors and lists but I would encourage you to explore them yourself. Particularly when you have your own niche problem to solve! 
 
 
 ***
