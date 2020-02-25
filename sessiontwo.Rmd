@@ -208,7 +208,7 @@ colon_vector
 
 In your script leave yourself a comment to remind you that this exercise is about vectors.
 
-Create 2 vectors, one with numerics and one with characters, e.g favourate_movies and lucky_numbers. `(Feel free to be creative here)`
+Create 2 vectors, one with numerics and one with characters, e.g favourite_movies and lucky_numbers. `(Feel free to be creative here)`
 
 Now combine the 2 vectors to create a new vector.
 
@@ -216,7 +216,7 @@ Then find out what type of vector your new vector is.
 
 ```{r, eval=FALSE}
 
-favourate_movies <- c("Frozen", "The Lion King", "The Godfather" "Moana", "The Dark Night", "sharknado") 
+favourite_movies <- c("Frozen", "The Lion King", "The Godfather" "Moana", "The Dark Night", "sharknado") 
   
 lucky_numbers <- c(7, 12, 15, 1, 11)   
 
@@ -229,11 +229,11 @@ We can see below that our new vector is a character vector, as vectors are suppo
 ```{r}
 #This exercise is about vectors
 
-favourate_movies <- c("Frozen", "The Lion King", "The Godfather", "Moana", "The Dark Night", "sharknado")  
+favourite_movies <- c("Frozen", "The Lion King", "The Godfather", "Moana", "The Dark Night", "sharknado")  
   
 lucky_numbers <- c(7, 12, 15, 1, 11)     
 
-movies_and_numbers <- c(favourate_movies, lucky_numbers)
+movies_and_numbers <- c(favourite_movies, lucky_numbers)
 
 typeof(movies_and_numbers)
 
@@ -303,7 +303,7 @@ Elements in a vector can be selected using `[ ]`, this is called slicing. We are
 
 Note that R indexes from 1 (not 0 like other languages).
 
-As an example, going back to my favourate movies, to pick the second item in the list, I would simply, use the square bracketS and reference **2** as shown below.
+As an example, going back to my favourite movies, to pick the second item in the list, I would simply, use the square bracketS and reference **2** as shown below.
 
 You can select a number of consecutive elements in a list by putting a `:` between the two indexes that mark the end and beginning of idexes you want.
 
@@ -311,7 +311,7 @@ You can also use a vector of indexes to return the specific position of elements
 
 ```{r}
 
-favourate_movies[2] 
+favourite_movies[2] 
 
 
 ```
