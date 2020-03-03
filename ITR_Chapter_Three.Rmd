@@ -1,5 +1,5 @@
 ---
-title: "Intro to R - Session Three"
+title: "Intro to R - Importing Data"
 output:
   html_document: 
     theme: united

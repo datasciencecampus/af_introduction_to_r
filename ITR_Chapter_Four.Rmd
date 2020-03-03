@@ -1,5 +1,5 @@
 ---
-title: "Intro to R - Session Four"
+title: "Intro to R - Data Manipulation"
 output:
   html_document: 
     theme: united
@@ -19,21 +19,38 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 ```
 
 
-# Session Four
+***
 
-## Learning Objectives
-**The goals of this session are to:**
+# Learning Objectives
+<br>
+
+**The goal of this session is to:**
+
+<br>
 
 * Understand the importance of clean variable names.
+
 * Be able to clean column names using `janitor`or `gsub`.
+
 * Be able to sort data.
+
 * Be able to select data.
+
 * Be able to filter data.
-* Be able to use the mutate function and use the pipe operator.
+
+* Be able to use the mutate function and use the pipe 
+
 * Be able to join data.
 
-## Exercise {.tabset .tabset-fade}
-### **Question**
+***
+
+# Exercise {.tabset .tabset-fade}
+
+<br>
+
+## **Exercise**
+
+<br>
 
 Before we begin, could you load the packages below into your script,
 
@@ -46,21 +63,38 @@ Before we begin, could you load the packages below into your script,
 
 And then,
 
-- Read in the **schools.csv** and assign it to `school`
+- Read in the **titanic.csv** and assign it to `titanic`
 
-- Read in the **joining_data1.csv** and assign it to `joining_data1`
+***
 
-- Read in the **joining_data2.csv** and assign it to `joining_data2`
+## **Hint**
 
-- Read in the **joining_exercise1.csv** and assign it to `marvel_left`
+<br>
 
-- Read in the **joining_exercise2.csv** and assign it to `marvel_right`
+The code below demonstrates how you can load a package.
 
-- Read in the **union_data.csv** and assign it to `union_joined`
+```{r eval=FALSE}
+
+library(package name)
+
+```
+
+<br>
+
+The code below demonstrates how you can read csv data.
+
+```{r, eval=FALSE}
+
+
+dataframe_name <- readr::read_csv("file_path")
 
 
 
-### **Show Answer**
+```
+
+***
+
+## **Show Answer**
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 # Load libraries
@@ -72,74 +106,111 @@ library(dplyr)
 
 # Read in data
 
-school <- read_csv("Data/schools_data.csv", 
-                   na = c("", " ", "NULL"))
 
-joining_data1 <- read_csv("Data/joining_data1.csv") 
-
-joining_data2 <- read_csv("Data/joining_data2.csv") 
-
-marvel_left <- read_csv("Data/joining_exercise1.csv")
-
-marvel_right <- read_csv("Data/joining_exercise2.csv")
-
-union_joined <- read_csv("Data/union_data.csv")
+titanic <- readr::read_csv("D:/Git/Intro_to_R_Refresh/Data/titanic.csv", 
+                           na=c("", " ", "NULL"))
 
 
 ```
 
+***
 
-## Column Names
+<br>
 
-In the previous section we looked at reading data into R and also inspecting it. In this section we are going to look at how to manipulate it.
+# Column Names
 
-In the previous session we stated that every column in a data frame is a variable and it is good practice to not have spaces within variable names.
+<br>
+
+In the previous section we looked at reading data into R and also inspecting it. 
+
+In this section we are going to look at how to manipulate it.
+
+>In the previous session we stated that every column in a data frame is a variable and it is good practice to not have spaces within variable names.
+
 
 This makes it easier for us to call on the variables when we need to use them.
 
+***
 
-### Example
+## **Example**
 
-For example if we wanted to pick the `school name` column from the school dataset. The code below does not work. 
+<br>
+
+For example if we wanted to pick the `school name` column from the school dataset. 
+
+<br>
+
+>The code below does not work. 
+
+<br>
 
 ```{r, eval=FALSE}
 
-school$school name
+titanic$name of Passenger
 
 ```
+
+<br>
 
 To get around this we enclose `school name` with back ticks like the code below (the key above the tab key on left hand side).
 
+<br>
+
 ```{r, eval=FALSE}
 
-school$`school name`
+titanic$`name Of Passenger`
 
 ```
 
+<br>
+
 If your column names have spaces and you keep them, you must use backticks.
-However its good practise to remove spaces and symbols.
+
+<br>
+
+>However its good practise to remove spaces and symbols.
+
+<br>
+
+We can see the column names by using the  `names()` function to access the `name` attribute of the data.
+
+```{r}
 
 
-### Cleaning Column Names {.tabset .tabset-fade}
+names(titanic)
 
-#### `janitor` Package
+
+```
+
+***
+
+## Cleaning Column Names {.tabset .tabset-fade}
+
+<br>
+
+### **janitor Package**
 
 The `janitor` package offers many functions used to manipulate data, in this session we will use the library to to clean our data set names.
 
-We can clean the names of our dataset with the `clean_names()` function as shown below.
+>We can clean the names of our dataset with the `clean_names()` function as shown below.
 
 
 ```{r}
 
 # Apply the function to the data set.
-school <- clean_names(school)
+
+titanic <- clean_names(titanic)
 
 
-head(school)
+names(titanic)
 
 ```
 
+<br>
+
 `clean_names()` removes spaces, symbols, changes characters to lower case and makes all columns start with letters.
+
+<br>
 
 This is the default setting, other options we could use are:
 
@@ -153,65 +224,97 @@ This is the default setting, other options we could use are:
 
 ```
 
+<br>
+
 Which can be put inside the `clean_names()` function as shown below:
+
+<br>
+
 ```{r, eval = F}
 
-clean_names("snake")
+clean_names(titanic, case="snake")
 
 ```
 
+***
+ 
+### **gsub**
 
-#### `gsub`
+We can also do this using the function `gsub()`. `gsub()`. 
 
-We can also do this using the function `gsub()`. `gsub()` here is used on the column names, but can be used on text columns too.
+>here is used on the column names, but can be used on text columns too.
 
-The code below substitues in any instance of the first symbol within the "" with the second set of "".
+<br>
+
+>The code below substitues in any instance of the first symbol within the "" with the second set of "".
 
 For example, the output of `gsub(" ", "_", "piece of text")` would be `piece_of_text`.
+
+<br>
 
 
 ```{r, eval = F}
 
 
 # We can apply different substitution to the names of our columns.
-names(school) <- gsub(" ", "_", names(school))
-names(school) <- gsub("," , "", names(school) )
-names(school) <- gsub("-" , "_", names(school))
+
+names(titanic) <- gsub(" ", "_", names(titanic))
+
+names(titanic) <- gsub("," , "", names(titanic) )
+
+names(titanic) <- gsub("-" , "_", names(titanic))
 
 
 
 ```
 
-The `tolower()` function changeds a string of characters to lower case.
+<br>
+
+The `tolower()` function changes a string of characters to lower case.
 
 
 ```{r, eval = F}
 
 # We can lower case the names of the data frame.
-names(school) <- tolower(names(school)) 
+
+names(titanic) <- tolower(names(titanic)) 
 
 
 ```
+
+<br>
 
 We can also rename column name. The first argument is the data frame to be changed, the second is the column and it's change.
 
+<br>
+
 ```{r, eval = F}
 
-school <- rename(school, study_programmes_16_19 = study_programmes)
+titanic <- rename(school, age_of_passenger = age)
 
 ```
 
+<br>
+
 We can also use it on full columns.
+
  
 ```{r, eval = F}
 
 # This lower cases all records in the column we have chosen.
-school$school_name <- tolower(school$school_name) 
+
+titanic$name_of_passenger <- tolower(titanic$name_of_passenger) 
 
 
 ```
 
-## `dplyr`
+***
+
+<br>
+
+# dplyr
+
+<br>
 
 This is one of the most powerful tools in the *tidyverse*, which makes data manipulation simple and code easy to read.
 
@@ -223,571 +326,362 @@ We are going to look at the following concepts,
 4. mutate
 5. joining data
 
-`dplyr` functions (verbs) all have the same structure.
+<br>
+
+>`dplyr` functions (verbs) all have the same structure.
+
+<br>
 
 ```{r, eval = F}
 
 # This is the format they follow.
+
 verb(data, more information)
 
-
 ```
 
-```{r}
-
-# Loading the library
-library(dplyr)
+***
 
 
-```
+## Arrange{.tabset .tabset-fade}
 
-### Arrange
+<br>
 
-`arrange()` lets you sort data by a variable.
+>`arrange()` lets you sort data by a variable.
 
-#### Example {.tabset .tabset-fade}
+<br>
 
-We can sort the column `overall_effectiness` with code below.
+
+
+We can sort the column `fare` with code below.
+
 
 ```{r}
 
 # We input the data we want to sort, and what we are going to sort it by.
-school_sorted <- arrange(.data = school,
-                          overall_effectiveness)
+
+
+titanic_sorted <- dplyr::arrange(.data = titanic,
+                          fare)
+
 
 # This shows us some of the sorted data.
-head(school_sorted$overall_effectiveness, n = 10)
+
+
+head(titanic_sorted$fare)
+
 
 # This shows us some of the unsorted data.
-head(school$overall_effectiveness, n = 10)
+
+head(titanic$fare)
 
 ```
+<br>
 
-`.data` is the argument name for the data argument in `dplyr`.
+>`.data` is the argument name for the data argument in `dplyr`.
 
-It is optional, but can help us read the code more effectivly.
+<br>
+
+>It is optional, but can help us read the code more effectively.
 
 If we don't specify how we are sorting, the default is to sort in ascending order.
+
+<br>
 
 To sort in descending order, we use the code below:
 
 ```{r}
 
-school_sorted <- arrange(.data = school,   
-                          desc(overall_effectiveness))
+# We input the data we want to sort, and what we are going to sort it by.
 
-head(school_sorted$overall_effectiveness, n = 10)
 
-head(school$overall_effectiveness, n = 10)
+titanic_sorted <- dplyr::arrange(.data = titanic,
+                          desc(fare))
+
+
+# This shows us some of the sorted data.
+
+
+head(titanic_sorted$fare)
+
+
+# This shows us some of the unsorted data.
+
+head(titanic$fare)
 
 ```
 
-##### **Question**
+<br>
 
-1. Can you sort the school data set by Ofsted region *and* local authority.
+### **Exercise**
 
-2. Can you sort the school data set by Ofsted region *and* local authority in descending order for both variables.
+<br>
+
+1. Can you sort the titanic data set by age *and* fare.
+
+<br>
+
+2. Can you sort the titanic data set by age *and* fare in descending order for both variables.
+
+### **Hint**
+
+<br>
+
+1. Can you sort the titanic data set by age *and* fare.
+
+<br>
+
+2. Can you sort the titanic data set by age *and* fare in descending order for both variables.
+
+<br>
+
+```{r, eval=FALSE}
+
+# Sort the titanic data based on two variables.
+
+titanic_sorted <- dplyr::arrange(.data = dataset,
+                          first_variable,
+                          second_variable)
+                          
 
 
+```
 
-##### **Show Answer**
+<br>
 
-Sorting by multiple variables, arranged them within each other. meaning it will sort the data by `ofsted_region` first and then within each region it will sort by local authority.
+To sort both descending order we have to use `desc()`
+
+
+### **Show Answer**
+
+<br>
+
+Sorting by multiple variables, arranged them within each other. meaning it will sort the data by `age` first and then  will sort by fare.
+
+<br>
 
 ```{r}
 
-# Sort the school data based on two variables.
-school_sorted <- arrange(.data = school,
-                          ofsted_region,
-                          local_authority)
+# Sort the titanic data based on two variables.
+
+titanic_sorted <- dplyr::arrange(.data = titanic,
+                          age_of_passenger,
+                          fare)
                           
-head(school_sorted, n = 10)
+head(titanic_sorted, n = 10)
 
 ```
+
+<br>
 To sort both descending order we have to use `desc()` around each column name.
 
-If you only had one `desc` on the `ofsted_region`, it will show Ofsted region in descending order, but local authority in ascending.
+<br>
+
+If you only had one `desc` on the `age_of_passenger`, it will show age_of_passenger in descending order, but fare in ascending.
+
+<br>
 
 ```{r}
 
 # Sorting both variables in descending order.
-school_sorted <- arrange(.data = school, 
-                         desc(ofsted_region),
-                         desc(local_authority))
-                          
 
-head(school_sorted, n = 10)
+
+titanic_sorted <- dplyr::arrange(.data = titanic,
+                          desc(age_of_passenger),
+                          desc(fare))
+                          
+head(titanic_sorted, n = 10)
+
 
 ```
 
-### Select
+***
 
-The `select()` function lets you pick columns by specifying the column names. Previously we selected columns using the `$` symbol.
+<br>
 
-#### Example.
+## Select{.tabset .tabset-fade}
 
-We can select the multiple columns using the column names with the code below,
+
+> `Select()` allows us to pick entire columns from our data.
+
+
+Previously we selected columns using the `$` symbol and the indexing operator `[]`.
+
+<br>
+
+We will opt to use `dplyr` functions which allow us to keep our code efficient and readable even with complex queries.
+
+<br>
+
+`dplyr::select()` function, in its simplest form, takes two parameters. 
+
+The first, like all `tidyverse` functions, being the tibble we are interested in, and the second being the column name.
+
+<br>
 
 ```{r}
 
-# Input which data set and columns.
-name_region <- select(.data = school,
-                      school_name, ofsted_region)
-
-# Output the variable.
-name_region
+titanic_one_variable <- dplyr::select(titanic, 
+                                      name_of_passenger)
 
 
-# We can select as many columns as we like by naming them one by one.
-current_rating <- select(.data = school, 
-                          school_name,
-                          local_authority, 
-                          overall_effectiveness)
-
-# Output the variable.
-current_rating
+titanic_one_variable
 
 ```
+
+<br>
+
+This has returned the `name_of_passenger` column from `titanic` in the form of a tibble. 
+
+<br>
+
+The `select()` function, like the majority of `tidyverse` functions, offers a lot of flexibility. This allows us to achieve the same result using a number of different methods, without it being clear which method is more fitting. With great flexibility, comes great uncertainty...
+
+<br>
+
+If we want to select multiple columns, we have to first collect the column names together using a character vector, and then pass that as our second parameters. 
+
+<br>
+
+>Alternatively, we could just write out all the column names we want.
+
+```{r}
+
+titanic_three_variables <- dplyr::select(titanic,
+                                         c("name_of_passenger", "age_of_passenger", "pclass"))
+
+titanic_three_variables
+
+```
+
+<br>
+
+The real power of the `select` function comes from its flexibility.
+
+<br>
+
+For example, suppose we wanted to select all columns excluding `name`, `age` and `pclass`. We could type all the columns names we need, or instead:
+
+<br>
+
+```{r}
+
+titanic_minus_three_variables <- dplyr::select(titanic, 
+                                               -c("name_of_passenger", "age_of_passenger", "pclass"))
+
+titanic_minus_three_variables
+
+```
+
+<br>
 
 We can also select the columns using numbers, positive numbers and negative numbers to drop.
 
+<br>
+
 For example the code below will select the first 4 columns and then column 7.
+
+<br>
 
 ```{r}
 # We can both use regular sequences with ":" and specific numbers.
-select(.data = school, 1:4, 7)
+
+titanic_number_select <- dplyr::select(.data = titanic, 
+                                       c(1:4, 7))
+
+titanic_number_select
                     
                     
 ```
 
+<br>
+
 In this example we select all columns, except column 2.
+
+<br>
 
 ```{r}
 
 # The negative indicates which columns we do not want.
-select(.data = school, -2)
+
+titanic_number_select <- dplyr::select(.data = titanic, 
+                                       c(-2))
                     
-                    
+titanic_number_select                    
 ```
 
-We can also drop columns using the names.
+<br>
+
+
+This flexibility is further enhanced by the `select helper` functions. 
+
+<br>
+
+>These are functions which allow you select columns based on their names.
+
+<br>
+
+* `starts_with(match)`: Starts with a prefix.
+* `ends_with(match)`: Ends with a suffix.
+* `contains(match)`: Contains a literal string.
+* `matches(match)`: Matches a regular expression.
+* `num_range(num_vector)`: Selects columns which matches a numeric range with a prefix e.g. "col1", "col2", "col3",...
+* `one_of(char_vector)`: Selects columns which are in the given character vector.
+* `everything()`: Selects all variables.
+* `last_col()`:  
+
+<br>
+
+These functions are passed after the first parameter. e.g.
 
 ```{r}
+titanic_starts_with <- dplyr::select(titanic, starts_with("s"))
 
-# This selects all the columns in "school" except the ones with negative signs.
-select(.data = school, -local_authority, -school_name)
-                    
-                    
+titanic_starts_with
 ```
-### Filter
+<br>
 
-`filter()` selects the rows from the data which meet the condition given. The conditions are specified using logical statements.
-
-Given some variable `x` and `y`.
-
-The logical statements in the language include:
-
-| Symbol | Meaning|   
-|:--------:|:----------|
-|`x ==  y`     | `x` is exactly equal to `y`|
-| `x != y`       | `x` does not equal `y`|
-| `x > y`      | `x` is greater than `y`|
-| `x >= y`       |`x` is greater than or equal to `y`|
-| `x < y` |`x` is less than `y`|
-|`x <= y` |`x` is less than or equal to`| 
-| `x & y` | ``x` and `y`|
-| `!x` | not `x`|
-| is.na()| is NA |
-|  `x\|y`  | `x` or `y` |
-
-A conditional statement returns `TRUE` if the condition is met.
-
-**Remember that `==` is to test equality and `=` is to assign something.**
-
-#### Example Single Conditional Filtering {.tabset .tabset-fade}
-We can filter out a new data set where deprivation index is equal to 1.
-
-This is refered to as single conditional filtering as we only have one condition.
-
-```{r}
-
-deprivation_initial <- filter(.data = school,
-                              deprivation_index == 1 )
-                    
-
-head(deprivation_initial, n = 10)
-
-```
-
-A quick way to check that the filter worked is to look at all the unique values, in the data set above, using the `unique()` function.
-
-```{r}
-
-unique(deprivation_initial$deprivation_index)    
-
-```
-
-##### **Question**
-
-**Can you create a new data set called `big_schools` by filtering the school data set, to have only the schools which have 2000 or more pupils?**
-
-##### **Show Answer**
-
-In the code below, we are creating a new data set called `big_schools`, by filtering through the school data and picking all the rows where the `total_number_of_pupils` is equal to or greater than `2000`.
-
-```{r}
-
-# Our conditional statement means our new data set will only
-# contain data where the condition is TRUE.
-big_schools <- filter(.data = school,
-                      total_number_of_pupils >= 2000)
-
-big_schools
-
-```
-#### Multiple Conditional Filtering {.tabset .tabset-fade}
-
-Just as we can filter by one condition we can also filter by multiple conditions.
-
-**The | (Shift and \) symbol means an OR relationship**
-
-**The & (Shift and 7) symbol indicates an AND relationship**
-
-These are called chaining operators.
-
-##### **Question**
-
-**Can you create a new data set called `mainstream` by filtering the school data set, to have only the schools which are in primary *or* secondary school**
-
-##### **Show Answer**
-
-In the code below, we are creating a newdataset called `mainstream` by filtering the school dataset to have only the schools which are either primary or secondary school, using the `phase_of_education` variable.
-
-```{r}
-# The | idicates one condition or the other must be TRUE.
-mainstream <- filter(.data = school, 
-                      phase_of_education == "Primary" |
-                      phase_of_education == "Secondary")
-
-mainstream
- 
-```
-
-or
+Or:
 
 
 ```{r}
 
-# A more compact method of looking for a set of specific values.
-mainstream_alternative <- filter(.data = school,
-                                  phase_of_education %in%
-                                  c("Primary", "Secondary"))
+titanic_matches <- dplyr::select(titanic, name_of_passenger, matches("."))
 
-mainstream_alternative
+titanic_matches
 ```
 
-`%in%` is shorthand for filtering multiple values in a `chr` column.
+<br>
 
-We have a quick way to check that the filter worked, we can see all the unique values in the data set above. Again, this is done using the `unique()` function.
+It is important to note, all `tidyverse` functions work on and return a copy of the original data. More often than not, the returned object is another `tibble`, even if it's a single column. 
 
-```{r}
+### **Exercise**
 
-# Returns the set of unique values in the data set.
-unique(mainstream$phase_of_education)
-  
+<br>
 
-```
+1. Can you select from the titanic data set, the second, third and fourth columns.
 
-### Mutate
+<br>
 
-This is one of the most useful commands. Mutate is used to transform variables in your data to create new ones.
+2. Can you select the columns, pclass, survived, name_of_passenger, sex_of_passenger, age_of_passenger and embarked.
 
-#### Example {.tabset .tabset-fade}
+<br>
 
-We can quickly see the names of our data set columns using the the `names()` function.
+3. Can select just the last column.
 
-We can see that have 19 columns in this data set. We can use the `mutate()` function to create a new column.
+<br>
 
+4. Can you select the columns that end the word "passenger".
 
-```{r}
+<br>
 
-names(school)
+5. Can you select, name_of_passenger, age_of_passenger and everything else
 
-```
+***
 
-The code below creates a new column  called `outstanding` into our dataset. This new column is filled with `TRUE/FALSE` when the condition specified matches `overall_effectiness == 1`.
+### **Hint**
 
-In this example we have used a conditon, but you could also have mathematical formulas inplace. We can see below that we now have 20 columns.
+***
+### **Show Answer**
+***
 
-```{r}
-
-# Fill the new column "outstanding" with TRUE/FALSE when overall_effectiveness == 1.
-school <- mutate(.data = school,
-                  outstanding = 
-                    overall_effectiveness == 1)
-
-head(school$outstanding, n = 10)
-
-names(school)
-
-```
-
-
-##### **Question**
-
-**Create a new column in the school dataset, called `nursery`. Using the `phase_of_education` when it is equal to nursery *or* the `early_years_provision` is less than 5 years** 
-
-##### **Show Answer**
-
-The code below is using the school data set and creating a new column called `nursery`, which is filled the the multiple condition of `phase_of_education == "Nursery"` or `early_years_provision <= 5`.
-
-```{r}
-
-# Create a new column using multiple conditional statements.
-school <- mutate(.data = school,   
-                 nursery =   # my new column name 
-                   phase_of_education == "Nursery" | # Two conditions combined by the OR operator
-                   early_years_provision < 5)
-
-head(school$nursery, n = 10)
-
-names(school)
-```
-
-#### Deleting Data
-
-We can also use the `mutate()` function to delete data.
-
-For example, we previously added a new column called `nursery` to our school data set.
-
-We can quickly see the names of our data set using the the `names()` function.
-
-```{r}
-
-names(school)
-
-```
-We can delete the column using the code below.
-
-We take the school data set and set equal the column we want to delete to `NULL`.
-
-```{r}
-
-# Setting a column = NULL effectively removes it. 
-school <- mutate(.data = school, nursery = NULL)
-
-names(school)
-
-```
-
-Alternatively, this will work too.
-
-```{r, eval = F}
-
-school$nursery <- NULL
-
-```
-
-### The Pipe Operator
-
-`dplyr` makes it easy to combine multiple commands together, to do this we use the *"pipe operator"*.
-
-**`%>%`**
-
-The shortcut is CTL + SHIFT + M
-
-What this does is it takes the output of one statement and makes it an input to the next statement. You can think of it as saying **`and then`**
-
-#### Example{.tabset .tabset-fade}
-
-We can read the code below as:
-
-take the school data set and create a new data set called `school_one` **%>%** *(and then)*
-
-create a new column called `total_number_of_pupils_rounded` which is equal to rounding the total number of pupils  **%>%** *(and then)*
-
-filter the column `phase_of_education` by meeting the condition `secondary`.
-
-Notice how the `mutate()` and `filter()` functions don't use the data argument as it already included in the pipe.
-
-**%>%** allows you to combine multiple commands and the makes the code quite easy to read.
-
-
-```{r}
-
-school_one <- school %>%
-  mutate(total_number_of_pupils_rounded = round(total_number_of_pupils)) %>%
-  filter(phase_of_education == "Secondary")
-
-head(school_one, n = 10)
-
-head(school_one$total_number_of_pupils_rounded)
-
-```
-
-##### **Question**
-
-Lets practice piping a few `dplyr` functions.
-
-**Can you use at least 3 `dplyr` commands within a pipe?**
-
-##### **Show Answer**
-
-```{r}
-
-greenwich_schools <- school %>%
-               filter(ofsted_region =="London" &
-                        local_authority =="Greenwich") %>%
-               arrange(desc(total_number_of_pupils)) %>%
-               select(school_name,total_number_of_pupils, deprivation_index)
-
-greenwich_schools
-```
-
-## Joining Data
-
-Let’s have a look at the two `joining_data` data frames.
-
-In `joining_data1` we have the columns **name, animal and age.**
-
-In `joining_data2` we have the columns **name and vaccinated.**
-
-"Arf Vader" only appears in `joining_data1` and "Spiderpig" only appears in `joining_data2`. The remainder of the animals appear in both data frames.
-
-
-
-```{r}
-
-joining_data1
-
-```
-```{r}
-
-joining_data2
-
-```
-
-These two data frames have a column in common that we could use to join them on - **name**.
-
-We can create a variety of joins. These are often best demonstrated with a Venn diagram.
-
-I’m going to say that `joining_data1` is my “left” data frame, and that `joining_data2` is my “right” data frame.
-
-For this I’m going to highlight the position of three animal names. As we mentioned earlier:
-
-* "Arf Vader" is only in `joining_data1`, our “left” data frame.
-
-* "Spiderpig" is only in `joining_data2`, our “right” data frame. 
-
-* "Catalie Portman" is in both `joining_data1` and `joining_data2` and will represent values in *BOTH* data frames.
-
-![](Images/dplyr_join.svg)
-
-As you can see "left" and "right" merges take the data from that data frame and any matches from the other. 
-
-This means that in our "left":
-
-"Arf Vader" is included because he has data in the "left" data frame. 
-
-"Arf Vader" has missing values for `vaccinated`, as he isn’t in that data frame.
-
-"Catalie Portman" has data in all columns, as she appears in both the "left" and "right".
-
-"Spiderpig" doesn’t have any data in this one. We’re only taking data from the "left", and he’s only in the "right".
-
-Let’s look at how we do this "left" merge in code. We’re going to use `left_join()` and do a "left" join.
-
-```{r}
-
-# The first data frame is the one on the left.
-join_left <- left_join(joining_data1, 
-                        joining_data2,
-                        by = "name")
-
-join_left
-
-```
-
-If you dont specify which column to join by, `R` will look to match by any column that matches.
-
-If we're joining on more than one column we can specify using the parameter `by = c(vector))`.
-
-This is shown below.
-
-```{r, eval=F}
-
-# Joining using multiple columns
-join_left <- left_join(joining_data1, joining_data2,
-                        by = c("column name", "column name"))
-
-join_left
-
-```
-
-### Exercise{.tabset .tabset-fade}
-#### **Question**
-
-Using `marvel_right` and `marvel_left` perform a `full_join()` using the column `name`.
-
-#### **Show Answer**
-
-```{r}
-
-marvel_full_join <- full_join(marvel_left, marvel_right, by = "name")
-                                                                          
-
-marvel_full_join
-```
-
-### Exercise 2{.tabset .tabset-fade}
-#### **Question**
-
-Using `marvel_left` and `marvel_righ`t perform a "left" join.
-
-Join on *BOTH* the column containing `names` and the column containing `years`.
-
-Note that the names of these columns may not be the same in both data frames.
-
-Use the help function to explore solutions to this.
-
-#### **Show Answer**
-```{r}
-# We can join two columns that are named differently.
-marvel_left_join <- left_join(marvel_left, marvel_right, by = c("name", "year"="release_year"))
-
-marvel_left_join
-```
-
-### Union Joins
-
-We can also do what is called a union join.
-
-This is where we can add data on to the bottom of an existing data frame.
-
-The `union()` command will merge the data from both data frames but keep only the distinct (unique) rows. That means, any duplicated rows that exist in the target data frames are not going to be brought over to the current data frame.
-
-Union of two data frames in R can be easily achieved by using `merge()` function.
-
-For example we have some new animals to add on to joining_data1, these are contained in the union_joined DataFrame.
-
-```{r}
-
-joining_data1
-
-```
-```{r}
-
-union_joined
-
-```
-
-
-```{r}
-
-my_first_union_join <- merge(joining_data1, union_joined, all = TRUE)
-
-my_first_union_join
-
-```
-
-We can see our new additions - "Andy Warhowl", "Voldetort" and "Repecka" here now.
