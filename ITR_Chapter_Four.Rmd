@@ -635,7 +635,8 @@ This flexibility is further enhanced by the `select helper` functions.
 These functions are passed after the first parameter. e.g.
 
 ```{r}
-titanic_starts_with <- dplyr::select(titanic, starts_with("s"))
+titanic_starts_with <- dplyr::select(.data=titanic, 
+                                     starts_with("s"))
 
 titanic_starts_with
 ```
@@ -646,7 +647,8 @@ Or:
 
 ```{r}
 
-titanic_matches <- dplyr::select(titanic, name_of_passenger, matches("."))
+titanic_matches <- dplyr::select(.data=titanic, 
+                                 name_of_passenger, matches("."))
 
 titanic_matches
 ```
@@ -681,7 +683,531 @@ It is important to note, all `tidyverse` functions work on and return a copy of 
 
 ### **Hint**
 
+<br>
+
+Selecting the second, third and fourth column.
+
+>Remember we can select by position or by name.
+
+<br>
+
+```{r, eval=FALSE}
+
+titanic_select_exercise <- dplyr::select(.data=titanic, 
+                                c())
+
+```
+
+<br>
+
+Selecting the columns, pclass, survived, name_of_passenger, sex_of_passenger, age_of_passenger and embarked.
+
+>Remember we can select by position or by name. HINT "embarked" is the last column.
+
+<br>
+
+```{r, eval=F}
+titanic_select_exercise <- dplyr::select(.data = titanic, 
+                                       c())
+
+
+```
+
+<br>
+
+Selecting the columns that end the word “passenger”
+
+<br>
+
+>HINT You might want to use something that helps you select the words of the columns
+
+```{r, eval=FALSE}
+
+titanic_select_exercise <- dplyr::select(.data = titanic, 
+                       c())
+
+
+
+                     
+```
+
+<br>
+
+Selecting name_of_passenger, age_of_passenger and everything else.
+
+>This is a great way to reorder the columns, if you wanted to set 2 columns to be next to each other.
+
+> When you select columns, its places them in the order that we select them, HINT You might want to select something that helps you select all the columns.
+
+```{r, eval=FALSE}
+
+titanic_select_exercise <- dplyr::select(.data = titanic,
+                                         c())
+
+
+```
+
+
+
+
 ***
 ### **Show Answer**
 ***
 
+<br>
+
+Selecting the second, third and fourth column.
+
+```{r}
+
+titanic_select_exercise <- dplyr::select(.data=titanic, 
+                                c(2:3, 4))
+
+titanic_select_exercise
+
+#alternative
+
+titanic_select_exercise <-  dplyr::select(.data = titanic, 
+                                          c(survived, name_of_passenger, sex_of_passenger))
+
+
+```
+<br>
+
+Selecting the columns, pclass, survived, name_of_passenger, sex_of_passenger, age_of_passenger and embarked.
+```{r}
+titanic_select_exercise <- dplyr::select(.data = titanic, 
+                                       c(1:5, embarked))
+
+#alternative
+
+titanic_select_exercise <- dplyr::select(.data = titanic, 
+                      c(1:5, last_col()))
+```
+
+<br>
+
+>You could also type the column names.
+
+<br>
+
+Selecting the columns that end the word “passenger”
+
+```{r}
+
+titanic_select_exercise <- dplyr::select(.data = titanic, 
+                       c(ends_with("passenger")))
+
+
+#alternative
+
+
+
+titanic_select_exercise <- dplyr::select(.data = titanic,
+                                         ends_with("passenger")) 
+                     
+
+```
+
+<br>
+
+Selecting name_of_passenger, age_of_passenger and everything else.
+
+>This is a great way to reorder the columns, if you wanted to set 2 columns to be next to each other.
+
+```{r}
+titanic_select_exercise <- dplyr::select(.data = titanic,
+                                         c(name_of_passenger, age_of_passenger, everything()))
+
+#alternative
+
+titanic_select_exercise <- dplyr::select(.data = titanic,
+                                         name_of_passenger, age_of_passenger, everything())
+
+
+```
+
+<br>
+
+## Filter
+
+> `Filter()` allows us to pick specific entries (rows) which satisfy a given logical condition.
+
+<br>
+
+>A conditional statement returns `TRUE` if the condition is met.
+
+<br>
+
+To create a logical condition, we have to use the logical operators.
+
+<br>
+
+Logical Operator| Description
+:--------------:|:------------:
+        <       | Less Than
+       <=       | Less Than or Equal To
+       \>       | Greater Than
+       >=       | Greater Than or Equal To
+    == or **    | Equal To
+       !=       | Not Equal To
+       \|       | Or
+        &       | And
+        !       | Not
+      any()     | Checks if any value in a logical vector are TRUE
+      all()     | Checks if all values in a logical vector are TRUE
+      is.na()   | Is NA?
+      between() | Is between 2 numbers
+      near()    | Safe way to compare floating point numbers
+      
+<br>
+
+      
+>Note: The `!` allows us to flip or invert an expression. Basically, if an expression returns `[TRUE, TRUE, FALSE]`, the same expression with a `!` in front of it will return `[FALSE, FALSE, TRUE]`.
+
+<br>
+
+>**Remember that `==` is to test equality and `=` is to assign something.**
+
+<br>
+
+### Single Conditional Filtering{.tabset .tabset-fade}
+
+<br>
+
+We can filter out a new data set where pclass is 2.
+
+>This is refered to as single conditional filtering as we only have one condition.
+
+
+```{r}
+
+# Select passengers (rows) who were in class (pclass) 2.
+
+secondclass <- dplyr::filter(titanic, 
+                             pclass == 2)
+
+secondclass
+
+```
+
+<br>
+
+>A quick way to check that the filter worked is to look at all the unique values, in the data set above, using the `unique()` function.
+
+<br>
+
+Note here am using the `$` to select the column pclass.
+
+
+
+```{r}
+
+
+#finding out how many uniques values are in the titanic dataset pclass column
+
+unique(titanic$pclass)
+
+
+#finding out how many uniques values are in the secondclass dataset pclass column
+
+unique(secondclass$pclass)
+
+```
+
+>We can see that on the original dataset the titanic, we have three(1,2,3) different uniques values in the pclass column and in our new filtered dataset we have one unique value (2)
+
+
+<br>
+
+Another example, we can filter out the passengers who paid more than 200.
+
+<br>
+
+```{r}
+
+# Select passengers who paid more than 200
+
+fare_more_than_200 <-  dplyr::filter(titanic, 
+                                     fare > 200)
+```
+
+
+<br>
+
+
+#### **Exercise**
+1. Show the row for the passenger named: 'Birkeland, Mr. Hans Martin Monsen'
+
+<br>
+
+
+2. How many passengers in the dataset are male?
+
+<br>
+
+
+3. How many passengers are under 18 years of age?
+
+<br>
+
+4. What proportion of passenger in the dataset survived?
+
+<br>
+
+#### **Hint**
+
+<br>
+
+1. Show the row for the passenger named: 'Birkeland, Mr. Hans Martin Monsen'
+
+<br>
+
+>Remember R is case sensitive and character data needs to have speech marks.
+
+<br>
+
+```{r, eval=FALSE}
+#filtering the dataset by name_of_passenger
+
+titanic_filter_exercise <- dplyr::filter(data, 
+                                         condition)
+
+
+titanic_filter_exercise
+
+```
+
+<br>
+
+2. How many passengers in the dataset are male?
+
+>filter the data first
+
+>find out the number of rows
+
+<br>
+
+```{r, eval=F}
+
+#filtering the dataset by sex_of_passenger
+
+titanic_filter_exercise <- dplyr::filter(data, 
+                                          condition)
+
+titanic_filter_exercise
+
+
+#showing the number of rows in our new filtered dataset
+
+nrow(titanic_filter_exercise)
+
+```
+
+<br>
+
+3. How many passengers are under 18 years of age?
+
+>filter the data first
+
+>find out the number of rows
+
+<br>
+
+```{r, eval=FALSE}
+
+#filtering the dataset by age_of_passenger
+
+titanic_filter_exercise <- dplyr::filter(data, 
+                                        condition)
+
+titanic_filter_exercise
+
+#showing the number of rows in our new filtered dataset
+
+nrow(titanic_filter_exercise)
+
+```
+
+<br>
+
+4. What proportion of passenger in the dataset survived?
+
+<br>
+
+>filter the data first
+
+>find out the number of rows
+
+>calculate the percentage using the formula nrow(filtered data)/nrow(full data)*100
+
+```{r, eval=FALSE}
+
+#filtering the dataset by survived
+
+titanic_filter_exercise <- dplyr::filter(data, 
+                                        condition)
+
+titanic_filter_exercise
+
+#showing the number of rows in oure ew filtered dataset
+nrow(titanic_filter_exercise)
+
+#calculating the percentage, by dividing the total number of rows in new filtered dataset by the total number of rows in fulldataset then multiplied by 100
+
+percentage_of_passengers_survived <- nrow(titanic_filter_exercise)/nrow(titanic)*100
+
+percentage_of_passengers_survived
+
+
+
+
+
+```
+
+***
+#### **Show Answer**
+
+<br>
+
+1. Show the row for the passenger named: 'Birkeland, Mr. Hans Martin Monsen'
+
+<br>
+
+```{r}
+#filtering the dataset by name_of_passenger
+
+titanic_filter_exercise <- dplyr::filter(titanic, 
+                                         name_of_passenger == 'Birkeland, Mr. Hans Martin Monsen')
+
+
+titanic_filter_exercise
+
+```
+
+<br>
+
+2. How many passengers in the dataset are male?
+
+<br>
+
+```{r}
+
+#filtering the dataset by sex_of_passenger
+
+titanic_filter_exercise <- dplyr::filter(titanic, 
+                                         sex_of_passenger == 'male')
+
+titanic_filter_exercise
+
+
+#showing the number of rows in our new filtered dataset
+
+nrow(titanic_filter_exercise)
+
+```
+
+<br>
+
+3. How many passengers are under 18 years of age?
+
+<br>
+
+```{r}
+
+#filtering the dataset by age_of_passenger
+
+titanic_filter_exercise <- dplyr::filter(titanic, 
+                                        age_of_passenger < 18 )
+
+titanic_filter_exercise
+
+#showing the number of rows in our new filtered dataset
+
+nrow(titanic_filter_exercise)
+
+```
+
+<br>
+
+4. What proportion of passenger in the dataset survived?
+
+<br>
+
+```{r}
+
+#filtering the dataset by survived
+
+titanic_filter_exercise <- dplyr::filter(titanic, 
+                                        survived == 1)
+
+titanic_filter_exercise
+
+#showing the number of rows in oure ew filtered dataset
+nrow(titanic_filter_exercise)
+
+#calculating the percentage, by dividing the total number of rows in new filtered dataset by the total number of rows in fulldataset then multiplied by 100
+
+percentage_of_passengers_survived <- nrow(titanic_filter_exercise)/nrow(titanic)*100
+
+percentage_of_passengers_survived
+
+
+
+
+
+```
+
+***
+
+### Multiple Conditional Filtering{.tabset .tabset-fade}
+
+
+
+So far, we've only filtered according to individual conditions set on a single column, but there is no reason we can't use multiple conditions to filter by several conditions and/or columns at once. However, we do need to think about how the conditions relate to each other, we have two options to establish these relationships.
+
+* **and** relationships are given by the **&** symbol. This implies both/all conditions must be met for a row to evaluate to True.
+* **or** relationships are given by the **|** symbol. This implies that if _any_ of the conditions can be met a given row evaluates to True.
+
+You can think of `between()` as being special version of multiple condition filters. `between()` is an **and** condition - greater than (or equal to) the lower bound **and** less than (or equal to) the upper bound.
+
+R also implements a multiple 'or' condition in the form `%in%`, where any rows that have a value occurring in a given vector will be included in the output tibble.
+
+Let's look at some examples:
+```{r}
+
+# Select passengers who were in class 1 AND female
+
+titanic_filter_example <- dplyr::filter(titanic, pclass == 1 & sex_of_passenger == "female")
+
+titanic_filter_example
+```
+
+```{r}
+
+# Select passengers who were female OR children (under 18)
+
+titanic_filter_example <- dplyr::filter(titanic, sex_of_passenger == "female" | age_of_passenger < 18)
+
+titanic_filter_example
+```
+
+```{r}
+
+# Select passengers who paid more than 100 but less than 250 for their fare.
+
+titanic_filter_example <- dplyr::filter(titanic, between(fare, 100, 250))
+
+titanic_filter_example
+```
+
+```{r}
+
+# Select passengers who embarked in Southampton or Cherbourg.
+
+titanic_filter_example <- dplyr::filter(titanic, embarked %in% c('S','C'))
+```
+
+#### **Exercise**
+#### **Hint**
+#### **Show Answer**
