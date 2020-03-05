@@ -903,6 +903,7 @@ Note here am using the `$` to select the column pclass.
 
 ```{r}
 
+# Returns the set of unique values in the data set.
 
 #finding out how many uniques values are in the titanic dataset pclass column
 
@@ -1160,6 +1161,27 @@ percentage_of_passengers_survived
 
 ***
 
+Another useful way to filter data is using the `dplyr::slice()` function.
+
+
+>This method of filtering rows is great if you know the indexes of the rows you are interested in.
+
+```{r}
+# Select the 5th row
+
+slice(titanic, 5)
+```
+
+What happens if we try:
+
+
+```{r}
+slice(titanic, -5)
+
+```
+
+
+
 ### Multiple Conditional Filtering{.tabset .tabset-fade}
 
 
@@ -1205,9 +1227,339 @@ titanic_filter_example
 
 # Select passengers who embarked in Southampton or Cherbourg.
 
+# A more compact method of looking for a set of specific values.
+
 titanic_filter_example <- dplyr::filter(titanic, embarked %in% c('S','C'))
 ```
 
+<br>
+
+
 #### **Exercise**
+
+1. Select passengers who are in classes 2 and 3, what percentage of passengers is this?
+
+2. How many passengers who do not have siblings or spouses ('sibsp'), or parents or children ('parch') on the boat?
+
+3. What proportion of passengers who 'embarked' in Cherbourg ('C') or Queenstown ('Q') survived? 
+
 #### **Hint**
+
+1. Select passengers who are in classes 2 and 3, what percentage of passengers is this?
+
+
+
+> The | (Shift and \) symbol means an OR relationship
+
+> The & (Shift and 7) symbol indicates an AND relationship
+
+```{r, eval=FALSE}
+
+#filtering the dataset on multiple conditions
+
+titanic_filter_exercise <- dplyr::filter(data,
+                                         condition)
+
+#calculating the percentage, by dividing the total number of rows in new filtered dataset 
+#by the total number of rows in fulldataset then multiplied by 100
+
+nrow(titanic_filter_exercise)/nrow(titanic)*100 
+
+
+
+```
+
+2. How many passengers who do not have siblings or spouses ('sibsp'), or parents or children ('parch') on the boat?
+
+```{r, eval=FALSE}
+#filtering the dataset on multiple conditions
+
+titanic_filter_exercise <- dplyr::filter(data,
+                                         condition)
+
+#showing the number of rows in oure ew filtered dataset
+nrow(titanic_filter_exercise)
+
+```
+
+3. What proportion of passengers who 'embarked' in Cherbourg ('C') or Queenstown ('Q') survived? 
+
+```{r, eval=FALSE}
+
+#filtering the dataset on multiple conditions
+embarked_cherbourg_and_queenstown <- dplyr::filter(data,
+                                         condition)
+
+#filtering the dataset a single condition
+survived <- dplyr::filter(data,
+                          condition)
+
+#showing the number of rows in oure ew filtered dataset
+nrow(survived)/nrow(embarked_cherbourg_and_queenstown)
+
+```
+
+
 #### **Show Answer**
+
+
+
+1. Select passengers who are in classes 2 and 3, what percentage of passengers is this?
+
+```{r}
+
+#filtering the dataset on multiple conditions
+# The | idicates one condition or the other must be TRUE.
+
+titanic_filter_exercise <- dplyr::filter(titanic, pclass == 2 | pclass == 3)
+
+#calculating the percentage, by dividing the total number of rows in new filtered dataset 
+#by the total number of rows in fulldataset then multiplied by 100
+
+nrow(titanic_filter_exercise)/nrow(titanic)*100 
+
+
+
+```
+
+2. How many passengers who do not have siblings or spouses ('sibsp'), or parents or children ('parch') on the boat?
+
+```{r}
+#filtering the dataset on multiple conditions
+
+titanic_filter_exercise <- dplyr::filter(titanic,sibsp == 0 & parch == 0)
+
+#showing the number of rows in oure ew filtered dataset
+nrow(titanic_filter_exercise)
+
+```
+
+3. What proportion of passengers who 'embarked' in Cherbourg ('C') or Queenstown ('Q') survived? 
+
+```{r}
+#filtering the dataset on multiple conditions
+embarked_cherbourg_and_queenstown <- dplyr::filter(titanic,embarked == 'C' | embarked == 'Q')
+
+#filtering the dataset a single condition
+survived <- dplyr::filter(embarked_cherbourg_and_queenstown, survived == 1)
+
+#showing the number of rows in oure ew filtered dataset
+nrow(survived)/nrow(embarked_cherbourg_and_queenstown)
+
+```
+
+## Generating New Variables
+
+To create a new variable, or a new column, in our `tibble` we will use the `dplyr::mutate()` function.
+
+```{r, eval = FALSE}
+
+dplyr::mutate()
+
+```
+
+>Code to create a new column follow the pattern below, where we state the name of the new column and the use the = to state what we want to be in that column.
+
+```{r, eval=F}
+
+data_frame_name <- dplyr::mutate(data,
+                                 name_of_new_column = contents of new column)
+
+
+```
+
+
+
+### Constant Value Variables
+
+The simplest example would be adding a constant value to each row in our `tibble`. 
+
+```{r}
+mutate(titanic, int_zeros = 0L)
+
+mutate(titanic, double_ones = 1)
+
+mutate(titanic, string_twos = "two")
+```
+
+We could have also performed all three mutations in one line on the same `tibble`:
+```{r}
+mutate(titanic, int_zeros = 0L, double_ones = 1, string_twos = "two")
+
+```
+
+### Creating Variables Based on Existing Columns{.tabset .tabset-fade}
+
+We can perform mathematical operations and even functions on existing columns in the `mutate()` function using column names.
+
+Let's look at some examples:
+
+```{r}
+
+# Capitalise sex column
+mutate(titanic, sex_of_passenger = stringr::str_to_upper(sex_of_passenger))
+
+```
+```{r}
+# Determining family size on board
+mutate(titanic, family_size = parch + sibsp + 1)
+```
+As well as mathematical operators and functions we can use conditionals. 
+```{r}
+# Creating a logical column which is TRUE if passenger is female, false otherwise.
+mutate(titanic, is_female = (sex_of_passenger == "female"))
+```
+The key note from this being, with `mutate()`, we can do almost anything if we keep the number of rows the same. 
+
+There are some functions which work with `mutate()` and enable us to perform more complicated tasks. `recode()` lets us map one value to another throughout the entire column. e.g.
+```{r, eval = FALSE}
+recode(titanic$survived, '1' = TRUE, '0' = FALSE)
+```
+
+To do this in the context of an entire `tibble` we have to use `recode()` with `mutate()`.
+```{r}
+mutate(titanic, survived_logical = recode(survived, '1' = TRUE, '0' = FALSE))
+```
+
+#### **Exercise**
+
+1. Create a logical variable called 'child', it should have the value `TRUE` when the passenger is under 18 and `FALSE` otherwise.
+
+#### **Hint**
+
+1. Create a logical variable called 'child', it should have the value `TRUE` when the passenger is under 18 and `FALSE` otherwise.
+
+```{r, eval=FALSE}
+
+titanic_mutate_exercise <- dplyr::mutate(data,
+                                   new column name = content of new column)
+
+
+```
+
+
+
+#### **Show Answer**
+
+1. Create a logical variable called 'child', it should have the value `TRUE` when the passenger is under 18 and `FALSE` otherwise.
+
+```{r}
+
+titanic_mutate_exercise <- dplyr::mutate(.data=titanic,
+                                   child = age_of_passenger < 18)
+
+
+```
+### Deleting data
+
+We can also use the `mutate()` function to delete data.
+
+For example, we previously added a new column called `child` to our school data set.
+
+We can quickly see the names of our data set using the the `names()` function.
+
+```{r}
+
+titanic_mutate_exercise <- dplyr::mutate(.data=titanic,
+                                   child = age_of_passenger < 18)
+
+names(titanic_mutate_exercise)
+
+```
+We can delete the column using the code below.
+
+We take the titanic data set and set equal the column we want to delete to `NULL`.
+
+```{r}
+
+# Setting a column = NULL effectively removes it. 
+titanic_mutate_exercise <- dplyr::mutate(.data = titanic_mutate_exercise, 
+                                  child = NULL)
+
+#finding out the names of the columns in the dataset
+names(titanic_mutate_exercise)
+
+```
+
+Alternatively, this will work too.
+
+```{r, eval = F}
+
+#selecting a column using the $ sign and assigning it to NULL
+titanic_mutate_exercise$child <- NULL
+
+```
+
+
+### The Pipe Operator `%>%`
+
+
+The Pipe Operator `%>%` makes it possible to chain a sequence of functions. 
+
+In R code `%>%` can be read as "AND THEN". It takes the output of one action "AND THEN" uses that as the input of the next action. Where an action could be calling a variable, a function or anything else that returns some information. 
+
+
+**`%>%`**
+
+>The shortcut is CTL + SHIFT + M
+
+What this does is it takes the output of one statement and makes it an input to the next statement. You can think of it as saying **`and then`**
+
+Up until now if we wanted to perform a sequence of actions on data, we'd have do something along the lines of:
+
+```{r}
+
+filter_male <- dplyr::filter(titanic, sex_of_passenger == 'male')
+
+mutate_age <- dplyr::mutate(.data=filter_male, adult_men = age_of_passenger > 18)
+
+arrange_fare <- dplyr::arrange(.data=mutate_age, desc(fare)) 
+
+filter_adult_men <- dplyr::filter(.data = arrange_fare, adult_men == TRUE)
+
+filter_adult_men
+
+
+
+```
+
+
+With the pipe operator, this simplifies to:
+
+```{r}
+
+filter_adult_men <- titanic %>% 
+  
+  dplyr::filter(sex_of_passenger == 'male') %>% 
+  
+  dplyr::mutate(adult_men = age_of_passenger > 18) %>% 
+  
+  dplyr::arrange(desc(fare)) %>% 
+  
+  dplyr::filter(adult_men == TRUE)
+
+filter_adult_men
+  
+  
+  
+  
+
+  
+
+
+```
+
+
+As you can see the pipe operator helps us:
+
+* Structure the sequence of your data operations from left to right, as opposed to from inside to out.
+* Avoid nested function calls and make code more "readable".
+* Minimize the need for local variables and function definitions.
+* Make it easy to add steps anywhere in the sequence of operations.
+
+
+The pipe operator functionality comes from the `magrittr` package. Its implementation is designed for `tidyverse`, but it also works in some cases outside the `tidyverse`.
+
+`magrittr` is named humorously for French artist Ren? Magritte, whose famous painting "The Treachery of Images" features the phrase "Ceci n'est pas une pipe" (this is not a pipe). While we call `%>%` the pipe operator, in fact `|` is a 'true' pipe, usually meaning boolean 'or'. 
+
+The pipe function is one of the most powerful features of the `tidyverse`. In fact, having a standardised chain of processing actions is called "a pipeline". Making pipelines for data manipulation is great, because you can apply that pipeline to any incoming data with a given formatting and have your output in a friendly format.

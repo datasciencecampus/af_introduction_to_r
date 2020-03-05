@@ -2352,9 +2352,11 @@ div.tocify {
 </blockquote>
 <p><br></p>
 <p>Note here am using the <code>$</code> to select the column pclass.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="co">#finding out how many uniques values are in the titanic dataset pclass column</span></a>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="co"># Returns the set of unique values in the data set.</span></a>
 <a class="sourceLine" id="cb56-2" title="2"></a>
-<a class="sourceLine" id="cb56-3" title="3"><span class="kw">unique</span>(titanic<span class="op">$</span>pclass)</a></code></pre></div>
+<a class="sourceLine" id="cb56-3" title="3"><span class="co">#finding out how many uniques values are in the titanic dataset pclass column</span></a>
+<a class="sourceLine" id="cb56-4" title="4"></a>
+<a class="sourceLine" id="cb56-5" title="5"><span class="kw">unique</span>(titanic<span class="op">$</span>pclass)</a></code></pre></div>
 <pre><code>## [1] 1 2 3</code></pre>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co">#finding out how many uniques values are in the secondclass dataset pclass column</span></a>
 <a class="sourceLine" id="cb58-2" title="2"></a>
@@ -2598,6 +2600,36 @@ div.tocify {
 <a class="sourceLine" id="cb79-5" title="5">percentage_of_passengers_survived</a></code></pre></div>
 <pre><code>## [1] 38.1971</code></pre>
 <hr />
+<p>Another useful way to filter data is using the <code>dplyr::slice()</code> function.</p>
+<blockquote>
+<p>This method of filtering rows is great if you know the indexes of the rows you are interested in.</p>
+</blockquote>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="co"># Select the 5th row</span></a>
+<a class="sourceLine" id="cb81-2" title="2"></a>
+<a class="sourceLine" id="cb81-3" title="3"><span class="kw">slice</span>(titanic, <span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 11
+##   pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp parch
+##    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1      1        0 Allison, Mrs. H~ female                         25     1     2
+## # ... with 4 more variables: ticket &lt;chr&gt;, fare &lt;dbl&gt;, cabin &lt;chr&gt;,
+## #   embarked &lt;chr&gt;</code></pre>
+<p>What happens if we try:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1"><span class="kw">slice</span>(titanic, <span class="dv">-5</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 1,308 x 11
+##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
+##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
+##  1      1        1 Allen, Miss. El~ female                     29         0
+##  2      1        1 Allison, Master~ male                        0.917     1
+##  3      1        0 Allison, Miss. ~ female                      2         1
+##  4      1        0 Allison, Mr. Hu~ male                       30         1
+##  5      1        1 Anderson, Mr. H~ male                       48         0
+##  6      1        1 Andrews, Miss. ~ female                     63         1
+##  7      1        0 Andrews, Mr. Th~ male                       NA         0
+##  8      1        1 Appleton, Mrs. ~ female                     NA         2
+##  9      1        0 Artagaveytia, M~ male                       NA         0
+## 10      1        0 Astor, Col. Joh~ male                       NA         1
+## # ... with 1,298 more rows, and 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
+## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
 </div>
 </div>
 <div id="multiple-conditional-filtering" class="section level3 tabset tabset-fade">
@@ -2610,11 +2642,11 @@ div.tocify {
 <p>You can think of <code>between()</code> as being special version of multiple condition filters. <code>between()</code> is an <strong>and</strong> condition - greater than (or equal to) the lower bound <strong>and</strong> less than (or equal to) the upper bound.</p>
 <p>R also implements a multiple ‘or’ condition in the form <code>%in%</code>, where any rows that have a value occurring in a given vector will be included in the output tibble.</p>
 <p>Let’s look at some examples:</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="co"># Select passengers who were in class 1 AND female</span></a>
-<a class="sourceLine" id="cb81-2" title="2"></a>
-<a class="sourceLine" id="cb81-3" title="3">titanic_filter_example &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, pclass <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>sex_of_passenger <span class="op">==</span><span class="st"> &quot;female&quot;</span>)</a>
-<a class="sourceLine" id="cb81-4" title="4"></a>
-<a class="sourceLine" id="cb81-5" title="5">titanic_filter_example</a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="co"># Select passengers who were in class 1 AND female</span></a>
+<a class="sourceLine" id="cb85-2" title="2"></a>
+<a class="sourceLine" id="cb85-3" title="3">titanic_filter_example &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, pclass <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>sex_of_passenger <span class="op">==</span><span class="st"> &quot;female&quot;</span>)</a>
+<a class="sourceLine" id="cb85-4" title="4"></a>
+<a class="sourceLine" id="cb85-5" title="5">titanic_filter_example</a></code></pre></div>
 <pre><code>## # A tibble: 144 x 11
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2630,11 +2662,11 @@ div.tocify {
 ## 10      1        1 &quot;Bazzani, Miss.~ female                         32     0
 ## # ... with 134 more rows, and 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1"><span class="co"># Select passengers who were female OR children (under 18)</span></a>
-<a class="sourceLine" id="cb83-2" title="2"></a>
-<a class="sourceLine" id="cb83-3" title="3">titanic_filter_example &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, sex_of_passenger <span class="op">==</span><span class="st"> &quot;female&quot;</span> <span class="op">|</span><span class="st"> </span>age_of_passenger <span class="op">&lt;</span><span class="st"> </span><span class="dv">18</span>)</a>
-<a class="sourceLine" id="cb83-4" title="4"></a>
-<a class="sourceLine" id="cb83-5" title="5">titanic_filter_example</a></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1"><span class="co"># Select passengers who were female OR children (under 18)</span></a>
+<a class="sourceLine" id="cb87-2" title="2"></a>
+<a class="sourceLine" id="cb87-3" title="3">titanic_filter_example &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, sex_of_passenger <span class="op">==</span><span class="st"> &quot;female&quot;</span> <span class="op">|</span><span class="st"> </span>age_of_passenger <span class="op">&lt;</span><span class="st"> </span><span class="dv">18</span>)</a>
+<a class="sourceLine" id="cb87-4" title="4"></a>
+<a class="sourceLine" id="cb87-5" title="5">titanic_filter_example</a></code></pre></div>
 <pre><code>## # A tibble: 548 x 11
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2650,11 +2682,11 @@ div.tocify {
 ## 10      1        1 &quot;Baxter, Mrs. J~ female                     50         0
 ## # ... with 538 more rows, and 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="co"># Select passengers who paid more than 100 but less than 250 for their fare.</span></a>
-<a class="sourceLine" id="cb85-2" title="2"></a>
-<a class="sourceLine" id="cb85-3" title="3">titanic_filter_example &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, <span class="kw">between</span>(fare, <span class="dv">100</span>, <span class="dv">250</span>))</a>
-<a class="sourceLine" id="cb85-4" title="4"></a>
-<a class="sourceLine" id="cb85-5" title="5">titanic_filter_example</a></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="co"># Select passengers who paid more than 100 but less than 250 for their fare.</span></a>
+<a class="sourceLine" id="cb89-2" title="2"></a>
+<a class="sourceLine" id="cb89-3" title="3">titanic_filter_example &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, <span class="kw">between</span>(fare, <span class="dv">100</span>, <span class="dv">250</span>))</a>
+<a class="sourceLine" id="cb89-4" title="4"></a>
+<a class="sourceLine" id="cb89-5" title="5">titanic_filter_example</a></code></pre></div>
 <pre><code>## # A tibble: 67 x 11
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2670,18 +2702,382 @@ div.tocify {
 ## 10      1        1 Bidois, Miss. R~ female                     42         0
 ## # ... with 57 more rows, and 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1"><span class="co"># Select passengers who embarked in Southampton or Cherbourg.</span></a>
-<a class="sourceLine" id="cb87-2" title="2"></a>
-<a class="sourceLine" id="cb87-3" title="3">titanic_filter_example &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, embarked <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;S&#39;</span>,<span class="st">&#39;C&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1"><span class="co"># Select passengers who embarked in Southampton or Cherbourg.</span></a>
+<a class="sourceLine" id="cb91-2" title="2"></a>
+<a class="sourceLine" id="cb91-3" title="3"><span class="co"># A more compact method of looking for a set of specific values.</span></a>
+<a class="sourceLine" id="cb91-4" title="4"></a>
+<a class="sourceLine" id="cb91-5" title="5">titanic_filter_example &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, embarked <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;S&#39;</span>,<span class="st">&#39;C&#39;</span>))</a></code></pre></div>
+<p><br></p>
 <div id="exercise-5" class="section level4">
 <h4><span class="header-section-number">4.3.2.1</span> <strong>Exercise</strong></h4>
+<ol style="list-style-type: decimal">
+<li><p>Select passengers who are in classes 2 and 3, what percentage of passengers is this?</p></li>
+<li><p>How many passengers who do not have siblings or spouses (‘sibsp’), or parents or children (‘parch’) on the boat?</p></li>
+<li><p>What proportion of passengers who ‘embarked’ in Cherbourg (‘C’) or Queenstown (‘Q’) survived?</p></li>
+</ol>
 </div>
 <div id="hint-4" class="section level4">
 <h4><span class="header-section-number">4.3.2.2</span> <strong>Hint</strong></h4>
+<ol style="list-style-type: decimal">
+<li>Select passengers who are in classes 2 and 3, what percentage of passengers is this?</li>
+</ol>
+<blockquote>
+<p>The | (Shift and ) symbol means an OR relationship</p>
+</blockquote>
+<blockquote>
+<p>The &amp; (Shift and 7) symbol indicates an AND relationship</p>
+</blockquote>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
+<a class="sourceLine" id="cb92-2" title="2"></a>
+<a class="sourceLine" id="cb92-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data,</a>
+<a class="sourceLine" id="cb92-4" title="4">                                         condition)</a>
+<a class="sourceLine" id="cb92-5" title="5"></a>
+<a class="sourceLine" id="cb92-6" title="6"><span class="co">#calculating the percentage, by dividing the total number of rows in new filtered dataset </span></a>
+<a class="sourceLine" id="cb92-7" title="7"><span class="co">#by the total number of rows in fulldataset then multiplied by 100</span></a>
+<a class="sourceLine" id="cb92-8" title="8"></a>
+<a class="sourceLine" id="cb92-9" title="9"><span class="kw">nrow</span>(titanic_filter_exercise)<span class="op">/</span><span class="kw">nrow</span>(titanic)<span class="op">*</span><span class="dv">100</span> </a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>How many passengers who do not have siblings or spouses (‘sibsp’), or parents or children (‘parch’) on the boat?</li>
+</ol>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
+<a class="sourceLine" id="cb93-2" title="2"></a>
+<a class="sourceLine" id="cb93-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data,</a>
+<a class="sourceLine" id="cb93-4" title="4">                                         condition)</a>
+<a class="sourceLine" id="cb93-5" title="5"></a>
+<a class="sourceLine" id="cb93-6" title="6"><span class="co">#showing the number of rows in oure ew filtered dataset</span></a>
+<a class="sourceLine" id="cb93-7" title="7"><span class="kw">nrow</span>(titanic_filter_exercise)</a></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>What proportion of passengers who ‘embarked’ in Cherbourg (‘C’) or Queenstown (‘Q’) survived?</li>
+</ol>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
+<a class="sourceLine" id="cb94-2" title="2">embarked_cherbourg_and_queenstown &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data,</a>
+<a class="sourceLine" id="cb94-3" title="3">                                         condition)</a>
+<a class="sourceLine" id="cb94-4" title="4"></a>
+<a class="sourceLine" id="cb94-5" title="5"><span class="co">#filtering the dataset a single condition</span></a>
+<a class="sourceLine" id="cb94-6" title="6">survived &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data,</a>
+<a class="sourceLine" id="cb94-7" title="7">                          condition)</a>
+<a class="sourceLine" id="cb94-8" title="8"></a>
+<a class="sourceLine" id="cb94-9" title="9"><span class="co">#showing the number of rows in oure ew filtered dataset</span></a>
+<a class="sourceLine" id="cb94-10" title="10"><span class="kw">nrow</span>(survived)<span class="op">/</span><span class="kw">nrow</span>(embarked_cherbourg_and_queenstown)</a></code></pre></div>
 </div>
 <div id="show-answer-4" class="section level4">
 <h4><span class="header-section-number">4.3.2.3</span> <strong>Show Answer</strong></h4>
+<ol style="list-style-type: decimal">
+<li>Select passengers who are in classes 2 and 3, what percentage of passengers is this?</li>
+</ol>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
+<a class="sourceLine" id="cb95-2" title="2"><span class="co"># The | idicates one condition or the other must be TRUE.</span></a>
+<a class="sourceLine" id="cb95-3" title="3"></a>
+<a class="sourceLine" id="cb95-4" title="4">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, pclass <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">|</span><span class="st"> </span>pclass <span class="op">==</span><span class="st"> </span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb95-5" title="5"></a>
+<a class="sourceLine" id="cb95-6" title="6"><span class="co">#calculating the percentage, by dividing the total number of rows in new filtered dataset </span></a>
+<a class="sourceLine" id="cb95-7" title="7"><span class="co">#by the total number of rows in fulldataset then multiplied by 100</span></a>
+<a class="sourceLine" id="cb95-8" title="8"></a>
+<a class="sourceLine" id="cb95-9" title="9"><span class="kw">nrow</span>(titanic_filter_exercise)<span class="op">/</span><span class="kw">nrow</span>(titanic)<span class="op">*</span><span class="dv">100</span> </a></code></pre></div>
+<pre><code>## [1] 75.32468</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>How many passengers who do not have siblings or spouses (‘sibsp’), or parents or children (‘parch’) on the boat?</li>
+</ol>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
+<a class="sourceLine" id="cb97-2" title="2"></a>
+<a class="sourceLine" id="cb97-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic,sibsp <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>parch <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb97-4" title="4"></a>
+<a class="sourceLine" id="cb97-5" title="5"><span class="co">#showing the number of rows in oure ew filtered dataset</span></a>
+<a class="sourceLine" id="cb97-6" title="6"><span class="kw">nrow</span>(titanic_filter_exercise)</a></code></pre></div>
+<pre><code>## [1] 790</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>What proportion of passengers who ‘embarked’ in Cherbourg (‘C’) or Queenstown (‘Q’) survived?</li>
+</ol>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
+<a class="sourceLine" id="cb99-2" title="2">embarked_cherbourg_and_queenstown &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic,embarked <span class="op">==</span><span class="st"> &#39;C&#39;</span> <span class="op">|</span><span class="st"> </span>embarked <span class="op">==</span><span class="st"> &#39;Q&#39;</span>)</a>
+<a class="sourceLine" id="cb99-3" title="3"></a>
+<a class="sourceLine" id="cb99-4" title="4"><span class="co">#filtering the dataset a single condition</span></a>
+<a class="sourceLine" id="cb99-5" title="5">survived &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(embarked_cherbourg_and_queenstown, survived <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb99-6" title="6"></a>
+<a class="sourceLine" id="cb99-7" title="7"><span class="co">#showing the number of rows in oure ew filtered dataset</span></a>
+<a class="sourceLine" id="cb99-8" title="8"><span class="kw">nrow</span>(survived)<span class="op">/</span><span class="kw">nrow</span>(embarked_cherbourg_and_queenstown)</a></code></pre></div>
+<pre><code>## [1] 0.4936387</code></pre>
 </div>
+</div>
+</div>
+<div id="generating-new-variables" class="section level2">
+<h2><span class="header-section-number">4.4</span> Generating New Variables</h2>
+<p>To create a new variable, or a new column, in our <code>tibble</code> we will use the <code>dplyr::mutate()</code> function.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" title="1">dplyr<span class="op">::</span><span class="kw">mutate</span>()</a></code></pre></div>
+<blockquote>
+<p>Code to create a new column follow the pattern below, where we state the name of the new column and the use the = to state what we want to be in that column.</p>
+</blockquote>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1">data_frame_name &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(data,</a>
+<a class="sourceLine" id="cb102-2" title="2">                                 <span class="dt">name_of_new_column =</span> contents of new column)</a></code></pre></div>
+<div id="constant-value-variables" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Constant Value Variables</h3>
+<p>The simplest example would be adding a constant value to each row in our <code>tibble</code>.</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1"><span class="kw">mutate</span>(titanic, <span class="dt">int_zeros =</span> 0L)</a></code></pre></div>
+<pre><code>## # A tibble: 1,309 x 12
+##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
+##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
+##  1      1        1 Allen, Miss. El~ female                     29         0
+##  2      1        1 Allison, Master~ male                        0.917     1
+##  3      1        0 Allison, Miss. ~ female                      2         1
+##  4      1        0 Allison, Mr. Hu~ male                       30         1
+##  5      1        0 Allison, Mrs. H~ female                     25         1
+##  6      1        1 Anderson, Mr. H~ male                       48         0
+##  7      1        1 Andrews, Miss. ~ female                     63         1
+##  8      1        0 Andrews, Mr. Th~ male                       NA         0
+##  9      1        1 Appleton, Mrs. ~ female                     NA         2
+## 10      1        0 Artagaveytia, M~ male                       NA         0
+## # ... with 1,299 more rows, and 6 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
+## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, int_zeros &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1"><span class="kw">mutate</span>(titanic, <span class="dt">double_ones =</span> <span class="dv">1</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 1,309 x 12
+##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
+##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
+##  1      1        1 Allen, Miss. El~ female                     29         0
+##  2      1        1 Allison, Master~ male                        0.917     1
+##  3      1        0 Allison, Miss. ~ female                      2         1
+##  4      1        0 Allison, Mr. Hu~ male                       30         1
+##  5      1        0 Allison, Mrs. H~ female                     25         1
+##  6      1        1 Anderson, Mr. H~ male                       48         0
+##  7      1        1 Andrews, Miss. ~ female                     63         1
+##  8      1        0 Andrews, Mr. Th~ male                       NA         0
+##  9      1        1 Appleton, Mrs. ~ female                     NA         2
+## 10      1        0 Artagaveytia, M~ male                       NA         0
+## # ... with 1,299 more rows, and 6 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
+## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, double_ones &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1"><span class="kw">mutate</span>(titanic, <span class="dt">string_twos =</span> <span class="st">&quot;two&quot;</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 1,309 x 12
+##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
+##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
+##  1      1        1 Allen, Miss. El~ female                     29         0
+##  2      1        1 Allison, Master~ male                        0.917     1
+##  3      1        0 Allison, Miss. ~ female                      2         1
+##  4      1        0 Allison, Mr. Hu~ male                       30         1
+##  5      1        0 Allison, Mrs. H~ female                     25         1
+##  6      1        1 Anderson, Mr. H~ male                       48         0
+##  7      1        1 Andrews, Miss. ~ female                     63         1
+##  8      1        0 Andrews, Mr. Th~ male                       NA         0
+##  9      1        1 Appleton, Mrs. ~ female                     NA         2
+## 10      1        0 Artagaveytia, M~ male                       NA         0
+## # ... with 1,299 more rows, and 6 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
+## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, string_twos &lt;chr&gt;</code></pre>
+<p>We could have also performed all three mutations in one line on the same <code>tibble</code>:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1"><span class="kw">mutate</span>(titanic, <span class="dt">int_zeros =</span> 0L, <span class="dt">double_ones =</span> <span class="dv">1</span>, <span class="dt">string_twos =</span> <span class="st">&quot;two&quot;</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 1,309 x 14
+##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
+##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
+##  1      1        1 Allen, Miss. El~ female                     29         0
+##  2      1        1 Allison, Master~ male                        0.917     1
+##  3      1        0 Allison, Miss. ~ female                      2         1
+##  4      1        0 Allison, Mr. Hu~ male                       30         1
+##  5      1        0 Allison, Mrs. H~ female                     25         1
+##  6      1        1 Anderson, Mr. H~ male                       48         0
+##  7      1        1 Andrews, Miss. ~ female                     63         1
+##  8      1        0 Andrews, Mr. Th~ male                       NA         0
+##  9      1        1 Appleton, Mrs. ~ female                     NA         2
+## 10      1        0 Artagaveytia, M~ male                       NA         0
+## # ... with 1,299 more rows, and 8 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
+## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, int_zeros &lt;int&gt;,
+## #   double_ones &lt;dbl&gt;, string_twos &lt;chr&gt;</code></pre>
+</div>
+<div id="creating-variables-based-on-existing-columns" class="section level3 tabset tabset-fade">
+<h3><span class="header-section-number">4.4.2</span> Creating Variables Based on Existing Columns</h3>
+<p>We can perform mathematical operations and even functions on existing columns in the <code>mutate()</code> function using column names.</p>
+<p>Let’s look at some examples:</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1"><span class="co"># Capitalise sex column</span></a>
+<a class="sourceLine" id="cb111-2" title="2"><span class="kw">mutate</span>(titanic, <span class="dt">sex_of_passenger =</span> stringr<span class="op">::</span><span class="kw">str_to_upper</span>(sex_of_passenger))</a></code></pre></div>
+<pre><code>## # A tibble: 1,309 x 11
+##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
+##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
+##  1      1        1 Allen, Miss. El~ FEMALE                     29         0
+##  2      1        1 Allison, Master~ MALE                        0.917     1
+##  3      1        0 Allison, Miss. ~ FEMALE                      2         1
+##  4      1        0 Allison, Mr. Hu~ MALE                       30         1
+##  5      1        0 Allison, Mrs. H~ FEMALE                     25         1
+##  6      1        1 Anderson, Mr. H~ MALE                       48         0
+##  7      1        1 Andrews, Miss. ~ FEMALE                     63         1
+##  8      1        0 Andrews, Mr. Th~ MALE                       NA         0
+##  9      1        1 Appleton, Mrs. ~ FEMALE                     NA         2
+## 10      1        0 Artagaveytia, M~ MALE                       NA         0
+## # ... with 1,299 more rows, and 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
+## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1"><span class="co"># Determining family size on board</span></a>
+<a class="sourceLine" id="cb113-2" title="2"><span class="kw">mutate</span>(titanic, <span class="dt">family_size =</span> parch <span class="op">+</span><span class="st"> </span>sibsp <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 1,309 x 12
+##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
+##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
+##  1      1        1 Allen, Miss. El~ female                     29         0
+##  2      1        1 Allison, Master~ male                        0.917     1
+##  3      1        0 Allison, Miss. ~ female                      2         1
+##  4      1        0 Allison, Mr. Hu~ male                       30         1
+##  5      1        0 Allison, Mrs. H~ female                     25         1
+##  6      1        1 Anderson, Mr. H~ male                       48         0
+##  7      1        1 Andrews, Miss. ~ female                     63         1
+##  8      1        0 Andrews, Mr. Th~ male                       NA         0
+##  9      1        1 Appleton, Mrs. ~ female                     NA         2
+## 10      1        0 Artagaveytia, M~ male                       NA         0
+## # ... with 1,299 more rows, and 6 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
+## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, family_size &lt;dbl&gt;</code></pre>
+<p>As well as mathematical operators and functions we can use conditionals.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1"><span class="co"># Creating a logical column which is TRUE if passenger is female, false otherwise.</span></a>
+<a class="sourceLine" id="cb115-2" title="2"><span class="kw">mutate</span>(titanic, <span class="dt">is_female =</span> (sex_of_passenger <span class="op">==</span><span class="st"> &quot;female&quot;</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 1,309 x 12
+##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
+##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
+##  1      1        1 Allen, Miss. El~ female                     29         0
+##  2      1        1 Allison, Master~ male                        0.917     1
+##  3      1        0 Allison, Miss. ~ female                      2         1
+##  4      1        0 Allison, Mr. Hu~ male                       30         1
+##  5      1        0 Allison, Mrs. H~ female                     25         1
+##  6      1        1 Anderson, Mr. H~ male                       48         0
+##  7      1        1 Andrews, Miss. ~ female                     63         1
+##  8      1        0 Andrews, Mr. Th~ male                       NA         0
+##  9      1        1 Appleton, Mrs. ~ female                     NA         2
+## 10      1        0 Artagaveytia, M~ male                       NA         0
+## # ... with 1,299 more rows, and 6 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
+## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, is_female &lt;lgl&gt;</code></pre>
+<p>The key note from this being, with <code>mutate()</code>, we can do almost anything if we keep the number of rows the same.</p>
+<p>There are some functions which work with <code>mutate()</code> and enable us to perform more complicated tasks. <code>recode()</code> lets us map one value to another throughout the entire column. e.g.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1"><span class="kw">recode</span>(titanic<span class="op">$</span>survived, <span class="st">&#39;1&#39;</span> =<span class="st"> </span><span class="ot">TRUE</span>, <span class="st">&#39;0&#39;</span> =<span class="st"> </span><span class="ot">FALSE</span>)</a></code></pre></div>
+<p>To do this in the context of an entire <code>tibble</code> we have to use <code>recode()</code> with <code>mutate()</code>.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="kw">mutate</span>(titanic, <span class="dt">survived_logical =</span> <span class="kw">recode</span>(survived, <span class="st">&#39;1&#39;</span> =<span class="st"> </span><span class="ot">TRUE</span>, <span class="st">&#39;0&#39;</span> =<span class="st"> </span><span class="ot">FALSE</span>))</a></code></pre></div>
+<pre><code>## # A tibble: 1,309 x 12
+##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
+##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
+##  1      1        1 Allen, Miss. El~ female                     29         0
+##  2      1        1 Allison, Master~ male                        0.917     1
+##  3      1        0 Allison, Miss. ~ female                      2         1
+##  4      1        0 Allison, Mr. Hu~ male                       30         1
+##  5      1        0 Allison, Mrs. H~ female                     25         1
+##  6      1        1 Anderson, Mr. H~ male                       48         0
+##  7      1        1 Andrews, Miss. ~ female                     63         1
+##  8      1        0 Andrews, Mr. Th~ male                       NA         0
+##  9      1        1 Appleton, Mrs. ~ female                     NA         2
+## 10      1        0 Artagaveytia, M~ male                       NA         0
+## # ... with 1,299 more rows, and 6 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
+## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, survived_logical &lt;lgl&gt;</code></pre>
+<div id="exercise-6" class="section level4">
+<h4><span class="header-section-number">4.4.2.1</span> <strong>Exercise</strong></h4>
+<ol style="list-style-type: decimal">
+<li>Create a logical variable called ‘child’, it should have the value <code>TRUE</code> when the passenger is under 18 and <code>FALSE</code> otherwise.</li>
+</ol>
+</div>
+<div id="hint-5" class="section level4">
+<h4><span class="header-section-number">4.4.2.2</span> <strong>Hint</strong></h4>
+<ol style="list-style-type: decimal">
+<li>Create a logical variable called ‘child’, it should have the value <code>TRUE</code> when the passenger is under 18 and <code>FALSE</code> otherwise.</li>
+</ol>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1">titanic_mutate_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(data,</a>
+<a class="sourceLine" id="cb120-2" title="2">                                   new column <span class="dt">name =</span> content of new column)</a></code></pre></div>
+</div>
+<div id="show-answer-5" class="section level4">
+<h4><span class="header-section-number">4.4.2.3</span> <strong>Show Answer</strong></h4>
+<ol style="list-style-type: decimal">
+<li>Create a logical variable called ‘child’, it should have the value <code>TRUE</code> when the passenger is under 18 and <code>FALSE</code> otherwise.</li>
+</ol>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1">titanic_mutate_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>titanic,</a>
+<a class="sourceLine" id="cb121-2" title="2">                                   <span class="dt">child =</span> age_of_passenger <span class="op">&lt;</span><span class="st"> </span><span class="dv">18</span>)</a></code></pre></div>
+</div>
+</div>
+<div id="deleting-data" class="section level3">
+<h3><span class="header-section-number">4.4.3</span> Deleting data</h3>
+<p>We can also use the <code>mutate()</code> function to delete data.</p>
+<p>For example, we previously added a new column called <code>child</code> to our school data set.</p>
+<p>We can quickly see the names of our data set using the the <code>names()</code> function.</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1">titanic_mutate_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>titanic,</a>
+<a class="sourceLine" id="cb122-2" title="2">                                   <span class="dt">child =</span> age_of_passenger <span class="op">&lt;</span><span class="st"> </span><span class="dv">18</span>)</a>
+<a class="sourceLine" id="cb122-3" title="3"></a>
+<a class="sourceLine" id="cb122-4" title="4"><span class="kw">names</span>(titanic_mutate_exercise)</a></code></pre></div>
+<pre><code>##  [1] &quot;pclass&quot;            &quot;survived&quot;          &quot;name_of_passenger&quot;
+##  [4] &quot;sex_of_passenger&quot;  &quot;age_of_passenger&quot;  &quot;sibsp&quot;            
+##  [7] &quot;parch&quot;             &quot;ticket&quot;            &quot;fare&quot;             
+## [10] &quot;cabin&quot;             &quot;embarked&quot;          &quot;child&quot;</code></pre>
+<p>We can delete the column using the code below.</p>
+<p>We take the titanic data set and set equal the column we want to delete to <code>NULL</code>.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1"><span class="co"># Setting a column = NULL effectively removes it. </span></a>
+<a class="sourceLine" id="cb124-2" title="2">titanic_mutate_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data =</span> titanic_mutate_exercise, </a>
+<a class="sourceLine" id="cb124-3" title="3">                                  <span class="dt">child =</span> <span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb124-4" title="4"></a>
+<a class="sourceLine" id="cb124-5" title="5"><span class="co">#finding out the names of the columns in the dataset</span></a>
+<a class="sourceLine" id="cb124-6" title="6"><span class="kw">names</span>(titanic_mutate_exercise)</a></code></pre></div>
+<pre><code>##  [1] &quot;pclass&quot;            &quot;survived&quot;          &quot;name_of_passenger&quot;
+##  [4] &quot;sex_of_passenger&quot;  &quot;age_of_passenger&quot;  &quot;sibsp&quot;            
+##  [7] &quot;parch&quot;             &quot;ticket&quot;            &quot;fare&quot;             
+## [10] &quot;cabin&quot;             &quot;embarked&quot;</code></pre>
+<p>Alternatively, this will work too.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1"><span class="co">#selecting a column using the $ sign and assigning it to NULL</span></a>
+<a class="sourceLine" id="cb126-2" title="2">titanic_mutate_exercise<span class="op">$</span>child &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
+</div>
+<div id="the-pipe-operator" class="section level3">
+<h3><span class="header-section-number">4.4.4</span> The Pipe Operator <code>%&gt;%</code></h3>
+<p>The Pipe Operator <code>%&gt;%</code> makes it possible to chain a sequence of functions.</p>
+<p>In R code <code>%&gt;%</code> can be read as “AND THEN”. It takes the output of one action “AND THEN” uses that as the input of the next action. Where an action could be calling a variable, a function or anything else that returns some information.</p>
+<p><strong><code>%&gt;%</code></strong></p>
+<blockquote>
+<p>The shortcut is CTL + SHIFT + M</p>
+</blockquote>
+<p>What this does is it takes the output of one statement and makes it an input to the next statement. You can think of it as saying <strong><code>and then</code></strong></p>
+<p>Up until now if we wanted to perform a sequence of actions on data, we’d have do something along the lines of:</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" title="1">filter_male &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, sex_of_passenger <span class="op">==</span><span class="st"> &#39;male&#39;</span>)</a>
+<a class="sourceLine" id="cb127-2" title="2"></a>
+<a class="sourceLine" id="cb127-3" title="3">mutate_age &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>filter_male, <span class="dt">adult_men =</span> age_of_passenger <span class="op">&gt;</span><span class="st"> </span><span class="dv">18</span>)</a>
+<a class="sourceLine" id="cb127-4" title="4"></a>
+<a class="sourceLine" id="cb127-5" title="5">arrange_fare &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="dt">.data=</span>mutate_age, <span class="kw">desc</span>(fare)) </a>
+<a class="sourceLine" id="cb127-6" title="6"></a>
+<a class="sourceLine" id="cb127-7" title="7">filter_adult_men &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data =</span> arrange_fare, adult_men <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb127-8" title="8"></a>
+<a class="sourceLine" id="cb127-9" title="9">filter_adult_men</a></code></pre></div>
+<pre><code>## # A tibble: 554 x 12
+##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
+##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
+##  1      1        1 Cardeza, Mr. Th~ male                         36       0
+##  2      1        1 Lesurer, Mr. Gu~ male                         35       0
+##  3      1        0 Fortune, Mr. Ch~ male                         19       3
+##  4      1        0 Fortune, Mr. Ma~ male                         64       1
+##  5      1        0 Ryerson, Mr. Ar~ male                         61       1
+##  6      1        0 Baxter, Mr. Qui~ male                         24       0
+##  7      1        0 Straus, Mr. Isi~ male                         67       1
+##  8      1        0 Keeping, Mr. Ed~ male                         32.5     0
+##  9      1        0 Widener, Mr. Ge~ male                         50       1
+## 10      1        0 Widener, Mr. Ha~ male                         27       0
+## # ... with 544 more rows, and 6 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
+## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, adult_men &lt;lgl&gt;</code></pre>
+<p>With the pipe operator, this simplifies to:</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1">filter_adult_men &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb129-2" title="2"><span class="st">  </span></a>
+<a class="sourceLine" id="cb129-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(sex_of_passenger <span class="op">==</span><span class="st"> &#39;male&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb129-4" title="4"><span class="st">  </span></a>
+<a class="sourceLine" id="cb129-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">adult_men =</span> age_of_passenger <span class="op">&gt;</span><span class="st"> </span><span class="dv">18</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb129-6" title="6"><span class="st">  </span></a>
+<a class="sourceLine" id="cb129-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="kw">desc</span>(fare)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb129-8" title="8"><span class="st">  </span></a>
+<a class="sourceLine" id="cb129-9" title="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(adult_men <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb129-10" title="10"></a>
+<a class="sourceLine" id="cb129-11" title="11">filter_adult_men</a></code></pre></div>
+<pre><code>## # A tibble: 554 x 12
+##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
+##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
+##  1      1        1 Cardeza, Mr. Th~ male                         36       0
+##  2      1        1 Lesurer, Mr. Gu~ male                         35       0
+##  3      1        0 Fortune, Mr. Ch~ male                         19       3
+##  4      1        0 Fortune, Mr. Ma~ male                         64       1
+##  5      1        0 Ryerson, Mr. Ar~ male                         61       1
+##  6      1        0 Baxter, Mr. Qui~ male                         24       0
+##  7      1        0 Straus, Mr. Isi~ male                         67       1
+##  8      1        0 Keeping, Mr. Ed~ male                         32.5     0
+##  9      1        0 Widener, Mr. Ge~ male                         50       1
+## 10      1        0 Widener, Mr. Ha~ male                         27       0
+## # ... with 544 more rows, and 6 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
+## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, adult_men &lt;lgl&gt;</code></pre>
+<p>As you can see the pipe operator helps us:</p>
+<ul>
+<li>Structure the sequence of your data operations from left to right, as opposed to from inside to out.</li>
+<li>Avoid nested function calls and make code more “readable”.</li>
+<li>Minimize the need for local variables and function definitions.</li>
+<li>Make it easy to add steps anywhere in the sequence of operations.</li>
+</ul>
+<p>The pipe operator functionality comes from the <code>magrittr</code> package. Its implementation is designed for <code>tidyverse</code>, but it also works in some cases outside the <code>tidyverse</code>.</p>
+<p><code>magrittr</code> is named humorously for French artist Ren? Magritte, whose famous painting “The Treachery of Images” features the phrase “Ceci n’est pas une pipe” (this is not a pipe). While we call <code>%&gt;%</code> the pipe operator, in fact <code>|</code> is a ‘true’ pipe, usually meaning boolean ‘or’.</p>
+<p>The pipe function is one of the most powerful features of the <code>tidyverse</code>. In fact, having a standardised chain of processing actions is called “a pipeline”. Making pipelines for data manipulation is great, because you can apply that pipeline to any incoming data with a given formatting and have your output in a friendly format.</p>
 </div>
 </div>
 </div>
