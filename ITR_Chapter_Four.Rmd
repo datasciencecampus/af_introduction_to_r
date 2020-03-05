@@ -1491,7 +1491,7 @@ titanic_mutate_exercise$child <- NULL
 ```
 
 
-### The Pipe Operator `%>%`
+## The Pipe Operator `%>%` {.tabset .tabset-fade}
 
 
 The Pipe Operator `%>%` makes it possible to chain a sequence of functions. 
@@ -1549,6 +1549,8 @@ filter_adult_men
 
 ```
 
+>Notice how the `mutate()`, `arrange()` and `filter()` functions don't use the data argument as it already included in the pipe.
+
 
 As you can see the pipe operator helps us:
 
@@ -1563,3 +1565,333 @@ The pipe operator functionality comes from the `magrittr` package. Its implement
 `magrittr` is named humorously for French artist Ren? Magritte, whose famous painting "The Treachery of Images" features the phrase "Ceci n'est pas une pipe" (this is not a pipe). While we call `%>%` the pipe operator, in fact `|` is a 'true' pipe, usually meaning boolean 'or'. 
 
 The pipe function is one of the most powerful features of the `tidyverse`. In fact, having a standardised chain of processing actions is called "a pipeline". Making pipelines for data manipulation is great, because you can apply that pipeline to any incoming data with a given formatting and have your output in a friendly format.
+
+
+### **Exercise**
+
+Lets practice piping a few `dplyr` functions.
+
+
+1.Can you use at least 2 `dplyr` commands within a pipe? 
+
+
+
+### **Hint**
+
+>Quick reminder of the dplyr commands
+
+```{r, eval=FALSE}
+
+dataframe_name <- titanic %>%
+  
+  dplyr::filter() %>%
+  
+  dplyr::mutate() %>%
+  
+  dplyr::select() %>%
+  
+  dplyr::arrange()
+
+
+
+
+
+```
+
+
+
+
+
+### **Show Answer**
+
+```{r}
+
+age_survived_fare <- titanic %>%
+  
+  dplyr::filter(survived==1) %>%
+  
+  dplyr::mutate(rounded_fare=(round(fare))) %>%
+  
+  dplyr::mutate(rounded_age=(round(age_of_passenger))) %>%
+  
+  dplyr::select(c(name_of_passenger,rounded_age,rounded_fare)) %>%
+  
+  dplyr::arrange(desc(rounded_age))
+
+
+age_survived_fare
+
+
+
+
+```
+
+
+## Joining Data
+
+Often all the data you need to answer a question are not contained within a single dataset, but across several. Datasets can be joined, or 'merged', to allow data to be analysed together, but only **if the two datasets share a common reference or identifier.**
+
+Linking data come in a number of forms and are commonly referred to as 'indexical' data. Some examples include:
+
+* Your NHS number, allowing data linkage across the NHS for primary, secondary, tertiary care episodes and prescribing.
+* Any account number (e.g. banking, utilities, travel card, council tax etc.) can acts as a point of linkage between different sets of data.
+* Your email, phone number, social media handles etc.
+* Your address can also act as a spatial reference, linking you to your neighbourhood, local services etc.
+
+### Different ways to Join {.tabset .tabset-fade}
+
+In R we use group of `join` functions. These are prefixed by the type of join we choose to implement.
+
+Once you have established that two `tibbles` share a reference that will permit a join to be conducted, you will see:
+
+* `inner_` - Only rows with reference values that appear in both `tibbles` are merged.
+* `left_` - All data from the 'left' `tibble` is retained, and any matching rows are merged from the 'right' `tibble`.
+* `right_` - All data from the right and anything that matches from the left. Effectively, the reverse of 'Left'.
+* `full_` - All data from the left and right `tibble` is retained, matched up where possible.
+
+This can be easier to understand graphically:
+
+
+![](Images/sql-joins.png)
+
+lets have a look at an example.
+
+we have the following datasets
+
+Let’s have a look at the two `joining_data` data frames.
+
+In `joining_data1` we have the columns **name, animal and age.**
+
+In `joining_data2` we have the columns **name and vaccinated.**
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+# Read in data
+
+
+joining_data_one <- readr::read_csv("D:/Git/Intro_to_R_Refresh/Data/joining_data1.csv")
+
+joining_data_two <- readr::read_csv("D:/Git/Intro_to_R_Refresh/Data/joining_data2.csv") 
+                           
+                           
+
+
+```
+
+
+
+```{r}
+joining_data_one
+
+joining_data_two
+```
+
+"Arf Vader" only appears in `joining_data1` and "Spiderpig" only appears in `joining_data2`. The remainder of the animals appear in both data frames.
+
+These two data frames have a column in common that we could use to join them on - **name**.
+
+We can create a variety of joins. These are often best demonstrated with a Venn diagram.
+
+I’m going to say that `joining_data1` is my “left” data frame, and that `joining_data2` is my “right” data frame.
+
+For this I’m going to highlight the position of three animal names. As we mentioned earlier:
+
+* "Arf Vader" is only in `joining_data1`, our “left” data frame.
+
+* "Spiderpig" is only in `joining_data2`, our “right” data frame. 
+
+* "Catalie Portman" is in both `joining_data1` and `joining_data2` and will represent values in *BOTH* data frames.
+
+
+![](Images/dplyrjoin.svg)
+
+As you can see "left" and "right" merges take the data from that data frame and any matches from the other. 
+
+This means that in our "left":
+
+"Arf Vader" is included because he has data in the "left" data frame. 
+
+"Arf Vader" has missing values for `vaccinated`, as he isn’t in that data frame.
+
+"Catalie Portman" has data in all columns, as she appears in both the "left" and "right".
+
+"Spiderpig" doesn’t have any data in this one. We’re only taking data from the "left", and he’s only in the "right".
+
+Let’s look at how we do this "left" merge in code. We’re going to use `left_join()` and do a "left" join.
+
+
+```{r}
+
+# The first data frame is the one on the left.
+join_left <- left_join(joining_data_one, 
+                        joining_data_two,
+                        by = "name")
+
+join_left
+
+```
+
+If you dont specify which column to join by, `R` will look to match by any column that matches.
+
+If we're joining on more than one column we can specify using the parameter `by = c(vector))`.
+
+This is shown below.
+
+```{r, eval=F}
+
+# Joining using multiple columns
+join_left <- left_join(joining_data_one, joining_data_two,
+                        by = c("column name", "column name"))
+
+join_left
+
+```
+
+
+#### **Exercise**
+
+1. Read in joining_exercise1.csv as marvel_left
+
+2. Read in joining_exercise2.csv as marvel_right
+
+3. Inspect your data
+
+4. Using `marvel_right` and `marvel_left` perform a `full_join()` using the column `name`.
+
+5. Using `marvel_left` and `marvel_righ`t perform a "left" join.
+
+  Join on *BOTH* the column containing `names` and the column containing `years`.
+
+  Note that the names of these columns may not be the same in both data frames.
+
+  Use the help function to explore solutions to this.
+
+#### **Hint**
+
+
+1. Read in joining_exercise1.csv as marvel_left
+
+2. Read in joining_exercise2.csv as marvel_right
+
+3. Inspect your data
+
+
+
+```{r, eval=FALSE}
+
+# Read in data
+
+
+marvel_left <- readr::read_csv("file path")
+
+marvel_left
+
+marvel_right <- readr::read_csv("file path")
+
+marvel_right
+
+
+
+
+```
+
+
+4. Using `marvel_right` and `marvel_left` perform a `full_join()` using the column `name`.
+
+```{r,eval=F}
+
+marvel_full_join <- full_join(dataframe, dataframe, by = column)
+                                                                          
+
+marvel_full_join
+```
+
+5. Using `marvel_left` and `marvel_righ`t perform a "left" join.
+
+  Join on *BOTH* the column containing `names` and the column containing `years`.
+
+  Note that the names of these columns may not be the same in both data frames.
+
+  Use the help function to explore solutions to this.
+  
+  
+ ```{r, eval=F}
+ 
+# We can join two columns that are named differently.
+
+marvel_left_join <- left_join(dataframe, dataframe, by = c(columns))
+
+marvel_left_join
+```
+
+#### **Show Answer**
+
+
+1. Read in joining_exercise1.csv as marvel_left
+
+2. Read in joining_exercise2.csv as marvel_right
+
+3. Inspect your data
+
+
+
+```{r}
+
+# Read in data
+
+
+marvel_left <- readr::read_csv("D:/Git/Intro_to_R_Refresh/Data/joining_exercise1.csv")
+
+marvel_left
+
+marvel_right <- readr::read_csv("D:/Git/Intro_to_R_Refresh/Data/joining_exercise2.csv")
+
+marvel_right
+
+
+
+
+```
+
+
+4. Using `marvel_right` and `marvel_left` perform a `full_join()` using the column `name`.
+
+```{r}
+
+marvel_full_join <- full_join(marvel_left, marvel_right, by = "name")
+                                                                          
+
+marvel_full_join
+```
+
+5. Using `marvel_left` and `marvel_righ`t perform a "left" join.
+
+  Join on *BOTH* the column containing `names` and the column containing `years`.
+
+  Note that the names of these columns may not be the same in both data frames.
+
+  Use the help function to explore solutions to this.
+  
+  
+ ```{r}
+# We can join two columns that are named differently.
+marvel_left_join <- left_join(marvel_left, marvel_right, by = c("name", "year"="release_year"))
+
+marvel_left_join
+``` 
+# Summary - Data Manipulation
+
+## Reminder of Learning Objectives
+
+* You should now be able to import data into R
+
+* Understand the importance of clean column names
+
+* Manipulate data frames to extract information from them by:
+    + Selecting columns,
+    + Filtering rows,
+    + Generating new variables,
+    + Sorting Data
+    + Joining Data
+
