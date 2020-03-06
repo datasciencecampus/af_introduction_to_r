@@ -22,14 +22,31 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 
 # Learning Objectives
 
+**The goal of this chapter is to:**
 
 
-```{r echo=TRUE, message=FALSE, warning=FALSE}
+* Describe numeric and categorical data
+
+* Aggregate and data
+
+
+
+
+<br>
+
+We will use the titanic dataset in this chapter.
+
+<br>
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
 # Load libraries
 
 library(readr)
 library(janitor)
 library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(kableExtra)
 
 
 # Read in data
@@ -43,9 +60,17 @@ titanic <- janitor::clean_names(titanic)
 
 ```
 
+```{r echo=FALSE}
+
+titanic %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped","hover", "condensed", "responsive", position="center", font_size=8)) %>% 
+  scroll_box(width = "500px", height = "300px")
+ 
+```
 
 
-
+<br>
 
 
 # Descriptive Statistics
@@ -68,81 +93,238 @@ The useful functions that we can use with summarise:
 * `n()` - Counts the number of entries (rows).
 * `n_distinct()` - Counts the number of unique entries for a given variable.
 
+>Base R does not provide a function for finding the mode.
+
+We would have to use a package to calculate the mode or write our own function.
+
+>The function `mfv()`, for most frequent value, `in modeest package` can be used to find the statistical mode.
+
+
 There are plenty more we could use, but this, like the rest of the course, is intended to give you a taste of what's possible. 
 
 Let's look at some examples:
 ```{r}
+
+#Calculating the mean of the column fare 
+#in the titanic dataset
+
 summarise(titanic, mean(fare))
+
 ```
 
-This highlights an important point, any operation applied to a column containing one or more `NA` values produces `NA`. Most functions in R, for best practice reasons, propagate `NA` values, requiring us to set the common parameter `na.rm` to TRUE. This will omit any `NA` values in our calculation and produce a more meaningful result, albeit on a subset of observed data. The intention here is that R wants the analyst to know `NA` values are present in the data and deal with them directly. 
+This highlights an important point, any operation applied to a column containing one or more `NA` values produces `NA`. 
+
+Most functions in R, for best practice reasons, propagate `NA` values, requiring us to set the common parameter `na.rm` to TRUE. 
+
+This will omit any `NA` values in our calculation and produce a more meaningful result, albeit on a subset of observed data. The intention here is that R wants the analyst to know `NA` values are present in the data and deal with them directly. 
 
 ```{r}
+#Calculating the mean of the column fare 
+#in the titanic dataset
+#Setting na.rm=TRUE to remove missing values
+#from calculation
+
+
 summarise(titanic, mean(fare, na.rm = TRUE))
+
 ```
 
 To assign this a meaningful column name, we'd pass a keyword argument in `summarise()`.
+
 ```{r}
+#Calculating the mean of the column fare 
+#in the titanic dataset
+#Setting na.rm=TRUE to remove missing values
+#from calculation
+#setting the name mean_fare for our result
+
+
 summarise(titanic, mean_fare = mean(fare, na.rm = TRUE))
-```
-`summarise()` is effectively computing out statistics and wrapping the result in a `tibble`. If we didn't care about the `tibble` output we could simply compute using base R syntax:
-```{r}
-mean(titanic$fare, na.rm = TRUE)
+
 ```
 
-Like we saw with `mutate()` and other functions, we can compute multiple statistics through `summarise()`.
+`summarise()` is effectively computing out statistics and wrapping the result in a `tibble`. 
+
+If we didn't care about the `tibble` output we could simply compute using base R syntax:
+
+
 ```{r}
-summarise(titanic, median_fare = median(fare, na.rm = TRUE),
-          mean_fare = mean(fare, na.rm = TRUE), 
+#Calculating the mean of the column fare 
+#in the titanic dataset
+#Setting na.rm=TRUE to remove missing values
+#from calculation
+
+mean(titanic$fare, na.rm = TRUE)
+
+```
+
+
+Like we saw with `mutate()` and other functions, we can compute multiple statistics through `summarise()`.
+
+```{r}
+#Calculating muiltiple summary statisitcs within
+#the summarise function
+
+
+summarise(titanic, 
+          
+          median_fare = median(fare, na.rm = TRUE),
+          
+          mean_fare = mean(fare, na.rm = TRUE),
+          
           sd_fare = sd(fare, na.rm = TRUE),
+          
           median_age = median(age_of_passenger, na.rm = TRUE),
+          
           mean_age = mean(age_of_passenger, na.rm = TRUE),
+          
           sd_age = sd(age_of_passenger, na.rm = TRUE))
 ```
 
-The structure of our output above is not ideal. We could restructure using `tidyr` functions: `gather()`, `separate()` and `spread()`. This is slightly advanced for what we have covered so far, but an examples have been added to the additional materials for those keen to know.
 
-Functions which return more than one value won't work well with `summarise()`. Therefore, these functions have to be called on the data directly instead.
+The structure of our output above is not ideal. 
+
+>We could restructure using `tidyr` functions: `gather()`, `separate()` and `spread()`. This is slightly advanced for what we have covered so far, but an examples have been added to the additional materials for those keen to know.
+
+
+Functions which return more than one value won't work well with `summarise()`. 
+
+Therefore, these functions have to be called on the data directly instead.
+
 ```{r}
+#Calculating the quartiles from the
+#fare column in the titanic dataset
+
 quantile(titanic$fare, na.rm = TRUE)
+
 ```
 
 
+We can also specify as below,
+
+
+```{r}
+#Calculating the quartiles from the
+#fare column in the titanic dataset
+#by specifying which points to display
+
+
+quantile(titanic$fare, 
+         probs = c(0.25, 0.5, 0.75, 1),
+         na.rm = TRUE)
+```
+
+We can further specify as below,
+
+```{r}
+#Calculating the quartiles from the
+#fare column in the titanic dataset
+#by specifying which points to display
+
+
+
+quantile(titanic$fare, 
+         probs = c(0, 0.2, 0.4, 0.6, 0.8, 1),
+         na.rm = TRUE)
+
+
+```
+
+***
+
 ## Describing Text (or Categorical) Data {.tabset .tabset-fade}
+
 
 Simple statistics on qualitative data include:
 
 * `dplyr::distinct()` - Which will list all the unique values in a given column. 
+
 * `dplyr::n_distinct()` - Takes a vector and counts how many unique values there are.
+
 * `dplyr::count()` - Displays the number of occurrences of each unique entry in a given column.
 
 
 Descriptive statistics below are for qualitative data, they don't work very well if every value in a field is a different piece of text!
 
 ```{r}
+#Calculating a frequency table for the number
+#of passengers and sorting in descending order
+
+
 count(titanic, name_of_passenger, sort = TRUE)
 ```
 Compared to:
 ```{r}
-count(titanic, embarked)
+#Calculating a frequency table for the number
+#of passengers and sorting in descending order
+
+
+count(titanic, embarked, sort = TRUE)
+
 ```
+
+Lets try some exercises.
+
+
+
 
 ### **Exercise**
 
 1. How old is the oldest passenger in the dataset?
+
 2. How many men and women are in the dataset?
+
 3. Create a new column called 'std_fare' which is the 'fare' minus the mean fare, divided by the standard deviation.
+
 4. Calculate the number of children in second class.
 
 ### **Hint**
+
+1. How old is the oldest passenger in the dataset?
+
+```{r, eval=FALSE}
+
+#max gives you the hieghest value
+
+oldest_passenger <- max(data)
+
+```
+
+2. How many men and women are in the dataset?
+
+```{r, eval=FALSE}
+
+#Count gives a frequency
+
+number_of_men_and_women <- count(data, columns)
+
+```
+
+3. Create a new column called 'std_fare' which is the 'fare' minus the mean fare, divided by the standard deviation.
+
+>You will need to use you data manipulation skills from previous chapter.
+
+```{r, eval=FALSE}
+#Mutate lets you add new variables to the dataset
+
+standard_fare <- dplyr::mutate(data, 
+                               name of new column = 
+                                 contents of new column)
+
+```
 
 ### **Show Answer**
 
 1. How old is the oldest passenger in the dataset?
 
-```{r}
 
-oldest_passenger <- max(titanic$age_of_passenger, na.rm = TRUE)
+```{r}
+#Calculating the hieghest values in the 
+#age_of_passenger column
+
+
+oldest_passenger <- max(titanic$age_of_passenger, 
+                        na.rm = TRUE)
 
 ```
 
@@ -150,7 +332,11 @@ oldest_passenger <- max(titanic$age_of_passenger, na.rm = TRUE)
 
 ```{r}
 
-number_of_men_and_women <- count(titanic, sex_of_passenger)
+#Calculating a frequency count of the
+#sex_of_passenger column
+
+number_of_men_and_women <- count(titanic, 
+                                 sex_of_passenger)
 
 ```
 
@@ -158,66 +344,289 @@ number_of_men_and_women <- count(titanic, sex_of_passenger)
 
 ```{r}
 
-standard_fare <- dplyr::mutate(titanic, std_fare = (fare - mean(fare, na.rm = TRUE))/sd(fare, na.rm = TRUE))
+#Using mutate to add a new column on the titanic dataset
+
+
+standard_fare <- dplyr::mutate(titanic, 
+                               std_fare = 
+                                 (fare - mean(fare, na.rm = TRUE))
+                               /sd(fare, na.rm = TRUE))
 
 ```
 
-# Aggregation
+***
+
+# Aggregation {.tabset .tabset-fade}
+
 
 Aggregation means grouping data together by a particular grouping variable and producing a summary of one or more columns for that grouping variable.
 
-We'll use the `dplyr::group_by()` function. 
+
+>We'll use the `dplyr::group_by()` function. 
+
 
 This function can be really useful, especially when your data are disaggregate - e.g. data about individual units of people or things. 
 
 `group_by()` allows you to aggregate by a categorical variable and summarise numerical data into a new `tibble`.
 
-`.group_by()` works on a principle known as 'split-summarise-combine':
+`group_by()` works on a principle known as 'split-summarise-combine':
 
 * Split - a `tibble` is divided into a set of smaller `tibbles` based on the grouping variable.
+
 * Summarise - an aggregation is applied to each of the groups to create a single row for each group in the original `tibble`.
+
 * Combine - bring together the aggregated `tibble` rows into a final new `tibble`.
 
 Let's walk through what that might look like for the `titanic` `tibble`:
 
 * Firstly, we decide to **split** the data by the 'pclass'. This divides the `titanic` `tibble` into effectively three separate `tibbles`, one for first, one for second and one for third class.
+
 * Secondly, we **summarise** the `tibble` using a chosen aggregation function. You can either produce an aggregate statistic for all columns, or you can select specific columns on which to do the aggregation. 
+
 * Finally, we get a **combined** `tibble` that contains the new aggregate statistics.
 
 Let's look at that in code:
 
 ```{r}
+
 # Grouped tibble by pclass
 by_class <- dplyr::group_by(titanic, pclass)
-by_class
+
 ```
 
+```{r echo=FALSE}
+
+by_class %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped","hover", "condensed", "responsive", position="center", font_size=8)) %>% 
+  scroll_box(width = "500px", height = "300px")
+ 
+```
+<br>
+
 Now let's find out the mean fare paid by each class
+
 ```{r}
+#calculating the mean from the fare column in the grouped 
+#dataset
+
 summarise(by_class, mean_fare = mean(fare, na.rm = TRUE))
 ```
+
+<br>
 
 Hopefully this all sounds fairly straightforward! `group_by()` is a powerful tool, particularly when you are working with any kind of hierarchical data where you might want to know something aggregate about the groups within the data, for instance:
 
 * individuals nested in households.
+
 * employees nested in firms.
+
 * patients nested in primary or secondary care trusts.
+
 * small area geographies (e.g. wards, output areas, postcodes etc.) nested in larger geographies (e.g. districts, counties etc.)
+
 * countries nested in supra-national entities.
 
 or, demographic, cultural and socio-economic classes:
 
 * individuals by age, sex, ethnicity, religion etc.
+
 * employees by grade or occupational social class.
+
 * households by neighbourhood deprivation rank or decile.
+
 * experimental subjects in intervention and control arms of a trial.
 
-We can also aggregate according to more complicated groupings:
+
+>We can also aggregate according to more complicated groupings:
+
+Here we are grouping by 2 columns pclass and embarked.
 
 ```{r}
-# Group by pclass and embarked. Then find the average fare paid by each group.
-by_class_embarked <- group_by(titanic, pclass, embarked)
-summarise(by_class_embarked, mean_fare = mean(fare, na.rm = TRUE))
+# Group by pclass and embarked. Then find the average fare 
+#paid by each group.
+
+by_class_embarked <- group_by(titanic, 
+                              pclass, embarked) %>% 
+summarise( mean_fare = mean(fare, na.rm = TRUE))
+
+
 ```
+<br>
+
+```{r echo=FALSE}
+
+by_class_embarked %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped","hover", "condensed", "responsive", position="center", font_size=8))
+ 
+ 
+```
+
+
+Suppose with the above, the `NA` values bother us. To remove them we can add some code to our pipeline to handle this. 
+
+>We can use the `drop_na()` function from the tidyr package.
+
+Here I have added some extra summary statistics, i.e standard deviation and a count.
+
+```{r}
+#Calculating the median fare
+#dropping missing values using drop_na from tidyr package
+#grouping by pclass and emabrked
+#summarising by shwoing the median fare and standard deviation
+#and a frequency count
+
+
+median_fare <- titanic %>%
+  
+  drop_na(embarked) %>%
+  
+  group_by(pclass, embarked) %>%
+  
+  summarise(median_fare= median(fare, na.rm = TRUE),
+            
+            sd_fare = sd(fare, na.rm = TRUE),
+            
+            count = n())
+
+
+```
+
+<br>
+
+```{r echo=FALSE}
+
+median_fare %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped","hover", "condensed", "responsive", position="center", font_size=8)) 
+ 
+ 
+```
+
+
+
+Great. I plan on presenting this data, so I want something more meaningful in place than "C", "Q" and "S".
+
+```{r}
+
+#Calculating the median fare
+#dropping missing values using drop_na from tidyr package
+#using mutate to recode the variables "C","Q" and "S"
+#grouping by pclass and emabrked
+#summarising by shwoing the median fare and 
+#standard deviation and a frequency count
+
+
+
+median_fare <- titanic %>%
+  
+  drop_na(embarked) %>% 
+  
+  mutate(embarked = recode(embarked, "C" = "Cherbourg", 
+                           "Q" = "Queenstown", 
+                           "S" = "Southampton")) %>%
+  
+  group_by(pclass, embarked) %>%
+  
+  summarise(median_fare= median(fare, na.rm = TRUE),
+            
+            sd_fare = sd(fare, na.rm = TRUE),
+            
+            count = n())
+
+
+
+```
+
+<br>
+
+```{r echo=FALSE}
+
+median_fare %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped","hover", "condensed", "responsive", position="center", font_size=8)) 
+ 
+ 
+```
+<br>
+
+We can easily visualise our data in a chart.
+
+<br>
+
+```{r, echo=FALSE}
+
+ggplot(median_fare,
+       aes(x = pclass,
+           y = count))+
+  geom_col(position="dodge",aes(fill=embarked))+theme_grey()
+```
+
+
+<br>
+
+
+## **Exercise**
+
+1. What is the average fare paid by men and women?
+
+
+2. What is the median fare paid by men and women in each different class?
+
+
+## **Hint**
+
+1. What is the average fare paid by men and women?
+
+2. What is the median fare paid by men and women in each different class?
+
+## **Show Answer**
+
+1. What is the average fare paid by men and women?
+
+```{r}
+#Calculating the average fare
+#Grouping by sex_of_passenger
+#summary showing the mean fare
+
+average_fare <- titanic %>% 
+  
+  group_by(sex_of_passenger) %>% 
+  
+  summarise(mean_fare = mean(fare, na.rm = TRUE))
+
+
+average_fare
+```
+
+
+2. What is the median fare paid by men and women in each different class?
+
+```{r}
+#Calculating the median fare
+#Grouping by sex_of_passenger and pclass
+#summary showing the mean fare
+
+
+median_fare <- titanic %>%
+  
+  group_by(sex_of_passenger, pclass) %>%
+  
+  summarise(median_fare= median(fare, na.rm = TRUE))
+
+
+median_fare
+```
+
+# Summary - Summary Statistics
+
+## Reminder of Learning Objectives
+
+**You should now be able to**
+
+* Describe numeric and categorical data
+
+* Aggregate and data
 
 
