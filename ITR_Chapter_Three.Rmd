@@ -45,11 +45,9 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 
 It is highly recommended to manage your R work in projects. When you’re starting work on a new project, choose **‘New project…’** from the File menu and **‘New Directory’** to create a directory for the project (probably on your OneDrive).
 
-<br />
 
 If you already have data related to the project in an existing diretory, you can choose that option instead.
 
-<br />
 
 To work on this project in the future, you can select **‘Open Project…’** or **‘Recent Projects’** from the File menu and browse to the desired project.
 
@@ -62,11 +60,9 @@ To work on this project in the future, you can select **‘Open Project…’** 
 Within ONS, the default R working directory is within the `C` drive. 
 
 
-<br />
 
 **C drive -> My_RStudio -> Workspace**
 
-<br />
 
 It is good practice to organise your folders. 
 
@@ -94,11 +90,9 @@ Within the folder, it is good practice to further organise your files within fol
 
 Our default R installation – often referred to as **“base R”** gives us a lot of functionality.
 
-<br />
 
 A lot of this code has been around since R’s early days, back to when it was created in 1993. However, if we want to do more complicated, newer or more exciting things with our code we can install packages to achieve these goals.
 
-<br />
 
 >Packages are a collection of functions, compiled code and sometimes data sets which are stored in a “library” of code within R.
 
@@ -121,11 +115,10 @@ Behind the scenes our R installation is set to install from Artifcactory rather 
 
 ***
 
-## Installing Packages {.tabset .tabset-fade .tabset-pills}
+## Installing Packages {.tabset .tabset-fade}
 
 To install a package, we use the code below. 
 
-<br>
 
 >It is important we use this WHOLE line of code every time we install a package. 
 
@@ -144,9 +137,9 @@ install.packages(“package_name” , dependencies = TRUE, type = “win.binary�
 ***
 
 ### **Exercise** {-}
+>Installing packages
 
-
-Try installing the packages below using the **R console.**
+1. Try installing the packages below using the **R console.**
 
 
 **Run them line by line – this makes it easy to spot any error messages.**
@@ -221,7 +214,9 @@ library(package name)
 
 ### **Exercise** {-}
 
-Now try to load the packages below.
+> Loading packages
+
+1. Now try to load the packages below.
 
 * readr
 
@@ -230,6 +225,8 @@ Now try to load the packages below.
 ### **Show Answer** {-}
 
 ```{r, eval = F}
+
+#loading packages
 
 library(readr)
 
@@ -311,6 +308,8 @@ To check the version of a package you can type, the code below;
 
 ```{r}
 
+#Checking the package version
+
 packageVersion("dplyr")
 
 
@@ -331,6 +330,7 @@ Some packages **overwrite or “mask”** functions from other existing packages
 >As you can imagine these both take very different parameters – so it is important to know what we have masked. This is because after we have loaded the dplyr package it will assume we want to use the dplyr version of filter – NOT the one from the stats package.
 
 ```{r}
+#Loading the package dplyr
 
 library(dplyr)
 
@@ -396,6 +396,7 @@ The **'working directory'** is the place that R will try to load files from, or 
 We can check the working directory by calling the function `getwd()`.
 
 ```{r}
+#Getting the working directory
 
 getwd()
 
@@ -410,9 +411,11 @@ getwd()
 
 You can use `setwd()` function and provide an absolute or relative file path to change the working directory to.
 
->e.g. `"C:/users/[yourName]/Documents/Training/Intro_to_R/Notebooks"`
+>e.g. `"C:/users/[yourName]/Documents/Training/Intro_to_R"`
 
 ```{r, eval=FALSE}
+
+#Setting the working directory
 
 setwd()
 
@@ -452,9 +455,10 @@ Introduction_to_R
 |   |       ...
 
 ```
-If our current working directory is 'Notebooks', and we want to switch to 'Data', we can use the relative path:
+If our current working directory is 'Intro to R', and we want to switch to 'Data', we can use the relative path:
 
 ```{r, eval = FALSE}
+#Setting the working directory
 
 setwd("../Data")
 
@@ -469,10 +473,14 @@ Some great base R functions for exploring your directory are:
 
 ```{r, eval = FALSE}
 
-file.choose()
+#Exploring the directory using file.choose() function
+
+base::file.choose()
 
 
-dir()
+#Exploring the directory using dir() function
+
+base::dir()
 
 ```
 
@@ -519,7 +527,7 @@ Before loading your data you need to know,
 The code below demonstrates how you can read csv data.
 
 ```{r, eval=FALSE}
-
+#Reading in  CSV data using readr package and read_csv function
 
 dataframe_name <- readr::read_csv("file_path")
 
@@ -544,6 +552,7 @@ Load the titanic data using the code below,
 >You will have noticed that we had some parsing information after reading the file in.
 
 ```{r}
+#Reading in  CSV data using readr package and read_csv function
 
 titanic <- readr::read_csv("D:/Git/Intro_to_R_Refresh/Data/titanic.csv")
 
@@ -558,14 +567,15 @@ To look at the data in R we use the `View` command as below.
 
 
 ```{r eval=FALSE}
+#Viewing the data using the View() function
 
-
-View(titanic)
+base::View(titanic)
 
 
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
+
 library(kableExtra)
 
 library(dplyr)
@@ -580,33 +590,29 @@ titanic %>%
 
 <br>
 
-### **Exercise**
+### **Exercise**{-}
 
-* Have a look at the column `age` in your excel file.
+> Reading in CSV files
 
-<br>
+1. Have a look at the column `age_of_passenger`.
 
-* What type of data is this column?
 
-<br>
+2. What type of data is this column?
 
-* Then `View` the column in R to see the data type R has set it to be.
 
-<br>
+3. Then `View` the column in R to see the data type R has set it to be.
 
-### **Show Answer**
+
+### **Show Answer**{-}
 
 * The data is numeric data.
 
-<br>
 
 * We can see that R has classes the column as character because of the `NULL`
 
-<br>
 
 * We can easily correct this by adding an additional arguement when the reading the data to specify that `NULL` is a missing value.
 
-<br>
 
 The code below, can be read as;
 
@@ -617,6 +623,9 @@ The code below, can be read as;
 
 
 ```{r}
+#Importing CSV data using readr package and read_csv function
+#Specifying missing values by adding a vector, na=c() of what should be 
+#classed as missing values
 
 titanic <- readr::read_csv("D:/Git/Intro_to_R_Refresh/Data/titanic.csv", 
                            na=c("", " ", "NULL"))
