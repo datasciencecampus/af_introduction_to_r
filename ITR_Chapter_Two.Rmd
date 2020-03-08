@@ -961,6 +961,6 @@ as_tibble(iris)
 
 # Next Chapter
 
->In the next chapter we will look at Data Structures.
+>In the next chapter we will look at Packages and Importing Data.
 
 ***

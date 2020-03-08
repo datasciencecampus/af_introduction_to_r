@@ -30,7 +30,7 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 * Aggregate and data
 
 
-
+***
 
 <br>
 
@@ -72,13 +72,14 @@ titanic %>%
 
 <br>
 
-
+***
 # Descriptive Statistics
 
 There are really two broad types of data in our `tibble` at the moment that we want to look at - numerical data (i.e. ints and doubles) and text data (i.e. character strings).
 
 In this section, we will explore some basic univariate descriptive statistics.
 
+***
 ## Descriptive Statistics for Numerical Data
 Let's start with the numerical data, because that's the easiest to work with. The `dplyr::summarise()` function allows us to create one or more scalar variables summarising the variables of an existing `tibble`.  
 
@@ -108,7 +109,7 @@ Let's look at some examples:
 #Calculating the mean of the column fare 
 #in the titanic dataset
 
-summarise(titanic, mean(fare))
+dplyr::summarise(titanic, mean(fare))
 
 ```
 
@@ -625,8 +626,17 @@ median_fare
 
 **You should now be able to**
 
-* Describe numeric and categorical data
 
-* Aggregate and data
+* Understand how to obtain summary statistics.
+
+* Be able to use R functions to obtain descriptive statistics.
+
+* Be able to aggregate data in a data frame.
+
+# Next Chapter
+
+>In the next chapter we will look at Summary Statistics.
+
+***
 
 

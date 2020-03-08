@@ -1579,9 +1579,7 @@ div.tocify {
 <hr />
 <div id="learning-objectives" class="section level1">
 <h1><span class="header-section-number">1</span> Learning Objectives</h1>
-<p><br></p>
-<p><strong>The goal of this session is to:</strong></p>
-<p><br></p>
+<p><strong>The goal of this chapter is to:</strong></p>
 <ul>
 <li><p>Understand the importance of clean variable names.</p></li>
 <li><p>Be able to clean column names using <code>janitor</code>or <code>gsub</code>.</p></li>
@@ -1595,34 +1593,38 @@ div.tocify {
 </div>
 <div id="exercise" class="section level1 tabset tabset-fade">
 <h1><span class="header-section-number">2</span> Exercise</h1>
-<p><br></p>
-<div id="exercise-1" class="section level2">
-<h2><span class="header-section-number">2.1</span> <strong>Exercise</strong></h2>
-<p><br></p>
-<p>Before we begin, could you load the packages below into your script,</p>
+<blockquote>
+<p>Loading packages and Importing Data Exercise.</p>
+</blockquote>
+<div id="exercise-1" class="section level2 unnumbered">
+<h2><strong>Exercise</strong></h2>
+<ol style="list-style-type: decimal">
+<li>Before we begin, could you load the packages below into your script,</li>
+</ol>
 <ul>
 <li><p><code>readr</code></p></li>
 <li><p><code>janitor</code></p></li>
 <li><p><code>dplyr</code></p></li>
 </ul>
-<p>And then,</p>
-<ul>
-<li>Read in the <strong>titanic.csv</strong> and assign it to <code>titanic</code></li>
-</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>And then,read in the <strong>titanic.csv</strong> and assign it to <code>titanic</code></li>
+</ol>
 <hr />
 </div>
-<div id="hint" class="section level2">
-<h2><span class="header-section-number">2.2</span> <strong>Hint</strong></h2>
-<p><br></p>
+<div id="hint" class="section level2 unnumbered">
+<h2><strong>Hint</strong></h2>
 <p>The code below demonstrates how you can load a package.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(package name)</a></code></pre></div>
-<p><br></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#loading a package</span></a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(package name)</a></code></pre></div>
 <p>The code below demonstrates how you can read csv data.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">dataframe_name &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;file_path&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co">#Importing csv data</span></a>
+<a class="sourceLine" id="cb2-2" title="2"></a>
+<a class="sourceLine" id="cb2-3" title="3">dataframe_name &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;file_path&quot;</span>)</a></code></pre></div>
 <hr />
 </div>
-<div id="show-answer" class="section level2">
-<h2><span class="header-section-number">2.3</span> <strong>Show Answer</strong></h2>
+<div id="show-answer" class="section level2 unnumbered">
+<h2><strong>Show Answer</strong></h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Load libraries</span></a>
 <a class="sourceLine" id="cb3-2" title="2"></a>
 <a class="sourceLine" id="cb3-3" title="3"><span class="kw">library</span>(readr)</a>
@@ -1630,18 +1632,18 @@ div.tocify {
 <a class="sourceLine" id="cb3-5" title="5"><span class="kw">library</span>(dplyr)</a>
 <a class="sourceLine" id="cb3-6" title="6"></a>
 <a class="sourceLine" id="cb3-7" title="7"></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="co"># Read in data</span></a>
-<a class="sourceLine" id="cb3-9" title="9"></a>
-<a class="sourceLine" id="cb3-10" title="10"></a>
-<a class="sourceLine" id="cb3-11" title="11">titanic &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;D:/Git/Intro_to_R_Refresh/Data/titanic.csv&quot;</span>, </a>
-<a class="sourceLine" id="cb3-12" title="12">                           <span class="dt">na=</span><span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot; &quot;</span>, <span class="st">&quot;NULL&quot;</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb3-8" title="8"><span class="co">#Importing CSV data using readr package and read_csv function</span></a>
+<a class="sourceLine" id="cb3-9" title="9"><span class="co">#Specifying missing values by adding a vector, na=c() of what should be </span></a>
+<a class="sourceLine" id="cb3-10" title="10"><span class="co">#classed as missing values</span></a>
+<a class="sourceLine" id="cb3-11" title="11"></a>
+<a class="sourceLine" id="cb3-12" title="12"></a>
+<a class="sourceLine" id="cb3-13" title="13">titanic &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;D:/Git/Intro_to_R_Refresh/Data/titanic.csv&quot;</span>, </a>
+<a class="sourceLine" id="cb3-14" title="14">                           <span class="dt">na=</span><span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot; &quot;</span>, <span class="st">&quot;NULL&quot;</span>))</a></code></pre></div>
 <hr />
-<p><br></p>
 </div>
 </div>
 <div id="column-names" class="section level1">
 <h1><span class="header-section-number">3</span> Column Names</h1>
-<p><br></p>
 <p>In the previous section we looked at reading data into R and also inspecting it.</p>
 <p>In this section we are going to look at how to manipulate it.</p>
 <blockquote>
@@ -1649,29 +1651,29 @@ div.tocify {
 </blockquote>
 <p>This makes it easier for us to call on the variables when we need to use them.</p>
 <hr />
-<div id="example" class="section level2">
-<h2><span class="header-section-number">3.1</span> <strong>Example</strong></h2>
-<p><br></p>
+<div id="example" class="section level2 unnumbered">
+<h2><strong>Example</strong></h2>
 <p>For example if we wanted to pick the <code>school name</code> column from the school dataset.</p>
-<p><br></p>
 <blockquote>
 <p>The code below does not work.</p>
 </blockquote>
-<p><br></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">titanic<span class="op">$</span>name of Passenger</a></code></pre></div>
-<p><br></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co">#Selecting data using the $ symbol</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="co">#note this will not work because of the blank spaces</span></a>
+<a class="sourceLine" id="cb4-3" title="3"></a>
+<a class="sourceLine" id="cb4-4" title="4">titanic<span class="op">$</span>name of Passenger</a></code></pre></div>
 <p>To get around this we enclose <code>school name</code> with back ticks like the code below (the key above the tab key on left hand side).</p>
-<p><br></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">titanic<span class="op">$</span><span class="st">`</span><span class="dt">name Of Passenger</span><span class="st">`</span></a></code></pre></div>
-<p><br></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">#Selecting data using the $ symbol</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="co">#note this now works because of the back ticks</span></a>
+<a class="sourceLine" id="cb5-3" title="3"></a>
+<a class="sourceLine" id="cb5-4" title="4">titanic<span class="op">$</span><span class="st">`</span><span class="dt">name Of Passenger</span><span class="st">`</span></a></code></pre></div>
 <p>If your column names have spaces and you keep them, you must use backticks.</p>
-<p><br></p>
 <blockquote>
 <p>However its good practise to remove spaces and symbols.</p>
 </blockquote>
-<p><br></p>
 <p>We can see the column names by using the <code>names()</code> function to access the <code>name</code> attribute of the data.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">names</span>(titanic)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co">#Getting the column names using the names function</span></a>
+<a class="sourceLine" id="cb6-2" title="2"></a>
+<a class="sourceLine" id="cb6-3" title="3">base<span class="op">::</span><span class="kw">names</span>(titanic)</a></code></pre></div>
 <pre><code>##  [1] &quot;Pclass&quot;            &quot;Survived&quot;          &quot;name Of Passenger&quot;
 ##  [4] &quot;Sex of passenger&quot;  &quot;Age of passenger&quot;  &quot;Sibsp&quot;            
 ##  [7] &quot;Parch&quot;             &quot;Ticket&quot;            &quot;Fare&quot;             
@@ -1679,80 +1681,84 @@ div.tocify {
 <hr />
 </div>
 <div id="cleaning-column-names" class="section level2 tabset tabset-fade">
-<h2><span class="header-section-number">3.2</span> Cleaning Column Names</h2>
-<p><br></p>
-<div id="janitor-package" class="section level3">
-<h3><span class="header-section-number">3.2.1</span> <strong>janitor Package</strong></h3>
+<h2><span class="header-section-number">3.1</span> Cleaning Column Names</h2>
+<div id="janitor-package" class="section level3 unnumbered">
+<h3><strong>janitor Package</strong></h3>
 <p>The <code>janitor</code> package offers many functions used to manipulate data, in this session we will use the library to to clean our data set names.</p>
 <blockquote>
 <p>We can clean the names of our dataset with the <code>clean_names()</code> function as shown below.</p>
 </blockquote>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># Apply the function to the data set.</span></a>
-<a class="sourceLine" id="cb8-2" title="2"></a>
-<a class="sourceLine" id="cb8-3" title="3">titanic &lt;-<span class="st"> </span><span class="kw">clean_names</span>(titanic)</a>
-<a class="sourceLine" id="cb8-4" title="4"></a>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co">#Cleaning the column names using the janitor</span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="co">#package and the clean_names() function</span></a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="co">#This will put all names in small letter and </span></a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="co">#replace blank spaces with underscores</span></a>
 <a class="sourceLine" id="cb8-5" title="5"></a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="kw">names</span>(titanic)</a></code></pre></div>
+<a class="sourceLine" id="cb8-6" title="6"></a>
+<a class="sourceLine" id="cb8-7" title="7">titanic &lt;-<span class="st"> </span>janitor<span class="op">::</span><span class="kw">clean_names</span>(titanic)</a>
+<a class="sourceLine" id="cb8-8" title="8"></a>
+<a class="sourceLine" id="cb8-9" title="9"></a>
+<a class="sourceLine" id="cb8-10" title="10"><span class="co">#Getting the column names of the dataset</span></a>
+<a class="sourceLine" id="cb8-11" title="11"></a>
+<a class="sourceLine" id="cb8-12" title="12">base<span class="op">::</span><span class="kw">names</span>(titanic)</a></code></pre></div>
 <pre><code>##  [1] &quot;pclass&quot;            &quot;survived&quot;          &quot;name_of_passenger&quot;
 ##  [4] &quot;sex_of_passenger&quot;  &quot;age_of_passenger&quot;  &quot;sibsp&quot;            
 ##  [7] &quot;parch&quot;             &quot;ticket&quot;            &quot;fare&quot;             
 ## [10] &quot;cabin&quot;             &quot;embarked&quot;</code></pre>
-<p><br></p>
 <p><code>clean_names()</code> removes spaces, symbols, changes characters to lower case and makes all columns start with letters.</p>
-<p><br></p>
 <p>This is the default setting, other options we could use are:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="st">&quot;snake&quot;</span>, <span class="st">&quot;lower_camel&quot;</span>, <span class="st">&quot;upper_camel&quot;</span>, </a>
-<a class="sourceLine" id="cb10-2" title="2"></a>
-<a class="sourceLine" id="cb10-3" title="3"><span class="st">&quot;screaming_snake&quot;</span>, <span class="st">&quot;lower_upper&quot;</span>, <span class="st">&quot;upper_lower&quot;</span>, </a>
-<a class="sourceLine" id="cb10-4" title="4"></a>
-<a class="sourceLine" id="cb10-5" title="5"><span class="st">&quot;all_caps&quot;</span>, <span class="st">&quot;small_camel&quot;</span>, <span class="st">&quot;big_camel&quot;</span>, <span class="st">&quot;mixed&quot;</span></a></code></pre></div>
-<p><br></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co">#other options on the cases we can specify</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="co">#within the clean_names function</span></a>
+<a class="sourceLine" id="cb10-3" title="3"></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="st">&quot;snake&quot;</span>, <span class="st">&quot;lower_camel&quot;</span>, <span class="st">&quot;upper_camel&quot;</span>, </a>
+<a class="sourceLine" id="cb10-5" title="5"></a>
+<a class="sourceLine" id="cb10-6" title="6"><span class="st">&quot;screaming_snake&quot;</span>, <span class="st">&quot;lower_upper&quot;</span>, <span class="st">&quot;upper_lower&quot;</span>, </a>
+<a class="sourceLine" id="cb10-7" title="7"></a>
+<a class="sourceLine" id="cb10-8" title="8"><span class="st">&quot;all_caps&quot;</span>, <span class="st">&quot;small_camel&quot;</span>, <span class="st">&quot;big_camel&quot;</span>, <span class="st">&quot;mixed&quot;</span></a></code></pre></div>
 <p>Which can be put inside the <code>clean_names()</code> function as shown below:</p>
-<p><br></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">clean_names</span>(titanic, <span class="dt">case=</span><span class="st">&quot;snake&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co">#specifying the case within the clean_names function</span></a>
+<a class="sourceLine" id="cb11-2" title="2"></a>
+<a class="sourceLine" id="cb11-3" title="3">janitor<span class="op">::</span><span class="kw">clean_names</span>(titanic, <span class="dt">case=</span><span class="st">&quot;snake&quot;</span>)</a></code></pre></div>
 <hr />
 </div>
-<div id="gsub" class="section level3">
-<h3><span class="header-section-number">3.2.2</span> <strong>gsub</strong></h3>
+<div id="gsub" class="section level3 unnumbered">
+<h3><strong>gsub</strong></h3>
 <p>We can also do this using the function <code>gsub()</code>. <code>gsub()</code>.</p>
 <blockquote>
 <p>here is used on the column names, but can be used on text columns too.</p>
 </blockquote>
-<p><br></p>
 <blockquote>
 <p>The code below substitues in any instance of the first symbol within the &quot;&quot; with the second set of &quot;&quot;.</p>
 </blockquote>
 <p>For example, the output of <code>gsub(&quot; &quot;, &quot;_&quot;, &quot;piece of text&quot;)</code> would be <code>piece_of_text</code>.</p>
-<p><br></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># We can apply different substitution to the names of our columns.</span></a>
 <a class="sourceLine" id="cb12-2" title="2"></a>
-<a class="sourceLine" id="cb12-3" title="3"><span class="kw">names</span>(titanic) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;_&quot;</span>, <span class="kw">names</span>(titanic))</a>
+<a class="sourceLine" id="cb12-3" title="3">base<span class="op">::</span><span class="kw">names</span>(titanic) &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>, <span class="st">&quot;_&quot;</span>, <span class="kw">names</span>(titanic))</a>
 <a class="sourceLine" id="cb12-4" title="4"></a>
-<a class="sourceLine" id="cb12-5" title="5"><span class="kw">names</span>(titanic) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;,&quot;</span> , <span class="st">&quot;&quot;</span>, <span class="kw">names</span>(titanic) )</a>
+<a class="sourceLine" id="cb12-5" title="5">base<span class="op">::</span><span class="kw">names</span>(titanic) &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">gsub</span>(<span class="st">&quot;,&quot;</span> , <span class="st">&quot;&quot;</span>, <span class="kw">names</span>(titanic) )</a>
 <a class="sourceLine" id="cb12-6" title="6"></a>
-<a class="sourceLine" id="cb12-7" title="7"><span class="kw">names</span>(titanic) &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;-&quot;</span> , <span class="st">&quot;_&quot;</span>, <span class="kw">names</span>(titanic))</a></code></pre></div>
-<p><br></p>
+<a class="sourceLine" id="cb12-7" title="7">base<span class="op">::</span><span class="kw">names</span>(titanic) &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">gsub</span>(<span class="st">&quot;-&quot;</span> , <span class="st">&quot;_&quot;</span>, <span class="kw">names</span>(titanic))</a></code></pre></div>
 <p>The <code>tolower()</code> function changes a string of characters to lower case.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># We can lower case the names of the data frame.</span></a>
 <a class="sourceLine" id="cb13-2" title="2"></a>
-<a class="sourceLine" id="cb13-3" title="3"><span class="kw">names</span>(titanic) &lt;-<span class="st"> </span><span class="kw">tolower</span>(<span class="kw">names</span>(titanic)) </a></code></pre></div>
-<p><br></p>
+<a class="sourceLine" id="cb13-3" title="3">base<span class="op">::</span><span class="kw">names</span>(titanic) &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">tolower</span>(<span class="kw">names</span>(titanic)) </a></code></pre></div>
 <p>We can also rename column name. The first argument is the data frame to be changed, the second is the column and it’s change.</p>
-<p><br></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">titanic &lt;-<span class="st"> </span><span class="kw">rename</span>(school, <span class="dt">age_of_passenger =</span> age)</a></code></pre></div>
-<p><br></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co">#Renaming a column using the package dplyr</span></a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="co">#using the rename() function</span></a>
+<a class="sourceLine" id="cb14-3" title="3"><span class="co">#here we are renaming age_of_passenger with age</span></a>
+<a class="sourceLine" id="cb14-4" title="4"></a>
+<a class="sourceLine" id="cb14-5" title="5">titanic &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">rename</span>(titanic, <span class="dt">age_of_passenger =</span> age)</a></code></pre></div>
 <p>We can also use it on full columns.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co"># This lower cases all records in the column we have chosen.</span></a>
-<a class="sourceLine" id="cb15-2" title="2"></a>
-<a class="sourceLine" id="cb15-3" title="3">titanic<span class="op">$</span>name_of_passenger &lt;-<span class="st"> </span><span class="kw">tolower</span>(titanic<span class="op">$</span>name_of_passenger) </a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co">#Selecting the name of passenger column using the $ symbol</span></a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="co">#Using the tolower function </span></a>
+<a class="sourceLine" id="cb15-3" title="3"><span class="co"># This lower cases all records in the column we have chosen.</span></a>
+<a class="sourceLine" id="cb15-4" title="4"></a>
+<a class="sourceLine" id="cb15-5" title="5">titanic<span class="op">$</span>name_of_passenger &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">tolower</span>(titanic<span class="op">$</span>name_of_passenger) </a></code></pre></div>
 <hr />
-<p><br></p>
 </div>
 </div>
 </div>
 <div id="dplyr" class="section level1">
 <h1><span class="header-section-number">4</span> dplyr</h1>
-<p><br></p>
 <p>This is one of the most powerful tools in the <em>tidyverse</em>, which makes data manipulation simple and code easy to read.</p>
 <p>We are going to look at the following concepts,</p>
 <ol style="list-style-type: decimal">
@@ -1762,102 +1768,87 @@ div.tocify {
 <li>mutate</li>
 <li>joining data</li>
 </ol>
-<p><br></p>
 <blockquote>
 <p><code>dplyr</code> functions (verbs) all have the same structure.</p>
 </blockquote>
-<p><br></p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># This is the format they follow.</span></a>
 <a class="sourceLine" id="cb16-2" title="2"></a>
 <a class="sourceLine" id="cb16-3" title="3"><span class="kw">verb</span>(data, more information)</a></code></pre></div>
 <hr />
 <div id="arrange" class="section level2 tabset tabset-fade">
 <h2><span class="header-section-number">4.1</span> Arrange</h2>
-<p><br></p>
 <blockquote>
 <p><code>arrange()</code> lets you sort data by a variable.</p>
 </blockquote>
-<p><br></p>
 <p>We can sort the column <code>fare</code> with code below.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># We input the data we want to sort, and what we are going to sort it by.</span></a>
-<a class="sourceLine" id="cb17-2" title="2"></a>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># We input the data we want to sort, </span></a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="co">#and what we are going to sort it by.</span></a>
 <a class="sourceLine" id="cb17-3" title="3"></a>
-<a class="sourceLine" id="cb17-4" title="4">titanic_sorted &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="dt">.data =</span> titanic,</a>
-<a class="sourceLine" id="cb17-5" title="5">                          fare)</a>
-<a class="sourceLine" id="cb17-6" title="6"></a>
+<a class="sourceLine" id="cb17-4" title="4"></a>
+<a class="sourceLine" id="cb17-5" title="5">titanic_sorted &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="dt">.data =</span> titanic,</a>
+<a class="sourceLine" id="cb17-6" title="6">                          fare)</a>
 <a class="sourceLine" id="cb17-7" title="7"></a>
-<a class="sourceLine" id="cb17-8" title="8"><span class="co"># This shows us some of the sorted data.</span></a>
-<a class="sourceLine" id="cb17-9" title="9"></a>
+<a class="sourceLine" id="cb17-8" title="8"></a>
+<a class="sourceLine" id="cb17-9" title="9"><span class="co"># This shows us some of the sorted data.</span></a>
 <a class="sourceLine" id="cb17-10" title="10"></a>
-<a class="sourceLine" id="cb17-11" title="11"><span class="kw">head</span>(titanic_sorted<span class="op">$</span>fare)</a></code></pre></div>
+<a class="sourceLine" id="cb17-11" title="11"></a>
+<a class="sourceLine" id="cb17-12" title="12"><span class="kw">head</span>(titanic_sorted<span class="op">$</span>fare)</a></code></pre></div>
 <pre><code>## [1] 0 0 0 0 0 0</code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># This shows us some of the unsorted data.</span></a>
 <a class="sourceLine" id="cb19-2" title="2"></a>
 <a class="sourceLine" id="cb19-3" title="3"><span class="kw">head</span>(titanic<span class="op">$</span>fare)</a></code></pre></div>
 <pre><code>## [1] 211.3375 151.5500 151.5500 151.5500 151.5500  26.5500</code></pre>
-<p><br></p>
 <blockquote>
 <p><code>.data</code> is the argument name for the data argument in <code>dplyr</code>.</p>
 </blockquote>
-<p><br></p>
 <blockquote>
 <p>It is optional, but can help us read the code more effectively.</p>
 </blockquote>
 <p>If we don’t specify how we are sorting, the default is to sort in ascending order.</p>
-<p><br></p>
 <p>To sort in descending order, we use the code below:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># We input the data we want to sort, and what we are going to sort it by.</span></a>
-<a class="sourceLine" id="cb21-2" title="2"></a>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># We input the data we want to sort, </span></a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="co">#and what we are going to sort it by.</span></a>
 <a class="sourceLine" id="cb21-3" title="3"></a>
-<a class="sourceLine" id="cb21-4" title="4">titanic_sorted &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="dt">.data =</span> titanic,</a>
-<a class="sourceLine" id="cb21-5" title="5">                          <span class="kw">desc</span>(fare))</a>
-<a class="sourceLine" id="cb21-6" title="6"></a>
+<a class="sourceLine" id="cb21-4" title="4"></a>
+<a class="sourceLine" id="cb21-5" title="5">titanic_sorted &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="dt">.data =</span> titanic,</a>
+<a class="sourceLine" id="cb21-6" title="6">                          <span class="kw">desc</span>(fare))</a>
 <a class="sourceLine" id="cb21-7" title="7"></a>
-<a class="sourceLine" id="cb21-8" title="8"><span class="co"># This shows us some of the sorted data.</span></a>
-<a class="sourceLine" id="cb21-9" title="9"></a>
+<a class="sourceLine" id="cb21-8" title="8"></a>
+<a class="sourceLine" id="cb21-9" title="9"><span class="co"># This shows us some of the sorted data.</span></a>
 <a class="sourceLine" id="cb21-10" title="10"></a>
-<a class="sourceLine" id="cb21-11" title="11"><span class="kw">head</span>(titanic_sorted<span class="op">$</span>fare)</a></code></pre></div>
+<a class="sourceLine" id="cb21-11" title="11"></a>
+<a class="sourceLine" id="cb21-12" title="12"><span class="kw">head</span>(titanic_sorted<span class="op">$</span>fare)</a></code></pre></div>
 <pre><code>## [1] 512.3292 512.3292 512.3292 512.3292 263.0000 263.0000</code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="co"># This shows us some of the unsorted data.</span></a>
 <a class="sourceLine" id="cb23-2" title="2"></a>
 <a class="sourceLine" id="cb23-3" title="3"><span class="kw">head</span>(titanic<span class="op">$</span>fare)</a></code></pre></div>
 <pre><code>## [1] 211.3375 151.5500 151.5500 151.5500 151.5500  26.5500</code></pre>
-<p><br></p>
-<div id="exercise-2" class="section level3">
-<h3><span class="header-section-number">4.1.1</span> <strong>Exercise</strong></h3>
-<p><br></p>
+<blockquote>
+<p>Sorting Data Exercise</p>
+</blockquote>
+<div id="exercise-2" class="section level3 unnumbered">
+<h3><strong>Exercise</strong></h3>
 <ol style="list-style-type: decimal">
-<li>Can you sort the titanic data set by age <em>and</em> fare.</li>
-</ol>
-<p><br></p>
-<ol start="2" style="list-style-type: decimal">
-<li>Can you sort the titanic data set by age <em>and</em> fare in descending order for both variables.</li>
+<li><p>Can you sort the titanic data set by age <em>and</em> fare.</p></li>
+<li><p>Can you sort the titanic data set by age <em>and</em> fare in descending order for both variables.</p></li>
 </ol>
 </div>
-<div id="hint-1" class="section level3">
-<h3><span class="header-section-number">4.1.2</span> <strong>Hint</strong></h3>
-<p><br></p>
+<div id="hint-1" class="section level3 unnumbered">
+<h3><strong>Hint</strong></h3>
 <ol style="list-style-type: decimal">
-<li>Can you sort the titanic data set by age <em>and</em> fare.</li>
+<li><p>Can you sort the titanic data set by age <em>and</em> fare.</p></li>
+<li><p>Can you sort the titanic data set by age <em>and</em> fare in descending order for both variables.</p></li>
 </ol>
-<p><br></p>
-<ol start="2" style="list-style-type: decimal">
-<li>Can you sort the titanic data set by age <em>and</em> fare in descending order for both variables.</li>
-</ol>
-<p><br></p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="co"># Sort the titanic data based on two variables.</span></a>
 <a class="sourceLine" id="cb25-2" title="2"></a>
 <a class="sourceLine" id="cb25-3" title="3">titanic_sorted &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="dt">.data =</span> dataset,</a>
 <a class="sourceLine" id="cb25-4" title="4">                          first_variable,</a>
 <a class="sourceLine" id="cb25-5" title="5">                          second_variable)</a></code></pre></div>
-<p><br></p>
 <p>To sort both descending order we have to use <code>desc()</code></p>
 </div>
-<div id="show-answer-1" class="section level3">
-<h3><span class="header-section-number">4.1.3</span> <strong>Show Answer</strong></h3>
-<p><br></p>
+<div id="show-answer-1" class="section level3 unnumbered">
+<h3><strong>Show Answer</strong></h3>
 <p>Sorting by multiple variables, arranged them within each other. meaning it will sort the data by <code>age</code> first and then will sort by fare.</p>
-<p><br></p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Sort the titanic data based on two variables.</span></a>
 <a class="sourceLine" id="cb26-2" title="2"></a>
 <a class="sourceLine" id="cb26-3" title="3">titanic_sorted &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="dt">.data =</span> titanic,</a>
@@ -1880,10 +1871,8 @@ div.tocify {
 ## 10      2        1 &quot;Caldwell, Mast~ male                        0.833     0
 ## # ... with 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;, fare &lt;dbl&gt;,
 ## #   cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
-<p><br> To sort both descending order we have to use <code>desc()</code> around each column name.</p>
-<p><br></p>
+<p>To sort both descending order we have to use <code>desc()</code> around each column name.</p>
 <p>If you only had one <code>desc</code> on the <code>age_of_passenger</code>, it will show age_of_passenger in descending order, but fare in ascending.</p>
-<p><br></p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># Sorting both variables in descending order.</span></a>
 <a class="sourceLine" id="cb28-2" title="2"></a>
 <a class="sourceLine" id="cb28-3" title="3"></a>
@@ -1908,7 +1897,6 @@ div.tocify {
 ## # ... with 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;, fare &lt;dbl&gt;,
 ## #   cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
 <hr />
-<p><br></p>
 </div>
 </div>
 <div id="select" class="section level2 tabset tabset-fade">
@@ -1917,17 +1905,16 @@ div.tocify {
 <p><code>Select()</code> allows us to pick entire columns from our data.</p>
 </blockquote>
 <p>Previously we selected columns using the <code>$</code> symbol and the indexing operator <code>[]</code>.</p>
-<p><br></p>
 <p>We will opt to use <code>dplyr</code> functions which allow us to keep our code efficient and readable even with complex queries.</p>
-<p><br></p>
 <p><code>dplyr::select()</code> function, in its simplest form, takes two parameters.</p>
 <p>The first, like all <code>tidyverse</code> functions, being the tibble we are interested in, and the second being the column name.</p>
-<p><br></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">titanic_one_variable &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(titanic, </a>
-<a class="sourceLine" id="cb30-2" title="2">                                      name_of_passenger)</a>
-<a class="sourceLine" id="cb30-3" title="3"></a>
-<a class="sourceLine" id="cb30-4" title="4"></a>
-<a class="sourceLine" id="cb30-5" title="5">titanic_one_variable</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co">#Selecting data</span></a>
+<a class="sourceLine" id="cb30-2" title="2"></a>
+<a class="sourceLine" id="cb30-3" title="3">titanic_one_variable &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb30-4" title="4">                                      name_of_passenger)</a>
+<a class="sourceLine" id="cb30-5" title="5"></a>
+<a class="sourceLine" id="cb30-6" title="6"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb30-7" title="7">titanic_one_variable</a></code></pre></div>
 <pre><code>## # A tibble: 1,309 x 1
 ##    name_of_passenger                              
 ##    &lt;chr&gt;                                          
@@ -1942,20 +1929,21 @@ div.tocify {
 ##  9 Appleton, Mrs. Edward Dale (Charlotte Lamson)  
 ## 10 Artagaveytia, Mr. Ramon                        
 ## # ... with 1,299 more rows</code></pre>
-<p><br></p>
 <p>This has returned the <code>name_of_passenger</code> column from <code>titanic</code> in the form of a tibble.</p>
-<p><br></p>
 <p>The <code>select()</code> function, like the majority of <code>tidyverse</code> functions, offers a lot of flexibility. This allows us to achieve the same result using a number of different methods, without it being clear which method is more fitting. With great flexibility, comes great uncertainty…</p>
-<p><br></p>
 <p>If we want to select multiple columns, we have to first collect the column names together using a character vector, and then pass that as our second parameters.</p>
-<p><br></p>
 <blockquote>
 <p>Alternatively, we could just write out all the column names we want.</p>
 </blockquote>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">titanic_three_variables &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(titanic,</a>
-<a class="sourceLine" id="cb32-2" title="2">                                         <span class="kw">c</span>(<span class="st">&quot;name_of_passenger&quot;</span>, <span class="st">&quot;age_of_passenger&quot;</span>, <span class="st">&quot;pclass&quot;</span>))</a>
-<a class="sourceLine" id="cb32-3" title="3"></a>
-<a class="sourceLine" id="cb32-4" title="4">titanic_three_variables</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co">#Selecting data</span></a>
+<a class="sourceLine" id="cb32-2" title="2"></a>
+<a class="sourceLine" id="cb32-3" title="3">titanic_three_variables &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data=</span>titanic,</a>
+<a class="sourceLine" id="cb32-4" title="4">                                         <span class="kw">c</span>(<span class="st">&quot;name_of_passenger&quot;</span>, </a>
+<a class="sourceLine" id="cb32-5" title="5">                                           <span class="st">&quot;age_of_passenger&quot;</span>,</a>
+<a class="sourceLine" id="cb32-6" title="6">                                           <span class="st">&quot;pclass&quot;</span>))</a>
+<a class="sourceLine" id="cb32-7" title="7"></a>
+<a class="sourceLine" id="cb32-8" title="8"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb32-9" title="9">titanic_three_variables</a></code></pre></div>
 <pre><code>## # A tibble: 1,309 x 3
 ##    name_of_passenger                               age_of_passenger pclass
 ##    &lt;chr&gt;                                                      &lt;dbl&gt;  &lt;dbl&gt;
@@ -1970,15 +1958,15 @@ div.tocify {
 ##  9 Appleton, Mrs. Edward Dale (Charlotte Lamson)             NA          1
 ## 10 Artagaveytia, Mr. Ramon                                   NA          1
 ## # ... with 1,299 more rows</code></pre>
-<p><br></p>
 <p>The real power of the <code>select</code> function comes from its flexibility.</p>
-<p><br></p>
 <p>For example, suppose we wanted to select all columns excluding <code>name</code>, <code>age</code> and <code>pclass</code>. We could type all the columns names we need, or instead:</p>
-<p><br></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">titanic_minus_three_variables &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(titanic, </a>
-<a class="sourceLine" id="cb34-2" title="2">                                               <span class="op">-</span><span class="kw">c</span>(<span class="st">&quot;name_of_passenger&quot;</span>, <span class="st">&quot;age_of_passenger&quot;</span>, <span class="st">&quot;pclass&quot;</span>))</a>
-<a class="sourceLine" id="cb34-3" title="3"></a>
-<a class="sourceLine" id="cb34-4" title="4">titanic_minus_three_variables</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co">#Selecting data</span></a>
+<a class="sourceLine" id="cb34-2" title="2">titanic_minus_three_variables &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb34-3" title="3">                                               <span class="op">-</span><span class="kw">c</span>(<span class="st">&quot;name_of_passenger&quot;</span>, </a>
+<a class="sourceLine" id="cb34-4" title="4">                                                  <span class="st">&quot;age_of_passenger&quot;</span>, </a>
+<a class="sourceLine" id="cb34-5" title="5">                                                  <span class="st">&quot;pclass&quot;</span>))</a>
+<a class="sourceLine" id="cb34-6" title="6"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb34-7" title="7">titanic_minus_three_variables</a></code></pre></div>
 <pre><code>## # A tibble: 1,309 x 8
 ##    survived sex_of_passenger sibsp parch ticket    fare cabin   embarked
 ##       &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   
@@ -1993,17 +1981,15 @@ div.tocify {
 ##  9        1 female               2     0 11769     51.5 C101    S       
 ## 10        0 male                 0     0 PC 17609  49.5 &lt;NA&gt;    C       
 ## # ... with 1,299 more rows</code></pre>
-<p><br></p>
 <p>We can also select the columns using numbers, positive numbers and negative numbers to drop.</p>
-<p><br></p>
 <p>For example the code below will select the first 4 columns and then column 7.</p>
-<p><br></p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co"># We can both use regular sequences with &quot;:&quot; and specific numbers.</span></a>
-<a class="sourceLine" id="cb36-2" title="2"></a>
-<a class="sourceLine" id="cb36-3" title="3">titanic_number_select &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic, </a>
-<a class="sourceLine" id="cb36-4" title="4">                                       <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">7</span>))</a>
-<a class="sourceLine" id="cb36-5" title="5"></a>
-<a class="sourceLine" id="cb36-6" title="6">titanic_number_select</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co"># We can both use regular sequences with &quot;:&quot; </span></a>
+<a class="sourceLine" id="cb36-2" title="2"><span class="co">#and specific numbers.</span></a>
+<a class="sourceLine" id="cb36-3" title="3"></a>
+<a class="sourceLine" id="cb36-4" title="4">titanic_number_select &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic, </a>
+<a class="sourceLine" id="cb36-5" title="5">                                       <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">7</span>))</a>
+<a class="sourceLine" id="cb36-6" title="6"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb36-7" title="7">titanic_number_select</a></code></pre></div>
 <pre><code>## # A tibble: 1,309 x 5
 ##    pclass survived name_of_passenger                      sex_of_passenger parch
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;                                  &lt;chr&gt;            &lt;dbl&gt;
@@ -2018,14 +2004,12 @@ div.tocify {
 ##  9      1        1 Appleton, Mrs. Edward Dale (Charlotte~ female               0
 ## 10      1        0 Artagaveytia, Mr. Ramon                male                 0
 ## # ... with 1,299 more rows</code></pre>
-<p><br></p>
 <p>In this example we select all columns, except column 2.</p>
-<p><br></p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># The negative indicates which columns we do not want.</span></a>
 <a class="sourceLine" id="cb38-2" title="2"></a>
 <a class="sourceLine" id="cb38-3" title="3">titanic_number_select &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic, </a>
 <a class="sourceLine" id="cb38-4" title="4">                                       <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb38-5" title="5">                    </a>
+<a class="sourceLine" id="cb38-5" title="5"><span class="co">#To display the data                    </span></a>
 <a class="sourceLine" id="cb38-6" title="6">titanic_number_select                    </a></code></pre></div>
 <pre><code>## # A tibble: 1,309 x 10
 ##    pclass name_of_passeng~ sex_of_passenger age_of_passenger sibsp parch ticket
@@ -2042,13 +2026,10 @@ div.tocify {
 ## 10      1 Artagaveytia, M~ male                       NA         0     0 PC 17~
 ## # ... with 1,299 more rows, and 3 more variables: fare &lt;dbl&gt;, cabin &lt;chr&gt;,
 ## #   embarked &lt;chr&gt;</code></pre>
-<p><br></p>
 <p>This flexibility is further enhanced by the <code>select helper</code> functions.</p>
-<p><br></p>
 <blockquote>
 <p>These are functions which allow you select columns based on their names.</p>
 </blockquote>
-<p><br></p>
 <ul>
 <li><code>starts_with(match)</code>: Starts with a prefix.</li>
 <li><code>ends_with(match)</code>: Ends with a suffix.</li>
@@ -2059,12 +2040,13 @@ div.tocify {
 <li><code>everything()</code>: Selects all variables.</li>
 <li><code>last_col()</code>:</li>
 </ul>
-<p><br></p>
 <p>These functions are passed after the first parameter. e.g.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">titanic_starts_with &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data=</span>titanic, </a>
-<a class="sourceLine" id="cb40-2" title="2">                                     <span class="kw">starts_with</span>(<span class="st">&quot;s&quot;</span>))</a>
-<a class="sourceLine" id="cb40-3" title="3"></a>
-<a class="sourceLine" id="cb40-4" title="4">titanic_starts_with</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co">#Selecting columns</span></a>
+<a class="sourceLine" id="cb40-2" title="2"></a>
+<a class="sourceLine" id="cb40-3" title="3">titanic_starts_with &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb40-4" title="4">                                     <span class="kw">starts_with</span>(<span class="st">&quot;s&quot;</span>))</a>
+<a class="sourceLine" id="cb40-5" title="5"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb40-6" title="6">titanic_starts_with</a></code></pre></div>
 <pre><code>## # A tibble: 1,309 x 3
 ##    survived sex_of_passenger sibsp
 ##       &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;
@@ -2079,12 +2061,13 @@ div.tocify {
 ##  9        1 female               2
 ## 10        0 male                 0
 ## # ... with 1,299 more rows</code></pre>
-<p><br></p>
 <p>Or:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">titanic_matches &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data=</span>titanic, </a>
-<a class="sourceLine" id="cb42-2" title="2">                                 name_of_passenger, <span class="kw">matches</span>(<span class="st">&quot;.&quot;</span>))</a>
-<a class="sourceLine" id="cb42-3" title="3"></a>
-<a class="sourceLine" id="cb42-4" title="4">titanic_matches</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="co">#Selecting columns</span></a>
+<a class="sourceLine" id="cb42-2" title="2">titanic_matches &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb42-3" title="3">                                 name_of_passenger, </a>
+<a class="sourceLine" id="cb42-4" title="4">                                 <span class="kw">matches</span>(<span class="st">&quot;.&quot;</span>))</a>
+<a class="sourceLine" id="cb42-5" title="5"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb42-6" title="6">titanic_matches</a></code></pre></div>
 <pre><code>## # A tibble: 1,309 x 11
 ##    name_of_passeng~ pclass survived sex_of_passenger age_of_passenger sibsp
 ##    &lt;chr&gt;             &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2100,59 +2083,53 @@ div.tocify {
 ## 10 Artagaveytia, M~      1        0 male                       NA         0
 ## # ... with 1,299 more rows, and 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
-<p><br></p>
 <p>It is important to note, all <code>tidyverse</code> functions work on and return a copy of the original data. More often than not, the returned object is another <code>tibble</code>, even if it’s a single column.</p>
-<div id="exercise-3" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> <strong>Exercise</strong></h3>
-<p><br></p>
+<blockquote>
+<p>Selecting Data Exercise</p>
+</blockquote>
+<div id="exercise-3" class="section level3 unnumbered">
+<h3><strong>Exercise</strong></h3>
 <ol style="list-style-type: decimal">
-<li>Can you select from the titanic data set, the second, third and fourth columns.</li>
-</ol>
-<p><br></p>
-<ol start="2" style="list-style-type: decimal">
-<li>Can you select the columns, pclass, survived, name_of_passenger, sex_of_passenger, age_of_passenger and embarked.</li>
-</ol>
-<p><br></p>
-<ol start="3" style="list-style-type: decimal">
-<li>Can select just the last column.</li>
-</ol>
-<p><br></p>
-<ol start="4" style="list-style-type: decimal">
-<li>Can you select the columns that end the word “passenger”.</li>
-</ol>
-<p><br></p>
-<ol start="5" style="list-style-type: decimal">
-<li>Can you select, name_of_passenger, age_of_passenger and everything else</li>
+<li><p>Can you select from the titanic data set, the second, third and fourth columns.</p></li>
+<li><p>Can you select the columns, pclass, survived, name_of_passenger, sex_of_passenger, age_of_passenger and embarked.</p></li>
+<li><p>Can select just the last column.</p></li>
+<li><p>Can you select the columns that end the word “passenger”.</p></li>
+<li><p>Can you select, name_of_passenger, age_of_passenger and everything else</p></li>
 </ol>
 <hr />
 </div>
-<div id="hint-2" class="section level3">
-<h3><span class="header-section-number">4.2.2</span> <strong>Hint</strong></h3>
-<p><br></p>
+<div id="hint-2" class="section level3 unnumbered">
+<h3><strong>Hint</strong></h3>
 <p>Selecting the second, third and fourth column.</p>
 <blockquote>
 <p>Remember we can select by position or by name.</p>
 </blockquote>
-<p><br></p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data=</span>titanic, </a>
-<a class="sourceLine" id="cb44-2" title="2">                                <span class="kw">c</span>())</a></code></pre></div>
-<p><br></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="co">#selecting data</span></a>
+<a class="sourceLine" id="cb44-2" title="2"><span class="co">#You will need to specify the columns </span></a>
+<a class="sourceLine" id="cb44-3" title="3"><span class="co">#within the c() function</span></a>
+<a class="sourceLine" id="cb44-4" title="4"></a>
+<a class="sourceLine" id="cb44-5" title="5">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb44-6" title="6">                                <span class="kw">c</span>())</a></code></pre></div>
 <p>Selecting the columns, pclass, survived, name_of_passenger, sex_of_passenger, age_of_passenger and embarked.</p>
 <blockquote>
 <p>Remember we can select by position or by name. HINT “embarked” is the last column.</p>
 </blockquote>
-<p><br></p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic, </a>
-<a class="sourceLine" id="cb45-2" title="2">                                       <span class="kw">c</span>())</a></code></pre></div>
-<p><br></p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="co">#selecting data</span></a>
+<a class="sourceLine" id="cb45-2" title="2"><span class="co">#You will need to specify the columns </span></a>
+<a class="sourceLine" id="cb45-3" title="3"><span class="co">#within the c() function</span></a>
+<a class="sourceLine" id="cb45-4" title="4"></a>
+<a class="sourceLine" id="cb45-5" title="5">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic, </a>
+<a class="sourceLine" id="cb45-6" title="6">                                       <span class="kw">c</span>())</a></code></pre></div>
 <p>Selecting the columns that end the word “passenger”</p>
-<p><br></p>
 <blockquote>
 <p>HINT You might want to use something that helps you select the words of the columns</p>
 </blockquote>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic, </a>
-<a class="sourceLine" id="cb46-2" title="2">                       <span class="kw">c</span>())</a></code></pre></div>
-<p><br></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="co">#selecting data</span></a>
+<a class="sourceLine" id="cb46-2" title="2"><span class="co">#You will need to specify the columns </span></a>
+<a class="sourceLine" id="cb46-3" title="3"><span class="co">#within the c() function</span></a>
+<a class="sourceLine" id="cb46-4" title="4"></a>
+<a class="sourceLine" id="cb46-5" title="5">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic, </a>
+<a class="sourceLine" id="cb46-6" title="6">                       <span class="kw">c</span>())</a></code></pre></div>
 <p>Selecting name_of_passenger, age_of_passenger and everything else.</p>
 <blockquote>
 <p>This is a great way to reorder the columns, if you wanted to set 2 columns to be next to each other.</p>
@@ -2160,19 +2137,25 @@ div.tocify {
 <blockquote>
 <p>When you select columns, its places them in the order that we select them, HINT You might want to select something that helps you select all the columns.</p>
 </blockquote>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic,</a>
-<a class="sourceLine" id="cb47-2" title="2">                                         <span class="kw">c</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="co">#selecting data</span></a>
+<a class="sourceLine" id="cb47-2" title="2"><span class="co">#You will need to specify the columns </span></a>
+<a class="sourceLine" id="cb47-3" title="3"><span class="co">#within the c() function</span></a>
+<a class="sourceLine" id="cb47-4" title="4"></a>
+<a class="sourceLine" id="cb47-5" title="5">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic,</a>
+<a class="sourceLine" id="cb47-6" title="6">                                         <span class="kw">c</span>())</a></code></pre></div>
 <hr />
 </div>
-<div id="show-answer-2" class="section level3">
-<h3><span class="header-section-number">4.2.3</span> <strong>Show Answer</strong></h3>
+<div id="show-answer-2" class="section level3 unnumbered">
+<h3><strong>Show Answer</strong></h3>
 <hr />
-<p><br></p>
 <p>Selecting the second, third and fourth column.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data=</span>titanic, </a>
-<a class="sourceLine" id="cb48-2" title="2">                                <span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">4</span>))</a>
-<a class="sourceLine" id="cb48-3" title="3"></a>
-<a class="sourceLine" id="cb48-4" title="4">titanic_select_exercise</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co">#Selecting data</span></a>
+<a class="sourceLine" id="cb48-2" title="2"></a>
+<a class="sourceLine" id="cb48-3" title="3">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb48-4" title="4">                                <span class="kw">c</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">4</span>))</a>
+<a class="sourceLine" id="cb48-5" title="5"></a>
+<a class="sourceLine" id="cb48-6" title="6"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb48-7" title="7">titanic_select_exercise</a></code></pre></div>
 <pre><code>## # A tibble: 1,309 x 3
 ##    survived name_of_passenger                               sex_of_passenger
 ##       &lt;dbl&gt; &lt;chr&gt;                                           &lt;chr&gt;           
@@ -2190,45 +2173,52 @@ div.tocify {
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="co">#alternative</span></a>
 <a class="sourceLine" id="cb50-2" title="2"></a>
 <a class="sourceLine" id="cb50-3" title="3">titanic_select_exercise &lt;-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic, </a>
-<a class="sourceLine" id="cb50-4" title="4">                                          <span class="kw">c</span>(survived, name_of_passenger, sex_of_passenger))</a></code></pre></div>
-<p><br></p>
+<a class="sourceLine" id="cb50-4" title="4">                                          <span class="kw">c</span>(survived, </a>
+<a class="sourceLine" id="cb50-5" title="5">                                            name_of_passenger,</a>
+<a class="sourceLine" id="cb50-6" title="6">                                            sex_of_passenger))</a></code></pre></div>
 <p>Selecting the columns, pclass, survived, name_of_passenger, sex_of_passenger, age_of_passenger and embarked.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic, </a>
-<a class="sourceLine" id="cb51-2" title="2">                                       <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, embarked))</a>
-<a class="sourceLine" id="cb51-3" title="3"></a>
-<a class="sourceLine" id="cb51-4" title="4"><span class="co">#alternative</span></a>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="co">#Selecting data</span></a>
+<a class="sourceLine" id="cb51-2" title="2"></a>
+<a class="sourceLine" id="cb51-3" title="3">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic, </a>
+<a class="sourceLine" id="cb51-4" title="4">                                       <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, embarked))</a>
 <a class="sourceLine" id="cb51-5" title="5"></a>
-<a class="sourceLine" id="cb51-6" title="6">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic, </a>
-<a class="sourceLine" id="cb51-7" title="7">                      <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="kw">last_col</span>()))</a></code></pre></div>
-<p><br></p>
+<a class="sourceLine" id="cb51-6" title="6"><span class="co">#alternative</span></a>
+<a class="sourceLine" id="cb51-7" title="7"></a>
+<a class="sourceLine" id="cb51-8" title="8">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic, </a>
+<a class="sourceLine" id="cb51-9" title="9">                      <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="kw">last_col</span>()))</a></code></pre></div>
 <blockquote>
 <p>You could also type the column names.</p>
 </blockquote>
-<p><br></p>
 <p>Selecting the columns that end the word “passenger”</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic, </a>
-<a class="sourceLine" id="cb52-2" title="2">                       <span class="kw">c</span>(<span class="kw">ends_with</span>(<span class="st">&quot;passenger&quot;</span>)))</a>
-<a class="sourceLine" id="cb52-3" title="3"></a>
-<a class="sourceLine" id="cb52-4" title="4"></a>
-<a class="sourceLine" id="cb52-5" title="5"><span class="co">#alternative</span></a>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="co">#Selecting data</span></a>
+<a class="sourceLine" id="cb52-2" title="2"></a>
+<a class="sourceLine" id="cb52-3" title="3">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic, </a>
+<a class="sourceLine" id="cb52-4" title="4">                       <span class="kw">c</span>(<span class="kw">ends_with</span>(<span class="st">&quot;passenger&quot;</span>)))</a>
+<a class="sourceLine" id="cb52-5" title="5"></a>
 <a class="sourceLine" id="cb52-6" title="6"></a>
-<a class="sourceLine" id="cb52-7" title="7"></a>
+<a class="sourceLine" id="cb52-7" title="7"><span class="co">#alternative</span></a>
 <a class="sourceLine" id="cb52-8" title="8"></a>
-<a class="sourceLine" id="cb52-9" title="9">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic,</a>
-<a class="sourceLine" id="cb52-10" title="10">                                         <span class="kw">ends_with</span>(<span class="st">&quot;passenger&quot;</span>)) </a></code></pre></div>
+<a class="sourceLine" id="cb52-9" title="9"></a>
+<a class="sourceLine" id="cb52-10" title="10"></a>
+<a class="sourceLine" id="cb52-11" title="11">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic,</a>
+<a class="sourceLine" id="cb52-12" title="12">                                         <span class="kw">ends_with</span>(<span class="st">&quot;passenger&quot;</span>)) </a></code></pre></div>
 <p><br></p>
 <p>Selecting name_of_passenger, age_of_passenger and everything else.</p>
 <blockquote>
 <p>This is a great way to reorder the columns, if you wanted to set 2 columns to be next to each other.</p>
 </blockquote>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic,</a>
-<a class="sourceLine" id="cb53-2" title="2">                                         <span class="kw">c</span>(name_of_passenger, age_of_passenger, <span class="kw">everything</span>()))</a>
-<a class="sourceLine" id="cb53-3" title="3"></a>
-<a class="sourceLine" id="cb53-4" title="4"><span class="co">#alternative</span></a>
-<a class="sourceLine" id="cb53-5" title="5"></a>
-<a class="sourceLine" id="cb53-6" title="6">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic,</a>
-<a class="sourceLine" id="cb53-7" title="7">                                         name_of_passenger, age_of_passenger, <span class="kw">everything</span>())</a></code></pre></div>
-<p><br></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="co">#Selecting data</span></a>
+<a class="sourceLine" id="cb53-2" title="2">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic,</a>
+<a class="sourceLine" id="cb53-3" title="3">                                         <span class="kw">c</span>(name_of_passenger,</a>
+<a class="sourceLine" id="cb53-4" title="4">                                           age_of_passenger, </a>
+<a class="sourceLine" id="cb53-5" title="5">                                           <span class="kw">everything</span>()))</a>
+<a class="sourceLine" id="cb53-6" title="6"></a>
+<a class="sourceLine" id="cb53-7" title="7"><span class="co">#alternative</span></a>
+<a class="sourceLine" id="cb53-8" title="8"></a>
+<a class="sourceLine" id="cb53-9" title="9">titanic_select_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="dt">.data =</span> titanic,</a>
+<a class="sourceLine" id="cb53-10" title="10">                                         name_of_passenger, </a>
+<a class="sourceLine" id="cb53-11" title="11">                                         age_of_passenger,</a>
+<a class="sourceLine" id="cb53-12" title="12">                                         <span class="kw">everything</span>())</a></code></pre></div>
 </div>
 </div>
 <div id="filter" class="section level2">
@@ -2236,13 +2226,10 @@ div.tocify {
 <blockquote>
 <p><code>Filter()</code> allows us to pick specific entries (rows) which satisfy a given logical condition.</p>
 </blockquote>
-<p><br></p>
 <blockquote>
 <p>A conditional statement returns <code>TRUE</code> if the condition is met.</p>
 </blockquote>
-<p><br></p>
 <p>To create a logical condition, we have to use the logical operators.</p>
-<p><br></p>
 <table>
 <thead>
 <tr class="header">
@@ -2309,27 +2296,23 @@ div.tocify {
 </tr>
 </tbody>
 </table>
-<p><br></p>
 <blockquote>
 <p>Note: The <code>!</code> allows us to flip or invert an expression. Basically, if an expression returns <code>[TRUE, TRUE, FALSE]</code>, the same expression with a <code>!</code> in front of it will return <code>[FALSE, FALSE, TRUE]</code>.</p>
 </blockquote>
-<p><br></p>
 <blockquote>
 <p><strong>Remember that <code>==</code> is to test equality and <code>=</code> is to assign something.</strong></p>
 </blockquote>
-<p><br></p>
 <div id="single-conditional-filtering" class="section level3 tabset tabset-fade">
 <h3><span class="header-section-number">4.3.1</span> Single Conditional Filtering</h3>
-<p><br></p>
 <p>We can filter out a new data set where pclass is 2.</p>
 <blockquote>
 <p>This is refered to as single conditional filtering as we only have one condition.</p>
 </blockquote>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="co"># Select passengers (rows) who were in class (pclass) 2.</span></a>
 <a class="sourceLine" id="cb54-2" title="2"></a>
-<a class="sourceLine" id="cb54-3" title="3">secondclass &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, </a>
+<a class="sourceLine" id="cb54-3" title="3">secondclass &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data=</span>titanic, </a>
 <a class="sourceLine" id="cb54-4" title="4">                             pclass <span class="op">==</span><span class="st"> </span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb54-5" title="5"></a>
+<a class="sourceLine" id="cb54-5" title="5"><span class="co">#To display the data</span></a>
 <a class="sourceLine" id="cb54-6" title="6">secondclass</a></code></pre></div>
 <pre><code>## # A tibble: 277 x 11
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
@@ -2346,71 +2329,75 @@ div.tocify {
 ## 10      2        0 &quot;Baimbrigge, Mr~ male                           23     0
 ## # ... with 267 more rows, and 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
-<p><br></p>
 <blockquote>
 <p>A quick way to check that the filter worked is to look at all the unique values, in the data set above, using the <code>unique()</code> function.</p>
 </blockquote>
-<p><br></p>
 <p>Note here am using the <code>$</code> to select the column pclass.</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="co"># Returns the set of unique values in the data set.</span></a>
 <a class="sourceLine" id="cb56-2" title="2"></a>
-<a class="sourceLine" id="cb56-3" title="3"><span class="co">#finding out how many uniques values are in the titanic dataset pclass column</span></a>
-<a class="sourceLine" id="cb56-4" title="4"></a>
-<a class="sourceLine" id="cb56-5" title="5"><span class="kw">unique</span>(titanic<span class="op">$</span>pclass)</a></code></pre></div>
+<a class="sourceLine" id="cb56-3" title="3"><span class="co">#finding out how many uniques values </span></a>
+<a class="sourceLine" id="cb56-4" title="4"><span class="co">#are in the titanic dataset pclass column</span></a>
+<a class="sourceLine" id="cb56-5" title="5"></a>
+<a class="sourceLine" id="cb56-6" title="6">base<span class="op">::</span><span class="kw">unique</span>(titanic<span class="op">$</span>pclass)</a></code></pre></div>
 <pre><code>## [1] 1 2 3</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co">#finding out how many uniques values are in the secondclass dataset pclass column</span></a>
-<a class="sourceLine" id="cb58-2" title="2"></a>
-<a class="sourceLine" id="cb58-3" title="3"><span class="kw">unique</span>(secondclass<span class="op">$</span>pclass)</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co">#finding out how many uniques values </span></a>
+<a class="sourceLine" id="cb58-2" title="2"><span class="co">#are in the secondclass dataset pclass column</span></a>
+<a class="sourceLine" id="cb58-3" title="3"></a>
+<a class="sourceLine" id="cb58-4" title="4">base<span class="op">::</span><span class="kw">unique</span>(secondclass<span class="op">$</span>pclass)</a></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <blockquote>
 <p>We can see that on the original dataset the titanic, we have three(1,2,3) different uniques values in the pclass column and in our new filtered dataset we have one unique value (2)</p>
 </blockquote>
-<p><br></p>
 <p>Another example, we can filter out the passengers who paid more than 200.</p>
-<p><br></p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="co"># Select passengers who paid more than 200</span></a>
 <a class="sourceLine" id="cb60-2" title="2"></a>
-<a class="sourceLine" id="cb60-3" title="3">fare_more_than_<span class="dv">200</span> &lt;-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, </a>
-<a class="sourceLine" id="cb60-4" title="4">                                     fare <span class="op">&gt;</span><span class="st"> </span><span class="dv">200</span>)</a></code></pre></div>
-<p><br></p>
-<div id="exercise-4" class="section level4">
-<h4><span class="header-section-number">4.3.1.1</span> <strong>Exercise</strong></h4>
+<a class="sourceLine" id="cb60-3" title="3">fare_more_than_<span class="dv">200</span> &lt;-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb60-4" title="4">                                     fare <span class="op">&gt;</span><span class="st"> </span><span class="dv">200</span>)</a>
+<a class="sourceLine" id="cb60-5" title="5"></a>
+<a class="sourceLine" id="cb60-6" title="6"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb60-7" title="7">fare_more_than_<span class="dv">200</span></a></code></pre></div>
+<pre><code>## # A tibble: 38 x 11
+##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
+##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
+##  1      1        1 Allen, Miss. El~ female                         29     0
+##  2      1        0 Astor, Col. Joh~ male                           NA     1
+##  3      1        1 Astor, Mrs. Joh~ female                         18     1
+##  4      1        0 Baxter, Mr. Qui~ male                           24     0
+##  5      1        1 Baxter, Mrs. Ja~ female                         50     0
+##  6      1        1 Bidois, Miss. R~ female                         42     0
+##  7      1        1 Bird, Miss. Ell~ female                         29     0
+##  8      1        1 Bowen, Miss. Gr~ female                         45     0
+##  9      1        1 Cardeza, Mr. Th~ male                           36     0
+## 10      1        1 Cardeza, Mrs. J~ female                         58     0
+## # ... with 28 more rows, and 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
+## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
+<blockquote>
+<p>Single Conditional Filtering Data Exercise</p>
+</blockquote>
+<div id="exercise-4" class="section level4 unnumbered">
+<h4><strong>Exercise</strong></h4>
 <ol style="list-style-type: decimal">
-<li>Show the row for the passenger named: ‘Birkeland, Mr. Hans Martin Monsen’</li>
+<li><p>Show the row for the passenger named: ‘Birkeland, Mr. Hans Martin Monsen’</p></li>
+<li><p>How many passengers in the dataset are male?</p></li>
+<li><p>How many passengers are under 18 years of age?</p></li>
+<li><p>What proportion of passenger in the dataset survived?</p></li>
 </ol>
-<p><br></p>
-<ol start="2" style="list-style-type: decimal">
-<li>How many passengers in the dataset are male?</li>
-</ol>
-<p><br></p>
-<ol start="3" style="list-style-type: decimal">
-<li>How many passengers are under 18 years of age?</li>
-</ol>
-<p><br></p>
-<ol start="4" style="list-style-type: decimal">
-<li>What proportion of passenger in the dataset survived?</li>
-</ol>
-<p><br></p>
 </div>
-<div id="hint-3" class="section level4">
-<h4><span class="header-section-number">4.3.1.2</span> <strong>Hint</strong></h4>
-<p><br></p>
+<div id="hint-3" class="section level4 unnumbered">
+<h4><strong>Hint</strong></h4>
 <ol style="list-style-type: decimal">
 <li>Show the row for the passenger named: ‘Birkeland, Mr. Hans Martin Monsen’</li>
 </ol>
-<p><br></p>
 <blockquote>
 <p>Remember R is case sensitive and character data needs to have speech marks.</p>
 </blockquote>
-<p><br></p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="co">#filtering the dataset by name_of_passenger</span></a>
-<a class="sourceLine" id="cb61-2" title="2"></a>
-<a class="sourceLine" id="cb61-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data, </a>
-<a class="sourceLine" id="cb61-4" title="4">                                         condition)</a>
-<a class="sourceLine" id="cb61-5" title="5"></a>
-<a class="sourceLine" id="cb61-6" title="6"></a>
-<a class="sourceLine" id="cb61-7" title="7">titanic_filter_exercise</a></code></pre></div>
-<p><br></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="co">#filtering the dataset by name_of_passenger</span></a>
+<a class="sourceLine" id="cb62-2" title="2"></a>
+<a class="sourceLine" id="cb62-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data, </a>
+<a class="sourceLine" id="cb62-4" title="4">                                         condition)</a>
+<a class="sourceLine" id="cb62-5" title="5"></a>
+<a class="sourceLine" id="cb62-6" title="6"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb62-7" title="7">titanic_filter_exercise</a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>How many passengers in the dataset are male?</li>
 </ol>
@@ -2420,19 +2407,17 @@ div.tocify {
 <blockquote>
 <p>find out the number of rows</p>
 </blockquote>
-<p><br></p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="co">#filtering the dataset by sex_of_passenger</span></a>
-<a class="sourceLine" id="cb62-2" title="2"></a>
-<a class="sourceLine" id="cb62-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data, </a>
-<a class="sourceLine" id="cb62-4" title="4">                                          condition)</a>
-<a class="sourceLine" id="cb62-5" title="5"></a>
-<a class="sourceLine" id="cb62-6" title="6">titanic_filter_exercise</a>
-<a class="sourceLine" id="cb62-7" title="7"></a>
-<a class="sourceLine" id="cb62-8" title="8"></a>
-<a class="sourceLine" id="cb62-9" title="9"><span class="co">#showing the number of rows in our new filtered dataset</span></a>
-<a class="sourceLine" id="cb62-10" title="10"></a>
-<a class="sourceLine" id="cb62-11" title="11"><span class="kw">nrow</span>(titanic_filter_exercise)</a></code></pre></div>
-<p><br></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="co">#filtering the dataset by sex_of_passenger</span></a>
+<a class="sourceLine" id="cb63-2" title="2"></a>
+<a class="sourceLine" id="cb63-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data, </a>
+<a class="sourceLine" id="cb63-4" title="4">                                          condition)</a>
+<a class="sourceLine" id="cb63-5" title="5"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb63-6" title="6">titanic_filter_exercise</a>
+<a class="sourceLine" id="cb63-7" title="7"></a>
+<a class="sourceLine" id="cb63-8" title="8"></a>
+<a class="sourceLine" id="cb63-9" title="9"><span class="co">#showing the number of rows in our new filtered dataset</span></a>
+<a class="sourceLine" id="cb63-10" title="10"></a>
+<a class="sourceLine" id="cb63-11" title="11">base<span class="op">::</span><span class="kw">nrow</span>(titanic_filter_exercise)</a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>How many passengers are under 18 years of age?</li>
 </ol>
@@ -2442,22 +2427,19 @@ div.tocify {
 <blockquote>
 <p>find out the number of rows</p>
 </blockquote>
-<p><br></p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="co">#filtering the dataset by age_of_passenger</span></a>
-<a class="sourceLine" id="cb63-2" title="2"></a>
-<a class="sourceLine" id="cb63-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data, </a>
-<a class="sourceLine" id="cb63-4" title="4">                                        condition)</a>
-<a class="sourceLine" id="cb63-5" title="5"></a>
-<a class="sourceLine" id="cb63-6" title="6">titanic_filter_exercise</a>
-<a class="sourceLine" id="cb63-7" title="7"></a>
-<a class="sourceLine" id="cb63-8" title="8"><span class="co">#showing the number of rows in our new filtered dataset</span></a>
-<a class="sourceLine" id="cb63-9" title="9"></a>
-<a class="sourceLine" id="cb63-10" title="10"><span class="kw">nrow</span>(titanic_filter_exercise)</a></code></pre></div>
-<p><br></p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="co">#filtering the dataset by age_of_passenger</span></a>
+<a class="sourceLine" id="cb64-2" title="2"></a>
+<a class="sourceLine" id="cb64-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data, </a>
+<a class="sourceLine" id="cb64-4" title="4">                                        condition)</a>
+<a class="sourceLine" id="cb64-5" title="5"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb64-6" title="6">titanic_filter_exercise</a>
+<a class="sourceLine" id="cb64-7" title="7"></a>
+<a class="sourceLine" id="cb64-8" title="8"><span class="co">#showing the number of rows in our new filtered dataset</span></a>
+<a class="sourceLine" id="cb64-9" title="9"></a>
+<a class="sourceLine" id="cb64-10" title="10">base<span class="op">::</span><span class="kw">nrow</span>(titanic_filter_exercise)</a></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>What proportion of passenger in the dataset survived?</li>
 </ol>
-<p><br></p>
 <blockquote>
 <p>filter the data first</p>
 </blockquote>
@@ -2467,54 +2449,56 @@ div.tocify {
 <blockquote>
 <p>calculate the percentage using the formula nrow(filtered data)/nrow(full data)*100</p>
 </blockquote>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="co">#filtering the dataset by survived</span></a>
-<a class="sourceLine" id="cb64-2" title="2"></a>
-<a class="sourceLine" id="cb64-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data, </a>
-<a class="sourceLine" id="cb64-4" title="4">                                        condition)</a>
-<a class="sourceLine" id="cb64-5" title="5"></a>
-<a class="sourceLine" id="cb64-6" title="6">titanic_filter_exercise</a>
-<a class="sourceLine" id="cb64-7" title="7"></a>
-<a class="sourceLine" id="cb64-8" title="8"><span class="co">#showing the number of rows in oure ew filtered dataset</span></a>
-<a class="sourceLine" id="cb64-9" title="9"><span class="kw">nrow</span>(titanic_filter_exercise)</a>
-<a class="sourceLine" id="cb64-10" title="10"></a>
-<a class="sourceLine" id="cb64-11" title="11"><span class="co">#calculating the percentage, by dividing the total number of rows in new filtered dataset by the total number of rows in fulldataset then multiplied by 100</span></a>
-<a class="sourceLine" id="cb64-12" title="12"></a>
-<a class="sourceLine" id="cb64-13" title="13">percentage_of_passengers_survived &lt;-<span class="st"> </span><span class="kw">nrow</span>(titanic_filter_exercise)<span class="op">/</span><span class="kw">nrow</span>(titanic)<span class="op">*</span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb64-14" title="14"></a>
-<a class="sourceLine" id="cb64-15" title="15">percentage_of_passengers_survived</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="co">#filtering the dataset by survived</span></a>
+<a class="sourceLine" id="cb65-2" title="2"></a>
+<a class="sourceLine" id="cb65-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data, </a>
+<a class="sourceLine" id="cb65-4" title="4">                                        condition)</a>
+<a class="sourceLine" id="cb65-5" title="5"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb65-6" title="6">titanic_filter_exercise</a>
+<a class="sourceLine" id="cb65-7" title="7"></a>
+<a class="sourceLine" id="cb65-8" title="8"><span class="co">#showing the number of rows in oure ew filtered dataset</span></a>
+<a class="sourceLine" id="cb65-9" title="9"><span class="kw">nrow</span>(titanic_filter_exercise)</a>
+<a class="sourceLine" id="cb65-10" title="10"></a>
+<a class="sourceLine" id="cb65-11" title="11"><span class="co">#calculating the percentage, by dividing the total number </span></a>
+<a class="sourceLine" id="cb65-12" title="12"><span class="co">#of rows in new filtered dataset by the total number </span></a>
+<a class="sourceLine" id="cb65-13" title="13"><span class="co">#of rows in fulldataset then multiplied by 100</span></a>
+<a class="sourceLine" id="cb65-14" title="14"></a>
+<a class="sourceLine" id="cb65-15" title="15">percentage_of_passengers_survived &lt;-<span class="st"> </span><span class="kw">nrow</span>(titanic_filter_exercise)</a>
+<a class="sourceLine" id="cb65-16" title="16">                                     <span class="op">/</span><span class="kw">nrow</span>(titanic)<span class="op">*</span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb65-17" title="17"></a>
+<a class="sourceLine" id="cb65-18" title="18"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb65-19" title="19">percentage_of_passengers_survived</a></code></pre></div>
 <hr />
 </div>
-<div id="show-answer-3" class="section level4">
-<h4><span class="header-section-number">4.3.1.3</span> <strong>Show Answer</strong></h4>
-<p><br></p>
+<div id="show-answer-3" class="section level4 unnumbered">
+<h4><strong>Show Answer</strong></h4>
 <ol style="list-style-type: decimal">
 <li>Show the row for the passenger named: ‘Birkeland, Mr. Hans Martin Monsen’</li>
 </ol>
-<p><br></p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="co">#filtering the dataset by name_of_passenger</span></a>
-<a class="sourceLine" id="cb65-2" title="2"></a>
-<a class="sourceLine" id="cb65-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, </a>
-<a class="sourceLine" id="cb65-4" title="4">                                         name_of_passenger <span class="op">==</span><span class="st"> &#39;Birkeland, Mr. Hans Martin Monsen&#39;</span>)</a>
-<a class="sourceLine" id="cb65-5" title="5"></a>
-<a class="sourceLine" id="cb65-6" title="6"></a>
-<a class="sourceLine" id="cb65-7" title="7">titanic_filter_exercise</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="co">#filtering the dataset by name_of_passenger</span></a>
+<a class="sourceLine" id="cb66-2" title="2"></a>
+<a class="sourceLine" id="cb66-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb66-4" title="4">                                         name_of_passenger </a>
+<a class="sourceLine" id="cb66-5" title="5">                                         <span class="op">==</span><span class="st"> &#39;Birkeland, Mr. Hans Martin Monsen&#39;</span>)</a>
+<a class="sourceLine" id="cb66-6" title="6"></a>
+<a class="sourceLine" id="cb66-7" title="7"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb66-8" title="8">titanic_filter_exercise</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 11
 ##   pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp parch
 ##    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1      3        0 Birkeland, Mr. ~ male                           21     0     0
 ## # ... with 4 more variables: ticket &lt;chr&gt;, fare &lt;dbl&gt;, cabin &lt;chr&gt;,
 ## #   embarked &lt;chr&gt;</code></pre>
-<p><br></p>
 <ol start="2" style="list-style-type: decimal">
 <li>How many passengers in the dataset are male?</li>
 </ol>
-<p><br></p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="co">#filtering the dataset by sex_of_passenger</span></a>
-<a class="sourceLine" id="cb67-2" title="2"></a>
-<a class="sourceLine" id="cb67-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, </a>
-<a class="sourceLine" id="cb67-4" title="4">                                         sex_of_passenger <span class="op">==</span><span class="st"> &#39;male&#39;</span>)</a>
-<a class="sourceLine" id="cb67-5" title="5"></a>
-<a class="sourceLine" id="cb67-6" title="6">titanic_filter_exercise</a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="co">#filtering the dataset by sex_of_passenger</span></a>
+<a class="sourceLine" id="cb68-2" title="2"></a>
+<a class="sourceLine" id="cb68-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb68-4" title="4">                                         sex_of_passenger</a>
+<a class="sourceLine" id="cb68-5" title="5">                                         <span class="op">==</span><span class="st"> &#39;male&#39;</span>)</a>
+<a class="sourceLine" id="cb68-6" title="6"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb68-7" title="7">titanic_filter_exercise</a></code></pre></div>
 <pre><code>## # A tibble: 843 x 11
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2530,21 +2514,20 @@ div.tocify {
 ## 10      1        0 Beattie, Mr. Th~ male                       36         0
 ## # ... with 833 more rows, and 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="co">#showing the number of rows in our new filtered dataset</span></a>
-<a class="sourceLine" id="cb69-2" title="2"></a>
-<a class="sourceLine" id="cb69-3" title="3"><span class="kw">nrow</span>(titanic_filter_exercise)</a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="co">#showing the number of rows in our new filtered dataset</span></a>
+<a class="sourceLine" id="cb70-2" title="2"></a>
+<a class="sourceLine" id="cb70-3" title="3">base<span class="op">::</span><span class="kw">nrow</span>(titanic_filter_exercise)</a></code></pre></div>
 <pre><code>## [1] 843</code></pre>
-<p><br></p>
 <ol start="3" style="list-style-type: decimal">
 <li>How many passengers are under 18 years of age?</li>
 </ol>
-<p><br></p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co">#filtering the dataset by age_of_passenger</span></a>
-<a class="sourceLine" id="cb71-2" title="2"></a>
-<a class="sourceLine" id="cb71-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, </a>
-<a class="sourceLine" id="cb71-4" title="4">                                        age_of_passenger <span class="op">&lt;</span><span class="st"> </span><span class="dv">18</span> )</a>
-<a class="sourceLine" id="cb71-5" title="5"></a>
-<a class="sourceLine" id="cb71-6" title="6">titanic_filter_exercise</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="co">#filtering the dataset by age_of_passenger</span></a>
+<a class="sourceLine" id="cb72-2" title="2"></a>
+<a class="sourceLine" id="cb72-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb72-4" title="4">                                        age_of_passenger</a>
+<a class="sourceLine" id="cb72-5" title="5">                                        <span class="op">&lt;</span><span class="st"> </span><span class="dv">18</span> )</a>
+<a class="sourceLine" id="cb72-6" title="6"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb72-7" title="7">titanic_filter_exercise</a></code></pre></div>
 <pre><code>## # A tibble: 154 x 11
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2560,21 +2543,19 @@ div.tocify {
 ## 10      1        1 Madill, Miss. G~ female                     15         0
 ## # ... with 144 more rows, and 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="co">#showing the number of rows in our new filtered dataset</span></a>
-<a class="sourceLine" id="cb73-2" title="2"></a>
-<a class="sourceLine" id="cb73-3" title="3"><span class="kw">nrow</span>(titanic_filter_exercise)</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="co">#showing the number of rows in our new filtered dataset</span></a>
+<a class="sourceLine" id="cb74-2" title="2"></a>
+<a class="sourceLine" id="cb74-3" title="3">base<span class="op">::</span><span class="kw">nrow</span>(titanic_filter_exercise)</a></code></pre></div>
 <pre><code>## [1] 154</code></pre>
-<p><br></p>
 <ol start="4" style="list-style-type: decimal">
 <li>What proportion of passenger in the dataset survived?</li>
 </ol>
-<p><br></p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="co">#filtering the dataset by survived</span></a>
-<a class="sourceLine" id="cb75-2" title="2"></a>
-<a class="sourceLine" id="cb75-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, </a>
-<a class="sourceLine" id="cb75-4" title="4">                                        survived <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb75-5" title="5"></a>
-<a class="sourceLine" id="cb75-6" title="6">titanic_filter_exercise</a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1"><span class="co">#filtering the dataset by survived</span></a>
+<a class="sourceLine" id="cb76-2" title="2"></a>
+<a class="sourceLine" id="cb76-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb76-4" title="4">                                        survived <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb76-5" title="5"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb76-6" title="6">titanic_filter_exercise</a></code></pre></div>
 <pre><code>## # A tibble: 500 x 11
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2590,23 +2571,25 @@ div.tocify {
 ## 10      1        1 &quot;Baxter, Mrs. J~ female                     50         0
 ## # ... with 490 more rows, and 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1"><span class="co">#showing the number of rows in oure ew filtered dataset</span></a>
-<a class="sourceLine" id="cb77-2" title="2"><span class="kw">nrow</span>(titanic_filter_exercise)</a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="co">#showing the number of rows in oure ew filtered dataset</span></a>
+<a class="sourceLine" id="cb78-2" title="2">base<span class="op">::</span><span class="kw">nrow</span>(titanic_filter_exercise)</a></code></pre></div>
 <pre><code>## [1] 500</code></pre>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" title="1"><span class="co">#calculating the percentage, by dividing the total number of rows in new filtered dataset by the total number of rows in fulldataset then multiplied by 100</span></a>
-<a class="sourceLine" id="cb79-2" title="2"></a>
-<a class="sourceLine" id="cb79-3" title="3">percentage_of_passengers_survived &lt;-<span class="st"> </span><span class="kw">nrow</span>(titanic_filter_exercise)<span class="op">/</span><span class="kw">nrow</span>(titanic)<span class="op">*</span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb79-4" title="4"></a>
-<a class="sourceLine" id="cb79-5" title="5">percentage_of_passengers_survived</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1"><span class="co">#calculating the percentage, by dividing the total </span></a>
+<a class="sourceLine" id="cb80-2" title="2"><span class="co">#number of rows in new filtered dataset by the total </span></a>
+<a class="sourceLine" id="cb80-3" title="3"><span class="co">#number of rows in fulldataset then multiplied by 100</span></a>
+<a class="sourceLine" id="cb80-4" title="4"></a>
+<a class="sourceLine" id="cb80-5" title="5">percentage_of_passengers_survived &lt;-<span class="st"> </span><span class="kw">nrow</span>(titanic_filter_exercise)<span class="op">/</span><span class="kw">nrow</span>(titanic)<span class="op">*</span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb80-6" title="6"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb80-7" title="7">percentage_of_passengers_survived</a></code></pre></div>
 <pre><code>## [1] 38.1971</code></pre>
 <hr />
 <p>Another useful way to filter data is using the <code>dplyr::slice()</code> function.</p>
 <blockquote>
 <p>This method of filtering rows is great if you know the indexes of the rows you are interested in.</p>
 </blockquote>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="co"># Select the 5th row</span></a>
-<a class="sourceLine" id="cb81-2" title="2"></a>
-<a class="sourceLine" id="cb81-3" title="3"><span class="kw">slice</span>(titanic, <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" title="1"><span class="co"># Select the 5th row</span></a>
+<a class="sourceLine" id="cb82-2" title="2"></a>
+<a class="sourceLine" id="cb82-3" title="3">dplyr<span class="op">::</span><span class="kw">slice</span>(titanic, <span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 11
 ##   pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp parch
 ##    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -2614,7 +2597,7 @@ div.tocify {
 ## # ... with 4 more variables: ticket &lt;chr&gt;, fare &lt;dbl&gt;, cabin &lt;chr&gt;,
 ## #   embarked &lt;chr&gt;</code></pre>
 <p>What happens if we try:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1"><span class="kw">slice</span>(titanic, <span class="dv">-5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1">dplyr<span class="op">::</span><span class="kw">slice</span>(titanic, <span class="dv">-5</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 1,308 x 11
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2642,11 +2625,13 @@ div.tocify {
 <p>You can think of <code>between()</code> as being special version of multiple condition filters. <code>between()</code> is an <strong>and</strong> condition - greater than (or equal to) the lower bound <strong>and</strong> less than (or equal to) the upper bound.</p>
 <p>R also implements a multiple ‘or’ condition in the form <code>%in%</code>, where any rows that have a value occurring in a given vector will be included in the output tibble.</p>
 <p>Let’s look at some examples:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="co"># Select passengers who were in class 1 AND female</span></a>
-<a class="sourceLine" id="cb85-2" title="2"></a>
-<a class="sourceLine" id="cb85-3" title="3">titanic_filter_example &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, pclass <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>sex_of_passenger <span class="op">==</span><span class="st"> &quot;female&quot;</span>)</a>
-<a class="sourceLine" id="cb85-4" title="4"></a>
-<a class="sourceLine" id="cb85-5" title="5">titanic_filter_example</a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1"><span class="co"># Select passengers who were in class 1 AND female</span></a>
+<a class="sourceLine" id="cb86-2" title="2"></a>
+<a class="sourceLine" id="cb86-3" title="3">titanic_filter_example &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb86-4" title="4">                                        pclass <span class="op">==</span><span class="st"> </span><span class="dv">1</span> </a>
+<a class="sourceLine" id="cb86-5" title="5">                                        <span class="op">&amp;</span><span class="st"> </span>sex_of_passenger <span class="op">==</span><span class="st"> &quot;female&quot;</span>)</a>
+<a class="sourceLine" id="cb86-6" title="6"></a>
+<a class="sourceLine" id="cb86-7" title="7">titanic_filter_example</a></code></pre></div>
 <pre><code>## # A tibble: 144 x 11
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2662,11 +2647,13 @@ div.tocify {
 ## 10      1        1 &quot;Bazzani, Miss.~ female                         32     0
 ## # ... with 134 more rows, and 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1"><span class="co"># Select passengers who were female OR children (under 18)</span></a>
-<a class="sourceLine" id="cb87-2" title="2"></a>
-<a class="sourceLine" id="cb87-3" title="3">titanic_filter_example &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, sex_of_passenger <span class="op">==</span><span class="st"> &quot;female&quot;</span> <span class="op">|</span><span class="st"> </span>age_of_passenger <span class="op">&lt;</span><span class="st"> </span><span class="dv">18</span>)</a>
-<a class="sourceLine" id="cb87-4" title="4"></a>
-<a class="sourceLine" id="cb87-5" title="5">titanic_filter_example</a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="co"># Select passengers who were female OR children (under 18)</span></a>
+<a class="sourceLine" id="cb88-2" title="2"></a>
+<a class="sourceLine" id="cb88-3" title="3">titanic_filter_example &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb88-4" title="4">                                        sex_of_passenger <span class="op">==</span><span class="st"> &quot;female&quot;</span> </a>
+<a class="sourceLine" id="cb88-5" title="5">                                        <span class="op">|</span><span class="st"> </span>age_of_passenger <span class="op">&lt;</span><span class="st"> </span><span class="dv">18</span>)</a>
+<a class="sourceLine" id="cb88-6" title="6"></a>
+<a class="sourceLine" id="cb88-7" title="7">titanic_filter_example</a></code></pre></div>
 <pre><code>## # A tibble: 548 x 11
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2682,11 +2669,12 @@ div.tocify {
 ## 10      1        1 &quot;Baxter, Mrs. J~ female                     50         0
 ## # ... with 538 more rows, and 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="co"># Select passengers who paid more than 100 but less than 250 for their fare.</span></a>
-<a class="sourceLine" id="cb89-2" title="2"></a>
-<a class="sourceLine" id="cb89-3" title="3">titanic_filter_example &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, <span class="kw">between</span>(fare, <span class="dv">100</span>, <span class="dv">250</span>))</a>
-<a class="sourceLine" id="cb89-4" title="4"></a>
-<a class="sourceLine" id="cb89-5" title="5">titanic_filter_example</a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1"><span class="co"># Select passengers who paid more than 100 but less than 250 for their fare.</span></a>
+<a class="sourceLine" id="cb90-2" title="2"></a>
+<a class="sourceLine" id="cb90-3" title="3">titanic_filter_example &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb90-4" title="4">                                        <span class="kw">between</span>(fare, <span class="dv">100</span>, <span class="dv">250</span>))</a>
+<a class="sourceLine" id="cb90-5" title="5"></a>
+<a class="sourceLine" id="cb90-6" title="6">titanic_filter_example</a></code></pre></div>
 <pre><code>## # A tibble: 67 x 11
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2702,22 +2690,27 @@ div.tocify {
 ## 10      1        1 Bidois, Miss. R~ female                     42         0
 ## # ... with 57 more rows, and 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1"><span class="co"># Select passengers who embarked in Southampton or Cherbourg.</span></a>
-<a class="sourceLine" id="cb91-2" title="2"></a>
-<a class="sourceLine" id="cb91-3" title="3"><span class="co"># A more compact method of looking for a set of specific values.</span></a>
-<a class="sourceLine" id="cb91-4" title="4"></a>
-<a class="sourceLine" id="cb91-5" title="5">titanic_filter_example &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, embarked <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;S&#39;</span>,<span class="st">&#39;C&#39;</span>))</a></code></pre></div>
-<p><br></p>
-<div id="exercise-5" class="section level4">
-<h4><span class="header-section-number">4.3.2.1</span> <strong>Exercise</strong></h4>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1"><span class="co"># Select passengers who embarked </span></a>
+<a class="sourceLine" id="cb92-2" title="2"><span class="co">#in Southampton or Cherbourg.</span></a>
+<a class="sourceLine" id="cb92-3" title="3"></a>
+<a class="sourceLine" id="cb92-4" title="4"><span class="co"># A more compact method of looking </span></a>
+<a class="sourceLine" id="cb92-5" title="5"><span class="co">#for a set of specific values.</span></a>
+<a class="sourceLine" id="cb92-6" title="6"></a>
+<a class="sourceLine" id="cb92-7" title="7">titanic_filter_example &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data=</span>titanic,</a>
+<a class="sourceLine" id="cb92-8" title="8">                                        embarked <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;S&#39;</span>,<span class="st">&#39;C&#39;</span>))</a></code></pre></div>
+<blockquote>
+<p>Multiple Conditional Filtering Data Exercise</p>
+</blockquote>
+<div id="exercise-5" class="section level4 unnumbered">
+<h4><strong>Exercise</strong></h4>
 <ol style="list-style-type: decimal">
 <li><p>Select passengers who are in classes 2 and 3, what percentage of passengers is this?</p></li>
 <li><p>How many passengers who do not have siblings or spouses (‘sibsp’), or parents or children (‘parch’) on the boat?</p></li>
 <li><p>What proportion of passengers who ‘embarked’ in Cherbourg (‘C’) or Queenstown (‘Q’) survived?</p></li>
 </ol>
 </div>
-<div id="hint-4" class="section level4">
-<h4><span class="header-section-number">4.3.2.2</span> <strong>Hint</strong></h4>
+<div id="hint-4" class="section level4 unnumbered">
+<h4><strong>Hint</strong></h4>
 <ol style="list-style-type: decimal">
 <li>Select passengers who are in classes 2 and 3, what percentage of passengers is this?</li>
 </ol>
@@ -2727,75 +2720,84 @@ div.tocify {
 <blockquote>
 <p>The &amp; (Shift and 7) symbol indicates an AND relationship</p>
 </blockquote>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
-<a class="sourceLine" id="cb92-2" title="2"></a>
-<a class="sourceLine" id="cb92-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data,</a>
-<a class="sourceLine" id="cb92-4" title="4">                                         condition)</a>
-<a class="sourceLine" id="cb92-5" title="5"></a>
-<a class="sourceLine" id="cb92-6" title="6"><span class="co">#calculating the percentage, by dividing the total number of rows in new filtered dataset </span></a>
-<a class="sourceLine" id="cb92-7" title="7"><span class="co">#by the total number of rows in fulldataset then multiplied by 100</span></a>
-<a class="sourceLine" id="cb92-8" title="8"></a>
-<a class="sourceLine" id="cb92-9" title="9"><span class="kw">nrow</span>(titanic_filter_exercise)<span class="op">/</span><span class="kw">nrow</span>(titanic)<span class="op">*</span><span class="dv">100</span> </a></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li>How many passengers who do not have siblings or spouses (‘sibsp’), or parents or children (‘parch’) on the boat?</li>
-</ol>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
 <a class="sourceLine" id="cb93-2" title="2"></a>
 <a class="sourceLine" id="cb93-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data,</a>
 <a class="sourceLine" id="cb93-4" title="4">                                         condition)</a>
 <a class="sourceLine" id="cb93-5" title="5"></a>
-<a class="sourceLine" id="cb93-6" title="6"><span class="co">#showing the number of rows in oure ew filtered dataset</span></a>
-<a class="sourceLine" id="cb93-7" title="7"><span class="kw">nrow</span>(titanic_filter_exercise)</a></code></pre></div>
+<a class="sourceLine" id="cb93-6" title="6"><span class="co">#calculating the percentage, by dividing </span></a>
+<a class="sourceLine" id="cb93-7" title="7"><span class="co">#the total number of rows in new filtered dataset </span></a>
+<a class="sourceLine" id="cb93-8" title="8"><span class="co">#by the total number of rows in fulldataset </span></a>
+<a class="sourceLine" id="cb93-9" title="9"><span class="co">#then multiplied by 100</span></a>
+<a class="sourceLine" id="cb93-10" title="10"></a>
+<a class="sourceLine" id="cb93-11" title="11">base<span class="op">::</span><span class="kw">nrow</span>(titanic_filter_exercise)<span class="op">/</span><span class="kw">nrow</span>(titanic)<span class="op">*</span><span class="dv">100</span> </a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>How many passengers who do not have siblings or spouses (‘sibsp’), or parents or children (‘parch’) on the boat?</li>
+</ol>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
+<a class="sourceLine" id="cb94-2" title="2"></a>
+<a class="sourceLine" id="cb94-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data,</a>
+<a class="sourceLine" id="cb94-4" title="4">                                         condition)</a>
+<a class="sourceLine" id="cb94-5" title="5"></a>
+<a class="sourceLine" id="cb94-6" title="6"><span class="co">#showing the number of rows in the filtered dataset</span></a>
+<a class="sourceLine" id="cb94-7" title="7">base<span class="op">::</span><span class="kw">nrow</span>(titanic_filter_exercise)</a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>What proportion of passengers who ‘embarked’ in Cherbourg (‘C’) or Queenstown (‘Q’) survived?</li>
 </ol>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
-<a class="sourceLine" id="cb94-2" title="2">embarked_cherbourg_and_queenstown &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data,</a>
-<a class="sourceLine" id="cb94-3" title="3">                                         condition)</a>
-<a class="sourceLine" id="cb94-4" title="4"></a>
-<a class="sourceLine" id="cb94-5" title="5"><span class="co">#filtering the dataset a single condition</span></a>
-<a class="sourceLine" id="cb94-6" title="6">survived &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data,</a>
-<a class="sourceLine" id="cb94-7" title="7">                          condition)</a>
-<a class="sourceLine" id="cb94-8" title="8"></a>
-<a class="sourceLine" id="cb94-9" title="9"><span class="co">#showing the number of rows in oure ew filtered dataset</span></a>
-<a class="sourceLine" id="cb94-10" title="10"><span class="kw">nrow</span>(survived)<span class="op">/</span><span class="kw">nrow</span>(embarked_cherbourg_and_queenstown)</a></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
+<a class="sourceLine" id="cb95-2" title="2">embarked_cherbourg_and_queenstown &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data,</a>
+<a class="sourceLine" id="cb95-3" title="3">                                         condition)</a>
+<a class="sourceLine" id="cb95-4" title="4"></a>
+<a class="sourceLine" id="cb95-5" title="5"><span class="co">#filtering the dataset a single condition</span></a>
+<a class="sourceLine" id="cb95-6" title="6">survived &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(data,</a>
+<a class="sourceLine" id="cb95-7" title="7">                          condition)</a>
+<a class="sourceLine" id="cb95-8" title="8"></a>
+<a class="sourceLine" id="cb95-9" title="9"><span class="co">#showing the number of rows in oure ew filtered dataset</span></a>
+<a class="sourceLine" id="cb95-10" title="10">base<span class="op">::</span><span class="kw">nrow</span>(survived)<span class="op">/</span><span class="kw">nrow</span>(embarked_cherbourg_and_queenstown)</a></code></pre></div>
 </div>
-<div id="show-answer-4" class="section level4">
-<h4><span class="header-section-number">4.3.2.3</span> <strong>Show Answer</strong></h4>
+<div id="show-answer-4" class="section level4 unnumbered">
+<h4><strong>Show Answer</strong></h4>
 <ol style="list-style-type: decimal">
 <li>Select passengers who are in classes 2 and 3, what percentage of passengers is this?</li>
 </ol>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
-<a class="sourceLine" id="cb95-2" title="2"><span class="co"># The | idicates one condition or the other must be TRUE.</span></a>
-<a class="sourceLine" id="cb95-3" title="3"></a>
-<a class="sourceLine" id="cb95-4" title="4">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, pclass <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">|</span><span class="st"> </span>pclass <span class="op">==</span><span class="st"> </span><span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb95-5" title="5"></a>
-<a class="sourceLine" id="cb95-6" title="6"><span class="co">#calculating the percentage, by dividing the total number of rows in new filtered dataset </span></a>
-<a class="sourceLine" id="cb95-7" title="7"><span class="co">#by the total number of rows in fulldataset then multiplied by 100</span></a>
-<a class="sourceLine" id="cb95-8" title="8"></a>
-<a class="sourceLine" id="cb95-9" title="9"><span class="kw">nrow</span>(titanic_filter_exercise)<span class="op">/</span><span class="kw">nrow</span>(titanic)<span class="op">*</span><span class="dv">100</span> </a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
+<a class="sourceLine" id="cb96-2" title="2"><span class="co"># The | idicates one condition or the other must be TRUE.</span></a>
+<a class="sourceLine" id="cb96-3" title="3"></a>
+<a class="sourceLine" id="cb96-4" title="4">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb96-5" title="5">                                         pclass <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">|</span><span class="st"> </span>pclass <span class="op">==</span><span class="st"> </span><span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb96-6" title="6"></a>
+<a class="sourceLine" id="cb96-7" title="7"><span class="co">#calculating the percentage, by dividing the total </span></a>
+<a class="sourceLine" id="cb96-8" title="8"><span class="co">#number of rows in new filtered dataset </span></a>
+<a class="sourceLine" id="cb96-9" title="9"><span class="co">#by the total number of rows in fulldataset then multiplied by 100</span></a>
+<a class="sourceLine" id="cb96-10" title="10"></a>
+<a class="sourceLine" id="cb96-11" title="11">base<span class="op">::</span><span class="kw">nrow</span>(titanic_filter_exercise)<span class="op">/</span><span class="kw">nrow</span>(titanic)<span class="op">*</span><span class="dv">100</span> </a></code></pre></div>
 <pre><code>## [1] 75.32468</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>How many passengers who do not have siblings or spouses (‘sibsp’), or parents or children (‘parch’) on the boat?</li>
 </ol>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
-<a class="sourceLine" id="cb97-2" title="2"></a>
-<a class="sourceLine" id="cb97-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic,sibsp <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>parch <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb97-4" title="4"></a>
-<a class="sourceLine" id="cb97-5" title="5"><span class="co">#showing the number of rows in oure ew filtered dataset</span></a>
-<a class="sourceLine" id="cb97-6" title="6"><span class="kw">nrow</span>(titanic_filter_exercise)</a></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
+<a class="sourceLine" id="cb98-2" title="2"></a>
+<a class="sourceLine" id="cb98-3" title="3">titanic_filter_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data=</span>titanic,</a>
+<a class="sourceLine" id="cb98-4" title="4">                                         sibsp <span class="op">==</span><span class="st"> </span><span class="dv">0</span> </a>
+<a class="sourceLine" id="cb98-5" title="5">                                         <span class="op">&amp;</span><span class="st"> </span>parch <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb98-6" title="6"></a>
+<a class="sourceLine" id="cb98-7" title="7"><span class="co">#showing the number of rows in the filtered dataset</span></a>
+<a class="sourceLine" id="cb98-8" title="8">base<span class="op">::</span><span class="kw">nrow</span>(titanic_filter_exercise)</a></code></pre></div>
 <pre><code>## [1] 790</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>What proportion of passengers who ‘embarked’ in Cherbourg (‘C’) or Queenstown (‘Q’) survived?</li>
 </ol>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
-<a class="sourceLine" id="cb99-2" title="2">embarked_cherbourg_and_queenstown &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic,embarked <span class="op">==</span><span class="st"> &#39;C&#39;</span> <span class="op">|</span><span class="st"> </span>embarked <span class="op">==</span><span class="st"> &#39;Q&#39;</span>)</a>
-<a class="sourceLine" id="cb99-3" title="3"></a>
-<a class="sourceLine" id="cb99-4" title="4"><span class="co">#filtering the dataset a single condition</span></a>
-<a class="sourceLine" id="cb99-5" title="5">survived &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(embarked_cherbourg_and_queenstown, survived <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb99-6" title="6"></a>
-<a class="sourceLine" id="cb99-7" title="7"><span class="co">#showing the number of rows in oure ew filtered dataset</span></a>
-<a class="sourceLine" id="cb99-8" title="8"><span class="kw">nrow</span>(survived)<span class="op">/</span><span class="kw">nrow</span>(embarked_cherbourg_and_queenstown)</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1"><span class="co">#filtering the dataset on multiple conditions</span></a>
+<a class="sourceLine" id="cb100-2" title="2">embarked_cherbourg_and_queenstown &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data=</span>titanic,</a>
+<a class="sourceLine" id="cb100-3" title="3">                                                   embarked <span class="op">==</span><span class="st"> &#39;C&#39;</span></a>
+<a class="sourceLine" id="cb100-4" title="4">                                                   <span class="op">|</span><span class="st"> </span>embarked <span class="op">==</span><span class="st"> &#39;Q&#39;</span>)</a>
+<a class="sourceLine" id="cb100-5" title="5"></a>
+<a class="sourceLine" id="cb100-6" title="6"><span class="co">#filtering the dataset a single condition</span></a>
+<a class="sourceLine" id="cb100-7" title="7">survived &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(embarked_cherbourg_and_queenstown, </a>
+<a class="sourceLine" id="cb100-8" title="8">                          survived <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb100-9" title="9"></a>
+<a class="sourceLine" id="cb100-10" title="10"><span class="co">#showing the number of rows in oure ew filtered dataset</span></a>
+<a class="sourceLine" id="cb100-11" title="11">base<span class="op">::</span><span class="kw">nrow</span>(survived)<span class="op">/</span><span class="kw">nrow</span>(embarked_cherbourg_and_queenstown)</a></code></pre></div>
 <pre><code>## [1] 0.4936387</code></pre>
 </div>
 </div>
@@ -2803,16 +2805,21 @@ div.tocify {
 <div id="generating-new-variables" class="section level2">
 <h2><span class="header-section-number">4.4</span> Generating New Variables</h2>
 <p>To create a new variable, or a new column, in our <code>tibble</code> we will use the <code>dplyr::mutate()</code> function.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" title="1">dplyr<span class="op">::</span><span class="kw">mutate</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1">dplyr<span class="op">::</span><span class="kw">mutate</span>()</a></code></pre></div>
 <blockquote>
 <p>Code to create a new column follow the pattern below, where we state the name of the new column and the use the = to state what we want to be in that column.</p>
 </blockquote>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1">data_frame_name &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(data,</a>
-<a class="sourceLine" id="cb102-2" title="2">                                 <span class="dt">name_of_new_column =</span> contents of new column)</a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1"><span class="co">#generating new variables</span></a>
+<a class="sourceLine" id="cb103-2" title="2"></a>
+<a class="sourceLine" id="cb103-3" title="3">data_frame_name &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(data,</a>
+<a class="sourceLine" id="cb103-4" title="4">                                 name_of_new_column </a>
+<a class="sourceLine" id="cb103-5" title="5">                                 =<span class="st"> </span>contents of new column)</a></code></pre></div>
 <div id="constant-value-variables" class="section level3">
 <h3><span class="header-section-number">4.4.1</span> Constant Value Variables</h3>
 <p>The simplest example would be adding a constant value to each row in our <code>tibble</code>.</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1"><span class="kw">mutate</span>(titanic, <span class="dt">int_zeros =</span> 0L)</a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1"><span class="co">#generating new variables</span></a>
+<a class="sourceLine" id="cb104-2" title="2"></a>
+<a class="sourceLine" id="cb104-3" title="3">dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>titanic, <span class="dt">int_zeros =</span> 0L)</a></code></pre></div>
 <pre><code>## # A tibble: 1,309 x 12
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2828,7 +2835,7 @@ div.tocify {
 ## 10      1        0 Artagaveytia, M~ male                       NA         0
 ## # ... with 1,299 more rows, and 6 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, int_zeros &lt;int&gt;</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1"><span class="kw">mutate</span>(titanic, <span class="dt">double_ones =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1">dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>titanic, <span class="dt">double_ones =</span> <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 1,309 x 12
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2844,7 +2851,7 @@ div.tocify {
 ## 10      1        0 Artagaveytia, M~ male                       NA         0
 ## # ... with 1,299 more rows, and 6 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, double_ones &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1"><span class="kw">mutate</span>(titanic, <span class="dt">string_twos =</span> <span class="st">&quot;two&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>titanic, <span class="dt">string_twos =</span> <span class="st">&quot;two&quot;</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 1,309 x 12
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2861,7 +2868,12 @@ div.tocify {
 ## # ... with 1,299 more rows, and 6 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, string_twos &lt;chr&gt;</code></pre>
 <p>We could have also performed all three mutations in one line on the same <code>tibble</code>:</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1"><span class="kw">mutate</span>(titanic, <span class="dt">int_zeros =</span> 0L, <span class="dt">double_ones =</span> <span class="dv">1</span>, <span class="dt">string_twos =</span> <span class="st">&quot;two&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1"><span class="co">#generating new variables</span></a>
+<a class="sourceLine" id="cb110-2" title="2"></a>
+<a class="sourceLine" id="cb110-3" title="3">dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb110-4" title="4">       <span class="dt">int_zeros =</span> 0L, </a>
+<a class="sourceLine" id="cb110-5" title="5">       <span class="dt">double_ones =</span> <span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb110-6" title="6">       <span class="dt">string_twos =</span> <span class="st">&quot;two&quot;</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 1,309 x 14
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2883,8 +2895,10 @@ div.tocify {
 <h3><span class="header-section-number">4.4.2</span> Creating Variables Based on Existing Columns</h3>
 <p>We can perform mathematical operations and even functions on existing columns in the <code>mutate()</code> function using column names.</p>
 <p>Let’s look at some examples:</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1"><span class="co"># Capitalise sex column</span></a>
-<a class="sourceLine" id="cb111-2" title="2"><span class="kw">mutate</span>(titanic, <span class="dt">sex_of_passenger =</span> stringr<span class="op">::</span><span class="kw">str_to_upper</span>(sex_of_passenger))</a></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1"><span class="co"># Capitalise sex column</span></a>
+<a class="sourceLine" id="cb112-2" title="2">dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb112-3" title="3">       <span class="dt">sex_of_passenger =</span> </a>
+<a class="sourceLine" id="cb112-4" title="4">         stringr<span class="op">::</span><span class="kw">str_to_upper</span>(sex_of_passenger))</a></code></pre></div>
 <pre><code>## # A tibble: 1,309 x 11
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2900,8 +2914,9 @@ div.tocify {
 ## 10      1        0 Artagaveytia, M~ MALE                       NA         0
 ## # ... with 1,299 more rows, and 5 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1"><span class="co"># Determining family size on board</span></a>
-<a class="sourceLine" id="cb113-2" title="2"><span class="kw">mutate</span>(titanic, <span class="dt">family_size =</span> parch <span class="op">+</span><span class="st"> </span>sibsp <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1"><span class="co"># Determining family size on board</span></a>
+<a class="sourceLine" id="cb114-2" title="2">dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>titanic,</a>
+<a class="sourceLine" id="cb114-3" title="3">       <span class="dt">family_size =</span> parch <span class="op">+</span><span class="st"> </span>sibsp <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 1,309 x 12
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2918,8 +2933,12 @@ div.tocify {
 ## # ... with 1,299 more rows, and 6 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, family_size &lt;dbl&gt;</code></pre>
 <p>As well as mathematical operators and functions we can use conditionals.</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1"><span class="co"># Creating a logical column which is TRUE if passenger is female, false otherwise.</span></a>
-<a class="sourceLine" id="cb115-2" title="2"><span class="kw">mutate</span>(titanic, <span class="dt">is_female =</span> (sex_of_passenger <span class="op">==</span><span class="st"> &quot;female&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1"><span class="co"># Creating a logical column which is TRUE </span></a>
+<a class="sourceLine" id="cb116-2" title="2"><span class="co">#if passenger is female, false otherwise.</span></a>
+<a class="sourceLine" id="cb116-3" title="3"></a>
+<a class="sourceLine" id="cb116-4" title="4">dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb116-5" title="5">       <span class="dt">is_female =</span> </a>
+<a class="sourceLine" id="cb116-6" title="6">         (sex_of_passenger <span class="op">==</span><span class="st"> &quot;female&quot;</span>))</a></code></pre></div>
 <pre><code>## # A tibble: 1,309 x 12
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2937,9 +2956,16 @@ div.tocify {
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, is_female &lt;lgl&gt;</code></pre>
 <p>The key note from this being, with <code>mutate()</code>, we can do almost anything if we keep the number of rows the same.</p>
 <p>There are some functions which work with <code>mutate()</code> and enable us to perform more complicated tasks. <code>recode()</code> lets us map one value to another throughout the entire column. e.g.</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1"><span class="kw">recode</span>(titanic<span class="op">$</span>survived, <span class="st">&#39;1&#39;</span> =<span class="st"> </span><span class="ot">TRUE</span>, <span class="st">&#39;0&#39;</span> =<span class="st"> </span><span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="co">#Recoding variables</span></a>
+<a class="sourceLine" id="cb118-2" title="2"></a>
+<a class="sourceLine" id="cb118-3" title="3">dplyr<span class="op">::</span><span class="kw">recode</span>(<span class="dt">.data=</span>titanic<span class="op">$</span>survived, </a>
+<a class="sourceLine" id="cb118-4" title="4">              <span class="st">&#39;1&#39;</span> =<span class="st"> </span><span class="ot">TRUE</span>, <span class="st">&#39;0&#39;</span> =<span class="st"> </span><span class="ot">FALSE</span>)</a></code></pre></div>
 <p>To do this in the context of an entire <code>tibble</code> we have to use <code>recode()</code> with <code>mutate()</code>.</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="kw">mutate</span>(titanic, <span class="dt">survived_logical =</span> <span class="kw">recode</span>(survived, <span class="st">&#39;1&#39;</span> =<span class="st"> </span><span class="ot">TRUE</span>, <span class="st">&#39;0&#39;</span> =<span class="st"> </span><span class="ot">FALSE</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1"><span class="co">#Generating new variables</span></a>
+<a class="sourceLine" id="cb119-2" title="2"></a>
+<a class="sourceLine" id="cb119-3" title="3">dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>titanic,</a>
+<a class="sourceLine" id="cb119-4" title="4">              <span class="dt">survived_logical =</span> </a>
+<a class="sourceLine" id="cb119-5" title="5">                <span class="kw">recode</span>(survived, <span class="st">&#39;1&#39;</span> =<span class="st"> </span><span class="ot">TRUE</span>, <span class="st">&#39;0&#39;</span> =<span class="st"> </span><span class="ot">FALSE</span>))</a></code></pre></div>
 <pre><code>## # A tibble: 1,309 x 12
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -2955,57 +2981,88 @@ div.tocify {
 ## 10      1        0 Artagaveytia, M~ male                       NA         0
 ## # ... with 1,299 more rows, and 6 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, survived_logical &lt;lgl&gt;</code></pre>
-<div id="exercise-6" class="section level4">
-<h4><span class="header-section-number">4.4.2.1</span> <strong>Exercise</strong></h4>
+<blockquote>
+<p>Generating new variables exercise</p>
+</blockquote>
+<div id="exercise-6" class="section level4 unnumbered">
+<h4><strong>Exercise</strong></h4>
 <ol style="list-style-type: decimal">
 <li>Create a logical variable called ‘child’, it should have the value <code>TRUE</code> when the passenger is under 18 and <code>FALSE</code> otherwise.</li>
 </ol>
 </div>
-<div id="hint-5" class="section level4">
-<h4><span class="header-section-number">4.4.2.2</span> <strong>Hint</strong></h4>
+<div id="hint-5" class="section level4 unnumbered">
+<h4><strong>Hint</strong></h4>
 <ol style="list-style-type: decimal">
 <li>Create a logical variable called ‘child’, it should have the value <code>TRUE</code> when the passenger is under 18 and <code>FALSE</code> otherwise.</li>
 </ol>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1">titanic_mutate_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(data,</a>
-<a class="sourceLine" id="cb120-2" title="2">                                   new column <span class="dt">name =</span> content of new column)</a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1"><span class="co">#Generating new variables</span></a>
+<a class="sourceLine" id="cb121-2" title="2"></a>
+<a class="sourceLine" id="cb121-3" title="3">titanic_mutate_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(data,</a>
+<a class="sourceLine" id="cb121-4" title="4">                                   new column name </a>
+<a class="sourceLine" id="cb121-5" title="5">                                   =<span class="st"> </span>content of new column)</a></code></pre></div>
 </div>
-<div id="show-answer-5" class="section level4">
-<h4><span class="header-section-number">4.4.2.3</span> <strong>Show Answer</strong></h4>
+<div id="show-answer-5" class="section level4 unnumbered">
+<h4><strong>Show Answer</strong></h4>
 <ol style="list-style-type: decimal">
 <li>Create a logical variable called ‘child’, it should have the value <code>TRUE</code> when the passenger is under 18 and <code>FALSE</code> otherwise.</li>
 </ol>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1">titanic_mutate_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>titanic,</a>
-<a class="sourceLine" id="cb121-2" title="2">                                   <span class="dt">child =</span> age_of_passenger <span class="op">&lt;</span><span class="st"> </span><span class="dv">18</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1"><span class="co">#Generating new variables</span></a>
+<a class="sourceLine" id="cb122-2" title="2"></a>
+<a class="sourceLine" id="cb122-3" title="3">titanic_mutate_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>titanic,</a>
+<a class="sourceLine" id="cb122-4" title="4">                                   <span class="dt">child =</span> age_of_passenger <span class="op">&lt;</span><span class="st"> </span><span class="dv">18</span>)</a>
+<a class="sourceLine" id="cb122-5" title="5"></a>
+<a class="sourceLine" id="cb122-6" title="6"></a>
+<a class="sourceLine" id="cb122-7" title="7"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb122-8" title="8">titanic_mutate_exercise</a></code></pre></div>
+<pre><code>## # A tibble: 1,309 x 12
+##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
+##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
+##  1      1        1 Allen, Miss. El~ female                     29         0
+##  2      1        1 Allison, Master~ male                        0.917     1
+##  3      1        0 Allison, Miss. ~ female                      2         1
+##  4      1        0 Allison, Mr. Hu~ male                       30         1
+##  5      1        0 Allison, Mrs. H~ female                     25         1
+##  6      1        1 Anderson, Mr. H~ male                       48         0
+##  7      1        1 Andrews, Miss. ~ female                     63         1
+##  8      1        0 Andrews, Mr. Th~ male                       NA         0
+##  9      1        1 Appleton, Mrs. ~ female                     NA         2
+## 10      1        0 Artagaveytia, M~ male                       NA         0
+## # ... with 1,299 more rows, and 6 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
+## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, child &lt;lgl&gt;</code></pre>
 </div>
 </div>
 <div id="deleting-data" class="section level3">
 <h3><span class="header-section-number">4.4.3</span> Deleting data</h3>
 <p>We can also use the <code>mutate()</code> function to delete data.</p>
-<p>For example, we previously added a new column called <code>child</code> to our school data set.</p>
+<p>For example, we previously added a new column called <code>child</code> to our titanic data set.</p>
 <p>We can quickly see the names of our data set using the the <code>names()</code> function.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1">titanic_mutate_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>titanic,</a>
-<a class="sourceLine" id="cb122-2" title="2">                                   <span class="dt">child =</span> age_of_passenger <span class="op">&lt;</span><span class="st"> </span><span class="dv">18</span>)</a>
-<a class="sourceLine" id="cb122-3" title="3"></a>
-<a class="sourceLine" id="cb122-4" title="4"><span class="kw">names</span>(titanic_mutate_exercise)</a></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1"><span class="co">#Generating new variables</span></a>
+<a class="sourceLine" id="cb124-2" title="2"></a>
+<a class="sourceLine" id="cb124-3" title="3">titanic_mutate_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>titanic,</a>
+<a class="sourceLine" id="cb124-4" title="4">                                   <span class="dt">child =</span> age_of_passenger <span class="op">&lt;</span><span class="st"> </span><span class="dv">18</span>)</a>
+<a class="sourceLine" id="cb124-5" title="5"><span class="co">#To display the column names</span></a>
+<a class="sourceLine" id="cb124-6" title="6">base<span class="op">::</span><span class="kw">names</span>(titanic_mutate_exercise)</a></code></pre></div>
 <pre><code>##  [1] &quot;pclass&quot;            &quot;survived&quot;          &quot;name_of_passenger&quot;
 ##  [4] &quot;sex_of_passenger&quot;  &quot;age_of_passenger&quot;  &quot;sibsp&quot;            
 ##  [7] &quot;parch&quot;             &quot;ticket&quot;            &quot;fare&quot;             
 ## [10] &quot;cabin&quot;             &quot;embarked&quot;          &quot;child&quot;</code></pre>
 <p>We can delete the column using the code below.</p>
 <p>We take the titanic data set and set equal the column we want to delete to <code>NULL</code>.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1"><span class="co"># Setting a column = NULL effectively removes it. </span></a>
-<a class="sourceLine" id="cb124-2" title="2">titanic_mutate_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data =</span> titanic_mutate_exercise, </a>
-<a class="sourceLine" id="cb124-3" title="3">                                  <span class="dt">child =</span> <span class="ot">NULL</span>)</a>
-<a class="sourceLine" id="cb124-4" title="4"></a>
-<a class="sourceLine" id="cb124-5" title="5"><span class="co">#finding out the names of the columns in the dataset</span></a>
-<a class="sourceLine" id="cb124-6" title="6"><span class="kw">names</span>(titanic_mutate_exercise)</a></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1"><span class="co"># Setting a column = NULL effectively removes it. </span></a>
+<a class="sourceLine" id="cb126-2" title="2">titanic_mutate_exercise &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data =</span> titanic_mutate_exercise, </a>
+<a class="sourceLine" id="cb126-3" title="3">                                  <span class="dt">child =</span> <span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb126-4" title="4"></a>
+<a class="sourceLine" id="cb126-5" title="5"><span class="co">#finding out the names of the columns in the dataset</span></a>
+<a class="sourceLine" id="cb126-6" title="6"><span class="kw">names</span>(titanic_mutate_exercise)</a></code></pre></div>
 <pre><code>##  [1] &quot;pclass&quot;            &quot;survived&quot;          &quot;name_of_passenger&quot;
 ##  [4] &quot;sex_of_passenger&quot;  &quot;age_of_passenger&quot;  &quot;sibsp&quot;            
 ##  [7] &quot;parch&quot;             &quot;ticket&quot;            &quot;fare&quot;             
 ## [10] &quot;cabin&quot;             &quot;embarked&quot;</code></pre>
 <p>Alternatively, this will work too.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1"><span class="co">#selecting a column using the $ sign and assigning it to NULL</span></a>
-<a class="sourceLine" id="cb126-2" title="2">titanic_mutate_exercise<span class="op">$</span>child &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1"><span class="co">#selecting a column using the $ sign and assigning </span></a>
+<a class="sourceLine" id="cb128-2" title="2"><span class="co">#it to NULL</span></a>
+<a class="sourceLine" id="cb128-3" title="3"></a>
+<a class="sourceLine" id="cb128-4" title="4">titanic_mutate_exercise<span class="op">$</span>child &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
 </div>
 </div>
 <div id="the-pipe-operator" class="section level2 tabset tabset-fade">
@@ -3018,15 +3075,25 @@ div.tocify {
 </blockquote>
 <p>What this does is it takes the output of one statement and makes it an input to the next statement. You can think of it as saying <strong><code>and then</code></strong></p>
 <p>Up until now if we wanted to perform a sequence of actions on data, we’d have do something along the lines of:</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" title="1">filter_male &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(titanic, sex_of_passenger <span class="op">==</span><span class="st"> &#39;male&#39;</span>)</a>
-<a class="sourceLine" id="cb127-2" title="2"></a>
-<a class="sourceLine" id="cb127-3" title="3">mutate_age &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>filter_male, <span class="dt">adult_men =</span> age_of_passenger <span class="op">&gt;</span><span class="st"> </span><span class="dv">18</span>)</a>
-<a class="sourceLine" id="cb127-4" title="4"></a>
-<a class="sourceLine" id="cb127-5" title="5">arrange_fare &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="dt">.data=</span>mutate_age, <span class="kw">desc</span>(fare)) </a>
-<a class="sourceLine" id="cb127-6" title="6"></a>
-<a class="sourceLine" id="cb127-7" title="7">filter_adult_men &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data =</span> arrange_fare, adult_men <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb127-8" title="8"></a>
-<a class="sourceLine" id="cb127-9" title="9">filter_adult_men</a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1"><span class="co">#filtering the titanic dataset</span></a>
+<a class="sourceLine" id="cb129-2" title="2"></a>
+<a class="sourceLine" id="cb129-3" title="3">filter_male &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data=</span>titanic, </a>
+<a class="sourceLine" id="cb129-4" title="4">                             sex_of_passenger <span class="op">==</span><span class="st"> &#39;male&#39;</span>)</a>
+<a class="sourceLine" id="cb129-5" title="5"></a>
+<a class="sourceLine" id="cb129-6" title="6"><span class="co">#Adding a new column adult men to the filtered data</span></a>
+<a class="sourceLine" id="cb129-7" title="7">mutate_age &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>filter_male, </a>
+<a class="sourceLine" id="cb129-8" title="8">                            <span class="dt">adult_men =</span> age_of_passenger <span class="op">&gt;</span><span class="st"> </span><span class="dv">18</span>)</a>
+<a class="sourceLine" id="cb129-9" title="9"></a>
+<a class="sourceLine" id="cb129-10" title="10"><span class="co">#Sorting the data with the new added column</span></a>
+<a class="sourceLine" id="cb129-11" title="11">arrange_fare &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="dt">.data=</span>mutate_age, </a>
+<a class="sourceLine" id="cb129-12" title="12">                               <span class="kw">desc</span>(fare)) </a>
+<a class="sourceLine" id="cb129-13" title="13"></a>
+<a class="sourceLine" id="cb129-14" title="14"><span class="co">#filtering the sorted data with the new column</span></a>
+<a class="sourceLine" id="cb129-15" title="15">filter_adult_men &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dt">.data =</span> arrange_fare,</a>
+<a class="sourceLine" id="cb129-16" title="16">                                  adult_men <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb129-17" title="17"></a>
+<a class="sourceLine" id="cb129-18" title="18"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb129-19" title="19">filter_adult_men</a></code></pre></div>
 <pre><code>## # A tibble: 554 x 12
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -3043,17 +3110,21 @@ div.tocify {
 ## # ... with 544 more rows, and 6 more variables: parch &lt;dbl&gt;, ticket &lt;chr&gt;,
 ## #   fare &lt;dbl&gt;, cabin &lt;chr&gt;, embarked &lt;chr&gt;, adult_men &lt;lgl&gt;</code></pre>
 <p>With the pipe operator, this simplifies to:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1">filter_adult_men &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb129-2" title="2"><span class="st">  </span></a>
-<a class="sourceLine" id="cb129-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(sex_of_passenger <span class="op">==</span><span class="st"> &#39;male&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb129-4" title="4"><span class="st">  </span></a>
-<a class="sourceLine" id="cb129-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">adult_men =</span> age_of_passenger <span class="op">&gt;</span><span class="st"> </span><span class="dv">18</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb129-6" title="6"><span class="st">  </span></a>
-<a class="sourceLine" id="cb129-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="kw">desc</span>(fare)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb129-8" title="8"><span class="st">  </span></a>
-<a class="sourceLine" id="cb129-9" title="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(adult_men <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb129-10" title="10"></a>
-<a class="sourceLine" id="cb129-11" title="11">filter_adult_men</a></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1"><span class="co">#Chaining dplyr commands</span></a>
+<a class="sourceLine" id="cb131-2" title="2"></a>
+<a class="sourceLine" id="cb131-3" title="3">filter_adult_men &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb131-4" title="4"><span class="st">  </span></a>
+<a class="sourceLine" id="cb131-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(sex_of_passenger <span class="op">==</span><span class="st"> &#39;male&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb131-6" title="6"><span class="st">  </span></a>
+<a class="sourceLine" id="cb131-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">adult_men =</span> age_of_passenger <span class="op">&gt;</span><span class="st"> </span><span class="dv">18</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb131-8" title="8"><span class="st">  </span></a>
+<a class="sourceLine" id="cb131-9" title="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="kw">desc</span>(fare)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb131-10" title="10"><span class="st">  </span></a>
+<a class="sourceLine" id="cb131-11" title="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(adult_men <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb131-12" title="12"></a>
+<a class="sourceLine" id="cb131-13" title="13"></a>
+<a class="sourceLine" id="cb131-14" title="14"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb131-15" title="15">filter_adult_men</a></code></pre></div>
 <pre><code>## # A tibble: 554 x 12
 ##    pclass survived name_of_passeng~ sex_of_passenger age_of_passenger sibsp
 ##     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt; &lt;dbl&gt;
@@ -3082,42 +3153,48 @@ div.tocify {
 <p>The pipe operator functionality comes from the <code>magrittr</code> package. Its implementation is designed for <code>tidyverse</code>, but it also works in some cases outside the <code>tidyverse</code>.</p>
 <p><code>magrittr</code> is named humorously for French artist Ren? Magritte, whose famous painting “The Treachery of Images” features the phrase “Ceci n’est pas une pipe” (this is not a pipe). While we call <code>%&gt;%</code> the pipe operator, in fact <code>|</code> is a ‘true’ pipe, usually meaning boolean ‘or’.</p>
 <p>The pipe function is one of the most powerful features of the <code>tidyverse</code>. In fact, having a standardised chain of processing actions is called “a pipeline”. Making pipelines for data manipulation is great, because you can apply that pipeline to any incoming data with a given formatting and have your output in a friendly format.</p>
-<div id="exercise-7" class="section level3">
-<h3><span class="header-section-number">4.5.1</span> <strong>Exercise</strong></h3>
+<blockquote>
+<p>Chaining Exercise, Pipe Operator.</p>
+</blockquote>
+<div id="exercise-7" class="section level3 unnumbered">
+<h3><strong>Exercise</strong></h3>
 <p>Lets practice piping a few <code>dplyr</code> functions.</p>
 <p>1.Can you use at least 2 <code>dplyr</code> commands within a pipe?</p>
 </div>
-<div id="hint-6" class="section level3">
-<h3><span class="header-section-number">4.5.2</span> <strong>Hint</strong></h3>
+<div id="hint-6" class="section level3 unnumbered">
+<h3><strong>Hint</strong></h3>
 <blockquote>
 <p>Quick reminder of the dplyr commands</p>
 </blockquote>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1">dataframe_name &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb131-2" title="2"><span class="st">  </span></a>
-<a class="sourceLine" id="cb131-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb131-4" title="4"><span class="st">  </span></a>
-<a class="sourceLine" id="cb131-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb131-6" title="6"><span class="st">  </span></a>
-<a class="sourceLine" id="cb131-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb131-8" title="8"><span class="st">  </span></a>
-<a class="sourceLine" id="cb131-9" title="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1">dataframe_name &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb133-2" title="2"><span class="st">  </span></a>
+<a class="sourceLine" id="cb133-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb133-4" title="4"><span class="st">  </span></a>
+<a class="sourceLine" id="cb133-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb133-6" title="6"><span class="st">  </span></a>
+<a class="sourceLine" id="cb133-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb133-8" title="8"><span class="st">  </span></a>
+<a class="sourceLine" id="cb133-9" title="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>()</a></code></pre></div>
 </div>
-<div id="show-answer-6" class="section level3">
-<h3><span class="header-section-number">4.5.3</span> <strong>Show Answer</strong></h3>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1">age_survived_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb132-2" title="2"><span class="st">  </span></a>
-<a class="sourceLine" id="cb132-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(survived<span class="op">==</span><span class="dv">1</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb132-4" title="4"><span class="st">  </span></a>
-<a class="sourceLine" id="cb132-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">rounded_fare=</span>(<span class="kw">round</span>(fare))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb132-6" title="6"><span class="st">  </span></a>
-<a class="sourceLine" id="cb132-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">rounded_age=</span>(<span class="kw">round</span>(age_of_passenger))) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb132-8" title="8"><span class="st">  </span></a>
-<a class="sourceLine" id="cb132-9" title="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">c</span>(name_of_passenger,rounded_age,rounded_fare)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb132-10" title="10"><span class="st">  </span></a>
-<a class="sourceLine" id="cb132-11" title="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="kw">desc</span>(rounded_age))</a>
-<a class="sourceLine" id="cb132-12" title="12"></a>
-<a class="sourceLine" id="cb132-13" title="13"></a>
-<a class="sourceLine" id="cb132-14" title="14">age_survived_fare</a></code></pre></div>
+<div id="show-answer-6" class="section level3 unnumbered">
+<h3><strong>Show Answer</strong></h3>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1"><span class="co">#Chaining dplyr commands using the %&gt;%</span></a>
+<a class="sourceLine" id="cb134-2" title="2"></a>
+<a class="sourceLine" id="cb134-3" title="3">age_survived_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb134-4" title="4"><span class="st">  </span></a>
+<a class="sourceLine" id="cb134-5" title="5"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(survived<span class="op">==</span><span class="dv">1</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb134-6" title="6"><span class="st">  </span></a>
+<a class="sourceLine" id="cb134-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">rounded_fare=</span>(<span class="kw">round</span>(fare))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb134-8" title="8"><span class="st">  </span></a>
+<a class="sourceLine" id="cb134-9" title="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">rounded_age=</span>(<span class="kw">round</span>(age_of_passenger))) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb134-10" title="10"><span class="st">  </span></a>
+<a class="sourceLine" id="cb134-11" title="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(<span class="kw">c</span>(name_of_passenger,rounded_age,rounded_fare)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb134-12" title="12"><span class="st">  </span></a>
+<a class="sourceLine" id="cb134-13" title="13"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="kw">desc</span>(rounded_age))</a>
+<a class="sourceLine" id="cb134-14" title="14"></a>
+<a class="sourceLine" id="cb134-15" title="15"></a>
+<a class="sourceLine" id="cb134-16" title="16"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb134-17" title="17">age_survived_fare</a></code></pre></div>
 <pre><code>## # A tibble: 500 x 3
 ##    name_of_passenger                                    rounded_age rounded_fare
 ##    &lt;chr&gt;                                                      &lt;dbl&gt;        &lt;dbl&gt;
@@ -3161,7 +3238,9 @@ div.tocify {
 <p>Let’s have a look at the two <code>joining_data</code> data frames.</p>
 <p>In <code>joining_data1</code> we have the columns <strong>name, animal and age.</strong></p>
 <p>In <code>joining_data2</code> we have the columns <strong>name and vaccinated.</strong></p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1">joining_data_one</a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb136-2" title="2"></a>
+<a class="sourceLine" id="cb136-3" title="3">joining_data_one</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ##   name            animal   age
 ##   &lt;chr&gt;           &lt;chr&gt;  &lt;dbl&gt;
@@ -3171,7 +3250,8 @@ div.tocify {
 ## 4 JK Meowling     cat        7
 ## 5 K9              cat       11
 ## 6 Arf Vader       dog        6</code></pre>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1">joining_data_two</a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb138-2" title="2">joining_data_two</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   name            vaccinated
 ##   &lt;chr&gt;           &lt;lgl&gt;     
@@ -3199,12 +3279,12 @@ div.tocify {
 <p>“Catalie Portman” has data in all columns, as she appears in both the “left” and “right”.</p>
 <p>“Spiderpig” doesn’t have any data in this one. We’re only taking data from the “left”, and he’s only in the “right”.</p>
 <p>Let’s look at how we do this “left” merge in code. We’re going to use <code>left_join()</code> and do a “left” join.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1"><span class="co"># The first data frame is the one on the left.</span></a>
-<a class="sourceLine" id="cb138-2" title="2">join_left &lt;-<span class="st"> </span><span class="kw">left_join</span>(joining_data_one, </a>
-<a class="sourceLine" id="cb138-3" title="3">                        joining_data_two,</a>
-<a class="sourceLine" id="cb138-4" title="4">                        <span class="dt">by =</span> <span class="st">&quot;name&quot;</span>)</a>
-<a class="sourceLine" id="cb138-5" title="5"></a>
-<a class="sourceLine" id="cb138-6" title="6">join_left</a></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1"><span class="co"># The first data frame is the one on the left.</span></a>
+<a class="sourceLine" id="cb140-2" title="2">join_left &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">left_join</span>(joining_data_one, </a>
+<a class="sourceLine" id="cb140-3" title="3">                        joining_data_two,</a>
+<a class="sourceLine" id="cb140-4" title="4">                        <span class="dt">by =</span> <span class="st">&quot;name&quot;</span>)</a>
+<a class="sourceLine" id="cb140-5" title="5"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb140-6" title="6">join_left</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   name            animal   age vaccinated
 ##   &lt;chr&gt;           &lt;chr&gt;  &lt;dbl&gt; &lt;lgl&gt;     
@@ -3217,13 +3297,17 @@ div.tocify {
 <p>If you dont specify which column to join by, <code>R</code> will look to match by any column that matches.</p>
 <p>If we’re joining on more than one column we can specify using the parameter <code>by = c(vector))</code>.</p>
 <p>This is shown below.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1"><span class="co"># Joining using multiple columns</span></a>
-<a class="sourceLine" id="cb140-2" title="2">join_left &lt;-<span class="st"> </span><span class="kw">left_join</span>(joining_data_one, joining_data_two,</a>
-<a class="sourceLine" id="cb140-3" title="3">                        <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;column name&quot;</span>, <span class="st">&quot;column name&quot;</span>))</a>
-<a class="sourceLine" id="cb140-4" title="4"></a>
-<a class="sourceLine" id="cb140-5" title="5">join_left</a></code></pre></div>
-<div id="exercise-8" class="section level4">
-<h4><span class="header-section-number">4.6.1.1</span> <strong>Exercise</strong></h4>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1"><span class="co"># Joining using multiple columns</span></a>
+<a class="sourceLine" id="cb142-2" title="2">join_left &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">left_join</span>(joining_data_one, </a>
+<a class="sourceLine" id="cb142-3" title="3">                              joining_data_two,</a>
+<a class="sourceLine" id="cb142-4" title="4">                        <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;column name&quot;</span>, <span class="st">&quot;column name&quot;</span>))</a>
+<a class="sourceLine" id="cb142-5" title="5"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb142-6" title="6">join_left</a></code></pre></div>
+<blockquote>
+<p>Joining Data Exercise</p>
+</blockquote>
+<div id="exercise-8" class="section level4 unnumbered">
+<h4><strong>Exercise</strong></h4>
 <ol style="list-style-type: decimal">
 <li><p>Read in joining_exercise1.csv as marvel_left</p></li>
 <li><p>Read in joining_exercise2.csv as marvel_right</p></li>
@@ -3235,53 +3319,60 @@ div.tocify {
 <p>Note that the names of these columns may not be the same in both data frames.</p>
 <p>Use the help function to explore solutions to this.</p>
 </div>
-<div id="hint-7" class="section level4">
-<h4><span class="header-section-number">4.6.1.2</span> <strong>Hint</strong></h4>
+<div id="hint-7" class="section level4 unnumbered">
+<h4><strong>Hint</strong></h4>
 <ol style="list-style-type: decimal">
 <li><p>Read in joining_exercise1.csv as marvel_left</p></li>
 <li><p>Read in joining_exercise2.csv as marvel_right</p></li>
 <li><p>Inspect your data</p></li>
 </ol>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1"><span class="co"># Read in data</span></a>
-<a class="sourceLine" id="cb141-2" title="2"></a>
-<a class="sourceLine" id="cb141-3" title="3"></a>
-<a class="sourceLine" id="cb141-4" title="4">marvel_left &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;file path&quot;</span>)</a>
-<a class="sourceLine" id="cb141-5" title="5"></a>
-<a class="sourceLine" id="cb141-6" title="6">marvel_left</a>
-<a class="sourceLine" id="cb141-7" title="7"></a>
-<a class="sourceLine" id="cb141-8" title="8">marvel_right &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;file path&quot;</span>)</a>
-<a class="sourceLine" id="cb141-9" title="9"></a>
-<a class="sourceLine" id="cb141-10" title="10">marvel_right</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="co"># Read in data</span></a>
+<a class="sourceLine" id="cb143-2" title="2"></a>
+<a class="sourceLine" id="cb143-3" title="3"></a>
+<a class="sourceLine" id="cb143-4" title="4">marvel_left &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;file path&quot;</span>)</a>
+<a class="sourceLine" id="cb143-5" title="5"></a>
+<a class="sourceLine" id="cb143-6" title="6">marvel_left</a>
+<a class="sourceLine" id="cb143-7" title="7"></a>
+<a class="sourceLine" id="cb143-8" title="8">marvel_right &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;file path&quot;</span>)</a>
+<a class="sourceLine" id="cb143-9" title="9"></a>
+<a class="sourceLine" id="cb143-10" title="10">marvel_right</a></code></pre></div>
 <ol start="4" style="list-style-type: decimal">
 <li>Using <code>marvel_right</code> and <code>marvel_left</code> perform a <code>full_join()</code> using the column <code>name</code>.</li>
 </ol>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1">marvel_full_join &lt;-<span class="st"> </span><span class="kw">full_join</span>(dataframe, dataframe, <span class="dt">by =</span> column)</a>
-<a class="sourceLine" id="cb142-2" title="2">                                                                          </a>
-<a class="sourceLine" id="cb142-3" title="3"></a>
-<a class="sourceLine" id="cb142-4" title="4">marvel_full_join</a></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1"><span class="co">#Joining data</span></a>
+<a class="sourceLine" id="cb144-2" title="2"></a>
+<a class="sourceLine" id="cb144-3" title="3">marvel_full_join &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">full_join</span>(dataframe, dataframe,</a>
+<a class="sourceLine" id="cb144-4" title="4">                                     <span class="dt">by =</span> column)</a>
+<a class="sourceLine" id="cb144-5" title="5">                                                                          </a>
+<a class="sourceLine" id="cb144-6" title="6"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb144-7" title="7">marvel_full_join</a></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
-<li>Using <code>marvel_left</code> and <code>marvel_righ</code>t perform a “left” join.</li>
+<li>Using <code>marvel_left</code> and <code>marvel_right</code> perform a “left” join.</li>
 </ol>
 <p>Join on <em>BOTH</em> the column containing <code>names</code> and the column containing <code>years</code>.</p>
 <p>Note that the names of these columns may not be the same in both data frames.</p>
 <p>Use the help function to explore solutions to this.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="co"># We can join two columns that are named differently.</span></a>
-<a class="sourceLine" id="cb143-2" title="2"></a>
-<a class="sourceLine" id="cb143-3" title="3">marvel_left_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(dataframe, dataframe, <span class="dt">by =</span> <span class="kw">c</span>(columns))</a>
-<a class="sourceLine" id="cb143-4" title="4"></a>
-<a class="sourceLine" id="cb143-5" title="5">marvel_left_join</a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1"><span class="co"># We can join two columns that are named differently.</span></a>
+<a class="sourceLine" id="cb145-2" title="2"></a>
+<a class="sourceLine" id="cb145-3" title="3">marvel_left_join &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">left_join</span>(</a>
+<a class="sourceLine" id="cb145-4" title="4">                         dataframe, </a>
+<a class="sourceLine" id="cb145-5" title="5">                         dataframe, <span class="dt">by =</span> <span class="kw">c</span>(columns))</a>
+<a class="sourceLine" id="cb145-6" title="6"></a>
+<a class="sourceLine" id="cb145-7" title="7"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb145-8" title="8"></a>
+<a class="sourceLine" id="cb145-9" title="9">marvel_left_join</a></code></pre></div>
 </div>
-<div id="show-answer-7" class="section level4">
-<h4><span class="header-section-number">4.6.1.3</span> <strong>Show Answer</strong></h4>
+<div id="show-answer-7" class="section level4 unnumbered">
+<h4><strong>Show Answer</strong></h4>
 <ol style="list-style-type: decimal">
 <li><p>Read in joining_exercise1.csv as marvel_left</p></li>
 <li><p>Read in joining_exercise2.csv as marvel_right</p></li>
 <li><p>Inspect your data</p></li>
 </ol>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1"><span class="co"># Read in data</span></a>
-<a class="sourceLine" id="cb144-2" title="2"></a>
-<a class="sourceLine" id="cb144-3" title="3"></a>
-<a class="sourceLine" id="cb144-4" title="4">marvel_left &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;D:/Git/Intro_to_R_Refresh/Data/joining_exercise1.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1"><span class="co"># Read in data</span></a>
+<a class="sourceLine" id="cb146-2" title="2"></a>
+<a class="sourceLine" id="cb146-3" title="3"></a>
+<a class="sourceLine" id="cb146-4" title="4">marvel_left &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;D:/Git/Intro_to_R_Refresh/Data/joining_exercise1.csv&quot;</span>)</a></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   name = col_character(),
@@ -3289,7 +3380,7 @@ div.tocify {
 ##   month = col_character(),
 ##   worldwide_box_office = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1">marvel_left</a></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1">marvel_left</a></code></pre></div>
 <pre><code>## # A tibble: 20 x 4
 ##    name                                year month    worldwide_box_office
 ##    &lt;chr&gt;                              &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;
@@ -3313,14 +3404,14 @@ div.tocify {
 ## 18 Black Panther                       2018 February           1346913161
 ## 19 Avengers: Infinity War              2018 April              2047675173
 ## 20 Ant Man and the Wasp                2018 July                622648074</code></pre>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1">marvel_right &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;D:/Git/Intro_to_R_Refresh/Data/joining_exercise2.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1">marvel_right &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;D:/Git/Intro_to_R_Refresh/Data/joining_exercise2.csv&quot;</span>)</a></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   name = col_character(),
 ##   release_year = col_double(),
 ##   score = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1">marvel_right</a></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1">marvel_right</a></code></pre></div>
 <pre><code>## # A tibble: 20 x 3
 ##    name                               release_year score
 ##    &lt;chr&gt;                                     &lt;dbl&gt; &lt;dbl&gt;
@@ -3347,10 +3438,10 @@ div.tocify {
 <ol start="4" style="list-style-type: decimal">
 <li>Using <code>marvel_right</code> and <code>marvel_left</code> perform a <code>full_join()</code> using the column <code>name</code>.</li>
 </ol>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1">marvel_full_join &lt;-<span class="st"> </span><span class="kw">full_join</span>(marvel_left, marvel_right, <span class="dt">by =</span> <span class="st">&quot;name&quot;</span>)</a>
-<a class="sourceLine" id="cb152-2" title="2">                                                                          </a>
-<a class="sourceLine" id="cb152-3" title="3"></a>
-<a class="sourceLine" id="cb152-4" title="4">marvel_full_join</a></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1">marvel_full_join &lt;-<span class="st"> </span><span class="kw">full_join</span>(marvel_left, marvel_right, <span class="dt">by =</span> <span class="st">&quot;name&quot;</span>)</a>
+<a class="sourceLine" id="cb154-2" title="2">                                                                          </a>
+<a class="sourceLine" id="cb154-3" title="3"></a>
+<a class="sourceLine" id="cb154-4" title="4">marvel_full_join</a></code></pre></div>
 <pre><code>## # A tibble: 23 x 6
 ##    name                       year month   worldwide_box_off~ release_year score
 ##    &lt;chr&gt;                     &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;
@@ -3371,10 +3462,10 @@ div.tocify {
 <p>Join on <em>BOTH</em> the column containing <code>names</code> and the column containing <code>years</code>.</p>
 <p>Note that the names of these columns may not be the same in both data frames.</p>
 <p>Use the help function to explore solutions to this.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1"><span class="co"># We can join two columns that are named differently.</span></a>
-<a class="sourceLine" id="cb154-2" title="2">marvel_left_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(marvel_left, marvel_right, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;year&quot;</span>=<span class="st">&quot;release_year&quot;</span>))</a>
-<a class="sourceLine" id="cb154-3" title="3"></a>
-<a class="sourceLine" id="cb154-4" title="4">marvel_left_join</a></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1"><span class="co"># We can join two columns that are named differently.</span></a>
+<a class="sourceLine" id="cb156-2" title="2">marvel_left_join &lt;-<span class="st"> </span><span class="kw">left_join</span>(marvel_left, marvel_right, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;year&quot;</span>=<span class="st">&quot;release_year&quot;</span>))</a>
+<a class="sourceLine" id="cb156-3" title="3"></a>
+<a class="sourceLine" id="cb156-4" title="4">marvel_left_join</a></code></pre></div>
 <pre><code>## # A tibble: 20 x 5
 ##    name                                year month    worldwide_box_office score
 ##    &lt;chr&gt;                              &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt; &lt;dbl&gt;
@@ -3418,7 +3509,15 @@ div.tocify {
 <li>Joining Data</li>
 </ul></li>
 </ul>
+<hr />
 </div>
+</div>
+<div id="next-chapter" class="section level1">
+<h1><span class="header-section-number">6</span> Next Chapter</h1>
+<blockquote>
+<p>In the next chapter we will look at Summary Statistics.</p>
+</blockquote>
+<hr />
 </div>
 
 

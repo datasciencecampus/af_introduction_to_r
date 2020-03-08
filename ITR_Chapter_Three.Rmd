@@ -161,6 +161,7 @@ install.packages(“package_name” , dependencies = TRUE, type = “win.binary�
 ### **Show Answer** {-}
 
 ```{r, eval = F}
+#Installing packages
 
 install.packages("readr", dependencies = TRUE, type = "win.binary")
 
@@ -605,13 +606,22 @@ titanic %>%
 
 ### **Show Answer**{-}
 
+1. Have a look at the column `age_of_passenger`.
+
+
+2. What type of data is this column?
+
+
+3. Then `View` the column in R to see the data type R has set it to be.
+
+
 * The data is numeric data.
 
 
 * We can see that R has classes the column as character because of the `NULL`
 
 
-* We can easily correct this by adding an additional arguement when the reading the data to specify that `NULL` is a missing value.
+> We can easily correct this by adding an additional arguement when the reading the data to specify that `NULL` is a missing value.
 
 
 The code below, can be read as;
@@ -653,12 +663,10 @@ titanic %>%
 
 We use readxl to read excel data into R, it supports both `.xls` and `.xlsx` formats.
 
-<br>
 
 
 >The code below demonstrates how you can read excel data.
 
-<br>
 
 ```{r eval=FALSE}
 
@@ -674,35 +682,39 @@ One handy thing to know is the `excel_sheets()` function.
 
 We run this function with the code below.
 
-<br>
 
 ```{r eval=FALSE}
+#To find out the excel sheet names from excel file
 
-excel_sheets("filePath")
+readxl::excel_sheets("filePath")
 
 ```
-<br>
 
 ## Example {.tabset .tabset-fade}
 
 
-Read in the excel file Police data.
+1. Read in the excel file Police data.
 
-<br>
 
 ```{r}
+
+#Reading in excel data using the readxl package
+#assigning the file name police_data
+#and read_excel function
 
 police_data <- readxl::read_excel("Data/police_data.xlsx")
 
 
 ```
-<br>
 
-Use the `excel_sheets` function to see the names of the sheets in the police data.
 
-<br>
+2. Use the `excel_sheets` function to see the names of the sheets in the police data.
+
+
 
 ```{r}
+#finding out the excel sheet names from excel file
+
 
 readxl::excel_sheets("Data/police_data.xlsx")
 
@@ -723,11 +735,9 @@ This is the first sheet in our excel which is just the notes.
 
 >If we dont specify the default setting from readxl is to give us the first sheet.
 
-<br>
 
 **Can you add an additional arguement in the read_excel funtion to read in the second sheet (Table P1) from the police data.**
 
-<br>
 
 >HINT- look at the help documentation, maybe something that talks about "sheet"
 
@@ -736,16 +746,18 @@ This is the first sheet in our excel which is just the notes.
 
 ### Show Answer{-}
 
-<br>
 
 Alternatively you could use the name of the sheet rather than the number. 
 
-<br>
 
 >This would be useful if you have alot of sheets.
 
-<br>
 ```{r, eval=FALSE}
+
+#Reading in excel data using the readxl package
+#assigning the file name police_data
+#and read_excel function
+#specifying which sheet to read, here it is the second sheet or Table P1
 
 
 
@@ -776,6 +788,12 @@ As we can see the top columns are mostly blank with no real significant data, to
 ```{r}
 
 
+#Reading in excel data using the readxl package
+#assigning the file name police_data
+#and read_excel function
+#specifying which sheet to read, here it is the second sheet or Table P1
+#specifying the range to only read the cells with data
+
 
 police_data <- readxl::read_excel("Data/police_data.xlsx",
                       sheet=2, range = "A5:AA48")
@@ -792,94 +810,88 @@ police_data %>%
 
 ## Reading Url Files
 
-<br>
 
 You can also read in URLs, see code below.
 
-<br>
                    
 ```{r eval=FALSE}
+#Reading in CSV data from a website
+#Here we include the url within the read_csv function
 
 
-school <- read_csv(url("https://share.sp.ons.statistics.gov.uk/sites/KLC/LeAc/AnLe/CPD_Shared/Programming_Courses/R_Intro_Ruth/schools_inspection_data.csv")
+school <- readr::read_csv(url("https://share.sp.ons.statistics.gov.uk/sites/KLC/LeAc/AnLe/CPD_Shared/Programming_Courses/R_Intro_Ruth/schools_inspection_data.csv")
                   
 ``` 
-<br>
 
 # Exporting the Data
 
-<br>
 
 When you read a file into R, the data are loaded in memory. This means that any changes you make won't be reflected in the original file you loaded. If you want to preserve the changes you make to the dataset you have to export the data object to a file.
 
-<br>
 
 Exporting tables works in much the same way as importing it.
 
-<br>
 
 >`readr` allows us to export to csv file type or equivalent
 
-<br>
 
 **write_csv(data_frame, "file path.extension")**
 
-<br>
 
 ```{r}
+#Exporting data using the readr package 
+#and write_csv function, we start with file we want to export
+#and the the path where we want to export it to
+
 
 readr::write_csv(police_data, path ="Data/test.csv" )
 
 ```
-<br>
 
-Our dataframe `police_data` would now be stored as test.csv in the /Data/ folder.
-
-
+>Our dataframe `police_data` would now be stored as test.csv in the /Data/ folder.
 
 
 
 # Exploring the Data{.tabset .tabset-fade}
 
-<br>
 
 After importing our data, The first thing we may want to do is have a quick look at it to check it looks right.
 
-<br>
 
 We can do this by typing the commands below.
 
-<br>
 
 **Have a play around with each command and see if you can figure out what they are doing.**
 
-<br>
 
 ## Functions {-}
 
 ```{r eval=FALSE}
+#Exploring our data
 
 
-
-str(titanic)
+base::str(titanic)
 
 dplyr::glimpse(titanic)
 
 dplyr::sample_n(titanic, size = 5)
 
-head(titanic) 
+base::head(titanic) 
 
-tail(titanic) 
+base::tail(titanic) 
 
-dim(titanic)
+base::dim(titanic)
 
-nrow(titanic)
+base::nrow(titanic)
 
-ncol(titanic)
+base::ncol(titanic)
 
-titanic[1,1] 
+base::titanic[1,1] 
 
-titanic[3:6, ] 
+base::titanic[3:6, ] 
+
+#Type the code below and press tab
+titanic$
 
 
 ```
@@ -896,36 +908,35 @@ glimpse(titanic)  # Similar to str - from dplyr package
 
 dplyr::sample_n(titanic, size = 5) #select a random sample from out data of a given `size`
 
-View(titanic)  # Pops file into a Viewer.
+base::View(titanic)  # Pops file into a Viewer.
 
-head(titanic) #top of the table
+base::head(titanic) #top of the table
 
-tail(titanic) #bottom of the table
+base::tail(titanic) #bottom of the table
 
-dim(titanic) #dimensions
+base::dim(titanic) #dimensions
 
-nrow(titanic) #number of rows
+base::nrow(titanic) #number of rows
 
-ncol(titanic) #number of columns
+base::ncol(titanic) #number of columns
 
 #selecting elements
 
 school[1,1] #selecting the first row and column
 
-school[3:6, ] #selescting row 3 to 6 and all columns
+school[3:6, ] #selecting row 3 to 6 and all columns
+
+titanic$age_of_passenger #selecting a column from the dataset
 
 
 ```
 
-<br>
 
 # Summary
 
-<br>
 
 ## Reminder of Learning Objectives
 
-<br>
 
 So far we have gone through
  
@@ -949,3 +960,13 @@ So far we have gone through
  * Exporting data
     
  * Exploring data
+
+
+***
+
+# Next Chapter
+
+>In the next chapter we will look at Data Manipulation.
+
+*** 
+ 
