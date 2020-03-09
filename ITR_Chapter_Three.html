@@ -1668,6 +1668,9 @@ R installs packages from (CRAN)[ <a href="https://cran.r-project.org/" class="ur
 </blockquote>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(“package_name” , <span class="dt">dependencies =</span> <span class="ot">TRUE</span>, <span class="dt">type =</span> “win.binary”)</a></code></pre></div>
 <p><br></p>
+<blockquote>
+<p>Installing Packages Exercise</p>
+</blockquote>
 <hr />
 <div id="exercise" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
@@ -1719,7 +1722,7 @@ R installs packages from (CRAN)[ <a href="https://cran.r-project.org/" class="ur
 <pre><code>## Warning: restored &#39;readr&#39;</code></pre>
 <pre><code>## 
 ## The downloaded binary packages are in
-##  C:\Users\bandai1\AppData\Local\Temp\RtmpaaegVM\downloaded_packages</code></pre>
+##  C:\Users\bandai1\AppData\Local\Temp\Rtmpq4sCb6\downloaded_packages</code></pre>
 <hr />
 <p><br></p>
 </div>
@@ -1738,6 +1741,9 @@ R installs packages from (CRAN)[ <a href="https://cran.r-project.org/" class="ur
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">library</span>(package name)</a></code></pre></div>
 <blockquote>
 <p>Note here there are no quotes around the package name.</p>
+</blockquote>
+<blockquote>
+<p>Loading Packages Exercise</p>
 </blockquote>
 <div id="exercise-1" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
@@ -47926,6 +47932,9 @@ S
 </table>
 </div>
 <p><br></p>
+<blockquote>
+<p>Importing Csv Data Exercise</p>
+</blockquote>
 <div id="exercise-2" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <blockquote>
@@ -93877,6 +93886,9 @@ S
 <a class="sourceLine" id="cb39-3" title="3"></a>
 <a class="sourceLine" id="cb39-4" title="4">readxl<span class="op">::</span><span class="kw">excel_sheets</span>(<span class="st">&quot;Data/police_data.xlsx&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;Notes&quot;    &quot;Table P1&quot; &quot;Table P2&quot; &quot;Table P3&quot;</code></pre>
+<blockquote>
+<p>Importing Excel Data Exercise</p>
+</blockquote>
 <div id="exercise-3" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <p>After reading in the file our data should look like this.</p>
@@ -97625,30 +97637,36 @@ WALES
 <p>After importing our data, The first thing we may want to do is have a quick look at it to check it looks right.</p>
 <p>We can do this by typing the commands below.</p>
 <p><strong>Have a play around with each command and see if you can figure out what they are doing.</strong></p>
+<blockquote>
+<p>Data Exploration Exercise</p>
+</blockquote>
 <div id="functions" class="section level2 unnumbered">
 <h2>Functions</h2>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">base<span class="op">::</span><span class="kw">str</span>(titanic)</a>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="co">#Exploring our data</span></a>
 <a class="sourceLine" id="cb45-2" title="2"></a>
-<a class="sourceLine" id="cb45-3" title="3">dplyr<span class="op">::</span><span class="kw">glimpse</span>(titanic)</a>
-<a class="sourceLine" id="cb45-4" title="4"></a>
-<a class="sourceLine" id="cb45-5" title="5">dplyr<span class="op">::</span><span class="kw">sample_n</span>(titanic, <span class="dt">size =</span> <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb45-6" title="6"></a>
-<a class="sourceLine" id="cb45-7" title="7">base<span class="op">::</span><span class="kw">head</span>(titanic) </a>
-<a class="sourceLine" id="cb45-8" title="8"></a>
-<a class="sourceLine" id="cb45-9" title="9">base<span class="op">::</span><span class="kw">tail</span>(titanic) </a>
-<a class="sourceLine" id="cb45-10" title="10"></a>
-<a class="sourceLine" id="cb45-11" title="11">base<span class="op">::</span><span class="kw">dim</span>(titanic)</a>
-<a class="sourceLine" id="cb45-12" title="12"></a>
-<a class="sourceLine" id="cb45-13" title="13">base<span class="op">::</span><span class="kw">nrow</span>(titanic)</a>
-<a class="sourceLine" id="cb45-14" title="14"></a>
-<a class="sourceLine" id="cb45-15" title="15">base<span class="op">::</span><span class="kw">ncol</span>(titanic)</a>
-<a class="sourceLine" id="cb45-16" title="16"></a>
-<a class="sourceLine" id="cb45-17" title="17">base<span class="op">::</span>titanic[<span class="dv">1</span>,<span class="dv">1</span>] </a>
-<a class="sourceLine" id="cb45-18" title="18"></a>
-<a class="sourceLine" id="cb45-19" title="19">base<span class="op">::</span>titanic[<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>, ] </a>
-<a class="sourceLine" id="cb45-20" title="20"></a>
-<a class="sourceLine" id="cb45-21" title="21"><span class="co">#Type the code below and press tab</span></a>
-<a class="sourceLine" id="cb45-22" title="22">titanic<span class="op">$</span></a></code></pre></div>
+<a class="sourceLine" id="cb45-3" title="3"></a>
+<a class="sourceLine" id="cb45-4" title="4">base<span class="op">::</span><span class="kw">str</span>(titanic)</a>
+<a class="sourceLine" id="cb45-5" title="5"></a>
+<a class="sourceLine" id="cb45-6" title="6">dplyr<span class="op">::</span><span class="kw">glimpse</span>(titanic)</a>
+<a class="sourceLine" id="cb45-7" title="7"></a>
+<a class="sourceLine" id="cb45-8" title="8">dplyr<span class="op">::</span><span class="kw">sample_n</span>(titanic, <span class="dt">size =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb45-9" title="9"></a>
+<a class="sourceLine" id="cb45-10" title="10">base<span class="op">::</span><span class="kw">head</span>(titanic) </a>
+<a class="sourceLine" id="cb45-11" title="11"></a>
+<a class="sourceLine" id="cb45-12" title="12">base<span class="op">::</span><span class="kw">tail</span>(titanic) </a>
+<a class="sourceLine" id="cb45-13" title="13"></a>
+<a class="sourceLine" id="cb45-14" title="14">base<span class="op">::</span><span class="kw">dim</span>(titanic)</a>
+<a class="sourceLine" id="cb45-15" title="15"></a>
+<a class="sourceLine" id="cb45-16" title="16">base<span class="op">::</span><span class="kw">nrow</span>(titanic)</a>
+<a class="sourceLine" id="cb45-17" title="17"></a>
+<a class="sourceLine" id="cb45-18" title="18">base<span class="op">::</span><span class="kw">ncol</span>(titanic)</a>
+<a class="sourceLine" id="cb45-19" title="19"></a>
+<a class="sourceLine" id="cb45-20" title="20">base<span class="op">::</span>titanic[<span class="dv">1</span>,<span class="dv">1</span>] </a>
+<a class="sourceLine" id="cb45-21" title="21"></a>
+<a class="sourceLine" id="cb45-22" title="22">base<span class="op">::</span>titanic[<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>, ] </a>
+<a class="sourceLine" id="cb45-23" title="23"></a>
+<a class="sourceLine" id="cb45-24" title="24"><span class="co">#Type the code below and press tab</span></a>
+<a class="sourceLine" id="cb45-25" title="25">titanic<span class="op">$</span></a></code></pre></div>
 </div>
 <div id="show-answer-4" class="section level2 unnumbered">
 <h2>Show Answer</h2>

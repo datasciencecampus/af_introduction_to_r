@@ -134,6 +134,8 @@ install.packages(“package_name” , dependencies = TRUE, type = “win.binary�
 
 <br>
 
+> Installing Packages Exercise
+
 ***
 
 ### **Exercise** {-}
@@ -190,6 +192,8 @@ install.packages("readr", dependencies = TRUE, type = "win.binary")
 
 ***
 
+
+
 <br>
 
 ## Loading Packages {.tabset .tabset-fade}
@@ -212,6 +216,8 @@ library(package name)
 ```
 
 >Note here there are no quotes around the package name.
+
+>Loading Packages Exercise
 
 ### **Exercise** {-}
 
@@ -591,6 +597,9 @@ titanic %>%
 
 <br>
 
+> Importing Csv Data Exercise
+
+
 ### **Exercise**{-}
 
 > Reading in CSV files
@@ -719,6 +728,8 @@ police_data <- readxl::read_excel("Data/police_data.xlsx")
 readxl::excel_sheets("Data/police_data.xlsx")
 
 ```
+
+>Importing Excel Data Exercise
 
 ### **Exercise**{-}
 
@@ -863,6 +874,7 @@ We can do this by typing the commands below.
 
 **Have a play around with each command and see if you can figure out what they are doing.**
 
+>Data Exploration Exercise
 
 ## Functions {-}
 

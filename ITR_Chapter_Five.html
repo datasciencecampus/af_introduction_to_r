@@ -47462,6 +47462,7 @@ S
 <h1><span class="header-section-number">2</span> Descriptive Statistics</h1>
 <p>There are really two broad types of data in our <code>tibble</code> at the moment that we want to look at - numerical data (i.e. ints and doubles) and text data (i.e. character strings).</p>
 <p>In this section, we will explore some basic univariate descriptive statistics.</p>
+<hr />
 <div id="descriptive-statistics-for-numerical-data" class="section level2">
 <h2><span class="header-section-number">2.1</span> Descriptive Statistics for Numerical Data</h2>
 <p>Let’s start with the numerical data, because that’s the easiest to work with. The <code>dplyr::summarise()</code> function allows us to create one or more scalar variables summarising the variables of an existing <code>tibble</code>.</p>
@@ -47488,12 +47489,14 @@ S
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#Calculating the mean of the column fare </span></a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="co">#in the titanic dataset</span></a>
 <a class="sourceLine" id="cb1-3" title="3"></a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw">summarise</span>(titanic, <span class="kw">mean</span>(fare))</a></code></pre></div>
+<a class="sourceLine" id="cb1-4" title="4">dplyr<span class="op">::</span><span class="kw">summarise</span>(titanic, <span class="kw">mean</span>(fare))</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   `mean(fare)`
 ##          &lt;dbl&gt;
 ## 1           NA</code></pre>
+<blockquote>
 <p>This highlights an important point, any operation applied to a column containing one or more <code>NA</code> values produces <code>NA</code>.</p>
+</blockquote>
 <p>Most functions in R, for best practice reasons, propagate <code>NA</code> values, requiring us to set the common parameter <code>na.rm</code> to TRUE.</p>
 <p>This will omit any <code>NA</code> values in our calculation and produce a more meaningful result, albeit on a subset of observed data. The intention here is that R wants the analyst to know <code>NA</code> values are present in the data and deal with them directly.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co">#Calculating the mean of the column fare </span></a>
@@ -47502,7 +47505,7 @@ S
 <a class="sourceLine" id="cb3-4" title="4"><span class="co">#from calculation</span></a>
 <a class="sourceLine" id="cb3-5" title="5"></a>
 <a class="sourceLine" id="cb3-6" title="6"></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="kw">summarise</span>(titanic, <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb3-7" title="7">dplyr<span class="op">::</span><span class="kw">summarise</span>(titanic, <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   `mean(fare, na.rm = TRUE)`
 ##                        &lt;dbl&gt;
@@ -47515,7 +47518,7 @@ S
 <a class="sourceLine" id="cb5-5" title="5"><span class="co">#setting the name mean_fare for our result</span></a>
 <a class="sourceLine" id="cb5-6" title="6"></a>
 <a class="sourceLine" id="cb5-7" title="7"></a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="kw">summarise</span>(titanic, <span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb5-8" title="8">dplyr<span class="op">::</span><span class="kw">summarise</span>(titanic, <span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   mean_fare
 ##       &lt;dbl&gt;
@@ -47527,14 +47530,14 @@ S
 <a class="sourceLine" id="cb7-3" title="3"><span class="co">#Setting na.rm=TRUE to remove missing values</span></a>
 <a class="sourceLine" id="cb7-4" title="4"><span class="co">#from calculation</span></a>
 <a class="sourceLine" id="cb7-5" title="5"></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="kw">mean</span>(titanic<span class="op">$</span>fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb7-6" title="6">base<span class="op">::</span><span class="kw">mean</span>(titanic<span class="op">$</span>fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1] 33.29548</code></pre>
 <p>Like we saw with <code>mutate()</code> and other functions, we can compute multiple statistics through <code>summarise()</code>.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co">#Calculating muiltiple summary statisitcs within</span></a>
 <a class="sourceLine" id="cb9-2" title="2"><span class="co">#the summarise function</span></a>
 <a class="sourceLine" id="cb9-3" title="3"></a>
 <a class="sourceLine" id="cb9-4" title="4"></a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="kw">summarise</span>(titanic, </a>
+<a class="sourceLine" id="cb9-5" title="5">dplyr<span class="op">::</span><span class="kw">summarise</span>(titanic, </a>
 <a class="sourceLine" id="cb9-6" title="6">          </a>
 <a class="sourceLine" id="cb9-7" title="7">          <span class="dt">median_fare =</span> <span class="kw">median</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
 <a class="sourceLine" id="cb9-8" title="8">          </a>
@@ -47560,7 +47563,7 @@ S
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co">#Calculating the quartiles from the</span></a>
 <a class="sourceLine" id="cb11-2" title="2"><span class="co">#fare column in the titanic dataset</span></a>
 <a class="sourceLine" id="cb11-3" title="3"></a>
-<a class="sourceLine" id="cb11-4" title="4"><span class="kw">quantile</span>(titanic<span class="op">$</span>fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb11-4" title="4">stats<span class="op">::</span><span class="kw">quantile</span>(titanic<span class="op">$</span>fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>##       0%      25%      50%      75%     100% 
 ##   0.0000   7.8958  14.4542  31.2750 512.3292</code></pre>
 <p>We can also specify as below,</p>
@@ -47569,7 +47572,7 @@ S
 <a class="sourceLine" id="cb13-3" title="3"><span class="co">#by specifying which points to display</span></a>
 <a class="sourceLine" id="cb13-4" title="4"></a>
 <a class="sourceLine" id="cb13-5" title="5"></a>
-<a class="sourceLine" id="cb13-6" title="6"><span class="kw">quantile</span>(titanic<span class="op">$</span>fare, </a>
+<a class="sourceLine" id="cb13-6" title="6">stats<span class="op">::</span><span class="kw">quantile</span>(titanic<span class="op">$</span>fare, </a>
 <a class="sourceLine" id="cb13-7" title="7">         <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="dv">1</span>),</a>
 <a class="sourceLine" id="cb13-8" title="8">         <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>##      25%      50%      75%     100% 
@@ -47581,7 +47584,7 @@ S
 <a class="sourceLine" id="cb15-4" title="4"></a>
 <a class="sourceLine" id="cb15-5" title="5"></a>
 <a class="sourceLine" id="cb15-6" title="6"></a>
-<a class="sourceLine" id="cb15-7" title="7"><span class="kw">quantile</span>(titanic<span class="op">$</span>fare, </a>
+<a class="sourceLine" id="cb15-7" title="7">stats<span class="op">::</span><span class="kw">quantile</span>(titanic<span class="op">$</span>fare, </a>
 <a class="sourceLine" id="cb15-8" title="8">         <span class="dt">probs =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="dv">1</span>),</a>
 <a class="sourceLine" id="cb15-9" title="9">         <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>##       0%      20%      40%      60%      80%     100% 
@@ -47601,7 +47604,7 @@ S
 <a class="sourceLine" id="cb17-2" title="2"><span class="co">#of passengers and sorting in descending order</span></a>
 <a class="sourceLine" id="cb17-3" title="3"></a>
 <a class="sourceLine" id="cb17-4" title="4"></a>
-<a class="sourceLine" id="cb17-5" title="5"><span class="kw">count</span>(titanic, name_of_passenger, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb17-5" title="5">dplyr<span class="op">::</span><span class="kw">count</span>(titanic, name_of_passenger, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 1,307 x 2
 ##    name_of_passenger                         n
 ##    &lt;chr&gt;                                 &lt;int&gt;
@@ -47621,7 +47624,7 @@ S
 <a class="sourceLine" id="cb19-2" title="2"><span class="co">#of passengers and sorting in descending order</span></a>
 <a class="sourceLine" id="cb19-3" title="3"></a>
 <a class="sourceLine" id="cb19-4" title="4"></a>
-<a class="sourceLine" id="cb19-5" title="5"><span class="kw">count</span>(titanic, embarked, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb19-5" title="5">dplyr<span class="op">::</span><span class="kw">count</span>(titanic, embarked, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 4 x 2
 ##   embarked     n
 ##   &lt;chr&gt;    &lt;int&gt;
@@ -47630,8 +47633,11 @@ S
 ## 3 Q          123
 ## 4 &lt;NA&gt;         2</code></pre>
 <p>Lets try some exercises.</p>
-<div id="exercise" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> <strong>Exercise</strong></h3>
+<blockquote>
+<p>Summary Statistics Exercise</p>
+</blockquote>
+<div id="exercise" class="section level3 unnumbered">
+<h3><strong>Exercise</strong></h3>
 <ol style="list-style-type: decimal">
 <li><p>How old is the oldest passenger in the dataset?</p></li>
 <li><p>How many men and women are in the dataset?</p></li>
@@ -47639,20 +47645,20 @@ S
 <li><p>Calculate the number of children in second class.</p></li>
 </ol>
 </div>
-<div id="hint" class="section level3">
-<h3><span class="header-section-number">2.2.2</span> <strong>Hint</strong></h3>
+<div id="hint" class="section level3 unnumbered">
+<h3><strong>Hint</strong></h3>
 <ol style="list-style-type: decimal">
 <li>How old is the oldest passenger in the dataset?</li>
 </ol>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co">#max gives you the hieghest value</span></a>
 <a class="sourceLine" id="cb21-2" title="2"></a>
-<a class="sourceLine" id="cb21-3" title="3">oldest_passenger &lt;-<span class="st"> </span><span class="kw">max</span>(data)</a></code></pre></div>
+<a class="sourceLine" id="cb21-3" title="3">oldest_passenger &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">max</span>(data)</a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>How many men and women are in the dataset?</li>
 </ol>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co">#Count gives a frequency</span></a>
 <a class="sourceLine" id="cb22-2" title="2"></a>
-<a class="sourceLine" id="cb22-3" title="3">number_of_men_and_women &lt;-<span class="st"> </span><span class="kw">count</span>(data, columns)</a></code></pre></div>
+<a class="sourceLine" id="cb22-3" title="3">number_of_men_and_women &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">count</span>(data, columns)</a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a new column called ‘std_fare’ which is the ‘fare’ minus the mean fare, divided by the standard deviation.</li>
 </ol>
@@ -47665,8 +47671,8 @@ S
 <a class="sourceLine" id="cb23-4" title="4">                               name of new <span class="dt">column =</span> </a>
 <a class="sourceLine" id="cb23-5" title="5">                                 contents of new column)</a></code></pre></div>
 </div>
-<div id="show-answer" class="section level3">
-<h3><span class="header-section-number">2.2.3</span> <strong>Show Answer</strong></h3>
+<div id="show-answer" class="section level3 unnumbered">
+<h3><strong>Show Answer</strong></h3>
 <ol style="list-style-type: decimal">
 <li>How old is the oldest passenger in the dataset?</li>
 </ol>
@@ -47674,7 +47680,7 @@ S
 <a class="sourceLine" id="cb24-2" title="2"><span class="co">#age_of_passenger column</span></a>
 <a class="sourceLine" id="cb24-3" title="3"></a>
 <a class="sourceLine" id="cb24-4" title="4"></a>
-<a class="sourceLine" id="cb24-5" title="5">oldest_passenger &lt;-<span class="st"> </span><span class="kw">max</span>(titanic<span class="op">$</span>age_of_passenger, </a>
+<a class="sourceLine" id="cb24-5" title="5">oldest_passenger &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">max</span>(titanic<span class="op">$</span>age_of_passenger, </a>
 <a class="sourceLine" id="cb24-6" title="6">                        <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>How many men and women are in the dataset?</li>
@@ -47682,7 +47688,7 @@ S
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="co">#Calculating a frequency count of the</span></a>
 <a class="sourceLine" id="cb25-2" title="2"><span class="co">#sex_of_passenger column</span></a>
 <a class="sourceLine" id="cb25-3" title="3"></a>
-<a class="sourceLine" id="cb25-4" title="4">number_of_men_and_women &lt;-<span class="st"> </span><span class="kw">count</span>(titanic, </a>
+<a class="sourceLine" id="cb25-4" title="4">number_of_men_and_women &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">count</span>(titanic, </a>
 <a class="sourceLine" id="cb25-5" title="5">                                 sex_of_passenger)</a></code></pre></div>
 <ol start="3" style="list-style-type: decimal">
 <li>Create a new column called ‘std_fare’ which is the ‘fare’ minus the mean fare, divided by the standard deviation.</li>
@@ -47690,7 +47696,7 @@ S
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co">#Using mutate to add a new column on the titanic dataset</span></a>
 <a class="sourceLine" id="cb26-2" title="2"></a>
 <a class="sourceLine" id="cb26-3" title="3"></a>
-<a class="sourceLine" id="cb26-4" title="4">standard_fare &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(titanic, </a>
+<a class="sourceLine" id="cb26-4" title="4">standard_fare &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">.data=</span>titanic, </a>
 <a class="sourceLine" id="cb26-5" title="5">                               <span class="dt">std_fare =</span> </a>
 <a class="sourceLine" id="cb26-6" title="6">                                 (fare <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
 <a class="sourceLine" id="cb26-7" title="7">                               <span class="op">/</span><span class="kw">sd</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
@@ -93579,19 +93585,18 @@ S
 </tbody>
 </table>
 </div>
-<p><br></p>
 <p>Now let’s find out the mean fare paid by each class</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co">#calculating the mean from the fare column in the grouped </span></a>
 <a class="sourceLine" id="cb28-2" title="2"><span class="co">#dataset</span></a>
 <a class="sourceLine" id="cb28-3" title="3"></a>
-<a class="sourceLine" id="cb28-4" title="4"><span class="kw">summarise</span>(by_class, <span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb28-4" title="4">dplyr<span class="op">::</span><span class="kw">summarise</span>(by_class, </a>
+<a class="sourceLine" id="cb28-5" title="5">                 <span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
 <pre><code>## # A tibble: 3 x 2
 ##   pclass mean_fare
 ##    &lt;dbl&gt;     &lt;dbl&gt;
 ## 1      1      87.5
 ## 2      2      21.2
 ## 3      3      13.3</code></pre>
-<p><br></p>
 <p>Hopefully this all sounds fairly straightforward! <code>group_by()</code> is a powerful tool, particularly when you are working with any kind of hierarchical data where you might want to know something aggregate about the groups within the data, for instance:</p>
 <ul>
 <li><p>individuals nested in households.</p></li>
@@ -93614,9 +93619,9 @@ S
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># Group by pclass and embarked. Then find the average fare </span></a>
 <a class="sourceLine" id="cb30-2" title="2"><span class="co">#paid by each group.</span></a>
 <a class="sourceLine" id="cb30-3" title="3"></a>
-<a class="sourceLine" id="cb30-4" title="4">by_class_embarked &lt;-<span class="st"> </span><span class="kw">group_by</span>(titanic, </a>
+<a class="sourceLine" id="cb30-4" title="4">by_class_embarked &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(titanic, </a>
 <a class="sourceLine" id="cb30-5" title="5">                              pclass, embarked) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb30-6" title="6"><span class="kw">summarise</span>( <span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb30-6" title="6">dplyr<span class="op">::</span><span class="kw">summarise</span>( <span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
 <p><br></p>
 <table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -94147,27 +94152,21 @@ Southampton
 </tr>
 </tbody>
 </table>
-<p><br></p>
 <p>We can easily visualise our data in a chart.</p>
 <p><br></p>
 <p><img src="data:image/png;base64,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" width="672" /></p>
-<p><br></p>
-<div id="exercise-1" class="section level2">
-<h2><span class="header-section-number">3.1</span> <strong>Exercise</strong></h2>
+<blockquote>
+<p>Grouby Exercise</p>
+</blockquote>
+<div id="exercise-1" class="section level2 unnumbered">
+<h2><strong>Exercise</strong></h2>
 <ol style="list-style-type: decimal">
 <li><p>What is the average fare paid by men and women?</p></li>
 <li><p>What is the median fare paid by men and women in each different class?</p></li>
 </ol>
 </div>
-<div id="hint-1" class="section level2">
-<h2><span class="header-section-number">3.2</span> <strong>Hint</strong></h2>
-<ol style="list-style-type: decimal">
-<li><p>What is the average fare paid by men and women?</p></li>
-<li><p>What is the median fare paid by men and women in each different class?</p></li>
-</ol>
-</div>
-<div id="show-answer-1" class="section level2">
-<h2><span class="header-section-number">3.3</span> <strong>Show Answer</strong></h2>
+<div id="hint-1" class="section level2 unnumbered">
+<h2><strong>Hint</strong></h2>
 <ol style="list-style-type: decimal">
 <li>What is the average fare paid by men and women?</li>
 </ol>
@@ -94177,12 +94176,47 @@ Southampton
 <a class="sourceLine" id="cb33-4" title="4"></a>
 <a class="sourceLine" id="cb33-5" title="5">average_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb33-6" title="6"><span class="st">  </span></a>
-<a class="sourceLine" id="cb33-7" title="7"><span class="st">  </span><span class="kw">group_by</span>(sex_of_passenger) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb33-7" title="7"><span class="st">  </span><span class="kw">group_by</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb33-8" title="8"><span class="st">  </span></a>
-<a class="sourceLine" id="cb33-9" title="9"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb33-9" title="9"><span class="st">  </span><span class="kw">summarise</span>()</a>
 <a class="sourceLine" id="cb33-10" title="10"></a>
-<a class="sourceLine" id="cb33-11" title="11"></a>
+<a class="sourceLine" id="cb33-11" title="11"><span class="co">#To display the data</span></a>
 <a class="sourceLine" id="cb33-12" title="12">average_fare</a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>What is the median fare paid by men and women in each different class?</li>
+</ol>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co">#Calculating the median fare</span></a>
+<a class="sourceLine" id="cb34-2" title="2"><span class="co">#Grouping by sex_of_passenger and pclass</span></a>
+<a class="sourceLine" id="cb34-3" title="3"><span class="co">#summary showing the mean fare</span></a>
+<a class="sourceLine" id="cb34-4" title="4"></a>
+<a class="sourceLine" id="cb34-5" title="5"></a>
+<a class="sourceLine" id="cb34-6" title="6">median_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-7" title="7"><span class="st">  </span></a>
+<a class="sourceLine" id="cb34-8" title="8"><span class="st">  </span><span class="kw">group_by</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-9" title="9"><span class="st">  </span></a>
+<a class="sourceLine" id="cb34-10" title="10"><span class="st">  </span><span class="kw">summarise</span>()</a>
+<a class="sourceLine" id="cb34-11" title="11"></a>
+<a class="sourceLine" id="cb34-12" title="12"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb34-13" title="13">median_fare</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 0</code></pre>
+</div>
+<div id="show-answer-1" class="section level2 unnumbered">
+<h2><strong>Show Answer</strong></h2>
+<ol style="list-style-type: decimal">
+<li>What is the average fare paid by men and women?</li>
+</ol>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co">#Calculating the average fare</span></a>
+<a class="sourceLine" id="cb36-2" title="2"><span class="co">#Grouping by sex_of_passenger</span></a>
+<a class="sourceLine" id="cb36-3" title="3"><span class="co">#summary showing the mean fare</span></a>
+<a class="sourceLine" id="cb36-4" title="4"></a>
+<a class="sourceLine" id="cb36-5" title="5">average_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-6" title="6"><span class="st">  </span></a>
+<a class="sourceLine" id="cb36-7" title="7"><span class="st">  </span><span class="kw">group_by</span>(sex_of_passenger) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-8" title="8"><span class="st">  </span></a>
+<a class="sourceLine" id="cb36-9" title="9"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb36-10" title="10"></a>
+<a class="sourceLine" id="cb36-11" title="11"></a>
+<a class="sourceLine" id="cb36-12" title="12">average_fare</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   sex_of_passenger mean_fare
 ##   &lt;chr&gt;                &lt;dbl&gt;
@@ -94191,19 +94225,19 @@ Southampton
 <ol start="2" style="list-style-type: decimal">
 <li>What is the median fare paid by men and women in each different class?</li>
 </ol>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="co">#Calculating the median fare</span></a>
-<a class="sourceLine" id="cb35-2" title="2"><span class="co">#Grouping by sex_of_passenger and pclass</span></a>
-<a class="sourceLine" id="cb35-3" title="3"><span class="co">#summary showing the mean fare</span></a>
-<a class="sourceLine" id="cb35-4" title="4"></a>
-<a class="sourceLine" id="cb35-5" title="5"></a>
-<a class="sourceLine" id="cb35-6" title="6">median_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-7" title="7"><span class="st">  </span></a>
-<a class="sourceLine" id="cb35-8" title="8"><span class="st">  </span><span class="kw">group_by</span>(sex_of_passenger, pclass) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-9" title="9"><span class="st">  </span></a>
-<a class="sourceLine" id="cb35-10" title="10"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">median_fare=</span> <span class="kw">median</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb35-11" title="11"></a>
-<a class="sourceLine" id="cb35-12" title="12"></a>
-<a class="sourceLine" id="cb35-13" title="13">median_fare</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co">#Calculating the median fare</span></a>
+<a class="sourceLine" id="cb38-2" title="2"><span class="co">#Grouping by sex_of_passenger and pclass</span></a>
+<a class="sourceLine" id="cb38-3" title="3"><span class="co">#summary showing the mean fare</span></a>
+<a class="sourceLine" id="cb38-4" title="4"></a>
+<a class="sourceLine" id="cb38-5" title="5"></a>
+<a class="sourceLine" id="cb38-6" title="6">median_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-7" title="7"><span class="st">  </span></a>
+<a class="sourceLine" id="cb38-8" title="8"><span class="st">  </span><span class="kw">group_by</span>(sex_of_passenger, pclass) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-9" title="9"><span class="st">  </span></a>
+<a class="sourceLine" id="cb38-10" title="10"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">median_fare=</span> <span class="kw">median</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb38-11" title="11"></a>
+<a class="sourceLine" id="cb38-12" title="12"></a>
+<a class="sourceLine" id="cb38-13" title="13">median_fare</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ## # Groups:   sex_of_passenger [2]
 ##   sex_of_passenger pclass median_fare
@@ -94231,7 +94265,7 @@ Southampton
 <div id="next-chapter" class="section level1">
 <h1><span class="header-section-number">5</span> Next Chapter</h1>
 <blockquote>
-<p>In the next chapter we will look at Summary Statistics.</p>
+<p>In the next chapter we will look at Control Flow and Functions.</p>
 </blockquote>
 <hr />
 </div>

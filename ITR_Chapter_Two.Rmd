@@ -72,6 +72,8 @@ my_friends <- ("ian" "jonathan", "hannah", "mike", "almas")
 ```
 
 ***
+>Accessing the R Help Documentation Exercise
+
 ## The c() Function {.tabset .tabset-fade}
 
 <br>
@@ -182,6 +184,8 @@ example_vector
 Play around with the `mode` and `length` parameters. (Try: mode = integer, double or character).
 <br />
 
+>Creating Vectors Exercise
+
 ***
 
 ### **Exercise**{-}
@@ -288,6 +292,8 @@ sample_vector * 3
 
 ***
 
+>Vector Operations Exercise
+
 ### **Exercise**{-}
 
 >Vector Addition
@@ -393,6 +399,7 @@ favourite_movies[c(1,3,4)]
 Above we have selected the 1st, 3rd and 4th elements from `favourite_movies` in that order.
 
 ***
+> Vector Indexing Exercise
 
 ### **Exercise**{-}
 
@@ -486,6 +493,8 @@ Lists are really useful, flexible data structures. Their elements can be any obj
 
 ***
 
+> Creating Lists Exercise
+
 ### **Exercise**{-}
 
 >Creating Lists
@@ -554,6 +563,8 @@ my_list_of_movies_and_numbers[[1]]
 ```
 
 ***
+
+>Chained Indexing Exercise
 
 ### **Chained Indexing**{-}
 
@@ -708,6 +719,9 @@ str(list3)
 
 
 ***
+
+> Creating and Indexing Lists Exercise
+
 ### **Exercise**{-}
 
 >List Exercises.
@@ -806,6 +820,7 @@ empty_list
 ```
 ***
 
+>Adding Items to Lists Exercise
 
 ### **Exercise**{-}
 

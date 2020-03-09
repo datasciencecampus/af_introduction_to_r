@@ -110,6 +110,7 @@ To change this setting go to` Tools` -> `Global Options` -> `“Save workspace t
 
 
 ***
+>R can be used as Calculator Exercise 
 
 ### The Console
 
@@ -204,6 +205,8 @@ For more information about RStudio, you can find the **RStudio** Cheat Sheet und
 
 A **script** is just a plain text file which we write our code in, generally we will  to write code which will be  longer than just a few lines.
 
+>Creating a Script Exercise
+
 Lets create a script file which we will use to write and save our code during the course.
 
 To create a new script,
@@ -268,6 +271,9 @@ Operators in R:
 |       ^   | Exponents       |
 |    %%     | [Modulo Division](https://en.wikipedia.org/wiki/Modulo_operation)|
 |    %/%    | [Floor Division](https://en.wikipedia.org/wiki/Floor_and_ceiling_functions)|
+
+
+>Coding in a Script Exercise
 
 Let's have a play with some of these operators:
 
