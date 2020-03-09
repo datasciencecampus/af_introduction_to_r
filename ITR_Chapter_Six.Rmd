@@ -96,7 +96,7 @@ for (Variable in Vector) {
 
 * then the word `in`
 
-* then specify an interable. In this case it is `Vector`.
+* then specify an iterable. In this case it is `Vector`, could be a list, dataframe etc
 
 * followed by the `{}` curly brackets, which will have our commands, these could be multiple lines of code.
 
@@ -109,7 +109,7 @@ for (Variable in Vector) {
 lets look at an example.
 
 
-We start by creating an interable, I have created a vector with **numbers between 0 and 5**.
+We start by creating an iterable, I have created a vector with **numbers between 0 and 5**.
 
 
 ```{r}
@@ -129,7 +129,9 @@ result <- c()
 
 #creating the loop
 
-for (each_number in example_vector) { 
+for (each_number in example_vector) {
+  
+    print(each_number*2)
   
   result <- base::append(result, each_number * 2)
   
@@ -143,7 +145,9 @@ result
 
 This loop is taking each number in our example vector and multiplying it by 2.
 
-The keyword `for` is followed by a variable that refers to each item in my iterable. I’ve called this variable each_number . You’ll often see letters like i used here.
+The keyword `for` is followed by a variable that refers to each item in my iterable. I’ve called this variable **each_number** . 
+
+>You’ll often see letters like `i` used here.
 
 The keyword in is followed by the iterable I want to loop over (here it is example vector)
 
@@ -154,35 +158,6 @@ My Command are assigned to `result`.The command here is to multiply each number 
 
 >Loops suppress output, unless explicitly `print()`ed out.
 
-We can also use functions within our For loops – here we’re using the length() function to return the length of each day of the week.
-
-```{r,eval=FALSE}
-days_vector <- c("Monday", "Tuesday", "Wednesday", "Thursday",
-             "Friday", "Saturday", "Sunday")
-
-
-#create an empty output
-#which we will fill when the loop runs
-
-result <- c()
-
-#creating the loop
-
-for (day in days_vector) { 
-  
-  print(day, "has a lenght of", length(day))
-  
-  result <- base::append(result, each_number * 2)
-  
-}
-
-#To display the data
-result
-
-
-
-
-```
 
 
 ***
@@ -293,6 +268,8 @@ If we removed the code `stop_value <- stop_value +1` , `0` would always be less 
 
 >You will have to hit the stop sign to exit the loop.
 
+Although it is useful to know how to use loops in R, it is often faster to accomplish the same thing using vectorised operations in R. 
+
 ## Exercise loops{.tabset .tabset-fade}
 
 >While Loop Exercise
@@ -381,6 +358,431 @@ while (temperature > 20) {
 
 #To display the data
 result
+
+```
+
+# Conditional Statements
+
+A conditional statement will check whether a condition is TRUE or FALSE.
+
+So, if our statement meets this criteria apply this action, otherwise do nothing.
+
+This is useful if we want a function to run only when our data meets certain conditions, this is termed `control flow`.
+
+We use comparison and logical operators.
+
+Comparison Operators
+
+| Operator | Description | 
+| ------ |:------| 
+|   ==   | equal to | 
+|  !=    | not equal to |   
+| <      | less than|
+| >      | greater than |
+| <=     | less than or eaqual to|
+| >=     | greater than or equal to|
+
+Logical Operators
+
+| Operator| Description| 
+| ------  |:------:| 
+|   &     | And | 
+|   \|    | Or |
+|    !    | Not|
+
+
+You might want an action to be perfomed depending on the outcome, to be able to do this in R, we use the;
+
+- *if* statement
+
+- *else if* statement
+
+- *else* statement
+
+if, elif and else are not loops, but fall under the category of control flow.
+
+These take a conditional argument, and if that is met (evaluates to True) then the associated action is completed.
+
+If the condition is not met it will move to an elif (if present) and if that condition is met the associated action will be completed.
+
+Finally, if none of the conditions are met the actions for the else condition are met.
+
+
+
+```{r, eval=FALSE}
+
+if (logical condition) { 
+  
+  Commands - executed if logical condition is true
+  
+} else if (second condition) { 
+  
+  Commands - executed if the logical condition is false and second condtion is true
+  
+} else if (third condition) { 
+  
+  Commands - executed if logical condition and second condition are false
+  
+} else {
+  
+  Commands - executed when all conditions are false
+  
+}
+
+```
+
+>It’s important that the `else if` keyword comes on the same line as the closing bracket of the previous part of the control structure.
+
+
+
+We can just have an if and an else.
+
+Lets look at an example.
+
+```{r}
+
+height <- 6
+
+if (height == 5) { 
+  
+  print("We're the same height")
+  
+} else {
+  
+  print("Your height is different")
+  
+}
+
+```
+
+Remember our if, elif and else statements take a contion so we need a double equals sign (==) for checking equivalency.
+If the first criteria isn’t met it will move to the else statement and action that.
+
+We can add in more choices using an elif statement.
+
+```{r}
+
+height <- 7
+
+if (height == 5) { 
+  
+  print("We're the same height")
+  
+} else if (height == 7) { 
+  
+  print("You're tall!")
+ 
+} else {
+  
+  print("Your height is different")
+  
+}
+
+```
+
+Within these we can use our logical operators too - & (and) , | (or).
+
+```{r}
+
+height <- 9
+
+if (height == 5) { 
+  
+  print("We're the same height")
+  
+} else if (height > 7 & height < 10) { 
+  
+  print("You're tall!")
+  
+} else {
+  
+  print("Your height is different")
+  
+}
+
+```
+
+Here we want the action to happen if the value is greater than 7 and less than 10.
+
+
+
+```{r}
+height <- 5
+
+if (height == 5) { 
+  
+  print("We're the same height")
+  
+} else if (height > 7 & height < 10) { 
+  
+  print("You're tall!")
+  
+} else if (height == 5) {
+  
+  print("Wow, it's still 5!")
+  
+  
+} else {
+  
+  print("Your height is different")
+  
+}
+```
+
+It’s important to know how the if, elif, else works.
+
+Here we have two option for when the value is 5.
+
+However it will only print out  “We’re the same height!”
+
+When the condition is met it performs the action associated with it and then quits.
+
+Try changing the value stored in my_height to see the other results.
+
+>The case_when() function in dplyr is great for dealing with multiple complex conditions 
+
+We can combile a `loop` and and `if else statements`.
+
+* We have a vector, with values from `1-7` and assign it to `number_of_takeaways_ordered`.
+
+* And a `for` loop with an `if` and `else` statement shows that if you order more than `2` takeaways a week it will print `"too many"` and if you order less than two it prints `"enough"`.
+
+```{r}
+
+number_of_takeaways_ordered <- c(1, 2, 3, 4, 5, 6, 7)
+
+for (i in number_of_takeaways_ordered) { 
+  
+  if (i > 3) { 
+    
+    print("too many")
+    
+  } else { 
+    
+  print("enough")
+    
+  }
+  
+  print(i)
+  
+}
+```
+
+## Exercise loops{.tabset .tabset-fade}
+
+
+
+### **Exercise**{-}
+
+Can you write a loop with an if, elif and else statement, that loops through the numbers from 1 to 30.
+
+If the number is a multiple of both 3 and 5, print FizzBuzz.
+
+If the number is a mutiple of 3, print the word Fizz.
+
+If the number is a mutiple of 5, print the word Buzz.
+
+For all other values print the number.
+
+>>You can use the modulus operator for this - this is the %% in R, and shows us our remainder.
+
+For example checking if something is divisible by 7 we could do
+
+>>item %% 3 == 0
+
+>>to check if it divided completely - having a remainder of 0
+
+```{r}
+# Example of Modulo
+
+10 %% 3 == 0
+
+# Returns False (10 / 3 has a remainder of 1 - so does not have a remainder of 0)
+```
+
+```{r}
+# Second example of Modulo
+
+9 %% 3 == 0
+
+# Returns True (9 / 3 has a remainder of 0  )
+```
+
+
+
+
+### **Hint**{-}
+
+Can you write a loop with an if, elif and else statement, that loops through the numbers from 1 to 30.
+
+If the number is a multiple of both 3 and 5, print FizzBuzz.
+
+If the number is a mutiple of 3, print the word Fizz.
+
+If the number is a mutiple of 5, print the word Buzz.
+
+For all other values print the number.
+
+```{r, eval=FALSE}
+
+for (each_number in vector) { 
+  
+  if (first conditions) {
+    
+    output
+  }
+  else if (second condition) {
+    
+    output
+  }
+  else if (third condition) { 
+    
+    output
+  }
+  else {
+    
+    print(each_number)
+  }
+  
+}
+
+```
+
+### **Show Answer**{-}
+
+```{r}
+
+for (i in 1:30) { 
+  
+  if (i %% 3 == 0 & i %% 5 == 0) {
+    
+    print("FizzBuzz")
+  }
+  else if (i %% 3 == 0) {
+    
+    print("Fizz")
+  }
+  else if (i %% 5 == 0) { 
+    
+    print("Buzz")
+  }
+  else {
+    
+    print(i)
+  }
+  
+}
+
+```
+
+# Functions
+
+In programming, a named section of a program that performs a specific task is called a function. 
+
+Less formally, a functions is a bit of code which, when called, performs a task. They can take various inputs, called arguments, and return outputs.
+
+Base R includes numerous built-in functions and there are thousands more R functions in packages available on CRAN and elsewhere.
+
+We have previously used ready-made functions (from Base R or from packages) In R already, e.g `excel_sheets()`, `help()`,`merge()`,`clean_names()`, `mean()`.
+
+You can also write your own functions, called “user-defined functions”.
+
+## Why we use functions
+
+* They make code shorter and easier to understand.
+
+* They make it easier to update code, as we only need to change one place.
+
+* Functions alow us to easily repeat commands.
+
+* They help reduce errors caused from copied and pasted code.
+
+
+Up until now we've been writing code line by line and running it sequentially. As effective as this has been, things can get messy as we scale up to larger problems.
+
+We can avoid messy code by organising it into chunks of reusable code called functions. This allows us to create blocks of code dedicated to performing a specific procedure or task. We can then 'call' this function to perform its specific task as and when needed. Understanding why and how to write functions is an important part of writing code that is consistent, readable and reproducible.
+
+In addition to this, we use functions to do everything in R - from making a vector to creating models and plots. Having more hands on experience with functions can give you a greater appreciation for how the functions, we heavily depend on, are implemented.
+
+## Types of Functions
+
+In R we have two types of functions:
+
+1. **'Predefined' functions**
+
+    We have already used several of these, such as `c()`, `pow()`, `print()`, etc. These functions, like the name suggests are       built into R and are always available as we have seen by pressing tab in the console. 
+
+2. **User defined Functions** 
+
+    These are functions created by us to carry out a specific task. Declared using `function()`.
+    
+## How to write a function
+
+Basic structure of a function looks like below,
+
+```{r, eval=FALSE}
+
+function_name <- function(input) { 
+  
+  statements of what the function is doing
+  
+  return(the function output)
+  
+}
+
+
+```
+
+>In R, we use a function to make a function!
+
+We use function() to create a function and assign it to the object function_name.
+
+In the same way we use the `list()` function to create and return a list object, the `function()` function will create and return a function object. 
+
+
+In the same way we use the `list()` function to create and return a list object, the `function()` function will create and return a function object.
+
+The keyword return will return whatever value is after it. When the return statement is executed the function will stop at that line and return the given value. No code after the return statement will be executed.
+
+Note that the keyword return is not necessary; but any function without a return statement will return a value of None - it will produce no output for future code to work with.
+
+## Examples of basic functions
+
+```{r}
+# Here is a simple function to add together two values and return the sum.
+
+function_sum_values <- function(value_1, value_2) { 
+  
+  result <- value_1 + value_2
+  
+  return(result)
+  
+}
+
+```
+
+Our new function `function_sum_values` will exist in our global environment (panel on the right). 
+
+Let’s try using the function function_sum_values, we term this calling a function.
+
+### Calling Functions
+
+
+Calling user defined functions works the same way as calling the built-in functions we've used so far. Simply, type the function name followed by parentheses containing any required parameters.
+
+```{r}
+# I can now run my function
+
+function_sum_values(1,2)
+
+# Calling the function by itself prints the result to the console
+
+
+# Alternatively the result can be saved as a new variable
+
+my_result <- function_sum_values(1,2 )
+
+my_result
 
 ```
 
