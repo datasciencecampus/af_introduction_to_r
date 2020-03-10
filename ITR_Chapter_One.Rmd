@@ -1,0 +1,641 @@
+---
+title: "Intro to R - Chapter One, The Basics"
+output:
+  html_document: 
+    theme: united
+    highlight: tango
+    toc: yes
+    toc_float: yes
+    number_sections: true
+---
+
+```{r, echo=FALSE}
+htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+ 
+
+***
+# Learning Objectives.
+
+<br>
+
+**The goal of this session is to**
+
+* Be familiar with R Studio.
+* Understand the Key Benefits of using R.
+* Learn abour R syntax.
+* Know where to get help.
+* Discover R's data types.
+* Be able to create Variables.
+* Know where to get help.
+
+<br>
+
+ ***
+ 
+# What is R?
+ 
+An open source **programming language** and environment for statistical computing and graphics.
+
+It provides a wide variety of statistical techniques (e.g. linear and nonlinear modelling, statistical tests, time-series analysis, etc) thats why its often used by Analysts, Statisticians and Data Scientists.
+
+R was initially written by **Ross Ihaka and Robert Gentleman** at the Department of Statistics of the University of Auckland in New Zealand. It is named partly after the first names of the first two R authors.
+
+***
+
+## Benefits of Using R?
+
+There are many programming languages  on the market that one can use, but R is becoming the global standard. 
+
+There are several reasons for this trend:
+
+* Free and open source, people can modify and share because its design is publicly accessible.
+* Great Community Support, diverse and welcoming community. e.g. #rstats twitter community, numerous [ R Meet Ups](https://www.meetup.com/topics/r-programming-language/). 
+* There are lots of [packages available](https://cran.r-project.org/web/packages/available_packages_by_name.html) which contain implimentations of processes and ready-made functions you might find useful
+* Cross Platform, it can be used across a range of opperating systems i.e Windows, Linux, OS.
+* R has extensive and powerful graphics abilities. e.g [ The BBC use R to produce their graphics](https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535)
+* Powerful tool for communicating results, ie. [RMarkdown](https://rmarkdown.rstudio.com/)  makes its easy to turn your files into PDF'S, Powerpoint presentations and [Shiny](https://shiny.rstudio.com/) allows you to make beautiful interactive apps and dashboards.
+
+***
+
+## R Studio.
+
+R is a programming language that runs computations while RStudio is an integrated development environment (IDE) that provides an interface by adding many convenient features and tools.
+
+You do not have to use RStudio to access R, and many people don’t!
+Other IDEs that work with R include: - [Jupyter notebook](https://jupyter.org/) -  [VisualStudio](https://visualstudio.microsoft.com/services/visual-studio-online/) - [Intellij IDEA](https://plugins.jetbrains.com/plugin/6632-r-language-for-intellij)
+
+It is broken down into four panels for our convenience.
+
+These can be adjusted under the ‘Preferences’ menu.
+
+When we open RStudio for the first time, we’re likely to see this:
+
+
+![](Images/studio2.PNG)
+
+We will go through what we can do with each of these panels.
+
+***
+
+### Changing your RStudio theme
+
+Explore the various themes available to you in RStudio by going to Tools -> Global Options -> Appearance
+Choose a theme that works best for you and apply it.
+
+*** 
+
+### Don't save your workspace
+
+When you exit an R session, you’re faced with the question of whether or not to save your workspace. You should almost never answer yes. Saving your workspace creates an image of your current variables and functions, and saves them to a file called ”.RData”. When you re-open R from that working directory, the workspace will be loaded, and all these things will be available to you again. But you don’t want that, so don’t save your workspace.
+
+We will look at better ways of saving our work later on during the course.
+
+To change this setting go to` Tools` -> `Global Options` -> `“Save workspace to .Rdata on Exit”` **change drop down to** `“Never`
+
+![](Images/workspace.PNG) 
+
+
+
+
+***
+
+### The Console
+
+This is where you can type code that executes immediately. This is also known as the command line. 
+
+Try out some arithmetic in your console; type the expression and hit `enter`.
+
+
+```{r}
+
+2+4
+
+```
+
+
+A semi colon allows multiple commands to be entered on the same line before processing.
+
+Try and type the expression below and hit `enter`.
+
+```{r}
+
+23 - 6; 36 + 5
+
+```
+
+Note that if a **"+"** appears instead of the command prompt, this means that the statement you submitted was incomplete. 
+
+Here **1+3+**, is incomplete.
+
+Typing the code below in your console, will result in a **"+"**.
+
+We can either complete the expression or press `Esc` in our console to reset.
+
+
+```{r, eval=FALSE}
+
+1+3+
+
+```
+
+
+
+The RStudio Console automagically maintains a ‘history’ so that you can retrieve previous commands.
+
+On a blank line in the Console, press the up arrow, and see what happens.
+
+***
+
+### Environment/History
+
+The Environment pane is very useful as it shows you what objects (i.e., dataframes, values and functions) you have in your environment (workspace).
+
+Also in the Environment is the History tab, where you can see all of the code executed for the session. 
+
+This shows the previous code you were working on, and any storage of objects you are using i.e variables, data frames.
+
+We will look at these later on in the session.
+
+***
+
+### Files/Help/Packages
+
+This shows the files, packages and help documentation.
+
+This pane has a number of different tabs. 
+
+The Files tab has a navigable file manager, just like the file system on your operating system. 
+
+The Plot tab is where graphics you create will appear. 
+
+The Packages tab shows you the packages that are installed and those that can be installed (we will look packages in details in chapter 3). 
+
+The Help tab allows you to search the R documentation for help and is where the help appears when you ask for it from the Console.
+
+*** 
+### Code Editor
+
+This is where you will do the majority of your coding, we will  be using scripts in this course.
+
+
+
+  
+  
+
+For more information about RStudio, you can find the **RStudio** Cheat Sheet under the Help -> **Cheatsheet.**
+
+
+
+***
+
+## R Scripts
+
+A **script** is just a plain text file which we write our code in, generally we will  to write code which will be  longer than just a few lines.
+
+Lets create a script file which we will use to write and save our code during the course.
+
+To create a new script,
+
+**Click on File -> New file -> R Script** alternatively you can press the shortcut keys **CLT+SHIFT+N**
+
+
+The **hash (#)** tells R not to run any of the text on that line to the right of the symbol. This is the standard way of commenting R code; it is **VERY** good practice to comment in detail so that you can understand later what you have done.
+
+Scripts execute sequentially from top to bottom.
+
+RStudio has the advantage of providing syntax highlighting, code completion, and smart indentation. You can see the different colours for numbers.
+
+Lets write a note in our script.
+
+Type the **#** and write yourself a note.
+
+
+```{r}
+
+#This is my first R script
+
+
+
+```
+I  recommend to  save this script, type in the code as we go along, and only execute the required lines. That way you will have a record of what you have done.
+
+To save the script we ca use the shortcut **CTRL + S** or alternatively save from the file menu.
+
+**File -> Save.**
+
+
+
+***
+
+# Data Types.
+
+To get the best out of R, you will need to have a strong understanding of the basic data types and structures and how to operate on them.
+
+Different processes apply to different types of data.
+
+Different data types have different properties; if you try to add 1 + "two", you will get an error due to a mismatch of types.
+
+***
+
+## Numbers
+
+Operators in R:
+
+|Operator   | Description     |
+|:---------:|:---------------:|
+|     +     | Addition        |
+|     -     | Subtraction     |
+|     *     | Multiplication  |
+|     /     | Division        |
+|       ^   | Exponents       |
+|    %%     | [Modulo Division](https://en.wikipedia.org/wiki/Modulo_operation)|
+|    %/%    | [Floor Division](https://en.wikipedia.org/wiki/Floor_and_ceiling_functions)|
+
+Let's have a play with some of these operators:
+
+Type the code below, to run the code you need to select the section you want to run and then press **CTRL + ENTER.**
+
+**CTRL+SHIFT+ENTER** will run the whole script.
+
+
+
+
+```{r}
+
+#This is my first R script
+
+#R can be used as a calculator
+
+25 * 15
+
+
+(76 + 94) ^ 3
+
+
+97623 / 9
+
+
+```
+
+It’s also useful to note that R will follow BIDMAS for order of operations.
+
+There are also some built-in functions such as sqrt(9) or round(3.6357, digits = 2). Functions are like commands they basically take an input do something and produce an output.
+
+
+Let’s see what they do:
+
+```{r}
+
+
+sqrt(9)
+
+round(3.6357, digits = 2)
+
+
+```
+
+There are many more built-in functions which you will discover with more exposure to R, but for now we will move onto the different types of numbers we might work with. These are: Numeric, Double, Integers and Complex numbers.
+
+The key being that we can recognise or find out what type of number we are working with.
+
+Integers are whole numbers with no decimal place. e.g. …, -2, -1, 0, 1, 2, … etc, they are denoted in R by an L at the end of the number.
+
+Double is treated as the general number type and by default R will treat all numbers you use as double unless you give it an explicit reason to think otherwise. So therefore, any number with or without a decimal place will be treated as double unless emphasised otherwise.
+
+We can see they type by using the `typeof()` function or command.
+
+```{r}
+
+
+typeof(10)
+
+typeof(10L)
+
+
+```
+
+***
+## Text Values
+
+In R, we refer to text as 'character' strings. 
+
+Character Strings are:
+
+* Created using either single `''` or double quotes `""`.
+* An ordered sequence of character (or symbols).
+
+```{r}
+
+"This is a string"
+
+```
+
+A few symbols are awkward to get into character strings and this is because of they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you reqire will solve the problem. If not, google will definitely have the answer!
+
+For example, if you wanted to include quotation marks inside your string:
+
+```{r}
+
+cat("Then he told Skyler \"I am the one who knocks!\"")
+
+```
+We can do a lot more with character strings in base R such as:
+
+* `substr` - create a sub string of a given string,
+* `nchar` - returns the number of characters in your string,
+* `sprintf` - formats a given string,
+* `strsplit` - which splits a given string by a given sub-string or character
+
+And many more. I encourage you to experiment with these.
+
+***
+## Logical or Boolean Values
+
+In R these are written as `TRUE` or `FALSE`.
+
+They are special R data types - not strings! So they don't need '' or "" around them.
+
+They also have numerical value behind them - TRUE is 1 and FALSE is 0.
+
+Therefore, we can treat them as numbers!
+```{r}
+TRUE + TRUE
+```
+And use all the other operators too!
+```{r}
+TRUE * 2.5
+```
+It's uncommon to use logical values for simple calculations like above. We are far more likely to deal with logical values when we work with logical (or conditional) operators. i.e. To perform comparisons and checks.
+
+Logical Operator| Description
+:--------------:|:------------:
+        <       | Less Than
+       <=       | Less Than or Equal To
+       \>       | Greater Than
+       >=       | Greater Than or Equal To
+    == or **    | Equal To
+       !=       | Not Equal To
+       \|       | Or
+        &       | And
+        %in%    | Membership
+
+
+
+Let's see how these work:
+
+Is 4 greater than 5?
+
+```{r}
+4 > 5
+```
+
+Is 25 equal to 5 squared?
+```{r}
+25 == 5**2
+```
+
+Does 1 equal 2?
+```{r}
+1 != 2
+```
+
+That covers the simpler logical operators. The final two allow us to combine and check multiple conditions.
+
+Both `Or` (`|`) and `And` (`&`) have to have a condition on either side of them. They will check the conditions on each side and then return `TRUE` or `FALSE` based on their value.
+
+`And` (`&`) will return `TRUE` if both conditions are `TRUE`, `FALSE` otherwise. 
+
+`Or` (`|`) will return `TRUE` if at least one of the conditions are `TRUE`, `FALSE` otherwise.
+
+Let's look at some examples:
+
+Can a statement be both `TRUE` and `FALSE`? 
+```{r, results = 'hide'}
+TRUE & FALSE
+```
+```{r, results = 'hide'}
+TRUE | FALSE
+```
+
+Or a less abstract equivalent example:
+```{r, results = 'hide'}
+(25 == 5**2) & (4 > 5)
+```
+```{r, results = 'hide'}
+(25 == 5**2) | (4 > 5)
+```
+```{r, results = 'hide'}
+(25 == 5**2) & TRUE
+```
+Or more interestingly:
+```{r, results = 'hide'}
+(25 == 5**2) & 5
+```
+
+***
+## Data Type Conversion
+
+Given that R is a dynamically typed language, sometimes the data type you want to work with, and the one R infers are not the same.
+
+R doesn't require you to set the data type when you create it, instead it figures out what the best data type is for the object you are creating - numeric, character, logical, etc.
+
+Sometimes you want to ensure that a particular object is actually a certain type, rather than leaving it up to R. This is done using data type conversion (or casting). R has a range of in-built functions that enable you to convert data from one type to another.
+
+Firstly, the `typeof()` function returns the (R internal) type of any given object. e.g.
+```{r}
+typeof("is this a character?")
+```
+
+```{r}
+typeof(5L)
+```
+
+```{r}
+typeof(5)
+```
+
+We could equivalently use functions i.e `is.` functions which checks if our object is a given type. e.g. (set cursor after `is.` and hit tab)
+
+```{r, eval = FALSE}
+is.
+```
+
+```{r}
+is.integer(5)
+```
+
+The way we access the list of functions which allow us to convert from one data type to another we call the `as` . Let's see what we can do... 
+
+```{r, eval = FALSE}
+as.
+```
+
+```{r}
+as.integer(4.996453)
+```
+***
+
+# Variable Assignment
+
+Variables are an integral part of any programming language. Variables allow us to store and label data under a specific name.Its like a placeholder, used to store information. Think of it as a container, they main purpose is to label and store the data in memory.
+
+ 
+R has a lot of flexibility when it comes to variable assignment. We can assign a value to name (or label) using `=` operator or `<-` and `->` operators. 
+
+Here are a few examples of them in action:
+
+* `x = value`
+* `x <- value`
+* `value -> x`
+
+Where `x` is the variable name and `value` is the data being assigned to `x`. 
+
+```{r}
+x <- 25
+```
+After the assignment, to access or use the value we simply reference `x` in our code. 
+```{r}
+x
+```
+```{r}
+x * 3
+```
+
+`<-` is the most commonly used assignment operator in R and therefore the one we will stick to. 
+
+In R it is convention to use `<-` to assign variables and keep `=` reserved to passing key value pair to a function. We will be sticking to this convention. 
+
+`->` is considered bad practice. This is because it makes it harder for others to see where a object has been assigned.
+
+Variable names:
+
+* Are case sensitive and must start with either  `_` or a letter.  
+* Can't use reserved words such as `TRUE` or `FALSE` which already mean something in R. 
+* Ideally, should be descriptive, so that when someone else is reading your code they don't have to guess the relation between `x1`, `x2` and `zebra43`. 
+
+Note: If you reference `x` (or any other variable) before assignment R will throw an error at us saying: `Error: object 'x' not found`.
+
+If we ever want to reassign a variable we would simply use the operators above again. 
+
+For example:
+
+```{r}
+
+my_int <- 5L
+
+typeof(my_int)
+
+```
+```{r}
+
+my_int <- "What?! A CHARACTER?!"
+
+typeof(my_int)
+
+```
+
+
+Typing the following into the Console will list everything you’ve loaded into the Environment:
+
+`ls()`
+
+
+To remove a variable, we would utilise the `rm()` function of R. e.g. `rm(x)` 
+
+To remove multiple variables simply pass more arguments into the function `rm(x1, x2, zebra43)`
+
+
+Alternatively, if you wanted to remove all variables in the enviroment we could use the following code:
+```{r}
+# Explore what it's doing
+rm(list=ls())
+```
+
+
+
+***
+
+# Help
+
+Being a new user of R chances are you are going to get stuck at some point and will need help, these are some of the resources available.
+
+**Cheat Sheets**
+
+You can access thes by clicking on **Help** and then **Cheetsheets**.
+
+**R Documentation **
+
+By typing in the search box, you can also use the console to access help.
+
+Try and type the command below in the console.
+
+```{r, eval=FALSE}
+
+
+?mean 
+
+or 
+
+help(mean)
+
+
+
+```
+
+**Stack Overflow**
+
+[Stack Overflow](https://stackoverflow.com/) is a great site to check if anyone has has a simmilar problem to you, and see how they got around it.
+
+**Yammer**
+
+Within ONS we have two groups on Yammer, 
+
+* The **R User Group** which you can post any issues you are facing and people will suggests solutions
+
+* The **Coding in the Kitchen** group which is used to share tips and best practice.
+
+
+**Cross Goverment Data Science Slack**
+
+[The Cross Goverment Data Science Slack](https://govdatascience.slack.com/) is a place to talk to other people working with Data across government.
+
+The **GSS Training team – gss.capability@ons.gov.uk**
+
+If you have any issues with this course; or notice any errors, please contact the training team on the email above. The training team are also here to help with any R questions you have after you have completed the course.
+
+Please be aware that due to training commitments there may be a small wait before we respond to your query. We also expect that you have attempted to solve your query yourself before contacting us.
+
+***
+
+# Summary - The Basics.
+
+We have covered a lot material in R and yet there is still so much more to cover in terms of functionality, as R has so much to offer. By no means are you expected to remember all the above, but as we move forward, it is important you remain aware of:
+
+* R is an open source **programming language** and environment for statistical computing and graphics.
+
+* The benefits of using R.
+
+* Have a good understanding of RStudio, know what each of the four panes do.
+
+* Be able to create, run and save R scripts.
+
+* Know the data types in R, i.e character, numerical and logical
+
+* Be able to convert data to a different type.
+
+* Know variables are and be assign a variable
+
+* Know the options of where to get help when stuck
+
+***
+
+
