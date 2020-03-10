@@ -2232,13 +2232,15 @@ div.tocify {
 <div id="how-to-write-a-function" class="section level2">
 <h2><span class="header-section-number">4.3</span> How to write a function</h2>
 <p>Basic structure of a function looks like below,</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">function_name &lt;-<span class="st"> </span><span class="cf">function</span>(input) { </a>
-<a class="sourceLine" id="cb38-2" title="2">  </a>
-<a class="sourceLine" id="cb38-3" title="3">  statements of what the <span class="cf">function</span> is doing</a>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co">#Basic structure of a function</span></a>
+<a class="sourceLine" id="cb38-2" title="2"></a>
+<a class="sourceLine" id="cb38-3" title="3">function_name &lt;-<span class="st"> </span><span class="cf">function</span>(input) { </a>
 <a class="sourceLine" id="cb38-4" title="4">  </a>
-<a class="sourceLine" id="cb38-5" title="5">  <span class="kw">return</span>(the <span class="cf">function</span> output)</a>
+<a class="sourceLine" id="cb38-5" title="5">  statements of what the <span class="cf">function</span> is doing</a>
 <a class="sourceLine" id="cb38-6" title="6">  </a>
-<a class="sourceLine" id="cb38-7" title="7">}</a></code></pre></div>
+<a class="sourceLine" id="cb38-7" title="7">  <span class="kw">return</span>(the <span class="cf">function</span> output)</a>
+<a class="sourceLine" id="cb38-8" title="8">  </a>
+<a class="sourceLine" id="cb38-9" title="9">}</a></code></pre></div>
 <blockquote>
 <p>In R, we use a function to make a function!</p>
 </blockquote>
@@ -2305,28 +2307,50 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>The <code>range()</code> in R, doesnt show the difference between the hiegest value and the lowest value, but rather shows the hiegest value.</li>
 </ol>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">23</span>, <span class="dv">30</span>,<span class="dv">50</span>)</a>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="co">#Creating a vector</span></a>
 <a class="sourceLine" id="cb46-2" title="2"></a>
-<a class="sourceLine" id="cb46-3" title="3"></a>
-<a class="sourceLine" id="cb46-4" title="4"><span class="kw">range</span>(age)</a></code></pre></div>
+<a class="sourceLine" id="cb46-3" title="3">age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">23</span>, <span class="dv">30</span>,<span class="dv">50</span>)</a>
+<a class="sourceLine" id="cb46-4" title="4"></a>
+<a class="sourceLine" id="cb46-5" title="5"><span class="co">#Calling the range function on the vector </span></a>
+<a class="sourceLine" id="cb46-6" title="6"><span class="kw">range</span>(age)</a></code></pre></div>
 <pre><code>## [1] 10 50</code></pre>
 <p>Can create a function called my_range which return the difference between the hiegest value and the lowest value?</p>
 </div>
 <div id="hint-2" class="section level3 unnumbered">
 <h3><strong>Hint</strong></h3>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co">#Creating my function</span></a>
+<a class="sourceLine" id="cb48-2" title="2"></a>
+<a class="sourceLine" id="cb48-3" title="3">my_range =<span class="st"> </span><span class="cf">function</span>(input){</a>
+<a class="sourceLine" id="cb48-4" title="4">  </a>
+<a class="sourceLine" id="cb48-5" title="5">  commands</a>
+<a class="sourceLine" id="cb48-6" title="6">  </a>
+<a class="sourceLine" id="cb48-7" title="7">  <span class="kw">return</span>(result)</a>
+<a class="sourceLine" id="cb48-8" title="8">  }</a>
+<a class="sourceLine" id="cb48-9" title="9"></a>
+<a class="sourceLine" id="cb48-10" title="10"></a>
+<a class="sourceLine" id="cb48-11" title="11"><span class="co">#To show the difference between the 2 functions</span></a>
+<a class="sourceLine" id="cb48-12" title="12"><span class="co">#Running the base R range function</span></a>
+<a class="sourceLine" id="cb48-13" title="13">base<span class="op">::</span><span class="kw">range</span>(input)</a>
+<a class="sourceLine" id="cb48-14" title="14"></a>
+<a class="sourceLine" id="cb48-15" title="15"><span class="co">#Running my custom range function</span></a>
+<a class="sourceLine" id="cb48-16" title="16"><span class="kw">my_range</span>(input)</a></code></pre></div>
 </div>
 <div id="show-answer-2" class="section level3 unnumbered">
 <h3><strong>Show Answer</strong></h3>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">my_range =<span class="st"> </span><span class="cf">function</span>(age){</a>
-<a class="sourceLine" id="cb48-2" title="2">  </a>
-<a class="sourceLine" id="cb48-3" title="3">  range &lt;-<span class="st">  </span><span class="kw">max</span>(age) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(age) </a>
-<a class="sourceLine" id="cb48-4" title="4">  </a>
-<a class="sourceLine" id="cb48-5" title="5">  <span class="kw">return</span>(range)</a>
-<a class="sourceLine" id="cb48-6" title="6">  }</a>
-<a class="sourceLine" id="cb48-7" title="7"></a>
-<a class="sourceLine" id="cb48-8" title="8"><span class="kw">range</span>(age)</a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="co">#Creating my function</span></a>
+<a class="sourceLine" id="cb49-2" title="2"></a>
+<a class="sourceLine" id="cb49-3" title="3">my_range =<span class="st"> </span><span class="cf">function</span>(age){</a>
+<a class="sourceLine" id="cb49-4" title="4">  </a>
+<a class="sourceLine" id="cb49-5" title="5">  result &lt;-<span class="st">  </span>base<span class="op">::</span><span class="kw">max</span>(age) <span class="op">-</span><span class="st"> </span>base<span class="op">::</span><span class="kw">min</span>(age) </a>
+<a class="sourceLine" id="cb49-6" title="6">  </a>
+<a class="sourceLine" id="cb49-7" title="7">  <span class="kw">return</span>(result)</a>
+<a class="sourceLine" id="cb49-8" title="8">  }</a>
+<a class="sourceLine" id="cb49-9" title="9"></a>
+<a class="sourceLine" id="cb49-10" title="10"><span class="co">#Running the base R range function</span></a>
+<a class="sourceLine" id="cb49-11" title="11">base<span class="op">::</span><span class="kw">range</span>(age)</a></code></pre></div>
 <pre><code>## [1] 10 50</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="kw">my_range</span>(age)</a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="co">#Running my custom range function</span></a>
+<a class="sourceLine" id="cb51-2" title="2"><span class="kw">my_range</span>(age)</a></code></pre></div>
 <pre><code>## [1] 40</code></pre>
 </div>
 </div>
@@ -2335,28 +2359,28 @@ div.tocify {
 <p><strong>Pythagoras Function Example</strong></p>
 <p>We are now going to write a function that uses Pythagoras&quot; theorem in order to calculate the hypotenuse (longest side) of a right angle triangle given the two other sides. The equation is given as <span class="math display">\[a^2 + b^2 = c^2\]</span> where <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> are the two known sides and <span class="math inline">\(c\)</span> is the longest side. In order to find the value of <span class="math inline">\(c\)</span> we can rearange the formula to <span class="math display">\[c = \sqrt{a^2 + b^2}\]</span></p>
 <p>The function will input values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and then return the value of <span class="math inline">\(c\)</span> below.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="co"># Function to calculate the value of the hypotenuse</span></a>
-<a class="sourceLine" id="cb52-2" title="2">find_the_hypotenuse &lt;-<span class="st"> </span><span class="cf">function</span>(a_value, b_value) {</a>
-<a class="sourceLine" id="cb52-3" title="3">  </a>
-<a class="sourceLine" id="cb52-4" title="4">  <span class="co"># Calculate the values of a^2 + b^2</span></a>
-<a class="sourceLine" id="cb52-5" title="5">  squared_sum_of_values &lt;-<span class="st"> </span>a_value<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>b_value<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb52-6" title="6">  </a>
-<a class="sourceLine" id="cb52-7" title="7">  <span class="co"># Calculate the value of c using the square root function `sqrt()`</span></a>
-<a class="sourceLine" id="cb52-8" title="8">  c_value &lt;-<span class="st"> </span><span class="kw">sqrt</span>(squared_sum_of_values)</a>
-<a class="sourceLine" id="cb52-9" title="9">  </a>
-<a class="sourceLine" id="cb52-10" title="10">  <span class="co"># Return the output value of our function.</span></a>
-<a class="sourceLine" id="cb52-11" title="11">  <span class="kw">return</span>(c_value)</a>
-<a class="sourceLine" id="cb52-12" title="12">}</a>
-<a class="sourceLine" id="cb52-13" title="13"></a>
-<a class="sourceLine" id="cb52-14" title="14"></a>
-<a class="sourceLine" id="cb52-15" title="15"><span class="co"># Assign test values to make sure our function works</span></a>
-<a class="sourceLine" id="cb52-16" title="16"></a>
-<a class="sourceLine" id="cb52-17" title="17">a_test &lt;-<span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb52-18" title="18">b_test &lt;-<span class="st"> </span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb52-19" title="19"></a>
-<a class="sourceLine" id="cb52-20" title="20"><span class="co"># This should give us a value of c = 5</span></a>
-<a class="sourceLine" id="cb52-21" title="21"></a>
-<a class="sourceLine" id="cb52-22" title="22"><span class="kw">find_the_hypotenuse</span>(a_test, b_test)</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="co"># Function to calculate the value of the hypotenuse</span></a>
+<a class="sourceLine" id="cb53-2" title="2">find_the_hypotenuse &lt;-<span class="st"> </span><span class="cf">function</span>(a_value, b_value) {</a>
+<a class="sourceLine" id="cb53-3" title="3">  </a>
+<a class="sourceLine" id="cb53-4" title="4">  <span class="co"># Calculate the values of a^2 + b^2</span></a>
+<a class="sourceLine" id="cb53-5" title="5">  squared_sum_of_values &lt;-<span class="st"> </span>a_value<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>b_value<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb53-6" title="6">  </a>
+<a class="sourceLine" id="cb53-7" title="7">  <span class="co"># Calculate the value of c using the square root function `sqrt()`</span></a>
+<a class="sourceLine" id="cb53-8" title="8">  c_value &lt;-<span class="st"> </span><span class="kw">sqrt</span>(squared_sum_of_values)</a>
+<a class="sourceLine" id="cb53-9" title="9">  </a>
+<a class="sourceLine" id="cb53-10" title="10">  <span class="co"># Return the output value of our function.</span></a>
+<a class="sourceLine" id="cb53-11" title="11">  <span class="kw">return</span>(c_value)</a>
+<a class="sourceLine" id="cb53-12" title="12">}</a>
+<a class="sourceLine" id="cb53-13" title="13"></a>
+<a class="sourceLine" id="cb53-14" title="14"></a>
+<a class="sourceLine" id="cb53-15" title="15"><span class="co"># Assign test values to make sure our function works</span></a>
+<a class="sourceLine" id="cb53-16" title="16"></a>
+<a class="sourceLine" id="cb53-17" title="17">a_test &lt;-<span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb53-18" title="18">b_test &lt;-<span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb53-19" title="19"></a>
+<a class="sourceLine" id="cb53-20" title="20"><span class="co"># This should give us a value of c = 5</span></a>
+<a class="sourceLine" id="cb53-21" title="21"></a>
+<a class="sourceLine" id="cb53-22" title="22"><span class="kw">find_the_hypotenuse</span>(a_test, b_test)</a></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 </div>
 <div id="exercise-4" class="section level2 tabset tabset-fade">
@@ -2368,16 +2392,196 @@ div.tocify {
 <h3><strong>Exercise</strong></h3>
 <p>Write a function which:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Converts from Fahrenheit to degrees Celsius using the equation below. The function should print out a value rounded to 1dp.</strong></li>
+<li><strong>Converts from Fahrenheit to degrees Celsius using the equation below.</strong></li>
 </ol>
 <p><span class="math display">\[C=\frac{5}{9}(F-32)\]</span></p>
+<blockquote>
+<p>Examples:</p>
+</blockquote>
+<ul>
+<li><code>f_to_c(32)</code> returns:
+<ul>
+<li>[1] 0</li>
+</ul></li>
+<li><code>f_to_c(11)</code> returns:
+<ul>
+<li>[1] -11.7</li>
+</ul></li>
+<li><code>f_to_c(81.3)</code> returns:
+<ul>
+<li>[1] 27.4</li>
+</ul></li>
+</ul>
 </div>
 <div id="hint-3" class="section level3 unnumbered">
 <h3><strong>Hint</strong></h3>
+<p>Write a function which:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Converts from Fahrenheit to degrees Celsius using the equation below.</strong></li>
+</ol>
+<p><span class="math display">\[C=\frac{5}{9}(F-32)\]</span></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co">#Creating our function</span></a>
+<a class="sourceLine" id="cb55-2" title="2"></a>
+<a class="sourceLine" id="cb55-3" title="3">Fahrenheit_to_degrees_Celsius &lt;-<span class="st"> </span><span class="cf">function</span>(input){</a>
+<a class="sourceLine" id="cb55-4" title="4">  </a>
+<a class="sourceLine" id="cb55-5" title="5">  commands</a>
+<a class="sourceLine" id="cb55-6" title="6">  </a>
+<a class="sourceLine" id="cb55-7" title="7">  <span class="kw">return</span>(celsius)</a>
+<a class="sourceLine" id="cb55-8" title="8">}</a>
+<a class="sourceLine" id="cb55-9" title="9"></a>
+<a class="sourceLine" id="cb55-10" title="10"><span class="co">#Calling our function</span></a>
+<a class="sourceLine" id="cb55-11" title="11"><span class="kw">Fahrenheit_to_degrees_Celsius</span>(input)</a></code></pre></div>
 </div>
 <div id="show-answer-3" class="section level3 unnumbered">
 <h3><strong>Show Answer</strong></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Converts from Fahrenheit to degrees Celsius using the equation below.</strong></li>
+</ol>
+<p><span class="math display">\[C=\frac{5}{9}(F-32)\]</span></p>
+<blockquote>
+<p>Examples:</p>
+</blockquote>
+<ul>
+<li><code>f_to_c(32)</code> returns:
+<ul>
+<li>[1] 0</li>
+</ul></li>
+<li><code>f_to_c(11)</code> returns:
+<ul>
+<li>[1] -11.7</li>
+</ul></li>
+<li><code>f_to_c(81.3)</code> returns:
+<ul>
+<li>[1] 27.4</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="co">#Creating our function</span></a>
+<a class="sourceLine" id="cb56-2" title="2"></a>
+<a class="sourceLine" id="cb56-3" title="3">Fahrenheit_to_degrees_Celsius &lt;-<span class="st"> </span><span class="cf">function</span>(fahrenheit){</a>
+<a class="sourceLine" id="cb56-4" title="4">  celsius &lt;-<span class="st"> </span>(<span class="dv">5</span><span class="op">/</span><span class="dv">9</span>)<span class="op">*</span>(fahrenheit <span class="op">-</span><span class="st"> </span><span class="dv">32</span>)</a>
+<a class="sourceLine" id="cb56-5" title="5">  <span class="kw">return</span>(celsius)</a>
+<a class="sourceLine" id="cb56-6" title="6">}</a>
+<a class="sourceLine" id="cb56-7" title="7"></a>
+<a class="sourceLine" id="cb56-8" title="8"><span class="co">#Calling our function</span></a>
+<a class="sourceLine" id="cb56-9" title="9"><span class="kw">Fahrenheit_to_degrees_Celsius</span>(<span class="dv">32</span>)</a></code></pre></div>
+<pre><code>## [1] 0</code></pre>
 </div>
+</div>
+</div>
+<div id="deeper-understanding" class="section level1">
+<h1><span class="header-section-number">5</span> Deeper Understanding</h1>
+<div id="arguements" class="section level2 unnumbered">
+<h2>Arguements</h2>
+<p>In short, arguments are things you pass to a function, when you call it, to enable the function to perform it’s task.</p>
+<div id="types-of-arguements" class="section level3 unnumbered">
+<h3>Types of Arguements</h3>
+<div id="required-arguments" class="section level4 unnumbered">
+<h4>Required Arguments</h4>
+<p>Like the name suggests, these are arguments which are required by a function and must be passed in the correct order.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co">#Creating our function</span></a>
+<a class="sourceLine" id="cb58-2" title="2">arithmetic &lt;-<span class="st"> </span><span class="cf">function</span>(a,b){</a>
+<a class="sourceLine" id="cb58-3" title="3">  <span class="kw">return</span> ((a <span class="op">^</span><span class="st"> </span>b)<span class="op">/</span>b)</a>
+<a class="sourceLine" id="cb58-4" title="4">}</a>
+<a class="sourceLine" id="cb58-5" title="5"></a>
+<a class="sourceLine" id="cb58-6" title="6"><span class="co">#Calling our function</span></a>
+<a class="sourceLine" id="cb58-7" title="7"><span class="kw">arithmetic</span>(<span class="dv">4</span>,<span class="dv">9</span>)</a>
+<a class="sourceLine" id="cb58-8" title="8"><span class="co"># [1]  29127.11 </span></a></code></pre></div>
+<p><code>a</code> and <code>b</code> are both required arguments. We would get a missing error if we did not pass both arguments.</p>
+<blockquote>
+<p>Also, <code>arithmetic(a,b) != arithmetic(b,a)</code> (in most cases!)</p>
+</blockquote>
+</div>
+<div id="default-arguments" class="section level4 unnumbered">
+<h4>Default arguments</h4>
+<p>This is where, in the function declaration, the value of the parameter is pre-set. The function will retain this value unless it is changed when the function is called.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="co">#Creating our function</span></a>
+<a class="sourceLine" id="cb59-2" title="2">arithmetic &lt;-<span class="st"> </span><span class="cf">function</span>(a,<span class="dt">b =</span> <span class="dv">1</span>){</a>
+<a class="sourceLine" id="cb59-3" title="3">  <span class="kw">return</span> ((a <span class="op">^</span><span class="st"> </span>b)<span class="op">/</span>b)</a>
+<a class="sourceLine" id="cb59-4" title="4">}</a>
+<a class="sourceLine" id="cb59-5" title="5"></a>
+<a class="sourceLine" id="cb59-6" title="6"><span class="co">#Calling our function</span></a>
+<a class="sourceLine" id="cb59-7" title="7"><span class="kw">arithmetic</span>(<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb59-8" title="8"><span class="co"># [1]  5</span></a>
+<a class="sourceLine" id="cb59-9" title="9"></a>
+<a class="sourceLine" id="cb59-10" title="10"><span class="co">#Calling our function</span></a>
+<a class="sourceLine" id="cb59-11" title="11"><span class="kw">arithmetic</span>(<span class="dv">5</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb59-12" title="12"><span class="co"># [1]  12.5</span></a></code></pre></div>
+<p>In the example above the function will take <code>a = 5</code> and use the default value <code>b = 1</code>. Where as, in the example below, we overwrite <code>b = 1</code> by passing the argument <code>2</code>.</p>
+</div>
+<div id="dot-dot-dot-arguments" class="section level4 unnumbered">
+<h4>Dot-dot-dot arguments</h4>
+<blockquote>
+<p>also known as the ellipsis argument.</p>
+</blockquote>
+<p>You will often see in list of arguments a function takes, in the documentation, this <code>...</code>. This is a special argument which captures any number of arguments that aren’t otherwise matched.</p>
+<p>Sometimes being able to pass an arbitrary number of arguments can be useful, especially when another function is called within a wrapper function. This requires the ellipsis construct, …, which is designed to pass a variable number of arguments to a function. Here’s an example:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="co"># This function produces a plot of x vs y</span></a>
+<a class="sourceLine" id="cb60-2" title="2"></a>
+<a class="sourceLine" id="cb60-3" title="3">plot_x_and_y &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, ...) {</a>
+<a class="sourceLine" id="cb60-4" title="4">  </a>
+<a class="sourceLine" id="cb60-5" title="5">  <span class="kw">plot</span>(x, y, ...)</a>
+<a class="sourceLine" id="cb60-6" title="6">  </a>
+<a class="sourceLine" id="cb60-7" title="7">}</a>
+<a class="sourceLine" id="cb60-8" title="8"></a>
+<a class="sourceLine" id="cb60-9" title="9"><span class="co">#Creating Vectors</span></a>
+<a class="sourceLine" id="cb60-10" title="10">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb60-11" title="11"></a>
+<a class="sourceLine" id="cb60-12" title="12">y &lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb60-13" title="13"></a>
+<a class="sourceLine" id="cb60-14" title="14"></a>
+<a class="sourceLine" id="cb60-15" title="15"><span class="co">#The function can be called with only the required arguments:</span></a>
+<a class="sourceLine" id="cb60-16" title="16"></a>
+<a class="sourceLine" id="cb60-17" title="17"><span class="kw">plot_x_and_y</span>(x,y)</a></code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABUAAAAPACAMAAADDuCPrAAAAulBMVEUAAAAAADoAAGYAOjoAOmYAOpAAZrY6AAA6OgA6Ojo6OmY6ZmY6ZpA6ZrY6kNtmAABmOgBmOjpmZjpmZmZmZpBmkJBmkLZmkNtmtttmtv+QOgCQZgCQZjqQkDqQkLaQtraQttuQtv+Q2/+2ZgC2Zjq2kGa2kLa2tpC2tra2ttu227a229u22/+2///bkDrbkGbbtmbbtpDbtrbb27bb29vb2//b////tmb/25D/27b/29v//7b//9v///+9LqNWAAAACXBIWXMAAB2HAAAdhwGP5fFlAAAZZ0lEQVR4nO3dbX8T14HG4TEhuGmTQOptNtDstsXQkiU4IRAMQf7+X2s1si2PH+JIN8czOnOu60Vi/JPlOdbor3me7gSASDf1BADUSkABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKENrtgHYAxZRPVPFnLGjqvzYwL8UbVfoJS7qDDwygWQIKEBJQgJCAAoQqDOji7S8vXrz4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BBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBJSaHXfdvVf9F4snXfdg6qmhOQJKzdbdXJcURiSgVO39frf39OTk48Ouezz1tNAeAaVuh133+buz/8LIBJS6rZY9lyvw/XIojExAqdwynp/td93XU08HLRJQKtfvR7ICzzQElNq937cCz0QElNr1i6AOYWISAkrtjvpVeJtAmYKAUrmPD7u9fevwTEJAqdzhcvHzyHmcTEJAqdtxvwfeiUhMQ0CpWr8H6bFT4ZmIgFK1o9NDQPuO2o/E6ASUmr0/333kZE6mIKDU7HC99+jQfiTGJ6AAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAof8H4Y7hpxxz4yAAAAAASUVORK5CYII=" width="672" /></p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="co">#Or the function can be called with any optional arguments accepted by the plot function:</span></a>
+<a class="sourceLine" id="cb61-2" title="2"><span class="kw">plot_x_and_y</span>(x, y, <span class="dt">col=</span><span class="st">&#39;red&#39;</span>, <span class="dt">type=</span><span class="st">&#39;l&#39;</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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0+o3+Oc3c9+PEb37av1BlZUu8WpAfSonQCoCChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgZHa8WDz6sfvD8sVi8WTue0NzBJTMLrp5UVKYkICS2of9xd53Jyd/PF0sns99X2iPgJLb4WLx6a9n/wsTE1ByW+97rgb4bj8UJiagJLeK5yf7i8WXc98PWiSgJNcdRzLAMw8BJbsP+wZ4ZiKgZNftgjqFiVkIKNkddSO8l0CZg4CS3B9PF3v7ZnhmIaAkd7ja/TzyPk5mIaDkdtwdgfdGJOYhoKTWHUF67q3wzERASe3o9BTQrqOOIzE5ASWzD+eHj7yZkzkIKJkdXhw9OnQciekJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKEDQ/wPVIuj5IgUuWwAAAABJRU5ErkJggg==" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="scope" class="section level2">
+<h2><span class="header-section-number">5.1</span> Scope</h2>
+<p>It’s important to notice here that the variables I create within my functions are not available outside of my function.</p>
+<p>In R storage is broken down into environments and then scopes. Most of the time you’ll be working in the global environment (right hand panel).</p>
+<p>In the global environment there are two types of scopes, <em>global</em> and <em>local</em>. Variables that have <em>global</em> scope are visible everywhere - in every function, loop, conditional, basically every part of the code. However, variables that have <em>local</em> scope are only visible inside said scope and hence can only be used within that local scope.</p>
+<p>When we create a new function we effectively create a new local scope – so the variables we declare within our functions are only available within that local scope.</p>
+<p>Here is a classical example to demonstrate this.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="co">#Creating a function</span></a>
+<a class="sourceLine" id="cb62-2" title="2"></a>
+<a class="sourceLine" id="cb62-3" title="3">example_function &lt;-<span class="st"> </span><span class="cf">function</span>(){</a>
+<a class="sourceLine" id="cb62-4" title="4">  z &lt;-<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb62-5" title="5">  <span class="kw">paste</span>(<span class="st">&quot;This is z inside the function:&quot;</span>,z)</a>
+<a class="sourceLine" id="cb62-6" title="6">}</a>
+<a class="sourceLine" id="cb62-7" title="7"></a>
+<a class="sourceLine" id="cb62-8" title="8"><span class="co">#Calling a function</span></a>
+<a class="sourceLine" id="cb62-9" title="9"><span class="kw">example_function</span>()</a></code></pre></div>
+<pre><code>## [1] &quot;This is z inside the function: 10&quot;</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="co">#To display the result</span></a>
+<a class="sourceLine" id="cb64-2" title="2"><span class="co">#This will not work as this does not exist outside the function</span></a>
+<a class="sourceLine" id="cb64-3" title="3"><span class="kw">print</span>(z)</a></code></pre></div>
+</div>
+</div>
+<div id="summary---control-flow-and-functions" class="section level1">
+<h1><span class="header-section-number">6</span> Summary - Control Flow and Functions</h1>
+<div id="reminder-of-learning-objectives" class="section level2">
+<h2><span class="header-section-number">6.1</span> Reminder of Learning Objectives</h2>
+<p><strong>You should now be able to</strong></p>
+<ul>
+<li><p>Be able to use conditional statements: <em>if</em>, <em>else</em> and <em>else if</em>.</p></li>
+<li>Know what functions are and why they are useful.</li>
+<li>Distinguish between a function’s parameters and arguments.
+<ul>
+<li>Including different types of arguments</li>
+</ul></li>
+<li>Understand the idea of ‘scope’.
+<ul>
+<li>i.e. Global scope vs Local scope</li>
+</ul></li>
+<li>Write and apply user defined functions.</li>
+<li>Apply functions to <code>vector</code> and <code>tibble</code> objects.</li>
+<li>Understand programming concept of Loops.</li>
+<li><p>Utilise loops and understand their place in R.</p></li>
+</ul>
 </div>
 </div>
 
