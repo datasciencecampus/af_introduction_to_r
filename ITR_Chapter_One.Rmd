@@ -82,6 +82,9 @@ When we open RStudio for the first time, we’re likely to see this:
 
 ![](Images/studio2.PNG)
 
+
+If you dont see the Code editor pane, go to the toolbar and click **View** -> **Panes** -> **Show All Panes**.
+
 We will go through what we can do with each of these panels.
 
 ***
@@ -107,6 +110,7 @@ To change this setting go to` Tools` -> `Global Options` -> `“Save workspace t
 
 
 ***
+>R can be used as Calculator Exercise 
 
 ### The Console
 
@@ -201,6 +205,8 @@ For more information about RStudio, you can find the **RStudio** Cheat Sheet und
 
 A **script** is just a plain text file which we write our code in, generally we will  to write code which will be  longer than just a few lines.
 
+>Creating a Script Exercise
+
 Lets create a script file which we will use to write and save our code during the course.
 
 To create a new script,
@@ -212,7 +218,13 @@ The **hash (#)** tells R not to run any of the text on that line to the right of
 
 Scripts execute sequentially from top to bottom.
 
-RStudio has the advantage of providing syntax highlighting, code completion, and smart indentation. You can see the different colours for numbers.
+RStudio has the advantage of,
+
+* Providing syntax highlighting 
+
+* Code completion
+
+* Smart indentation 
 
 Lets write a note in our script.
 
@@ -260,6 +272,9 @@ Operators in R:
 |    %%     | [Modulo Division](https://en.wikipedia.org/wiki/Modulo_operation)|
 |    %/%    | [Floor Division](https://en.wikipedia.org/wiki/Floor_and_ceiling_functions)|
 
+
+>Coding in a Script Exercise
+
 Let's have a play with some of these operators:
 
 Type the code below, to run the code you need to select the section you want to run and then press **CTRL + ENTER.**
@@ -288,7 +303,9 @@ Type the code below, to run the code you need to select the section you want to 
 
 It’s also useful to note that R will follow BIDMAS for order of operations.
 
-There are also some built-in functions such as sqrt(9) or round(3.6357, digits = 2). Functions are like commands they basically take an input do something and produce an output.
+There are also some built-in functions such as **sqrt(9)** or **round(3.6357, digits = 2)**. 
+
+>Functions are like commands they basically take an input do something and produce an output.
 
 
 Let’s see what they do:
@@ -303,9 +320,16 @@ round(3.6357, digits = 2)
 
 ```
 
-There are many more built-in functions which you will discover with more exposure to R, but for now we will move onto the different types of numbers we might work with. These are: Numeric, Double, Integers and Complex numbers.
+There are many more built-in functions which you will discover with more exposure to R, but for now we will move onto the different types of numbers we might work with. 
 
-The key being that we can recognise or find out what type of number we are working with.
+These are: 
+
+* Numeric, 
+* Double, 
+* Integers 
+* Complex numbers.
+
+>The key being that we can recognise or find out what type of number we are working with.
 
 Integers are whole numbers with no decimal place. e.g. …, -2, -1, 0, 1, 2, … etc, they are denoted in R by an L at the end of the number.
 
@@ -362,7 +386,7 @@ And many more. I encourage you to experiment with these.
 
 In R these are written as `TRUE` or `FALSE`.
 
-They are special R data types - not strings! So they don't need '' or "" around them.
+>They are special R data types - not strings! So they don't need '' or "" around them.
 
 They also have numerical value behind them - TRUE is 1 and FALSE is 0.
 
@@ -408,7 +432,9 @@ Does 1 equal 2?
 1 != 2
 ```
 
-That covers the simpler logical operators. The final two allow us to combine and check multiple conditions.
+That covers the simpler logical operators. 
+
+The final two allow us to combine and check multiple conditions.
 
 Both `Or` (`|`) and `And` (`&`) have to have a condition on either side of them. They will check the conditions on each side and then return `TRUE` or `FALSE` based on their value.
 
@@ -419,34 +445,29 @@ Both `Or` (`|`) and `And` (`&`) have to have a condition on either side of them.
 Let's look at some examples:
 
 Can a statement be both `TRUE` and `FALSE`? 
-```{r, results = 'hide'}
+```{r}
 TRUE & FALSE
 ```
-```{r, results = 'hide'}
+```{r}
 TRUE | FALSE
 ```
 
 Or a less abstract equivalent example:
-```{r, results = 'hide'}
+```{r}
 (25 == 5**2) & (4 > 5)
 ```
-```{r, results = 'hide'}
+```{r}
 (25 == 5**2) | (4 > 5)
 ```
-```{r, results = 'hide'}
-(25 == 5**2) & TRUE
-```
-Or more interestingly:
-```{r, results = 'hide'}
-(25 == 5**2) & 5
-```
+
+
 
 ***
 ## Data Type Conversion
 
 Given that R is a dynamically typed language, sometimes the data type you want to work with, and the one R infers are not the same.
 
-R doesn't require you to set the data type when you create it, instead it figures out what the best data type is for the object you are creating - numeric, character, logical, etc.
+>R doesn't require you to set the data type when you create it, instead it figures out what the best data type is for the object you are creating - numeric, character, logical, etc.
 
 Sometimes you want to ensure that a particular object is actually a certain type, rather than leaving it up to R. This is done using data type conversion (or casting). R has a range of in-built functions that enable you to convert data from one type to another.
 
@@ -510,7 +531,7 @@ x
 x * 3
 ```
 
-`<-` is the most commonly used assignment operator in R and therefore the one we will stick to. 
+>`<-` is the most commonly used assignment operator in R and therefore the one we will stick to. 
 
 In R it is convention to use `<-` to assign variables and keep `=` reserved to passing key value pair to a function. We will be sticking to this convention. 
 
@@ -638,4 +659,8 @@ We have covered a lot material in R and yet there is still so much more to cover
 
 ***
 
+# Next Chapter
 
+>In the next chapter we will look at Data Structures.
+
+***
