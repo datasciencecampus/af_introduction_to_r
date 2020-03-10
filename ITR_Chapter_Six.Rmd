@@ -742,7 +742,9 @@ In the same way we use the `list()` function to create and return a list object,
 
 In the same way we use the `list()` function to create and return a list object, the `function()` function will create and return a function object.
 
-The keyword return will return whatever value is after it. When the return statement is executed the function will stop at that line and return the given value. No code after the return statement will be executed.
+The keyword return will return whatever value is after it. When the return statement is executed the function will stop at that line and return the given value. 
+
+>No code after the return statement will be executed.
 
 Note that the keyword return is not necessary; but any function without a return statement will return a value of None - it will produce no output for future code to work with.
 
@@ -786,4 +788,111 @@ my_result
 
 ```
 
+### Functions with Multiple Arguements
+Functions can accept as many arguments as you like, but can only output one object (if it is necessary to output more than one object, then the desired outputs can be combined together into a list, and the list can be returned). above is a function that requires two input variables.
+
+When you call a function, you can specify the arguments by position or name. In this example, the function accepts arguments called value_1 and value_2, with the order specified as x then y in the function definition.
+
+Therefore when function_sum_values(1, 2) is called, the arguments are interpreted as value_1 = 1 and value_2 = 2. 
+
+Alternatively, if we called called function_sum_values(2, 1) then the arguments would be interpreted as value_1 = 2 and value_2= 1.
+
+### Named Arguements
+For more complicated functions with lots of arguments, specifying the arguments by position becomes more error-prone and harder to understand. Therefore it is often desirable to specify some or all of the arguments by name, then the order of the arguments doesn’t matter:
+
+```{r}
+
+function_sum_values(value_1 = 1, value_2 = 2)
+
+```
+
+## Exercise{.tabset .tabset-fade}
+
+>Creating Functions Exercise
+
+### **Exercise**{-}
+
+1. The `range()` in R, doesnt show the difference between the hiegest value and the lowest value, but rather shows the hiegest value.
+
+```{r}
+age <- c(10, 23, 30,50)
+
+
+range(age)
+
+
+
+```
+ Can create a function called my_range which return the difference between the hiegest value and the lowest value?
+
+### **Hint**{-}
+
+### **Show Answer**{-}
+
+```{r}
+
+my_range = function(age){
+  
+  range <-  max(age) - min(age) 
+  
+  return(range)
+  }
+
+range(age)
+
+my_range(age)
+```
+
+## Example
+
+**Pythagoras Function Example**
+
+We are now going to write a function that uses Pythagoras" theorem in order to calculate the hypotenuse (longest side) of a right angle triangle given the two other sides. The equation is given as $$a^2 + b^2 = c^2$$ where $a$, $b$ are the two known sides and $c$ is the longest side. In order to find the value of $c$ we can rearange the formula to $$c = \sqrt{a^2 + b^2}$$
+
+The function will input values of $a$ and $b$ and then return the value of $c$ below.
+
+
+```{r}
+
+# Function to calculate the value of the hypotenuse
+find_the_hypotenuse <- function(a_value, b_value) {
+  
+  # Calculate the values of a^2 + b^2
+  squared_sum_of_values <- a_value^2 + b_value^2
+  
+  # Calculate the value of c using the square root function `sqrt()`
+  c_value <- sqrt(squared_sum_of_values)
+  
+  # Return the output value of our function.
+  return(c_value)
+}
+
+
+# Assign test values to make sure our function works
+
+a_test <- 3
+b_test <- 4
+
+# This should give us a value of c = 5
+
+find_the_hypotenuse(a_test, b_test)
+
+```
+
+## Exercise{.tabset .tabset-fade}
+
+>Creating Functions Exercise
+
+### **Exercise**{-}
+Write a function which:
+
+1. **Converts from Fahrenheit to degrees Celsius using the equation below. The function should print out a value rounded to 1dp.**
+
+$$C=\frac{5}{9}(F-32)$$
+
+
+
+### **Hint**{-}
+
+### **Show Answer**{-}
 
