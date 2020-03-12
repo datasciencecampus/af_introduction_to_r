@@ -27,18 +27,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **The goal of this session is to:**
 
-
 * Be familliar with data structures in R.
 * Understand how vectors operate.
-* Be familliar with lists
+* Be familliar with lists.
 * Be familiar with data frames and tibbles.
-
 
 ***
 
 # Data Structures
 
-We dont work with single data values, we often work with a combination or collection of data.
+We do not work with single data values, we often work with a combination or collection of data.
 
 R organises these in certain structures.
 
@@ -47,8 +45,7 @@ R stores this data so that  we can manipulate and work with it.
 ***
 # Vectors
 
->Now it's time to almost forget everything you've just learned... In R the most fundamental object is a vector. To the extent all the data types we have seen so far have all been vectors. This is because R is a vectorised language. This is a really powerful concept that may seem foreign right now, but it should make more sense as we move on. 
-
+> Now it's time to almost forget everything you've just learned... In R the most fundamental object is a vector. To the extent all the data types we have seen so far have all been vectors. This is because R is a **"vectorised"** language. This is a really powerful concept that may seem foreign right now, but it should make more sense as we move on. 
 
 In the previous section we looked at data types, where we said we could assign a name to a value.
 
@@ -60,33 +57,33 @@ my_friends <- "ian"
 
 ```
 
-Suppose you wanted to store more than one value (more friends) other than `"ian"`. e.g "jonathan", "hannah", "mike", "almas"
+Suppose you wanted to store more than one value (more friends) other than `"ian"`. e.g "jonathon", "hannah", "mike", "almas"
 
 ```{r, eval=FALSE}
 
-my_friends <- "ian" "jonathan", "hannah", "mike", "almas"
+my_friends <- "ian", "jonathon", "hannah", "mike", "almas"
 
-my_friends <- ("ian" "jonathan", "hannah", "mike", "almas")
+my_friends <- ("ian" "jonathon", "hannah", "mike", "almas")
 
 
 ```
 
 ***
->Accessing the R Help Documentation Exercise
+> Accessing the R Help Documentation Exercise
 
 ## The c() Function {.tabset .tabset-fade}
 
 <br>
 
-The code above will not work, which is where the c() function comes in. 
+The code above will not work, which is where the `c()` function comes in. 
 
 <br>
 
 ### **Exercise** {-}
 
->Using the Help Section.
+> Using the Help Section.
 
-* Use the help section in R to find out what the c() function does.
+* Use the help section in R to find out what the `c()` function does.
 
 ```{r, eval=F}
 
@@ -102,15 +99,17 @@ The c() function is used for creating a vector in R.
 
 ?c()
 
-#or
+# or
 
 help(c)
 
 ```
+
 ***
+
 ## Vector Definition
 
-A `vector` is a one-dimensional ordered collection of elements, **all of the same type.** 
+A `vector` is a one-dimensional ordered collection of elements, **all of the same type**. 
 
 It is the basic data structure in R.
 
@@ -129,53 +128,53 @@ There are more types of vectors, but for the purpose of our learning these  are 
 
 There are several other ways of creating a vector:
 
-You can create a vector by using the;
+You can create a vector by using:
 
 - The combine function **c()**.
 
-- You can use the sequence function **seq().**
+- The sequence function **seq()**.
 
-- We can also use the **colon** to create a vector of consecutive numbers.
+- The **colon** to create a vector of consecutive numbers.
 
 - Another way to initialise a vector is by using the **vector()** function.
 
 ```{r}
 
-#Creating a vector using the combine function
+# Creating a vector using the combine function
 
-sample_vector <- c(1,2,3,4,5)
+sample_vector <- c(1, 2, 3, 4, 5)
 
-#To display the created vector
+# To display the created vector
 sample_vector  
 
 ```
 
 ```{r}
-#Creating a vector using the sequence function
-sequence_vector <- seq(2,6, by=2)
+# Creating a vector using the sequence function
+sequence_vector <- seq(2, 6, by = 2)
 
-#To display the created vector
+# To display the created vector
 sequence_vector
 
 ```
 
 ```{r}
-#Creating a vector using a colon
+# Creating a vector using a colon
 colon_vector <- 6:10
 
-#To display the created vector
+# To display the created vector
 colon_vector
 
 ```
 
 ```{r}
-#Creating a vector using the vector function
-#Here we can specify what type of vector by specifying the mode 
-#and the how long by specifying the length
+# Creating a vector using the vector function
+# Here we can specify what type of vector by specifying the mode 
+# and the how long by specifying the length
 
 example_vector <- vector(mode = 'logical', length = 7)
 
-#To display the created vector
+# To display the created vector
 example_vector
 
 ```
@@ -184,37 +183,37 @@ example_vector
 Play around with the `mode` and `length` parameters. (Try: mode = integer, double or character).
 <br />
 
->Creating Vectors Exercise
+> Creating Vectors Exercise
 
 ***
 
-### **Exercise**{-}
+### **Exercise** {-}
 
->Creating Vectors.
+> Creating Vectors
 
-1.In your script leave yourself a comment to remind you that this exercise is about vectors.
-
-
-2.Create 2 vectors, one with numeric data and one with character data, e.g favourite_movies and lucky_numbers. `(Feel free to be creative here)`.
+1. In your script leave yourself a comment to remind you that this exercise is about vectors.
 
 
-3.Now combine the 2 vectors to create a new vector, e.g movies_and_numbers
+2. Create two vectors, one with numeric data and one with character data, e.g favourite_movies and lucky_numbers. `(Feel free to be creative here)`.
 
 
-4.Then find out what type of vector your new vector is, use **typeof()**.
+3. Now combine the two vectors to create a new vector, e.g movies_and_numbers.
+
+
+4. Then find out what type of vector your new vector is, use **typeof()**.
 
 
 ```{r, eval=FALSE}
 
-#Creating a character vector
+# Creating a character vector
 favourite_movies <- c("Frozen", "The Lion King", "Moana", "The Dark Knight") 
 
 
-#Creating a numerical vector  
+# Creating a numerical vector  
 lucky_numbers <- c(7, 12, 15, 1) 
 
 
-#Combining the two vectors into a new vector
+# Combining the two vectors into a new vector
 movies_and_numbers <- c(favourite_movies, lucky_numbers)
 
 ```
@@ -224,20 +223,20 @@ movies_and_numbers <- c(favourite_movies, lucky_numbers)
 
 We can see below that our new vector is a character vector, as vectors are supposed to be of the same data type, R will automatically convert the data of the 2 vectors to be the same, 
 
->this is known as **coercion.**
+> this is known as **coercion.**
 
 
 ```{r}
-#This exercise is about vectors
+# This exercise is about vectors
 
 favourite_movies <- c("Frozen", "The Lion King", "Moana", "The Dark Knight")  
   
 lucky_numbers <- c(7, 12, 15, 1)     
 
-#combining the 2 vectors
+# combining the 2 vectors
 movies_and_numbers <- c(favourite_movies, lucky_numbers)
 
-#checking the type of vector
+# checking the type of vector
 typeof(movies_and_numbers)
 
 ```
@@ -246,69 +245,62 @@ typeof(movies_and_numbers)
 
 ## Vectorised Language{.tabset .tabset-fade}
 
+Vectors aren't just containers for homogeneous (the same type of) data. 
 
-Vectors aren't just containers for homogeneous data. 
+> As R is a vectorised language, this means operations are applied to each element of the vector automatically, without the need to loop through the vector. 
 
->As R is a vectorised language, this means operations are applied to each element of the vector automatically, without the need to loop through the vector. 
-
-Since all the objects we have seen so far (integer, double, logical and character) have all been secretly vectors, that means all the operations we have performed so far have been vectorised operations! i.e. The operations will scale to an `n` sized vector, rather than the individual elements we have worked with thus far. 
+Since all the objects we have seen so far (`integer`, `double`, `logical` and `character`) have all been secretly vectors, that means all the operations we have performed so far have been vectorised operations! The operations will scale to an `n` sized vector, rather than the individual elements we have worked with thus far. 
 
 Let's explore!
 
 ```{r}
-#To display the vector
+# To display the vector
 sample_vector
 
 
-#To display the vector
+# To display the vector
 colon_vector
 
-#Adding vectors
+# Adding vectors
 
 vector_addition <- sample_vector + colon_vector
 
-
-#To display the vector
+# To display the vector
 vector_addition
 
-#Multiplying vectors
+# Multiplying vectors (element wise, dot product)
 
 vector_multiplication <- sample_vector * colon_vector
 
-#To display the vector
+# To display the vector
 vector_multiplication
 
-
-#To display the vector
+# To display the vector
 sample_vector
 
 #Multiplying a vector with a value
 sample_vector * 3
 
-
-
-
 ```
 
 ***
 
->Vector Operations Exercise
+> Vector Operations Exercise
 
-### **Exercise**{-}
+### **Exercise** {-}
 
->Vector Addition
+> Vector Addition
 
-1. Try and add sample_vector and sequence_vector.
+1. Try and add `sample_vector` and `sequence_vector`.
 
 2. Can you figure out what has happened?
 
-
 ```{r, eval=FALSE}
-#Adding two vectors of different lengths
+# Adding two vectors of different lengths
 
 vector_after_addition <- sample_vector + sequence_vector
 
-#To display the vector
+# To display the vector
 vector_after_addition  
 
 ```
@@ -317,46 +309,46 @@ vector_after_addition
 
 ```{r}
 
-#To display the vector
+# To display the vector
 sample_vector
 
 
-#To display the vector
+# To display the vector
 sequence_vector
 
 
-#Adding two vectors of different lengths
+# Adding two vectors of different lengths
 vector_after_addition <- sample_vector + sequence_vector
 
-#To display the vector
+# To display the vector
 vector_after_addition  
 
 ```
 
-When we try to add vectors of different length the R gives a warning message as the longer object length is not a multiple of the shorter object length.
+When we try to add vectors of different lengths R gives a warning message as the longer object length is not a multiple of the shorter object length.
 
 As we can see R has recycled the elements in the shorter vector.
 
 When applying arithmetic to two vectors their lengths must be either equal, or the length of the longer one must be a multiple of the shorter one.
 
 
->All of the operations we have seen above were performed in an **element-wise** manner. This means the operation was performed on each respective element from each vector. In R this is implemented with a lot of flexibiliy. e.g. We could perform operations with vectors of different sizes. Other languages may not have the same flexibility and will give you an error.
+> All of the operations we have seen above were performed in an **element-wise** manner. This means the operation was performed on each respective element from each vector. In R this is implemented with a lot of flexibiliy. We could perform operations with vectors of different sizes. Other languages may not have the same flexibility and will give you an error.
 
 ***
 
-## Indexing a Vector{.tabset .tabset-fade}
+## Indexing a Vector {.tabset .tabset-fade}
 
 Elements in a vector can be selected using `[ ]`, this is called slicing. 
 
->We are going to use indexes, which are the position of each element within the vector. 
+> We are going to use indexes, which are the position of each element within the vector. 
 
-Note that R indexes from 1 (not 0 like other languages).
+Note that R indexes start at 1 (not 0 like other languages).
 
-As an example, going back to my favourite movies, to pick the second item in the list, I would simply, use the square brackets and reference **2** as shown below.
+As an example, going back to my favourite movies, to pick the second item in the list, I would simply use the square brackets and reference **2** as shown below.
 
 ```{r}
 
-#To display the vector
+# To display the vector
 
 favourite_movies
 
@@ -366,7 +358,7 @@ favourite_movies
 
 
 ```{r}
-#Selecting the second element in the vector
+# Selecting the second element in the vector
 
 favourite_movies[2] 
 
@@ -376,20 +368,21 @@ favourite_movies[2]
 We can also index (select) multiple elements:
 
 ```{r}
-#Selecting multiple items, from the second to
-#the fourth item
+# Selecting multiple items, from the second to
+# the fourth item
 
 favourite_movies[2:4] 
 
 
 ```
 
+The `2:4` is sequence vector which we give as the indexes we want.
+
 Or even index using another vector:
 
 ```{r}
-#Selecting multiple items,using a vector
-#Selecting the first, third and fourth item
-
+# Selecting multiple items, using a vector
+# Selecting the first, third and fourth item
 
 favourite_movies[c(1,3,4)] 
 
