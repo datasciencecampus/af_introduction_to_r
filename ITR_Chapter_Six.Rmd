@@ -721,6 +721,7 @@ In R we have two types of functions:
 Basic structure of a function looks like below,
 
 ```{r, eval=FALSE}
+#Basic structure of a function
 
 function_name <- function(input) { 
   
@@ -815,9 +816,11 @@ function_sum_values(value_1 = 1, value_2 = 2)
 1. The `range()` in R, doesnt show the difference between the hiegest value and the lowest value, but rather shows the hiegest value.
 
 ```{r}
+#Creating a vector
+
 age <- c(10, 23, 30,50)
 
-
+#Calling the range function on the vector 
 range(age)
 
 
@@ -827,19 +830,41 @@ range(age)
 
 ### **Hint**{-}
 
+```{r, eval=FALSE}
+#Creating my function
+
+my_range = function(input){
+  
+  commands
+  
+  return(result)
+  }
+
+
+#To show the difference between the 2 functions
+#Running the base R range function
+base::range(input)
+
+#Running my custom range function
+my_range(input)
+```
+
 ### **Show Answer**{-}
 
 ```{r}
+#Creating my function
 
 my_range = function(age){
   
-  range <-  max(age) - min(age) 
+  result <-  base::max(age) - base::min(age) 
   
-  return(range)
+  return(result)
   }
 
-range(age)
+#Running the base R range function
+base::range(age)
 
+#Running my custom range function
 my_range(age)
 ```
 
@@ -886,13 +911,216 @@ find_the_hypotenuse(a_test, b_test)
 ### **Exercise**{-}
 Write a function which:
 
-1. **Converts from Fahrenheit to degrees Celsius using the equation below. The function should print out a value rounded to 1dp.**
+1. **Converts from Fahrenheit to degrees Celsius using the equation below.**
 
 $$C=\frac{5}{9}(F-32)$$
 
+> Examples: 
+
+* `f_to_c(32)` returns:
+    + [1] 0
+
+* `f_to_c(11)` returns:
+    + [1] -11.7
+
+* `f_to_c(81.3)` returns: 
+    + [1] 27.4
+    
 
 
 ### **Hint**{-}
 
+Write a function which:
+
+1. **Converts from Fahrenheit to degrees Celsius using the equation below.**
+
+$$C=\frac{5}{9}(F-32)$$
+
+```{r, eval=FALSE}
+
+#Creating our function
+
+Fahrenheit_to_degrees_Celsius <- function(input){
+  
+  commands
+  
+  return(celsius)
+}
+
+#Calling our function
+Fahrenheit_to_degrees_Celsius(input)
+
+```
+
 ### **Show Answer**{-}
+1. **Converts from Fahrenheit to degrees Celsius using the equation below.**
+
+$$C=\frac{5}{9}(F-32)$$
+
+> Examples: 
+
+* `f_to_c(32)` returns:
+    + [1] 0
+
+* `f_to_c(11)` returns:
+    + [1] -11.7
+
+* `f_to_c(81.3)` returns: 
+    + [1] 27.4
+    
+
+
+
+
+
+```{r}
+
+#Creating our function
+
+Fahrenheit_to_degrees_Celsius <- function(fahrenheit){
+  celsius <- (5/9)*(fahrenheit - 32)
+  return(celsius)
+}
+
+#Calling our function
+Fahrenheit_to_degrees_Celsius(32)
+```
+
+
+# Deeper Understanding
+
+## Arguements{-}
+
+In short, arguments are things you pass to a function, when you call it, to enable the function to perform it's task.
+
+### Types of Arguements{-}
+
+#### Required Arguments{-}
+
+Like the name suggests, these are arguments which are required by a function and must be passed in the correct order.
+
+```r
+#Creating our function
+arithmetic <- function(a,b){
+  return ((a ^ b)/b)
+}
+
+#Calling our function
+arithmetic(4,9)
+# [1]  29127.11 
+```
+
+`a` and `b` are both required arguments. We would get a missing error if we did not pass both arguments. 
+
+>Also, `arithmetic(a,b) != arithmetic(b,a)` (in most cases!) 
+
+#### Default arguments{-}
+
+This is where, in the function declaration, the value of the parameter is pre-set. The function will retain this value unless it is changed when the function is called.
+    
+```r
+#Creating our function
+arithmetic <- function(a,b = 1){
+  return ((a ^ b)/b)
+}
+
+#Calling our function
+arithmetic(5)
+# [1]  5
+
+#Calling our function
+arithmetic(5,2)
+# [1]  12.5
+```
+    
+In the example above the function will take `a = 5` and use the default value `b = 1`. Where as, in the example below, we overwrite `b = 1` by passing the argument `2`.
+
+#### Dot-dot-dot arguments{-}
+
+> also known as the ellipsis argument.
+
+You will often see in list of arguments a function takes, in the documentation, this `...`. This is a special argument which captures any number of arguments that aren't otherwise matched. 
+
+
+Sometimes being able to pass an arbitrary number of arguments can be useful, especially when another function is called within a wrapper function. This requires the ellipsis construct, ..., which is designed to pass a variable number of arguments to a function. Here’s an example:
+
+```{r}
+
+# This function produces a plot of x vs y
+
+plot_x_and_y <- function(x, y, ...) {
+  
+  plot(x, y, ...)
+  
+}
+
+#Creating Vectors
+x <- 1:10
+
+y <- (1:10) * 2
+
+
+#The function can be called with only the required arguments:
+
+plot_x_and_y(x,y)
+
+
+#Or the function can be called with any optional arguments accepted by the plot function:
+plot_x_and_y(x, y, col='red', type='l')
+
+```
+
+## Scope
+
+It’s important to notice here that the variables I create within my functions are not available outside of my function.
+
+
+In R storage is broken down into environments and then scopes. Most of the time you'll be working in the global environment (right hand panel).
+
+In the global environment there are two types of scopes, _global_ and _local_. Variables that have _global_ scope are visible everywhere - in every function, loop, conditional, basically every part of the code. However, variables that have _local_ scope are only visible inside said scope and hence can only be used within that local scope.
+
+When we create a new function we effectively create a new local scope – so the variables we declare within our functions are only available within that local scope.
+
+Here is a classical example to demonstrate this.
+
+```{r}
+
+#Creating a function
+
+example_function <- function(){
+  z <- 10
+  paste("This is z inside the function:",z)
+}
+
+#Calling a function
+example_function()
+
+```
+
+```{r, eval=FALSE}
+#To display the result
+#This will not work as this does not exist outside the function
+print(z)
+
+```
+
+
+
+# Summary - Control Flow and Functions
+
+## Reminder of Learning Objectives
+
+**You should now be able to**
+
+* Be able to use conditional statements: *if*, *else* and *else if*.
+
+* Know what functions are and why they are useful.
+* Distinguish between a function's parameters and arguments.
+    * Including different types of arguments
+* Understand the idea of 'scope'.
+    * i.e. Global scope vs Local scope
+* Write and apply user defined functions.
+* Apply functions to `vector` and `tibble` objects.
+* Understand programming concept of Loops.
+* Utilise loops and understand their place in R.
 
