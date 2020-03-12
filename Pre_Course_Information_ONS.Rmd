@@ -35,13 +35,13 @@ There is also a session on the second day to play with your own data.
 
 * Install the new RStudio bundle on your laptop `(see instructions below)`
 
-* Complete this pre-course questionnaire:[Smart Survey](https://www.smartsurvey.co.uk/s/7L80I/)  
+* Complete this pre-course questionnaire: [Smart Survey](https://www.smartsurvey.co.uk/s/7L80I/)  
 
-* Bring your laptop, charger, and your WIFI connector (contact Learning Academy immediately if you do not have a laptop)
+* Bring your laptop, charger, and your WIFI connector (contact Learning Academy immediately if you do not have a laptop).
 
-* Please bring with you a water bottle, and a mug for hot drinks (not provided – however you have access to a hot water boiler. Please bring your own supplies) 
+* Please bring with you a water bottle, and a mug for hot drinks (not provided – however you have access to a hot water boiler. Please bring your own supplies). 
 
-* Arrive 10 – 15 minutes before the course starts to get set up and ready to learn
+* Arrive 10 – 15 minutes before the course starts to get set up and ready to learn.
 
 ***
 
@@ -71,7 +71,7 @@ Thanks”
 
 The [Wiki pages](https://collaborate2.ons.gov.uk/confluence/display/WIKIRS/1+-+RStudio+New+Bundle) (section 1.2) will help you to self install and run RStudio on your machine once your service desk request has been completed. 
 
-Please email Mario Coluzzi if you cannot access this page, and with any issues you have with your RStudio install.
+Please email Enterprise.Group@ons.gov.uk if you cannot access this page, and with any issues you have with your RStudio install.
 
 ### Get Artifactory Hashed Password
 
@@ -119,11 +119,11 @@ We do highly recommend that you request the new bundle of RStudio.
 
 **You MUST complete all steps!**
 
-* On your D drive create a folder called R,
+* On your D: drive create a folder called R,
 
-* Inside that create a folder called lib, and open that folder.
+* Inside that create a folder called `lib`, and open that folder.
 
-* Copy the .Rprofile from here to your D/R/Lib folder. Save it as .Rprofile .
+* Copy the `.Rprofile` from here to your `D:/R/lib` folder. Save it as `.Rprofile` .
 Make sure it has the dot at the front!
 
 * In your start menu, locate RStudio, right click and pin to start menu.
