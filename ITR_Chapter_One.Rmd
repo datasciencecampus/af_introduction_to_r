@@ -593,17 +593,19 @@ rm(list=ls())
 
 # Help
 
-Being a new user of R chances are you are going to get stuck at some point and will need help, these are some of the resources available.
+Being a new user of R chances are you are going to get stuck at some point and will need help,Very few - if any - people in the world know everything there is to know about R. This means that we all need to look things up, these are some of the resources available.
 
-**Cheat Sheets**
+## **Cheat Sheets**
 
 You can access these by clicking on **Help** and then **Cheetsheets**.
 
-**R Documentation **
+## **R Documentation **{.tabset .tabset-fade}
 
-By typing in the search box, you can also use the console to access help.
+### Example{-}
 
-Try and type the command below in the console.
+From within RStudio we can access the Help documentation by using ? or ?? in the console
+
+Try and type the command below in the console,and you should see the Help panel on the bottom right side of your RStudio environment populate with documentation.
 
 ```{r, eval=FALSE}
 
@@ -616,11 +618,12 @@ help(mean)
 
 ```
 
-**Stack Overflow**
+
+## **Stack Overflow**
 
 [Stack Overflow](https://stackoverflow.com/) is a great site to check if anyone has has a similar problem to you, and see how they got around it.
 
-**Yammer**
+## **Yammer**
 
 Within ONS we have two groups on Yammer, 
 
@@ -629,11 +632,11 @@ Within ONS we have two groups on Yammer,
 * The **Coding in the Kitchen** group which is used to share tips and best practice.
 
 
-**Cross Government Data Science Slack**
+## **Cross Government Data Science Slack**
 
 [The Cross Goverment Data Science Slack](https://govdatascience.slack.com/) is a place to talk to other people working with Data across government.
 
-The **GSS Training team – gss.capability@ons.gov.uk**
+## The **GSS Training team – gss.capability@ons.gov.uk**
 
 If you have any issues with this course; or notice any errors, please contact the training team on the email above. The training team are also here to help with any R questions you have after you have completed the course.
 
