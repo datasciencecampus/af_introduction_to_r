@@ -30,8 +30,9 @@ knitr::opts_chunk$set(echo = TRUE)
 **The goal of this session is to**
 
 * Be familiar with R Studio.
+* RStudio environment, layout, and customization.
 * Understand the Key Benefits of using R.
-* Learn abour R syntax.
+* How to run code in R.
 * Know where to get help.
 * Discover R's data types.
 * Be able to create Variables.
@@ -45,7 +46,7 @@ knitr::opts_chunk$set(echo = TRUE)
  
 An open source **programming language** and environment for statistical computing and graphics.
 
-It provides a wide variety of statistical techniques (e.g. linear and nonlinear modelling, statistical tests, time-series analysis, etc) thats why its often used by Analysts, Statisticians and Data Scientists.
+It provides a wide variety of statistical techniques (e.g. linear and non-linear modelling, statistical tests, time-series analysis, etc) that's why its often used by Analysts, Statisticians and Data Scientists.
 
 R was initially written by **Ross Ihaka and Robert Gentleman** at the Department of Statistics of the University of Auckland in New Zealand. It is named partly after the first names of the first two R authors.
 
@@ -59,39 +60,39 @@ There are several reasons for this trend:
 
 * Free and open source, people can modify and share because its design is publicly accessible.
 * Great Community Support, diverse and welcoming community. e.g. #rstats twitter community, numerous [ R Meet Ups](https://www.meetup.com/topics/r-programming-language/). 
-* There are lots of [packages available](https://cran.r-project.org/web/packages/available_packages_by_name.html) which contain implimentations of processes and ready-made functions you might find useful
-* Cross Platform, it can be used across a range of opperating systems i.e Windows, Linux, OS.
+* There are lots of [packages available](https://cran.r-project.org/web/packages/available_packages_by_name.html) which contain implementations of processes and ready-made functions you might find useful
+* Cross Platform, it can be used across a range of operating systems i.e Windows, Linux, OS.
 * R has extensive and powerful graphics abilities. e.g [ The BBC use R to produce their graphics](https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535)
-* Powerful tool for communicating results, ie. [RMarkdown](https://rmarkdown.rstudio.com/)  makes its easy to turn your files into PDF'S, Powerpoint presentations and [Shiny](https://shiny.rstudio.com/) allows you to make beautiful interactive apps and dashboards.
+* Powerful tool for communicating results, i.e.. [RMarkdown](https://rmarkdown.rstudio.com/)  makes its easy to turn your files into PDF'S, Power point presentations and [Shiny](https://shiny.rstudio.com/) allows you to make beautiful interactive apps and dashboards.
 
 ***
 
 ## R Studio.
 
-R is a programming language that runs computations while RStudio is an integrated development environment (IDE) that provides an interface by adding many convenient features and tools.
+R is a programming language that runs computations while R Studio is an integrated development environment (IDE) that provides an interface by adding many convenient features and tools.
 
-You do not have to use RStudio to access R, and many people don’t!
+You do not have to use R Studio to access R, and many people don’t!
 Other IDEs that work with R include: - [Jupyter notebook](https://jupyter.org/) -  [VisualStudio](https://visualstudio.microsoft.com/services/visual-studio-online/) - [Intellij IDEA](https://plugins.jetbrains.com/plugin/6632-r-language-for-intellij)
 
 It is broken down into four panels for our convenience.
 
 These can be adjusted under the ‘Preferences’ menu.
 
-When we open RStudio for the first time, we’re likely to see this:
+When we open R Studio for the first time, we’re likely to see this:
 
 
 ![](Images/studio2.PNG)
 
 
-If you dont see the Code editor pane, go to the toolbar and click **View** -> **Panes** -> **Show All Panes**.
+If you dont see the Code editor pane, go to the tool bar and click **View** -> **Panes** -> **Show All Panes**.
 
 We will go through what we can do with each of these panels.
 
 ***
 
-### Changing your RStudio theme
+### Changing your R Studio theme
 
-Explore the various themes available to you in RStudio by going to Tools -> Global Options -> Appearance
+Explore the various themes available to you in R Studio by going to Tools -> Global Options -> Appearance
 Choose a theme that works best for you and apply it.
 
 *** 
@@ -116,8 +117,11 @@ To change this setting go to` Tools` -> `Global Options` -> `“Save workspace t
 
 This is where you can type code that executes immediately. This is also known as the *command line*. 
 
-Try out some arithmetic in your console; type the expression and hit `enter`.
+To run code in the Console, you type your code next to the > and hit `‘Enter’`.
 
+We’ll spend a little time practicing running code in the Console by exploring some basic properties of coding in R
+
+Try out some arithmetic in your console;
 
 ```{r}
 
@@ -151,9 +155,15 @@ We can either complete the expression or press `Esc` in our console to reset.
 
 ```
 
+We can also use R to print out text. Type the following in the Console and hit Enter:
+
+```{r}
+print("R is the best")
+```
 
 
-The RStudio Console automagically maintains a ‘history’ so that you can retrieve previous commands.
+
+The R Studio Console automatically maintains a ‘history’ so that you can retrieve previous commands.
 
 On a blank line in the Console, press the `up arrow`, and see what happens.
 
@@ -161,7 +171,7 @@ On a blank line in the Console, press the `up arrow`, and see what happens.
 
 ### Environment/History
 
-The Environment pane is very useful as it shows you what objects (such as; dataframes, values and functions) you have in your environment (workspace).
+The Environment pane is very useful as it shows you what objects (such as; data frames, values and functions) you have in your environment (workspace).
 
 Also in the Environment is the History tab, where you can see all of the code executed during the current session. 
 
@@ -190,7 +200,7 @@ The Help tab allows you to search the R documentation for help and is where the 
 
 This is where you will do the majority of your coding, we will  be using scripts in this course.
 
-For more information about RStudio, you can find the **RStudio** Cheat Sheet under the Help -> **Cheatsheet.**
+For more information about R Studio, you can find the **R Studio** Cheat Sheet under the Help -> **Cheat sheet.**
 
 ***
 
@@ -198,20 +208,22 @@ For more information about RStudio, you can find the **RStudio** Cheat Sheet und
 
 A **script** is just a text file which we write our code in, generally we will use them to write code which will be longer than just a few lines.
 
-> Creating a Script Exercise
+>> Creating a Script Exercise
 
 Lets create a script file which we will use to write and save our code during the course.
 
 To create a new script,
 
-**Click on File -> New file -> R Script** alternatively you can press the shortcut keys **CLT+SHIFT+N**.
+**Click on File -> New file -> R Script** alternatively you can press the short cut keys **CLT+SHIFT+N**.
 
 
-The **hash (#)** tells R not to run any of the text on that line to the right of the symbol. This is the standard way of commenting R code; it is **VERY** good practice to comment in detail so that you can understand later what you have done.
+The **hash (#)** tells R not to run any of the text on that line to the right of the symbol. This is the standard way of commenting R code; it is **VERY** good practice to comment in detail so that you can understand later what you have done.Even if you are the only person to ever work on your code, it can be helpful to write yourself notes about what you were trying to do with a specific piece of code. Writing comments in your code as you work through the course is a great way to help reinforce what you’re learning.
+
+If you think you’ll be writing more than one line of code, you can do a **hash (#)** sign followed by a single quotation mark (#'). This will continue to comment out lines of text or code each time you hit “Enter.” You can delete the #' on a new line where you want to write code for R to run. This method is useful when you’re writing a description of what you’re doing in R.
 
 Scripts execute sequentially from top to bottom.
 
-RStudio has the advantage of:
+R Studio has the advantage of:
 
 * Providing syntax highlighting 
 
@@ -233,7 +245,7 @@ Type the **#** and write yourself a note.
 ```
 I  recommend to  save this script, type in the code as we go along, and only execute the required lines. That way you will have a record of what you have done.
 
-To save the script we ca use the shortcut **CTRL + S** or alternatively save from the file menu.
+To save the script we can use the short cut **CTRL + S** or alternatively save from the file menu.
 
 **File -> Save.**
 
@@ -265,20 +277,26 @@ Operators in R:
 |    %/%    | [Floor Division](https://en.wikipedia.org/wiki/Floor_and_ceiling_functions)|
 
 
-> Coding in a Script Exercise
+>> Coding in a Script Exercise
 
 Let's have a play with some of these operators:
 
-Type the code below, to run the code you need to select the section you want to run and then press **CTRL + ENTER**.
 
-**CTRL+SHIFT+ENTER** will run the whole script.
+There are three main ways to run code in an .R script:
 
+* Highlight the line(s) of code you’d like to run and press Ctrl + Enter.
+
+* Highlight the line(s) of code you’d like to run and click the Run button in the R script pane.
+
+* To run every line of code in your file you can press Ctrl + Shift + Enter
+
+Type the code below,
 
 ```{r}
 
 # This is my first R script
 
-# R can be used as a calculator
+print("R can be used as a calculator")
 
 25 * 15
 
@@ -295,7 +313,7 @@ It’s also useful to note that R will follow BIDMAS for order of operations.
 
 There are also some built-in functions such as **sqrt(9)** or **round(3.6357, digits = 2)**. 
 
-> Functions are like commands they basically take an input do something and produce an output. You can think of them like mathematic functions, where you substitute in a value.
+>> Functions are like commands they basically take an input do something and produce an output. You can think of them like mathematic functions, where you substitute in a value.
 
 
 Let’s see what they do:
@@ -317,7 +335,7 @@ These are:
 * Integers 
 * Complex numbers.
 
-> The key being that we can recognise or find out what type of number we are working with.
+>> The key being that we can recognise or find out what type of number we are working with.
 
 Integers are whole numbers with no decimal place. for example: …, -2, -1, 0, 1, 2, … and more, they are denoted in R by an `L` at the end of the number.
 
@@ -352,7 +370,7 @@ Character Strings are:
 
 ```
 
-A few symbols are awkward to get into character strings and this is because of they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you reqire will solve the problem. If not, google will definitely have the answer!
+A few symbols are awkward to get into character strings and this is because of they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you require will solve the problem. If not, Google will definitely have the answer!
 
 For example, if you wanted to include quotation marks inside your string:
 
@@ -375,7 +393,7 @@ And many more. I encourage you to experiment with these.
 
 In R these are written as `TRUE` or `FALSE`.
 
-> They are special R data types - not strings! So they don't need '' or "" around them.
+>> They are special R data types - not strings! So they don't need '' or "" around them.
 
 They also have numerical value behind them - `TRUE` is 1 and `FALSE` is 0.
 
@@ -458,7 +476,7 @@ Or a less abstract equivalent example:
 
 Given that R is a dynamically typed language, sometimes the data type you want to work with, and the one R infers are not the same.
 
-> R doesn't require you to set the data type when you create it, instead it figures out what the best data type is for the object you are creating - numeric, character, logical, or others.
+>> R doesn't require you to set the data type when you create it, instead it figures out what the best data type is for the object you are creating - numeric, character, logical, or others.
 
 Sometimes you want to ensure that a particular object is actually a certain type, rather than leaving it up to R. This is done using data type conversion (or casting). R has a range of in-built functions that enable you to convert data from one type to another.
 
@@ -499,7 +517,7 @@ as.integer(4.996453)
 
 # Variable Assignment
 
-Variables are an integral part of any programming language. Variables allow us to store and label data under a specific name. It is like a placeholder, used to store information. Think of it as a container, they main purpose is to label and store the data in memory.
+Variables are an integral part of any programming language. Variables allow us to store and label data under a specific name. It is like a place holder, used to store information. Think of it as a container, they main purpose is to label and store the data in memory.
 
 R has a lot of flexibility when it comes to variable assignment. We can assign a value to name (or label) using `=` operator or `<-` and `->` operators. 
 
@@ -522,7 +540,7 @@ x
 x * 3
 ```
 
->`<-` is the most commonly used assignment operator in R and therefore the one we will stick to. 
+>>`<-` is the most commonly used assignment operator in R and therefore the one we will stick to. 
 
 In R it is convention to use `<-` to assign variables and keep `=` reserved to passing key value pair to a function. We will be sticking to this convention. 
 
@@ -565,7 +583,7 @@ To remove a variable, we would utilise the `rm()` function of R. For example: `r
 
 To remove multiple variables simply pass more arguments into the function `rm(x1, x2, zebra43)`
 
-Alternatively, if you wanted to remove all variables in the enviroment we could use the following code:
+Alternatively, if you wanted to remove all variables in the environment we could use the following code:
 ```{r}
 # Explore what it's doing
 rm(list=ls())
@@ -579,7 +597,7 @@ Being a new user of R chances are you are going to get stuck at some point and w
 
 **Cheat Sheets**
 
-You can access thes by clicking on **Help** and then **Cheetsheets**.
+You can access these by clicking on **Help** and then **Cheetsheets**.
 
 **R Documentation **
 
@@ -600,7 +618,7 @@ help(mean)
 
 **Stack Overflow**
 
-[Stack Overflow](https://stackoverflow.com/) is a great site to check if anyone has has a simmilar problem to you, and see how they got around it.
+[Stack Overflow](https://stackoverflow.com/) is a great site to check if anyone has has a similar problem to you, and see how they got around it.
 
 **Yammer**
 
@@ -611,7 +629,7 @@ Within ONS we have two groups on Yammer,
 * The **Coding in the Kitchen** group which is used to share tips and best practice.
 
 
-**Cross Goverment Data Science Slack**
+**Cross Government Data Science Slack**
 
 [The Cross Goverment Data Science Slack](https://govdatascience.slack.com/) is a place to talk to other people working with Data across government.
 
@@ -631,7 +649,7 @@ We have covered a lot material in R and yet there is still so much more to cover
 
 * The benefits of using R.
 
-* Have a good understanding of RStudio, know what each of the four panes do.
+* Have a good understanding of R Studio, know what each of the four panes do.
 
 * Be able to create, run and save R scripts.
 
@@ -647,6 +665,6 @@ We have covered a lot material in R and yet there is still so much more to cover
 
 # Next Chapter
 
-> In the next chapter we will look at Data Structures.
+>> In the next chapter we will look at Data Structures.
 
 ***
