@@ -27,9 +27,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **The goal of this session is to:**
 
-* Be familliar with data structures in R.
+* Be familiar with data structures in R.
 * Understand how vectors operate.
-* Be familliar with lists.
+* Be familiar with lists.
 * Be familiar with data frames and tibbles.
 
 ***
@@ -332,7 +332,7 @@ As we can see R has recycled the elements in the shorter vector.
 When applying arithmetic to two vectors their lengths must be either equal, or the length of the longer one must be a multiple of the shorter one.
 
 
-> All of the operations we have seen above were performed in an **element-wise** manner. This means the operation was performed on each respective element from each vector. In R this is implemented with a lot of flexibiliy. We could perform operations with vectors of different sizes. Other languages may not have the same flexibility and will give you an error.
+> All of the operations we have seen above were performed in an **element-wise** manner. This means the operation was performed on each respective element from each vector. In R this is implemented with a lot of flexibility. We could perform operations with vectors of different sizes. Other languages may not have the same flexibility and will give you an error.
 
 ***
 
@@ -492,7 +492,7 @@ Lists are really useful, flexible data structures. Their elements can be any obj
 
 > Creating Lists
 
-1. Refering to our previous exercise where we created the vectors below, create a list with the same contents as the two vectors, I have named my list, `my_list_of_movies_and_numbers`.
+1. Referring to our previous exercise where we created the vectors below, create a list with the same contents as the two vectors, I have named my list, `my_list_of_movies_and_numbers`.
 
 ```{r, eval=FALSE}
 
@@ -527,7 +527,7 @@ my_list_of_movies_and_numbers <- list(7, 12, 15, 1, "Frozen",
 
 To access an element from the list, we have to use square brackets containing the index of the element we are after, just like for vectors. 
 
-Indexing with a single square bracket always returns a list, whereas indexing with a double square bracket returns the item directly in whatever datatype is appropraite (often a vector).
+Indexing with a single square bracket always returns a list, whereas indexing with a double square bracket returns the item directly in whatever datatype is appropriate (often a vector).
 
 
 
@@ -902,7 +902,7 @@ They are becoming a standard way to work with data, they are very useful when wo
 
 ***
 
-Below is an example of a what a dataframe and tibble look like, I have used the same dataset.
+Below is an example of a what a data frame and tibble look like, I have used the same dataset.
 
 <br>
 

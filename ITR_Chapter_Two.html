@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -73,8 +73,6 @@ overflow: auto;
 margin-left: 2%;
 position: fixed;
 border: 1px solid #ccc;
-webkit-border-radius: 6px;
-moz-border-radius: 6px;
 border-radius: 6px;
 }
 
@@ -102,9 +100,14 @@ font-size: 12px;
 .tocify-subheader .tocify-subheader {
 text-indent: 30px;
 }
-
 .tocify-subheader .tocify-subheader .tocify-subheader {
 text-indent: 40px;
+}
+.tocify-subheader .tocify-subheader .tocify-subheader .tocify-subheader {
+text-indent: 50px;
+}
+.tocify-subheader .tocify-subheader .tocify-subheader .tocify-subheader .tocify-subheader {
+text-indent: 60px;
 }
 
 .tocify .tocify-item > a, .tocify .nav-list .nav-header {
@@ -508,13 +511,13 @@ float: none;
 
           item.append($("<a/>", {
 
-            "text": self.text()
+            "html": self.html()
 
           }));
 
         } else {
 
-          item.text(self.text());
+          item.html(self.html());
 
         }
 
@@ -1344,7 +1347,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
       if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -1401,7 +1404,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -1463,6 +1465,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -1475,48 +1478,9 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -1530,6 +1494,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -1565,8 +1535,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -1614,9 +1582,9 @@ div.tocify {
 <p><br></p>
 <p><strong>The goal of this session is to:</strong></p>
 <ul>
-<li>Be familliar with data structures in R.</li>
+<li>Be familiar with data structures in R.</li>
 <li>Understand how vectors operate.</li>
-<li>Be familliar with lists.</li>
+<li>Be familiar with lists.</li>
 <li>Be familiar with data frames and tibbles.</li>
 </ul>
 <hr />
@@ -1843,7 +1811,7 @@ div.tocify {
 <p>As we can see R has recycled the elements in the shorter vector.</p>
 <p>When applying arithmetic to two vectors their lengths must be either equal, or the length of the longer one must be a multiple of the shorter one.</p>
 <blockquote>
-<p>All of the operations we have seen above were performed in an <strong>element-wise</strong> manner. This means the operation was performed on each respective element from each vector. In R this is implemented with a lot of flexibiliy. We could perform operations with vectors of different sizes. Other languages may not have the same flexibility and will give you an error.</p>
+<p>All of the operations we have seen above were performed in an <strong>element-wise</strong> manner. This means the operation was performed on each respective element from each vector. In R this is implemented with a lot of flexibility. We could perform operations with vectors of different sizes. Other languages may not have the same flexibility and will give you an error.</p>
 </blockquote>
 <hr />
 </div>
@@ -1983,7 +1951,7 @@ div.tocify {
 <p>Creating Lists</p>
 </blockquote>
 <ol style="list-style-type: decimal">
-<li>Refering to our previous exercise where we created the vectors below, create a list with the same contents as the two vectors, I have named my list, <code>my_list_of_movies_and_numbers</code>.</li>
+<li>Referring to our previous exercise where we created the vectors below, create a list with the same contents as the two vectors, I have named my list, <code>my_list_of_movies_and_numbers</code>.</li>
 </ol>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="co"># Character vector</span></a>
 <a class="sourceLine" id="cb57-2" title="2">favourite_movies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Frozen&quot;</span>, <span class="st">&quot;The Lion King&quot;</span>, <span class="st">&quot;Moana&quot;</span>, <span class="st">&quot;The Dark Knight&quot;</span>) </a>
@@ -2007,7 +1975,7 @@ div.tocify {
 <div id="indexing-a-list" class="section level2 tabset tabset-fade">
 <h2><span class="header-section-number">4.3</span> Indexing a List</h2>
 <p>To access an element from the list, we have to use square brackets containing the index of the element we are after, just like for vectors.</p>
-<p>Indexing with a single square bracket always returns a list, whereas indexing with a double square bracket returns the item directly in whatever datatype is appropraite (often a vector).</p>
+<p>Indexing with a single square bracket always returns a list, whereas indexing with a double square bracket returns the item directly in whatever datatype is appropriate (often a vector).</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="co"># To display the list</span></a>
 <a class="sourceLine" id="cb59-2" title="2">my_list_of_movies_and_numbers</a></code></pre></div>
 <pre><code>## [[1]]
@@ -2455,7 +2423,7 @@ div.tocify {
 <li><p>You can only view columns that fit on the screen.</p></li>
 </ul>
 <hr />
-<p>Below is an example of a what a dataframe and tibble look like, I have used the same dataset.</p>
+<p>Below is an example of a what a data frame and tibble look like, I have used the same dataset.</p>
 <p><br></p>
 <div id="data-frame" class="section level2 unnumbered">
 <h2>Data Frame</h2>
@@ -2682,6 +2650,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
