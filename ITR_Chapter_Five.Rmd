@@ -637,7 +637,7 @@ median_fare <- titanic %>%
   
   group_by(sex_of_passenger, pclass) %>%
   
-  summarise(median_fare= median(fare, na.rm = TRUE))
+  summarise(median_fare = median(fare, na.rm = TRUE))
 
 
 median_fare
