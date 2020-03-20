@@ -1,0 +1,686 @@
+---
+title: "Intro to R - Extra Materials, Useful Packages"
+output:
+  html_document: 
+    theme: united
+    highlight: textmate
+    toc: yes
+    toc_float: yes
+    number_sections: true
+---
+
+```{r, echo=FALSE, eval=FALSE}
+htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+***
+# Janitor Package
+
+This is great package for exploring and cleaning data.
+
+It works well with the pipe operator.
+
+main uses,
+
+* clean names of columns, i.e format names
+
+* creating tables, i.e frequency tables, cross tabs
+
+* finding duplicate records
+
+
+## Dataset
+
+I will be using the bikes data for this tutorial.
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(readr)
+
+library(tidyr)
+
+library(janitor)
+
+library(dplyr)
+
+library(downloadthis)
+
+library(pander)
+
+library(kableExtra)
+
+library(reactable)
+
+library(ggplot2)
+
+library(purrr)
+
+library(stringr)
+
+
+bikes <- read_csv("D:/R ideas/bikes.csv")
+
+revenue_dataset <- read_csv("D:/R ideas/revenue_dataset.csv")
+
+titanic <- read_csv("D:/R New/ITR_campus/ITR_campus/Data/titanic.csv")
+
+
+
+```
+
+```{r echo=FALSE}
+
+bikes %>% 
+ kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "300px")
+
+
+bikes %>% 
+  download_this(
+    output_name = "bikes_data_set",
+    output_extension = ".csv",
+    button_label = "Download data",
+    button_type = "danger",
+    has_icon = TRUE,
+    icon = "download"
+  )
+```
+ 
+ 
+
+
+
+## Useful Functions
+
+
+### clean_names()
+
+
+
+We can view bikes data with terrible column names, some in different cases, spaces between the words.
+
+```{r}
+#To display the column names
+base::names(bikes)
+```
+
+We can now clean the names using the clean names function.
+
+```{r}
+#Cleaning names using the clean_names function
+cleaned_names_bike_data <-janitor::clean_names(bikes)
+
+#To display our new clean names
+base::names(cleaned_names_bike_data)
+```
+
+
+
+### remove_empty()
+
+We can remove empty row and columns, here we are removing both rows and columns, but also can use,
+
+remove_empty_cols()
+
+remove_empty_rows()
+
+I had purposely added in a new column which i named `empty column`, just to demonstrate this.
+
+
+```{r}
+
+#Removing empty rows and columns from our data
+#specifying using a vectors to remove both rows and columns
+#here we specify the dataset first
+#And then wheether we want to do it row or columns
+#In this case its both
+removed_empty_data <- janitor::remove_empty(cleaned_names_bike_data,
+                                            c("rows", "cols"))
+
+#To display the data
+removed_empty_data
+```
+
+We now dont have the columns and rows with no data.
+
+### get_dupes()
+
+To identify and examine duplicate records.
+
+If you haven't noticed i had purposely duplicated some records.
+
+The `get_dupes function` identifies the duplicated records.
+
+we can remove them using the `distinct` function from dplyr, here we are removing rows using the columns date and count, the `.keep_all` is used to retain all other variables in the output data frame.
+
+```{r}
+#To display the duplicated data
+get_dupes(removed_empty_data, date, count)
+
+
+#To remove the duplicate data
+#Here we use dplyr distinct function
+#here we are removing rows using the columns date and count
+#`.keep_all` function is used to retain all other variables in the output data frame
+removed_duplicates_data <-  dplyr::distinct(removed_empty_data, date, count, .keep_all = T)
+
+#To display the data without duplicates
+removed_duplicates_data
+```
+
+
+
+
+
+### tabyl()
+
+This generates a frequency table, here am creating a table of frequency also included missing values.
+
+
+```{r}
+#Creating a frequnecy table using tably function
+#First define the dataset
+#then we define the column, here it is season
+#Show-na includes the missing values
+table_season <- janitor::tabyl(removed_duplicates_data, season, show_na = T)
+
+#To display the frequnency table
+table_season
+```
+
+We can add multiple columns in our table.
+
+```{r}
+#Creating a frequnecy table using tably function
+#First define the dataset
+#then we define the column, here it is season and is holiday
+
+multiple_column_table <- tabyl(removed_duplicates_data, season, is_holiday)
+
+#To display the data
+multiple_column_table
+```
+
+We can add the `adorn functions` to dress up our results.
+
+* adorn_totals()
+
+* adorn_percentages()
+
+```{r}
+#Adding total to our frequncy table
+multiple_column_table %>% 
+  adorn_totals(where="row")
+
+```
+
+We can further format the table, like below,
+
+Play around with the `adorn` functions there a few them, here am just using a few of them.
+
+
+```{r}
+#Here i am adding a row total
+#also adding some percentages using our rows as a denominator
+#adorn pct formating just formats our percentages to be diplayed a bit better
+#adorn ns lets you specify the position of the percentages
+#adorn title lets you add a heading here we can add the is holiday title at the top of the table
+
+multiple_column_table %>% 
+  adorn_totals(where="row") %>% 
+  adorn_percentages(denominator = "row") %>% 
+  adorn_pct_formatting() %>% 
+  adorn_ns(position = "front") %>% 
+  adorn_title(placement = "top")
+```
+
+
+# Tidyr
+
+Was created for simplifying the process of creating tidy data.
+
+One of the key underlying structures of the tidyverse is that data structures follow a tidy format:
+
+* Each variable is in a column
+
+* Each observation is a row
+
+* Each value is a cell
+
+If you make sure your data is tidy, you’ll spend less time rummaging through rubbish on your research path and spend more time working on your all important analysis.
+
+## Dataset
+I will be using the revenue data for this tutorial. (Please note this is an entire made up dataset using random numbers)
+```{r echo=FALSE}
+
+revenue_dataset %>% 
+ kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "300px")
+
+
+revenue_dataset %>% 
+  download_this(
+    output_name = "revenue_data_set",
+    output_extension = ".csv",
+    button_label = "Download data",
+    button_type = "danger",
+    has_icon = TRUE,
+    icon = "download"
+  )
+```
+
+<br>
+
+## Useful functions
+
+### pivot_longer(), was previously gather()
+Makes wide data longer.
+
+A common problem is a dataset where some of the column names are not names of variables, but values of a variable.
+
+The pivot_longer() function will take multiple columns and collapse them into key value pairs, duplicating all other columns as needed.
+
+this is our dataset below.
+
+```{r}
+#To display the data
+revenue_dataset
+```
+
+The data is considered wide as the data is represented in quarters which spread across, which all relate to time.
+
+To restructure the time variable to be an individual variable,
+
+We can gather each quarter to be within one column.
+
+We can also gather the values within each quarter in a second column variable.
+
+
+```{r}
+#example showing how to use pivot longer
+#here we specify the names
+#also the values
+#and the columns to be gathered
+pivot_longer_example <- revenue_dataset %>% 
+  pivot_longer(names_to = "quarter", values_to = "income", cols=quarter_one:quarter_four)
+
+#To display the data
+pivot_longer_example
+```
+
+In the final result, the pivoted columns are dropped, and we get new quarter and income columns. 
+
+
+
+### separate()
+Splits a single columns into a single column.
+
+separate() pulls apart one column into multiple columns, by splitting wherever a separator character appears.
+
+Sometimes a single column variable can have multiple variables.
+
+Below we can split the quarter column, into two columns, one containing which quarter and one containing which number.
+
+```{r}
+#To display the data
+pivot_longer_example
+```
+
+
+
+```{r}
+#example showing how to use separate
+#here we specify the column we want to separate
+# and what we want to separe into
+separated_data_example <- pivot_longer_example %>% 
+  separate(col = "quarter", into = c("quarter", "number"), sep="_")
+
+#To display the data
+separated_data_example
+```
+By default, separate() will split values wherever it sees a non-alphanumeric character (i.e. a character that isn’t a number or letter).
+
+### unite()
+Combines multiple columns into a single column.
+
+unite() is the inverse of separate(): it combines multiple columns into a single column. You’ll need it much less frequently than separate(), but it’s still a useful tool to have in your back pocket.
+
+Sometimes you might want to combine the values of two variables.The unite function can be used to paste together 2 variables into one.
+
+Here we will combine the quarter and number which we separated in the previous example into one column.
+```{r}
+#To display the data
+separated_data_example
+```
+
+In this case we also need to use the sep argument. The default will place an underscore (_) between the values from different columns.
+
+```{r}
+#example showing how to use unite
+#here we specify the column we want to unite
+united_data_example <- separated_data_example %>% 
+  unite(col = united_quarter, quarter, number, sep = "_")
+
+#To display the data
+united_data_example
+```
+
+This recreates our original gathered dataset.
+
+
+
+
+### pivot_wider(), was previously spread()
+
+pivot_wider() is the opposite of pivot_longer(). You use it when an observation is scattered across multiple rows.
+
+This is used to reshape long format data to wide format data.
+
+We can separate the column quarter below in multiple columns.
+
+```{r}
+#To display the data
+united_data_example
+```
+
+
+This time, however, we only need two parameters:
+
+The column to take variable names from. Here, it’s united quarter.
+
+The column to take values from. Here it’s income.
+
+```{r}
+#example showing how to use pivot wider
+#Need to specify the names of new column
+#And the values in the columns
+pivot_wider_data_example <- united_data_example %>% 
+  pivot_wider(names_from = united_quarter, values_from=income)
+
+#To display the data
+pivot_wider_data_example
+```
+
+# Classifying Numerical Values
+
+New columns can be created directly when making continuous data discrete using the `ggplot2` functions: 
+
+`cut_number()` - makes `n` groups with (approximately) equal numbers of observations,
+`cut_interval()` - makes `n` groups with equal range,
+`cut_width()` - makes groups of equal `width`.
+
+## Dataset
+
+I will be using the titanic dataset for this tutorial.
+
+numbers)
+```{r echo=FALSE}
+
+titanic %>% 
+ kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "300px")
+
+
+titanic %>% 
+  download_this(
+    output_name = "revenue_data_set",
+    output_extension = ".csv",
+    button_label = "Download data",
+    button_type = "danger",
+    has_icon = TRUE,
+    icon = "download"
+  )
+```
+
+<br>
+
+Let's look at examples using the `fare` column. 
+```{r}
+#cut_number() - makes n groups with (approximately) equal numbers of observations
+table(ggplot2::cut_number(titanic$fare, 3, labels = c("low", "med", "high")))
+```
+```{r}
+#cut_interval() - makes n groups with equal range,
+table(cut_interval(titanic$fare, 3, labels = c("low", "med", "high")))
+```
+```{r}
+#cut_width() - makes groups of equal width
+table(cut_width(titanic$fare, width = 50))
+```
+
+
+# Contingency, and Two-Way Tables
+
+Contingency tables are often also referred to as 'crosstabs', 'two-way tables' and 'pivot tables' and, although there may be some subtle distinctions, these all refer to the setting of one categorical variable against another, creating a matrix, and then counting, or otherwise aggregating by cell values.
+
+There are many ways to create cross-tabulations, and `tidyverse` isn't great at doing cross tabulations. Instead, we will use arguably the easiest approach in R: the `base::table()` function, which creates a `table` object.
+
+Let's have a look at a simple example:
+```{r}
+#Creating a table frequency table using baser table function
+#here we are creating atable for survived and sex columns
+class_survived_frequency <- table(titanic$survived, titanic$sex)
+
+#To display the data
+class_survived_frequency
+```
+The basic use of `table()` requires that you input the row category ('survived') and the column category ('sex'). This produces cell counts for the cross-tabulation of the two categories, so there were 339 passengers who were both 'female' and 'survived'.
+
+To add margins, we have to pass our table into the `addmargins()` function.
+```{r}
+# Defaults to adding a sum on both margins
+addmargins(class_survived_frequency)
+# Has parameters 'margin' and 'FUN'
+addmargins(class_survived_frequency, margin = 2, FUN = mean)
+```
+
+To get proportions we pass our table into `prop.table()` function.  
+
+```{r}
+#proportion of the entire table
+prop.table(class_survived_frequency)
+#proportion by row, i.e. p(sex|survived)
+prop.table(class_survived_frequency, margin = 1)
+#proportion by column, i.e. p(survived|sex)
+prop.table(class_survived_frequency, margin = 2)
+```
+
+
+# Functionals in R
+
+In R, functionals are functions which take a function is as an input and returns a vector (or similar) as output.
+
+Where should you turn when you discover the next step in your data wrangling/cleaning process requires you to apply a function to each column in a data frame? For example, if you wanted to know the maximum value of each column in a data frame? 
+
+Well you could use summarize as discussed in chapter five -summary statistics, but this becomes inconvenient when you have many columns, as summarize requires you to type out a column name and a data tranformation for each summary statistic that you want to calculate.
+
+In cases like this, where you want to apply the same data transformation to all columns, it is more efficient to use purrr’s map function to apply it to each column. 
+
+R being a functional programming language is packed with functionals. We will introduce the following:
+
+* `purrr::map()`
+* `purrr::modify()`
+
+There are functionals in base R as well such as: `apply`, `sapply`, `vapply`, etc which are worth experimenting with as well. We will continue with our tidyverse theme and demonstrate the `purrr` equivalents. 
+
+`map()` and `modify()` will take a function in as an argument and apply it to every element of the given collection (e.g. vector, list). 
+
+We have touched on this slightly when we found the `typeof` each column in the titanic dataset.
+
+```{r}
+#Eexample of map
+
+purrr::map(titanic, typeof)
+```
+
+In that example we used a built-in function `typeof`. 
+
+All the functionals listed above also work with user defined functions. 
+
+Back to our fare question - I don't think there is a currency converter in R, but we can make one ourselves!
+
+```{r}
+#creating a function
+
+USD_to_GBP <- function(dollar){
+  # rate in Jan 2020
+  return(dollar * 0.7693)
+}
+```
+
+Now we just have to apply the function to our object of interest:
+
+```{r}
+#example of modify
+
+dplyr::select(titanic, fare) %>% purrr::modify(USD_to_GBP)
+```
+Ta-da!
+
+## `map` vs `modify`
+
+There is not a lot of difference between `map` and `modify`. `map` will return a list by default, whereas, `modify` always returns the same type as the input object.
+
+```{r}
+#using map to find the typof in every column in the titanic dataset
+purrr::map(titanic, typeof)
+```
+```{r}
+#using modify to find the typof in every column in the titanic dataset
+purrr::modify(titanic, typeof)
+```
+As you can see, their difference sounds subtle but the effects are not. 
+
+### `map`
+
+The `map` functions transform their input by applying a function to each element and returning a vector the same length as the input. As mentioned before `map` always returns a list.No matter if the input object is a vector, a list, or a data frame, map() always returns a list.
+ 
+
+There are also a family of `map` functions which all work the same way buy will always return a fixed type output - or die trying:
+
+* `map_lgl()` - returns a logical vector.
+* `map_int()` - returns a integer vector.
+* `map_dbl()` - returns a double vector.
+* `map_char()` - returns a character vector.
+* `map_df()` - returns a data.frame.
+
+Consistent with the way of the tidyverse, the first argument of each mapping function is always the data object that you want to map over, and the second argument is always the function that you want to iteratively apply to each element of the input object
+
+The input object to any map function is always either
+
+* a vector (of any type), in which case the iteration is done over the entries of the vector,
+
+* a list, in which case the iteration is performed over the elements of the list,
+
+* a data frame, in which case the iteration is performed over the columns of the data frame (which, since a data     frame is a special kind of list, is technically the same as the previous point).
+
+The base arguments for map() are:
+
+.x — A list or atomic vector (logical, integer, double/numeric, and character)
+
+.f — A function, formula, or atomic vector
+
+Basically map() takes a function (.f) and applies it to data (.x).
+
+>>Another example
+
+For example, let’s find the maximum value of each column of the mtcars data frame (a built-in data set that comes with R) by using map with the max function.
+
+```{r}
+#to display some of the data
+head(mtcars)
+
+
+#Using map to apply the max function to each column
+max_of_columns <- purrr::map_df(mtcars, max)
+
+#To display the data
+max_of_columns
+
+
+```
+What if you need to add other arguments to the functions you want to map? 
+
+For example, what if there were NA values in our columns that we wanted to know the maximum of? 
+
+Well then we also need to add the argument na.rm = TRUE to the max function so that we get a more useful value than NA returned 
+
+
+>>What we need to do in that case is do what is called “creating an anonymous function” within the map_df function.
+
+```{r}
+# no additional arguments to the max function 
+map_df(mtcars, max)
+
+
+# adding the na.rm  = TRUE argument to the max function
+map_df(mtcars, function(df) max(df, na.rm  = TRUE))
+```
+
+You can see that’s quite a bit of extra typing.
+
+So the creators of purrr have made a shortcut for this because it is so commonly done.
+
+* In the shortcut we replace function(VARIABLE) with a ~
+
+* and replace the VARIABLE in the function call with a .
+
+```{r}
+# adding the na.rm  = TRUE argument to the max function using the shortcut 
+map_df(mtcars, ~ max(., na.rm  = TRUE))
+
+```
+
+
+### `modify`
+
+`modify` also comes with a family of functions that fit for a different problems:
+
+* `modify_if()` - modifies if predicate function (for columns) is satisfied
+* `modify_at()` - modifies at specified columns of a tibble.
+
+```{r}
+
+#creating a vector
+example_vector <-c(1, 4, 7)
+
+#creating a function
+#this will add 10 to every element of our input
+addTen <- function(.x) {
+  return(.x + 10)
+  
+}
+
+
+#using modify on a vector
+purrr::modify(c(1, 4, 7), addTen)
+
+
+#using modify on a list
+purrr::modify(list(1, 4, 7), addTen)
+
+
+#using modify on a dataframe
+purrr::modify(data.frame(1, 4, 7), addTen)
+
+
+#example of modify if
+purrr::modify_if(.x = list(1, 4, 7), 
+          .p = function(x) x > 5,
+          .f = addTen)
+
+```
+
+
+
+
