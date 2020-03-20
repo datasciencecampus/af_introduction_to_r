@@ -1652,6 +1652,7 @@ div.tocify {
 <p>Try out some arithmetic in your console;</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">4</span></a></code></pre></div>
 <pre><code>## [1] 6</code></pre>
+<p>We didn’t just get 6, we also got [1]. This is R’s way of printing to the screen; it’s telling us the position we’re at.</p>
 <p>A semi colon allows multiple commands to be entered on the same line before processing.</p>
 <p>Try and type the expression below and hit <code>enter</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="dv">23</span> <span class="op">-</span><span class="st"> </span><span class="dv">6</span>; <span class="dv">36</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
@@ -1662,9 +1663,24 @@ div.tocify {
 <p>Typing the code below in your console, will result in a <strong>“+”</strong>.</p>
 <p>We can either complete the expression or press <code>Esc</code> in our console to reset.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span> <span class="op">+</span></a></code></pre></div>
-<p>We can also use R to print out text. Type the following in the Console and hit Enter:</p>
+<p>We can also use R to print out text.</p>
+<p>Type the following in the Console and hit Enter:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw">print</span>(<span class="st">&quot;R is the best&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;R is the best&quot;</code></pre>
+<p>Now try capitalizing Print, What happens?</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">Print</span>(<span class="st">&quot;R is the best&quot;</span>)</a></code></pre></div>
+<p>Now try putting a space between print and (“R is the best”), What happens?</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">print</span> (<span class="st">&quot;R is the best&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;R is the best&quot;</code></pre>
+<p>Now try entering “R is the best”, What happens?</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="st">&quot;R is the best&quot;</span></a></code></pre></div>
+<pre><code>## [1] &quot;R is the best&quot;</code></pre>
+<p>Three things you have just learned</p>
+<ul>
+<li><p>R is case sensitive</p></li>
+<li><p>R does not care about whitespace</p></li>
+<li><p>R will print results by default</p></li>
+</ul>
 <p>The R Studio Console automatically maintains a ‘history’ so that you can retrieve previous commands.</p>
 <p>On a blank line in the Console, press the <code>up arrow</code>, and see what happens.</p>
 <hr />
@@ -1716,7 +1732,7 @@ div.tocify {
 </ul>
 <p>Lets write a note in our script.</p>
 <p>Type the <strong>#</strong> and write yourself a note.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># This is my first R script</span></a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># This is my first R script</span></a></code></pre></div>
 <p>I recommend to save this script, type in the code as we go along, and only execute the required lines. That way you will have a record of what you have done.</p>
 <p>To save the script we can use the short cut <strong>CTRL + S</strong> or alternatively save from the file menu.</p>
 <p><strong>File -&gt; Save.</strong></p>
@@ -1783,15 +1799,15 @@ div.tocify {
 <li><p>To run every line of code in your file you can press Ctrl + Shift + Enter</p></li>
 </ul>
 <p>Type the code below,</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># This is my first R script</span></a>
-<a class="sourceLine" id="cb10-2" title="2"></a>
-<a class="sourceLine" id="cb10-3" title="3"><span class="kw">print</span>(<span class="st">&quot;R can be used as a calculator&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co"># This is my first R script</span></a>
+<a class="sourceLine" id="cb15-2" title="2"></a>
+<a class="sourceLine" id="cb15-3" title="3"><span class="kw">print</span>(<span class="st">&quot;R can be used as a calculator&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;R can be used as a calculator&quot;</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="dv">25</span> <span class="op">*</span><span class="st"> </span><span class="dv">15</span></a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="dv">25</span> <span class="op">*</span><span class="st"> </span><span class="dv">15</span></a></code></pre></div>
 <pre><code>## [1] 375</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">(<span class="dv">76</span> <span class="op">+</span><span class="st"> </span><span class="dv">94</span>) <span class="op">^</span><span class="st"> </span><span class="dv">3</span></a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">(<span class="dv">76</span> <span class="op">+</span><span class="st"> </span><span class="dv">94</span>) <span class="op">^</span><span class="st"> </span><span class="dv">3</span></a></code></pre></div>
 <pre><code>## [1] 4913000</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="dv">97623</span> <span class="op">/</span><span class="st"> </span><span class="dv">9</span></a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="dv">97623</span> <span class="op">/</span><span class="st"> </span><span class="dv">9</span></a></code></pre></div>
 <pre><code>## [1] 10847</code></pre>
 <p>It’s also useful to note that R will follow BIDMAS for order of operations.</p>
 <p>There are also some built-in functions such as <strong>sqrt(9)</strong> or <strong>round(3.6357, digits = 2)</strong>.</p>
@@ -1801,9 +1817,9 @@ div.tocify {
 </blockquote>
 </blockquote>
 <p>Let’s see what they do:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw">sqrt</span>(<span class="dv">9</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw">sqrt</span>(<span class="dv">9</span>)</a></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">round</span>(<span class="fl">3.6357</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">round</span>(<span class="fl">3.6357</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 3.64</code></pre>
 <p>There are many more built-in functions which you will discover with more exposure to R, but for now we will move onto the different types of numbers we might work with.</p>
 <p>These are:</p>
@@ -1821,9 +1837,9 @@ div.tocify {
 <p>Integers are whole numbers with no decimal place. for example: …, -2, -1, 0, 1, 2, … and more, they are denoted in R by an <code>L</code> at the end of the number.</p>
 <p>A <code>Double</code> is treated as the general number type and by default R will treat all numbers you use as double unless you give it an explicit reason to think otherwise. So therefore, any number with or without a decimal place will be treated as double unless emphasised otherwise.</p>
 <p>We can see they type by using the <code>typeof()</code> function or command.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">typeof</span>(<span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">typeof</span>(<span class="dv">10</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">typeof</span>(10L)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">typeof</span>(10L)</a></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <hr />
 </div>
@@ -1838,11 +1854,11 @@ div.tocify {
 </ul></li>
 <li>An ordered sequence of character (or symbols).</li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="st">&quot;This is a string&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="st">&quot;This is a string&quot;</span></a></code></pre></div>
 <pre><code>## [1] &quot;This is a string&quot;</code></pre>
 <p>A few symbols are awkward to get into character strings and this is because of they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you require will solve the problem. If not, Google will definitely have the answer!</p>
 <p>For example, if you wanted to include quotation marks inside your string:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">cat</span>(<span class="st">&quot;Then he told Skyler </span><span class="ch">\&quot;</span><span class="st">I am the one who knocks!</span><span class="ch">\&quot;</span><span class="st">&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">cat</span>(<span class="st">&quot;Then he told Skyler </span><span class="ch">\&quot;</span><span class="st">I am the one who knocks!</span><span class="ch">\&quot;</span><span class="st">&quot;</span>)</a></code></pre></div>
 <pre><code>## Then he told Skyler &quot;I am the one who knocks!&quot;</code></pre>
 <p>We can do a lot more with character strings in base R such as:</p>
 <ul>
@@ -1864,10 +1880,10 @@ div.tocify {
 </blockquote>
 <p>They also have numerical value behind them - <code>TRUE</code> is 1 and <code>FALSE</code> is 0.</p>
 <p>Therefore, we can treat them as numbers!</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="ot">TRUE</span> <span class="op">+</span><span class="st"> </span><span class="ot">TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="ot">TRUE</span> <span class="op">+</span><span class="st"> </span><span class="ot">TRUE</span></a></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>And use all the other operators too!</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="ot">TRUE</span> <span class="op">*</span><span class="st"> </span><span class="fl">2.5</span></a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="ot">TRUE</span> <span class="op">*</span><span class="st"> </span><span class="fl">2.5</span></a></code></pre></div>
 <pre><code>## [1] 2.5</code></pre>
 <p>It’s uncommon to use logical values for simple calculations like above. We are far more likely to deal with logical values when we work with logical (or conditional) operators, for example; to perform comparisons and checks.</p>
 <table>
@@ -1918,13 +1934,13 @@ div.tocify {
 </table>
 <p>Let’s see how these work:</p>
 <p>Is 4 greater than 5?</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="dv">4</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="dv">4</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>Is 25 equal to 5 squared?</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="dv">25</span> <span class="op">==</span><span class="st"> </span><span class="dv">5</span><span class="op">**</span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="dv">25</span> <span class="op">==</span><span class="st"> </span><span class="dv">5</span><span class="op">**</span><span class="dv">2</span></a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Does 1 not equal 2?</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="dv">1</span> <span class="op">!=</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="dv">1</span> <span class="op">!=</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>That covers the simpler logical operators.</p>
 <p>The final two allow us to combine and check multiple conditions.</p>
@@ -1934,14 +1950,14 @@ div.tocify {
 <p>We can surround the statements in brackets to make it clearer what items are being compared.</p>
 <p>Let’s look at some examples:</p>
 <p>Can a statement be both <code>TRUE</code> and <code>FALSE</code>?</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="ot">TRUE</span> <span class="op">&amp;</span><span class="st"> </span><span class="ot">FALSE</span></a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="ot">TRUE</span> <span class="op">&amp;</span><span class="st"> </span><span class="ot">FALSE</span></a></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="ot">TRUE</span> <span class="op">|</span><span class="st"> </span><span class="ot">FALSE</span></a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="ot">TRUE</span> <span class="op">|</span><span class="st"> </span><span class="ot">FALSE</span></a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Or a less abstract equivalent example:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">(<span class="dv">25</span> <span class="op">==</span><span class="st"> </span><span class="dv">5</span><span class="op">**</span><span class="dv">2</span>) <span class="op">&amp;</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">(<span class="dv">25</span> <span class="op">==</span><span class="st"> </span><span class="dv">5</span><span class="op">**</span><span class="dv">2</span>) <span class="op">&amp;</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">(<span class="dv">25</span> <span class="op">==</span><span class="st"> </span><span class="dv">5</span><span class="op">**</span><span class="dv">2</span>) <span class="op">|</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1">(<span class="dv">25</span> <span class="op">==</span><span class="st"> </span><span class="dv">5</span><span class="op">**</span><span class="dv">2</span>) <span class="op">|</span><span class="st"> </span>(<span class="dv">4</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <hr />
 </div>
@@ -1955,19 +1971,19 @@ div.tocify {
 </blockquote>
 <p>Sometimes you want to ensure that a particular object is actually a certain type, rather than leaving it up to R. This is done using data type conversion (or casting). R has a range of in-built functions that enable you to convert data from one type to another.</p>
 <p>Firstly, the <code>typeof()</code> function returns the (R internal) type of any given object. e.g.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="kw">typeof</span>(<span class="st">&quot;is this a character?&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="kw">typeof</span>(<span class="st">&quot;is this a character?&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="kw">typeof</span>(5L)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">typeof</span>(5L)</a></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="kw">typeof</span>(<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="kw">typeof</span>(<span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
 <p>We could equivalently use functions such as <code>is.</code> function which checks if our object is a given type. (set cursor after <code>is.</code> and hit tab).</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">is.</a></code></pre></div>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">is.integer</span>(<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1">is.</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="kw">is.integer</span>(<span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>The way we access the list of functions which allow us to convert from one data type to another we call the <code>as</code> . Let’s see what we can do…</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1">as.</a></code></pre></div>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="kw">as.integer</span>(<span class="fl">4.996453</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">as.</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="kw">as.integer</span>(<span class="fl">4.996453</span>)</a></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <hr />
 </div>
@@ -1983,11 +1999,11 @@ div.tocify {
 <li><code>value -&gt; x</code></li>
 </ul>
 <p>Where <code>x</code> is the variable name and <code>value</code> is the data being assigned to <code>x</code>.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">x &lt;-<span class="st"> </span><span class="dv">25</span></a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1">x &lt;-<span class="st"> </span><span class="dv">25</span></a></code></pre></div>
 <p>After the assignment, to access or use the value we simply reference <code>x</code> in our code.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1">x</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">x</a></code></pre></div>
 <pre><code>## [1] 25</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">x <span class="op">*</span><span class="st"> </span><span class="dv">3</span></a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1">x <span class="op">*</span><span class="st"> </span><span class="dv">3</span></a></code></pre></div>
 <pre><code>## [1] 75</code></pre>
 <blockquote>
 <blockquote>
@@ -2006,21 +2022,21 @@ div.tocify {
 <p>Note: If you reference <code>x</code> (or any other variable) before assignment R will throw an error at us saying: <code>Error: object &#39;x&#39; not found</code>.</p>
 <p>If we ever want to reassign a variable we would simply use the operators above again.</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1">my_int &lt;-<span class="st"> </span>5L</a>
-<a class="sourceLine" id="cb65-2" title="2"></a>
-<a class="sourceLine" id="cb65-3" title="3"><span class="kw">typeof</span>(my_int)</a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1">my_int &lt;-<span class="st"> </span>5L</a>
+<a class="sourceLine" id="cb70-2" title="2"></a>
+<a class="sourceLine" id="cb70-3" title="3"><span class="kw">typeof</span>(my_int)</a></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1">my_int &lt;-<span class="st"> &quot;What?! A CHARACTER?!&quot;</span></a>
-<a class="sourceLine" id="cb67-2" title="2"></a>
-<a class="sourceLine" id="cb67-3" title="3"><span class="kw">typeof</span>(my_int)</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1">my_int &lt;-<span class="st"> &quot;What?! A CHARACTER?!&quot;</span></a>
+<a class="sourceLine" id="cb72-2" title="2"></a>
+<a class="sourceLine" id="cb72-3" title="3"><span class="kw">typeof</span>(my_int)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>Typing the following into the Console will list everything you’ve loaded into the Environment:</p>
 <p><code>ls()</code></p>
 <p>To remove a variable, we would utilise the <code>rm()</code> function of R. For example: <code>rm(x)</code></p>
 <p>To remove multiple variables simply pass more arguments into the function <code>rm(x1, x2, zebra43)</code></p>
 <p>Alternatively, if you wanted to remove all variables in the environment we could use the following code:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="co"># Explore what it&#39;s doing</span></a>
-<a class="sourceLine" id="cb69-2" title="2"><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="co"># Explore what it&#39;s doing</span></a>
+<a class="sourceLine" id="cb74-2" title="2"><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())</a></code></pre></div>
 <hr />
 </div>
 <div id="help" class="section level1">
@@ -2036,11 +2052,11 @@ div.tocify {
 <h3>Example</h3>
 <p>From within RStudio we can access the Help documentation by using ? or ?? in the console</p>
 <p>Try and type the command below in the console,and you should see the Help panel on the bottom right side of your RStudio environment populate with documentation.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1">?mean </a>
-<a class="sourceLine" id="cb70-2" title="2"></a>
-<a class="sourceLine" id="cb70-3" title="3">or </a>
-<a class="sourceLine" id="cb70-4" title="4"></a>
-<a class="sourceLine" id="cb70-5" title="5"><span class="kw">help</span>(mean)</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1">?mean </a>
+<a class="sourceLine" id="cb75-2" title="2"></a>
+<a class="sourceLine" id="cb75-3" title="3">or </a>
+<a class="sourceLine" id="cb75-4" title="4"></a>
+<a class="sourceLine" id="cb75-5" title="5"><span class="kw">help</span>(mean)</a></code></pre></div>
 </div>
 </div>
 <div id="stack-overflow" class="section level2">

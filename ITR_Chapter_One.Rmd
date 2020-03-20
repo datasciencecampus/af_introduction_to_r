@@ -119,7 +119,7 @@ This is where you can type code that executes immediately. This is also known as
 
 To run code in the Console, you type your code next to the > and hit `‘Enter’`.
 
-We’ll spend a little time practicing running code in the Console by exploring some basic properties of coding in R
+We’ll spend a little time practising running code in the Console by exploring some basic properties of coding in R
 
 Try out some arithmetic in your console;
 
@@ -129,6 +129,7 @@ Try out some arithmetic in your console;
 
 ```
 
+We didn't just get 6, we also got [1]. This is R's way of printing to the screen; it's telling us the position we're at.
 
 A semi colon allows multiple commands to be entered on the same line before processing.
 
@@ -155,13 +156,38 @@ We can either complete the expression or press `Esc` in our console to reset.
 
 ```
 
-We can also use R to print out text. Type the following in the Console and hit Enter:
+We can also use R to print out text. 
+
+Type the following in the Console and hit Enter:
 
 ```{r}
 print("R is the best")
 ```
 
+Now try capitalizing Print, What happens?
+```{r, eval=FALSE}
+Print("R is the best")
+```
 
+Now try putting a space between print and ("R is the best"), What happens?
+
+```{r}
+print ("R is the best")
+```
+
+Now try entering "R is the best", What happens?
+
+```{r}
+"R is the best"
+```
+
+Three things you have just learned
+
+* R is case sensitive
+
+* R does not care about whitespace
+
+* R will print results by default
 
 The R Studio Console automatically maintains a ‘history’ so that you can retrieve previous commands.
 
