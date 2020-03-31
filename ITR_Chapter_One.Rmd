@@ -36,7 +36,7 @@ knitr::opts_chunk$set(echo = TRUE)
 * Know where to get help.
 * Discover R's data types.
 * Be able to create Variables.
-* Know where to get help.
+
 
 <br>
 
@@ -74,17 +74,23 @@ R is a programming language that runs computations while R Studio is an integrat
 You do not have to use R Studio to access R, and many people don’t!
 Other IDEs that work with R include: - [Jupyter notebook](https://jupyter.org/) -  [VisualStudio](https://visualstudio.microsoft.com/services/visual-studio-online/) - [Intellij IDEA](https://plugins.jetbrains.com/plugin/6632-r-language-for-intellij)
 
-It is broken down into four panels for our convenience.
+R Studio is broken down into four panels for our convenience.
 
-These can be adjusted under the ‘Preferences’ menu.
+
 
 When we open R Studio for the first time, we’re likely to see this:
+
+<br>
 
 
 ![](Images/studio2.PNG)
 
 
-If you dont see the Code editor pane, go to the tool bar and click **View** -> **Panes** -> **Show All Panes**.
+<br>
+
+If you dont see the **Code editor pane**, go to the tool bar and click **View -> Panes -> Show All Panes**.
+
+These can be adjusted under the ‘Preferences’ menu.
 
 We will go through what we can do with each of these panels.
 
@@ -92,36 +98,48 @@ We will go through what we can do with each of these panels.
 
 ### Changing your R Studio theme
 
-Explore the various themes available to you in R Studio by going to Tools -> Global Options -> Appearance
+Before we begin using R Studio lets explore the various themes available, by going to **Tools -> Global Options -> Appearance**.
+
 Choose a theme that works best for you and apply it.
 
 *** 
 
 ### Don't save your workspace
 
-When you exit an R session, you are faced with the question of whether or not to save your workspace. You should *almost never answer yes*. Saving your workspace creates an snapshot of your current variables and functions, and saves them to a file called `.RData`. When you re-open R from that same place in your computer, the workspace will be loaded, and all these things will be available to you again. But you don’t want that, so *don’t save your workspace*.
+Another setting we need to change is set R Studio to not save our workspace.
 
-We will look at better ways of saving our work later on during the course.
+When you exit an R session, you are faced with the question of whether or not to save your workspace. You should **almost never answer yes**. Saving your workspace creates an snapshot of your current variables and functions, and saves them to a file called `.RData`. When you re-open R from that same place in your computer, the workspace will be loaded, and all these things will be available to you again. But you don’t want that, so **don’t save your workspace**.
 
-To change this setting go to` Tools` -> `Global Options` -> `“Save workspace to .Rdata on Exit”` change drop down to `“Never"`.
+>**We will look at better ways of saving our work later on during the course.**
+
+To change this setting go to **Tools -> Global Options -> “Save workspace to .Rdata on Exit”** change drop down to **“Never"**.
+
+<br>
 
 !["Image showing the workspace in Rstudio"](Images/workspace.PNG) 
 
 
+<br>
 
 
 ***
-> R can be used as Calculator Exercise 
+> **R can be used as Calculator Exercise** 
+
+***
 
 ### The Console
 
-This is where you can type code that executes immediately. This is also known as the *command line*. 
+We are first going to learn about how to interact with the console, which is the bottom left pane.
 
-To run code in the Console, you type your code next to the > and hit `‘Enter’`.
+This is where you can type code that executes immediately. This is also known as the **command line**. 
 
-We’ll spend a little time practising running code in the Console by exploring some basic properties of coding in R
+We’ll spend a little time practising running code in the Console by exploring some basic properties of coding in R.
 
-Try out some arithmetic in your console;
+To run code in the Console, you type your code next to the **> and hit `‘Enter’`**.
+
+
+
+**Try out some arithmetic in your console**;
 
 ```{r}
 
@@ -133,7 +151,7 @@ We didn't just get 6, we also got [1]. This is R's way of printing to the screen
 
 A semi colon allows multiple commands to be entered on the same line before processing.
 
-Try and type the expression below and hit `enter`.
+Try and type the expression below and hit **`enter`**.
 
 ```{r}
 
@@ -156,18 +174,75 @@ We can either complete the expression or press `Esc` in our console to reset.
 
 ```
 
-We can also use R to print out text. 
+ 
 
-Type the following in the Console and hit Enter:
+
+The R Studio Console automatically maintains a ‘history’ so that you can retrieve previous commands.
+
+On a blank line in the Console, press the **`up arrow`**, and see what happens.
+
+The issue with coding in the console is that we cant save it and not easy to edit, which brings us to the code editor.
+
+***
+
+### Code Editor
+
+This is the top left pane.
+
+This is where you will do the majority of your coding, we will  be using scripts in this course.
+
+
+
+***
+
+### R Scripts
+
+A **script** is just a text file which we write our code in, generally we will use them to write code which will be longer than just a few lines.
+
+***
+> **Creating a Script Exercise**
+
+***
+
+Lets create a script file which we will use to write and save our code during the course.
+
+To create a new script,
+
+**Click on File -> New file -> R Script** 
+
+>**Alternatively you can press the short cut keys CLT+SHIFT+N**.
+
+Scripts execute sequentially from top to bottom.
+
+R Studio has the advantage of:
+
+* Providing syntax highlighting 
+
+* Assisted code completion
+
+* Smart indentation
+
+We will see the benefits of these as you type your code throughout the course.
+
+**Lets practise writing some code in a script**.
+
+
+
+There are three main ways to run code in an .R script:
+
+* Highlight the line(s) of code you’d like to run and press **Ctrl + Enter**.
+
+* Highlight the line(s) of code you’d like to run and click the **Run button** in the R script pane.
+
+* To run every line of code in your file you can press **Ctrl + Shift + Enter**.
+
+Type the following in your script and run the code.
 
 ```{r}
 print("R is the best")
 ```
 
-Now try capitalizing Print, What happens?
-```{r, eval=FALSE}
-Print("R is the best")
-```
+
 
 Now try putting a space between print and ("R is the best"), What happens?
 
@@ -181,6 +256,13 @@ Now try entering "R is the best", What happens?
 "R is the best"
 ```
 
+Now try capitalizing Print, What happens?
+```{r, eval=FALSE}
+Print("R is the best")
+```
+
+<br>
+
 Three things you have just learned
 
 * R is case sensitive
@@ -189,9 +271,43 @@ Three things you have just learned
 
 * R will print results by default
 
-The R Studio Console automatically maintains a ‘history’ so that you can retrieve previous commands.
+Its best practise to leave notes in your code to what your code is actually doing as code can get quite long and complicated and other people may need to use it.
 
-On a blank line in the Console, press the `up arrow`, and see what happens.
+We do this by using the **hash (#)**.
+
+
+The **hash (#)** tells R not to run any of the text on that line to the right of the symbol. This is the standard way of commenting R code; it is **VERY** good practice to comment in detail so that you can understand later what you have done.Even if you are the only person to ever work on your code, it can be helpful to write yourself notes about what you were trying to do with a specific piece of code. 
+
+>**Writing comments in your code as you work through the course is a great way to help reinforce what you’re learning.**
+
+Lets write a note in our script.
+
+Type the **#** and write yourself a note.
+
+
+```{r}
+
+# This is my first R script
+
+
+
+```
+
+
+If you think you’ll be writing more than one line of code, you can do a **hash (#)** sign followed by a single quotation mark (#'). This will continue to comment out lines of text or code each time you hit “Enter.” You can delete the #' on a new line where you want to write code for R to run. This method is useful when you’re writing a description of what you’re doing in R.
+
+
+
+I  recommend to  save this script, type in the code as we go along, and only execute the required lines. That way you will have a record of what you have done.
+
+To save the script; 
+
+**Click on File -> Save as**
+
+>**Alternatively you can press the short cut keys CTrl + S**.
+
+
+We will now look at the top left pane.
 
 ***
 
@@ -204,6 +320,8 @@ Also in the Environment is the History tab, where you can see all of the code ex
 This shows the previous code you were working on, and any storage of objects you are using such as variables, data frames.
 
 We will look at these later on in the session.
+
+We will now look at the bottom left pane.
 
 ***
 
@@ -219,62 +337,14 @@ The Plot tab is where graphics you create will appear.
 
 The Packages tab shows you the packages that are installed and those that can be installed (we will look packages in details in Chapter 3). 
 
-The Help tab allows you to search the R documentation for help and is where the help appears when you ask for it from the Console.
+The Help tab allows you to search the R documentation for help and is where the help appears when you ask for it from the Console. We will look at this in more detail later on in this session.
 
 *** 
-### Code Editor
+We have now gone through all the four panes of R Studio, you should now have a basic idea of what each do.
 
-This is where you will do the majority of your coding, we will  be using scripts in this course.
+For more information about R Studio, you can find the **R Studio** Cheat Sheet under the **Help -> Cheat sheet.**.
 
-For more information about R Studio, you can find the **R Studio** Cheat Sheet under the Help -> **Cheat sheet.**
-
-***
-
-## R Scripts
-
-A **script** is just a text file which we write our code in, generally we will use them to write code which will be longer than just a few lines.
-
->> Creating a Script Exercise
-
-Lets create a script file which we will use to write and save our code during the course.
-
-To create a new script,
-
-**Click on File -> New file -> R Script** alternatively you can press the short cut keys **CLT+SHIFT+N**.
-
-
-The **hash (#)** tells R not to run any of the text on that line to the right of the symbol. This is the standard way of commenting R code; it is **VERY** good practice to comment in detail so that you can understand later what you have done.Even if you are the only person to ever work on your code, it can be helpful to write yourself notes about what you were trying to do with a specific piece of code. Writing comments in your code as you work through the course is a great way to help reinforce what you’re learning.
-
-If you think you’ll be writing more than one line of code, you can do a **hash (#)** sign followed by a single quotation mark (#'). This will continue to comment out lines of text or code each time you hit “Enter.” You can delete the #' on a new line where you want to write code for R to run. This method is useful when you’re writing a description of what you’re doing in R.
-
-Scripts execute sequentially from top to bottom.
-
-R Studio has the advantage of:
-
-* Providing syntax highlighting 
-
-* Assisted code completion
-
-* Smart indentation 
-
-Lets write a note in our script.
-
-Type the **#** and write yourself a note.
-
-
-```{r}
-
-# This is my first R script
-
-
-
-```
-I  recommend to  save this script, type in the code as we go along, and only execute the required lines. That way you will have a record of what you have done.
-
-To save the script we can use the short cut **CTRL + S** or alternatively save from the file menu.
-
-**File -> Save.**
-
+You will most likely be using data in R, we will now look at the different types.
 
 ***
 
@@ -286,11 +356,18 @@ Different processes apply to different types of data.
 
 Different data types have different properties; if you try to add `1 + "two"`, you will get an error due to a mismatch of types.
 
+
+First data type we will look at is numbers.
+
 ***
 
 ## Numbers
 
+You will most likely want to perfom mathematical operations with numbers. Here is a list of some operators.
+
 Operators in R:
+
+<br>
 
 |Operator   | Description     |
 |:---------:|:---------------:|
@@ -303,18 +380,16 @@ Operators in R:
 |    %/%    | [Floor Division](https://en.wikipedia.org/wiki/Floor_and_ceiling_functions)|
 
 
->> Coding in a Script Exercise
+<br>
+
+***
+> **Arithmetic Exercise**
+
+***
 
 Let's have a play with some of these operators:
 
 
-There are three main ways to run code in an .R script:
-
-* Highlight the line(s) of code you’d like to run and press Ctrl + Enter.
-
-* Highlight the line(s) of code you’d like to run and click the Run button in the R script pane.
-
-* To run every line of code in your file you can press Ctrl + Shift + Enter
 
 Type the code below,
 
@@ -322,24 +397,28 @@ Type the code below,
 
 # This is my first R script
 
-print("R can be used as a calculator")
-
-25 * 15
+9 + 27.73
 
 
-(76 + 94) ^ 3
-
-
-97623 / 9
+18^3 - 18**3
 
 
 ```
 
 It’s also useful to note that R will follow BIDMAS for order of operations.
 
+```{r}
+
+# This is my first R script
+
+10 + 11 * 12 / 3 - 5**2
+
+
+```
+
 There are also some built-in functions such as **sqrt(9)** or **round(3.6357, digits = 2)**. 
 
->> Functions are like commands they basically take an input do something and produce an output. You can think of them like mathematic functions, where you substitute in a value.
+> **Functions are like commands they basically take an input do something and produce an output. You can think of them like mathematic functions, where you substitute in a value.**
 
 
 Let’s see what they do:
@@ -356,18 +435,15 @@ There are many more built-in functions which you will discover with more exposur
 
 These are: 
 
-* Numeric
-* Double 
-* Integers 
-* Complex numbers.
+* Double (dbl)
+* Integers (int)
 
->> The key being that we can recognise or find out what type of number we are working with.
 
-Integers are whole numbers with no decimal place. for example: …, -2, -1, 0, 1, 2, … and more, they are denoted in R by an `L` at the end of the number.
+`Integers` are whole numbers with no decimal place. for example: …, -2, -1, 0, 1, 2, … and more, they are denoted in R by an `L` at the end of the number.
 
 A `Double` is treated as the general number type and by default R will treat all numbers you use as double unless you give it an explicit reason to think otherwise. So therefore, any number with or without a decimal place will be treated as double unless emphasised otherwise.
 
-We can see they type by using the `typeof()` function or command.
+We can see they type by using the **`typeof()`** function or command.
 
 ```{r}
 
@@ -377,7 +453,10 @@ typeof(10)
 typeof(10L)
 
 
+
 ```
+
+The next data type that we will look at is text data.
 
 ***
 ## Text Values
