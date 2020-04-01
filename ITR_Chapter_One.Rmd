@@ -20,7 +20,7 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
- 
+<br>
 
 ***
 # Learning Objectives.
@@ -90,7 +90,7 @@ When we open R Studio for the first time, we’re likely to see this:
 
 If you dont see the **Code editor pane**, go to the tool bar and click **View -> Panes -> Show All Panes**.
 
-These can be adjusted under the ‘Preferences’ menu.
+The positions of these can be adjusted under the ‘Preferences’ menu, but we will keep like this for now.
 
 We will go through what we can do with each of these panels.
 
@@ -135,7 +135,7 @@ This is where you can type code that executes immediately. This is also known as
 
 We’ll spend a little time practising running code in the Console by exploring some basic properties of coding in R.
 
-To run code in the Console, you type your code next to the **> and hit `‘Enter’`**.
+To run code in the Console, you type your code next to the command prompt **> and hit `‘Enter’`**.
 
 
 
@@ -161,18 +161,22 @@ Try and type the expression below and hit **`enter`**.
 
 Note that if a **"+"** appears instead of the command prompt **">"**, this means that the statement you submitted was incomplete. 
 
-Here **1 + 3 + **, is incomplete.
 
-Typing the code below in your console, will result in a **"+"**.
-
-We can either complete the expression or press `Esc` in our console to reset.
-
-
+Try and type the code below,
 ```{r, eval=FALSE}
 
 1 + 3 +
 
 ```
+
+
+Here **1 + 3 + **, is incomplete.
+
+Typing the code above in your console, will result in a **"+"**.
+
+We can either complete the expression or press `Esc` in our console to reset.
+
+
 
  
 
@@ -224,7 +228,7 @@ R Studio has the advantage of:
 
 We will see the benefits of these as you type your code throughout the course.
 
-**Lets practise writing some code in a script**.
+**Lets practise writing some code  and how to run it in a script**.
 
 
 
@@ -260,6 +264,14 @@ Now try capitalizing Print, What happens?
 ```{r, eval=FALSE}
 Print("R is the best")
 ```
+
+You will get an error here stating,
+
+>**Error in Print("R is the best") : could not find function "Print"**
+
+We will go into details about function later on in the course for now just think of them as like commands they basically take an input do something and produce an output. 
+
+
 
 <br>
 
@@ -339,7 +351,7 @@ The Packages tab shows you the packages that are installed and those that can be
 
 The Help tab allows you to search the R documentation for help and is where the help appears when you ask for it from the Console. We will look at this in more detail later on in this session.
 
-*** 
+
 We have now gone through all the four panes of R Studio, you should now have a basic idea of what each do.
 
 For more information about R Studio, you can find the **R Studio** Cheat Sheet under the **Help -> Cheat sheet.**.
@@ -400,7 +412,7 @@ Type the code below,
 9 + 27.73
 
 
-18^3 - 18**3
+(59 + 73 + 2) / 3
 
 
 ```
@@ -416,18 +428,24 @@ It’s also useful to note that R will follow BIDMAS for order of operations.
 
 ```
 
-There are also some built-in functions such as **sqrt(9)** or **round(3.6357, digits = 2)**. 
+There are also some built-in functions such as **sqrt()** or **round()**. 
 
 > **Functions are like commands they basically take an input do something and produce an output. You can think of them like mathematic functions, where you substitute in a value.**
+
+
+>**Functions in R can be spotted by a word followed by a set of parentheses, like so: word().More often than not, the word is a verb, such as round(), suggesting that we’re about to perform an action.**
 
 
 Let’s see what they do:
 
 ```{r}
-
+#Calculationg the square root of 9
+#using built in function sqrt()
 sqrt(9)
 
-round(3.6357, digits = 2)
+#Calculationg the square root of 9
+#using built in function round()
+round(3.6357)
 
 ```
 
@@ -461,13 +479,11 @@ The next data type that we will look at is text data.
 ***
 ## Text Values
 
-In R, we refer to text as 'character' strings. 
+In R, we refer to text as 'character' (chr) strings. Strings are sequences of character data.
 
-Character Strings are:
+Strings are contained within either 'single' or "double" quotation marks.
 
-* Created using either single `''` or double quotes `""`.
-  * For a string either single **or** double quotes must be used.
-* An ordered sequence of character (or symbols).
+All characters between the opening and the closing quote are part of the string.
 
 ```{r}
 
@@ -475,30 +491,30 @@ Character Strings are:
 
 ```
 
-A few symbols are awkward to get into character strings and this is because of they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you require will solve the problem. If not, Google will definitely have the answer!
-
-For example, if you wanted to include quotation marks inside your string:
+You actually typed one when you typed the code below earlier.
 
 ```{r}
-
-cat("Then he told Skyler \"I am the one who knocks!\"")
-
+'R is the best'
 ```
-We can do a lot more with character strings in base R such as:
 
-* `substr` - create a sub string of a given string,
-* `nchar` - returns the number of characters in your string,
-* `sprintf` - formats a given string,
-* `strsplit` - which splits a given string by a given sub-string or character
+The choice between single and double quotes is up to the user. Unlike other languages, there is no difference in behaviour. I recommend always using ", unless you want to create a string that contains multiple ".
 
-And many more. I encourage you to experiment with these.
+```{r}
+'If I want to include a "quote" inside a string, I use single quotes'
+```
+
+
+A few symbols are awkward to get into character strings and this is because of they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you require will solve the problem. If not, Google will definitely have the answer!.
+
+Our next data type is logical values.
+
 
 ***
 ## Logical or Boolean Values
 
 In R these are written as `TRUE` or `FALSE`.
 
->> They are special R data types - not strings! So they don't need '' or "" around them.
+> **They are special R data types - not strings! So they don't need '' or "" around them.**
 
 They also have numerical value behind them - `TRUE` is 1 and `FALSE` is 0.
 
@@ -512,6 +528,8 @@ TRUE * 2.5
 ```
 
 It's uncommon to use logical values for simple calculations like above. We are far more likely to deal with logical values when we work with logical (or conditional) operators, for example; to perform comparisons and checks.
+
+<br>
 
 Logical Operator| Description
 :--------------:|:------------:
@@ -527,6 +545,8 @@ Logical Operator| Description
 
 
 
+
+<br>
 
 Let's see how these work:
 
@@ -556,32 +576,80 @@ Both `Or` (`|`) and `And` (`&`) have to have a condition on either side of them.
 
 `Or` (`|`) will return `TRUE` if at least one of the conditions are `TRUE`, `FALSE` otherwise.
 
-We can surround the statements in brackets to make it clearer what items are being compared.
+We will look at these more in detail with examples in Chapter Four Data Manipulation.
 
-Let's look at some examples:
+>**Please note that there is other data types such as factors, dates, complex numbers, datetimes etc**
 
-Can a statement be both `TRUE` and `FALSE`? 
-```{r}
-TRUE & FALSE
-```
-```{r}
-TRUE | FALSE
+>**Simplified, data types are: numbers, text and TRUE/FALSE values**.
+
+
+
+***
+> **Data Types Exercise**
+
+***
+
+## Exercise{.tabset .tabset-fade}
+
+### **Exercise**{-}
+
+What is the data type of the following?
+
+```{r, eval=FALSE}
+
+"10"
+
+10L
+
+10
+
+TRUE
+
+"ten"
+
+"T"
+
+F
+
+
+
+
 ```
 
-Or a less abstract equivalent example:
+
+### **Show Answer** {-}
+
+The typeof notation determines the (R internal) type or storage mode of any object.
+
 ```{r}
-(25 == 5**2) & (4 > 5)
+
+typeof("10")
+
+typeof(10L)
+
+typeof(10)
+
+typeof(TRUE)
+
+typeof("ten")
+
+typeof("T")
+
+typeof(F)
+
+
 ```
-```{r}
-(25 == 5**2) | (4 > 5)
-```
+
+***
+
+Now that there you know some of R's data stypes we will look at how we can convert between data types.
 
 ***
 ## Data Type Conversion
 
 Given that R is a dynamically typed language, sometimes the data type you want to work with, and the one R infers are not the same.
 
->> R doesn't require you to set the data type when you create it, instead it figures out what the best data type is for the object you are creating - numeric, character, logical, or others.
+R doesn't require you to set the data type when you create it, instead it figures out what the best data type is for the object you are creating - numeric, character, logical, or others.
 
 Sometimes you want to ensure that a particular object is actually a certain type, rather than leaving it up to R. This is done using data type conversion (or casting). R has a range of in-built functions that enable you to convert data from one type to another.
 
@@ -609,15 +677,24 @@ is.
 is.integer(5)
 ```
 
-The way we access the list of functions which allow us to convert from one data type to another we call the `as` . Let's see what we can do... 
 
-```{r, eval = FALSE}
-as.
-```
+In order to convert the data, you need to use the **as** function. As part of this command, you specify the data type you are converting to. The commands are as follows:
+
+* as.numeric to convert to Numeric.
+
+* as.character to convert to Characters.
+
+* as.logical to convert to Logical.
+
 
 ```{r}
 as.integer(4.996453)
+
+as.numeric("2")
 ```
+
+We will look at some other ways to do convert types later in the course.
+
 ***
 
 # Variable Assignment
@@ -628,24 +705,40 @@ R has a lot of flexibility when it comes to variable assignment. We can assign a
 
 Here are a few examples of them in action:
 
-* `x = value`
-* `x <- value`
-* `value -> x`
+* `my_first_variable = value`
+* `my_first_variable <- value`
+* `value -> my_first_variable`
 
-Where `x` is the variable name and `value` is the data being assigned to `x`. 
+Where `my_first_variable` is the variable name and `value` is the data being assigned to `my_first_variable`. 
 
 ```{r}
-x <- 25
-```
-After the assignment, to access or use the value we simply reference `x` in our code. 
-```{r}
-x
-```
-```{r}
-x * 3
+#To assign a variable
+my_first_variable <- 25
 ```
 
->>`<-` is the most commonly used assignment operator in R and therefore the one we will stick to. 
+Once an object has been created it will appear in your Environment window which helps you keep track of what objects you have in your current workspace.(The top right pane)
+
+
+
+After the assignment, to access or use the value we simply reference `my_first_variable` in our code. 
+```{r}
+#To display the variable
+my_first_variable
+```
+
+We can use in mathematical operations.
+
+
+```{r}
+#Multiplcation using our variable name
+my_first_variable * 3
+```
+
+<br>
+
+>**`<-` is the most commonly used assignment operator in R and therefore the one we will stick to.  This called the assignemt operator <-, (the shortcut is ALT + MINUS).**
+
+<br>
 
 In R it is convention to use `<-` to assign variables and keep `=` reserved to passing key value pair to a function. We will be sticking to this convention. 
 
@@ -653,7 +746,7 @@ In R it is convention to use `<-` to assign variables and keep `=` reserved to p
 
 Variable names:
 
-* Are case sensitive and must start with either  `_` or a letter.  
+* Are case sensitive and must start with a letter.  
 * Cannot use reserved words such as `TRUE` or `FALSE` which already mean something in R. 
 * Ideally, should be descriptive, so that when someone else is reading your code they don't have to guess the relation between `x1`, `x2` and `zebra43`. 
 
@@ -678,21 +771,107 @@ typeof(my_int)
 
 ```
 
-
 Typing the following into the Console will list everything you’ve loaded into the Environment:
 
 `ls()`
 
 
-To remove a variable, we would utilise the `rm()` function of R. For example: `rm(x)` 
+To remove a variable, we would utilise the `rm()` function of R. 
 
-To remove multiple variables simply pass more arguments into the function `rm(x1, x2, zebra43)`
+For example: `rm(my_first_variable)` 
 
-Alternatively, if you wanted to remove all variables in the environment we could use the following code:
 ```{r}
-# Explore what it's doing
-rm(list=ls())
+rm(my_first_variable)
 ```
+
+
+***
+> **Variable Assignment Exercise**
+
+***
+
+## Exercise{.tabset .tabset-fade}
+
+### **Exercise**{-}
+
+
+1. Store as a variable the **sum of 1 + 3**, call it **myVariable** 
+
+2. and another variable **2 - 4**, call it **another_variable**.
+
+
+3. Use the remove function to remove a variable.
+
+***
+
+### **Hint**{-}
+
+1. Store as a variable the **sum of 1 + 3**, call it **myVariable** 
+
+2. and another variable **2 - 4**, call it **another_variable**.
+
+
+3. Use the remove function to remove a variable.
+
+```{r, eval=FALSE}
+
+#To assign a variable
+myVariable  <- 
+
+#To assign a variable
+another_variable  <- 
+
+#To remove a variable    
+rm(name_of_variable)  
+
+```
+
+***
+
+### **Show Answer** {-}
+
+
+1. Store as a variable the **sum of 1 + 3**, call it **myVariable** 
+
+2. and another variable **2 - 4**, call it **another_variable**.
+
+
+3. Use the remove function to remove a variable.
+
+```{r echo=TRUE, message=TRUE}
+#To assign a variable
+myVariable  <- 1 + 3
+
+#To display the variable
+myVariable
+
+
+#To assign a variable
+another_variable  <-  2 - 4
+
+#To display the variable
+another_variable
+
+#To remove a variable 
+rm(myVariable)
+
+```
+
+**A note on Variable Names:**
+
+Choosing variable names is one of the most difficult bits of programming; choose something that that is descriptive, recognisable. 
+
+*camelCase vs. snake_case*
+
+It doesn't really matter which you use, just be consistent.
+
+Variables can not start with a number, symbol  or a reserved word like `TRUE`.
+
+Variables can not contain a space within them such as `the number`.
+
+R is case sensitive!
+
+
 
 ***
 
@@ -700,11 +879,18 @@ rm(list=ls())
 
 Being a new user of R chances are you are going to get stuck at some point and will need help,Very few - if any - people in the world know everything there is to know about R. This means that we all need to look things up, these are some of the resources available.
 
-## **Cheat Sheets**
+<br>
+
+***
+
+## Cheat Sheets
 
 You can access these by clicking on **Help** and then **Cheetsheets**.
 
-## **R Documentation **{.tabset .tabset-fade}
+***
+
+
+## R Documentation {.tabset .tabset-fade}
 
 ### Example{-}
 
@@ -712,7 +898,11 @@ From within RStudio we can access the Help documentation by using ? or ?? in the
 
 Try and type the command below in the console,and you should see the Help panel on the bottom right side of your RStudio environment populate with documentation.
 
+This might not be helpful at this point in time as its quite complicated, we use this throughout the course and get plenty of practise on how to get the best of the R documentation
+
 ```{r, eval=FALSE}
+
+#To acces the R help documentation
 
 ?mean 
 
@@ -724,11 +914,16 @@ help(mean)
 ```
 
 
-## **Stack Overflow**
+***
+
+## Stack Overflow
 
 [Stack Overflow](https://stackoverflow.com/) is a great site to check if anyone has has a similar problem to you, and see how they got around it.
 
-## **Yammer**
+
+***
+
+## Yammer
 
 Within ONS we have two groups on Yammer, 
 
@@ -736,10 +931,13 @@ Within ONS we have two groups on Yammer,
 
 * The **Coding in the Kitchen** group which is used to share tips and best practice.
 
+***
 
-## **Cross Government Data Science Slack**
+## Cross Government Data Science Slack
 
 [The Cross Goverment Data Science Slack](https://govdatascience.slack.com/) is a place to talk to other people working with Data across government.
+
+***
 
 ## The **GSS Training team – gss.capability@ons.gov.uk**
 
@@ -748,6 +946,8 @@ If you have any issues with this course; or notice any errors, please contact th
 Please be aware that due to training commitments there may be a small wait before we respond to your query. We also expect that you have attempted to solve your query yourself before contacting us.
 
 ***
+
+<br>
 
 # Summary - The Basics.
 
@@ -771,8 +971,10 @@ We have covered a lot material in R and yet there is still so much more to cover
 
 ***
 
+<br>
+
 # Next Chapter
 
->> In the next chapter we will look at Data Structures.
+> **In the next chapter we will look at Data Structures.**
 
 ***
