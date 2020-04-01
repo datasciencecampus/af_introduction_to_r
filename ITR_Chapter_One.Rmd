@@ -316,7 +316,7 @@ To save the script;
 
 **Click on File -> Save as**
 
->**Alternatively you can press the short cut keys CTrl + S**.
+>**Alternatively you can press the short cut keys Ctrl + S**.
 
 
 We will now look at the top left pane.
@@ -375,7 +375,7 @@ First data type we will look at is numbers.
 
 ## Numbers
 
-You will most likely want to perfom mathematical operations with numbers. Here is a list of some operators.
+You will most likely want to perform mathematical operations with numbers. Here is a list of some operators.
 
 Operators in R:
 
@@ -578,7 +578,7 @@ Both `Or` (`|`) and `And` (`&`) have to have a condition on either side of them.
 
 We will look at these more in detail with examples in Chapter Four Data Manipulation.
 
->**Please note that there is other data types such as factors, dates, complex numbers, datetimes etc**
+>**Please note that there is other data types such as factors, dates, complex numbers, date times etc**
 
 >**Simplified, data types are: numbers, text and TRUE/FALSE values**.
 
@@ -642,7 +642,7 @@ typeof(F)
 
 ***
 
-Now that there you know some of R's data stypes we will look at how we can convert between data types.
+Now that there you know some of R's data types we will look at how we can convert between data types.
 
 ***
 ## Data Type Conversion
@@ -736,7 +736,7 @@ my_first_variable * 3
 
 <br>
 
->**`<-` is the most commonly used assignment operator in R and therefore the one we will stick to.  This called the assignemt operator <-, (the shortcut is ALT + MINUS).**
+>**`<-` is the most commonly used assignment operator in R and therefore the one we will stick to.  This called the assignemt operator <-, (the short cut is ALT + MINUS).**
 
 <br>
 
@@ -861,7 +861,7 @@ rm(myVariable)
 
 Choosing variable names is one of the most difficult bits of programming; choose something that that is descriptive, recognisable. 
 
-*camelCase vs. snake_case*
+*camel Case vs. snake_case*
 
 It doesn't really matter which you use, just be consistent.
 

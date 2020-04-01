@@ -1,5 +1,5 @@
 ---
-title: "Intro to R - Data Structures"
+title: "Intro to R -Chapter Two, Data Structures"
 output:
  html_document: 
     theme: united
@@ -18,6 +18,7 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+<br>
 
 ***
 
@@ -42,17 +43,19 @@ R organises these in certain structures.
 
 R stores this data so that  we can manipulate and work with it.
 
+The first structure we will look at is a vector.
+
 ***
 # Vectors
 
-> Now it's time to almost forget everything you've just learned... In R the most fundamental object is a vector. To the extent all the data types we have seen so far have all been vectors. This is because R is a **"vectorised"** language. This is a really powerful concept that may seem foreign right now, but it should make more sense as we move on. 
+>**Now it's time to almost forget everything you've just learned... In R the most fundamental object is a vector. To the extent all the data types we have seen so far have all been vectors. This is because R is a "vectorised" language. This is a really powerful concept that may seem foreign right now, but it should make more sense as we move on.** 
 
 In the previous section we looked at data types, where we said we could assign a name to a value.
 
 here `my_friends` is assigned to the value `ian`
 
 ```{r}
-
+#To assign a variable
 my_friends <- "ian"
 
 ```
@@ -68,22 +71,28 @@ my_friends <- ("ian" "jonathon", "hannah", "mike", "almas")
 
 ```
 
+You will get the errors below,
+
+>**Error: unexpected ',' in "my_friends <- "ian","**
+
+>**Error: unexpected string constant in "my_friends <- ("ian" "jonathon""**
+
+
 ***
 > Accessing the R Help Documentation Exercise
 
+***
+
 ## The c() Function {.tabset .tabset-fade}
 
-<br>
 
 The code above will not work, which is where the `c()` function comes in. 
 
-<br>
 
 ### **Exercise** {-}
 
-> Using the Help Section.
 
-* Use the help section in R to find out what the `c()` function does.
+1. Use the help section in R to find out what the `c()` function does.
 
 ```{r, eval=F}
 
@@ -91,11 +100,18 @@ c()
 
 ```
 
+***
+
+<br>
+
+
 ### **Show Answer** {-}
 
 The c() function is used for creating a vector in R.
 
-```{r}
+```{r, eval=FALSE}
+
+#To acces the R help documentation
 
 ?c()
 
@@ -181,7 +197,9 @@ example_vector
 
 
 Play around with the `mode` and `length` parameters. (Try: mode = integer, double or character).
-<br />
+<br>
+
+***
 
 > Creating Vectors Exercise
 
@@ -189,7 +207,6 @@ Play around with the `mode` and `length` parameters. (Try: mode = integer, doubl
 
 ### **Exercise** {-}
 
-> Creating Vectors
 
 1. In your script leave yourself a comment to remind you that this exercise is about vectors.
 
@@ -218,12 +235,15 @@ movies_and_numbers <- c(favourite_movies, lucky_numbers)
 
 ```
 
+<br>
+
+***
 ### **Show Answer**{-}
 
 
 We can see below that our new vector is a character vector, as vectors are supposed to be of the same data type, R will automatically convert the data of the 2 vectors to be the same, 
 
-> this is known as **coercion.**
+> This is known as **coercion.**
 
 
 ```{r}
@@ -247,7 +267,7 @@ typeof(movies_and_numbers)
 
 Vectors aren't just containers for homogeneous (the same type of) data. 
 
-> As R is a vectorised language, this means operations are applied to each element of the vector automatically, without the need to loop through the vector. 
+> **As R is a vectorised language, this means operations are applied to each element of the vector automatically, without the need to loop through the vector.** 
 
 Since all the objects we have seen so far (`integer`, `double`, `logical` and `character`) have all been secretly vectors, that means all the operations we have performed so far have been vectorised operations! The operations will scale to an `n` sized vector, rather than the individual elements we have worked with thus far. 
 
@@ -287,9 +307,11 @@ sample_vector * 3
 
 > Vector Operations Exercise
 
+***
+
 ### **Exercise** {-}
 
-> Vector Addition
+
 
 1. Try and add `sample_vector` and `sequence_vector`.
 
@@ -297,7 +319,6 @@ sample_vector * 3
 
 ```{r, eval=FALSE}
 # Adding two vectors of different lengths
-
 vector_after_addition <- sample_vector + sequence_vector
 
 # To display the vector
@@ -305,7 +326,13 @@ vector_after_addition
 
 ```
 
+<br>
+
+***
+
 ### **Show Answer**{-}
+
+1. Try and add `sample_vector` and `sequence_vector`.
 
 ```{r}
 
@@ -332,37 +359,32 @@ As we can see R has recycled the elements in the shorter vector.
 When applying arithmetic to two vectors their lengths must be either equal, or the length of the longer one must be a multiple of the shorter one.
 
 
-> All of the operations we have seen above were performed in an **element-wise** manner. This means the operation was performed on each respective element from each vector. In R this is implemented with a lot of flexibility. We could perform operations with vectors of different sizes. Other languages may not have the same flexibility and will give you an error.
+> **All of the operations we have seen above were performed in an element-wise manner. This means the operation was performed on each respective element from each vector. In R this is implemented with a lot of flexibility. We could perform operations with vectors of different sizes. Other languages may not have the same flexibility and will give you an error.**
 
 ***
+
+<br>
 
 ## Indexing a Vector {.tabset .tabset-fade}
 
 Elements in a vector can be selected using `[ ]`, this is called slicing. 
 
-> We are going to use indexes, which are the position of each element within the vector. 
+> **We are going to use indexes, which are the position of each element within the vector.** 
 
 Note that R indexes start at 1 (not 0 like other languages).
 
 As an example, going back to my favourite movies, to pick the second item in the list, I would simply use the square brackets and reference **2** as shown below.
 
 ```{r}
-
 # To display the vector
-
 favourite_movies
-
-
 ```
 
 
 
 ```{r}
 # Selecting the second element in the vector
-
 favourite_movies[2] 
-
-
 ```
 
 We can also index (select) multiple elements:
@@ -370,10 +392,7 @@ We can also index (select) multiple elements:
 ```{r}
 # Selecting multiple items, from the second to
 # the fourth item
-
 favourite_movies[2:4] 
-
-
 ```
 
 The `2:4` is sequence vector which we give as the indexes we want.
@@ -394,9 +413,10 @@ Above we have selected the 1st, 3rd and 4th elements from `favourite_movies` in 
 ***
 > Vector Indexing Exercise
 
+***
+
 ### **Exercise**{-}
 
->Vector Indexing
 
 1. Create another vector containing days of the week (Monday - Sunday).
 
@@ -415,8 +435,19 @@ days_of_the_week <- c("mon", "tue", "wed", "thur", "frid", "sat", "sun")
 
 ```
 
+***
+
+<br>
+
 ### **Show Answer**{-}
 
+1. Create another vector containing days of the week (Monday - Sunday).
+
+2. Select the third day of the week.
+
+3. Select the week days.
+
+4. Select Tuesday and Thursday.
 
 ```{r}
 #Creating a vector
@@ -443,13 +474,19 @@ days_of_the_week[c(2,4)]
 
 ***
 
+
+<br>
+
+***
 # Lists 
+
+***
 
 ## Definition
 
 Lists are similar data structure to vectors whereby, they are an ordered collection of elements. They differ to vectors because their elements can be of any type, including lists themselves!
 
-> So why do you need lists? A list in R is like a to-do list: the different items on that list most likely differ in length, characteristic, type of activity etc. It enables you to gather a variety of objects under one name in an ordered way.
+So why do you need lists? A list in R is like a to-do list: the different items on that list most likely differ in length, characteristic, type of activity etc. It enables you to gather a variety of objects under one name in an ordered way.
 
 
 ***
@@ -462,11 +499,9 @@ To create a list we will call the `list()` function.
 
 
 ```{r}
-
 # Creating a list
 
 list(1,2,3,4,'character',5)
-
 ```
 As you can see above, our numeric values remain numeric, and character string value remained a character. 
 
@@ -488,9 +523,11 @@ Lists are really useful, flexible data structures. Their elements can be any obj
 
 > Creating Lists Exercise
 
+***
+
+
 ### **Exercise**{-}
 
-> Creating Lists
 
 1. Referring to our previous exercise where we created the vectors below, create a list with the same contents as the two vectors, I have named my list, `my_list_of_movies_and_numbers`.
 
@@ -507,10 +544,13 @@ lucky_numbers <- c(7, 12, 15, 1)
 my_list_of_movies_and_numbers <- list(content of favourite_movies and lucky_numbers) 
 
 ```
+<br>
 
+***
 
 ### **Show Answer**{-}
 
+1. Referring to our previous exercise where we created the vectors below, create a list with the same contents as the two vectors, I have named my list, `my_list_of_movies_and_numbers`.
 
 ```{r}
 # Creating a list
@@ -520,6 +560,10 @@ my_list_of_movies_and_numbers <- list(7, 12, 15, 1, "Frozen",
 
 ```
 
+
+***
+
+<br>
 
 ***
 
@@ -559,13 +603,19 @@ my_list_of_movies_and_numbers[[1]]
 
 > Chained Indexing Exercise
 
+***
+
 ### **Chained Indexing**{-}
 
-> Chained Indexing.
+
 
 Like we said that lists can contain anything.
 
-> If the element we select is another data structure, then we can also immediately index the selected data structure by using chained indexing.
+If the element we select is another data structure, then we can also immediately index the selected data structure by using chained indexing.
+
+<br>
+
+***
 
 ### **Show Example**{-}
 
@@ -573,20 +623,16 @@ Below am creating a list of my 2 vectors, named it `my_list_2`.
 
 ```{r}
 # Character vector
-
 favourite_movies <- c("Frozen", "The Lion King", "Moana", "The Dark Knight") 
 
 # Numeric vector  
 lucky_numbers <- c(7, 12, 15, 1) 
 
 # Creating a list of the 2 vectors
-
 my_list_2 <- list(favourite_movies, lucky_numbers)
 
 # To display the list
 my_list_2
- 
-
 ```
 
 So if i wanted to select the 4th item from `favourite_movies`, I would type the code below,
@@ -603,22 +649,24 @@ my_list_2[[1]][4]
 This effectively pulls out the vector stored in the first position in the list, and further indexes the item in the 4th position in that vector.
 
 ***
+<br>
+
+***
 
 ## Named Lists {.tabset .tabset-fade}
 
 In R certain data structures have an attribute called `names`. They allow us to label (or name) each element held by a data structure. 
 
-> We can do this by using the `names()` function. The `names()` function allows us to get or set the name attribute of a data structure.
+We can do this by using the `names()` function. The `names()` function allows us to get or set the name attribute of a data structure.
 
-> To get the `names` attribute just call the function on the data structure: `names(a_data_structure)`
+To get the `names` attribute just call the function on the data structure: `names(a_data_structure)`
 
-> To set the `names` attribute we simply use the assign operator in conjunction with the get method above: `names(a_data_structure) <-`. Typically, character vectors with meaningful names are assigned to the names attribute. 
+To set the `names` attribute we simply use the assign operator in conjunction with the get method above: `names(a_data_structure) <-`. Typically, character vectors with meaningful names are assigned to the names attribute. 
 
 Let's look at an example.
 
 ```{r}
 # Suppose we have the following list:
-
 # Creating a list with multiple items
 list2 <- list(3:5, "ONS", c(FALSE, FALSE, TRUE), 26L)
 
@@ -626,88 +674,60 @@ list2 <- list(3:5, "ONS", c(FALSE, FALSE, TRUE), 26L)
 list2
 ```
 
+<br>
+
 What happens if we call `names` on `list2`?
 
 ```{r}
 # Finding out the names of our items in the list
-
 names(list2)
-
 ```
 
 We could attach a name (or label) to each element in this list via the following assignment:
 
 ```{r}
 # Adding names to our items in the list
-
-names(list2)<- c("double_vec", "character", "logical_vec", "int")
+names(list2)<- c("double_vector", "character", "logical_vector", "integer")
 
 # To display the list
 list2
-
 ```
 To confirm our assignment, let's call `names` on `list2` again:
 
 ```{r}
 # Finding out the names of our items in the list
-
 names(list2)
-
 ```
 The above now displays the name associated with each element on top of the element.
 
-> Note: To remove the names attribute we could simply assign `NA` to the `names` attribute.
 
 On the surface, naming elements may not seem immediately useful, but this introduces a new bit of functionality. We can now index our data structure by the `names` associated to each element.
 
 
 ```{r}
 # Selecting an item from a list
-
-list2["int"]
-
+list2["integer"]
 ```
 We could have equivalently named our list on creation:
 
 
 ```{r}
 # Creating a list and naming the contents
-
-list2 <- list(numeric_vec = 3:5, 
+list2 <- list(numeric_vector = 3:5, 
               character = "ONS",
-              logical_vec = c(FALSE, FALSE, TRUE), 
-              int = 26L)
+              logical_vector = c(FALSE, FALSE, TRUE), 
+              integer = 26L)
 
 # To display the list
 list2
 ```
 
-Since lists can hold other data structures, including vectors and other lists, they can then have an interesting tree like structure which we can observe using the `str()` function.
+Since lists can hold other data structures, including vectors and other lists, they can then have an interesting tree like structure which we can observe using the structure function, `str()` function.
 
-```{r}
-
-# Checking the structure of our list using the 
-# str() function
-str(list_example)
-
-```
 ```{r}
 # Checking the structure of our list using the 
 # str() function
-
 str(list2)
-
-```
-Or more interestingly,
-
-```{r}
-#Checking the structure of our list using the 
-#str() function
-
-list3 <- list(list_example, list2, "Lists inside lists!")
-
-str(list3)
-
 ```
 
 
@@ -715,20 +735,18 @@ str(list3)
 
 > Creating and Indexing Lists Exercise
 
+***
+
 ### **Exercise**{-}
 
-> List Exercises.
 
 1. Create the list below.
 
 ```{r}
-
 # Creating a list with multiple items
-
 chocolate <- list(brand = "celebrations", 
                   chocolate_bar = c("mars", "milky way", "bounty", "twix"), 
                   rating = c("worst",  "terrible", "awful", "nice", "best"))
-
 ```
 
 2. Find out the names of the list, using the `names()` function.
@@ -739,22 +757,31 @@ chocolate <- list(brand = "celebrations",
 
 5. Select your favourite chocolate from the options.
 
+<br>
 
+***
 
 
 ### **Show Answer**{-}
 
+1. Create the list below.
+
+2. Find out the names of the list, using the `names()` function.
+
+3. Check the structure using the `str()` function.
+
+4. Select chocolate bars.
+
+5. Select your favourite chocolate from the options.
+
 ```{r}
 # Creating a list with multiple items
-
 chocolate <- list(brand = "celebrations", 
                   chocolate_bar = c("mars", "milky way", "bounty", "twix"), 
                   rating = c("worst",  "terrible", "awful", "nice", "best"))
 
 
-
 # Finding the names 
-
 names(chocolate)
 
 # Checking the structure
@@ -762,14 +789,13 @@ str(chocolate)
 
 
 # Select chocolate bars
-
 chocolate[2]
 
 # Select my favourite chocolate bar
-
 chocolate[[2]][3]
-
 ```
+<br>
+
 
 
 
@@ -780,7 +806,6 @@ Similar to vectors again, to add an element, we can either index to a blank spac
 
 ```{r}
 # Adding a new item to a list
-
 list_example[3] <- "new"
 
 # To display the list
@@ -792,7 +817,6 @@ list_example
 list2
 
 # Combining the two lists using the append() function
-
 append(list_example, list2)
 
 ```
