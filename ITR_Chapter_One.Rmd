@@ -975,6 +975,20 @@ We have covered a lot material in R and yet there is still so much more to cover
 
 # Next Chapter
 
-> **In the next chapter we will look at Data Structures.**
+
+<br>
+
+ <style>
+div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
+**In the next chapter we will look at Data Structures.**
+
+
+</div>
+
+
+
 
 ***

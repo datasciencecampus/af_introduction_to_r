@@ -1600,9 +1600,14 @@ div.tocify {
 </div>
 <div id="vectors" class="section level1">
 <h1><span class="header-section-number">3</span> Vectors</h1>
-<blockquote>
+<p><br></p>
+<style>
+div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
+</style>
+<div class="blue">
 <p><strong>Now it’s time to almost forget everything you’ve just learned… In R the most fundamental object is a vector. To the extent all the data types we have seen so far have all been vectors. This is because R is a “vectorised” language. This is a really powerful concept that may seem foreign right now, but it should make more sense as we move on.</strong></p>
-</blockquote>
+</div>
+<p><br></p>
 <p>In the previous section we looked at data types, where we said we could assign a name to a value.</p>
 <p>here <code>my_friends</code> is assigned to the value <code>ian</code></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co">#To assign a variable</span></a>
@@ -1610,14 +1615,12 @@ div.tocify {
 <p>Suppose you wanted to store more than one value (more friends) other than <code>&quot;ian&quot;</code>. e.g “jonathon”, “hannah”, “mike”, “almas”</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">my_friends &lt;-<span class="st"> &quot;ian&quot;</span>, <span class="st">&quot;jonathon&quot;</span>, <span class="st">&quot;hannah&quot;</span>, <span class="st">&quot;mike&quot;</span>, <span class="st">&quot;almas&quot;</span></a>
 <a class="sourceLine" id="cb2-2" title="2"></a>
-<a class="sourceLine" id="cb2-3" title="3">my_friends &lt;-<span class="st"> </span>(<span class="st">&quot;ian&quot;</span> <span class="st">&quot;jonathon&quot;</span>, <span class="st">&quot;hannah&quot;</span>, <span class="st">&quot;mike&quot;</span>, <span class="st">&quot;almas&quot;</span>)</a></code></pre></div>
-<p>You will get the errors below,</p>
+<a class="sourceLine" id="cb2-3" title="3">my_friends &lt;-<span class="st"> </span>(<span class="st">&quot;ian&quot;</span>, <span class="st">&quot;jonathon&quot;</span>, <span class="st">&quot;hannah&quot;</span>, <span class="st">&quot;mike&quot;</span>, <span class="st">&quot;almas&quot;</span>)</a></code></pre></div>
+<p>You will get the error below,</p>
 <blockquote>
 <p><strong>Error: unexpected ‘,’ in “my_friends &lt;-”ian“,”</strong></p>
 </blockquote>
-<blockquote>
-<p><strong>Error: unexpected string constant in “my_friends &lt;- (”ian&quot; “jonathon”&quot;</strong></p>
-</blockquote>
+<p>Which brings us to the <code>c()</code> function.</p>
 <hr />
 <blockquote>
 <p>Accessing the R Help Documentation Exercise</p>
@@ -1645,6 +1648,13 @@ div.tocify {
 <a class="sourceLine" id="cb4-5" title="5"><span class="co"># or</span></a>
 <a class="sourceLine" id="cb4-6" title="6"></a>
 <a class="sourceLine" id="cb4-7" title="7"><span class="kw">help</span>(c)</a></code></pre></div>
+<p>I can now store mutliple items by using the <code>c()</code> function, note elements are separated by commas</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">#creating a vector</span></a>
+<a class="sourceLine" id="cb5-2" title="2">my_friends &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ian&quot;</span>, <span class="st">&quot;jonathon&quot;</span>, <span class="st">&quot;hannah&quot;</span>, <span class="st">&quot;mike&quot;</span>, <span class="st">&quot;almas&quot;</span>)</a>
+<a class="sourceLine" id="cb5-3" title="3"></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb5-5" title="5">my_friends</a></code></pre></div>
+<pre><code>## [1] &quot;ian&quot;      &quot;jonathon&quot; &quot;hannah&quot;   &quot;mike&quot;     &quot;almas&quot;</code></pre>
 <hr />
 </div>
 </div>
@@ -1672,33 +1682,32 @@ div.tocify {
 <li><p>The <strong>colon</strong> to create a vector of consecutive numbers.</p></li>
 <li><p>Another way to initialise a vector is by using the <strong>vector()</strong> function.</p></li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># Creating a vector using the combine function</span></a>
-<a class="sourceLine" id="cb5-2" title="2"></a>
-<a class="sourceLine" id="cb5-3" title="3">sample_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb5-4" title="4"></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="co"># To display the created vector</span></a>
-<a class="sourceLine" id="cb5-6" title="6">sample_vector  </a></code></pre></div>
-<pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Creating a vector using the sequence function</span></a>
-<a class="sourceLine" id="cb7-2" title="2">sequence_vector &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2</span>, <span class="dv">6</span>, <span class="dt">by =</span> <span class="dv">2</span>)</a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Creating a vector using the combine function</span></a>
+<a class="sourceLine" id="cb7-2" title="2">sample_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</a>
 <a class="sourceLine" id="cb7-3" title="3"></a>
 <a class="sourceLine" id="cb7-4" title="4"><span class="co"># To display the created vector</span></a>
-<a class="sourceLine" id="cb7-5" title="5">sequence_vector</a></code></pre></div>
-<pre><code>## [1] 2 4 6</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Creating a vector using a colon</span></a>
-<a class="sourceLine" id="cb9-2" title="2">colon_vector &lt;-<span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb7-5" title="5">sample_vector  </a></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Creating a vector using the sequence function</span></a>
+<a class="sourceLine" id="cb9-2" title="2">sequence_vector &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2</span>, <span class="dv">6</span>, <span class="dt">by =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb9-3" title="3"></a>
 <a class="sourceLine" id="cb9-4" title="4"><span class="co"># To display the created vector</span></a>
-<a class="sourceLine" id="cb9-5" title="5">colon_vector</a></code></pre></div>
+<a class="sourceLine" id="cb9-5" title="5">sequence_vector</a></code></pre></div>
+<pre><code>## [1] 2 4 6</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># Creating a vector using a colon</span></a>
+<a class="sourceLine" id="cb11-2" title="2">colon_vector &lt;-<span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb11-3" title="3"></a>
+<a class="sourceLine" id="cb11-4" title="4"><span class="co"># To display the created vector</span></a>
+<a class="sourceLine" id="cb11-5" title="5">colon_vector</a></code></pre></div>
 <pre><code>## [1]  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># Creating a vector using the vector function</span></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="co"># Here we can specify what type of vector by specifying the mode </span></a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="co"># and the how long by specifying the length</span></a>
-<a class="sourceLine" id="cb11-4" title="4"></a>
-<a class="sourceLine" id="cb11-5" title="5">example_vector &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&#39;logical&#39;</span>, <span class="dt">length =</span> <span class="dv">7</span>)</a>
-<a class="sourceLine" id="cb11-6" title="6"></a>
-<a class="sourceLine" id="cb11-7" title="7"><span class="co"># To display the created vector</span></a>
-<a class="sourceLine" id="cb11-8" title="8">example_vector</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Creating a vector using the vector function</span></a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="co"># Here we can specify what type of vector by specifying the mode </span></a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="co"># and the how long by specifying the length</span></a>
+<a class="sourceLine" id="cb13-4" title="4"></a>
+<a class="sourceLine" id="cb13-5" title="5">example_vector &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&#39;logical&#39;</span>, <span class="dt">length =</span> <span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb13-6" title="6"></a>
+<a class="sourceLine" id="cb13-7" title="7"><span class="co"># To display the created vector</span></a>
+<a class="sourceLine" id="cb13-8" title="8">example_vector</a></code></pre></div>
 <pre><code>## [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
 <p>Play around with the <code>mode</code> and <code>length</code> parameters. (Try: mode = integer, double or character). <br></p>
 <hr />
@@ -1714,16 +1723,16 @@ div.tocify {
 <li><p>Now combine the two vectors to create a new vector, e.g movies_and_numbers.</p></li>
 <li><p>Then find out what type of vector your new vector is, use <strong>typeof()</strong>.</p></li>
 </ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Creating a character vector</span></a>
-<a class="sourceLine" id="cb13-2" title="2">favourite_movies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Frozen&quot;</span>, <span class="st">&quot;The Lion King&quot;</span>, <span class="st">&quot;Moana&quot;</span>, <span class="st">&quot;The Dark Knight&quot;</span>) </a>
-<a class="sourceLine" id="cb13-3" title="3"></a>
-<a class="sourceLine" id="cb13-4" title="4"></a>
-<a class="sourceLine" id="cb13-5" title="5"><span class="co"># Creating a numerical vector  </span></a>
-<a class="sourceLine" id="cb13-6" title="6">lucky_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">1</span>) </a>
-<a class="sourceLine" id="cb13-7" title="7"></a>
-<a class="sourceLine" id="cb13-8" title="8"></a>
-<a class="sourceLine" id="cb13-9" title="9"><span class="co"># Combining the two vectors into a new vector</span></a>
-<a class="sourceLine" id="cb13-10" title="10">movies_and_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(favourite_movies, lucky_numbers)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co"># Creating a character vector</span></a>
+<a class="sourceLine" id="cb15-2" title="2">favourite_movies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Frozen&quot;</span>, <span class="st">&quot;The Lion King&quot;</span>, <span class="st">&quot;Moana&quot;</span>, <span class="st">&quot;The Dark Knight&quot;</span>) </a>
+<a class="sourceLine" id="cb15-3" title="3"></a>
+<a class="sourceLine" id="cb15-4" title="4"></a>
+<a class="sourceLine" id="cb15-5" title="5"><span class="co"># Creating a numerical vector  </span></a>
+<a class="sourceLine" id="cb15-6" title="6">lucky_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">1</span>) </a>
+<a class="sourceLine" id="cb15-7" title="7"></a>
+<a class="sourceLine" id="cb15-8" title="8"></a>
+<a class="sourceLine" id="cb15-9" title="9"><span class="co"># Combining the two vectors into a new vector</span></a>
+<a class="sourceLine" id="cb15-10" title="10">movies_and_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(favourite_movies, lucky_numbers)</a></code></pre></div>
 <p><br></p>
 <hr />
 </div>
@@ -1731,19 +1740,18 @@ div.tocify {
 <h3><strong>Show Answer</strong></h3>
 <p>We can see below that our new vector is a character vector, as vectors are supposed to be of the same data type, R will automatically convert the data of the 2 vectors to be the same,</p>
 <blockquote>
-<p>This is known as <strong>coercion.</strong></p>
+<p><strong>This is known as coercion.</strong></p>
 </blockquote>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># This exercise is about vectors</span></a>
-<a class="sourceLine" id="cb14-2" title="2"></a>
-<a class="sourceLine" id="cb14-3" title="3">favourite_movies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Frozen&quot;</span>, <span class="st">&quot;The Lion King&quot;</span>, <span class="st">&quot;Moana&quot;</span>, <span class="st">&quot;The Dark Knight&quot;</span>)  </a>
-<a class="sourceLine" id="cb14-4" title="4">  </a>
-<a class="sourceLine" id="cb14-5" title="5">lucky_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">1</span>)     </a>
-<a class="sourceLine" id="cb14-6" title="6"></a>
-<a class="sourceLine" id="cb14-7" title="7"><span class="co"># combining the 2 vectors</span></a>
-<a class="sourceLine" id="cb14-8" title="8">movies_and_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(favourite_movies, lucky_numbers)</a>
-<a class="sourceLine" id="cb14-9" title="9"></a>
-<a class="sourceLine" id="cb14-10" title="10"><span class="co"># checking the type of vector</span></a>
-<a class="sourceLine" id="cb14-11" title="11"><span class="kw">typeof</span>(movies_and_numbers)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># This exercise is about vectors</span></a>
+<a class="sourceLine" id="cb16-2" title="2">favourite_movies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Frozen&quot;</span>, <span class="st">&quot;The Lion King&quot;</span>, <span class="st">&quot;Moana&quot;</span>, <span class="st">&quot;The Dark Knight&quot;</span>)  </a>
+<a class="sourceLine" id="cb16-3" title="3">  </a>
+<a class="sourceLine" id="cb16-4" title="4">lucky_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">1</span>)     </a>
+<a class="sourceLine" id="cb16-5" title="5"></a>
+<a class="sourceLine" id="cb16-6" title="6"><span class="co"># combining the 2 vectors</span></a>
+<a class="sourceLine" id="cb16-7" title="7">movies_and_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(favourite_movies, lucky_numbers)</a>
+<a class="sourceLine" id="cb16-8" title="8"></a>
+<a class="sourceLine" id="cb16-9" title="9"><span class="co"># checking the type of vector</span></a>
+<a class="sourceLine" id="cb16-10" title="10"><span class="kw">typeof</span>(movies_and_numbers)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <hr />
 </div>
@@ -1756,31 +1764,31 @@ div.tocify {
 </blockquote>
 <p>Since all the objects we have seen so far (<code>integer</code>, <code>double</code>, <code>logical</code> and <code>character</code>) have all been secretly vectors, that means all the operations we have performed so far have been vectorised operations! The operations will scale to an <code>n</code> sized vector, rather than the individual elements we have worked with thus far.</p>
 <p>Let’s explore!</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># To display the vector</span></a>
-<a class="sourceLine" id="cb16-2" title="2">sample_vector</a></code></pre></div>
-<pre><code>## [1] 1 2 3 4 5</code></pre>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># To display the vector</span></a>
-<a class="sourceLine" id="cb18-2" title="2">colon_vector</a></code></pre></div>
+<a class="sourceLine" id="cb18-2" title="2">sample_vector</a></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># To display the vector</span></a>
+<a class="sourceLine" id="cb20-2" title="2">colon_vector</a></code></pre></div>
 <pre><code>## [1]  6  7  8  9 10</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># Adding vectors</span></a>
-<a class="sourceLine" id="cb20-2" title="2"></a>
-<a class="sourceLine" id="cb20-3" title="3">vector_addition &lt;-<span class="st"> </span>sample_vector <span class="op">+</span><span class="st"> </span>colon_vector</a>
-<a class="sourceLine" id="cb20-4" title="4"></a>
-<a class="sourceLine" id="cb20-5" title="5"><span class="co"># To display the vector</span></a>
-<a class="sourceLine" id="cb20-6" title="6">vector_addition</a></code></pre></div>
-<pre><code>## [1]  7  9 11 13 15</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># Multiplying vectors (element wise, dot product)</span></a>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="co"># Adding vectors</span></a>
 <a class="sourceLine" id="cb22-2" title="2"></a>
-<a class="sourceLine" id="cb22-3" title="3">vector_multiplication &lt;-<span class="st"> </span>sample_vector <span class="op">*</span><span class="st"> </span>colon_vector</a>
+<a class="sourceLine" id="cb22-3" title="3">vector_addition &lt;-<span class="st"> </span>sample_vector <span class="op">+</span><span class="st"> </span>colon_vector</a>
 <a class="sourceLine" id="cb22-4" title="4"></a>
 <a class="sourceLine" id="cb22-5" title="5"><span class="co"># To display the vector</span></a>
-<a class="sourceLine" id="cb22-6" title="6">vector_multiplication</a></code></pre></div>
+<a class="sourceLine" id="cb22-6" title="6">vector_addition</a></code></pre></div>
+<pre><code>## [1]  7  9 11 13 15</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co"># Multiplying vectors (element wise, dot product)</span></a>
+<a class="sourceLine" id="cb24-2" title="2"></a>
+<a class="sourceLine" id="cb24-3" title="3">vector_multiplication &lt;-<span class="st"> </span>sample_vector <span class="op">*</span><span class="st"> </span>colon_vector</a>
+<a class="sourceLine" id="cb24-4" title="4"></a>
+<a class="sourceLine" id="cb24-5" title="5"><span class="co"># To display the vector</span></a>
+<a class="sourceLine" id="cb24-6" title="6">vector_multiplication</a></code></pre></div>
 <pre><code>## [1]  6 14 24 36 50</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="co"># To display the vector</span></a>
-<a class="sourceLine" id="cb24-2" title="2">sample_vector</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># To display the vector</span></a>
+<a class="sourceLine" id="cb26-2" title="2">sample_vector</a></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co">#Multiplying a vector with a value</span></a>
-<a class="sourceLine" id="cb26-2" title="2">sample_vector <span class="op">*</span><span class="st"> </span><span class="dv">3</span></a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co">#Multiplying a vector with a value</span></a>
+<a class="sourceLine" id="cb28-2" title="2">sample_vector <span class="op">*</span><span class="st"> </span><span class="dv">3</span></a></code></pre></div>
 <pre><code>## [1]  3  6  9 12 15</code></pre>
 <hr />
 <blockquote>
@@ -1793,11 +1801,11 @@ div.tocify {
 <li><p>Try and add <code>sample_vector</code> and <code>sequence_vector</code>.</p></li>
 <li><p>Can you figure out what has happened?</p></li>
 </ol>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># Adding two vectors of different lengths</span></a>
-<a class="sourceLine" id="cb28-2" title="2">vector_after_addition &lt;-<span class="st"> </span>sample_vector <span class="op">+</span><span class="st"> </span>sequence_vector</a>
-<a class="sourceLine" id="cb28-3" title="3"></a>
-<a class="sourceLine" id="cb28-4" title="4"><span class="co"># To display the vector</span></a>
-<a class="sourceLine" id="cb28-5" title="5">vector_after_addition  </a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># Adding two vectors of different lengths</span></a>
+<a class="sourceLine" id="cb30-2" title="2">vector_after_addition &lt;-<span class="st"> </span>sample_vector <span class="op">+</span><span class="st"> </span>sequence_vector</a>
+<a class="sourceLine" id="cb30-3" title="3"></a>
+<a class="sourceLine" id="cb30-4" title="4"><span class="co"># To display the vector</span></a>
+<a class="sourceLine" id="cb30-5" title="5">vector_after_addition  </a></code></pre></div>
 <p><br></p>
 <hr />
 </div>
@@ -1806,18 +1814,18 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Try and add <code>sample_vector</code> and <code>sequence_vector</code>.</li>
 </ol>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># To display the vector</span></a>
-<a class="sourceLine" id="cb29-2" title="2">sample_vector</a></code></pre></div>
-<pre><code>## [1] 1 2 3 4 5</code></pre>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="co"># To display the vector</span></a>
-<a class="sourceLine" id="cb31-2" title="2">sequence_vector</a></code></pre></div>
+<a class="sourceLine" id="cb31-2" title="2">sample_vector</a></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># To display the vector</span></a>
+<a class="sourceLine" id="cb33-2" title="2">sequence_vector</a></code></pre></div>
 <pre><code>## [1] 2 4 6</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># Adding two vectors of different lengths</span></a>
-<a class="sourceLine" id="cb33-2" title="2">vector_after_addition &lt;-<span class="st"> </span>sample_vector <span class="op">+</span><span class="st"> </span>sequence_vector</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="co"># Adding two vectors of different lengths</span></a>
+<a class="sourceLine" id="cb35-2" title="2">vector_after_addition &lt;-<span class="st"> </span>sample_vector <span class="op">+</span><span class="st"> </span>sequence_vector</a></code></pre></div>
 <pre><code>## Warning in sample_vector + sequence_vector: longer object length is not a
 ## multiple of shorter object length</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="co"># To display the vector</span></a>
-<a class="sourceLine" id="cb35-2" title="2">vector_after_addition  </a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="co"># To display the vector</span></a>
+<a class="sourceLine" id="cb37-2" title="2">vector_after_addition  </a></code></pre></div>
 <pre><code>## [1] 3 6 9 6 9</code></pre>
 <p>When we try to add vectors of different lengths R gives a warning message as the longer object length is not a multiple of the shorter object length.</p>
 <p>As we can see R has recycled the elements in the shorter vector.</p>
@@ -1837,23 +1845,22 @@ div.tocify {
 </blockquote>
 <p>Note that R indexes start at 1 (not 0 like other languages).</p>
 <p>As an example, going back to my favourite movies, to pick the second item in the list, I would simply use the square brackets and reference <strong>2</strong> as shown below.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="co"># To display the vector</span></a>
-<a class="sourceLine" id="cb37-2" title="2">favourite_movies</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># To display the vector</span></a>
+<a class="sourceLine" id="cb39-2" title="2">favourite_movies</a></code></pre></div>
 <pre><code>## [1] &quot;Frozen&quot;          &quot;The Lion King&quot;   &quot;Moana&quot;           &quot;The Dark Knight&quot;</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># Selecting the second element in the vector</span></a>
-<a class="sourceLine" id="cb39-2" title="2">favourite_movies[<span class="dv">2</span>] </a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="co"># Selecting the second element in the vector</span></a>
+<a class="sourceLine" id="cb41-2" title="2">favourite_movies[<span class="dv">2</span>] </a></code></pre></div>
 <pre><code>## [1] &quot;The Lion King&quot;</code></pre>
 <p>We can also index (select) multiple elements:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="co"># Selecting multiple items, from the second to</span></a>
-<a class="sourceLine" id="cb41-2" title="2"><span class="co"># the fourth item</span></a>
-<a class="sourceLine" id="cb41-3" title="3">favourite_movies[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>] </a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="co"># Selecting multiple items, from the second to</span></a>
+<a class="sourceLine" id="cb43-2" title="2"><span class="co"># the fourth item</span></a>
+<a class="sourceLine" id="cb43-3" title="3">favourite_movies[<span class="dv">2</span><span class="op">:</span><span class="dv">4</span>] </a></code></pre></div>
 <pre><code>## [1] &quot;The Lion King&quot;   &quot;Moana&quot;           &quot;The Dark Knight&quot;</code></pre>
 <p>The <code>2:4</code> is sequence vector which we give as the indexes we want.</p>
 <p>Or even index using another vector:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="co"># Selecting multiple items, using a vector</span></a>
-<a class="sourceLine" id="cb43-2" title="2"><span class="co"># Selecting the first, third and fourth item</span></a>
-<a class="sourceLine" id="cb43-3" title="3"></a>
-<a class="sourceLine" id="cb43-4" title="4">favourite_movies[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>)] </a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="co"># Selecting multiple items, using a vector</span></a>
+<a class="sourceLine" id="cb45-2" title="2"><span class="co"># Selecting the first, third and fourth item</span></a>
+<a class="sourceLine" id="cb45-3" title="3">favourite_movies[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>)] </a></code></pre></div>
 <pre><code>## [1] &quot;Frozen&quot;          &quot;Moana&quot;           &quot;The Dark Knight&quot;</code></pre>
 <p>Above we have selected the 1st, 3rd and 4th elements from <code>favourite_movies</code> in that order.</p>
 <hr />
@@ -1869,9 +1876,8 @@ div.tocify {
 <li><p>Select the week days.</p></li>
 <li><p>Select Tuesday and Thursday.</p></li>
 </ol>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="co">#Creating a vector</span></a>
-<a class="sourceLine" id="cb45-2" title="2"></a>
-<a class="sourceLine" id="cb45-3" title="3">days_of_the_week &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mon&quot;</span>, <span class="st">&quot;tue&quot;</span>, <span class="st">&quot;wed&quot;</span>, <span class="st">&quot;thur&quot;</span>, <span class="st">&quot;frid&quot;</span>, <span class="st">&quot;sat&quot;</span>, <span class="st">&quot;sun&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="co">#Creating a vector</span></a>
+<a class="sourceLine" id="cb47-2" title="2">days_of_the_week &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mon&quot;</span>, <span class="st">&quot;tue&quot;</span>, <span class="st">&quot;wed&quot;</span>, <span class="st">&quot;thur&quot;</span>, <span class="st">&quot;frid&quot;</span>, <span class="st">&quot;sat&quot;</span>, <span class="st">&quot;sun&quot;</span>) </a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
@@ -1883,26 +1889,24 @@ div.tocify {
 <li><p>Select the week days.</p></li>
 <li><p>Select Tuesday and Thursday.</p></li>
 </ol>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="co">#Creating a vector</span></a>
-<a class="sourceLine" id="cb46-2" title="2"></a>
-<a class="sourceLine" id="cb46-3" title="3">days_of_the_week &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Monday&quot;</span>,<span class="st">&quot;Tuesday&quot;</span>,</a>
-<a class="sourceLine" id="cb46-4" title="4">                      <span class="st">&quot;Wednesday&quot;</span>,<span class="st">&quot;Thursday&quot;</span>,</a>
-<a class="sourceLine" id="cb46-5" title="5">                      <span class="st">&quot;Friday&quot;</span>,<span class="st">&quot;Saturday&quot;</span>,</a>
-<a class="sourceLine" id="cb46-6" title="6">                      <span class="st">&quot;Sunday&quot;</span>)</a>
-<a class="sourceLine" id="cb46-7" title="7"></a>
-<a class="sourceLine" id="cb46-8" title="8"></a>
-<a class="sourceLine" id="cb46-9" title="9"><span class="co">#Selecting the 3rd day</span></a>
-<a class="sourceLine" id="cb46-10" title="10">days_of_the_week[<span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co">#Creating a vector</span></a>
+<a class="sourceLine" id="cb48-2" title="2">days_of_the_week &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Monday&quot;</span>,<span class="st">&quot;Tuesday&quot;</span>,</a>
+<a class="sourceLine" id="cb48-3" title="3">                      <span class="st">&quot;Wednesday&quot;</span>,<span class="st">&quot;Thursday&quot;</span>,</a>
+<a class="sourceLine" id="cb48-4" title="4">                      <span class="st">&quot;Friday&quot;</span>,<span class="st">&quot;Saturday&quot;</span>,</a>
+<a class="sourceLine" id="cb48-5" title="5">                      <span class="st">&quot;Sunday&quot;</span>)</a>
+<a class="sourceLine" id="cb48-6" title="6"></a>
+<a class="sourceLine" id="cb48-7" title="7"></a>
+<a class="sourceLine" id="cb48-8" title="8"><span class="co">#Selecting the 3rd day</span></a>
+<a class="sourceLine" id="cb48-9" title="9">days_of_the_week[<span class="dv">3</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;Wednesday&quot;</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co">#Selecting the week days</span></a>
-<a class="sourceLine" id="cb48-2" title="2">days_of_the_week[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="co">#Selecting the week days</span></a>
+<a class="sourceLine" id="cb50-2" title="2">days_of_the_week[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;Monday&quot;    &quot;Tuesday&quot;   &quot;Wednesday&quot; &quot;Thursday&quot;  &quot;Friday&quot;</code></pre>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="co">#Selecting Tuesday and Thursday</span></a>
-<a class="sourceLine" id="cb50-2" title="2"></a>
-<a class="sourceLine" id="cb50-3" title="3">days_of_the_week[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] </a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="co">#Selecting Tuesday and Thursday</span></a>
+<a class="sourceLine" id="cb52-2" title="2">days_of_the_week[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] </a></code></pre></div>
 <pre><code>## [1] &quot;Tuesday&quot;  &quot;Thursday&quot;</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="co"># Here we create a selection </span></a>
-<a class="sourceLine" id="cb52-2" title="2"><span class="co"># vector inside the [].</span></a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="co"># Here we create a selection </span></a>
+<a class="sourceLine" id="cb54-2" title="2"><span class="co"># vector inside the [].</span></a></code></pre></div>
 <hr />
 <p><br></p>
 <hr />
@@ -1922,9 +1926,8 @@ div.tocify {
 <h2><span class="header-section-number">4.2</span> Creating Lists</h2>
 <p>Similar to vectors, to create a list we have to call a function which returns a list. In this case, the name of the function is more fitting than <code>c()</code> for vectors.</p>
 <p>To create a list we will call the <code>list()</code> function.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="co"># Creating a list</span></a>
-<a class="sourceLine" id="cb53-2" title="2"></a>
-<a class="sourceLine" id="cb53-3" title="3"><span class="kw">list</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="st">&#39;character&#39;</span>,<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co"># Creating a list</span></a>
+<a class="sourceLine" id="cb55-2" title="2"><span class="kw">list</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="st">&#39;character&#39;</span>,<span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 1
 ## 
@@ -1944,14 +1947,12 @@ div.tocify {
 ## [1] 5</code></pre>
 <p>As you can see above, our numeric values remain numeric, and character string value remained a character.</p>
 <p>We could even have a vector inside our list too:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co"># Creating a list and assigning it to list_example</span></a>
-<a class="sourceLine" id="cb55-2" title="2"></a>
-<a class="sourceLine" id="cb55-3" title="3">list_example &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="st">&quot;above is a vector going from 1 to 10&quot;</span>)</a>
-<a class="sourceLine" id="cb55-4" title="4"></a>
-<a class="sourceLine" id="cb55-5" title="5"></a>
-<a class="sourceLine" id="cb55-6" title="6"><span class="co"># To Display the list</span></a>
-<a class="sourceLine" id="cb55-7" title="7"></a>
-<a class="sourceLine" id="cb55-8" title="8">list_example</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="co"># Creating a list and assigning it to list_example</span></a>
+<a class="sourceLine" id="cb57-2" title="2">list_example &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="st">&quot;above is a vector going from 1 to 10&quot;</span>)</a>
+<a class="sourceLine" id="cb57-3" title="3"></a>
+<a class="sourceLine" id="cb57-4" title="4"></a>
+<a class="sourceLine" id="cb57-5" title="5"><span class="co"># To Display the list</span></a>
+<a class="sourceLine" id="cb57-6" title="6">list_example</a></code></pre></div>
 <pre><code>## [[1]]
 ##  [1]  1  2  3  4  5  6  7  8  9 10
 ## 
@@ -1968,15 +1969,15 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Referring to our previous exercise where we created the vectors below, create a list with the same contents as the two vectors, I have named my list, <code>my_list_of_movies_and_numbers</code>.</li>
 </ol>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="co"># Character vector</span></a>
-<a class="sourceLine" id="cb57-2" title="2">favourite_movies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Frozen&quot;</span>, <span class="st">&quot;The Lion King&quot;</span>, <span class="st">&quot;Moana&quot;</span>, <span class="st">&quot;The Dark Knight&quot;</span>) </a>
-<a class="sourceLine" id="cb57-3" title="3"></a>
-<a class="sourceLine" id="cb57-4" title="4"></a>
-<a class="sourceLine" id="cb57-5" title="5"><span class="co"># Numeric vector  </span></a>
-<a class="sourceLine" id="cb57-6" title="6">lucky_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">1</span>) </a>
-<a class="sourceLine" id="cb57-7" title="7"></a>
-<a class="sourceLine" id="cb57-8" title="8"><span class="co"># Creating a list</span></a>
-<a class="sourceLine" id="cb57-9" title="9">my_list_of_movies_and_numbers &lt;-<span class="st"> </span><span class="kw">list</span>(content of favourite_movies and lucky_numbers) </a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="co"># Character vector</span></a>
+<a class="sourceLine" id="cb59-2" title="2">favourite_movies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Frozen&quot;</span>, <span class="st">&quot;The Lion King&quot;</span>, <span class="st">&quot;Moana&quot;</span>, <span class="st">&quot;The Dark Knight&quot;</span>) </a>
+<a class="sourceLine" id="cb59-3" title="3"></a>
+<a class="sourceLine" id="cb59-4" title="4"></a>
+<a class="sourceLine" id="cb59-5" title="5"><span class="co"># Numeric vector  </span></a>
+<a class="sourceLine" id="cb59-6" title="6">lucky_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">1</span>) </a>
+<a class="sourceLine" id="cb59-7" title="7"></a>
+<a class="sourceLine" id="cb59-8" title="8"><span class="co"># Creating a list</span></a>
+<a class="sourceLine" id="cb59-9" title="9">my_list_of_movies_and_numbers &lt;-<span class="st"> </span><span class="kw">list</span>(content of favourite_movies and lucky_numbers) </a></code></pre></div>
 <p><br></p>
 <hr />
 </div>
@@ -1985,10 +1986,9 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Referring to our previous exercise where we created the vectors below, create a list with the same contents as the two vectors, I have named my list, <code>my_list_of_movies_and_numbers</code>.</li>
 </ol>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co"># Creating a list</span></a>
-<a class="sourceLine" id="cb58-2" title="2"></a>
-<a class="sourceLine" id="cb58-3" title="3">my_list_of_movies_and_numbers &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">1</span>, <span class="st">&quot;Frozen&quot;</span>, </a>
-<a class="sourceLine" id="cb58-4" title="4">                                      <span class="st">&quot;The Lion King&quot;</span>, <span class="st">&quot;Moana&quot;</span>, <span class="st">&quot;The Dark Knight&quot;</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="co"># Creating a list</span></a>
+<a class="sourceLine" id="cb60-2" title="2">my_list_of_movies_and_numbers &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">1</span>, <span class="st">&quot;Frozen&quot;</span>, </a>
+<a class="sourceLine" id="cb60-3" title="3">                                      <span class="st">&quot;The Lion King&quot;</span>, <span class="st">&quot;Moana&quot;</span>, <span class="st">&quot;The Dark Knight&quot;</span>) </a></code></pre></div>
 <hr />
 <p><br></p>
 <hr />
@@ -1998,8 +1998,8 @@ div.tocify {
 <h2><span class="header-section-number">4.3</span> Indexing a List</h2>
 <p>To access an element from the list, we have to use square brackets containing the index of the element we are after, just like for vectors.</p>
 <p>Indexing with a single square bracket always returns a list, whereas indexing with a double square bracket returns the item directly in whatever datatype is appropriate (often a vector).</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb59-2" title="2">my_list_of_movies_and_numbers</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb61-2" title="2">my_list_of_movies_and_numbers</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 7
 ## 
@@ -2024,13 +2024,13 @@ div.tocify {
 ## [[8]]
 ## [1] &quot;The Dark Knight&quot;</code></pre>
 <p>For example, compare the output of:</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="co"># To display an element in the list as a list</span></a>
-<a class="sourceLine" id="cb61-2" title="2">my_list_of_movies_and_numbers[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="co"># To display an element in the list as a list</span></a>
+<a class="sourceLine" id="cb63-2" title="2">my_list_of_movies_and_numbers[<span class="dv">1</span>]</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 7</code></pre>
 <p>with the output of:</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="co"># To display an element in the list</span></a>
-<a class="sourceLine" id="cb63-2" title="2">my_list_of_movies_and_numbers[[<span class="dv">1</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="co"># To display an element in the list</span></a>
+<a class="sourceLine" id="cb65-2" title="2">my_list_of_movies_and_numbers[[<span class="dv">1</span>]]</a></code></pre></div>
 <pre><code>## [1] 7</code></pre>
 <hr />
 <blockquote>
@@ -2047,26 +2047,25 @@ div.tocify {
 <div id="show-example" class="section level3 unnumbered">
 <h3><strong>Show Example</strong></h3>
 <p>Below am creating a list of my 2 vectors, named it <code>my_list_2</code>.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="co"># Character vector</span></a>
-<a class="sourceLine" id="cb65-2" title="2">favourite_movies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Frozen&quot;</span>, <span class="st">&quot;The Lion King&quot;</span>, <span class="st">&quot;Moana&quot;</span>, <span class="st">&quot;The Dark Knight&quot;</span>) </a>
-<a class="sourceLine" id="cb65-3" title="3"></a>
-<a class="sourceLine" id="cb65-4" title="4"><span class="co"># Numeric vector  </span></a>
-<a class="sourceLine" id="cb65-5" title="5">lucky_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">1</span>) </a>
-<a class="sourceLine" id="cb65-6" title="6"></a>
-<a class="sourceLine" id="cb65-7" title="7"><span class="co"># Creating a list of the 2 vectors</span></a>
-<a class="sourceLine" id="cb65-8" title="8">my_list_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">list</span>(favourite_movies, lucky_numbers)</a>
-<a class="sourceLine" id="cb65-9" title="9"></a>
-<a class="sourceLine" id="cb65-10" title="10"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb65-11" title="11">my_list_<span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="co"># Character vector</span></a>
+<a class="sourceLine" id="cb67-2" title="2">favourite_movies &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Frozen&quot;</span>, <span class="st">&quot;The Lion King&quot;</span>, <span class="st">&quot;Moana&quot;</span>, <span class="st">&quot;The Dark Knight&quot;</span>) </a>
+<a class="sourceLine" id="cb67-3" title="3"></a>
+<a class="sourceLine" id="cb67-4" title="4"><span class="co"># Numeric vector  </span></a>
+<a class="sourceLine" id="cb67-5" title="5">lucky_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">1</span>) </a>
+<a class="sourceLine" id="cb67-6" title="6"></a>
+<a class="sourceLine" id="cb67-7" title="7"><span class="co"># Creating a list of the 2 vectors</span></a>
+<a class="sourceLine" id="cb67-8" title="8">my_list_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">list</span>(favourite_movies, lucky_numbers)</a>
+<a class="sourceLine" id="cb67-9" title="9"></a>
+<a class="sourceLine" id="cb67-10" title="10"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb67-11" title="11">my_list_<span class="dv">2</span></a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;Frozen&quot;          &quot;The Lion King&quot;   &quot;Moana&quot;           &quot;The Dark Knight&quot;
 ## 
 ## [[2]]
 ## [1]  7 12 15  1</code></pre>
-<p>So if i wanted to select the 4th item from <code>favourite_movies</code>, I would type the code below,</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="co"># Selecting the fourth item from the first vector within the list</span></a>
-<a class="sourceLine" id="cb67-2" title="2"></a>
-<a class="sourceLine" id="cb67-3" title="3">my_list_<span class="dv">2</span>[[<span class="dv">1</span>]][<span class="dv">4</span>]</a></code></pre></div>
+<p>So if I wanted to select the 4th item from <code>favourite_movies</code>, I would type the code below,</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="co"># Selecting the fourth item from the first vector within the list</span></a>
+<a class="sourceLine" id="cb69-2" title="2">my_list_<span class="dv">2</span>[[<span class="dv">1</span>]][<span class="dv">4</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;The Dark Knight&quot;</code></pre>
 <p>This effectively pulls out the vector stored in the first position in the list, and further indexes the item in the 4th position in that vector.</p>
 <hr />
@@ -2081,12 +2080,12 @@ div.tocify {
 <p>To get the <code>names</code> attribute just call the function on the data structure: <code>names(a_data_structure)</code></p>
 <p>To set the <code>names</code> attribute we simply use the assign operator in conjunction with the get method above: <code>names(a_data_structure) &lt;-</code>. Typically, character vectors with meaningful names are assigned to the names attribute.</p>
 <p>Let’s look at an example.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="co"># Suppose we have the following list:</span></a>
-<a class="sourceLine" id="cb69-2" title="2"><span class="co"># Creating a list with multiple items</span></a>
-<a class="sourceLine" id="cb69-3" title="3">list2 &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="st">&quot;ONS&quot;</span>, <span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>), 26L)</a>
-<a class="sourceLine" id="cb69-4" title="4"></a>
-<a class="sourceLine" id="cb69-5" title="5"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb69-6" title="6">list2</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co"># Suppose we have the following list:</span></a>
+<a class="sourceLine" id="cb71-2" title="2"><span class="co"># Creating a list with multiple items</span></a>
+<a class="sourceLine" id="cb71-3" title="3">list2 &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, <span class="st">&quot;ONS&quot;</span>, <span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>), 26L)</a>
+<a class="sourceLine" id="cb71-4" title="4"></a>
+<a class="sourceLine" id="cb71-5" title="5"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb71-6" title="6">list2</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 3 4 5
 ## 
@@ -2100,15 +2099,15 @@ div.tocify {
 ## [1] 26</code></pre>
 <p><br></p>
 <p>What happens if we call <code>names</code> on <code>list2</code>?</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co"># Finding out the names of our items in the list</span></a>
-<a class="sourceLine" id="cb71-2" title="2"><span class="kw">names</span>(list2)</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="co"># Finding out the names of our items in the list</span></a>
+<a class="sourceLine" id="cb73-2" title="2"><span class="kw">names</span>(list2)</a></code></pre></div>
 <pre><code>## NULL</code></pre>
 <p>We could attach a name (or label) to each element in this list via the following assignment:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="co"># Adding names to our items in the list</span></a>
-<a class="sourceLine" id="cb73-2" title="2"><span class="kw">names</span>(list2)&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;double_vector&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;logical_vector&quot;</span>, <span class="st">&quot;integer&quot;</span>)</a>
-<a class="sourceLine" id="cb73-3" title="3"></a>
-<a class="sourceLine" id="cb73-4" title="4"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb73-5" title="5">list2</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="co"># Adding names to our items in the list</span></a>
+<a class="sourceLine" id="cb75-2" title="2"><span class="kw">names</span>(list2)&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;double_vector&quot;</span>, <span class="st">&quot;character&quot;</span>, <span class="st">&quot;logical_vector&quot;</span>, <span class="st">&quot;integer&quot;</span>)</a>
+<a class="sourceLine" id="cb75-3" title="3"></a>
+<a class="sourceLine" id="cb75-4" title="4"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb75-5" title="5">list2</a></code></pre></div>
 <pre><code>## $double_vector
 ## [1] 3 4 5
 ## 
@@ -2121,24 +2120,24 @@ div.tocify {
 ## $integer
 ## [1] 26</code></pre>
 <p>To confirm our assignment, let’s call <code>names</code> on <code>list2</code> again:</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="co"># Finding out the names of our items in the list</span></a>
-<a class="sourceLine" id="cb75-2" title="2"><span class="kw">names</span>(list2)</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1"><span class="co"># Finding out the names of our items in the list</span></a>
+<a class="sourceLine" id="cb77-2" title="2"><span class="kw">names</span>(list2)</a></code></pre></div>
 <pre><code>## [1] &quot;double_vector&quot;  &quot;character&quot;      &quot;logical_vector&quot; &quot;integer&quot;</code></pre>
 <p>The above now displays the name associated with each element on top of the element.</p>
 <p>On the surface, naming elements may not seem immediately useful, but this introduces a new bit of functionality. We can now index our data structure by the <code>names</code> associated to each element.</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1"><span class="co"># Selecting an item from a list</span></a>
-<a class="sourceLine" id="cb77-2" title="2">list2[<span class="st">&quot;integer&quot;</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" title="1"><span class="co"># Selecting an item from a list</span></a>
+<a class="sourceLine" id="cb79-2" title="2">list2[<span class="st">&quot;integer&quot;</span>]</a></code></pre></div>
 <pre><code>## $integer
 ## [1] 26</code></pre>
 <p>We could have equivalently named our list on creation:</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" title="1"><span class="co"># Creating a list and naming the contents</span></a>
-<a class="sourceLine" id="cb79-2" title="2">list2 &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">numeric_vector =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, </a>
-<a class="sourceLine" id="cb79-3" title="3">              <span class="dt">character =</span> <span class="st">&quot;ONS&quot;</span>,</a>
-<a class="sourceLine" id="cb79-4" title="4">              <span class="dt">logical_vector =</span> <span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>), </a>
-<a class="sourceLine" id="cb79-5" title="5">              <span class="dt">integer =</span> 26L)</a>
-<a class="sourceLine" id="cb79-6" title="6"></a>
-<a class="sourceLine" id="cb79-7" title="7"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb79-8" title="8">list2</a></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="co"># Creating a list and naming the contents</span></a>
+<a class="sourceLine" id="cb81-2" title="2">list2 &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">numeric_vector =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>, </a>
+<a class="sourceLine" id="cb81-3" title="3">              <span class="dt">character =</span> <span class="st">&quot;ONS&quot;</span>,</a>
+<a class="sourceLine" id="cb81-4" title="4">              <span class="dt">logical_vector =</span> <span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb81-5" title="5">              <span class="dt">integer =</span> 26L)</a>
+<a class="sourceLine" id="cb81-6" title="6"></a>
+<a class="sourceLine" id="cb81-7" title="7"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb81-8" title="8">list2</a></code></pre></div>
 <pre><code>## $numeric_vector
 ## [1] 3 4 5
 ## 
@@ -2151,9 +2150,9 @@ div.tocify {
 ## $integer
 ## [1] 26</code></pre>
 <p>Since lists can hold other data structures, including vectors and other lists, they can then have an interesting tree like structure which we can observe using the structure function, <code>str()</code> function.</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="co"># Checking the structure of our list using the </span></a>
-<a class="sourceLine" id="cb81-2" title="2"><span class="co"># str() function</span></a>
-<a class="sourceLine" id="cb81-3" title="3"><span class="kw">str</span>(list2)</a></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1"><span class="co"># Checking the structure of our list using the </span></a>
+<a class="sourceLine" id="cb83-2" title="2"><span class="co"># str() function</span></a>
+<a class="sourceLine" id="cb83-3" title="3"><span class="kw">str</span>(list2)</a></code></pre></div>
 <pre><code>## List of 4
 ##  $ numeric_vector: int [1:3] 3 4 5
 ##  $ character     : chr &quot;ONS&quot;
@@ -2169,10 +2168,10 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Create the list below.</li>
 </ol>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1"><span class="co"># Creating a list with multiple items</span></a>
-<a class="sourceLine" id="cb83-2" title="2">chocolate &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">brand =</span> <span class="st">&quot;celebrations&quot;</span>, </a>
-<a class="sourceLine" id="cb83-3" title="3">                  <span class="dt">chocolate_bar =</span> <span class="kw">c</span>(<span class="st">&quot;mars&quot;</span>, <span class="st">&quot;milky way&quot;</span>, <span class="st">&quot;bounty&quot;</span>, <span class="st">&quot;twix&quot;</span>), </a>
-<a class="sourceLine" id="cb83-4" title="4">                  <span class="dt">rating =</span> <span class="kw">c</span>(<span class="st">&quot;worst&quot;</span>,  <span class="st">&quot;terrible&quot;</span>, <span class="st">&quot;awful&quot;</span>, <span class="st">&quot;nice&quot;</span>, <span class="st">&quot;best&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="co"># Creating a list with multiple items</span></a>
+<a class="sourceLine" id="cb85-2" title="2">chocolate &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">brand =</span> <span class="st">&quot;celebrations&quot;</span>, </a>
+<a class="sourceLine" id="cb85-3" title="3">                  <span class="dt">chocolate_bar =</span> <span class="kw">c</span>(<span class="st">&quot;mars&quot;</span>, <span class="st">&quot;milky way&quot;</span>, <span class="st">&quot;bounty&quot;</span>, <span class="st">&quot;twix&quot;</span>), </a>
+<a class="sourceLine" id="cb85-4" title="4">                  <span class="dt">rating =</span> <span class="kw">c</span>(<span class="st">&quot;worst&quot;</span>,  <span class="st">&quot;terrible&quot;</span>, <span class="st">&quot;awful&quot;</span>, <span class="st">&quot;nice&quot;</span>, <span class="st">&quot;best&quot;</span>))</a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Find out the names of the list, using the <code>names()</code> function.</p></li>
 <li><p>Check the structure using the <code>str()</code> function.</p></li>
@@ -2191,27 +2190,27 @@ div.tocify {
 <li><p>Select chocolate bars.</p></li>
 <li><p>Select your favourite chocolate from the options.</p></li>
 </ol>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1"><span class="co"># Creating a list with multiple items</span></a>
-<a class="sourceLine" id="cb84-2" title="2">chocolate &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">brand =</span> <span class="st">&quot;celebrations&quot;</span>, </a>
-<a class="sourceLine" id="cb84-3" title="3">                  <span class="dt">chocolate_bar =</span> <span class="kw">c</span>(<span class="st">&quot;mars&quot;</span>, <span class="st">&quot;milky way&quot;</span>, <span class="st">&quot;bounty&quot;</span>, <span class="st">&quot;twix&quot;</span>), </a>
-<a class="sourceLine" id="cb84-4" title="4">                  <span class="dt">rating =</span> <span class="kw">c</span>(<span class="st">&quot;worst&quot;</span>,  <span class="st">&quot;terrible&quot;</span>, <span class="st">&quot;awful&quot;</span>, <span class="st">&quot;nice&quot;</span>, <span class="st">&quot;best&quot;</span>))</a>
-<a class="sourceLine" id="cb84-5" title="5"></a>
-<a class="sourceLine" id="cb84-6" title="6"></a>
-<a class="sourceLine" id="cb84-7" title="7"><span class="co"># Finding the names </span></a>
-<a class="sourceLine" id="cb84-8" title="8"><span class="kw">names</span>(chocolate)</a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1"><span class="co"># Creating a list with multiple items</span></a>
+<a class="sourceLine" id="cb86-2" title="2">chocolate &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">brand =</span> <span class="st">&quot;celebrations&quot;</span>, </a>
+<a class="sourceLine" id="cb86-3" title="3">                  <span class="dt">chocolate_bar =</span> <span class="kw">c</span>(<span class="st">&quot;mars&quot;</span>, <span class="st">&quot;milky way&quot;</span>, <span class="st">&quot;bounty&quot;</span>, <span class="st">&quot;twix&quot;</span>), </a>
+<a class="sourceLine" id="cb86-4" title="4">                  <span class="dt">rating =</span> <span class="kw">c</span>(<span class="st">&quot;worst&quot;</span>,  <span class="st">&quot;terrible&quot;</span>, <span class="st">&quot;awful&quot;</span>, <span class="st">&quot;nice&quot;</span>, <span class="st">&quot;best&quot;</span>))</a>
+<a class="sourceLine" id="cb86-5" title="5"></a>
+<a class="sourceLine" id="cb86-6" title="6"></a>
+<a class="sourceLine" id="cb86-7" title="7"><span class="co"># Finding the names </span></a>
+<a class="sourceLine" id="cb86-8" title="8"><span class="kw">names</span>(chocolate)</a></code></pre></div>
 <pre><code>## [1] &quot;brand&quot;         &quot;chocolate_bar&quot; &quot;rating&quot;</code></pre>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1"><span class="co"># Checking the structure</span></a>
-<a class="sourceLine" id="cb86-2" title="2"><span class="kw">str</span>(chocolate)</a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="co"># Checking the structure</span></a>
+<a class="sourceLine" id="cb88-2" title="2"><span class="kw">str</span>(chocolate)</a></code></pre></div>
 <pre><code>## List of 3
 ##  $ brand        : chr &quot;celebrations&quot;
 ##  $ chocolate_bar: chr [1:4] &quot;mars&quot; &quot;milky way&quot; &quot;bounty&quot; &quot;twix&quot;
 ##  $ rating       : chr [1:5] &quot;worst&quot; &quot;terrible&quot; &quot;awful&quot; &quot;nice&quot; ...</code></pre>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="co"># Select chocolate bars</span></a>
-<a class="sourceLine" id="cb88-2" title="2">chocolate[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1"><span class="co"># Select chocolate bars</span></a>
+<a class="sourceLine" id="cb90-2" title="2">chocolate[<span class="dv">2</span>]</a></code></pre></div>
 <pre><code>## $chocolate_bar
 ## [1] &quot;mars&quot;      &quot;milky way&quot; &quot;bounty&quot;    &quot;twix&quot;</code></pre>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1"><span class="co"># Select my favourite chocolate bar</span></a>
-<a class="sourceLine" id="cb90-2" title="2">chocolate[[<span class="dv">2</span>]][<span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1"><span class="co"># Select my favourite chocolate bar</span></a>
+<a class="sourceLine" id="cb92-2" title="2">chocolate[[<span class="dv">2</span>]][<span class="dv">3</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;bounty&quot;</code></pre>
 <p><br></p>
 <hr />
@@ -2220,11 +2219,11 @@ div.tocify {
 <div id="adding-elements-to-a-list" class="section level2 tabset tabset-fade">
 <h2><span class="header-section-number">4.5</span> Adding Elements to a List</h2>
 <p>Similar to vectors again, to add an element, we can either index to a blank space in the list or use the <code>append()</code> function:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1"><span class="co"># Adding a new item to a list</span></a>
-<a class="sourceLine" id="cb92-2" title="2">list_example[<span class="dv">3</span>] &lt;-<span class="st"> &quot;new&quot;</span></a>
-<a class="sourceLine" id="cb92-3" title="3"></a>
-<a class="sourceLine" id="cb92-4" title="4"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb92-5" title="5">list_example</a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="co"># Adding a new item to a list</span></a>
+<a class="sourceLine" id="cb94-2" title="2">list_example[<span class="dv">3</span>] &lt;-<span class="st"> &quot;new&quot;</span></a>
+<a class="sourceLine" id="cb94-3" title="3"></a>
+<a class="sourceLine" id="cb94-4" title="4"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb94-5" title="5">list_example</a></code></pre></div>
 <pre><code>## [[1]]
 ##  [1]  1  2  3  4  5  6  7  8  9 10
 ## 
@@ -2233,8 +2232,8 @@ div.tocify {
 ## 
 ## [[3]]
 ## [1] &quot;new&quot;</code></pre>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb94-2" title="2">list2</a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb96-2" title="2">list2</a></code></pre></div>
 <pre><code>## $numeric_vector
 ## [1] 3 4 5
 ## 
@@ -2246,8 +2245,8 @@ div.tocify {
 ## 
 ## $integer
 ## [1] 26</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1"><span class="co"># Combining the two lists using the append() function</span></a>
-<a class="sourceLine" id="cb96-2" title="2"><span class="kw">append</span>(list_example, list2)</a></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1"><span class="co"># Combining the two lists using the append() function</span></a>
+<a class="sourceLine" id="cb98-2" title="2"><span class="kw">append</span>(list_example, list2)</a></code></pre></div>
 <pre><code>## [[1]]
 ##  [1]  1  2  3  4  5  6  7  8  9 10
 ## 
@@ -2269,39 +2268,26 @@ div.tocify {
 ## $integer
 ## [1] 26</code></pre>
 <p>Occasionally appending to a data data structure is fine, but doing so repeatedly is computationally expensive. So it is best to create a list as long as its final desired size and then fill it in using the appropriate indices.</p>
-<blockquote>
-<p>To create an empty list of a certain size we have to use the <code>vector()</code> function like before. This time our <code>mode</code> will be <code>list</code> and our <code>length</code> would be whatever we desire.</p>
-</blockquote>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1"><span class="co"># Creating an empty list using the vector function</span></a>
-<a class="sourceLine" id="cb98-2" title="2"></a>
-<a class="sourceLine" id="cb98-3" title="3">empty_list &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">mode =</span> <span class="st">&quot;list&quot;</span>, <span class="dt">length =</span> <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb98-4" title="4"></a>
-<a class="sourceLine" id="cb98-5" title="5"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb98-6" title="6">empty_list</a></code></pre></div>
-<pre><code>## [[1]]
-## NULL
-## 
-## [[2]]
-## NULL
-## 
-## [[3]]
-## NULL
-## 
-## [[4]]
-## NULL</code></pre>
+<p><br></p>
 <hr />
 <blockquote>
 <p>Adding Items to Lists Exercise</p>
 </blockquote>
+<hr />
 <div id="exercise-6" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
-<blockquote>
-<p>List Exercises</p>
-</blockquote>
 <ol style="list-style-type: decimal">
-<li><p>Using the list we created above <code>chocolate</code>, add item called price.</p></li>
-<li><p>Add a new chocolate bar.</p></li>
+<li>Using the list we created above <code>chocolate</code>, add item called price.</li>
 </ol>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1"><span class="co"># Creating a list with multiple items</span></a>
+<a class="sourceLine" id="cb100-2" title="2">chocolate &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">brand =</span> <span class="st">&quot;celebrations&quot;</span>, </a>
+<a class="sourceLine" id="cb100-3" title="3">                  <span class="dt">chocolate_bar =</span> <span class="kw">c</span>(<span class="st">&quot;mars&quot;</span>, <span class="st">&quot;milky way&quot;</span>, <span class="st">&quot;bounty&quot;</span>, <span class="st">&quot;twix&quot;</span>), </a>
+<a class="sourceLine" id="cb100-4" title="4">                  <span class="dt">rating =</span> <span class="kw">c</span>(<span class="st">&quot;worst&quot;</span>,  <span class="st">&quot;terrible&quot;</span>, <span class="st">&quot;awful&quot;</span>, <span class="st">&quot;nice&quot;</span>, <span class="st">&quot;best&quot;</span>))</a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Add a new chocolate bar.</li>
+</ol>
+<hr />
+<p><br></p>
 </div>
 <div id="show-answer-6" class="section level3 unnumbered">
 <h3><strong>Show Answer</strong></h3>
@@ -2309,11 +2295,20 @@ div.tocify {
 <li><p>Using the list we created above <code>chocolate</code>, add item called price.</p></li>
 <li><p>Add a new chocolate bar.</p></li>
 </ol>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1"><span class="co"># Updating the list by adding price</span></a>
-<a class="sourceLine" id="cb100-2" title="2"></a>
-<a class="sourceLine" id="cb100-3" title="3">chocolate[[<span class="dv">4</span>]] &lt;-<span class="st"> </span>(<span class="dt">price =</span> <span class="st">&quot;price&quot;</span>)</a>
-<a class="sourceLine" id="cb100-4" title="4"></a>
-<a class="sourceLine" id="cb100-5" title="5">chocolate</a></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" title="1"><span class="co">#To display the list</span></a>
+<a class="sourceLine" id="cb101-2" title="2">chocolate</a></code></pre></div>
+<pre><code>## $brand
+## [1] &quot;celebrations&quot;
+## 
+## $chocolate_bar
+## [1] &quot;mars&quot;      &quot;milky way&quot; &quot;bounty&quot;    &quot;twix&quot;     
+## 
+## $rating
+## [1] &quot;worst&quot;    &quot;terrible&quot; &quot;awful&quot;    &quot;nice&quot;     &quot;best&quot;</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1"><span class="co"># Updating the list by adding price</span></a>
+<a class="sourceLine" id="cb103-2" title="2">chocolate[[<span class="dv">4</span>]] &lt;-<span class="st"> </span>(<span class="dt">price =</span> <span class="st">&quot;price&quot;</span>)</a>
+<a class="sourceLine" id="cb103-3" title="3"></a>
+<a class="sourceLine" id="cb103-4" title="4">chocolate</a></code></pre></div>
 <pre><code>## $brand
 ## [1] &quot;celebrations&quot;
 ## 
@@ -2325,10 +2320,10 @@ div.tocify {
 ## 
 ## [[4]]
 ## [1] &quot;price&quot;</code></pre>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1"><span class="co"># Updating the list using the list using append</span></a>
-<a class="sourceLine" id="cb102-2" title="2">chocolate &lt;-<span class="st"> </span><span class="kw">append</span>(chocolate, <span class="st">&quot;price&quot;</span>)</a>
-<a class="sourceLine" id="cb102-3" title="3"></a>
-<a class="sourceLine" id="cb102-4" title="4">chocolate</a></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1"><span class="co"># Updating the list using the list using append</span></a>
+<a class="sourceLine" id="cb105-2" title="2">chocolate &lt;-<span class="st"> </span><span class="kw">append</span>(chocolate, <span class="st">&quot;price&quot;</span>)</a>
+<a class="sourceLine" id="cb105-3" title="3"></a>
+<a class="sourceLine" id="cb105-4" title="4">chocolate</a></code></pre></div>
 <pre><code>## $brand
 ## [1] &quot;celebrations&quot;
 ## 
@@ -2343,15 +2338,16 @@ div.tocify {
 ## 
 ## [[5]]
 ## [1] &quot;price&quot;</code></pre>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1"><span class="co"># Adding an item with list contained in a list</span></a>
-<a class="sourceLine" id="cb104-2" title="2">chocolate[[<span class="dv">2</span>]][<span class="dv">4</span>] &lt;-<span class="st"> &quot;turkish delight&quot;</span></a>
-<a class="sourceLine" id="cb104-3" title="3"></a>
-<a class="sourceLine" id="cb104-4" title="4">chocolate</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1"><span class="co"># Adding an item with list contained in a list</span></a>
+<a class="sourceLine" id="cb107-2" title="2">chocolate[[<span class="dv">2</span>]][<span class="dv">5</span>] &lt;-<span class="st"> &quot;turkish delight&quot;</span></a>
+<a class="sourceLine" id="cb107-3" title="3"></a>
+<a class="sourceLine" id="cb107-4" title="4">chocolate</a></code></pre></div>
 <pre><code>## $brand
 ## [1] &quot;celebrations&quot;
 ## 
 ## $chocolate_bar
-## [1] &quot;mars&quot;            &quot;milky way&quot;       &quot;bounty&quot;          &quot;turkish delight&quot;
+## [1] &quot;mars&quot;            &quot;milky way&quot;       &quot;bounty&quot;          &quot;twix&quot;           
+## [5] &quot;turkish delight&quot;
 ## 
 ## $rating
 ## [1] &quot;worst&quot;    &quot;terrible&quot; &quot;awful&quot;    &quot;nice&quot;     &quot;best&quot;    
@@ -2361,27 +2357,14 @@ div.tocify {
 ## 
 ## [[5]]
 ## [1] &quot;price&quot;</code></pre>
-</div>
-</div>
-</div>
-<div id="data-structure-conversion" class="section level1 tabset tabset-fade">
-<h1><span class="header-section-number">5</span> Data Structure Conversion</h1>
-<div id="vector-to-list" class="section level2 unnumbered">
-<h2><strong>Vector to list</strong></h2>
-<blockquote>
-<p>Use <code>as.list()</code></p>
-</blockquote>
-</div>
-<div id="list-to-vector" class="section level2 unnumbered">
-<h2><strong>list to vector</strong></h2>
-<blockquote>
-<p>Depending on your needs use <code>unlist</code> or <code>as.vector()</code></p>
-</blockquote>
+<hr />
+<p><br></p>
 <hr />
 </div>
 </div>
-<div id="data-frames-and-tibbles" class="section level1 tabset tabset-fade tabset-pills">
-<h1><span class="header-section-number">6</span> Data Frames and Tibbles</h1>
+</div>
+<div id="data-frames-and-tibbles" class="section level1 tabset tabset-fade">
+<h1><span class="header-section-number">5</span> Data Frames and Tibbles</h1>
 <p>Data frames are like the tables we are used to from Excel and other programs.</p>
 <ul>
 <li>Can hold variables of different types</li>
@@ -2409,8 +2392,8 @@ div.tocify {
 <p><br></p>
 <div id="data-frame" class="section level2 unnumbered">
 <h2>Data Frame</h2>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1"><span class="co"># To display the dataframe</span></a>
-<a class="sourceLine" id="cb106-2" title="2">iris</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1"><span class="co"># To display the dataframe</span></a>
+<a class="sourceLine" id="cb109-2" title="2">iris</a></code></pre></div>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
 ## 1            5.1         3.5          1.4         0.2     setosa
 ## 2            4.9         3.0          1.4         0.2     setosa
@@ -2562,6 +2545,8 @@ div.tocify {
 ## 148          6.5         3.0          5.2         2.0  virginica
 ## 149          6.2         3.4          5.4         2.3  virginica
 ## 150          5.9         3.0          5.1         1.8  virginica</code></pre>
+<p><br></p>
+<hr />
 </div>
 <div id="tibble" class="section level2 unnumbered">
 <h2>Tibble</h2>
@@ -2580,18 +2565,20 @@ div.tocify {
 ## 10          4.9         3.1          1.5         0.1 setosa 
 ## # ... with 140 more rows</code></pre>
 <hr />
+<p><br></p>
+<hr />
 </div>
 </div>
 <div id="summary-data-structures" class="section level1">
-<h1><span class="header-section-number">7</span> Summary-Data Structures</h1>
+<h1><span class="header-section-number">6</span> Summary-Data Structures</h1>
 <p><br></p>
 <blockquote>
-<p>We have covered a lot material in R and yet there is still so much more to cover in terms of functionality, as R has so much to offer. By no means are you expected to remember all the above, but as we move forward, it is important you remain aware of:</p>
+<p><strong>We have covered a lot material in R and yet there is still so much more to cover in terms of functionality, as R has so much to offer. By no means are you expected to remember all the above, but as we move forward, it is important you remain aware of:</strong></p>
 </blockquote>
 <ul>
 <li><p>How to create a vector using <code>c()</code> function.</p></li>
 <li><p>All elements in the vector must be of the same type and R <strong>WILL</strong> force that on you.</p></li>
-<li><p>The different types of vectors: Double, Integer, Logical, Character and Factor.</p></li>
+<li><p>The different types of vectors: Double, Integer, Logical, Character.</p></li>
 <li><p>We can find out what type of by using the <code>typeof()</code> function.</p></li>
 <li><p>We can convert from on type of vector to another using <code>as.</code> functions.</p></li>
 <li><p>Vectors are the most fundamental object type available in R as it is a vectorised language.</p></li>
@@ -2600,17 +2587,23 @@ div.tocify {
 <li><p>We can name (or label) list elements for meaningful indexing.</p></li>
 <li><p>Be familiar with data frames and tibbles.</p></li>
 </ul>
-<p><br /></p>
+<p><br></p>
 <blockquote>
-<p>We could carry on exploring all the functionality available through vectors and lists but I would encourage you to explore them yourself. Particularly when you have your own niche problem to solve!</p>
+<p><strong>We could carry on exploring all the functionality available through vectors and lists but I would encourage you to explore them yourself. Particularly when you have your own niche problem to solve!</strong></p>
 </blockquote>
+<hr />
+<p><br></p>
 <hr />
 </div>
 <div id="next-chapter" class="section level1">
-<h1><span class="header-section-number">8</span> Next Chapter</h1>
-<blockquote>
-<p>In the next chapter we will look at Packages and Importing Data.</p>
-</blockquote>
+<h1><span class="header-section-number">7</span> Next Chapter</h1>
+<p><br></p>
+<style>
+div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
+</style>
+<div class="blue">
+<p><strong>In the next chapter we will look at Packages and Importing Data.</strong></p>
+</div>
 <hr />
 </div>
 
