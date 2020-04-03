@@ -1591,8 +1591,8 @@ div.tocify {
 <li>Discover R’s data types.</li>
 <li>Be able to create Variables.</li>
 </ul>
-<p><br></p>
 <hr />
+<p><br></p>
 </div>
 <div id="what-is-r" class="section level1">
 <h1><span class="header-section-number">2</span> What is R?</h1>
@@ -1600,6 +1600,7 @@ div.tocify {
 <p>It provides a wide variety of statistical techniques (e.g. linear and non-linear modelling, statistical tests, time-series analysis, etc) that’s why its often used by Analysts, Statisticians and Data Scientists.</p>
 <p>R was initially written by <strong>Ross Ihaka and Robert Gentleman</strong> at the Department of Statistics of the University of Auckland in New Zealand. It is named partly after the first names of the first two R authors.</p>
 <hr />
+<p><br></p>
 <div id="benefits-of-using-r" class="section level2">
 <h2><span class="header-section-number">2.1</span> Benefits of Using R?</h2>
 <p>There are many programming languages on the market that one can use, but R is becoming very widely used.</p>
@@ -1613,6 +1614,7 @@ div.tocify {
 <li>Powerful tool for communicating results, i.e.. <a href="https://rmarkdown.rstudio.com/">RMarkdown</a> makes its easy to turn your files into PDF’S, Power point presentations and <a href="https://shiny.rstudio.com/">Shiny</a> allows you to make beautiful interactive apps and dashboards.</li>
 </ul>
 <hr />
+<p><br></p>
 </div>
 <div id="r-studio." class="section level2">
 <h2><span class="header-section-number">2.2</span> R Studio.</h2>
@@ -1752,7 +1754,14 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 <p>Lets write a note in our script.</p>
 <p>Type the <strong>#</strong> and write yourself a note.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># This is my first R script</span></a></code></pre></div>
-<p>If you think you’ll be writing more than one line of code, you can do a <strong>hash (#)</strong> sign followed by a single quotation mark (#‘). This will continue to comment out lines of text or code each time you hit “Enter.” You can delete the #’ on a new line where you want to write code for R to run. This method is useful when you’re writing a description of what you’re doing in R.</p>
+<p><br></p>
+<style>
+div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
+</style>
+<div class="blue">
+<p><strong>If you think you’ll be writing more than one line of code, you can do a <code>hash (#)</code> sign followed by a single quotation mark (#‘). This will continue to comment out lines of text or code each time you hit “Enter.” You can delete the #’ on a new line where you want to write code for R to run. This method is useful when you’re writing a description of what you’re doing in R.</strong></p>
+</div>
+<p><br></p>
 <p>I recommend to save this script, type in the code as we go along, and only execute the required lines. That way you will have a record of what you have done.</p>
 <p>To save the script;</p>
 <p><strong>Click on File -&gt; Save as</strong></p>
@@ -1783,6 +1792,7 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 <p>For more information about R Studio, you can find the <strong>R Studio</strong> Cheat Sheet under the <strong>Help -&gt; Cheat sheet.</strong>.</p>
 <p>You will most likely be using data in R, we will now look at the different types.</p>
 <hr />
+<p><br></p>
 </div>
 </div>
 </div>
@@ -1793,6 +1803,7 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 <p>Different data types have different properties; if you try to add <code>1 + &quot;two&quot;</code>, you will get an error due to a mismatch of types.</p>
 <p>First data type we will look at is numbers.</p>
 <hr />
+<p><br></p>
 <div id="numbers" class="section level2">
 <h2><span class="header-section-number">3.1</span> Numbers</h2>
 <p>You will most likely want to perform mathematical operations with numbers. Here is a list of some operators.</p>
@@ -1889,6 +1900,7 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <p>The next data type that we will look at is text data.</p>
 <hr />
+<p><br></p>
 </div>
 <div id="text-values" class="section level2">
 <h2><span class="header-section-number">3.2</span> Text Values</h2>
@@ -1903,9 +1915,17 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 <p>The choice between single and double quotes is up to the user. Unlike other languages, there is no difference in behaviour. I recommend always using “, unless you want to create a string that contains multiple”.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="st">&#39;If I want to include a &quot;quote&quot; inside a string, I use single quotes&#39;</span></a></code></pre></div>
 <pre><code>## [1] &quot;If I want to include a \&quot;quote\&quot; inside a string, I use single quotes&quot;</code></pre>
-<p>A few symbols are awkward to get into character strings and this is because of they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you require will solve the problem. If not, Google will definitely have the answer!.</p>
+<p><br></p>
+<style>
+div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
+</style>
+<div class="blue">
+<p><strong>A few symbols are awkward to get into character strings and this is because of they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you require will solve the problem. If not, Google will definitely have the answer!.</strong></p>
+</div>
+<p><br></p>
 <p>Our next data type is logical values.</p>
 <hr />
+<p><br></p>
 </div>
 <div id="logical-or-boolean-values" class="section level2">
 <h2><span class="header-section-number">3.3</span> Logical or Boolean Values</h2>
@@ -2018,6 +2038,7 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 <a class="sourceLine" id="cb45-11" title="11"><span class="st">&quot;T&quot;</span></a>
 <a class="sourceLine" id="cb45-12" title="12"></a>
 <a class="sourceLine" id="cb45-13" title="13">F</a></code></pre></div>
+<p><br></p>
 </div>
 <div id="show-answer" class="section level3 unnumbered">
 <h3><strong>Show Answer</strong></h3>
@@ -2039,6 +2060,7 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 <hr />
 <p>Now that there you know some of R’s data types we will look at how we can convert between data types.</p>
 <hr />
+<p><br></p>
 </div>
 </div>
 <div id="data-type-conversion" class="section level2">
@@ -2069,6 +2091,7 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 <pre><code>## [1] 2</code></pre>
 <p>We will look at some other ways to do convert types later in the course.</p>
 <hr />
+<p><br></p>
 </div>
 </div>
 <div id="variable-assignment" class="section level1">
@@ -2141,6 +2164,8 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 <li><p>Use the remove function to remove a variable.</p></li>
 </ol>
 <hr />
+<p><br></p>
+<hr />
 </div>
 <div id="hint" class="section level3 unnumbered">
 <h3><strong>Hint</strong></h3>
@@ -2158,6 +2183,7 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 <a class="sourceLine" id="cb83-7" title="7"><span class="co">#To remove a variable    </span></a>
 <a class="sourceLine" id="cb83-8" title="8"><span class="kw">rm</span>(name_of_variable)  </a></code></pre></div>
 <hr />
+<p><br></p>
 </div>
 <div id="show-answer-1" class="section level3 unnumbered">
 <h3><strong>Show Answer</strong></h3>
@@ -2180,14 +2206,21 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 <pre><code>## [1] -2</code></pre>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="co">#To remove a variable </span></a>
 <a class="sourceLine" id="cb88-2" title="2"><span class="kw">rm</span>(myVariable)</a></code></pre></div>
+<p><br></p>
 <p><strong>A note on Variable Names:</strong></p>
-<p>Choosing variable names is one of the most difficult bits of programming; choose something that that is descriptive, recognisable.</p>
-<p><em>camel Case vs. snake_case</em></p>
-<p>It doesn’t really matter which you use, just be consistent.</p>
-<p>Variables can not start with a number, symbol or a reserved word like <code>TRUE</code>.</p>
-<p>Variables can not contain a space within them such as <code>the number</code>.</p>
-<p>R is case sensitive!</p>
+<style>
+div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
+</style>
+<div class="blue">
+<p><strong>Choosing variable names is one of the most difficult bits of programming; choose something that that is descriptive, recognisable.</strong></p>
+<p><strong><code>camel Case vs. snake_case</code></strong></p>
+<p><strong>It doesn’t really matter which you use, just be consistent.</strong></p>
+<p><strong>Variables can not start with a number, symbol or a reserved word like <code>TRUE</code>.</strong></p>
+<p><strong>Variables can not contain a space within them such as <code>the number</code>.</strong></p>
+<p><strong>R is case sensitive!</strong></p>
+</div>
 <hr />
+<p><br></p>
 </div>
 </div>
 </div>
@@ -2205,17 +2238,23 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 <div id="r-documentation" class="section level2 tabset tabset-fade">
 <h2><span class="header-section-number">5.2</span> R Documentation</h2>
 <div id="example" class="section level3 unnumbered">
-<h3>Example</h3>
+<h3><strong>Example</strong></h3>
 <p>From within RStudio we can access the Help documentation by using ? or ?? in the console</p>
 <p>Try and type the command below in the console,and you should see the Help panel on the bottom right side of your RStudio environment populate with documentation.</p>
-<p>This might not be helpful at this point in time as its quite complicated, we use this throughout the course and get plenty of practise on how to get the best of the R documentation</p>
+<p><br></p>
+<style>
+div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
+</style>
+<div class="blue">
+<p><strong>This might not be helpful at this point in time as its quite complicated, we use this throughout the course and get plenty of practise on how to get the best of the R documentation.</strong></p>
+</div>
+<p><br></p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="co">#To acces the R help documentation</span></a>
-<a class="sourceLine" id="cb89-2" title="2"></a>
-<a class="sourceLine" id="cb89-3" title="3">?mean </a>
-<a class="sourceLine" id="cb89-4" title="4"></a>
-<a class="sourceLine" id="cb89-5" title="5">or </a>
-<a class="sourceLine" id="cb89-6" title="6"></a>
-<a class="sourceLine" id="cb89-7" title="7"><span class="kw">help</span>(mean)</a></code></pre></div>
+<a class="sourceLine" id="cb89-2" title="2">?mean </a>
+<a class="sourceLine" id="cb89-3" title="3"></a>
+<a class="sourceLine" id="cb89-4" title="4">or </a>
+<a class="sourceLine" id="cb89-5" title="5"></a>
+<a class="sourceLine" id="cb89-6" title="6"><span class="kw">help</span>(mean)</a></code></pre></div>
 <hr />
 </div>
 </div>

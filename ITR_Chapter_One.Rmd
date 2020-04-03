@@ -37,10 +37,9 @@ knitr::opts_chunk$set(echo = TRUE)
 * Discover R's data types.
 * Be able to create Variables.
 
-
-<br>
-
  ***
+ 
+ <br>
  
 # What is R?
  
@@ -51,6 +50,8 @@ It provides a wide variety of statistical techniques (e.g. linear and non-linear
 R was initially written by **Ross Ihaka and Robert Gentleman** at the Department of Statistics of the University of Auckland in New Zealand. It is named partly after the first names of the first two R authors.
 
 ***
+
+<br>
 
 ## Benefits of Using R?
 
@@ -66,6 +67,8 @@ There are several reasons for this trend:
 * Powerful tool for communicating results, i.e.. [RMarkdown](https://rmarkdown.rstudio.com/)  makes its easy to turn your files into PDF'S, Power point presentations and [Shiny](https://shiny.rstudio.com/) allows you to make beautiful interactive apps and dashboards.
 
 ***
+
+<br>
 
 ## R Studio.
 
@@ -331,10 +334,21 @@ Type the **#** and write yourself a note.
 
 ```
 
+<br>
 
-If you think you’ll be writing more than one line of code, you can do a **hash (#)** sign followed by a single quotation mark (#'). This will continue to comment out lines of text or code each time you hit “Enter.” You can delete the #' on a new line where you want to write code for R to run. This method is useful when you’re writing a description of what you’re doing in R.
+ <style>
+div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 
+**If you think you’ll be writing more than one line of code, you can do a `hash (#)` sign followed by a single quotation mark (#'). This will continue to comment out lines of text or code each time you hit “Enter.” You can delete the #' on a new line where you want to write code for R to run. This method is useful when you’re writing a description of what you’re doing in R.**
+
+
+</div>
+
+
+<br>
 
 I  recommend to  save this script, type in the code as we go along, and only execute the required lines. That way you will have a record of what you have done.
 
@@ -386,6 +400,8 @@ You will most likely be using data in R, we will now look at the different types
 
 ***
 
+<br>
+
 # Data Types.
 
 To get the best out of R, you will need to have a strong understanding of the basic data types and structures and how to operate on them.
@@ -398,6 +414,8 @@ Different data types have different properties; if you try to add `1 + "two"`, y
 First data type we will look at is numbers.
 
 ***
+
+<br>
 
 ## Numbers
 
@@ -514,6 +532,9 @@ typeof(10L)
 The next data type that we will look at is text data.
 
 ***
+
+<br>
+
 ## Text Values
 
 In R, we refer to text as 'character' (chr) strings. Strings are sequences of character data.
@@ -540,13 +561,31 @@ The choice between single and double quotes is up to the user. Unlike other lang
 'If I want to include a "quote" inside a string, I use single quotes'
 ```
 
+<br>
 
-A few symbols are awkward to get into character strings and this is because of they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you require will solve the problem. If not, Google will definitely have the answer!.
+ <style>
+div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
+
+**A few symbols are awkward to get into character strings and this is because of they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you require will solve the problem. If not, Google will definitely have the answer!.**
+
+
+</div>
+
+
+<br>
+
+
 
 Our next data type is logical values.
 
 
 ***
+
+<br>
+
 ## Logical or Boolean Values
 
 In R these are written as `TRUE` or `FALSE`.
@@ -664,6 +703,7 @@ F
 
 ```
 
+<br>
 
 ### **Show Answer** {-}
 
@@ -693,6 +733,9 @@ typeof(F)
 Now that there you know some of R's data types we will look at how we can convert between data types.
 
 ***
+
+<br>
+
 ## Data Type Conversion
 
 Given that R is a dynamically typed language, sometimes the data type you want to work with, and the one R infers are not the same.
@@ -744,6 +787,8 @@ as.numeric("2")
 We will look at some other ways to do convert types later in the course.
 
 ***
+
+<br>
 
 # Variable Assignment
 
@@ -864,6 +909,10 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 
 ***
 
+<br>
+
+***
+
 ### **Hint**{-}
 
 1. Store as a variable the **sum of 1 + 3**, call it **myVariable** 
@@ -887,6 +936,8 @@ rm(name_of_variable)
 ```
 
 ***
+
+<br>
 
 ### **Show Answer** {-}
 
@@ -917,23 +968,41 @@ rm(myVariable)
 
 ```
 
+<br>
+
 **A note on Variable Names:**
 
-Choosing variable names is one of the most difficult bits of programming; choose something that that is descriptive, recognisable. 
+ <style>
+div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
-*camel Case vs. snake_case*
 
-It doesn't really matter which you use, just be consistent.
+**Choosing variable names is one of the most difficult bits of programming; choose something that that is descriptive, recognisable.** 
 
-Variables can not start with a number, symbol  or a reserved word like `TRUE`.
+**`camel Case vs. snake_case`**
 
-Variables can not contain a space within them such as `the number`.
+**It doesn't really matter which you use, just be consistent.**
 
-R is case sensitive!
+**Variables can not start with a number, symbol  or a reserved word like `TRUE`.**
+
+**Variables can not contain a space within them such as `the number`.**
+
+**R is case sensitive!**
+
+
+</div>
+
+
+
 
 
 
 ***
+
+<br>
+
+
 
 # Help
 
@@ -954,25 +1023,36 @@ You can access these by clicking on **Help** and then **Cheetsheets**.
 
 ## R Documentation {.tabset .tabset-fade}
 
-### Example{-}
+### **Example**{-}
 
 From within RStudio we can access the Help documentation by using ? or ?? in the console
 
 Try and type the command below in the console,and you should see the Help panel on the bottom right side of your RStudio environment populate with documentation.
 
-This might not be helpful at this point in time as its quite complicated, we use this throughout the course and get plenty of practise on how to get the best of the R documentation
+<br>
+
+ <style>
+div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
+
+**This might not be helpful at this point in time as its quite complicated, we use this throughout the course and get plenty of practise on how to get the best of the R documentation.**
+
+
+</div>
+
+
+<br>
+
 
 ```{r, eval=FALSE}
-
 #To acces the R help documentation
-
 ?mean 
 
 or 
 
 help(mean)
-
-
 ```
 
 
