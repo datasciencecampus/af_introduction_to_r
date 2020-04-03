@@ -123,7 +123,22 @@ To change this setting go to **Tools -> Global Options -> “Save workspace to .
 
 
 ***
-> **R can be used as Calculator Exercise** 
+
+
+
+ <style>
+div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
+
+**R can be used as Calculator Exercise.**
+
+
+</div>
+
+
+ 
 
 ***
 
@@ -204,7 +219,18 @@ This is where you will do the majority of your coding, we will  be using scripts
 A **script** is just a text file which we write our code in, generally we will use them to write code which will be longer than just a few lines.
 
 ***
-> **Creating a Script Exercise**
+
+ <style>
+div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
+
+**Creating a Script Exercise.**
+
+
+</div>
+
 
 ***
 
@@ -395,7 +421,18 @@ Operators in R:
 <br>
 
 ***
-> **Arithmetic Exercise**
+ <style>
+div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
+
+**Arithmetic Exercise**.
+
+
+</div>
+
+
 
 ***
 
@@ -585,7 +622,18 @@ We will look at these more in detail with examples in Chapter Four Data Manipula
 
 
 ***
-> **Data Types Exercise**
+
+ <style>
+div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
+**Data Types Exercise.**
+
+
+
+</div>
+
 
 ***
 
@@ -786,7 +834,19 @@ rm(my_first_variable)
 
 
 ***
-> **Variable Assignment Exercise**
+
+ <style>
+div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
+
+**Variable Assignment Exercise.**
+
+
+</div>
+
+
 
 ***
 
@@ -886,6 +946,8 @@ Being a new user of R chances are you are going to get stuck at some point and w
 ## Cheat Sheets
 
 You can access these by clicking on **Help** and then **Cheetsheets**.
+
+<br>
 
 ***
 
