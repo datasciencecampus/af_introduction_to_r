@@ -47,7 +47,7 @@ An open source **programming language** and environment for statistical computin
 
 It provides a wide variety of statistical techniques (e.g. linear and non-linear modelling, statistical tests, time-series analysis, etc) that's why its often used by Analysts, Statisticians and Data Scientists.
 
-R was initially written by **Ross Ihaka and Robert Gentleman** at the Department of Statistics of the University of Auckland in New Zealand. It is named partly after the first names of the first two R authors.
+R was initially written by **Ross Ihaka and Robert Gentleman** at the Department of Statistics of the University of Auckland in New Zealand. It is named partly after the first names of the first two R authors. Because it was created by statisticians (instead of computer scientists), R has some quirky aspects to it that take some time to get used to. 
 
 ***
 
@@ -298,7 +298,7 @@ You will get an error here stating,
 
 >**Error in Print("R is the best") : could not find function "Print"**
 
-We will go into details about function later on in the course for now just think of them as like commands they basically take an input do something and produce an output. 
+We will go into details about function later on in the course for now just think of them as like commands they basically take an input do something and produce an output. R is termed a `functional programming language`, we will be using these throughout the course, you will be able to spot these as they will have a name and some brackets, e.g `print()` 
 
 
 
@@ -490,17 +490,24 @@ There are also some built-in functions such as **sqrt()** or **round()**.
 
 >**Functions in R can be spotted by a word followed by a set of parentheses, like so: word().More often than not, the word is a verb, such as round(), suggesting that we’re about to perform an action.**
 
+You can specify what you the want function to exactly do with we call parameter and argument. This is specified within the brackets of the function. We talk more about parameters and arguments in chapter 6, **A parameter is a name or a label for an argument that follows it**. e.g in the round function below our parameter is `digits` and our `arguement` is 2.
+
 
 Let’s see what they do:
 
 ```{r}
-#Calculationg the square root of 9
+#Calculating the square root of 9
 #using built in function sqrt()
 sqrt(9)
 
-#Calculationg the square root of 9
+
 #using built in function round()
 round(3.6357)
+
+
+
+#using built in function round()
+round(3.6357, digits = 2)
 
 ```
 
