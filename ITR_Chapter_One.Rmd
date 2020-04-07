@@ -80,13 +80,12 @@ Other IDEs that work with R include: - [Jupyter notebook](https://jupyter.org/) 
 R Studio is broken down into four panels for our convenience.
 
 
-
 When we open R Studio for the first time, we’re likely to see this:
 
 <br>
 
 
-![](Images/studio2.PNG)
+![Image showing the pane layout in Rstudio](Images/studio2.PNG)
 
 
 <br>
@@ -95,17 +94,26 @@ If you dont see the **Code editor pane**, go to the tool bar and click **View ->
 
 The positions of these can be adjusted under the ‘Preferences’ menu, but we will keep like this for now.
 
-We will go through what we can do with each of these panels.
+We will go through what we can do with each of these panes.
 
 ***
 
+<br>
+
+
 ### Changing your R Studio theme
+
 
 Before we begin using R Studio lets explore the various themes available, by going to **Tools -> Global Options -> Appearance**.
 
 Choose a theme that works best for you and apply it.
 
+You can also ammend fonts here.
+
 *** 
+
+
+<br>
 
 ### Don't save your workspace
 
@@ -119,31 +127,15 @@ To change this setting go to **Tools -> Global Options -> “Save workspace to .
 
 <br>
 
-!["Image showing the workspace in Rstudio"](Images/workspace.PNG) 
+![Image showing the workspace in Rstudio](Images/workspace.PNG) 
 
 
 <br>
 
-
 ***
 
+<br>
 
-
- <style>
-div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
-
-
-**R can be used as Calculator Exercise.**
-
-
-</div>
-
-
- 
-
-***
 
 ### The Console
 
@@ -153,11 +145,39 @@ This is where you can type code that executes immediately. This is also known as
 
 We’ll spend a little time practising running code in the Console by exploring some basic properties of coding in R.
 
-To run code in the Console, you type your code next to the command prompt **> and hit `‘Enter’`**.
+To run code in the Console, you type your code next to the command prompt > and hit **`Enter`**.
 
 
 
 **Try out some arithmetic in your console**;
+
+
+<br>
+
+
+### Exercise{.tabset .tabset-fade}
+
+#### **Exercise**{-}
+
+1. Try and type the expression below and hit **`Enter`**. Make sure you type one line at a time.
+
+
+```{r, eval=FALSE}
+
+2 + 4
+
+23 - 6; 36 + 5
+
+1 + 3 +
+
+```
+
+
+<br>
+
+***
+
+#### **Show Answer**{-}
 
 ```{r}
 
@@ -167,9 +187,9 @@ To run code in the Console, you type your code next to the command prompt **> an
 
 We didn't just get 6, we also got [1]. This is R's way of printing to the screen; it's telling us the position we're at.
 
-A semi colon allows multiple commands to be entered on the same line before processing.
+<br>
 
-Try and type the expression below and hit **`enter`**.
+A semi colon allows multiple commands to be entered on the same line before processing.
 
 ```{r}
 
@@ -177,10 +197,11 @@ Try and type the expression below and hit **`enter`**.
 
 ```
 
+<br>
+
 Note that if a **"+"** appears instead of the command prompt **">"**, this means that the statement you submitted was incomplete. 
 
 
-Try and type the code below,
 ```{r, eval=FALSE}
 
 1 + 3 +
@@ -190,14 +211,9 @@ Try and type the code below,
 
 Here **1 + 3 + **, is incomplete.
 
-Typing the code above in your console, will result in a **"+"**.
-
 We can either complete the expression or press `Esc` in our console to reset.
 
-
-
- 
-
+<br>
 
 The R Studio Console automatically maintains a ‘history’ so that you can retrieve previous commands.
 
@@ -206,6 +222,8 @@ On a blank line in the Console, press the **`up arrow`**, and see what happens.
 The issue with coding in the console is that we cant save it and not easy to edit, which brings us to the code editor.
 
 ***
+
+<br>
 
 ### Code Editor
 
@@ -221,21 +239,6 @@ This is where you will do the majority of your coding, we will  be using scripts
 
 A **script** is just a text file which we write our code in, generally we will use them to write code which will be longer than just a few lines.
 
-***
-
- <style>
-div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
-
-
-**Creating a Script Exercise.**
-
-
-</div>
-
-
-***
 
 Lets create a script file which we will use to write and save our code during the course.
 
@@ -243,7 +246,7 @@ To create a new script,
 
 **Click on File -> New file -> R Script** 
 
->**Alternatively you can press the short cut keys CLT+SHIFT+N**.
+>**Alternatively you can press the short cut keys Ctrl+Shift+N**.
 
 Scripts execute sequentially from top to bottom.
 
@@ -256,6 +259,8 @@ R Studio has the advantage of:
 * Smart indentation
 
 We will see the benefits of these as you type your code throughout the course.
+
+<br>
 
 **Lets practise writing some code  and how to run it in a script**.
 
@@ -272,52 +277,29 @@ There are three main ways to run code in an .R script:
 Type the following in your script and run the code.
 
 ```{r}
-print("R is the best")
+
+"I am learning R"
+
+2+4
+
+23 - 6; 36 + 5
+
+
 ```
-
-
-
-Now try putting a space between print and ("R is the best"), What happens?
-
-```{r}
-print ("R is the best")
-```
-
-Now try entering "R is the best", What happens?
-
-```{r}
-"R is the best"
-```
-
-Now try capitalizing Print, What happens?
-```{r, eval=FALSE}
-Print("R is the best")
-```
-
-You will get an error here stating,
-
->**Error in Print("R is the best") : could not find function "Print"**
-
-We will go into details about function later on in the course for now just think of them as like commands they basically take an input do something and produce an output. R is termed a `functional programming language`, we will be using these throughout the course, you will be able to spot these as they will have a name and some brackets, e.g `print()` 
-
 
 
 <br>
 
-Three things you have just learned
-
-* R is case sensitive
-
-* R does not care about whitespace
-
-* R will print results by default
-
-Its best practise to leave notes in your code to what your code is actually doing as code can get quite long and complicated and other people may need to use it.
+Its best practise to leave comments in your code to what your code is actually doing as code can get quite long and complicated and other people may need to use it.
 
 We do this by using the **hash (#)**.
 
 
-The **hash (#)** tells R not to run any of the text on that line to the right of the symbol. This is the standard way of commenting R code; it is **VERY** good practice to comment in detail so that you can understand later what you have done.Even if you are the only person to ever work on your code, it can be helpful to write yourself notes about what you were trying to do with a specific piece of code. 
+The **hash (#)** tells R not to run any of the text on that line to the right of the symbol. This is the standard way of commenting R code; it is **VERY** good practice to comment in detail so that you can understand later what you have done.
+
+Even if you are the only person to ever work on your code, it can be helpful to write yourself notes about what you were trying to do with a specific piece of code. 
+
+Another important comment you can include is explaining reasons behind why you are doing it that way.
 
 >**Writing comments in your code as you work through the course is a great way to help reinforce what you’re learning.**
 
@@ -336,17 +318,11 @@ Type the **#** and write yourself a note.
 
 <br>
 
- <style>
-div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
 
 
 **If you think you’ll be writing more than one line of code, you can do a `hash (#)` sign followed by a single quotation mark (#'). This will continue to comment out lines of text or code each time you hit “Enter.” You can delete the #' on a new line where you want to write code for R to run. This method is useful when you’re writing a description of what you’re doing in R.**
 
-
-</div>
-
+>**Alternatively you can press the short cut keys Ctrl+Shift+C.**
 
 <br>
 
@@ -363,6 +339,8 @@ We will now look at the top left pane.
 
 ***
 
+<br>
+
 ### Environment/History
 
 The Environment pane is very useful as it shows you what objects (such as; data frames, values and functions) you have in your environment (workspace).
@@ -373,9 +351,13 @@ This shows the previous code you were working on, and any storage of objects you
 
 We will look at these later on in the session.
 
-We will now look at the bottom left pane.
+We will now look at the bottom right pane.
 
 ***
+
+
+<br>
+
 
 ### Files/Help/Packages
 
@@ -431,28 +413,14 @@ Operators in R:
 |     -     | Subtraction     |
 |     *     | Multiplication  |
 |     /     | Division        |
-|       ^   | Exponents       |
+|       ^   | Exponents/Powers       |
 |    %%     | [Modulo Division](https://en.wikipedia.org/wiki/Modulo_operation)|
 |    %/%    | [Floor Division](https://en.wikipedia.org/wiki/Floor_and_ceiling_functions)|
 
 
 <br>
 
-***
- <style>
-div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
 
-
-**Arithmetic Exercise**.
-
-
-</div>
-
-
-
-***
 
 Let's have a play with some of these operators:
 
@@ -478,19 +446,21 @@ It’s also useful to note that R will follow BIDMAS for order of operations.
 
 # This is my first R script
 
-10 + 11 * 12 / 3 - 5**2
+10 + 11 * 12 / 3 - 5^2
 
 
 ```
 
+
+<br>
+
 There are also some built-in functions such as **sqrt()** or **round()**. 
 
-> **Functions are like commands they basically take an input do something and produce an output. You can think of them like mathematic functions, where you substitute in a value.**
+> **Functions are commands that take an input do something and produce an output. You can think of them like mathematic functions, where you substitute in a value.**
 
 
->**Functions in R can be spotted by a word followed by a set of parentheses, like so: word().More often than not, the word is a verb, such as round(), suggesting that we’re about to perform an action.**
+Functions in R can are a word followed by a set of parentheses, like so: print(). More often than not, the word is a verb, such as round(), suggesting that we’re about to perform an action.
 
-You can specify what you the want function to exactly do with we call parameter and argument. This is specified within the brackets of the function. We talk more about parameters and arguments in chapter 6, **A parameter is a name or a label for an argument that follows it**. e.g in the round function below our parameter is `digits` and our `arguement` is 2.
 
 
 Let’s see what they do:
@@ -504,36 +474,46 @@ sqrt(9)
 #using built in function round()
 round(3.6357)
 
+```
 
+You can specify what you the want a function to exactly do with what we call parameter and argument. This is specified within the brackets of the function. We  will talk more about parameters and arguments in chapter 6, 
 
+The inputs of function is called a parameter and what we specify is called an argument.
+
+**A parameter is a name or a label for an argument that follows it**. e.g in the round function below our parameter is `digits` and our `arguement` is 2.
+
+```{r}
 #using built in function round()
 round(3.6357, digits = 2)
-
 ```
+
+
+
+
 
 There are many more built-in functions which you will discover with more exposure to R, but for now we will move onto the different types of numbers we might work with. 
 
-These are: 
+
+Numbers are grouped together into numerics you may see;
+
 
 * Double (dbl)
 * Integers (int)
+* Numeric (num)
 
 
-`Integers` are whole numbers with no decimal place. for example: …, -2, -1, 0, 1, 2, … and more, they are denoted in R by an `L` at the end of the number.
+`Integers` are whole numbers with no decimal place. for example:, -2, -1, 0, 1, 2, they are denoted in R by an `L` at the end of the number.
 
 A `Double` is treated as the general number type and by default R will treat all numbers you use as double unless you give it an explicit reason to think otherwise. So therefore, any number with or without a decimal place will be treated as double unless emphasised otherwise.
+
+These different types exist in R for operations behinf the scenes.We need to worry about them too much at the moment.
 
 We can see they type by using the **`typeof()`** function or command.
 
 ```{r}
-
-
 typeof(10)
 
 typeof(10L)
-
-
-
 ```
 
 The next data type that we will look at is text data.
@@ -551,15 +531,13 @@ Strings are contained within either 'single' or "double" quotation marks.
 All characters between the opening and the closing quote are part of the string.
 
 ```{r}
-
 "This is a string"
-
 ```
 
 You actually typed one when you typed the code below earlier.
 
 ```{r}
-'R is the best'
+'I am learning R'
 ```
 
 The choice between single and double quotes is up to the user. Unlike other languages, there is no difference in behaviour. I recommend always using ", unless you want to create a string that contains multiple ".
@@ -570,20 +548,10 @@ The choice between single and double quotes is up to the user. Unlike other lang
 
 <br>
 
- <style>
-div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
+
 
 
 **A few symbols are awkward to get into character strings and this is because of they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you require will solve the problem. If not, Google will definitely have the answer!.**
-
-
-</div>
-
-
-<br>
-
 
 
 Our next data type is logical values.
@@ -597,7 +565,11 @@ Our next data type is logical values.
 
 In R these are written as `TRUE` or `FALSE`.
 
+
 > **They are special R data types - not strings! So they don't need '' or "" around them.**
+
+
+Note that you they can be abbreviated to `T` and `F`, this is not regarded as best practise.
 
 They also have numerical value behind them - `TRUE` is 1 and `FALSE` is 0.
 
@@ -641,7 +613,7 @@ Is 4 greater than 5?
 
 Is 25 equal to 5 squared?
 ```{r}
-25 == 5**2
+25 == 5^2
 ```
 
 Does 1 not equal 2?
@@ -653,41 +625,21 @@ That covers the simpler logical operators.
 
 The final two allow us to combine and check multiple conditions.
 
-Both `Or` (`|`) and `And` (`&`) have to have a condition on either side of them. They will check the conditions on each side and then return `TRUE` or `FALSE` based on their value.
-
-`And` (`&`) will return `TRUE` if both conditions are `TRUE`, `FALSE` otherwise. 
-
-`Or` (`|`) will return `TRUE` if at least one of the conditions are `TRUE`, `FALSE` otherwise.
-
 We will look at these more in detail with examples in Chapter Four Data Manipulation.
 
 >**Please note that there is other data types such as factors, dates, complex numbers, date times etc**
 
->**Simplified, data types are: numbers, text and TRUE/FALSE values**.
-
-
 
 ***
 
- <style>
-div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
+<br>
 
-**Data Types Exercise.**
-
-
-
-</div>
-
-
-***
 
 ## Exercise{.tabset .tabset-fade}
 
 ### **Exercise**{-}
 
-What is the data type of the following?
+1.What is the data type of the following?
 
 ```{r, eval=FALSE}
 
@@ -701,12 +653,11 @@ TRUE
 
 "ten"
 
-"T"
+"TRUE"
 
-F
+FALSE
 
-
-
+"FALSE"
 
 ```
 
@@ -732,6 +683,8 @@ typeof("T")
 
 typeof(F)
 
+typeof("FALSE")
+
 
 ```
 
@@ -749,7 +702,7 @@ Given that R is a dynamically typed language, sometimes the data type you want t
 
 R doesn't require you to set the data type when you create it, instead it figures out what the best data type is for the object you are creating - numeric, character, logical, or others.
 
-Sometimes you want to ensure that a particular object is actually a certain type, rather than leaving it up to R. This is done using data type conversion (or casting). R has a range of in-built functions that enable you to convert data from one type to another.
+Sometimes you want to ensure that a particular object is actually a certain type, rather than leaving it up to R. This is done using data type conversion. R has a range of in-built functions that enable you to convert data from one type to another.
 
 Firstly, the `typeof()` function returns the (R internal) type of any given object. e.g.
 
@@ -816,6 +769,8 @@ Where `my_first_variable` is the variable name and `value` is the data being ass
 my_first_variable <- 25
 ```
 
+When reading that code say `“my_first_variable  gets the value 25”` in your head.
+
 Once an object has been created it will appear in your Environment window which helps you keep track of what objects you have in your current workspace.(The top right pane)
 
 
@@ -838,19 +793,14 @@ my_first_variable * 3
 
 >**`<-` is the most commonly used assignment operator in R and therefore the one we will stick to.  This called the assignemt operator <-, (the short cut is ALT + MINUS).**
 
+RStudio automagically surrounds `<-` with spaces, which is a good code formatting practice. 
+
 <br>
 
 In R it is convention to use `<-` to assign variables and keep `=` reserved to passing key value pair to a function. We will be sticking to this convention. 
 
 `->` is considered bad practice. This is because it makes it harder for others to see where a object has been assigned.
 
-Variable names:
-
-* Are case sensitive and must start with a letter.  
-* Cannot use reserved words such as `TRUE` or `FALSE` which already mean something in R. 
-* Ideally, should be descriptive, so that when someone else is reading your code they don't have to guess the relation between `x1`, `x2` and `zebra43`. 
-
-Note: If you reference `x` (or any other variable) before assignment R will throw an error at us saying: `Error: object 'x' not found`.
 
 If we ever want to reassign a variable we would simply use the operators above again. 
 
@@ -858,16 +808,16 @@ For example:
 
 ```{r}
 
-my_int <- 5L
+my_second_variable <- 5L
 
-typeof(my_int)
+typeof(my_second_variable)
 
 ```
 ```{r}
 
-my_int <- "What?! A CHARACTER?!"
+my_second_variable <- "What?! A CHARACTER?!"
 
-typeof(my_int)
+typeof(my_second_variable)
 
 ```
 
@@ -878,75 +828,86 @@ Typing the following into the Console will list everything you’ve loaded into 
 
 To remove a variable, we would utilise the `rm()` function of R. 
 
-For example: `rm(my_first_variable)` 
+For example: `rm(my_second_variable)` 
 
 ```{r}
-rm(my_first_variable)
+rm(my_second_variable)
 ```
 
+Variable names:
+
+* Are case sensitive and must start with a letter.  
+* Cannot use reserved words such as `TRUE` or `FALSE` which already mean something in R. 
+* Ideally, should be descriptive, so that when someone else is reading your code they don't have to guess, so you’ll need a convention for multiple words. 
+
+I recommend snake_case where you separate lowercase words with `_`. See examples below;
+
+
+
+```
+i_use_snake_case
+
+otherPeopleUseCamelCase
+
+some.people.use.periods
+
+```
+
+We have more detailed examples and information on good variables names in our other course **Best Practice in Programming for Data Scientists**
 
 ***
 
- <style>
-div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
+<br>
 
-
-**Variable Assignment Exercise.**
-
-
-</div>
-
-
-
-***
 
 ## Exercise{.tabset .tabset-fade}
 
 ### **Exercise**{-}
 
+1.Why does this code not work?
 
-1. Store as a variable the **sum of 1 + 3**, call it **myVariable** 
+```{r,eval=FALSE}
 
-2. and another variable **2 - 4**, call it **another_variable**.
+my_variable <- 10
 
-
-3. Use the remove function to remove a variable.
-
-***
-
-<br>
-
-***
-
-### **Hint**{-}
-
-1. Store as a variable the **sum of 1 + 3**, call it **myVariable** 
-
-2. and another variable **2 - 4**, call it **another_variable**.
-
-
-3. Use the remove function to remove a variable.
-
-```{r, eval=FALSE}
-
-#To assign a variable
-myVariable  <- 
-
-#To assign a variable
-another_variable  <- 
-
-#To remove a variable    
-rm(name_of_variable)  
-
+my_varIable
 ```
 
+
+
+
+1. Store as a variable the **sum of 1 + 3**, call it **myVariable** 
+
+2. and another variable **2 - 4**, call it **another_variable**.
+
+
+3. Use the remove function to remove a variable.
+
 ***
 
 <br>
 
+***
+
+
+
 ### **Show Answer** {-}
+
+
+1.Why does this code not work?
+
+```{r,eval=FALSE}
+
+my_variable <- 10
+
+my_varIable
+```
+
+You would have got the error below;
+
+>
+
+The variable printed `my_varIable`is no the `my_variable`
 
 
 1. Store as a variable the **sum of 1 + 3**, call it **myVariable** 
@@ -974,36 +935,6 @@ another_variable
 rm(myVariable)
 
 ```
-
-<br>
-
-**A note on Variable Names:**
-
- <style>
-div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
-
-
-**Choosing variable names is one of the most difficult bits of programming; choose something that that is descriptive, recognisable.** 
-
-**`camel Case vs. snake_case`**
-
-**It doesn't really matter which you use, just be consistent.**
-
-**Variables can not start with a number, symbol  or a reserved word like `TRUE`.**
-
-**Variables can not contain a space within them such as `the number`.**
-
-**R is case sensitive!**
-
-
-</div>
-
-
-
-
-
 
 ***
 
