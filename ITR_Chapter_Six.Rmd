@@ -1,5 +1,5 @@
 ---
-title: "Intro to R - Control Flow and Functions"
+title: "Intro to R - Chapter Six "
 output:
   html_document: 
     theme: united
@@ -18,10 +18,16 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
                style = "position:absolute; top:0; right:0; padding:10px; width:200px;")
 ```
 
+<br>
+
+***
+# Control Flow and Functions{-}
 
 ***
 
 # Learning Objectives
+
+<br>
 
 **The goal of this chapter is to:**
 
@@ -42,9 +48,11 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 
 # Loops
 
+<br>
+
 Loops are a fundamental concept in traditional programming languages. 
 
->A loop is a way to repeat a number commands until a given condition is met.
+>**A loop is a way to repeat a number commands until a given condition is met.**
 
 Since R is a vectorised language, loops are not as prominently used in R as in Python for example. Despite this, they are key to programming in general and can save you lot's of time and typing in certain cases.
 
@@ -57,6 +65,10 @@ We are going to look at two types of loops.
 * `for` loops
 
 * `while` loops
+
+***
+
+<br>
 
 ## For Loops
 
@@ -71,11 +83,9 @@ Basic Structure of a loop
 
 # create an empty output
 # which we will fill when the loop runs
-
 output <- c()
 
 # creating the loop
-
 for (Variable in Vector) { 
   
   output <- commands
@@ -84,10 +94,11 @@ for (Variable in Vector) {
 
 ```
 
+<br>
 
-* So we start with creating an empty vector for our output
+* So we start with creating an empty vector for our output.
 
->>Before you start the loop, you should allocate sufficient space for the output.
+>**Before you start the loop, you should allocate sufficient space for the output.**
 
 * And then start with the word `for`
 
@@ -99,11 +110,14 @@ for (Variable in Vector) {
 
 * followed by the `{}` curly brackets, which will have our commands, these could be multiple lines of code.
 
+
+>**An iterable is an object that can be iterated through, one element at a time. Lists and vectors are both iterables.**
+
 ***
 
->An iterable is an object that can be iterated through, one element at a time. Lists and vectors are both iterables.
+<br>
 
-***
+### Example{-}
 
 lets look at an example.
 
@@ -113,7 +127,6 @@ We start by creating an iterable, I have created a vector with **numbers between
 
 ```{r}
 # Creating a vector
-
 example_vector <- c(0, 1, 2, 3, 4, 5)
 
 ```
@@ -123,43 +136,44 @@ Creating our loop.
 ```{r}
 # create an empty output
 # which we will fill when the loop runs
-
 result <- c()
 
 # creating the loop
-
 for (each_number in example_vector) {
   
   print(each_number * 2)
   
-  result <- base::append(result, each_number * 2)
+  result <- base::append(result, values = each_number * 2)
   
 }
 
 # To display the data
 result
 
-
 ```
+
+<br>
 
 This loop is taking each number in our example vector and multiplying it by 2.
 
 The keyword `for` is followed by a variable that refers to each item in my iterable. I’ve called this variable **each_number**. It is good to be clear and explicit when naming variables, so they explain what the variable is. 
 
->You’ll often see letters like `i` used here, which is not particularly clear.
+>**You’ll often see letters like `i` used here, which is not particularly clear.**
 
 The keyword in is followed by the iterable I want to loop over (here it is `example_vector`).
 
 My Command are assigned to `result`. The command here is to multiply each number in `example_vector` by 2.
 
 
->append() function simply adds an element to a vector.
+`Append()` function simply adds an element to a vector, We first specify the vector we want to add to which is `result` and then specify the values that we want to add to it, here its specified by `values=`.
 
->Loops suppress output, unless explicitly `print()`ed out.
+Loops suppress output, unless explicitly `print()`ed out.
 
 
 
 ***
+
+<br>
 
 ## While loops
 
@@ -172,11 +186,9 @@ Our other type of loops are `while` loops.
 
 # create an empty output
 # which we will fill when the loop runs
-
 result <- c()
 
 # creating the loop
-
 while (logical condition) { 
   
   result <- commands
@@ -188,6 +200,8 @@ result
 
 ```
 
+<br>
+
 * So we start with creating an empty vector for our output
 
 * Then the word `while`
@@ -195,6 +209,12 @@ result
 * followed by the `()` brackets in which we specify our logical condition, using the **conditional operators**.
 
 * and then `{}`, which surrounds our commands. These commands will be run repeatedly in order as long as the specified condtion is `TRUE`.
+
+***
+
+<br>
+
+### Example{-}
 
 lets look at an example:
 
@@ -210,7 +230,6 @@ lets look at an example:
 
 # create an empty output
 # which we will fill when the loop runs
-
 result <- c()
 
 # Setting the value
@@ -218,7 +237,6 @@ stop_value <- 0
 
 # Creating the loop
 # Our condition here is that stop_value < 5
-
 while (stop_value < 5) { 
   
   print(stop_value)
@@ -232,6 +250,8 @@ while (stop_value < 5) {
 result
 ```
 
+<br>
+
 Can you guess what would happen if we removed the `stop_value <- stop_value + 1` ?
 
 ```{r,eval=FALSE}
@@ -244,12 +264,11 @@ stop_value <- 0
 
 # Creating the loop
 # Our condition here is that 0<5 i.e stop_value
-
 while (stop_value < 5) { 
   
   print(stop_value)
   
-  result <- base::append(result, stop_value + 1)
+  result <- base::append(result, values = stop_value + 1)
 }
 
 # To display the data
@@ -259,16 +278,17 @@ result
 
 If we removed the code `stop_value <- stop_value +1` , `stop_value` (`0`) would always be less than `5` and the loop would be stuck in an infinite loop, as R will keep running the code. 
 
->You will have to hit the stop sign to exit the loop.
+>**You will have to hit the stop sign to exit the loop**
 
 It is therefore important that we design `while` loops that have a logical condition that will be met at some point. 
 
 Although it is useful to know how to use loops in R, it is often faster to accomplish the same thing using vectorised operations in R. 
 
 
+<br>
+
 ## Exercise loops{.tabset .tabset-fade}
 
->While Loop Exercise
 
 ### **Exercise**{-}
 
@@ -281,6 +301,11 @@ Although it is useful to know how to use loops in R, it is often faster to accom
 - The first command in the body should print out `"Its way too hot!"`
 
 - The next command should decrease the `temperature` by `2` and assign this new value to `temperature` again.
+
+***
+
+<br>
+
 
 ### **Hint**{-}
 
@@ -297,11 +322,9 @@ Although it is useful to know how to use loops in R, it is often faster to accom
 ```{r, eval=FALSE}
 # create an empty output
 # which we will fill when the loop runs
-
 result <- c()
 
 # setting the temperature value
-
 temperature <- 40
 
 # Code the while loop
@@ -317,6 +340,10 @@ while (condition) {
 result
 
 ```
+
+***
+
+<br>
 
 
 ### **Show Answer**{-}
@@ -334,11 +361,9 @@ result
 ```{r}
 # create an empty output
 # which we will fill when the loop runs
-
 result <- c()
 
 # setting the temperature value
-
 temperature <- 40
 
 # Code the while loop
@@ -357,6 +382,10 @@ result
 
 ```
 
+***
+
+<br>
+
 # Conditional Statements
 
 A conditional statement will check whether a condition is TRUE or FALSE.
@@ -367,7 +396,9 @@ This is useful if we want a function to run only when our data meets certain con
 
 We use comparison and logical operators.
 
-Comparison Operators
+<br>
+
+**Comparison Operators.**
 
 | Operator | Description | 
 | ------ |:------| 
@@ -378,13 +409,20 @@ Comparison Operators
 | <=     | less than or eaqual to|
 | >=     | greater than or equal to|
 
-Logical Operators
+
+<br>
+
+
+**Logical Operators.**
 
 | Operator| Description| 
 | ------  |:------:| 
 |   &     | And | 
 |   \|    | Or |
 |    !    | Not|
+
+
+<br>
 
 
 You might want an action to be perfomed depending on the outcome, to be able to do this in R, we use the;
@@ -427,8 +465,11 @@ if (first logical condition) {
 
 ```
 
->It’s important that the `else if` keyword comes on the same line as the closing bracket of the previous part of the control structure.
+>**It’s important that the `else if` keyword comes on the same line as the closing bracket of the previous part of the control structure.**
 
+<br>
+
+## Example{-}
 
 We can just have an `if` and an `else`.
 
@@ -449,6 +490,8 @@ if (height == 5) {
 }
 
 ```
+
+<br>
 
 Remember our `if`, `else if` and `else` statements take a contion so we need a double equals sign (`==`) for checking equivalency.
 If the first criteria isn’t met it will move to the else statement and action that.
@@ -475,7 +518,13 @@ if (height == 5) {
 
 ```
 
+
+<br>
+
+
 Within these we can use our logical operators too - `&` (and), `|` (or).
+
+Here we want the action to happen if the value is greater than 7 and less than 10.
 
 ```{r}
 
@@ -497,7 +546,18 @@ if (height == 5) {
 
 ```
 
-Here we want the action to happen if the value is greater than 7 and less than 10.
+
+<br>
+
+It’s important to know how the `if`, `else if`, `else` works.
+
+Here we have two options for when the value is 5.
+
+However it will only print out  “We’re the same height!”
+
+When the condition is met it performs the action associated with it and then quits.
+
+Try changing the value stored in `my_height` to see the other results.
 
 
 ```{r}
@@ -523,17 +583,18 @@ if (height == 5) {
 }
 ```
 
-It’s important to know how the `if`, `else if`, `else` works.
 
-Here we have two option for when the value is 5.
+<br>
 
-However it will only print out  “We’re the same height!”
 
-When the condition is met it performs the action associated with it and then quits.
+>**The `case_when()` function in dplyr is great for dealing with multiple complex conditions.** 
 
-Try changing the value stored in `my_height` to see the other results.
+***
 
->The `case_when()` function in dplyr is great for dealing with multiple complex conditions 
+<br>
+
+
+## Loops and Conditional Statements
 
 We can combile a `loop` and and `if else statements`.
 
@@ -545,9 +606,9 @@ We can combile a `loop` and and `if else statements`.
 
 number_of_takeaways_ordered <- c(1, 2, 3, 4, 5, 6, 7)
 
-for (i in number_of_takeaways_ordered) { 
+for (number in number_of_takeaways_ordered) { 
   
-  if (i > 3) { 
+  if (number > 3) { 
     
     print("too many")
     
@@ -557,38 +618,41 @@ for (i in number_of_takeaways_ordered) {
     
   }
   
-  print(i)
+  print(number)
   
 }
 ```
 
-## Exercise loops + conditional statements{.tabset .tabset-fade}
+***
+
+<br>
+
+
+## Exercise{.tabset .tabset-fade}
 
 
 
 ### **Exercise**{-}
 
-Can you write a loop with an `if`, `else if` and `else` statement, that loops through the numbers from 1 to 30.
+1. Can you write a loop with an `if`, `else if` and `else` statement, that loops through the numbers from 1 to 30.
 
-If the number is a multiple of both 3 and 5, print "FizzBuzz".
+   If the number is a multiple of both 3 and 5, print "FizzBuzz".
 
-If the number is a mutiple of 3, print the word "Fizz".
+   If the number is a mutiple of 3, print the word "Fizz".
 
-If the number is a mutiple of 5, print the word "Buzz".
+   If the number is a mutiple of 5, print the word "Buzz".
 
-For all other values print the number.
+   For all other values print the number.
 
->>You can use the modulus operator for this - this is the `%%` in R, and shows us our remainder.
+>**You can use the modulus operator for this - this is the `%%` in R, and shows us our remainder.**
 
 For example checking if something is divisible by 7 we could do
 
->>`item %% 3 == 0`
+>**`item %% 3 == 0`, to check if it divided completely - having a remainder of 0**
 
->>to check if it divided completely - having a remainder of 0
 
 ```{r}
 # Example of Modulo
-
 10 %% 3 == 0
 
 # Returns FALSE (10 / 3 has a remainder of 1 - so does not have a remainder of 0)
@@ -596,26 +660,27 @@ For example checking if something is divisible by 7 we could do
 
 ```{r}
 # Second example of Modulo
-
 9 %% 3 == 0
 
 # Returns TRUE (9 / 3 has a remainder of 0)
 ```
 
+***
 
+<br>
 
 
 ### **Hint**{-}
 
-Can you write a loop with an `if`, `else if` and `else` statement, that loops through the numbers from 1 to 30.
+1. Can you write a loop with an `if`, `else if` and `else` statement, that loops through the numbers from 1 to 30.
 
-If the number is a multiple of both 3 and 5, print "FizzBuzz".
+   If the number is a multiple of both 3 and 5, print "FizzBuzz".
 
-If the number is a mutiple of 3, print the word "Fizz".
+   If the number is a mutiple of 3, print the word "Fizz".
 
-If the number is a mutiple of 5, print the word "Buzz".
+   If the number is a mutiple of 5, print the word "Buzz".
 
-For all other values print the number.
+   For all other values print the number.
 
 ```{r, eval=FALSE}
 
@@ -642,7 +707,21 @@ for (each_number in vector) {
 
 ```
 
+***
+
+<br>
+
 ### **Show Answer**{-}
+
+1. Can you write a loop with an `if`, `else if` and `else` statement, that loops through the numbers from 1 to 30.
+
+   If the number is a multiple of both 3 and 5, print "FizzBuzz".
+
+   If the number is a mutiple of 3, print the word "Fizz".
+
+   If the number is a mutiple of 5, print the word "Buzz".
+
+   For all other values print the number.
 
 ```{r}
 
@@ -669,6 +748,10 @@ for (i in 1:30) {
 
 ```
 
+***
+
+<br>
+
 # Functions
 
 In programming, a named section of a program that performs a specific task is called a function. 
@@ -681,6 +764,10 @@ We have previously used ready-made functions (from Base R or from packages) In R
 
 You can also write your own functions, called “user-defined functions”.
 
+***
+
+<br>
+
 ## Why we use functions
 
 * They make code shorter and easier to understand.
@@ -692,11 +779,19 @@ You can also write your own functions, called “user-defined functions”.
 * They help reduce errors caused from copied and pasted code.
 
 
+<br>
+
+
 Up until now we've been writing code line by line and running it sequentially. As effective as this has been, things can get messy as we scale up to larger problems.
 
 We can avoid messy code by organising it into chunks of reusable code called functions. This allows us to create blocks of code dedicated to performing a specific procedure or task. We can then 'call' this function to perform its specific task as and when needed. Understanding why and how to write functions is an important part of writing code that is consistent, readable and reproducible.
 
 In addition to this, we use functions to do everything in R - from making a vector to creating models and plots. Having more hands on experience with functions can give you a greater appreciation for how the functions, we heavily depend on, are implemented.
+
+***
+
+<br>
+
 
 ## Types of Functions
 
@@ -704,11 +799,15 @@ In R we have two types of functions:
 
 1. **'Predefined' functions**
 
-We have already used several of these, such as `c()`, `pow()`, `print()`, etc. These functions, like the name suggests are built into R and are always available as we have seen by pressing tab in the console. 
+   We have already used several of these, such as `c()`, `round()`, `print()`, etc. These functions, like the name suggests are    built into R and are always available as we have seen by pressing tab in the console. 
 
 2. **User defined Functions** 
 
-These are functions created by us to carry out a specific task. Declared using `function()`.
+   These are functions created by us to carry out a specific task. Declared using `function()`.
+
+***
+
+<br>
     
 ## How to write a function
 
@@ -716,7 +815,6 @@ Basic structure of a function looks like below,
 
 ```{r, eval=FALSE}
 # Basic structure of a function
-
 function_name <- function(input) { 
   
   statements of what the function is doing
@@ -725,10 +823,11 @@ function_name <- function(input) {
   
 }
 
-
 ```
 
->In R, we use a function to make a function!
+<br>
+
+>**In R, we use a function to make a function!.**
 
 We use `function()` to create a function and assign it to the object `function_name`.
 
@@ -736,15 +835,18 @@ In the same way we use the `list()` function to create and return a list object,
 
 The keyword `return()` will return whatever value is after it. When the `return` statement is executed the function will stop at that line and return the given value. 
 
->No code after the return statement will be executed.
+>**No code after the return statement will be executed**
 
 Note that the keyword return is not necessary; but any function without a `return` statement will return a value of `None` - it will produce no output for future code to work with.
+
+***
+
+<br>
 
 ## Examples of basic functions
 
 ```{r}
 # Here is a simple function to add together two values and return the sum.
-
 function_sum_values <- function(value_1, value_2) { 
   
   result <- value_1 + value_2
@@ -759,24 +861,30 @@ Our new function `function_sum_values()` will exist in our global environment (p
 
 Let’s try using the function `function_sum_values()`, we term this "calling" a function.
 
+***
+
+<br>
+
 ### Calling Functions
 
 Calling user defined functions works the same way as calling the built-in functions we've used so far. Simply, type the function name followed by parentheses containing any required parameters.
 
 ```{r}
 # I can now run my function
-
 function_sum_values(1, 2)
 
 # Calling the function by itself prints the result to the console
-
 # Alternatively the result can be saved as a new variable
-
 my_result <- function_sum_values(1, 2)
 
+#To display the data
 my_result
 
 ```
+
+***
+
+<br>
 
 ### Functions with Multiple Arguements
 Functions can accept as many arguments as you like, but can only output one object (if it is necessary to output more than one object, then the desired outputs can be combined together into a list, and the list can be returned). above is a function that requires two input variables.
@@ -787,6 +895,10 @@ Therefore when `function_sum_values(1, 2)` is called, the arguments are interpre
 
 Alternatively, if we called called `function_sum_values(2, 1)` then the arguments would be interpreted as `value_1 = 2` and `value_2 = 1`.
 
+***
+
+<br>
+
 ### Named Arguments
 For more complicated functions with lots of arguments, specifying the arguments by position becomes more error-prone and harder to understand. Therefore it is often desirable to specify some or all of the arguments by name, then the order of the arguments doesn’t matter:
 
@@ -796,13 +908,15 @@ function_sum_values(value_1 = 1, value_2 = 2)
 
 ```
 
-## Exercise{.tabset .tabset-fade}
+***
 
->Creating Functions Exercise
+<br>
+
+## Exercise{.tabset .tabset-fade}
 
 ### **Exercise** {-}
 
-1. The `range()` in R, doesnt show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values.
+1. The `range()` in R, doesnt show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called `my_range` which return the difference between the highest value and the lowest value?
 
 ```{r}
 # Creating a vector
@@ -812,13 +926,18 @@ age <- c(10, 23, 30, 50)
 range(age)
 
 ```
- Can create a function called `my_range` which return the difference between the highest value and the lowest value?
+ 
+   
+***
+
+<br>
 
 ### **Hint**{-}
 
+1. The `range()` in R, doesnt show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called `my_range` which return the difference between the highest value and the lowest value?
+
 ```{r, eval=FALSE}
 # Creating my function
-
 my_range = function(input) {
   
   commands
@@ -836,11 +955,14 @@ base::range(input)
 my_range(input)
 ```
 
+***
+
+<br>
+
 ### **Show Answer**{-}
 
 ```{r}
 # Creating my function
-
 my_range = function(age){
   
   result <- base::max(age) - base::min(age) 
@@ -856,7 +978,11 @@ base::range(age)
 my_range(age)
 ```
 
-## Example
+***
+
+<br>
+
+## Example{-}
 
 **Pythagoras Function Example**
 
@@ -892,11 +1018,15 @@ find_the_hypotenuse(a_test, b_test)
 
 ```
 
+***
+
+<br>
+
 ## Exercise{.tabset .tabset-fade}
 
-> Creating Functions Exercise
 
 ### **Exercise**{-}
+
 Write a function which:
 
 1. **Converts from Fahrenheit to degrees Celsius using the equation below.**
@@ -914,6 +1044,10 @@ $$C=\frac{5}{9}(F - 32)$$
 * `fahrenheit_to_degrees_celsius(81.3)` returns: 
     + [1] 27.4
     
+
+***
+
+<br>
 
 
 ### **Hint**{-}
@@ -940,12 +1074,24 @@ fahrenheit_to_degrees_celsius(input)
 
 ```
 
+***
+
+<br>
+
 ### **Show Answer**{-}
 1. **Converts from Fahrenheit to degrees Celsius using the equation below.**
 
+
+<br>
+
+
 $$C=\frac{5}{9}(F-32)$$
 
-> Examples: 
+
+<br>
+
+
+>Examples:
 
 * `fahrenheit_to_degrees_celsius(32)` returns:
     + [1] 0
@@ -977,9 +1123,19 @@ fahrenheit_to_degrees_celsius(32)
 
 In short, arguments are things you pass to a function, when you call it, to enable the function to perform it's task.
 
-### Types of Arguments{-}
 
-#### Required Arguments{-}
+***
+
+<br>
+
+
+### **Types of Arguments**{-}
+
+***
+<br>
+
+
+#### **Required Arguments**{-}
 
 Like the name suggests, these are arguments which are required by a function and must be passed in the correct order.
 
@@ -991,14 +1147,18 @@ arithmetic <- function(a, b) {
 
 # Calling our function
 arithmetic(4, 9)
-# [1]  29127.11 
 ```
 
 `a` and `b` are both required arguments. We would get a missing error if we did not pass both arguments. 
 
->Also, `arithmetic(a, b) != arithmetic(b, a)` (in most cases!) 
+>**Also, `arithmetic(a, b) != arithmetic(b, a)` (in most cases!).** 
 
-#### Default arguments{-}
+***
+
+<br>
+
+
+#### **Default arguments**{-}
 
 This is where, in the function declaration, the value of the parameter is pre-set. The function will retain this value unless it is changed when the function is called.
     
@@ -1010,18 +1170,23 @@ arithmetic <- function(a, b = 1) {
 
 # Calling our function
 arithmetic(5)
-# [1]  5
+
 
 # Calling our function
 arithmetic(5, 2)
-# [1]  12.5
+
 ```
     
 In the example above the function will take `a = 5` and use the default value `b = 1`. Where as, in the example below, we overwrite `b = 1` by passing the argument `2`.
 
-#### Dot-dot-dot arguments{-}
+***
 
-> also known as the ellipsis argument.
+<br>
+
+
+#### **Dot-dot-dot arguments**{-}
+
+> **Also known as the ellipsis argument**
 
 You will often see in list of arguments a function takes, in the documentation, this `...`. This is a special argument which captures any number of arguments that aren't otherwise matched. 
 
@@ -1031,7 +1196,6 @@ Sometimes being able to pass an arbitrary number of arguments can be useful, esp
 ```{r}
 
 # This function produces a plot of x vs y
-
 plot_x_and_y <- function(x, y, ...) {
   
   plot(x, y, ...)
@@ -1045,7 +1209,6 @@ y <- (1:10) * 2
 
 
 # The function can be called with only the required arguments:
-
 plot_x_and_y(x, y)
 
 
@@ -1053,6 +1216,12 @@ plot_x_and_y(x, y)
 plot_x_and_y(x, y, col = 'red', type = 'l')
 
 ```
+
+***
+
+
+<br>
+
 
 ## Scope
 
@@ -1070,7 +1239,6 @@ Here is a classical example to demonstrate this.
 ```{r}
 
 # Creating a function
-
 example_function <- function() {
   z <- 10
   paste("This is z inside the function: ", z)
@@ -1088,11 +1256,20 @@ print(z)
 
 ```
 
+***
+
+<br>
 
 
 # Summary - Control Flow and Functions
 
-## Reminder of Learning Objectives
+<br>
+
+***
+
+## Reminder of Learning Objectives{-}
+
+<br>
 
 **You should now be able to**
 
@@ -1108,3 +1285,4 @@ print(z)
 * Understand programming concept of Loops.
 * Utilise loops and understand their place in R.
 
+***

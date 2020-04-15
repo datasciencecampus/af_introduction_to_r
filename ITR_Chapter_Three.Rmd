@@ -1,5 +1,5 @@
 ---
-title: "Intro to R - Importing Data"
+title: "Intro to R - Chapter Three"
 output:
   html_document: 
     theme: united
@@ -19,11 +19,17 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 ```
 
 
+<br>
+
+***
+# Importing Data{-}
 
 ***
 
+
 # Learning Objectives
-<br />
+
+<br>
 
 **The goal of this session is to:**
 
@@ -53,7 +59,7 @@ If you already have data related to the project in an existing directory, you ca
 
 To work on this project in the future, you can select **‘Open Project…’** or **‘Recent Projects’** from the File menu and browse to the desired project.
 
-> **This will ensure that your working directory will be set to the project folder, meaning you won’t have to worry about full file paths for data you are reading in or writing to that same folder.**
+This will ensure that your working directory will be set to the project folder, meaning you won’t have to worry about full file paths for data you are reading in or writing to that same folder.
 
 ***
 
@@ -72,19 +78,21 @@ It is good practice to organise your folders.
 
 As shown in the example below, where you include all files to a project in the same folder `Project A`
 
-<br />
+<br>
 
 ![](Images/level1.PNG)
 
-<br />
+<br>
 
 Within the folder, it is good practice to further organise your files within folders, as shown below.
 
->**The data folder would contain your raw and processed data.**
+* The data folder would contain your raw and processed data.
 
->**Images would contains any photos you are using.**
+* Images would contains any photos you are using.
 
->**Scripts would contain all the R files. You don't have to stick with this exact folder structure, you could add in additional folders, for example an output folder.** 
+* Scripts would contain all the R files. You don't have to stick with this exact folder structure, you could add in additional folders, for example an output folder.
+
+<br>
 
 ![](Images/level2.PNG)
 
@@ -105,11 +113,13 @@ A lot of this code has been around since R’s early days, back to when it was c
 In order to use a package, we first need to download it.  
 R installs packages from (CRAN)[ https://cran.r-project.org/] – **The Comprehensive R Network.**
 
->**Your department may have a slightly different way of installing packages.**
+Your department may have a slightly different way of installing packages.
 
 R has over 15,000 packages on CRAN, so it would be impossible to have them all downloaded on your machine. You can also install packages that are not part of CRAN; but please be aware of the source and quality, like any software these can damage your machine if they are malicious.
 
 ***
+
+<br>
 
 ## ONS Note!
 
@@ -117,11 +127,14 @@ Within ONS we use a mirrored version of CRAN on our software repository called *
 
 Behind the scenes our R installation is set to install from *Artifcactory* rather than *CRAN*. 
 
->**This requires our up to date windows username and password. Without this the package will not install. This is why it is important for ONS staff to make sure their password is up to date in either your settings or your .RProfile.**
+This requires our up to date windows username and password. Without this the package will not install. This is why it is important for ONS staff to make sure their password is up to date in either your settings or your .RProfile.
 
 ***
 
-## Installing Packages {.tabset .tabset-fade}
+
+<br>
+
+## Installing Packages
 
 To install a package, we use the code below. 
 
@@ -137,29 +150,18 @@ install.packages(“package_name”, dependencies = TRUE, type = “win.binary�
 ```
 
 
-
 <br>
 
- <style>
-div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
 
-**Installing Packages Exercise.**
+### Exercise{.tabset .tabset-fade}
 
 
-</div>
-
-
-
-***
-
-### **Exercise** {-}
+#### **Exercise** {-}
 
 1. Try installing the packages below using the **R console.**
 
 
-**Run them line by line – this makes it easy to spot any error messages.**
+   **Run them line by line – this makes it easy to spot any error messages.**
 
 
 * `“readr”`
@@ -172,10 +174,13 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 
 * `“ggplot2”`
 
+***
+
+<br>
 
 
 
-### **Show Answer** {-}
+#### **Show Answer** {-}
 
 ```{r, eval = F}
 # Installing packages
@@ -194,7 +199,7 @@ install.packages("ggplot2", dependencies = TRUE, type = "win.binary")
 ```
 <br>
 
->**Successful installation should finish with message as below.**
+>**Successful installation should finish with message as below, the last box, the rest are warnings which you will get sometimes**
 
 <br>
 
@@ -211,18 +216,19 @@ install.packages("readr", dependencies = TRUE, type = "win.binary")
 
 <br>
 
-## Loading Packages {.tabset .tabset-fade}
+
+## Loading Packages
 
 If you think of packages as owning a book. 
 
->**You purchase (install) the book once, and after that when you need to reference it you can pick it off your bookshelf.** 
+You purchase (install) the book once, and after that when you need to reference it you can pick it off your bookshelf. 
 
 In R we call this loading.
 
->**You should always load packages at the top of your script.**
+You should always load packages at the top of your script.
 
 To load a package, use the code below;
-<br>
+
 
 ```{r eval=FALSE}
 
@@ -232,21 +238,13 @@ library(package-name)
 
 >**Note here there are no quotes around the package name.**
 
-<br>
-
- <style>
-div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
-
-**Loading Packages Exercise.**
-
-
-</div>
 
 <br>
 
-### **Exercise** {-}
+
+### Exercise{.tabset .tabset-fade}
+
+#### **Exercise** {-}
 
 
 1. Now try to load the packages below.
@@ -255,7 +253,12 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 
 * `readxl`
 
-### **Show Answer** {-}
+***
+
+<br>
+
+
+#### **Show Answer** {-}
 
 ```{r, eval = F}
 
@@ -269,7 +272,7 @@ library(readxl)
 
 Now that we've loaded all of the packages in, there is one point that needs to be made about syntax.
 
->**When we start typing in a package name, R Studio will usually pop-up a window displaying the various functions available. The list of functions includes all base R functions along with all the functions from any libraries you have loaded in.**
+When we start typing in a package name, R Studio will usually pop-up a window displaying the various functions available. The list of functions includes all base R functions along with all the functions from any libraries you have loaded in.
 
 
 ```{r, eval = FALSE}
@@ -279,22 +282,22 @@ Now that we've loaded all of the packages in, there is one point that needs to b
 readr::
   
 readxl::
-  
-
-  
 ```
 
 We could select the function we want to use from the list and move on. 
 
-> **However, a problem arises when multiple functions from different libraries have identical names. It is not always clear which function you're referencing and implementing. We can avoid this by specifying the library before the function, like above.**
+However, a problem arises when multiple functions from different libraries have identical names. It is not always clear which function you're referencing and implementing. We can avoid this by specifying the library before the function, like above.
 
 R Studio will then only display functions available from that library. This ensures we are implementing the correct function and makes our code easier to understand for ourselves and others!
 
->**It is considered best practice to always spell out where an external function is coming from with `::` , particularly when writing production code.** 
-
-
+It is considered best practice to always spell out where an external function is coming from with `::` , particularly when writing production code.
 
 ***
+
+
+<br>
+
+
 
 ## When to load specific packages
 
@@ -306,6 +309,9 @@ We’re not using `ggplot2`, `dplyr` or `janitor` in these sessions so we are no
 
 ***
 
+<br>
+
+
 ##  R and Package Versions {.tabset .tabset-fade}
 
 You may have gotten a message that says,
@@ -314,13 +320,18 @@ You may have gotten a message that says,
 
 This means that we are using an older version of R than the one the package is built for.
 
+***
+
+<br>
+
 
 ### **Check R Version** {-}
 
-We can check our R version by running the command version in the console.
+We can check our R version by running the command version.
 
 ```{r}
-version
+#To check the version of R
+base::version
 ```
 
 
@@ -330,7 +341,10 @@ Dont worry if you are running an older version.
 
 Most packages are fully backwards compatible, so this is something to be aware of but we do not need to worry about it too much.
 
+***
+
 <br>
+
 
 ### **Check Package Version**{-}
 
@@ -347,7 +361,10 @@ If you are working collaboratively you should always check that you are all usin
 
 This helps with the reproducibility of your results and allows everyone on a team to work with the code.
 
+***
+
 <br>
+
 
 ### **Masked Objects**{-}
 
@@ -366,7 +383,122 @@ library(dplyr)
 
 ***
 
+
 <br>
+
+
+# Functions
+
+We have now used a few functions, we will go through a little bit more information about how they work. Please note that we will cover them in chapter 6 where we will get a chance to write our own functions.
+
+Functions follow the form:
+
+* `functionName(parameter = argument1, parameter = argument2, and so on)`
+
+Let's take a look at some of the built-in functions R has for carrying out basic statistics/analysis, starting with `seq()`. 
+
+
+***
+
+<br>
+
+
+## How functions work: the `seq()` function
+
+Let’s try using `seq()` which makes regular sequences of numbers, We used it in creating vectors. 
+
+Let's take a closer look at the help file for `seq()`.
+
+```{r Helpfile for seq(), eval = FALSE}
+
+?seq
+
+```
+
+
+<br>
+
+
+![](Images/Seq_helpfile.png){width=650px}
+
+***
+
+
+<br>
+
+
+## Function help files
+
+Every help file will have a series of sections describing what the function does. I generally focus first on: **Description**, **Usage**, **Arguments**, and **Examples**. 
+
+* **Description**
+
+For example, in the helpfile for `seq()` under **Description**, it tells us it is a function to "Generate regular sequences". 
+
+* **Usage**
+
+We can see that `seq()` takes the arguments `from`, `to`, and `by`, and the optional arguments `length.out` and `along.with`. 
+
+* **Arguments**
+
+Here, we can find out what these arguments are:
+
+  - `from, to`: the starting and maximal end values of the sequence.
+  - `by` number: increment of the sequence.
+
+
+***
+
+
+<br>
+
+
+## How are function arguments resolved?
+
+We used this function when creating vectors, like below.
+
+```{r}
+
+seq(from = 2, to = 6, by = 2)
+
+```
+
+
+
+What happens if we try:
+
+```{r}
+
+seq(1,10)
+```
+
+
+In the code we used above in sequence, we generated a sequence of numbers `from` 1 `to` 10. In this case we did not supply a value for `by`, so it took the default value, which in this case is 1.
+
+```{r How are function arguments resolved part 1}
+
+seq(10,1)
+
+```
+
+And what about:
+
+```{r How are function arguments resolved part 2}
+
+seq(to = 10, from = 1)
+
+```
+
+The above demonstrates something about how R resolves function arguments. You can always specify in `name = value` form. But if you do not, R attempts to resolve by position. 
+
+So above, first it is assumed that we want a sequence from = 1 that goes to = 10. Then if we swap the numbers it is assumed we want to sequence from = 10 that goes to = 1. If we name the arguments explicitly using `name = value`, the order of the arguments doesn't matter. 
+
+>**I would encourage you to specify the aguements and parameters as it makes your code easy to read**
+
+***
+
+<br>
+
 
 # Tidyverse
 
@@ -374,11 +506,14 @@ So far we have seen a quick introduction to base R with vectors being the buildi
 
 Now we will take a slight detour away from base R to the `tidyverse` which is a collection of various R packages.
 
->**The packages in `tidyverse` share a common philosophy for data manipulation and exploration so they work well together. We will see the what the majority of the family of packages in `tidyverse` have to offer, but not all.**
+The packages in `tidyverse` share a common philosophy for data manipulation and exploration so they work well together. We will see the what the majority of the family of packages in `tidyverse` have to offer, but not all.
 
 ***
 
-## Advantages
+<br>
+
+
+## Advantages{-}
 
 `tidyverse` is:
 
@@ -390,7 +525,9 @@ Now we will take a slight detour away from base R to the `tidyverse` which is a 
 
 * Open-source software and free to use. As are the books written by the `tidyverse` creator Hadley Wickham. 
 
-## Disadvantages
+<br>
+
+## Disadvantages{-}
 
 * Like R, `tidyverse` can have a steep learning curve, due to its flexibility. There are several ways to solve the same problem and it's not always clear which is best.
 
@@ -398,7 +535,10 @@ Now we will take a slight detour away from base R to the `tidyverse` which is a 
 
 ***
 
-## `tidyverse` Breakdown
+<br>
+
+
+## tidyverse Breakdown{-}
 
 Below is a list of the core packages in `tidyverse` to provide some awareness into what they make possible:
 
@@ -412,7 +552,7 @@ Below is a list of the core packages in `tidyverse` to provide some awareness in
 * [`purrr`](https://purrr.tidyverse.org/) - Functional Programming,
 
 
->**Note: The majority of the 'heavy lifting', with respect to data manipulation and exploration, will be done through the functions available through the `tidyverse` libraries. On some occasions, we will be using functions from other libraries.**
+Note: The majority of the 'heavy lifting', with respect to data manipulation and exploration, will be done through the functions available through the `tidyverse` libraries. On some occasions, we will be using functions from other libraries.
 
 ***
 
@@ -423,7 +563,11 @@ Below is a list of the core packages in `tidyverse` to provide some awareness in
 
 The **'working directory'** is the place that R will try to load files from, or save files to, without any more explicit instructions.
 
-## Checking Working Directory
+***
+
+<br>
+
+## Checking Working Directory{-}
 
 We can check the working directory by calling the function `getwd()`.
 
@@ -431,24 +575,17 @@ We can check the working directory by calling the function `getwd()`.
 # Getting the working directory
 getwd()
 ```
+
 <br>
 
 
 ### A Note on File Paths in R{-}
 
-<br>
-
- <style>
-div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
-
-**In windows file paths are specified using *back slashes*.**
-
-**In R a backslash already has a meaning, this means we use a forward slash or two back slashes instead.**
 
 
-</div>
+**In windows file paths are specified using back slashes,In R a backslash already has a meaning, this means we use a forward slash or two back slashes instead.**
+
+***
 
 <br>
 
@@ -465,11 +602,13 @@ setwd()
 
 >**Alternatively you could the keyboard short cut CTLR+SHIFT+H.**
 
-### Relative File Paths
+<br>
 
-We can also use what's called a **relative file path**. 
+### Relative File Paths{-}
 
-> **These file paths are relative to whatever the working directory is at the time.**
+We can also use what's called a relative file path. 
+
+These file paths are relative to whatever the working directory is at the time.
 
 Think of a file structure like a tree diagram. 
 
@@ -535,11 +674,16 @@ Here are a few other options for various file types:
 * `httr` - Web APIs,
 * `rvest` - HTML (Web Scraping)
 
+***
+
+<br>
+
+
 ## Readr
 
 The package provides a fast and friendly way to read data; csv, tsv formats, it converts the data into *tibbles*.
 
->**For this section we are going to use the `read_csv` function.** 
+For this section we are going to use the `read_csv` function.
 
 ```{r, eval = FALSE}
 
@@ -549,7 +693,7 @@ readr::read_csv()
 
 
 
-Before loading your data you need to know,
+Before importing your data you need to know,
 
 * Where it is stored?
 
@@ -566,6 +710,9 @@ The code below demonstrates how you can read csv data.
 dataframe_name <- readr::read_csv("file_path")
 ```
 
+
+<br>
+
 **Things To Keep in Mind**
 
 `readr` will assume that the first row of your data is the headings of the columns.
@@ -574,7 +721,12 @@ dataframe_name <- readr::read_csv("file_path")
 
 It is good practise to check your column data types, just in case R chose the wrong type automatically.
 
-## Example {.tabset .tabset-fade}
+***
+
+<br>
+
+
+## Example 
 
 Load the titanic data using the code below,
 
@@ -599,6 +751,10 @@ To look at the data in R we use the `View` command as below.
 base::View(titanic)
 ```
 
+
+<br>
+
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
 library(kableExtra)
@@ -614,19 +770,12 @@ titanic %>%
 ```
 
 
-<br>
-
- <style>
-div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
-
-**Importing CSV Data Exercise.**
-
-
-</div>
+***
 
 <br>
+
+
+## Exercise{.tabset .tabset-fade}
 
 
 
@@ -641,7 +790,10 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 
 3. Then `View` the column in R to see the data type R has set it to be.
 
+***
+
 <br>
+
 
 ### **Show Answer**{-}
 
@@ -654,21 +806,21 @@ div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
 3. Then `View` the column in R to see the data type R has set it to be.
 
 
-* The data is numeric data.
+<br>
 
 
-* We can see that R has classed the column as character because of the `NULL` within it.
+The data is numeric data.
 
 
-> **We can easily correct this by adding an additional argument when the reading the data to specify that `NULL` is a missing value.**
+We can see that R has classed the column as character because of the `NULL` within it.
+
+
+We can easily correct this by adding an additional argument when the reading the data to specify that `NULL` is a missing value.
 
 
 The code below, can be read as;
 
 > **Where there is nothing (""), a blank space (" ") and "NULL", class is it as a missing value.**
-
-> **We can now see that the NULL's in the age column have been replaced with NA's and the data has been read is as numerical data.**
-
 
 
 ```{r}
@@ -682,6 +834,10 @@ titanic <- readr::read_csv("D:/Git/Intro_to_R_Refresh/Data/titanic.csv",
 
 ```
 
+
+<br>
+
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
 titanic %>% 
@@ -691,11 +847,19 @@ titanic %>%
 
 
 ```
-<br>
 
-> **On this instance our missing values have been classed as NULL, missing values in other datasets can be classed as other symbols or words. e.g -, -9,**
 
 <br>
+
+
+We can now see that the NULL's in the age column have been replaced with NA's and the data has been read is as numerical data.
+
+On this instance our missing values have been classed as NULL, missing values in other datasets can be classed as other symbols or words. e.g -, -9,
+
+***
+
+<br>
+
 
 ## Readxl
 
@@ -706,14 +870,14 @@ The code below demonstrates how you can read excel data.
 
 
 ```{r eval=FALSE}
-dataframe_name <- read_excel("file_path")
+dataframe_name <- readxl::read_excel("file_path")
 ```  
 
 One handy thing to know is the `excel_sheets()` function.
 
 
 
-> **As excel files often have multiple sheets, this function will provide the names without having to open the file.**
+As excel files often have multiple sheets, this function will provide the names without having to open the file.
 
 We run this function with the code below:
 
@@ -723,7 +887,11 @@ We run this function with the code below:
 readxl::excel_sheets("filePath")
 ```
 
-## Example {.tabset .tabset-fade}
+***
+
+<br>
+
+## Example 
 
 
 1. Read in the excel file Police data.
@@ -748,19 +916,13 @@ police_data <- readxl::read_excel("Data/police_data.xlsx")
 readxl::excel_sheets("Data/police_data.xlsx")
 ```
 
-<br>
-
- <style>
-div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
-
-**Importing Excel Data Exercise.**
-
-
-</div>
+***
 
 <br>
+
+
+## Exercise{.tabset .tabset-fade}
+
 
 
 
@@ -774,7 +936,7 @@ After reading in the file our data should look like this.
 
 <br>
 
-This is the first sheet in our excel which is just the notes.
+This is the first sheet in our excel which is just the `Notes`.
 
 
 If we dont specify which sheet, the default setting from readxl is to give us the first sheet.
@@ -784,6 +946,8 @@ If we dont specify which sheet, the default setting from readxl is to give us th
 
 
 >**HINT - look at the help documentation, maybe something that talks about "sheet"**
+
+***
 
 <br>
 
@@ -844,10 +1008,13 @@ police_data <- readxl::read_excel("Data/police_data.xlsx",
 police_data %>% 
   kable() %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
-  scroll_box(width = "100", height = "500px")
+  scroll_box(width = "100", height = "700px")
 ```
 
+***
+
 <br>
+
 
 ## Reading Url Files
 
@@ -861,6 +1028,8 @@ You can also read in URLs, see code below.
 school <- readr::read_csv(url("https://share.sp.ons.statistics.gov.uk/sites/KLC/LeAc/AnLe/CPD_Shared/Programming_Courses/R_Intro_Ruth/schools_inspection_data.csv")
                   
 ``` 
+
+***
 
 <br>
 
@@ -890,10 +1059,12 @@ readr::write_csv(police_data, path = "Data/test.csv")
 
 Our data frame `police_data` would now be stored as `test.csv` in the `/Data/` folder.
 
+***
+
 <br>
 
 
-# Inspecting  the Data {.tabset .tabset-fade}
+# Inspecting  the Data
 
 
 After importing our data, The first thing we may want to do is have a quick look at it to check it looks how we expect it to.
@@ -904,22 +1075,14 @@ We can do this by typing the commands below.
 
 **Have a play around with each command and see if you can figure out what they are doing.**
 
-<br>
-
- <style>
-div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
-
-**Data Exploration Exercise.**
-
-
-</div>
+***
 
 <br>
 
+## Exercise{.tabset .tabset-fade}
 
-## Functions {-}
+
+### **Functions** {-}
 
 ```{r eval=FALSE}
 # Inspecting our data
@@ -940,19 +1103,24 @@ base::nrow(titanic)
 
 base::ncol(titanic)
 
+base::names(titanic)
+
 base::titanic[1,1] 
 
 base::titanic[3:6,] 
 
 # Type the code below and press tab
 titanic$
+  
+base::unique(titanic$Pclass)
 
 
 ```
+***
 
 <br>
 
-## Show Answer {-}
+### Show Answer {-}
 
 ```{r eval=FALSE}
 
@@ -976,6 +1144,8 @@ base::nrow(titanic) # Number of rows
 
 base::ncol(titanic) # Number of columns
 
+base::names(titanic) # Names of columns
+
 # selecting elements
 
 school[1,1] # selecting the first row and column
@@ -984,15 +1154,16 @@ school[3:6,] # selecting row 3 to 6 and all columns
 
 titanic$age_of_passenger # selecting a column from the dataset
 
+base::unique(titanic$Pclass) #Tells us the unique elements of a variable.
+
 
 ```
 
+***
+
 <br>
 
-# Summary
-
-
-## Reminder of Learning Objectives{-}
+# Summary - Importing Data{-}
 
 
 So far we have gone through
@@ -1003,6 +1174,8 @@ So far we have gone through
     + How to install them
     + How to load them
     + How to check the versions
+    
+ * Functions, how they work.
  
  * Quick description of what the `tidyverse` is.
  
@@ -1023,20 +1196,12 @@ So far we have gone through
 
 <br>
 
-# Next Chapter
+# Next Chapter{-}
 
-<br>
 
- <style>
-div.blue { background-color:#FFA07A; border-radius: 5px; padding: 20px;}
-</style>
-<div class = "blue">
+***
 
 **In the next chapter we will look at Data Manipulation.**
-
-
-</div>
-
 
 *** 
  
