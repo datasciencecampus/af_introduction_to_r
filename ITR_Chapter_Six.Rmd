@@ -1,4 +1,4 @@
----
+﻿---
 title: "Intro to R - Chapter Six "
 output:
   html_document: 
@@ -33,7 +33,7 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 
 * Be able to use conditional statements: *if*, *else* and *else if*.
 
-* Be able to use loops: *for* loops and *while* loops
+* Be able to use loops: *for* loops and *while* loops.
 
 * Learn what functions are.
 
@@ -52,7 +52,9 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 
 Loops are a fundamental concept in traditional programming languages. 
 
->**A loop is a way to repeat a number commands until a given condition is met.**
+
+A loop is a way to repeat a number commands until a given condition is met.
+
 
 Since R is a vectorised language, loops are not as prominently used in R as in Python for example. Despite this, they are key to programming in general and can save you lot's of time and typing in certain cases.
 
@@ -74,7 +76,7 @@ We are going to look at two types of loops.
 
 These are the most common type.
 
-They follow the basic structure below,
+They follow the basic structure below.
 
 
 ```{r, eval=FALSE}
@@ -96,30 +98,35 @@ for (Variable in Vector) {
 
 <br>
 
-* So we start with creating an empty vector for our output.
+
+* First we create an empty vector for our output.
+
 
 >**Before you start the loop, you should allocate sufficient space for the output.**
 
-* And then start with the word `for`
+* Then we start with the loop with the word `for`,
 
-* followed by `()` brackets where we specify an index variable, `i` is commonly used but it can be anything that you want. This is a placeholder and will correspond to a different element for each part of the loop.
+* Followed by `()` brackets where we specify an index variable, `i` is commonly used but it can be anything that you want. This is a placeholder and will correspond to a different element for each part of the loop,
 
-* then the word `in`
+* Then the word `in`.
 
-* then specify an iterable. In this case it is `Vector`, could be a list, dataframe etc
+* Then specify an iterable. In this case, it is `Vector`, could be a list, dataframe etc,
 
-* followed by the `{}` curly brackets, which will have our commands, these could be multiple lines of code.
+* Followed by the `{}` curly brackets, which will have our commands, these could be multiple lines of code.
 
 
->**An iterable is an object that can be iterated through, one element at a time. Lists and vectors are both iterables.**
-
-***
 
 <br>
 
 ### Example{-}
 
-lets look at an example.
+
+>An iterable is an object that can be iterated through, one element at a time. Lists and vectors are both iterable.
+
+***
+
+let's look at an example.
+
 
 
 We start by creating an iterable, I have created a vector with **numbers between 0 and 5**.
@@ -160,9 +167,9 @@ The keyword `for` is followed by a variable that refers to each item in my itera
 
 >**You’ll often see letters like `i` used here, which is not particularly clear.**
 
-The keyword in is followed by the iterable I want to loop over (here it is `example_vector`).
+The keyword `in` is followed by the iterable I want to loop over (here it is `example_vector`).
 
-My Command are assigned to `result`. The command here is to multiply each number in `example_vector` by 2.
+My Command is assigned to `result`. The command here is to multiply each number in `example_vector` by 2.
 
 
 `Append()` function simply adds an element to a vector, We first specify the vector we want to add to which is `result` and then specify the values that we want to add to it, here its specified by `values=`.
@@ -177,7 +184,7 @@ Loops suppress output, unless explicitly `print()`ed out.
 
 ## While loops
 
-Our other type of loops are `while` loops.
+Our other type of loops is `while` loops.
 
 `for` loops iterate a set amount of times, or over a set number of things. A `while` loop iterates until it no longer meets a certain condition.
 
@@ -208,7 +215,8 @@ result
  
 * followed by the `()` brackets in which we specify our logical condition, using the **conditional operators**.
 
-* and then `{}`, which surrounds our commands. These commands will be run repeatedly in order as long as the specified condtion is `TRUE`.
+* and then `{}`, which surrounds our commands. These commands will be run repeatedly in order as long as the specified condition is `TRUE`.
+
 
 ***
 
@@ -216,11 +224,13 @@ result
 
 ### Example{-}
 
-lets look at an example:
+
+let's look at an example:
+
 
 - If we say `stop_value` is assigned to 0.
 
-- and we set out condtion to be `stop_value < 5`
+- and we set out condition to be `stop_value < 5`
 
 - then print `stop_value`
 
@@ -296,7 +306,7 @@ Although it is useful to know how to use loops in R, it is often faster to accom
 
 - Assign the value of a variable `temperature` to be 40.
 
-- The condition of the `while` loop, should check if the temperature is higher than `20`
+- The condition of the `while` loop should check if the temperature is higher than `20`
 
 - The first command in the body should print out `"Its way too hot!"`
 
@@ -313,7 +323,7 @@ Although it is useful to know how to use loops in R, it is often faster to accom
 
 - Assign the value of a variable `temperature` to be 40.
 
-- The condition of the `while` loop, should check if the temperature is higher than `20`
+- The condition of the `while` loop should check if the temperature is higher than `20`
 
 - The first command in the body should print out `"Its way too hot!"`
 
@@ -352,7 +362,7 @@ result
 
 - Assign the value of a variable `temperature` to be 40.
 
-- The condition of the `while` loop, should check if the temperature is higher than `20`
+- The condition of the `while` loop should check if the temperature is higher than `20`
 
 - The first command in the body should print out `"Its way too hot!"`
 
@@ -390,7 +400,7 @@ result
 
 A conditional statement will check whether a condition is TRUE or FALSE.
 
-So, if our statement meets this criteria apply this action, otherwise do nothing.
+So, if our statement meets this criterion apply this action, otherwise do nothing.
 
 This is useful if we want a function to run only when our data meets certain conditions, this is termed `control flow`.
 
@@ -422,10 +432,12 @@ We use comparison and logical operators.
 |    !    | Not|
 
 
+
 <br>
 
 
-You might want an action to be perfomed depending on the outcome, to be able to do this in R, we use the;
+You might want an action to be performed depending on the outcome, to be able to do this in R, we use the:
+
 
 - *if* statement
 
@@ -439,7 +451,7 @@ These take a conditional argument, and if that is met (evaluates to `True`) then
 
 If the condition is not met it will move to an `else if` (if present) and if that condition is met the associated action will be completed.
 
-Finally, if none of the conditions are met the actions for the `else` condition are met.
+Finally, if none of the conditions is met the actions for the `else` condition is met.
 
 
 
@@ -473,7 +485,7 @@ if (first logical condition) {
 
 We can just have an `if` and an `else`.
 
-Lets look at an example.
+Let's look at an example.
 
 ```{r}
 
@@ -519,10 +531,13 @@ if (height == 5) {
 ```
 
 
+
 <br>
 
 
-Within these we can use our logical operators too - `&` (and), `|` (or).
+
+Within these we can use our logical operators too: `&` (and); `|` (or).
+
 
 Here we want the action to happen if the value is greater than 7 and less than 10.
 
@@ -1228,9 +1243,9 @@ plot_x_and_y(x, y, col = 'red', type = 'l')
 It’s important to notice here that the variables I create within my functions are not available outside of my function.
 
 
-In R storage is broken down into environments and then scopes. Most of the time you'll be working in the global environment (right hand panel).
+In R storage is broken down into environments and then scopes. Most of the time you'll be working in the global environment (right-hand panel).
 
-In the global environment there are two types of scopes, _global_ and _local_. Variables that have _global_ scope are visible everywhere - in every function, loop, conditional, basically every part of the code. However, variables that have _local_ scope are only visible inside said scope and hence can only be used within that local scope.
+In the global environment, there are two types of scopes, _global_ and _local_. Variables that have _global_ scope are visible everywhere - in every function, loop, conditional, basically every part of the code. However, variables that have _local_ scope are only visible inside said the scope and hence can only be used within that local scope.
 
 When we create a new function we effectively create a new local scope – so the variables we declare within our functions are only available within that local scope.
 
@@ -1282,7 +1297,7 @@ print(z)
     * i.e. Global scope vs Local scope
 * Write and apply user defined functions.
 * Apply functions to `vector` and `tibble` objects.
-* Understand programming concept of Loops.
+* Understand the programming concept of Loops.
 * Utilise loops and understand their place in R.
 
 ***
