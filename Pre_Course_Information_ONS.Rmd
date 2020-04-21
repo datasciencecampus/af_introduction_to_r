@@ -15,9 +15,13 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
                style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
 ```
 
+<br>
 
+***
 
-## General Information
+<br>
+
+# General Information
 
 This is an introductory level course for Introduction to R. This course will cover basic concepts and give you the confidence to work independently.
 
@@ -27,15 +31,16 @@ It is essential that you have frequent opportunities to practice what you have l
 
 The 2-day course involves practical exercises throughout and coursework which should be completed ready for the second day. 
 
-There is also a session on the second day to play with your own data.
 
 ***
 
-## Pre-Course Checklist:
+<br>
+
+# Pre-Course Checklist:
 
 * Install the new RStudio bundle on your laptop `(see instructions below)`
 
-* Complete this pre-course questionnaire: [Smart Survey](https://www.smartsurvey.co.uk/s/7L80I/)  
+* Install packages `(see instructions below)`
 
 * Bring your laptop, charger, and your WIFI connector (contact Learning Academy immediately if you do not have a laptop).
 
@@ -45,35 +50,49 @@ There is also a session on the second day to play with your own data.
 
 ***
 
-## Install R and R studio via the Service Desk:
+<br>
 
-I want something > Other > Other – Item not listed.
+# Install R and R studio via the Service Desk:
 
+* I want something > Other > Other – Item not listed.
+
+<br>
 
 ![](Images/installR.PNG)
 
+<br>
 
-In the box enter the text:
 
-“Hi, Please can I have the New RStudio Bundle?
+* In the box enter the text:
 
-My ID is <your id>
+   “Hi, Please can I have the New RStudio Bundle?
 
-My asset number is <ONS……>
+     My ID is <your id>
 
-“As agreed with Management, the new RStudio Bundle has to be installed to the end-user’ 
+     My asset number is <ONS……>
 
-ONS Laptop”
+   “As agreed with Management, the new RStudio Bundle has to be installed to the end-user’ 
 
-Thanks”
+     ONS Laptop”
 
-### Set up R Studio
+     Thanks”
+
+***
+
+<br>
+
+## Set up R Studio{.tabset .tabset-fade}
+
+### New Bundle{-}
 
 The [Wiki pages](https://collaborate2.ons.gov.uk/confluence/display/WIKIRS/1+-+RStudio+New+Bundle) (section 1.2) will help you to self install and run RStudio on your machine once your service desk request has been completed. 
 
 Please email Enterprise.Group@ons.gov.uk if you cannot access this page, and with any issues you have with your RStudio install.
 
-### Get Artifactory Hashed Password
+***
+<br>
+
+#### **Get Artifactory Hashed Password**{-}
 
 Artifactory is used to store all available packages, and must be linked to your RStudio install. 
 
@@ -93,7 +112,11 @@ Once logged into artifactory,
 
 Now this is on your clipboard, it is ready to use in RStudio
 
-### Running RStudio
+***
+
+<br>
+
+#### **Running RStudio**{-}
 
 * Double click the RStudio shortcut on your desktop, and press Open on the warning popup.
 
@@ -106,10 +129,15 @@ Now this is on your clipboard, it is ready to use in RStudio
 * Select R.3.4.0 from the New Library drop down menu on the right hand side. 
 Press Save, and then, Run Application. 
 
+<br>
 
 **Note: Any time you change your windows password you will need to generate a new hashed password from artifactory and replace the old version by following the instructions for Get Artifactory Hashed Password and Running RStudio again.** 
 
-### Old R Studio Install Instructions
+***
+
+<br>
+
+### Old R Studio Install Instructions{-}
 
 This set up will allow you to download and install packages for R if you have the old RStudio install rather than the new bundle.
 
@@ -143,35 +171,181 @@ Make sure it has the dot at the front!
 
 **You need to always start R from the pin in your start menu.**
 
+***
 
-## Course Materials
+<br>
+
+## Installing Packages
+
+***
+
+### Open R Studio
+
+Once installed, RStudio should be accessible from the start menu. Start up RStudio. 
+Once running it should look something like:
+
+![Image showing the pane layout in Rstudio](Images/studio2.PNG)
+
+<br>
+
+If you dont see the **Code editor pane**, go to the tool bar and click **View -> Panes -> Show All Panes**.
+
+***
+
+### Find “Console” Pane
+
+By default the console window will be on the left side of RStudio. Find that pane.
+
+***
+
+### Installing Packages
+
+To installs the packages, type **EXACTLY** the code below in the console and then press `Enter`. 
 
 
-### Example Data Sets
+>**It is important we use this WHOLE line of code every time we install a package.**
 
-During the course we will be exploring many of the data sets built into R you can find these by typing data() into the console in RStudio.
-We will also be using the following files: 
 
-* schools data
+```{r warning=FALSE, eval=FALSE}
+# Installing packages
 
-* Joining Data 1 
+install.packages("tidyverse", dependencies = TRUE, type = "win.binary")
 
-* Joining Data 2
+install.packages("readxl", dependencies = TRUE, type = "win.binary")
 
-* Police Data. 
+install.packages("janitor", dependencies = TRUE, type = "win.binary")
 
-These are avaialable on the drive, Intro to R - Data.
+```
 
-Please save them somewhere appropriate. 
+<br>
 
-### Course Files
+>**Successful installation should finish with message as below, the last box.**
 
-You may also wish to access the course for answers during the course. 
+```{r echo=FALSE, warning=FALSE}
+# Installing packages
 
-These can be found in the “Sessions” folder. 
+install.packages("tidyverse", dependencies = TRUE, type = "win.binary")
 
-The training material is also avalible in the “Course Materials” folder.
-These and the data are accessible from the Intro to R folder in the Shared Network Drive.
+install.packages("readxl", dependencies = TRUE, type = "win.binary")
+
+install.packages("janitor", dependencies = TRUE, type = "win.binary")
+
+```
+
+
+<br>
+
+If you have any issues with this section try and find some help from someone who uses R in your area or contact **GSS Training team – gss.capability@statistics.gov.uk**. Please be aware that due to training commitments there may be a small wait before we respond to your query. We also expect that you have attempted to solve your query yourself before contacting us.
+
+
+***
+
+<br>
+
+# Course Materials
+
+A folder containing the dataset and teaching files to course will be provided, please download and unzip this to folder you are familiar with.
+
+
+***
+
+<br>
+
+# Course Overview
+
+The course is divided into 6 chapters, over the 2 days we will cover,
+
+1. **Chapter one - The Basics**
+
+    * Be familiar with R Studio.
+    
+    * RStudio environment, layout, and customization.
+    
+    * Understand the Key Benefits of using R.
+    
+    * How to run code in R.
+    
+    * Know where to get help.
+    
+    * Discover R’s data types.
+    
+    * Be able to create Variables.
+    
+<br>    
+    
+2. **Chapter two - Data Structures**
+
+    * Be familiar with data structures in R.
+    
+    * Understand how vectors operate.
+    
+    * Be familiar with lists.
+    
+    * Be familiar with data frames and tibbles.
+    
+<br>    
+    
+    
+3. **Chapter three - Packages and Importing Data**
+
+    * Organise our work
+    
+    * Have an understanding of what packages are.
+    
+    * Be able to load and install a package.
+    
+    * Be able to check package versions and R version.
+    
+    * Be able to import data from multiple formats.
+    
+    * Be able to inspect loaded data and select elements within the data frame.
+    
+    * Be able to export data.
+    
+    * Be able to explore data.
+    
+<br>
+
+4. **Chapter four - Data Manipulation**
+
+
+    * Understand the importance of clean variable names.
+
+    * Be able to clean column names using `janitor`or `gsub`.
+
+    * Be able to sort data.
+
+    * Be able to `select` data.
+
+    * Be able to `filter` data.
+
+    * Be able to use the `mutate` function and use the pipe operator.
+
+    * Be able to join data.
+    
+    
+5. **Chapter five - Summary Statistics and Aggregation**
+
+    * Describe numeric and categorical data
+
+    * Aggregate and data
+
+<br>    
+    
+6. **Chapter Six - Control Flow and Functions**
+
+    * Be able to use conditional statements: *if*, *else* and *else if*.
+
+    * Be able to use loops: *for* loops and *while* loops.
+
+    * Learn what functions are.
+
+    * Understand why we need to use functions.
+
+    * Be able to write functions.
+
+    * Have a basic understanding of scoping within functions.
+
 
 
 

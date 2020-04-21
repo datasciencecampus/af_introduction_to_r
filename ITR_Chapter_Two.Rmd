@@ -303,9 +303,16 @@ movies_and_numbers <- c(favourite_movies, lucky_numbers)
 
 ```{r}
 # This exercise is about vectors
-favourite_movies <- c("Frozen", "The Lion King", "Moana", "The Dark Knight")  
+favourite_movies <- c("Frozen", "The Lion King", "Moana", "The Dark Knight") 
+
+# To display the data
+favourite_movies
   
-lucky_numbers <- c(7, 12, 15, 1)     
+lucky_numbers <- c(7, 12, 15, 1)  
+
+# To display the data
+lucky_numbers
+
 
 # combining the 2 vectors
 movies_and_numbers <- c(favourite_movies, lucky_numbers)
@@ -511,11 +518,6 @@ Above we have selected the 1st, 3rd and 4th elements from `favourite_movies` in 
 
 4. Select Tuesday and Thursday.
 
-```{r, eval=FALSE}
-#Creating a vector
-days_of_the_week <- c("mon", "tue", "wed", "thur", "frid", "sat", "sun") 
-```
-
 ***
 
 <br>
@@ -583,7 +585,7 @@ To create a list we will use the `list()` function.
 
 ```{r}
 # Creating a list
-list(1,2,3,4,'character',5)
+list(1,4,'character',5)
 ```
 As you can see above, our numeric values remain numeric, and character string value remained a character. 
 
@@ -621,7 +623,7 @@ favourite_movies <- c("Frozen", "The Lion King", "Moana", "The Dark Knight")
 lucky_numbers <- c(7, 12, 15, 1) 
 
 # Creating a list
-my_list_of_movies_and_numbers <- list(content of favourite_movies and lucky_numbers) 
+my_list_of_movies_and_numbers <- list() 
 
 ```
 

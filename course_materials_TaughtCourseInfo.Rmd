@@ -1,0 +1,65 @@
+---
+title: "Intro to R"
+output:
+  html_document: 
+    theme: united
+    highlight: tango
+    toc: yes
+    toc_float: yes
+    number_sections: true
+
+---
+```{r, echo=FALSE}
+htmltools::img(src = knitr::image_uri("images/LATree.png"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:60px; width:400px;')
+```
+
+# WiFi details
+
+Gov Wifi is reliable - if you have already signed up.
+
+Otherwise:
+
+Username - ONS Guest
+Password - onsguestaccess
+
+Password will need to be input into a webpage. This should launch automatically - please ask for assistance.
+
+# Incidentals
+
+![\incidentals](images/incidentals.png)
+
+## Fire Alarm / Fire Alarm Tests
+
+If a fire alarm sounds and it is not a system test, please follow your trainer to the nearest fire espace. Please leave all belongings behind. Please assemble at your assembly point. Visitors will be guided to the relavant place.
+
+## Toilets
+
+Please note the location of the nearest male, female and accessible/gender neutral toilets.
+
+## Prayer/ Mediation Room
+
+Please note the location of the nearest Prayer/Meditation room.
+
+These have an "occupied" / "not occupied" slider.
+
+Please be aware that at busy times there may be a wait for these facilities. Please be patient and respectful of others right to use these rooms.
+
+## Mobile Phones
+
+Please leave the room if you need to make/take a call. Please be mindful of other working areas near training rooms.
+
+## Timings
+
+Course timings are all aproximate.
+Courses will include a morning break, lunch break and afternoon break.
+
+# Getting to Know You
+
+![\icebreaker](images/icebreaker.jpg)
+
+* Who are you?
+* Where are you from, What do you do?
+* Any previous coding experience
+* Why are you on the course today?

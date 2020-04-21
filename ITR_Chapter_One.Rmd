@@ -867,7 +867,7 @@ some.people.use.periods
 
 ```
 
-We have more detailed examples and information on good variables names in our other course **Best Practice in Programming for Data Scientists**
+We have more detailed examples and information on good variables names in our other course **Best Practice in Programming -  Clean Code**
 
 ***
 
@@ -878,7 +878,7 @@ We have more detailed examples and information on good variables names in our ot
 
 ### **Exercise**{-}
 
-1.Why does this code not work?
+1. Why does this code not work?
 
 ```{r,eval=FALSE}
 
@@ -894,18 +894,17 @@ my_varIable
 #1. Time?
 Time <- 30
 
-
 #2. distance?
 distance <- 10
 
 #3. Time?
-Time <- 30*2
+Time <- 30 * 2
 
 #4. distance
 distance <- distance + 5
 
 #5. speed
-speed <- distance/Time
+speed <- distance / Time
 
 
 
@@ -1109,7 +1108,7 @@ Within ONS we have two groups on Yammer,
 
 <br>
 
-## The **GSS Training team – gss.capability@ons.gov.uk**
+## The **GSS Training team – gss.capability@statistics.gov.uk**
 
 If you have any issues with this course; or notice any errors, please contact the training team on the email above. The training team are also here to help with any R questions you have after you have completed the course.
 
