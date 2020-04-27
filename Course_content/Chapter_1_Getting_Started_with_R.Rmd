@@ -10,7 +10,7 @@ output:
 ---
 
 ```{r, echo=FALSE}
-htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+htmltools::img(src = knitr::image_uri("../Images/LATree.PNG"),
                alt = 'logo', 
                style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
 ```
@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 ***
-# The Basics{-}
+# Getting Started with R{-}
 
 ***
 
@@ -89,7 +89,7 @@ When we open R Studio for the first time, we’re likely to see this:
 <br>
 
 
-![Image showing the pane layout in Rstudio](Images/studio2.PNG)
+![Image showing the pane layout in Rstudio](../Images/studio2.PNG)
 
 
 <br>
@@ -131,7 +131,7 @@ To change this setting go to **Tools -> Global Options -> “Save workspace to .
 
 <br>
 
-![Image showing the workspace in Rstudio](Images/workspace.PNG) 
+![Image showing the workspace in Rstudio](../Images/workspace.PNG) 
 
 
 <br>
@@ -474,24 +474,27 @@ Functions in R can are a word followed by a set of parentheses, like so: print()
 Let’s see what they do:
 
 ```{r}
-#Calculating the square root of 9
-#using built in function sqrt()
+# Calculating the square root of 9
+# Using built in function sqrt()
+
 sqrt(9)
 
 
-#using built in function round()
+# Using built in function round()
+
 round(3.6357)
 
 ```
 
-You can specify what you the want a function to exactly do with what we call a parameter and argument. This is specified within the brackets of the function. We  will talk more about parameters and arguments(inputs) in chapter 6, 
+You can specify what you the want a function to exactly do with what we call an argument. This is specified within the brackets of the function. We  will talk more about arguments in chapter 6, 
 
-The inputs of function is called a parameter and what we specify is called an argument.
+The inputs of function is called an argument and what we specify is called a value .
 
-**A parameter is a name or a label for an argument that follows it**. e.g in the round function below our parameter is `digits` and our `arguement` is 2.
+**A argument is a name or a label for a value that follows it**. e.g in the round function below our `arguement` is `digits` and our `value` is 2.
 
 ```{r}
-#using built in function round()
+# Using built in function round()
+
 round(3.6357, digits = 2)
 ```
 
@@ -757,55 +760,133 @@ We will look at some other ways to do convert types later in the course.
 
 # Variable Assignment
 
+Everything in R is an object, We can assign these objects names, this is called a variable.
+
 Variables are an integral part of any programming language. Variables allow us to store and label data under a specific name. It is like a place holder, used to store information. Think of it as a container, they main purpose is to label and store the data in memory.
 
-R has a lot of flexibility when it comes to variable assignment. We can assign a value to name (or label) using `=` operator or `<-` and `->` operators. 
+R has a lot of flexibility when it comes to variable assignment.
 
-Here are a few examples of them in action:
+We assign variables using the assignemt operator `<-`.
 
-* `my_first_variable = value`
-* `my_first_variable <- value`
-* `value -> my_first_variable`
+>**Short cut keys Alt + Minus**
 
-Where `weight_kg` is the variable name and `value` is the data being assigned to `weight_kg`. 
+RStudio automatically surrounds `<-` with spaces, which is a good code formatting practice.
+
+For example below; where `weight_kg` is the variable name and `value` being assigned to it is `60`. 
 
 ```{r}
-#To assign a variable
+# To assign a variable
+
 weight_kg <- 60
 ```
 
 When reading that code say `“weight_kg  gets the value 60”` in your head.
 
-Once an object has been created it will appear in your Environment window which helps you keep track of what objects you have in your current workspace.(The top right pane)
-
+Once an object has been created it will appear in your Environment window which helps you keep track of what objects you have in your current workspace.(The top right pane).
 
 
 After the assignment, to access or use the value we simply reference `weight_kg` in our code. 
 ```{r}
-#To assign a variable
+# To assign a variable
+
 weight_kg <- 60
 
 
-#To display the variable
+# To display the variable
+
 weight_kg
 ```
 
-We can use in mathematical operations. Here we are using `weight_kg` to calculate `weight_lb`.
+If you wanted to display that a bit better you could use the `cat()` function like below, the `\n` starts a new line.
+```{r}
+# Using the cat() function to display our result
+
+cat('my weight is', sep = '\n', weight_kg)
+```
+
+
+We can use our variables in mathematical operations. Here we are using `weight_kg` to calculate `weight_lb`.
 
 
 ```{r}
-#Multiplication using our variable name
+# Multiplication using our variable name
+
 weight_lb <- weight_kg * 2.2
 
-#To display the variable
+# To display the variable
+
 weight_lb
+```
+
+
+If we ever want to reassign a variable we would simply use the operators above again. 
+
+For example: I am assigning height as 5.
+
+```{r}
+# To assign a variable
+
+height <- 5
+
+# To display the variable
+
+height
+
+```
+
+Using the same variable name will overwrite the previously assigned variable.
+Now am reassigning height which was assigned to 5 to 7.
+
+This will overwrite our value for height to 7.
+
+
+```{r}
+# To assign a variable
+
+height <- 7
+
+# To display the variable
+
+height
 ```
 
 <br>
 
->**`<-` is the most commonly used assignment operator in R and therefore the one we will stick to.  This called the assignemt operator <-, (the short cut is ALT + MINUS).**
+We can also assign a value to name (or label) using `=` operator and `->` operators. 
 
-RStudio automatically surrounds `<-` with spaces, which is a good code formatting practice. 
+Here are a few examples of them in action:
+
+* `variable_name` = value
+*  value -> `variable_name`
+
+```{r}
+# PLEASE NOTE THIS IS BAD PRACTICE
+
+# To assign a variable
+
+weight_kg = 50
+
+
+# To display the variable
+
+weight_kg
+
+# To assign a variable
+
+40 -> weight_kg
+
+# To display the variable
+
+weight_kg
+```
+
+
+
+<br>
+
+>**`<-` is the most commonly used assignment operator in R and therefore the one we will stick to.**  
+
+ 
 
 <br>
 
@@ -813,42 +894,34 @@ In R it is convention to use `<-` to assign variables and keep `=` reserved to p
 
 `->` is considered bad practice. This is because it makes it harder for others to see where a object has been assigned.
 
+***
 
-If we ever want to reassign a variable we would simply use the operators above again. 
-
-For example:
-
-```{r}
-#To assign a variable
-my_second_variable <- 5L
-
-#To display the variable
-my_second_variable
-
-```
-```{r}
-#To assign a variable
-#Using the same variable name will overwrite the previously assigned variable
-my_second_variable <- 10
-
-#To display the variable
-my_second_variable
-```
-
-Typing the following into the Console will list everything you’ve loaded into the Environment:
-
-`ls()`
+<br>
 
 
-To remove a variable, we would utilise the `rm()` function of R. 
+## Removing Variables{-}
 
-For example: `rm(my_second_variable)` 
+To remove a variable, we would utilise the `remove()` function of R. 
 
-```{r}
-rm(my_second_variable)
+For example: `remove(variable_name)` 
+
+```{r warning=FALSE}
+# Removing assigned variables using the remove function
+
+remove(height)
+
+# Alternatively
+
+# rm(), is short for remove
+
+rm(height)
 ```
 
-Variable names:
+***
+
+<br>
+
+## Variable Names{-}
 
 * Are case sensitive and must start with a letter.  
 * Cannot use reserved words such as `TRUE` or `FALSE` which already mean something in R. 
@@ -866,6 +939,7 @@ otherPeopleUseCamelCase
 some.people.use.periods
 
 ```
+`Snake` and `Camel` case are the most common ones, the `periods` example has been shown as you might see it used in other peoples codes.
 
 We have more detailed examples and information on good variables names in our other course **Best Practice in Programming -  Clean Code**
 
@@ -881,8 +955,12 @@ We have more detailed examples and information on good variables names in our ot
 1. Why does this code not work?
 
 ```{r,eval=FALSE}
+# To assign a variable
 
 my_variable <- 10
+
+
+# To display the variable
 
 my_varIable
 ```
@@ -891,20 +969,28 @@ my_varIable
 2. What is the value of each item at each step?
 
 ```{r, eval=FALSE}
-#1. Time?
-Time <- 30
+
+# To assign a variable
+
+#1. time_value?
+
+time_value <- 30
 
 #2. distance?
+
 distance <- 10
 
-#3. Time?
+#3. time_value?
+
 Time <- 30 * 2
 
 #4. distance
+
 distance <- distance + 5
 
 #5. speed
-speed <- distance / Time
+
+speed <- distance / time_value
 
 
 
@@ -925,11 +1011,14 @@ speed <- distance / Time
 ### **Show Answer** {-}
 
 
-1.Why does this code not work?
+1. Why does this code not work?
 
 ```{r,eval=FALSE}
+# To assign a variable
 
 my_variable <- 10
+
+# To display the variable
 
 my_varIable
 ```
@@ -942,52 +1031,69 @@ The variable printed `my_varIable`is not the variable `my_variable`
 
 Error messages of the form "object '...' not found" mean exactly what they say. R cannot find an object with that name. Unfortunately, the error does not tell you why that object cannot be found, because R does not know the reason that the object does not exist. 
 
+<br>
+
 
 2. What is the value of each item at each step?
 
 ```{r}
-#1. Time?
-Time <- 30
+# To assign a variable
 
-#To display the variable
-Time
+#1. time_value?
 
-#2. distance?
+time_value <- 30
+
+# To display the variable
+
+time_value
+
+# 2. distance?
+
 distance <- 10
 
-#To display the variable
+# To display the variable
+
 distance
 
-#3. Time?
-Time <- 30*2
+#3. time_value?
 
-#To display the variable
-Time
+Time <- 30 * 2
+
+# To display the variable
+
+time_value
 
 #4. distance
+
 distance <- distance + 5
 
-#To display the variable
+# To display the variable
+
 distance
 
 #5. speed
-speed <- distance/Time
 
-#To display the variable
+speed <- distance/time_value
+
+# To display the variable
+
 speed
 
 ```
+
+<br>
 
 3. Use the remove function to remove a variable.
 
 ```{r echo=TRUE, message=TRUE}
 
+# To display the variable
 
-#To display the variable
 speed
 
-#To remove a variable 
-rm(speed)
+# To remove a variable
+
+remove(speed)
 
 ```
 
@@ -1014,7 +1120,7 @@ You can access these by clicking on **Help** and then **Cheetsheets**.
 
 <br>
 
-![Image showing an example of Cheat Sheet](Images/data-transformation-cheat-sheet.png) 
+![Image showing an example of Cheat Sheet](../Images/data-transformation-cheat-sheet.png) 
 
 
 <br>
@@ -1037,7 +1143,8 @@ Try and type the command below in the console,and you should see the Help panel 
 
 
 ```{r, eval=FALSE}
-#To acces the R help documentation
+# To acces the R help documentation
+
 ?mean 
 
 or 
@@ -1074,7 +1181,6 @@ Which sections appear can vary from help page to help page, but you can usually 
 
 **Examples** - Example code that uses the function and is guaranteed to work. The examples section of a help page usually demonstrates a couple different ways to use a function. This helps give you an idea of what the function is capable of.
 
-
 ***
 
 <br>
@@ -1082,6 +1188,7 @@ Which sections appear can vary from help page to help page, but you can usually 
 ## Stack Overflow
 
 [Stack Overflow](https://stackoverflow.com/) is a great site to check if anyone has has a similar problem to you, and see how they got around it.
+
 
 
 ***
@@ -1103,6 +1210,7 @@ Within ONS we have two groups on Yammer,
 ## Cross Government Data Science Slack
 
 [The Cross Goverment Data Science Slack](https://govdatascience.slack.com/) is a place to talk to other people working with Data across government.
+It has about 3000 members and its mostly R and python based and people post training materials, blogs events etc.
 
 ***
 
@@ -1118,7 +1226,7 @@ Please be aware that due to training commitments there may be a small wait befor
 
 <br>
 
-# Summary - The Basics.{-}
+# Summary - Getting Started with R.{-}
 
 We have covered a lot material in R and yet there is still so much more to cover in terms of functionality, as R has so much to offer. By no means are you expected to remember all the above, but as we move forward, it is important you remain aware of:
 

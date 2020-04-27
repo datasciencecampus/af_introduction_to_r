@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Intro to R - Chapter Six "
 output:
   html_document: 
@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ```{r, echo=FALSE}
-htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+htmltools::img(src = knitr::image_uri("../Images/LATree.PNG"),
                alt = "logo", 
                style = "position:absolute; top:0; right:0; padding:10px; width:200px;")
 ```
@@ -25,9 +25,9 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 
 ***
 
-# Learning Objectives
-
 <br>
+
+# Learning Objectives
 
 **The goal of this chapter is to:**
 
@@ -46,9 +46,9 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 
 ***
 
-# Loops
-
 <br>
+
+# Loops
 
 Loops are a fundamental concept in traditional programming languages. 
 
@@ -88,7 +88,7 @@ Basic Structure of a loop
 output <- c()
 
 # creating the loop
-for (Variable in Vector) { 
+for (each variable in my_iterable) { 
   
   output <- commands
   
@@ -106,24 +106,23 @@ for (Variable in Vector) {
 
 * Then we start with the loop with the word `for`,
 
-* Followed by `()` brackets where we specify an index variable, `i` is commonly used but it can be anything that you want. This is a placeholder and will correspond to a different element for each part of the loop,
+* Followed by `()` brackets where we specify an index variable, `i` is commonly used but it can be anything that you want. This is a place holder and will correspond to a different element for each part of the loop,
 
 * Then the word `in`.
 
-* Then specify an iterable. In this case, it is `Vector`, could be a list, dataframe etc,
+* Then specify an iterable.This could be a`Vector`, a `list`, `dataframe` etc.
+
+>**An iterable is an object that can be iterated through, one element at a time. Lists and vectors are both iterable.**
 
 * Followed by the `{}` curly brackets, which will have our commands, these could be multiple lines of code.
 
-
+***
 
 <br>
 
 ### Example{-}
 
 
->An iterable is an object that can be iterated through, one element at a time. Lists and vectors are both iterable.
-
-***
 
 let's look at an example.
 
@@ -416,7 +415,7 @@ We use comparison and logical operators.
 |  !=    | not equal to |   
 | <      | less than|
 | >      | greater than |
-| <=     | less than or eaqual to|
+| <=     | less than or equal to|
 | >=     | greater than or equal to|
 
 
@@ -505,7 +504,7 @@ if (height == 5) {
 
 <br>
 
-Remember our `if`, `else if` and `else` statements take a contion so we need a double equals sign (`==`) for checking equivalency.
+Remember our `if`, `else if` and `else` statements take a condition so we need a double equals sign (`==`) for checking equivalence.
 If the first criteria isn’t met it will move to the else statement and action that.
 
 We can add in more choices using an `else if` statement.
@@ -611,7 +610,7 @@ if (height == 5) {
 
 ## Loops and Conditional Statements
 
-We can combile a `loop` and and `if else statements`.
+We can compile a `loop` and and `if else statements`.
 
 * We have a vector, with values from `1-7` and assign it to `number_of_takeaways_ordered`.
 
@@ -653,9 +652,9 @@ for (number in number_of_takeaways_ordered) {
 
    If the number is a multiple of both 3 and 5, print "FizzBuzz".
 
-   If the number is a mutiple of 3, print the word "Fizz".
+   If the number is a multiple of 3, print the word "Fizz".
 
-   If the number is a mutiple of 5, print the word "Buzz".
+   If the number is a multiple of 5, print the word "Buzz".
 
    For all other values print the number.
 
@@ -691,9 +690,9 @@ For example checking if something is divisible by 7 we could do
 
    If the number is a multiple of both 3 and 5, print "FizzBuzz".
 
-   If the number is a mutiple of 3, print the word "Fizz".
+   If the number is a multiple of 3, print the word "Fizz".
 
-   If the number is a mutiple of 5, print the word "Buzz".
+   If the number is a multiple of 5, print the word "Buzz".
 
    For all other values print the number.
 
@@ -732,9 +731,9 @@ for (each_number in vector) {
 
    If the number is a multiple of both 3 and 5, print "FizzBuzz".
 
-   If the number is a mutiple of 3, print the word "Fizz".
+   If the number is a multiple of 3, print the word "Fizz".
 
-   If the number is a mutiple of 5, print the word "Buzz".
+   If the number is a multiple of 5, print the word "Buzz".
 
    For all other values print the number.
 
@@ -789,7 +788,7 @@ You can also write your own functions, called “user-defined functions”.
 
 * They make it easier to update code, as we only need to change one place.
 
-* Functions alow us to easily repeat similar tasks.
+* Functions allow us to easily repeat similar tasks.
 
 * They help reduce errors caused from copied and pasted code.
 
@@ -901,7 +900,7 @@ my_result
 
 <br>
 
-### Functions with Multiple Arguements
+### Functions with Multiple Arguments
 Functions can accept as many arguments as you like, but can only output one object (if it is necessary to output more than one object, then the desired outputs can be combined together into a list, and the list can be returned). above is a function that requires two input variables.
 
 When you call a function, you can specify the arguments by position or name. In this example, the function accepts arguments called `value_1` and `value_2`, with the order specified as x then y in the function definition.
@@ -931,7 +930,7 @@ function_sum_values(value_1 = 1, value_2 = 2)
 
 ### **Exercise** {-}
 
-1. The `range()` in R, doesnt show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called `my_range` which return the difference between the highest value and the lowest value?
+1. The `range()` in R, doesn't show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called `my_range` which return the difference between the highest value and the lowest value?
 
 ```{r}
 # Creating a vector
@@ -949,7 +948,7 @@ range(age)
 
 ### **Hint**{-}
 
-1. The `range()` in R, doesnt show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called `my_range` which return the difference between the highest value and the lowest value?
+1. The `range()` in R, doesn't show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called `my_range` which return the difference between the highest value and the lowest value?
 
 ```{r, eval=FALSE}
 # Creating my function
@@ -1001,7 +1000,7 @@ my_range(age)
 
 **Pythagoras Function Example**
 
-We are now going to write a function that uses Pythagoras' theorem in order to calculate the hypotenuse (longest side) of a right angle triangle given the two other sides. The equation is given as $$a^2 + b^2 = c^2$$ where $a$, $b$ are the two known sides and $c$ is the longest side. In order to find the value of $c$ we can rearange the formula to $$c = \sqrt{a^2 + b^2}$$
+We are now going to write a function that uses Pythagoras' theorem in order to calculate the hypotenuse (longest side) of a right angle triangle given the two other sides. The equation is given as $$a^2 + b^2 = c^2$$ where $a$, $b$ are the two known sides and $c$ is the longest side. In order to find the value of $c$ we can rearrange the formula to $$c = \sqrt{a^2 + b^2}$$
 
 The function will input values of $a$ and $b$ and then return the value of $c$ below.
 
@@ -1134,7 +1133,7 @@ fahrenheit_to_degrees_celsius(32)
 
 # Deeper Understanding
 
-## Arguements{-}
+## Arguments{-}
 
 In short, arguments are things you pass to a function, when you call it, to enable the function to perform it's task.
 

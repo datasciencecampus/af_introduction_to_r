@@ -1581,28 +1581,26 @@ div.tocify {
 <div id="control-flow-and-functions" class="section level1 unnumbered">
 <h1>Control Flow and Functions</h1>
 <hr />
+<p><br></p>
 </div>
 <div id="learning-objectives" class="section level1">
 <h1><span class="header-section-number">1</span> Learning Objectives</h1>
-<p><br></p>
 <p><strong>The goal of this chapter is to:</strong></p>
 <ul>
 <li><p>Be able to use conditional statements: <em>if</em>, <em>else</em> and <em>else if</em>.</p></li>
-<li><p>Be able to use loops: <em>for</em> loops and <em>while</em> loops</p></li>
+<li><p>Be able to use loops: <em>for</em> loops and <em>while</em> loops.</p></li>
 <li><p>Learn what functions are.</p></li>
 <li><p>Understand why we need to use functions.</p></li>
 <li><p>Be able to write functions.</p></li>
 <li><p>Have a basic understanding of scoping within functions.</p></li>
 </ul>
 <hr />
+<p><br></p>
 </div>
 <div id="loops" class="section level1">
 <h1><span class="header-section-number">2</span> Loops</h1>
-<p><br></p>
 <p>Loops are a fundamental concept in traditional programming languages.</p>
-<blockquote>
-<p><strong>A loop is a way to repeat a number commands until a given condition is met.</strong></p>
-</blockquote>
+<p>A loop is a way to repeat a number commands until a given condition is met.</p>
 <p>Since R is a vectorised language, loops are not as prominently used in R as in Python for example. Despite this, they are key to programming in general and can save you lot’s of time and typing in certain cases.</p>
 <p>They allow you to automate parts of your code that are in need of repetition.</p>
 <p>Similar to how functions help make our code more abstract and general, loops are similar. As we are essentially simplifying a specific case to a more general case.</p>
@@ -1616,7 +1614,7 @@ div.tocify {
 <div id="for-loops" class="section level2">
 <h2><span class="header-section-number">2.1</span> For Loops</h2>
 <p>These are the most common type.</p>
-<p>They follow the basic structure below,</p>
+<p>They follow the basic structure below.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">Basic Structure of a loop</a>
 <a class="sourceLine" id="cb1-2" title="2"></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="co"># create an empty output</span></a>
@@ -1624,33 +1622,35 @@ div.tocify {
 <a class="sourceLine" id="cb1-5" title="5">output &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
 <a class="sourceLine" id="cb1-6" title="6"></a>
 <a class="sourceLine" id="cb1-7" title="7"><span class="co"># creating the loop</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="cf">for</span> (Variable <span class="cf">in</span> Vector) { </a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="cf">for</span> (each variable <span class="cf">in</span> my_iterable) { </a>
 <a class="sourceLine" id="cb1-9" title="9">  </a>
 <a class="sourceLine" id="cb1-10" title="10">  output &lt;-<span class="st"> </span>commands</a>
 <a class="sourceLine" id="cb1-11" title="11">  </a>
 <a class="sourceLine" id="cb1-12" title="12">}</a></code></pre></div>
 <p><br></p>
 <ul>
-<li>So we start with creating an empty vector for our output.</li>
+<li>First we create an empty vector for our output.</li>
 </ul>
 <blockquote>
 <p><strong>Before you start the loop, you should allocate sufficient space for the output.</strong></p>
 </blockquote>
 <ul>
-<li><p>And then start with the word <code>for</code></p></li>
-<li><p>followed by <code>()</code> brackets where we specify an index variable, <code>i</code> is commonly used but it can be anything that you want. This is a placeholder and will correspond to a different element for each part of the loop.</p></li>
-<li><p>then the word <code>in</code></p></li>
-<li><p>then specify an iterable. In this case it is <code>Vector</code>, could be a list, dataframe etc</p></li>
-<li><p>followed by the <code>{}</code> curly brackets, which will have our commands, these could be multiple lines of code.</p></li>
+<li><p>Then we start with the loop with the word <code>for</code>,</p></li>
+<li><p>Followed by <code>()</code> brackets where we specify an index variable, <code>i</code> is commonly used but it can be anything that you want. This is a place holder and will correspond to a different element for each part of the loop,</p></li>
+<li><p>Then the word <code>in</code>.</p></li>
+<li><p>Then specify an iterable.This could be a<code>Vector</code>, a <code>list</code>, <code>dataframe</code> etc.</p></li>
 </ul>
 <blockquote>
-<p><strong>An iterable is an object that can be iterated through, one element at a time. Lists and vectors are both iterables.</strong></p>
+<p><strong>An iterable is an object that can be iterated through, one element at a time. Lists and vectors are both iterable.</strong></p>
 </blockquote>
+<ul>
+<li>Followed by the <code>{}</code> curly brackets, which will have our commands, these could be multiple lines of code.</li>
+</ul>
 <hr />
 <p><br></p>
 <div id="example" class="section level3 unnumbered">
 <h3>Example</h3>
-<p>lets look at an example.</p>
+<p>let’s look at an example.</p>
 <p>We start by creating an iterable, I have created a vector with <strong>numbers between 0 and 5</strong>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># Creating a vector</span></a>
 <a class="sourceLine" id="cb2-2" title="2">example_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</a></code></pre></div>
@@ -1682,8 +1682,8 @@ div.tocify {
 <blockquote>
 <p><strong>You’ll often see letters like <code>i</code> used here, which is not particularly clear.</strong></p>
 </blockquote>
-<p>The keyword in is followed by the iterable I want to loop over (here it is <code>example_vector</code>).</p>
-<p>My Command are assigned to <code>result</code>. The command here is to multiply each number in <code>example_vector</code> by 2.</p>
+<p>The keyword <code>in</code> is followed by the iterable I want to loop over (here it is <code>example_vector</code>).</p>
+<p>My Command is assigned to <code>result</code>. The command here is to multiply each number in <code>example_vector</code> by 2.</p>
 <p><code>Append()</code> function simply adds an element to a vector, We first specify the vector we want to add to which is <code>result</code> and then specify the values that we want to add to it, here its specified by <code>values=</code>.</p>
 <p>Loops suppress output, unless explicitly <code>print()</code>ed out.</p>
 <hr />
@@ -1692,7 +1692,7 @@ div.tocify {
 </div>
 <div id="while-loops" class="section level2">
 <h2><span class="header-section-number">2.2</span> While loops</h2>
-<p>Our other type of loops are <code>while</code> loops.</p>
+<p>Our other type of loops is <code>while</code> loops.</p>
 <p><code>for</code> loops iterate a set amount of times, or over a set number of things. A <code>while</code> loop iterates until it no longer meets a certain condition.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># create an empty output</span></a>
 <a class="sourceLine" id="cb7-2" title="2"><span class="co"># which we will fill when the loop runs</span></a>
@@ -1712,16 +1712,16 @@ div.tocify {
 <li><p>So we start with creating an empty vector for our output</p></li>
 <li><p>Then the word <code>while</code></p></li>
 <li><p>followed by the <code>()</code> brackets in which we specify our logical condition, using the <strong>conditional operators</strong>.</p></li>
-<li><p>and then <code>{}</code>, which surrounds our commands. These commands will be run repeatedly in order as long as the specified condtion is <code>TRUE</code>.</p></li>
+<li><p>and then <code>{}</code>, which surrounds our commands. These commands will be run repeatedly in order as long as the specified condition is <code>TRUE</code>.</p></li>
 </ul>
 <hr />
 <p><br></p>
 <div id="example-1" class="section level3 unnumbered">
 <h3>Example</h3>
-<p>lets look at an example:</p>
+<p>let’s look at an example:</p>
 <ul>
 <li><p>If we say <code>stop_value</code> is assigned to 0.</p></li>
-<li><p>and we set out condtion to be <code>stop_value &lt; 5</code></p></li>
+<li><p>and we set out condition to be <code>stop_value &lt; 5</code></p></li>
 <li><p>then print <code>stop_value</code></p></li>
 <li><p>and then <code>add a 1</code></p></li>
 </ul>
@@ -1788,7 +1788,7 @@ div.tocify {
 </ol>
 <ul>
 <li><p>Assign the value of a variable <code>temperature</code> to be 40.</p></li>
-<li><p>The condition of the <code>while</code> loop, should check if the temperature is higher than <code>20</code></p></li>
+<li><p>The condition of the <code>while</code> loop should check if the temperature is higher than <code>20</code></p></li>
 <li><p>The first command in the body should print out <code>&quot;Its way too hot!&quot;</code></p></li>
 <li><p>The next command should decrease the <code>temperature</code> by <code>2</code> and assign this new value to <code>temperature</code> again.</p></li>
 </ul>
@@ -1802,7 +1802,7 @@ div.tocify {
 </ol>
 <ul>
 <li><p>Assign the value of a variable <code>temperature</code> to be 40.</p></li>
-<li><p>The condition of the <code>while</code> loop, should check if the temperature is higher than <code>20</code></p></li>
+<li><p>The condition of the <code>while</code> loop should check if the temperature is higher than <code>20</code></p></li>
 <li><p>The first command in the body should print out <code>&quot;Its way too hot!&quot;</code></p></li>
 <li><p>The next command should decrease the <code>temperature</code> by <code>2</code> and assign this new value to <code>temperature</code> again.</p></li>
 </ul>
@@ -1834,7 +1834,7 @@ div.tocify {
 </ol>
 <ul>
 <li><p>Assign the value of a variable <code>temperature</code> to be 40.</p></li>
-<li><p>The condition of the <code>while</code> loop, should check if the temperature is higher than <code>20</code></p></li>
+<li><p>The condition of the <code>while</code> loop should check if the temperature is higher than <code>20</code></p></li>
 <li><p>The first command in the body should print out <code>&quot;Its way too hot!&quot;</code></p></li>
 <li><p>The next command should decrease the <code>temperature</code> by <code>2</code> and assign this new value to <code>temperature</code> again.</p></li>
 </ul>
@@ -1876,7 +1876,7 @@ div.tocify {
 <div id="conditional-statements" class="section level1">
 <h1><span class="header-section-number">3</span> Conditional Statements</h1>
 <p>A conditional statement will check whether a condition is TRUE or FALSE.</p>
-<p>So, if our statement meets this criteria apply this action, otherwise do nothing.</p>
+<p>So, if our statement meets this criterion apply this action, otherwise do nothing.</p>
 <p>This is useful if we want a function to run only when our data meets certain conditions, this is termed <code>control flow</code>.</p>
 <p>We use comparison and logical operators.</p>
 <p><br></p>
@@ -1907,7 +1907,7 @@ div.tocify {
 </tr>
 <tr class="odd">
 <td>&lt;=</td>
-<td align="left">less than or eaqual to</td>
+<td align="left">less than or equal to</td>
 </tr>
 <tr class="even">
 <td>&gt;=</td>
@@ -1940,7 +1940,7 @@ div.tocify {
 </tbody>
 </table>
 <p><br></p>
-<p>You might want an action to be perfomed depending on the outcome, to be able to do this in R, we use the;</p>
+<p>You might want an action to be performed depending on the outcome, to be able to do this in R, we use the:</p>
 <ul>
 <li><p><em>if</em> statement</p></li>
 <li><p><em>else if</em> statement</p></li>
@@ -1949,7 +1949,7 @@ div.tocify {
 <p><code>if</code>, <code>else if</code> and <code>else</code> are not loops, but fall under the category of control flow.</p>
 <p>These take a conditional argument, and if that is met (evaluates to <code>True</code>) then the associated action is completed.</p>
 <p>If the condition is not met it will move to an <code>else if</code> (if present) and if that condition is met the associated action will be completed.</p>
-<p>Finally, if none of the conditions are met the actions for the <code>else</code> condition are met.</p>
+<p>Finally, if none of the conditions is met the actions for the <code>else</code> condition is met.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="cf">if</span> (first logical condition) { </a>
 <a class="sourceLine" id="cb18-2" title="2">  </a>
 <a class="sourceLine" id="cb18-3" title="3">  Commands <span class="op">-</span><span class="st"> </span>executed <span class="cf">if</span> logical condition is true</a>
@@ -1974,7 +1974,7 @@ div.tocify {
 <div id="example-2" class="section level2 unnumbered">
 <h2>Example</h2>
 <p>We can just have an <code>if</code> and an <code>else</code>.</p>
-<p>Lets look at an example.</p>
+<p>Let’s look at an example.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">height &lt;-<span class="st"> </span><span class="dv">6</span></a>
 <a class="sourceLine" id="cb19-2" title="2"></a>
 <a class="sourceLine" id="cb19-3" title="3"><span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) { </a>
@@ -1988,7 +1988,7 @@ div.tocify {
 <a class="sourceLine" id="cb19-11" title="11">}</a></code></pre></div>
 <pre><code>## [1] &quot;Your height is different&quot;</code></pre>
 <p><br></p>
-<p>Remember our <code>if</code>, <code>else if</code> and <code>else</code> statements take a contion so we need a double equals sign (<code>==</code>) for checking equivalency. If the first criteria isn’t met it will move to the else statement and action that.</p>
+<p>Remember our <code>if</code>, <code>else if</code> and <code>else</code> statements take a condition so we need a double equals sign (<code>==</code>) for checking equivalence. If the first criteria isn’t met it will move to the else statement and action that.</p>
 <p>We can add in more choices using an <code>else if</code> statement.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">height &lt;-<span class="st"> </span><span class="dv">7</span></a>
 <a class="sourceLine" id="cb21-2" title="2"></a>
@@ -2007,7 +2007,7 @@ div.tocify {
 <a class="sourceLine" id="cb21-15" title="15">}</a></code></pre></div>
 <pre><code>## [1] &quot;You&#39;re tall!&quot;</code></pre>
 <p><br></p>
-<p>Within these we can use our logical operators too - <code>&amp;</code> (and), <code>|</code> (or).</p>
+<p>Within these we can use our logical operators too: <code>&amp;</code> (and); <code>|</code> (or).</p>
 <p>Here we want the action to happen if the value is greater than 7 and less than 10.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">height &lt;-<span class="st"> </span><span class="dv">9</span></a>
 <a class="sourceLine" id="cb23-2" title="2"></a>
@@ -2061,7 +2061,7 @@ div.tocify {
 </div>
 <div id="loops-and-conditional-statements" class="section level2">
 <h2><span class="header-section-number">3.1</span> Loops and Conditional Statements</h2>
-<p>We can combile a <code>loop</code> and and <code>if else statements</code>.</p>
+<p>We can compile a <code>loop</code> and and <code>if else statements</code>.</p>
 <ul>
 <li><p>We have a vector, with values from <code>1-7</code> and assign it to <code>number_of_takeaways_ordered</code>.</p></li>
 <li><p>And a <code>for</code> loop with an <code>if</code> and <code>else</code> statement shows that if you order more than <code>2</code> takeaways a week it will print <code>&quot;too many&quot;</code> and if you order less than two it prints <code>&quot;enough&quot;</code>.</p></li>
@@ -2107,8 +2107,8 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li><p>Can you write a loop with an <code>if</code>, <code>else if</code> and <code>else</code> statement, that loops through the numbers from 1 to 30.</p>
 <p>If the number is a multiple of both 3 and 5, print “FizzBuzz”.</p>
-<p>If the number is a mutiple of 3, print the word “Fizz”.</p>
-<p>If the number is a mutiple of 5, print the word “Buzz”.</p>
+<p>If the number is a multiple of 3, print the word “Fizz”.</p>
+<p>If the number is a multiple of 5, print the word “Buzz”.</p>
 <p>For all other values print the number.</p></li>
 </ol>
 <blockquote>
@@ -2134,8 +2134,8 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li><p>Can you write a loop with an <code>if</code>, <code>else if</code> and <code>else</code> statement, that loops through the numbers from 1 to 30.</p>
 <p>If the number is a multiple of both 3 and 5, print “FizzBuzz”.</p>
-<p>If the number is a mutiple of 3, print the word “Fizz”.</p>
-<p>If the number is a mutiple of 5, print the word “Buzz”.</p>
+<p>If the number is a multiple of 3, print the word “Fizz”.</p>
+<p>If the number is a multiple of 5, print the word “Buzz”.</p>
 <p>For all other values print the number.</p></li>
 </ol>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="cf">for</span> (each_number <span class="cf">in</span> vector) { </a>
@@ -2166,8 +2166,8 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li><p>Can you write a loop with an <code>if</code>, <code>else if</code> and <code>else</code> statement, that loops through the numbers from 1 to 30.</p>
 <p>If the number is a multiple of both 3 and 5, print “FizzBuzz”.</p>
-<p>If the number is a mutiple of 3, print the word “Fizz”.</p>
-<p>If the number is a mutiple of 5, print the word “Buzz”.</p>
+<p>If the number is a multiple of 3, print the word “Fizz”.</p>
+<p>If the number is a multiple of 5, print the word “Buzz”.</p>
 <p>For all other values print the number.</p></li>
 </ol>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>) { </a>
@@ -2239,7 +2239,7 @@ div.tocify {
 <ul>
 <li><p>They make code shorter and easier to understand.</p></li>
 <li><p>They make it easier to update code, as we only need to change one place.</p></li>
-<li><p>Functions alow us to easily repeat similar tasks.</p></li>
+<li><p>Functions allow us to easily repeat similar tasks.</p></li>
 <li><p>They help reduce errors caused from copied and pasted code.</p></li>
 </ul>
 <p><br></p>
@@ -2316,8 +2316,8 @@ div.tocify {
 <hr />
 <p><br></p>
 </div>
-<div id="functions-with-multiple-arguements" class="section level3">
-<h3><span class="header-section-number">4.4.2</span> Functions with Multiple Arguements</h3>
+<div id="functions-with-multiple-arguments" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> Functions with Multiple Arguments</h3>
 <p>Functions can accept as many arguments as you like, but can only output one object (if it is necessary to output more than one object, then the desired outputs can be combined together into a list, and the list can be returned). above is a function that requires two input variables.</p>
 <p>When you call a function, you can specify the arguments by position or name. In this example, the function accepts arguments called <code>value_1</code> and <code>value_2</code>, with the order specified as x then y in the function definition.</p>
 <p>Therefore when <code>function_sum_values(1, 2)</code> is called, the arguments are interpreted as <code>value_1 = 1</code> and <code>value_2 = 2</code>.</p>
@@ -2339,7 +2339,7 @@ div.tocify {
 <div id="exercise-4" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <ol style="list-style-type: decimal">
-<li>The <code>range()</code> in R, doesnt show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called <code>my_range</code> which return the difference between the highest value and the lowest value?</li>
+<li>The <code>range()</code> in R, doesn’t show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called <code>my_range</code> which return the difference between the highest value and the lowest value?</li>
 </ol>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="co"># Creating a vector</span></a>
 <a class="sourceLine" id="cb46-2" title="2">age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">23</span>, <span class="dv">30</span>, <span class="dv">50</span>)</a>
@@ -2353,7 +2353,7 @@ div.tocify {
 <div id="hint-2" class="section level3 unnumbered">
 <h3><strong>Hint</strong></h3>
 <ol style="list-style-type: decimal">
-<li>The <code>range()</code> in R, doesnt show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called <code>my_range</code> which return the difference between the highest value and the lowest value?</li>
+<li>The <code>range()</code> in R, doesn’t show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called <code>my_range</code> which return the difference between the highest value and the lowest value?</li>
 </ol>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co"># Creating my function</span></a>
 <a class="sourceLine" id="cb48-2" title="2">my_range =<span class="st"> </span><span class="cf">function</span>(input) {</a>
@@ -2398,7 +2398,7 @@ div.tocify {
 <div id="example-3" class="section level2 unnumbered">
 <h2>Example</h2>
 <p><strong>Pythagoras Function Example</strong></p>
-<p>We are now going to write a function that uses Pythagoras’ theorem in order to calculate the hypotenuse (longest side) of a right angle triangle given the two other sides. The equation is given as <span class="math display">\[a^2 + b^2 = c^2\]</span> where <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> are the two known sides and <span class="math inline">\(c\)</span> is the longest side. In order to find the value of <span class="math inline">\(c\)</span> we can rearange the formula to <span class="math display">\[c = \sqrt{a^2 + b^2}\]</span></p>
+<p>We are now going to write a function that uses Pythagoras’ theorem in order to calculate the hypotenuse (longest side) of a right angle triangle given the two other sides. The equation is given as <span class="math display">\[a^2 + b^2 = c^2\]</span> where <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> are the two known sides and <span class="math inline">\(c\)</span> is the longest side. In order to find the value of <span class="math inline">\(c\)</span> we can rearrange the formula to <span class="math display">\[c = \sqrt{a^2 + b^2}\]</span></p>
 <p>The function will input values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and then return the value of <span class="math inline">\(c\)</span> below.</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="co"># Function to calculate the value of the hypotenuse</span></a>
 <a class="sourceLine" id="cb53-2" title="2">find_the_hypotenuse &lt;-<span class="st"> </span><span class="cf">function</span>(a_value, b_value) {</a>
@@ -2516,8 +2516,8 @@ div.tocify {
 </div>
 <div id="deeper-understanding" class="section level1">
 <h1><span class="header-section-number">5</span> Deeper Understanding</h1>
-<div id="arguements" class="section level2 unnumbered">
-<h2>Arguements</h2>
+<div id="arguments" class="section level2 unnumbered">
+<h2>Arguments</h2>
 <p>In short, arguments are things you pass to a function, when you call it, to enable the function to perform it’s task.</p>
 <hr />
 <p><br></p>
@@ -2595,8 +2595,8 @@ div.tocify {
 <div id="scope" class="section level2">
 <h2><span class="header-section-number">5.1</span> Scope</h2>
 <p>It’s important to notice here that the variables I create within my functions are not available outside of my function.</p>
-<p>In R storage is broken down into environments and then scopes. Most of the time you’ll be working in the global environment (right hand panel).</p>
-<p>In the global environment there are two types of scopes, <em>global</em> and <em>local</em>. Variables that have <em>global</em> scope are visible everywhere - in every function, loop, conditional, basically every part of the code. However, variables that have <em>local</em> scope are only visible inside said scope and hence can only be used within that local scope.</p>
+<p>In R storage is broken down into environments and then scopes. Most of the time you’ll be working in the global environment (right-hand panel).</p>
+<p>In the global environment, there are two types of scopes, <em>global</em> and <em>local</em>. Variables that have <em>global</em> scope are visible everywhere - in every function, loop, conditional, basically every part of the code. However, variables that have <em>local</em> scope are only visible inside said the scope and hence can only be used within that local scope.</p>
 <p>When we create a new function we effectively create a new local scope – so the variables we declare within our functions are only available within that local scope.</p>
 <p>Here is a classical example to demonstrate this.</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="co"># Creating a function</span></a>
@@ -2636,7 +2636,7 @@ div.tocify {
 </ul></li>
 <li>Write and apply user defined functions.</li>
 <li>Apply functions to <code>vector</code> and <code>tibble</code> objects.</li>
-<li>Understand programming concept of Loops.</li>
+<li>Understand the programming concept of Loops.</li>
 <li><p>Utilise loops and understand their place in R.</p></li>
 </ul>
 <hr />
