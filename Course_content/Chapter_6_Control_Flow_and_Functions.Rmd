@@ -173,7 +173,6 @@ My Command is assigned to `result`. The command here is to multiply each number 
 
 `Append()` function simply adds an element to a vector, We first specify the vector we want to add to which is `result` and then specify the values that we want to add to it, here its specified by `values=`.
 
-Loops suppress output, unless explicitly `print()`ed out.
 
 
 
@@ -282,7 +281,7 @@ while (stop_value < 5) {
 
 # To display the data
 result
-
+ 
 ```
 
 If we removed the code `stop_value <- stop_value +1` , `stop_value` (`0`) would always be less than `5` and the loop would be stuck in an infinite loop, as R will keep running the code. 
@@ -292,6 +291,24 @@ If we removed the code `stop_value <- stop_value +1` , `stop_value` (`0`) would 
 It is therefore important that we design `while` loops that have a logical condition that will be met at some point. 
 
 Although it is useful to know how to use loops in R, it is often faster to accomplish the same thing using vectorised operations in R. 
+
+We already saw examples in the Vector Arithmetic section. A vectorized function is a function that will apply the same operation on each of the vectors.
+
+For example,
+
+```{r}
+# Creating a vector
+
+example_vector <- 1:5
+
+# Using a sqrt() function on our vector
+
+base::sqrt(example_vector)
+```
+
+<br>
+
+To make this calculation, there is no need for a loop. However, not all functions work this way. 
 
 
 <br>

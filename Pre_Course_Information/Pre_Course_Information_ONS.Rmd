@@ -118,14 +118,52 @@ This course contains documents in the following formats:
 
 # Install R and R studio via the Service Desk:
 
-* I want something > Other > Other – Item not listed.
+
+* I Want SomethingTop Requested Forms > Computer Software > Add / Transfer / Remove.
 
 <br>
 
-![](../Images/installR.PNG)
+![](../Images/service_desk_1.png)
 
 <br>
 
+* Select `install`
+
+<br>
+
+
+![](../Images/service_desk_2.png)
+
+
+<br>
+
+* Type `THE` in the box and then select `THE RSTUDIO BUNDLE` and click the arrow to move it in the selected box.
+
+<br>
+
+
+![](../Images/service_desk_3.png)
+
+<br>
+
+* You shoud now have `THE RSTUDIO BUNDLE` in the selected box.
+
+<br>
+
+
+![](../Images/service_desk_4.png)
+
+<br>
+
+* The type in your Asset number, this is the number starting with `ONS` on the sticker on your laptop
+
+* Then select `No` for software to be installed on multiple PC's.
+
+<br>
+
+![](../Images/service_desk_5.png)
+
+<br>
 
 * In the box enter the text:
 

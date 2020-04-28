@@ -2263,9 +2263,13 @@ marvel_left_join
 
 ### bind_rows
 
-If you have two (or more) data frames that share the same data structure and you just want to combine these two, you can use the `bind_rows()` function.
+Another common way in which datasets are combined is by binding them. Unlike the join function, the binding functions do not try to match by a variable, but instead simply combine datasets. If the datasets don’t match by the appropriate dimensions, one obtains an error.
 
-This is where we can add data on to the bottom of an existing data Frame.
+This is where we can add data on to the bottom of an existing data Frame, If you have two (or more) data frames that share the same data structure.
+
+You can use the `bind_rows()` function.
+
+
 
 For example, looking at the 2 data frames below;
 
