@@ -958,9 +958,7 @@ chocolate
 
 ```{r}
 
-# Adding an item with list contained in a list
-
-chocolate[[2]][5] <- "turkish delight"
+chocolate$chocolate_bar[5]<- "turkish delight"
 
 # To display the list
 
@@ -972,11 +970,15 @@ chocolate[["chocolate_bar"]][5]<- "turkish delight"
 
 chocolate
 
-chocolate$chocolate_bar[5]<- "turkish delight"
+
+# Adding an item with list contained in a list
+
+chocolate[[2]][5] <- "turkish delight"
 
 # To display the list
 
 chocolate
+
 ```
 
 

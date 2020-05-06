@@ -81,13 +81,15 @@ They follow the basic structure below.
 
 ```{r, eval=FALSE}
 
-Basic Structure of a loop
+# Basic Structure of a loop
 
 # create an empty output
 # which we will fill when the loop runs
+
 output <- c()
 
 # creating the loop
+
 for (each variable in my_iterable) { 
   
   output <- commands
@@ -120,7 +122,7 @@ for (each variable in my_iterable) {
 
 <br>
 
-### Example{-}
+### Example
 
 
 
@@ -133,6 +135,7 @@ We start by creating an iterable, I have created a vector with **numbers between
 
 ```{r}
 # Creating a vector
+
 example_vector <- c(0, 1, 2, 3, 4, 5)
 
 ```
@@ -140,20 +143,23 @@ example_vector <- c(0, 1, 2, 3, 4, 5)
 Creating our loop.
 
 ```{r}
-# create an empty output
-# which we will fill when the loop runs
+# Create an empty output
+# Which we will fill when the loop runs
+
 result <- c()
 
-# creating the loop
+# Creating the loop
+
 for (each_number in example_vector) {
   
   print(each_number * 2)
   
-  result <- base::append(result, values = each_number * 2)
+  result <- append(result, values = each_number * 2)
   
 }
 
 # To display the data
+
 result
 
 ```
@@ -189,11 +195,13 @@ Our other type of loops is `while` loops.
 
 ```{r, eval=FALSE}
 
-# create an empty output
-# which we will fill when the loop runs
+# Create an empty output
+# Which we will fill when the loop runs
+
 result <- c()
 
-# creating the loop
+# Creating the loop
+
 while (logical condition) { 
   
   result <- commands
@@ -201,6 +209,7 @@ while (logical condition) {
 }
 
 # To display the data
+
 result
 
 ```
@@ -220,7 +229,7 @@ result
 
 <br>
 
-### Example{-}
+### Example
 
 
 let's look at an example:
@@ -236,25 +245,29 @@ let's look at an example:
 
 ```{r}
 
-# create an empty output
-# which we will fill when the loop runs
+# Create an empty output
+# Which we will fill when the loop runs
+
 result <- c()
 
 # Setting the value
+
 stop_value <- 0
 
 # Creating the loop
 # Our condition here is that stop_value < 5
+
 while (stop_value < 5) { 
   
   print(stop_value)
   
   stop_value <- stop_value + 1 
   
-  result <- base::append(result, stop_value + 1)
+  result <-  append(result, stop_value + 1)
 }
 
 # To display the data
+
 result
 ```
 
@@ -263,15 +276,18 @@ result
 Can you guess what would happen if we removed the `stop_value <- stop_value + 1` ?
 
 ```{r,eval=FALSE}
-# create an empty output
-# which we will fill when the loop runs
+# Create an empty output
+# Which we will fill when the loop runs
+
 result <- c()
 
 # Setting the value
+
 stop_value <- 0
 
 # Creating the loop
 # Our condition here is that 0<5 i.e stop_value
+
 while (stop_value < 5) { 
   
   print(stop_value)
@@ -280,6 +296,7 @@ while (stop_value < 5) {
 }
 
 # To display the data
+
 result
  
 ```
@@ -346,14 +363,17 @@ To make this calculation, there is no need for a loop. However, not all function
 - The next command should decrease the `temperature` by `2` and assign this new value to `temperature` again.
 
 ```{r, eval=FALSE}
-# create an empty output
-# which we will fill when the loop runs
+# Create an empty output
+# Which we will fill when the loop runs
+
 result <- c()
 
-# setting the temperature value
+# Setting the temperature value
+
 temperature <- 40
 
 # Code the while loop
+
 while (condition) {
   
   conditions
@@ -363,6 +383,7 @@ while (condition) {
 }
 
 # To display the data
+
 result
 
 ```
@@ -385,14 +406,17 @@ result
 - The next command should decrease the `temperature` by `2` and assign this new value to `temperature` again.
 
 ```{r}
-# create an empty output
-# which we will fill when the loop runs
+# Create an empty output
+# Which we will fill when the loop runs
+
 result <- c()
 
-# setting the temperature value
+# Setting the temperature value
+
 temperature <- 40
 
 # Code the while loop
+
 while (temperature > 20) {
   
   print("It way too hot!")
@@ -404,6 +428,7 @@ while (temperature > 20) {
 }
 
 # To display the data
+
 result
 
 ```
@@ -481,10 +506,6 @@ if (first logical condition) {
   
   Commands - executed if the logical condition is false and second condtion is true
   
-} else if (third condition) { 
-  
-  Commands - executed if logical condition and second condition are false
-  
 } else {
   
   Commands - executed when all conditions are false
@@ -497,7 +518,7 @@ if (first logical condition) {
 
 <br>
 
-## Example{-}
+## Example
 
 We can just have an `if` and an `else`.
 
@@ -684,6 +705,7 @@ For example checking if something is divisible by 7 we could do
 
 ```{r}
 # Example of Modulo
+
 10 %% 3 == 0
 
 # Returns FALSE (10 / 3 has a remainder of 1 - so does not have a remainder of 0)
@@ -691,6 +713,7 @@ For example checking if something is divisible by 7 we could do
 
 ```{r}
 # Second example of Modulo
+
 9 %% 3 == 0
 
 # Returns TRUE (9 / 3 has a remainder of 0)
@@ -846,6 +869,7 @@ Basic structure of a function looks like below,
 
 ```{r, eval=FALSE}
 # Basic structure of a function
+
 function_name <- function(input) { 
   
   statements of what the function is doing
@@ -878,6 +902,7 @@ Note that the keyword return is not necessary; but any function without a `retur
 
 ```{r}
 # Here is a simple function to add together two values and return the sum.
+
 function_sum_values <- function(value_1, value_2) { 
   
   result <- value_1 + value_2
@@ -902,13 +927,16 @@ Calling user defined functions works the same way as calling the built-in functi
 
 ```{r}
 # I can now run my function
+
 function_sum_values(1, 2)
 
 # Calling the function by itself prints the result to the console
 # Alternatively the result can be saved as a new variable
+
 my_result <- function_sum_values(1, 2)
 
 #To display the data
+
 my_result
 
 ```
@@ -951,9 +979,11 @@ function_sum_values(value_1 = 1, value_2 = 2)
 
 ```{r}
 # Creating a vector
+
 age <- c(10, 23, 30, 50)
 
-# Calling the range function on the vector 
+# Calling the range function on the vector
+
 range(age)
 
 ```
@@ -969,7 +999,8 @@ range(age)
 
 ```{r, eval=FALSE}
 # Creating my function
-my_range = function(input) {
+
+my_range <-  function(input) {
   
   commands
   
@@ -980,9 +1011,11 @@ my_range = function(input) {
 
 # To show the difference between the 2 functions
 # Running the base R range function
-base::range(input)
+
+range(input)
 
 # Running my custom range function
+
 my_range(input)
 ```
 
@@ -994,18 +1027,21 @@ my_range(input)
 
 ```{r}
 # Creating my function
+
 my_range = function(age){
   
-  result <- base::max(age) - base::min(age) 
+  result <- max(age) - min(age) 
   
   return(result)
 
 }
 
 # Running the base R range function
-base::range(age)
+
+range(age)
 
 # Running my custom range function
+
 my_range(age)
 ```
 
@@ -1013,7 +1049,7 @@ my_range(age)
 
 <br>
 
-## Example{-}
+## Example
 
 **Pythagoras Function Example**
 
@@ -1025,6 +1061,7 @@ The function will input values of $a$ and $b$ and then return the value of $c$ b
 ```{r}
 
 # Function to calculate the value of the hypotenuse
+
 find_the_hypotenuse <- function(a_value, b_value) {
   
   # Calculate the values of a^2 + b^2
@@ -1101,6 +1138,7 @@ fahrenheit_to_degrees_celsius <- function(input) {
 }
 
 # Calling our function
+
 fahrenheit_to_degrees_celsius(input)
 
 ```
@@ -1144,6 +1182,7 @@ fahrenheit_to_degrees_celsius <- function(fahrenheit) {
 }
 
 # Calling our function
+
 fahrenheit_to_degrees_celsius(32)
 ```
 

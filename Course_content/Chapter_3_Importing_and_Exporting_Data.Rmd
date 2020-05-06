@@ -164,15 +164,10 @@ install.packages(“package_name”, dependencies = TRUE, type = “win.binary�
    **Run them line by line – this makes it easy to spot any error messages.**
 
 
-* `“readr”`
-
-* `“readxl”`
- 
-* `“dplyr”`
+* `“tidyverse”`
 
 * `“janitor”`
 
-* `“ggplot2”`
 
 ***
 
@@ -185,15 +180,9 @@ install.packages(“package_name”, dependencies = TRUE, type = “win.binary�
 ```{r, eval = F}
 # Installing packages
 
-install.packages("readr", dependencies = TRUE, type = "win.binary")
-
-install.packages("readxl", dependencies = TRUE, type = "win.binary")
-
-install.packages("dplyr", dependencies = TRUE, type = "win.binary")
+install.packages("tidyverse", dependencies = TRUE, type = "win.binary")
 
 install.packages("janitor", dependencies = TRUE, type = "win.binary")
-
-install.packages("ggplot2", dependencies = TRUE, type = "win.binary")
 
 
 ```
@@ -205,7 +194,7 @@ install.packages("ggplot2", dependencies = TRUE, type = "win.binary")
 
 ```{r echo=FALSE}
 
-install.packages("readr", dependencies = TRUE, type = "win.binary")
+install.packages("janitor", dependencies = TRUE, type = "win.binary")
 
 
 ```
@@ -247,11 +236,11 @@ library(package-name)
 #### **Exercise** {-}
 
 
-1. Now try to load the packages below.
+1. Now try to load the package below.
 
-* `readr`
+* `tidyverse`
 
-* `readxl`
+
 
 ***
 
@@ -260,19 +249,18 @@ library(package-name)
 
 #### **Show Answer** {-}
 
-1. Now try to load the packages below.
+1. Now try to load the package below.
 
-* `readr`
+* `tidyverse`
 
-* `readxl`
+
 
 ```{r, eval = F}
 
 # loading packages
 
-library(readr)
+library(tidyverse)
 
-library(readxl)
 
 ```
 
@@ -315,7 +303,7 @@ Returning to our book analogy, not all of the books you own are relevant to your
 
 It’s exactly the same for your R project.
 
-We’re not using `ggplot2`, `dplyr` or `janitor` in these sessions so we are not going to load them yet.
+We’re not using `janitor` in this sessions so we are not going to load it yet.
 
 ***
 
@@ -349,6 +337,8 @@ base::version
 I am running version 3.4.4.
 
 Dont worry if you are running an older version.
+
+If you are curious on the [release names](https://livefreeordichotomize.com/2017/09/28/r-release-names/), they are references to Peanuts strips/films.
 
 Most packages are fully backwards compatible, so this is something to be aware of but we do not need to worry about it too much.
 
@@ -404,9 +394,11 @@ library(dplyr)
 
 We have now used a few functions, we will go through a little bit more information about how they work. Please note that we will cover them in chapter 6 where we will get a chance to write our own functions.
 
+You should make it a habit to check out the help files when you are using a function for the first time so you know what the default settings are and to see what things you can control with different function arguments.
+
 Functions follow the form:
 
-* `functionName(parameter = argument1, parameter = argument2, and so on)`
+* `functionName(argument1 = value, argument2 = value, and so on)`
 
 Let's take a look at some of the built-in functions R has for carrying out basic statistics/analysis, starting with `seq()`. 
 
@@ -833,7 +825,7 @@ titanic %>%
 2. What type of data is this column?
 
 
-3. Then `View` the column in R to see the data type R has set it to be. If you hover the mouse pointer on the name of the column it will R studio will display the datatype.
+3. Then `str()` function to see the data type R has set it to be.
 
 ***
 
@@ -848,10 +840,17 @@ titanic %>%
 2. What type of data is this column?
 
 
-3. Then `View` the column in R to see the data type R has set it to be.
+3. Then `str()` function to see the data type R has set it to be.
 
 
 <br>
+
+
+```{r}
+# Using the structure function to see the data types of the columns
+
+utils::str(titanic)
+```
 
 
 The data is numeric data.
@@ -1135,7 +1134,7 @@ We can do this by typing the commands below.
 ```{r eval=FALSE}
 # Inspecting our data
 
-base::str(titanic)
+utils::(titanic)
 
 dplyr::glimpse(titanic)
 
@@ -1175,9 +1174,9 @@ base::unique(titanic$Pclass)
 
 library(dplyr)
 
-str(titanic) # Structure of the table
+utils::str(titanic) # Structure of the table
 
-glimpse(titanic)  # Similar to str - from dplyr package
+dplyr::glimpse(titanic)  # Similar to str - from dplyr package
 
 dplyr::sample_n(titanic, size = 5) # select a random sample from out data of a given `size`
 

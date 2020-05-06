@@ -98,6 +98,8 @@ If you dont see the **Code editor pane**, go to the tool bar and click **View ->
 
 The positions of these can be adjusted under the ‘Preferences’ menu, but we will keep like this for now.
 
+You can also make panes bigger or smaller by hovering between two panes and then clicking and dragging.
+
 We will go through what we can do with each of these panes.
 
 ***
@@ -145,7 +147,9 @@ To change this setting go to **Tools -> Global Options -> “Save workspace to .
 
 We are first going to learn about how to interact with the console, which is the bottom left pane.
 
-This is where you can type code that executes immediately. This is also known as the **command line**. 
+This is where you can type code that executes immediately. This is also known as the **command line**.
+
+This is where you will see R output. You can also type in and run code from here if you don’t want to save it.
 
 We’ll spend a little time practising running code in the Console by exploring some basic properties of coding in R.
 
@@ -286,7 +290,7 @@ Type the following in your script and run the code.
 
 "I am learning R"
 
-2+4
+2 + 4
 
 23 - 6; 36 + 5
 
@@ -687,9 +691,9 @@ typeof(TRUE)
 
 typeof("ten")
 
-typeof("T")
+typeof("TRUE")
 
-typeof(F)
+typeof(FALSE)
 
 typeof("FALSE")
 
@@ -711,30 +715,6 @@ Given that R is a dynamically typed language, sometimes the data type you want t
 R doesn't require you to set the data type when you create it, instead it figures out what the best data type is for the object you are creating - numeric, character, logical, or others.
 
 Sometimes you want to ensure that a particular object is actually a certain type, rather than leaving it up to R. This is done using data type conversion. R has a range of in-built functions that enable you to convert data from one type to another.
-
-Firstly, the `typeof()` function returns the (R internal) type of any given object. e.g.
-
-```{r}
-typeof("is this a character?")
-```
-
-```{r}
-typeof(5L)
-```
-
-```{r}
-typeof(5)
-```
-
-We could equivalently use functions such as `is.` function which checks if our object is a given type. (set cursor after `is.` and hit tab).
-
-```{r, eval = FALSE}
-is.
-```
-
-```{r}
-is.integer(5)
-```
 
 
 In order to convert the data, you need to use the **as** function. As part of this command, you specify the data type you are converting to. The commands are as follows:
@@ -982,7 +962,7 @@ distance <- 10
 
 #3. time_value?
 
-Time <- 30 * 2
+time_value <- 30 * 2
 
 #4. distance
 
@@ -1057,7 +1037,7 @@ distance
 
 #3. time_value?
 
-Time <- 30 * 2
+time_value <- 30 * 2
 
 # To display the variable
 
@@ -1132,7 +1112,11 @@ You can access these by clicking on **Help** and then **Cheetsheets**.
 
 ### **Example**{-}
 
+Every time I use a function for a first time or reuse a function after some time , I spend time looking through the R help page for that function.
+
 From within RStudio we can access the Help documentation by using `?` or `??` in the console
+
+You can do this by typing `?functionname` into your Console and pressing enter, where functionname is some R function you want to use. This means you have to know the name of the function you want to use in advance.
 
 Try and type the command below in the console,and you should see the Help panel on the bottom right side of your RStudio environment populate with documentation.
 
@@ -1171,7 +1155,7 @@ Which sections appear can vary from help page to help page, but you can usually 
 
 **Usage** - An example of how you would type the function. Each argument of the function will appear in the order R expects you to supply it (if you don’t use argument names).
 
-**Arguments** - A list of each argument the function takes, what type of information R expects you to supply for the argument, and what the function will do with the information.
+**Arguments** - A list of each argument the function takes, what type of information R expects you to supply for the argument, and what the function will do with the information.This is a section I often spend quite a bit of time in, figuring out what arguments do and the options available for each argument.
 
 **Details** - A more in-depth description of the function and how it operates. The details section also gives the function author a chance to alert you to anything you might want to know when using the function.
 
@@ -1187,8 +1171,7 @@ Which sections appear can vary from help page to help page, but you can usually 
 
 ## Stack Overflow
 
-[Stack Overflow](https://stackoverflow.com/) is a great site to check if anyone has has a similar problem to you, and see how they got around it.
-
+[Stack Overflow](https://stackoverflow.com/questions/tagged/r) is a great site to check if anyone has has a similar problem to you,its useful if you are looking for how to do something in R and I don’t have a function name (or sometimes even if you do), you can search the R-tagged questions on the Stack Overflow site. Stack Overflow is currently very active with R questions and answers, and very often you can find a solution to a problem you are having there based on a question someone else asked.
 
 
 ***

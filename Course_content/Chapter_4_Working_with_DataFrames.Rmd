@@ -60,11 +60,10 @@ htmltools::img(src = knitr::image_uri("../Images/LATree.PNG"),
 
 1. Before we begin, could you load the packages below,
 
-   - `readr`
+   - `tidyverse`
 
    - `janitor`
 
-   - `dplyr`
 
 
 2. And then, read in the **`titanic.csv`** and assign it to `titanic`
@@ -103,9 +102,9 @@ dataframe_name <- readr::read_csv("file_path")
 ```{r echo = TRUE, message = FALSE, warning = FALSE}
 # Load packages
 
-library(readr)
+library(tidyverse)
 library(janitor)
-library(dplyr)
+
 
 # Importing CSV data using readr package and read_csv function
 # Specifying missing values by adding a vector, 
@@ -138,7 +137,7 @@ This makes it easier for us to call on the variables when we need to use them.
 ## **Example**{-}
 
 
-For example if we wanted to pick the `name of Passenger` column from the school dataset. 
+For example if we wanted to pick the `name of Passenger` column from the titanic dataset. 
 
 
 >**The code below does not work.** 
@@ -266,7 +265,7 @@ For example, the output of `gsub(" ", "_", "piece of text")` would be `piece_of_
 
 base::names(titanic) <- base::gsub(" ", "_", names(titanic))
 
-base::names(titanic) <- base::gsub("," , "", names(titanic) )
+base::names(titanic) <- base::gsub("," , "", names(titanic))
 
 base::names(titanic) <- base::gsub("-" , "_", names(titanic))
 ```

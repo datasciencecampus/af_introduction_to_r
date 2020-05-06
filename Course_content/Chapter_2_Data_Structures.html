@@ -2323,13 +2323,11 @@ div.tocify {
 <ol start="7" style="list-style-type: decimal">
 <li>Add a new chocolate bar.</li>
 </ol>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1"><span class="co"># Adding an item with list contained in a list</span></a>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">chocolate<span class="op">$</span>chocolate_bar[<span class="dv">5</span>]&lt;-<span class="st"> &quot;turkish delight&quot;</span></a>
 <a class="sourceLine" id="cb108-2" title="2"></a>
-<a class="sourceLine" id="cb108-3" title="3">chocolate[[<span class="dv">2</span>]][<span class="dv">5</span>] &lt;-<span class="st"> &quot;turkish delight&quot;</span></a>
+<a class="sourceLine" id="cb108-3" title="3"><span class="co"># To display the list</span></a>
 <a class="sourceLine" id="cb108-4" title="4"></a>
-<a class="sourceLine" id="cb108-5" title="5"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb108-6" title="6"></a>
-<a class="sourceLine" id="cb108-7" title="7">chocolate</a></code></pre></div>
+<a class="sourceLine" id="cb108-5" title="5">chocolate</a></code></pre></div>
 <pre><code>## $brand
 ## [1] &quot;celebrations&quot;
 ## 
@@ -2365,11 +2363,13 @@ div.tocify {
 ## 
 ## [[5]]
 ## [1] &quot;price&quot;</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">chocolate<span class="op">$</span>chocolate_bar[<span class="dv">5</span>]&lt;-<span class="st"> &quot;turkish delight&quot;</span></a>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1"><span class="co"># Adding an item with list contained in a list</span></a>
 <a class="sourceLine" id="cb112-2" title="2"></a>
-<a class="sourceLine" id="cb112-3" title="3"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb112-3" title="3">chocolate[[<span class="dv">2</span>]][<span class="dv">5</span>] &lt;-<span class="st"> &quot;turkish delight&quot;</span></a>
 <a class="sourceLine" id="cb112-4" title="4"></a>
-<a class="sourceLine" id="cb112-5" title="5">chocolate</a></code></pre></div>
+<a class="sourceLine" id="cb112-5" title="5"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb112-6" title="6"></a>
+<a class="sourceLine" id="cb112-7" title="7">chocolate</a></code></pre></div>
 <pre><code>## $brand
 ## [1] &quot;celebrations&quot;
 ## 
