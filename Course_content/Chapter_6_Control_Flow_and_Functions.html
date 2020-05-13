@@ -1581,28 +1581,26 @@ div.tocify {
 <div id="control-flow-and-functions" class="section level1 unnumbered">
 <h1>Control Flow and Functions</h1>
 <hr />
+<p><br></p>
 </div>
 <div id="learning-objectives" class="section level1">
 <h1><span class="header-section-number">1</span> Learning Objectives</h1>
-<p><br></p>
 <p><strong>The goal of this chapter is to:</strong></p>
 <ul>
 <li><p>Be able to use conditional statements: <em>if</em>, <em>else</em> and <em>else if</em>.</p></li>
-<li><p>Be able to use loops: <em>for</em> loops and <em>while</em> loops</p></li>
+<li><p>Be able to use loops: <em>for</em> loops and <em>while</em> loops.</p></li>
 <li><p>Learn what functions are.</p></li>
 <li><p>Understand why we need to use functions.</p></li>
 <li><p>Be able to write functions.</p></li>
 <li><p>Have a basic understanding of scoping within functions.</p></li>
 </ul>
 <hr />
+<p><br></p>
 </div>
 <div id="loops" class="section level1">
 <h1><span class="header-section-number">2</span> Loops</h1>
-<p><br></p>
 <p>Loops are a fundamental concept in traditional programming languages.</p>
-<blockquote>
-<p><strong>A loop is a way to repeat a number commands until a given condition is met.</strong></p>
-</blockquote>
+<p>A loop is a way to repeat a number commands until a given condition is met.</p>
 <p>Since R is a vectorised language, loops are not as prominently used in R as in Python for example. Despite this, they are key to programming in general and can save you lot’s of time and typing in certain cases.</p>
 <p>They allow you to automate parts of your code that are in need of repetition.</p>
 <p>Similar to how functions help make our code more abstract and general, loops are similar. As we are essentially simplifying a specific case to a more general case.</p>
@@ -1616,57 +1614,64 @@ div.tocify {
 <div id="for-loops" class="section level2">
 <h2><span class="header-section-number">2.1</span> For Loops</h2>
 <p>These are the most common type.</p>
-<p>They follow the basic structure below,</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">Basic Structure of a loop</a>
+<p>They follow the basic structure below.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Basic Structure of a loop</span></a>
 <a class="sourceLine" id="cb1-2" title="2"></a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="co"># create an empty output</span></a>
 <a class="sourceLine" id="cb1-4" title="4"><span class="co"># which we will fill when the loop runs</span></a>
-<a class="sourceLine" id="cb1-5" title="5">output &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb1-6" title="6"></a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="co"># creating the loop</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="cf">for</span> (Variable <span class="cf">in</span> Vector) { </a>
-<a class="sourceLine" id="cb1-9" title="9">  </a>
-<a class="sourceLine" id="cb1-10" title="10">  output &lt;-<span class="st"> </span>commands</a>
+<a class="sourceLine" id="cb1-5" title="5"></a>
+<a class="sourceLine" id="cb1-6" title="6">output &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb1-7" title="7"></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="co"># creating the loop</span></a>
+<a class="sourceLine" id="cb1-9" title="9"></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="cf">for</span> (each variable <span class="cf">in</span> my_iterable) { </a>
 <a class="sourceLine" id="cb1-11" title="11">  </a>
-<a class="sourceLine" id="cb1-12" title="12">}</a></code></pre></div>
+<a class="sourceLine" id="cb1-12" title="12">  output &lt;-<span class="st"> </span>commands</a>
+<a class="sourceLine" id="cb1-13" title="13">  </a>
+<a class="sourceLine" id="cb1-14" title="14">}</a></code></pre></div>
 <p><br></p>
 <ul>
-<li>So we start with creating an empty vector for our output.</li>
+<li>First we create an empty vector for our output.</li>
 </ul>
 <blockquote>
 <p><strong>Before you start the loop, you should allocate sufficient space for the output.</strong></p>
 </blockquote>
 <ul>
-<li><p>And then start with the word <code>for</code></p></li>
-<li><p>followed by <code>()</code> brackets where we specify an index variable, <code>i</code> is commonly used but it can be anything that you want. This is a placeholder and will correspond to a different element for each part of the loop.</p></li>
-<li><p>then the word <code>in</code></p></li>
-<li><p>then specify an iterable. In this case it is <code>Vector</code>, could be a list, dataframe etc</p></li>
-<li><p>followed by the <code>{}</code> curly brackets, which will have our commands, these could be multiple lines of code.</p></li>
+<li><p>Then we start with the loop with the word <code>for</code>,</p></li>
+<li><p>Followed by <code>()</code> brackets where we specify an index variable, <code>i</code> is commonly used but it can be anything that you want. This is a place holder and will correspond to a different element for each part of the loop,</p></li>
+<li><p>Then the word <code>in</code>.</p></li>
+<li><p>Then specify an iterable.This could be a<code>Vector</code>, a <code>list</code>, <code>dataframe</code> etc.</p></li>
 </ul>
 <blockquote>
-<p><strong>An iterable is an object that can be iterated through, one element at a time. Lists and vectors are both iterables.</strong></p>
+<p><strong>An iterable is an object that can be iterated through, one element at a time. Lists and vectors are both iterable.</strong></p>
 </blockquote>
+<ul>
+<li>Followed by the <code>{}</code> curly brackets, which will have our commands, these could be multiple lines of code.</li>
+</ul>
 <hr />
 <p><br></p>
-<div id="example" class="section level3 unnumbered">
-<h3>Example</h3>
-<p>lets look at an example.</p>
+<div id="example" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Example</h3>
+<p>let’s look at an example.</p>
 <p>We start by creating an iterable, I have created a vector with <strong>numbers between 0 and 5</strong>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># Creating a vector</span></a>
-<a class="sourceLine" id="cb2-2" title="2">example_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb2-2" title="2"></a>
+<a class="sourceLine" id="cb2-3" title="3">example_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</a></code></pre></div>
 <p>Creating our loop.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># create an empty output</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="co"># which we will fill when the loop runs</span></a>
-<a class="sourceLine" id="cb3-3" title="3">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb3-4" title="4"></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="co"># creating the loop</span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="cf">for</span> (each_number <span class="cf">in</span> example_vector) {</a>
-<a class="sourceLine" id="cb3-7" title="7">  </a>
-<a class="sourceLine" id="cb3-8" title="8">  <span class="kw">print</span>(each_number <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Create an empty output</span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="co"># Which we will fill when the loop runs</span></a>
+<a class="sourceLine" id="cb3-3" title="3"></a>
+<a class="sourceLine" id="cb3-4" title="4">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb3-5" title="5"></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co"># Creating the loop</span></a>
+<a class="sourceLine" id="cb3-7" title="7"></a>
+<a class="sourceLine" id="cb3-8" title="8"><span class="cf">for</span> (each_number <span class="cf">in</span> example_vector) {</a>
 <a class="sourceLine" id="cb3-9" title="9">  </a>
-<a class="sourceLine" id="cb3-10" title="10">  result &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">append</span>(result, <span class="dt">values =</span> each_number <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb3-10" title="10">  <span class="kw">print</span>(each_number <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb3-11" title="11">  </a>
-<a class="sourceLine" id="cb3-12" title="12">}</a></code></pre></div>
+<a class="sourceLine" id="cb3-12" title="12">  result &lt;-<span class="st"> </span><span class="kw">append</span>(result, <span class="dt">values =</span> each_number <span class="op">*</span><span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb3-13" title="13">  </a>
+<a class="sourceLine" id="cb3-14" title="14">}</a></code></pre></div>
 <pre><code>## [1] 0
 ## [1] 2
 ## [1] 4
@@ -1674,7 +1679,8 @@ div.tocify {
 ## [1] 8
 ## [1] 10</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># To display the data</span></a>
-<a class="sourceLine" id="cb5-2" title="2">result</a></code></pre></div>
+<a class="sourceLine" id="cb5-2" title="2"></a>
+<a class="sourceLine" id="cb5-3" title="3">result</a></code></pre></div>
 <pre><code>## [1]  0  2  4  6  8 10</code></pre>
 <p><br></p>
 <p>This loop is taking each number in our example vector and multiplying it by 2.</p>
@@ -1682,100 +1688,122 @@ div.tocify {
 <blockquote>
 <p><strong>You’ll often see letters like <code>i</code> used here, which is not particularly clear.</strong></p>
 </blockquote>
-<p>The keyword in is followed by the iterable I want to loop over (here it is <code>example_vector</code>).</p>
-<p>My Command are assigned to <code>result</code>. The command here is to multiply each number in <code>example_vector</code> by 2.</p>
+<p>The keyword <code>in</code> is followed by the iterable I want to loop over (here it is <code>example_vector</code>).</p>
+<p>My Command is assigned to <code>result</code>. The command here is to multiply each number in <code>example_vector</code> by 2.</p>
 <p><code>Append()</code> function simply adds an element to a vector, We first specify the vector we want to add to which is <code>result</code> and then specify the values that we want to add to it, here its specified by <code>values=</code>.</p>
-<p>Loops suppress output, unless explicitly <code>print()</code>ed out.</p>
 <hr />
 <p><br></p>
 </div>
 </div>
 <div id="while-loops" class="section level2">
 <h2><span class="header-section-number">2.2</span> While loops</h2>
-<p>Our other type of loops are <code>while</code> loops.</p>
+<p>Our other type of loops is <code>while</code> loops.</p>
 <p><code>for</code> loops iterate a set amount of times, or over a set number of things. A <code>while</code> loop iterates until it no longer meets a certain condition.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># create an empty output</span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="co"># which we will fill when the loop runs</span></a>
-<a class="sourceLine" id="cb7-3" title="3">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb7-4" title="4"></a>
-<a class="sourceLine" id="cb7-5" title="5"><span class="co"># creating the loop</span></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="cf">while</span> (logical condition) { </a>
-<a class="sourceLine" id="cb7-7" title="7">  </a>
-<a class="sourceLine" id="cb7-8" title="8">  result &lt;-<span class="st"> </span>commands</a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Create an empty output</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="co"># Which we will fill when the loop runs</span></a>
+<a class="sourceLine" id="cb7-3" title="3"></a>
+<a class="sourceLine" id="cb7-4" title="4">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb7-5" title="5"></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="co"># Creating the loop</span></a>
+<a class="sourceLine" id="cb7-7" title="7"></a>
+<a class="sourceLine" id="cb7-8" title="8"><span class="cf">while</span> (logical condition) { </a>
 <a class="sourceLine" id="cb7-9" title="9">  </a>
-<a class="sourceLine" id="cb7-10" title="10">}</a>
-<a class="sourceLine" id="cb7-11" title="11"></a>
-<a class="sourceLine" id="cb7-12" title="12"><span class="co"># To display the data</span></a>
-<a class="sourceLine" id="cb7-13" title="13">result</a></code></pre></div>
+<a class="sourceLine" id="cb7-10" title="10">  result &lt;-<span class="st"> </span>commands</a>
+<a class="sourceLine" id="cb7-11" title="11">  </a>
+<a class="sourceLine" id="cb7-12" title="12">}</a>
+<a class="sourceLine" id="cb7-13" title="13"></a>
+<a class="sourceLine" id="cb7-14" title="14"><span class="co"># To display the data</span></a>
+<a class="sourceLine" id="cb7-15" title="15"></a>
+<a class="sourceLine" id="cb7-16" title="16">result</a></code></pre></div>
 <p><br></p>
 <ul>
 <li><p>So we start with creating an empty vector for our output</p></li>
 <li><p>Then the word <code>while</code></p></li>
 <li><p>followed by the <code>()</code> brackets in which we specify our logical condition, using the <strong>conditional operators</strong>.</p></li>
-<li><p>and then <code>{}</code>, which surrounds our commands. These commands will be run repeatedly in order as long as the specified condtion is <code>TRUE</code>.</p></li>
+<li><p>and then <code>{}</code>, which surrounds our commands. These commands will be run repeatedly in order as long as the specified condition is <code>TRUE</code>.</p></li>
 </ul>
 <hr />
 <p><br></p>
-<div id="example-1" class="section level3 unnumbered">
-<h3>Example</h3>
-<p>lets look at an example:</p>
+<div id="example-1" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Example</h3>
+<p>let’s look at an example:</p>
 <ul>
 <li><p>If we say <code>stop_value</code> is assigned to 0.</p></li>
-<li><p>and we set out condtion to be <code>stop_value &lt; 5</code></p></li>
+<li><p>and we set out condition to be <code>stop_value &lt; 5</code></p></li>
 <li><p>then print <code>stop_value</code></p></li>
 <li><p>and then <code>add a 1</code></p></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># create an empty output</span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="co"># which we will fill when the loop runs</span></a>
-<a class="sourceLine" id="cb8-3" title="3">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb8-4" title="4"></a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="co"># Setting the value</span></a>
-<a class="sourceLine" id="cb8-6" title="6">stop_value &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># Create an empty output</span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="co"># Which we will fill when the loop runs</span></a>
+<a class="sourceLine" id="cb8-3" title="3"></a>
+<a class="sourceLine" id="cb8-4" title="4">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb8-5" title="5"></a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="co"># Setting the value</span></a>
 <a class="sourceLine" id="cb8-7" title="7"></a>
-<a class="sourceLine" id="cb8-8" title="8"><span class="co"># Creating the loop</span></a>
-<a class="sourceLine" id="cb8-9" title="9"><span class="co"># Our condition here is that stop_value &lt; 5</span></a>
-<a class="sourceLine" id="cb8-10" title="10"><span class="cf">while</span> (stop_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) { </a>
-<a class="sourceLine" id="cb8-11" title="11">  </a>
-<a class="sourceLine" id="cb8-12" title="12">  <span class="kw">print</span>(stop_value)</a>
-<a class="sourceLine" id="cb8-13" title="13">  </a>
-<a class="sourceLine" id="cb8-14" title="14">  stop_value &lt;-<span class="st"> </span>stop_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span> </a>
-<a class="sourceLine" id="cb8-15" title="15">  </a>
-<a class="sourceLine" id="cb8-16" title="16">  result &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">append</span>(result, stop_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb8-17" title="17">}</a></code></pre></div>
+<a class="sourceLine" id="cb8-8" title="8">stop_value &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb8-9" title="9"></a>
+<a class="sourceLine" id="cb8-10" title="10"><span class="co"># Creating the loop</span></a>
+<a class="sourceLine" id="cb8-11" title="11"><span class="co"># Our condition here is that stop_value &lt; 5</span></a>
+<a class="sourceLine" id="cb8-12" title="12"></a>
+<a class="sourceLine" id="cb8-13" title="13"><span class="cf">while</span> (stop_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) { </a>
+<a class="sourceLine" id="cb8-14" title="14">  </a>
+<a class="sourceLine" id="cb8-15" title="15">  <span class="kw">print</span>(stop_value)</a>
+<a class="sourceLine" id="cb8-16" title="16">  </a>
+<a class="sourceLine" id="cb8-17" title="17">  stop_value &lt;-<span class="st"> </span>stop_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span> </a>
+<a class="sourceLine" id="cb8-18" title="18">  </a>
+<a class="sourceLine" id="cb8-19" title="19">  result &lt;-<span class="st">  </span><span class="kw">append</span>(result, stop_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb8-20" title="20">}</a></code></pre></div>
 <pre><code>## [1] 0
 ## [1] 1
 ## [1] 2
 ## [1] 3
 ## [1] 4</code></pre>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># To display the data</span></a>
-<a class="sourceLine" id="cb10-2" title="2">result</a></code></pre></div>
+<a class="sourceLine" id="cb10-2" title="2"></a>
+<a class="sourceLine" id="cb10-3" title="3">result</a></code></pre></div>
 <pre><code>## [1] 2 3 4 5 6</code></pre>
 <p><br></p>
 <p>Can you guess what would happen if we removed the <code>stop_value &lt;- stop_value + 1</code> ?</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># create an empty output</span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="co"># which we will fill when the loop runs</span></a>
-<a class="sourceLine" id="cb12-3" title="3">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb12-4" title="4"></a>
-<a class="sourceLine" id="cb12-5" title="5"><span class="co"># Setting the value</span></a>
-<a class="sourceLine" id="cb12-6" title="6">stop_value &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># Create an empty output</span></a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="co"># Which we will fill when the loop runs</span></a>
+<a class="sourceLine" id="cb12-3" title="3"></a>
+<a class="sourceLine" id="cb12-4" title="4">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb12-5" title="5"></a>
+<a class="sourceLine" id="cb12-6" title="6"><span class="co"># Setting the value</span></a>
 <a class="sourceLine" id="cb12-7" title="7"></a>
-<a class="sourceLine" id="cb12-8" title="8"><span class="co"># Creating the loop</span></a>
-<a class="sourceLine" id="cb12-9" title="9"><span class="co"># Our condition here is that 0&lt;5 i.e stop_value</span></a>
-<a class="sourceLine" id="cb12-10" title="10"><span class="cf">while</span> (stop_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) { </a>
-<a class="sourceLine" id="cb12-11" title="11">  </a>
-<a class="sourceLine" id="cb12-12" title="12">  <span class="kw">print</span>(stop_value)</a>
-<a class="sourceLine" id="cb12-13" title="13">  </a>
-<a class="sourceLine" id="cb12-14" title="14">  result &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">append</span>(result, <span class="dt">values =</span> stop_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb12-15" title="15">}</a>
-<a class="sourceLine" id="cb12-16" title="16"></a>
-<a class="sourceLine" id="cb12-17" title="17"><span class="co"># To display the data</span></a>
-<a class="sourceLine" id="cb12-18" title="18">result</a></code></pre></div>
+<a class="sourceLine" id="cb12-8" title="8">stop_value &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb12-9" title="9"></a>
+<a class="sourceLine" id="cb12-10" title="10"><span class="co"># Creating the loop</span></a>
+<a class="sourceLine" id="cb12-11" title="11"><span class="co"># Our condition here is that 0&lt;5 i.e stop_value</span></a>
+<a class="sourceLine" id="cb12-12" title="12"></a>
+<a class="sourceLine" id="cb12-13" title="13"><span class="cf">while</span> (stop_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) { </a>
+<a class="sourceLine" id="cb12-14" title="14">  </a>
+<a class="sourceLine" id="cb12-15" title="15">  <span class="kw">print</span>(stop_value)</a>
+<a class="sourceLine" id="cb12-16" title="16">  </a>
+<a class="sourceLine" id="cb12-17" title="17">  result &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">append</span>(result, <span class="dt">values =</span> stop_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb12-18" title="18">}</a>
+<a class="sourceLine" id="cb12-19" title="19"></a>
+<a class="sourceLine" id="cb12-20" title="20"><span class="co"># To display the data</span></a>
+<a class="sourceLine" id="cb12-21" title="21"></a>
+<a class="sourceLine" id="cb12-22" title="22">result</a></code></pre></div>
 <p>If we removed the code <code>stop_value &lt;- stop_value +1</code> , <code>stop_value</code> (<code>0</code>) would always be less than <code>5</code> and the loop would be stuck in an infinite loop, as R will keep running the code.</p>
 <blockquote>
 <p><strong>You will have to hit the stop sign to exit the loop</strong></p>
 </blockquote>
 <p>It is therefore important that we design <code>while</code> loops that have a logical condition that will be met at some point.</p>
 <p>Although it is useful to know how to use loops in R, it is often faster to accomplish the same thing using vectorised operations in R.</p>
+<p>We already saw examples in the Vector Arithmetic section. A vectorized function is a function that will apply the same operation on each of the vectors.</p>
+<p>For example,</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Creating a vector</span></a>
+<a class="sourceLine" id="cb13-2" title="2"></a>
+<a class="sourceLine" id="cb13-3" title="3">example_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb13-4" title="4"></a>
+<a class="sourceLine" id="cb13-5" title="5"><span class="co"># Using a sqrt() function on our vector</span></a>
+<a class="sourceLine" id="cb13-6" title="6"></a>
+<a class="sourceLine" id="cb13-7" title="7">base<span class="op">::</span><span class="kw">sqrt</span>(example_vector)</a></code></pre></div>
+<pre><code>## [1] 1.000000 1.414214 1.732051 2.000000 2.236068</code></pre>
+<p><br></p>
+<p>To make this calculation, there is no need for a loop. However, not all functions work this way.</p>
 <p><br></p>
 </div>
 </div>
@@ -1788,7 +1816,7 @@ div.tocify {
 </ol>
 <ul>
 <li><p>Assign the value of a variable <code>temperature</code> to be 40.</p></li>
-<li><p>The condition of the <code>while</code> loop, should check if the temperature is higher than <code>20</code></p></li>
+<li><p>The condition of the <code>while</code> loop should check if the temperature is higher than <code>20</code></p></li>
 <li><p>The first command in the body should print out <code>&quot;Its way too hot!&quot;</code></p></li>
 <li><p>The next command should decrease the <code>temperature</code> by <code>2</code> and assign this new value to <code>temperature</code> again.</p></li>
 </ul>
@@ -1802,28 +1830,32 @@ div.tocify {
 </ol>
 <ul>
 <li><p>Assign the value of a variable <code>temperature</code> to be 40.</p></li>
-<li><p>The condition of the <code>while</code> loop, should check if the temperature is higher than <code>20</code></p></li>
+<li><p>The condition of the <code>while</code> loop should check if the temperature is higher than <code>20</code></p></li>
 <li><p>The first command in the body should print out <code>&quot;Its way too hot!&quot;</code></p></li>
 <li><p>The next command should decrease the <code>temperature</code> by <code>2</code> and assign this new value to <code>temperature</code> again.</p></li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># create an empty output</span></a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="co"># which we will fill when the loop runs</span></a>
-<a class="sourceLine" id="cb13-3" title="3">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb13-4" title="4"></a>
-<a class="sourceLine" id="cb13-5" title="5"><span class="co"># setting the temperature value</span></a>
-<a class="sourceLine" id="cb13-6" title="6">temperature &lt;-<span class="st"> </span><span class="dv">40</span></a>
-<a class="sourceLine" id="cb13-7" title="7"></a>
-<a class="sourceLine" id="cb13-8" title="8"><span class="co"># Code the while loop</span></a>
-<a class="sourceLine" id="cb13-9" title="9"><span class="cf">while</span> (condition) {</a>
-<a class="sourceLine" id="cb13-10" title="10">  </a>
-<a class="sourceLine" id="cb13-11" title="11">  conditions</a>
-<a class="sourceLine" id="cb13-12" title="12">  </a>
-<a class="sourceLine" id="cb13-13" title="13">  result &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">append</span>(result, temperature)</a>
-<a class="sourceLine" id="cb13-14" title="14">  </a>
-<a class="sourceLine" id="cb13-15" title="15">}</a>
-<a class="sourceLine" id="cb13-16" title="16"></a>
-<a class="sourceLine" id="cb13-17" title="17"><span class="co"># To display the data</span></a>
-<a class="sourceLine" id="cb13-18" title="18">result</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co"># Create an empty output</span></a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="co"># Which we will fill when the loop runs</span></a>
+<a class="sourceLine" id="cb15-3" title="3"></a>
+<a class="sourceLine" id="cb15-4" title="4">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb15-5" title="5"></a>
+<a class="sourceLine" id="cb15-6" title="6"><span class="co"># Setting the temperature value</span></a>
+<a class="sourceLine" id="cb15-7" title="7"></a>
+<a class="sourceLine" id="cb15-8" title="8">temperature &lt;-<span class="st"> </span><span class="dv">40</span></a>
+<a class="sourceLine" id="cb15-9" title="9"></a>
+<a class="sourceLine" id="cb15-10" title="10"><span class="co"># Code the while loop</span></a>
+<a class="sourceLine" id="cb15-11" title="11"></a>
+<a class="sourceLine" id="cb15-12" title="12"><span class="cf">while</span> (condition) {</a>
+<a class="sourceLine" id="cb15-13" title="13">  </a>
+<a class="sourceLine" id="cb15-14" title="14">  conditions</a>
+<a class="sourceLine" id="cb15-15" title="15">  </a>
+<a class="sourceLine" id="cb15-16" title="16">  result &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">append</span>(result, temperature)</a>
+<a class="sourceLine" id="cb15-17" title="17">  </a>
+<a class="sourceLine" id="cb15-18" title="18">}</a>
+<a class="sourceLine" id="cb15-19" title="19"></a>
+<a class="sourceLine" id="cb15-20" title="20"><span class="co"># To display the data</span></a>
+<a class="sourceLine" id="cb15-21" title="21"></a>
+<a class="sourceLine" id="cb15-22" title="22">result</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
@@ -1834,27 +1866,30 @@ div.tocify {
 </ol>
 <ul>
 <li><p>Assign the value of a variable <code>temperature</code> to be 40.</p></li>
-<li><p>The condition of the <code>while</code> loop, should check if the temperature is higher than <code>20</code></p></li>
+<li><p>The condition of the <code>while</code> loop should check if the temperature is higher than <code>20</code></p></li>
 <li><p>The first command in the body should print out <code>&quot;Its way too hot!&quot;</code></p></li>
 <li><p>The next command should decrease the <code>temperature</code> by <code>2</code> and assign this new value to <code>temperature</code> again.</p></li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># create an empty output</span></a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="co"># which we will fill when the loop runs</span></a>
-<a class="sourceLine" id="cb14-3" title="3">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb14-4" title="4"></a>
-<a class="sourceLine" id="cb14-5" title="5"><span class="co"># setting the temperature value</span></a>
-<a class="sourceLine" id="cb14-6" title="6">temperature &lt;-<span class="st"> </span><span class="dv">40</span></a>
-<a class="sourceLine" id="cb14-7" title="7"></a>
-<a class="sourceLine" id="cb14-8" title="8"><span class="co"># Code the while loop</span></a>
-<a class="sourceLine" id="cb14-9" title="9"><span class="cf">while</span> (temperature <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>) {</a>
-<a class="sourceLine" id="cb14-10" title="10">  </a>
-<a class="sourceLine" id="cb14-11" title="11">  <span class="kw">print</span>(<span class="st">&quot;It way too hot!&quot;</span>)</a>
-<a class="sourceLine" id="cb14-12" title="12">  </a>
-<a class="sourceLine" id="cb14-13" title="13">  temperature &lt;-<span class="st"> </span>temperature <span class="op">-</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb14-14" title="14">  </a>
-<a class="sourceLine" id="cb14-15" title="15">  result &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">append</span>(result, temperature)</a>
-<a class="sourceLine" id="cb14-16" title="16">  </a>
-<a class="sourceLine" id="cb14-17" title="17">}</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># Create an empty output</span></a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="co"># Which we will fill when the loop runs</span></a>
+<a class="sourceLine" id="cb16-3" title="3"></a>
+<a class="sourceLine" id="cb16-4" title="4">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb16-5" title="5"></a>
+<a class="sourceLine" id="cb16-6" title="6"><span class="co"># Setting the temperature value</span></a>
+<a class="sourceLine" id="cb16-7" title="7"></a>
+<a class="sourceLine" id="cb16-8" title="8">temperature &lt;-<span class="st"> </span><span class="dv">40</span></a>
+<a class="sourceLine" id="cb16-9" title="9"></a>
+<a class="sourceLine" id="cb16-10" title="10"><span class="co"># Code the while loop</span></a>
+<a class="sourceLine" id="cb16-11" title="11"></a>
+<a class="sourceLine" id="cb16-12" title="12"><span class="cf">while</span> (temperature <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>) {</a>
+<a class="sourceLine" id="cb16-13" title="13">  </a>
+<a class="sourceLine" id="cb16-14" title="14">  <span class="kw">print</span>(<span class="st">&quot;It way too hot!&quot;</span>)</a>
+<a class="sourceLine" id="cb16-15" title="15">  </a>
+<a class="sourceLine" id="cb16-16" title="16">  temperature &lt;-<span class="st"> </span>temperature <span class="op">-</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb16-17" title="17">  </a>
+<a class="sourceLine" id="cb16-18" title="18">  result &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">append</span>(result, temperature)</a>
+<a class="sourceLine" id="cb16-19" title="19">  </a>
+<a class="sourceLine" id="cb16-20" title="20">}</a></code></pre></div>
 <pre><code>## [1] &quot;It way too hot!&quot;
 ## [1] &quot;It way too hot!&quot;
 ## [1] &quot;It way too hot!&quot;
@@ -1865,8 +1900,9 @@ div.tocify {
 ## [1] &quot;It way too hot!&quot;
 ## [1] &quot;It way too hot!&quot;
 ## [1] &quot;It way too hot!&quot;</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># To display the data</span></a>
-<a class="sourceLine" id="cb16-2" title="2">result</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># To display the data</span></a>
+<a class="sourceLine" id="cb18-2" title="2"></a>
+<a class="sourceLine" id="cb18-3" title="3">result</a></code></pre></div>
 <pre><code>##  [1] 38 36 34 32 30 28 26 24 22 20</code></pre>
 <hr />
 <p><br></p>
@@ -1876,7 +1912,7 @@ div.tocify {
 <div id="conditional-statements" class="section level1">
 <h1><span class="header-section-number">3</span> Conditional Statements</h1>
 <p>A conditional statement will check whether a condition is TRUE or FALSE.</p>
-<p>So, if our statement meets this criteria apply this action, otherwise do nothing.</p>
+<p>So, if our statement meets this criterion apply this action, otherwise do nothing.</p>
 <p>This is useful if we want a function to run only when our data meets certain conditions, this is termed <code>control flow</code>.</p>
 <p>We use comparison and logical operators.</p>
 <p><br></p>
@@ -1907,7 +1943,7 @@ div.tocify {
 </tr>
 <tr class="odd">
 <td>&lt;=</td>
-<td align="left">less than or eaqual to</td>
+<td align="left">less than or equal to</td>
 </tr>
 <tr class="even">
 <td>&gt;=</td>
@@ -1940,7 +1976,7 @@ div.tocify {
 </tbody>
 </table>
 <p><br></p>
-<p>You might want an action to be perfomed depending on the outcome, to be able to do this in R, we use the;</p>
+<p>You might want an action to be performed depending on the outcome, to be able to do this in R, we use the:</p>
 <ul>
 <li><p><em>if</em> statement</p></li>
 <li><p><em>else if</em> statement</p></li>
@@ -1949,76 +1985,53 @@ div.tocify {
 <p><code>if</code>, <code>else if</code> and <code>else</code> are not loops, but fall under the category of control flow.</p>
 <p>These take a conditional argument, and if that is met (evaluates to <code>True</code>) then the associated action is completed.</p>
 <p>If the condition is not met it will move to an <code>else if</code> (if present) and if that condition is met the associated action will be completed.</p>
-<p>Finally, if none of the conditions are met the actions for the <code>else</code> condition are met.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="cf">if</span> (first logical condition) { </a>
-<a class="sourceLine" id="cb18-2" title="2">  </a>
-<a class="sourceLine" id="cb18-3" title="3">  Commands <span class="op">-</span><span class="st"> </span>executed <span class="cf">if</span> logical condition is true</a>
-<a class="sourceLine" id="cb18-4" title="4">  </a>
-<a class="sourceLine" id="cb18-5" title="5">} <span class="cf">else</span> <span class="cf">if</span> (second condition) { </a>
-<a class="sourceLine" id="cb18-6" title="6">  </a>
-<a class="sourceLine" id="cb18-7" title="7">  Commands <span class="op">-</span><span class="st"> </span>executed <span class="cf">if</span> the logical condition is false and second condtion is true</a>
-<a class="sourceLine" id="cb18-8" title="8">  </a>
-<a class="sourceLine" id="cb18-9" title="9">} <span class="cf">else</span> <span class="cf">if</span> (third condition) { </a>
-<a class="sourceLine" id="cb18-10" title="10">  </a>
-<a class="sourceLine" id="cb18-11" title="11">  Commands <span class="op">-</span><span class="st"> </span>executed <span class="cf">if</span> logical condition and second condition are false</a>
-<a class="sourceLine" id="cb18-12" title="12">  </a>
-<a class="sourceLine" id="cb18-13" title="13">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb18-14" title="14">  </a>
-<a class="sourceLine" id="cb18-15" title="15">  Commands <span class="op">-</span><span class="st"> </span>executed when all conditions are false</a>
-<a class="sourceLine" id="cb18-16" title="16">  </a>
-<a class="sourceLine" id="cb18-17" title="17">}</a></code></pre></div>
+<p>Finally, if none of the conditions is met the actions for the <code>else</code> condition is met.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="cf">if</span> (first logical condition) { </a>
+<a class="sourceLine" id="cb20-2" title="2">  </a>
+<a class="sourceLine" id="cb20-3" title="3">  Commands <span class="op">-</span><span class="st"> </span>executed <span class="cf">if</span> logical condition is true</a>
+<a class="sourceLine" id="cb20-4" title="4">  </a>
+<a class="sourceLine" id="cb20-5" title="5">} <span class="cf">else</span> <span class="cf">if</span> (second condition) { </a>
+<a class="sourceLine" id="cb20-6" title="6">  </a>
+<a class="sourceLine" id="cb20-7" title="7">  Commands <span class="op">-</span><span class="st"> </span>executed <span class="cf">if</span> the logical condition is false and second condtion is true</a>
+<a class="sourceLine" id="cb20-8" title="8">  </a>
+<a class="sourceLine" id="cb20-9" title="9">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb20-10" title="10">  </a>
+<a class="sourceLine" id="cb20-11" title="11">  Commands <span class="op">-</span><span class="st"> </span>executed when all conditions are false</a>
+<a class="sourceLine" id="cb20-12" title="12">  </a>
+<a class="sourceLine" id="cb20-13" title="13">}</a></code></pre></div>
 <blockquote>
 <p><strong>It’s important that the <code>else if</code> keyword comes on the same line as the closing bracket of the previous part of the control structure.</strong></p>
 </blockquote>
 <p><br></p>
-<div id="example-2" class="section level2 unnumbered">
-<h2>Example</h2>
+<div id="example-2" class="section level2">
+<h2><span class="header-section-number">3.1</span> Example</h2>
 <p>We can just have an <code>if</code> and an <code>else</code>.</p>
-<p>Lets look at an example.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">height &lt;-<span class="st"> </span><span class="dv">6</span></a>
-<a class="sourceLine" id="cb19-2" title="2"></a>
-<a class="sourceLine" id="cb19-3" title="3"><span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) { </a>
-<a class="sourceLine" id="cb19-4" title="4">  </a>
-<a class="sourceLine" id="cb19-5" title="5">  <span class="kw">print</span>(<span class="st">&quot;We&#39;re the same height&quot;</span>)</a>
-<a class="sourceLine" id="cb19-6" title="6">  </a>
-<a class="sourceLine" id="cb19-7" title="7">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb19-8" title="8">  </a>
-<a class="sourceLine" id="cb19-9" title="9">  <span class="kw">print</span>(<span class="st">&quot;Your height is different&quot;</span>)</a>
-<a class="sourceLine" id="cb19-10" title="10">  </a>
-<a class="sourceLine" id="cb19-11" title="11">}</a></code></pre></div>
-<pre><code>## [1] &quot;Your height is different&quot;</code></pre>
-<p><br></p>
-<p>Remember our <code>if</code>, <code>else if</code> and <code>else</code> statements take a contion so we need a double equals sign (<code>==</code>) for checking equivalency. If the first criteria isn’t met it will move to the else statement and action that.</p>
-<p>We can add in more choices using an <code>else if</code> statement.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">height &lt;-<span class="st"> </span><span class="dv">7</span></a>
+<p>Let’s look at an example.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">height &lt;-<span class="st"> </span><span class="dv">6</span></a>
 <a class="sourceLine" id="cb21-2" title="2"></a>
 <a class="sourceLine" id="cb21-3" title="3"><span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) { </a>
 <a class="sourceLine" id="cb21-4" title="4">  </a>
 <a class="sourceLine" id="cb21-5" title="5">  <span class="kw">print</span>(<span class="st">&quot;We&#39;re the same height&quot;</span>)</a>
 <a class="sourceLine" id="cb21-6" title="6">  </a>
-<a class="sourceLine" id="cb21-7" title="7">} <span class="cf">else</span> <span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">7</span>) { </a>
+<a class="sourceLine" id="cb21-7" title="7">} <span class="cf">else</span> {</a>
 <a class="sourceLine" id="cb21-8" title="8">  </a>
-<a class="sourceLine" id="cb21-9" title="9">  <span class="kw">print</span>(<span class="st">&quot;You&#39;re tall!&quot;</span>)</a>
-<a class="sourceLine" id="cb21-10" title="10"> </a>
-<a class="sourceLine" id="cb21-11" title="11">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb21-12" title="12">  </a>
-<a class="sourceLine" id="cb21-13" title="13">  <span class="kw">print</span>(<span class="st">&quot;Your height is different&quot;</span>)</a>
-<a class="sourceLine" id="cb21-14" title="14">  </a>
-<a class="sourceLine" id="cb21-15" title="15">}</a></code></pre></div>
-<pre><code>## [1] &quot;You&#39;re tall!&quot;</code></pre>
+<a class="sourceLine" id="cb21-9" title="9">  <span class="kw">print</span>(<span class="st">&quot;Your height is different&quot;</span>)</a>
+<a class="sourceLine" id="cb21-10" title="10">  </a>
+<a class="sourceLine" id="cb21-11" title="11">}</a></code></pre></div>
+<pre><code>## [1] &quot;Your height is different&quot;</code></pre>
 <p><br></p>
-<p>Within these we can use our logical operators too - <code>&amp;</code> (and), <code>|</code> (or).</p>
-<p>Here we want the action to happen if the value is greater than 7 and less than 10.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">height &lt;-<span class="st"> </span><span class="dv">9</span></a>
+<p>Remember our <code>if</code>, <code>else if</code> and <code>else</code> statements take a condition so we need a double equals sign (<code>==</code>) for checking equivalence. If the first criteria isn’t met it will move to the else statement and action that.</p>
+<p>We can add in more choices using an <code>else if</code> statement.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">height &lt;-<span class="st"> </span><span class="dv">7</span></a>
 <a class="sourceLine" id="cb23-2" title="2"></a>
 <a class="sourceLine" id="cb23-3" title="3"><span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) { </a>
 <a class="sourceLine" id="cb23-4" title="4">  </a>
 <a class="sourceLine" id="cb23-5" title="5">  <span class="kw">print</span>(<span class="st">&quot;We&#39;re the same height&quot;</span>)</a>
 <a class="sourceLine" id="cb23-6" title="6">  </a>
-<a class="sourceLine" id="cb23-7" title="7">} <span class="cf">else</span> <span class="cf">if</span> (height <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span> <span class="op">&amp;</span><span class="st"> </span>height <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>) { </a>
+<a class="sourceLine" id="cb23-7" title="7">} <span class="cf">else</span> <span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">7</span>) { </a>
 <a class="sourceLine" id="cb23-8" title="8">  </a>
 <a class="sourceLine" id="cb23-9" title="9">  <span class="kw">print</span>(<span class="st">&quot;You&#39;re tall!&quot;</span>)</a>
-<a class="sourceLine" id="cb23-10" title="10">  </a>
+<a class="sourceLine" id="cb23-10" title="10"> </a>
 <a class="sourceLine" id="cb23-11" title="11">} <span class="cf">else</span> {</a>
 <a class="sourceLine" id="cb23-12" title="12">  </a>
 <a class="sourceLine" id="cb23-13" title="13">  <span class="kw">print</span>(<span class="st">&quot;Your height is different&quot;</span>)</a>
@@ -2026,12 +2039,9 @@ div.tocify {
 <a class="sourceLine" id="cb23-15" title="15">}</a></code></pre></div>
 <pre><code>## [1] &quot;You&#39;re tall!&quot;</code></pre>
 <p><br></p>
-<p>It’s important to know how the <code>if</code>, <code>else if</code>, <code>else</code> works.</p>
-<p>Here we have two options for when the value is 5.</p>
-<p>However it will only print out “We’re the same height!”</p>
-<p>When the condition is met it performs the action associated with it and then quits.</p>
-<p>Try changing the value stored in <code>my_height</code> to see the other results.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">height &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<p>Within these we can use our logical operators too: <code>&amp;</code> (and); <code>|</code> (or).</p>
+<p>Here we want the action to happen if the value is greater than 7 and less than 10.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">height &lt;-<span class="st"> </span><span class="dv">9</span></a>
 <a class="sourceLine" id="cb25-2" title="2"></a>
 <a class="sourceLine" id="cb25-3" title="3"><span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) { </a>
 <a class="sourceLine" id="cb25-4" title="4">  </a>
@@ -2041,16 +2051,38 @@ div.tocify {
 <a class="sourceLine" id="cb25-8" title="8">  </a>
 <a class="sourceLine" id="cb25-9" title="9">  <span class="kw">print</span>(<span class="st">&quot;You&#39;re tall!&quot;</span>)</a>
 <a class="sourceLine" id="cb25-10" title="10">  </a>
-<a class="sourceLine" id="cb25-11" title="11">} <span class="cf">else</span> <span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb25-11" title="11">} <span class="cf">else</span> {</a>
 <a class="sourceLine" id="cb25-12" title="12">  </a>
-<a class="sourceLine" id="cb25-13" title="13">  <span class="kw">print</span>(<span class="st">&quot;Wow, it&#39;s still 5!&quot;</span>)</a>
+<a class="sourceLine" id="cb25-13" title="13">  <span class="kw">print</span>(<span class="st">&quot;Your height is different&quot;</span>)</a>
 <a class="sourceLine" id="cb25-14" title="14">  </a>
-<a class="sourceLine" id="cb25-15" title="15">  </a>
-<a class="sourceLine" id="cb25-16" title="16">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb25-17" title="17">  </a>
-<a class="sourceLine" id="cb25-18" title="18">  <span class="kw">print</span>(<span class="st">&quot;Your height is different&quot;</span>)</a>
-<a class="sourceLine" id="cb25-19" title="19">  </a>
-<a class="sourceLine" id="cb25-20" title="20">}</a></code></pre></div>
+<a class="sourceLine" id="cb25-15" title="15">}</a></code></pre></div>
+<pre><code>## [1] &quot;You&#39;re tall!&quot;</code></pre>
+<p><br></p>
+<p>It’s important to know how the <code>if</code>, <code>else if</code>, <code>else</code> works.</p>
+<p>Here we have two options for when the value is 5.</p>
+<p>However it will only print out “We’re the same height!”</p>
+<p>When the condition is met it performs the action associated with it and then quits.</p>
+<p>Try changing the value stored in <code>my_height</code> to see the other results.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">height &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb27-2" title="2"></a>
+<a class="sourceLine" id="cb27-3" title="3"><span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) { </a>
+<a class="sourceLine" id="cb27-4" title="4">  </a>
+<a class="sourceLine" id="cb27-5" title="5">  <span class="kw">print</span>(<span class="st">&quot;We&#39;re the same height&quot;</span>)</a>
+<a class="sourceLine" id="cb27-6" title="6">  </a>
+<a class="sourceLine" id="cb27-7" title="7">} <span class="cf">else</span> <span class="cf">if</span> (height <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span> <span class="op">&amp;</span><span class="st"> </span>height <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>) { </a>
+<a class="sourceLine" id="cb27-8" title="8">  </a>
+<a class="sourceLine" id="cb27-9" title="9">  <span class="kw">print</span>(<span class="st">&quot;You&#39;re tall!&quot;</span>)</a>
+<a class="sourceLine" id="cb27-10" title="10">  </a>
+<a class="sourceLine" id="cb27-11" title="11">} <span class="cf">else</span> <span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb27-12" title="12">  </a>
+<a class="sourceLine" id="cb27-13" title="13">  <span class="kw">print</span>(<span class="st">&quot;Wow, it&#39;s still 5!&quot;</span>)</a>
+<a class="sourceLine" id="cb27-14" title="14">  </a>
+<a class="sourceLine" id="cb27-15" title="15">  </a>
+<a class="sourceLine" id="cb27-16" title="16">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb27-17" title="17">  </a>
+<a class="sourceLine" id="cb27-18" title="18">  <span class="kw">print</span>(<span class="st">&quot;Your height is different&quot;</span>)</a>
+<a class="sourceLine" id="cb27-19" title="19">  </a>
+<a class="sourceLine" id="cb27-20" title="20">}</a></code></pre></div>
 <pre><code>## [1] &quot;We&#39;re the same height&quot;</code></pre>
 <p><br></p>
 <blockquote>
@@ -2060,29 +2092,29 @@ div.tocify {
 <p><br></p>
 </div>
 <div id="loops-and-conditional-statements" class="section level2">
-<h2><span class="header-section-number">3.1</span> Loops and Conditional Statements</h2>
-<p>We can combile a <code>loop</code> and and <code>if else statements</code>.</p>
+<h2><span class="header-section-number">3.2</span> Loops and Conditional Statements</h2>
+<p>We can compile a <code>loop</code> and and <code>if else statements</code>.</p>
 <ul>
 <li><p>We have a vector, with values from <code>1-7</code> and assign it to <code>number_of_takeaways_ordered</code>.</p></li>
 <li><p>And a <code>for</code> loop with an <code>if</code> and <code>else</code> statement shows that if you order more than <code>2</code> takeaways a week it will print <code>&quot;too many&quot;</code> and if you order less than two it prints <code>&quot;enough&quot;</code>.</p></li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">number_of_takeaways_ordered &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>)</a>
-<a class="sourceLine" id="cb27-2" title="2"></a>
-<a class="sourceLine" id="cb27-3" title="3"><span class="cf">for</span> (number <span class="cf">in</span> number_of_takeaways_ordered) { </a>
-<a class="sourceLine" id="cb27-4" title="4">  </a>
-<a class="sourceLine" id="cb27-5" title="5">  <span class="cf">if</span> (number <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>) { </a>
-<a class="sourceLine" id="cb27-6" title="6">    </a>
-<a class="sourceLine" id="cb27-7" title="7">    <span class="kw">print</span>(<span class="st">&quot;too many&quot;</span>)</a>
-<a class="sourceLine" id="cb27-8" title="8">    </a>
-<a class="sourceLine" id="cb27-9" title="9">  } <span class="cf">else</span> { </a>
-<a class="sourceLine" id="cb27-10" title="10">    </a>
-<a class="sourceLine" id="cb27-11" title="11">  <span class="kw">print</span>(<span class="st">&quot;enough&quot;</span>)</a>
-<a class="sourceLine" id="cb27-12" title="12">    </a>
-<a class="sourceLine" id="cb27-13" title="13">  }</a>
-<a class="sourceLine" id="cb27-14" title="14">  </a>
-<a class="sourceLine" id="cb27-15" title="15">  <span class="kw">print</span>(number)</a>
-<a class="sourceLine" id="cb27-16" title="16">  </a>
-<a class="sourceLine" id="cb27-17" title="17">}</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">number_of_takeaways_ordered &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb29-2" title="2"></a>
+<a class="sourceLine" id="cb29-3" title="3"><span class="cf">for</span> (number <span class="cf">in</span> number_of_takeaways_ordered) { </a>
+<a class="sourceLine" id="cb29-4" title="4">  </a>
+<a class="sourceLine" id="cb29-5" title="5">  <span class="cf">if</span> (number <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>) { </a>
+<a class="sourceLine" id="cb29-6" title="6">    </a>
+<a class="sourceLine" id="cb29-7" title="7">    <span class="kw">print</span>(<span class="st">&quot;too many&quot;</span>)</a>
+<a class="sourceLine" id="cb29-8" title="8">    </a>
+<a class="sourceLine" id="cb29-9" title="9">  } <span class="cf">else</span> { </a>
+<a class="sourceLine" id="cb29-10" title="10">    </a>
+<a class="sourceLine" id="cb29-11" title="11">  <span class="kw">print</span>(<span class="st">&quot;enough&quot;</span>)</a>
+<a class="sourceLine" id="cb29-12" title="12">    </a>
+<a class="sourceLine" id="cb29-13" title="13">  }</a>
+<a class="sourceLine" id="cb29-14" title="14">  </a>
+<a class="sourceLine" id="cb29-15" title="15">  <span class="kw">print</span>(number)</a>
+<a class="sourceLine" id="cb29-16" title="16">  </a>
+<a class="sourceLine" id="cb29-17" title="17">}</a></code></pre></div>
 <pre><code>## [1] &quot;enough&quot;
 ## [1] 1
 ## [1] &quot;enough&quot;
@@ -2101,14 +2133,14 @@ div.tocify {
 <p><br></p>
 </div>
 <div id="exercise-1" class="section level2 tabset tabset-fade">
-<h2><span class="header-section-number">3.2</span> Exercise</h2>
+<h2><span class="header-section-number">3.3</span> Exercise</h2>
 <div id="exercise-2" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <ol style="list-style-type: decimal">
 <li><p>Can you write a loop with an <code>if</code>, <code>else if</code> and <code>else</code> statement, that loops through the numbers from 1 to 30.</p>
 <p>If the number is a multiple of both 3 and 5, print “FizzBuzz”.</p>
-<p>If the number is a mutiple of 3, print the word “Fizz”.</p>
-<p>If the number is a mutiple of 5, print the word “Buzz”.</p>
+<p>If the number is a multiple of 3, print the word “Fizz”.</p>
+<p>If the number is a multiple of 5, print the word “Buzz”.</p>
 <p>For all other values print the number.</p></li>
 </ol>
 <blockquote>
@@ -2118,14 +2150,16 @@ div.tocify {
 <blockquote>
 <p><strong><code>item %% 3 == 0</code>, to check if it divided completely - having a remainder of 0</strong></p>
 </blockquote>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="co"># Example of Modulo</span></a>
-<a class="sourceLine" id="cb29-2" title="2"><span class="dv">10</span> <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span></a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="co"># Example of Modulo</span></a>
+<a class="sourceLine" id="cb31-2" title="2"></a>
+<a class="sourceLine" id="cb31-3" title="3"><span class="dv">10</span> <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span></a></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="co"># Returns FALSE (10 / 3 has a remainder of 1 - so does not have a remainder of 0)</span></a></code></pre></div>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># Second example of Modulo</span></a>
-<a class="sourceLine" id="cb32-2" title="2"><span class="dv">9</span> <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span></a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># Returns FALSE (10 / 3 has a remainder of 1 - so does not have a remainder of 0)</span></a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co"># Second example of Modulo</span></a>
+<a class="sourceLine" id="cb34-2" title="2"></a>
+<a class="sourceLine" id="cb34-3" title="3"><span class="dv">9</span> <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span></a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co"># Returns TRUE (9 / 3 has a remainder of 0)</span></a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co"># Returns TRUE (9 / 3 has a remainder of 0)</span></a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
@@ -2134,30 +2168,30 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li><p>Can you write a loop with an <code>if</code>, <code>else if</code> and <code>else</code> statement, that loops through the numbers from 1 to 30.</p>
 <p>If the number is a multiple of both 3 and 5, print “FizzBuzz”.</p>
-<p>If the number is a mutiple of 3, print the word “Fizz”.</p>
-<p>If the number is a mutiple of 5, print the word “Buzz”.</p>
+<p>If the number is a multiple of 3, print the word “Fizz”.</p>
+<p>If the number is a multiple of 5, print the word “Buzz”.</p>
 <p>For all other values print the number.</p></li>
 </ol>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="cf">for</span> (each_number <span class="cf">in</span> vector) { </a>
-<a class="sourceLine" id="cb35-2" title="2">  </a>
-<a class="sourceLine" id="cb35-3" title="3">  <span class="cf">if</span> (first conditions) {</a>
-<a class="sourceLine" id="cb35-4" title="4">    </a>
-<a class="sourceLine" id="cb35-5" title="5">    output</a>
-<a class="sourceLine" id="cb35-6" title="6">  }</a>
-<a class="sourceLine" id="cb35-7" title="7">  <span class="cf">else</span> <span class="cf">if</span> (second condition) {</a>
-<a class="sourceLine" id="cb35-8" title="8">    </a>
-<a class="sourceLine" id="cb35-9" title="9">    output</a>
-<a class="sourceLine" id="cb35-10" title="10">  }</a>
-<a class="sourceLine" id="cb35-11" title="11">  <span class="cf">else</span> <span class="cf">if</span> (third condition) { </a>
-<a class="sourceLine" id="cb35-12" title="12">    </a>
-<a class="sourceLine" id="cb35-13" title="13">    output</a>
-<a class="sourceLine" id="cb35-14" title="14">  }</a>
-<a class="sourceLine" id="cb35-15" title="15">  <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb35-16" title="16">    </a>
-<a class="sourceLine" id="cb35-17" title="17">    <span class="kw">print</span>(each_number)</a>
-<a class="sourceLine" id="cb35-18" title="18">  }</a>
-<a class="sourceLine" id="cb35-19" title="19">  </a>
-<a class="sourceLine" id="cb35-20" title="20">}</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="cf">for</span> (each_number <span class="cf">in</span> vector) { </a>
+<a class="sourceLine" id="cb37-2" title="2">  </a>
+<a class="sourceLine" id="cb37-3" title="3">  <span class="cf">if</span> (first conditions) {</a>
+<a class="sourceLine" id="cb37-4" title="4">    </a>
+<a class="sourceLine" id="cb37-5" title="5">    output</a>
+<a class="sourceLine" id="cb37-6" title="6">  }</a>
+<a class="sourceLine" id="cb37-7" title="7">  <span class="cf">else</span> <span class="cf">if</span> (second condition) {</a>
+<a class="sourceLine" id="cb37-8" title="8">    </a>
+<a class="sourceLine" id="cb37-9" title="9">    output</a>
+<a class="sourceLine" id="cb37-10" title="10">  }</a>
+<a class="sourceLine" id="cb37-11" title="11">  <span class="cf">else</span> <span class="cf">if</span> (third condition) { </a>
+<a class="sourceLine" id="cb37-12" title="12">    </a>
+<a class="sourceLine" id="cb37-13" title="13">    output</a>
+<a class="sourceLine" id="cb37-14" title="14">  }</a>
+<a class="sourceLine" id="cb37-15" title="15">  <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb37-16" title="16">    </a>
+<a class="sourceLine" id="cb37-17" title="17">    <span class="kw">print</span>(each_number)</a>
+<a class="sourceLine" id="cb37-18" title="18">  }</a>
+<a class="sourceLine" id="cb37-19" title="19">  </a>
+<a class="sourceLine" id="cb37-20" title="20">}</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
@@ -2166,30 +2200,30 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li><p>Can you write a loop with an <code>if</code>, <code>else if</code> and <code>else</code> statement, that loops through the numbers from 1 to 30.</p>
 <p>If the number is a multiple of both 3 and 5, print “FizzBuzz”.</p>
-<p>If the number is a mutiple of 3, print the word “Fizz”.</p>
-<p>If the number is a mutiple of 5, print the word “Buzz”.</p>
+<p>If the number is a multiple of 3, print the word “Fizz”.</p>
+<p>If the number is a multiple of 5, print the word “Buzz”.</p>
 <p>For all other values print the number.</p></li>
 </ol>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>) { </a>
-<a class="sourceLine" id="cb36-2" title="2">  </a>
-<a class="sourceLine" id="cb36-3" title="3">  <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>i <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb36-4" title="4">    </a>
-<a class="sourceLine" id="cb36-5" title="5">    <span class="kw">print</span>(<span class="st">&quot;FizzBuzz&quot;</span>)</a>
-<a class="sourceLine" id="cb36-6" title="6">  }</a>
-<a class="sourceLine" id="cb36-7" title="7">  <span class="cf">else</span> <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb36-8" title="8">    </a>
-<a class="sourceLine" id="cb36-9" title="9">    <span class="kw">print</span>(<span class="st">&quot;Fizz&quot;</span>)</a>
-<a class="sourceLine" id="cb36-10" title="10">  }</a>
-<a class="sourceLine" id="cb36-11" title="11">  <span class="cf">else</span> <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) { </a>
-<a class="sourceLine" id="cb36-12" title="12">    </a>
-<a class="sourceLine" id="cb36-13" title="13">    <span class="kw">print</span>(<span class="st">&quot;Buzz&quot;</span>)</a>
-<a class="sourceLine" id="cb36-14" title="14">  }</a>
-<a class="sourceLine" id="cb36-15" title="15">  <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb36-16" title="16">    </a>
-<a class="sourceLine" id="cb36-17" title="17">    <span class="kw">print</span>(i)</a>
-<a class="sourceLine" id="cb36-18" title="18">  }</a>
-<a class="sourceLine" id="cb36-19" title="19">  </a>
-<a class="sourceLine" id="cb36-20" title="20">}</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>) { </a>
+<a class="sourceLine" id="cb38-2" title="2">  </a>
+<a class="sourceLine" id="cb38-3" title="3">  <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>i <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb38-4" title="4">    </a>
+<a class="sourceLine" id="cb38-5" title="5">    <span class="kw">print</span>(<span class="st">&quot;FizzBuzz&quot;</span>)</a>
+<a class="sourceLine" id="cb38-6" title="6">  }</a>
+<a class="sourceLine" id="cb38-7" title="7">  <span class="cf">else</span> <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb38-8" title="8">    </a>
+<a class="sourceLine" id="cb38-9" title="9">    <span class="kw">print</span>(<span class="st">&quot;Fizz&quot;</span>)</a>
+<a class="sourceLine" id="cb38-10" title="10">  }</a>
+<a class="sourceLine" id="cb38-11" title="11">  <span class="cf">else</span> <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) { </a>
+<a class="sourceLine" id="cb38-12" title="12">    </a>
+<a class="sourceLine" id="cb38-13" title="13">    <span class="kw">print</span>(<span class="st">&quot;Buzz&quot;</span>)</a>
+<a class="sourceLine" id="cb38-14" title="14">  }</a>
+<a class="sourceLine" id="cb38-15" title="15">  <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb38-16" title="16">    </a>
+<a class="sourceLine" id="cb38-17" title="17">    <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb38-18" title="18">  }</a>
+<a class="sourceLine" id="cb38-19" title="19">  </a>
+<a class="sourceLine" id="cb38-20" title="20">}</a></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2
 ## [1] &quot;Fizz&quot;
@@ -2239,7 +2273,7 @@ div.tocify {
 <ul>
 <li><p>They make code shorter and easier to understand.</p></li>
 <li><p>They make it easier to update code, as we only need to change one place.</p></li>
-<li><p>Functions alow us to easily repeat similar tasks.</p></li>
+<li><p>Functions allow us to easily repeat similar tasks.</p></li>
 <li><p>They help reduce errors caused from copied and pasted code.</p></li>
 </ul>
 <p><br></p>
@@ -2264,14 +2298,15 @@ div.tocify {
 <div id="how-to-write-a-function" class="section level2">
 <h2><span class="header-section-number">4.3</span> How to write a function</h2>
 <p>Basic structure of a function looks like below,</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># Basic structure of a function</span></a>
-<a class="sourceLine" id="cb38-2" title="2">function_name &lt;-<span class="st"> </span><span class="cf">function</span>(input) { </a>
-<a class="sourceLine" id="cb38-3" title="3">  </a>
-<a class="sourceLine" id="cb38-4" title="4">  statements of what the <span class="cf">function</span> is doing</a>
-<a class="sourceLine" id="cb38-5" title="5">  </a>
-<a class="sourceLine" id="cb38-6" title="6">  <span class="kw">return</span>(the <span class="cf">function</span> output)</a>
-<a class="sourceLine" id="cb38-7" title="7">  </a>
-<a class="sourceLine" id="cb38-8" title="8">}</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># Basic structure of a function</span></a>
+<a class="sourceLine" id="cb40-2" title="2"></a>
+<a class="sourceLine" id="cb40-3" title="3">function_name &lt;-<span class="st"> </span><span class="cf">function</span>(input) { </a>
+<a class="sourceLine" id="cb40-4" title="4">  </a>
+<a class="sourceLine" id="cb40-5" title="5">  statements of what the <span class="cf">function</span> is doing</a>
+<a class="sourceLine" id="cb40-6" title="6">  </a>
+<a class="sourceLine" id="cb40-7" title="7">  <span class="kw">return</span>(the <span class="cf">function</span> output)</a>
+<a class="sourceLine" id="cb40-8" title="8">  </a>
+<a class="sourceLine" id="cb40-9" title="9">}</a></code></pre></div>
 <p><br></p>
 <blockquote>
 <p><strong>In R, we use a function to make a function!.</strong></p>
@@ -2288,14 +2323,15 @@ div.tocify {
 </div>
 <div id="examples-of-basic-functions" class="section level2">
 <h2><span class="header-section-number">4.4</span> Examples of basic functions</h2>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># Here is a simple function to add together two values and return the sum.</span></a>
-<a class="sourceLine" id="cb39-2" title="2">function_sum_values &lt;-<span class="st"> </span><span class="cf">function</span>(value_<span class="dv">1</span>, value_<span class="dv">2</span>) { </a>
-<a class="sourceLine" id="cb39-3" title="3">  </a>
-<a class="sourceLine" id="cb39-4" title="4">  result &lt;-<span class="st"> </span>value_<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>value_<span class="dv">2</span></a>
-<a class="sourceLine" id="cb39-5" title="5">  </a>
-<a class="sourceLine" id="cb39-6" title="6">  <span class="kw">return</span>(result)</a>
-<a class="sourceLine" id="cb39-7" title="7">  </a>
-<a class="sourceLine" id="cb39-8" title="8">}</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="co"># Here is a simple function to add together two values and return the sum.</span></a>
+<a class="sourceLine" id="cb41-2" title="2"></a>
+<a class="sourceLine" id="cb41-3" title="3">function_sum_values &lt;-<span class="st"> </span><span class="cf">function</span>(value_<span class="dv">1</span>, value_<span class="dv">2</span>) { </a>
+<a class="sourceLine" id="cb41-4" title="4">  </a>
+<a class="sourceLine" id="cb41-5" title="5">  result &lt;-<span class="st"> </span>value_<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>value_<span class="dv">2</span></a>
+<a class="sourceLine" id="cb41-6" title="6">  </a>
+<a class="sourceLine" id="cb41-7" title="7">  <span class="kw">return</span>(result)</a>
+<a class="sourceLine" id="cb41-8" title="8">  </a>
+<a class="sourceLine" id="cb41-9" title="9">}</a></code></pre></div>
 <p>Our new function <code>function_sum_values()</code> will exist in our global environment (panel on the right).</p>
 <p>Let’s try using the function <code>function_sum_values()</code>, we term this “calling” a function.</p>
 <hr />
@@ -2303,21 +2339,24 @@ div.tocify {
 <div id="calling-functions" class="section level3">
 <h3><span class="header-section-number">4.4.1</span> Calling Functions</h3>
 <p>Calling user defined functions works the same way as calling the built-in functions we’ve used so far. Simply, type the function name followed by parentheses containing any required parameters.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># I can now run my function</span></a>
-<a class="sourceLine" id="cb40-2" title="2"><span class="kw">function_sum_values</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="co"># I can now run my function</span></a>
+<a class="sourceLine" id="cb42-2" title="2"></a>
+<a class="sourceLine" id="cb42-3" title="3"><span class="kw">function_sum_values</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="co"># Calling the function by itself prints the result to the console</span></a>
-<a class="sourceLine" id="cb42-2" title="2"><span class="co"># Alternatively the result can be saved as a new variable</span></a>
-<a class="sourceLine" id="cb42-3" title="3">my_result &lt;-<span class="st"> </span><span class="kw">function_sum_values</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb42-4" title="4"></a>
-<a class="sourceLine" id="cb42-5" title="5"><span class="co">#To display the data</span></a>
-<a class="sourceLine" id="cb42-6" title="6">my_result</a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="co"># Calling the function by itself prints the result to the console</span></a>
+<a class="sourceLine" id="cb44-2" title="2"><span class="co"># Alternatively the result can be saved as a new variable</span></a>
+<a class="sourceLine" id="cb44-3" title="3"></a>
+<a class="sourceLine" id="cb44-4" title="4">my_result &lt;-<span class="st"> </span><span class="kw">function_sum_values</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb44-5" title="5"></a>
+<a class="sourceLine" id="cb44-6" title="6"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb44-7" title="7"></a>
+<a class="sourceLine" id="cb44-8" title="8">my_result</a></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <hr />
 <p><br></p>
 </div>
-<div id="functions-with-multiple-arguements" class="section level3">
-<h3><span class="header-section-number">4.4.2</span> Functions with Multiple Arguements</h3>
+<div id="functions-with-multiple-arguments" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> Functions with Multiple Arguments</h3>
 <p>Functions can accept as many arguments as you like, but can only output one object (if it is necessary to output more than one object, then the desired outputs can be combined together into a list, and the list can be returned). above is a function that requires two input variables.</p>
 <p>When you call a function, you can specify the arguments by position or name. In this example, the function accepts arguments called <code>value_1</code> and <code>value_2</code>, with the order specified as x then y in the function definition.</p>
 <p>Therefore when <code>function_sum_values(1, 2)</code> is called, the arguments are interpreted as <code>value_1 = 1</code> and <code>value_2 = 2</code>.</p>
@@ -2328,7 +2367,7 @@ div.tocify {
 <div id="named-arguments" class="section level3">
 <h3><span class="header-section-number">4.4.3</span> Named Arguments</h3>
 <p>For more complicated functions with lots of arguments, specifying the arguments by position becomes more error-prone and harder to understand. Therefore it is often desirable to specify some or all of the arguments by name, then the order of the arguments doesn’t matter:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="kw">function_sum_values</span>(<span class="dt">value_1 =</span> <span class="dv">1</span>, <span class="dt">value_2 =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">function_sum_values</span>(<span class="dt">value_1 =</span> <span class="dv">1</span>, <span class="dt">value_2 =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <hr />
 <p><br></p>
@@ -2339,13 +2378,15 @@ div.tocify {
 <div id="exercise-4" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <ol style="list-style-type: decimal">
-<li>The <code>range()</code> in R, doesnt show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called <code>my_range</code> which return the difference between the highest value and the lowest value?</li>
+<li>The <code>range()</code> in R, doesn’t show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called <code>my_range</code> which return the difference between the highest value and the lowest value?</li>
 </ol>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="co"># Creating a vector</span></a>
-<a class="sourceLine" id="cb46-2" title="2">age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">23</span>, <span class="dv">30</span>, <span class="dv">50</span>)</a>
-<a class="sourceLine" id="cb46-3" title="3"></a>
-<a class="sourceLine" id="cb46-4" title="4"><span class="co"># Calling the range function on the vector </span></a>
-<a class="sourceLine" id="cb46-5" title="5"><span class="kw">range</span>(age)</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co"># Creating a vector</span></a>
+<a class="sourceLine" id="cb48-2" title="2"></a>
+<a class="sourceLine" id="cb48-3" title="3">age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">23</span>, <span class="dv">30</span>, <span class="dv">50</span>)</a>
+<a class="sourceLine" id="cb48-4" title="4"></a>
+<a class="sourceLine" id="cb48-5" title="5"><span class="co"># Calling the range function on the vector</span></a>
+<a class="sourceLine" id="cb48-6" title="6"></a>
+<a class="sourceLine" id="cb48-7" title="7"><span class="kw">range</span>(age)</a></code></pre></div>
 <pre><code>## [1] 10 50</code></pre>
 <hr />
 <p><br></p>
@@ -2353,81 +2394,88 @@ div.tocify {
 <div id="hint-2" class="section level3 unnumbered">
 <h3><strong>Hint</strong></h3>
 <ol style="list-style-type: decimal">
-<li>The <code>range()</code> in R, doesnt show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called <code>my_range</code> which return the difference between the highest value and the lowest value?</li>
+<li>The <code>range()</code> in R, doesn’t show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called <code>my_range</code> which return the difference between the highest value and the lowest value?</li>
 </ol>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co"># Creating my function</span></a>
-<a class="sourceLine" id="cb48-2" title="2">my_range =<span class="st"> </span><span class="cf">function</span>(input) {</a>
-<a class="sourceLine" id="cb48-3" title="3">  </a>
-<a class="sourceLine" id="cb48-4" title="4">  commands</a>
-<a class="sourceLine" id="cb48-5" title="5">  </a>
-<a class="sourceLine" id="cb48-6" title="6">  <span class="kw">return</span>(result)</a>
-<a class="sourceLine" id="cb48-7" title="7"></a>
-<a class="sourceLine" id="cb48-8" title="8">}</a>
-<a class="sourceLine" id="cb48-9" title="9"></a>
-<a class="sourceLine" id="cb48-10" title="10"></a>
-<a class="sourceLine" id="cb48-11" title="11"><span class="co"># To show the difference between the 2 functions</span></a>
-<a class="sourceLine" id="cb48-12" title="12"><span class="co"># Running the base R range function</span></a>
-<a class="sourceLine" id="cb48-13" title="13">base<span class="op">::</span><span class="kw">range</span>(input)</a>
-<a class="sourceLine" id="cb48-14" title="14"></a>
-<a class="sourceLine" id="cb48-15" title="15"><span class="co"># Running my custom range function</span></a>
-<a class="sourceLine" id="cb48-16" title="16"><span class="kw">my_range</span>(input)</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="co"># Creating my function</span></a>
+<a class="sourceLine" id="cb50-2" title="2"></a>
+<a class="sourceLine" id="cb50-3" title="3">my_range &lt;-<span class="st">  </span><span class="cf">function</span>(input) {</a>
+<a class="sourceLine" id="cb50-4" title="4">  </a>
+<a class="sourceLine" id="cb50-5" title="5">  commands</a>
+<a class="sourceLine" id="cb50-6" title="6">  </a>
+<a class="sourceLine" id="cb50-7" title="7">  <span class="kw">return</span>(result)</a>
+<a class="sourceLine" id="cb50-8" title="8"></a>
+<a class="sourceLine" id="cb50-9" title="9">}</a>
+<a class="sourceLine" id="cb50-10" title="10"></a>
+<a class="sourceLine" id="cb50-11" title="11"></a>
+<a class="sourceLine" id="cb50-12" title="12"><span class="co"># To show the difference between the 2 functions</span></a>
+<a class="sourceLine" id="cb50-13" title="13"><span class="co"># Running the base R range function</span></a>
+<a class="sourceLine" id="cb50-14" title="14"></a>
+<a class="sourceLine" id="cb50-15" title="15"><span class="kw">range</span>(input)</a>
+<a class="sourceLine" id="cb50-16" title="16"></a>
+<a class="sourceLine" id="cb50-17" title="17"><span class="co"># Running my custom range function</span></a>
+<a class="sourceLine" id="cb50-18" title="18"></a>
+<a class="sourceLine" id="cb50-19" title="19"><span class="kw">my_range</span>(input)</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
 <div id="show-answer-2" class="section level3 unnumbered">
 <h3><strong>Show Answer</strong></h3>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="co"># Creating my function</span></a>
-<a class="sourceLine" id="cb49-2" title="2">my_range =<span class="st"> </span><span class="cf">function</span>(age){</a>
-<a class="sourceLine" id="cb49-3" title="3">  </a>
-<a class="sourceLine" id="cb49-4" title="4">  result &lt;-<span class="st"> </span>base<span class="op">::</span><span class="kw">max</span>(age) <span class="op">-</span><span class="st"> </span>base<span class="op">::</span><span class="kw">min</span>(age) </a>
-<a class="sourceLine" id="cb49-5" title="5">  </a>
-<a class="sourceLine" id="cb49-6" title="6">  <span class="kw">return</span>(result)</a>
-<a class="sourceLine" id="cb49-7" title="7"></a>
-<a class="sourceLine" id="cb49-8" title="8">}</a>
-<a class="sourceLine" id="cb49-9" title="9"></a>
-<a class="sourceLine" id="cb49-10" title="10"><span class="co"># Running the base R range function</span></a>
-<a class="sourceLine" id="cb49-11" title="11">base<span class="op">::</span><span class="kw">range</span>(age)</a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="co"># Creating my function</span></a>
+<a class="sourceLine" id="cb51-2" title="2"></a>
+<a class="sourceLine" id="cb51-3" title="3">my_range =<span class="st"> </span><span class="cf">function</span>(age){</a>
+<a class="sourceLine" id="cb51-4" title="4">  </a>
+<a class="sourceLine" id="cb51-5" title="5">  result &lt;-<span class="st"> </span><span class="kw">max</span>(age) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(age) </a>
+<a class="sourceLine" id="cb51-6" title="6">  </a>
+<a class="sourceLine" id="cb51-7" title="7">  <span class="kw">return</span>(result)</a>
+<a class="sourceLine" id="cb51-8" title="8"></a>
+<a class="sourceLine" id="cb51-9" title="9">}</a>
+<a class="sourceLine" id="cb51-10" title="10"></a>
+<a class="sourceLine" id="cb51-11" title="11"><span class="co"># Running the base R range function</span></a>
+<a class="sourceLine" id="cb51-12" title="12"></a>
+<a class="sourceLine" id="cb51-13" title="13"><span class="kw">range</span>(age)</a></code></pre></div>
 <pre><code>## [1] 10 50</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="co"># Running my custom range function</span></a>
-<a class="sourceLine" id="cb51-2" title="2"><span class="kw">my_range</span>(age)</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="co"># Running my custom range function</span></a>
+<a class="sourceLine" id="cb53-2" title="2"></a>
+<a class="sourceLine" id="cb53-3" title="3"><span class="kw">my_range</span>(age)</a></code></pre></div>
 <pre><code>## [1] 40</code></pre>
 <hr />
 <p><br></p>
 </div>
 </div>
-<div id="example-3" class="section level2 unnumbered">
-<h2>Example</h2>
+<div id="example-3" class="section level2">
+<h2><span class="header-section-number">4.6</span> Example</h2>
 <p><strong>Pythagoras Function Example</strong></p>
-<p>We are now going to write a function that uses Pythagoras’ theorem in order to calculate the hypotenuse (longest side) of a right angle triangle given the two other sides. The equation is given as <span class="math display">\[a^2 + b^2 = c^2\]</span> where <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> are the two known sides and <span class="math inline">\(c\)</span> is the longest side. In order to find the value of <span class="math inline">\(c\)</span> we can rearange the formula to <span class="math display">\[c = \sqrt{a^2 + b^2}\]</span></p>
+<p>We are now going to write a function that uses Pythagoras’ theorem in order to calculate the hypotenuse (longest side) of a right angle triangle given the two other sides. The equation is given as <span class="math display">\[a^2 + b^2 = c^2\]</span> where <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> are the two known sides and <span class="math inline">\(c\)</span> is the longest side. In order to find the value of <span class="math inline">\(c\)</span> we can rearrange the formula to <span class="math display">\[c = \sqrt{a^2 + b^2}\]</span></p>
 <p>The function will input values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and then return the value of <span class="math inline">\(c\)</span> below.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="co"># Function to calculate the value of the hypotenuse</span></a>
-<a class="sourceLine" id="cb53-2" title="2">find_the_hypotenuse &lt;-<span class="st"> </span><span class="cf">function</span>(a_value, b_value) {</a>
-<a class="sourceLine" id="cb53-3" title="3">  </a>
-<a class="sourceLine" id="cb53-4" title="4">  <span class="co"># Calculate the values of a^2 + b^2</span></a>
-<a class="sourceLine" id="cb53-5" title="5">  squared_sum_of_values &lt;-<span class="st"> </span>a_value<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>b_value<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb53-6" title="6">  </a>
-<a class="sourceLine" id="cb53-7" title="7">  <span class="co"># Calculate the value of c using the square root function `sqrt()`</span></a>
-<a class="sourceLine" id="cb53-8" title="8">  c_value &lt;-<span class="st"> </span><span class="kw">sqrt</span>(squared_sum_of_values)</a>
-<a class="sourceLine" id="cb53-9" title="9">  </a>
-<a class="sourceLine" id="cb53-10" title="10">  <span class="co"># Return the output value of our function.</span></a>
-<a class="sourceLine" id="cb53-11" title="11">  <span class="kw">return</span>(c_value)</a>
-<a class="sourceLine" id="cb53-12" title="12">}</a>
-<a class="sourceLine" id="cb53-13" title="13"></a>
-<a class="sourceLine" id="cb53-14" title="14"></a>
-<a class="sourceLine" id="cb53-15" title="15"><span class="co"># Assign test values to make sure our function works</span></a>
-<a class="sourceLine" id="cb53-16" title="16"></a>
-<a class="sourceLine" id="cb53-17" title="17">a_test &lt;-<span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb53-18" title="18">b_test &lt;-<span class="st"> </span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb53-19" title="19"></a>
-<a class="sourceLine" id="cb53-20" title="20"><span class="co"># This should give us a value of c = 5</span></a>
-<a class="sourceLine" id="cb53-21" title="21"></a>
-<a class="sourceLine" id="cb53-22" title="22"><span class="kw">find_the_hypotenuse</span>(a_test, b_test)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co"># Function to calculate the value of the hypotenuse</span></a>
+<a class="sourceLine" id="cb55-2" title="2"></a>
+<a class="sourceLine" id="cb55-3" title="3">find_the_hypotenuse &lt;-<span class="st"> </span><span class="cf">function</span>(a_value, b_value) {</a>
+<a class="sourceLine" id="cb55-4" title="4">  </a>
+<a class="sourceLine" id="cb55-5" title="5">  <span class="co"># Calculate the values of a^2 + b^2</span></a>
+<a class="sourceLine" id="cb55-6" title="6">  squared_sum_of_values &lt;-<span class="st"> </span>a_value<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>b_value<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb55-7" title="7">  </a>
+<a class="sourceLine" id="cb55-8" title="8">  <span class="co"># Calculate the value of c using the square root function `sqrt()`</span></a>
+<a class="sourceLine" id="cb55-9" title="9">  c_value &lt;-<span class="st"> </span><span class="kw">sqrt</span>(squared_sum_of_values)</a>
+<a class="sourceLine" id="cb55-10" title="10">  </a>
+<a class="sourceLine" id="cb55-11" title="11">  <span class="co"># Return the output value of our function.</span></a>
+<a class="sourceLine" id="cb55-12" title="12">  <span class="kw">return</span>(c_value)</a>
+<a class="sourceLine" id="cb55-13" title="13">}</a>
+<a class="sourceLine" id="cb55-14" title="14"></a>
+<a class="sourceLine" id="cb55-15" title="15"></a>
+<a class="sourceLine" id="cb55-16" title="16"><span class="co"># Assign test values to make sure our function works</span></a>
+<a class="sourceLine" id="cb55-17" title="17"></a>
+<a class="sourceLine" id="cb55-18" title="18">a_test &lt;-<span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb55-19" title="19">b_test &lt;-<span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb55-20" title="20"></a>
+<a class="sourceLine" id="cb55-21" title="21"><span class="co"># This should give us a value of c = 5</span></a>
+<a class="sourceLine" id="cb55-22" title="22"></a>
+<a class="sourceLine" id="cb55-23" title="23"><span class="kw">find_the_hypotenuse</span>(a_test, b_test)</a></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <hr />
 <p><br></p>
 </div>
 <div id="exercise-5" class="section level2 tabset tabset-fade">
-<h2><span class="header-section-number">4.6</span> Exercise</h2>
+<h2><span class="header-section-number">4.7</span> Exercise</h2>
 <div id="exercise-6" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <p>Write a function which:</p>
@@ -2462,17 +2510,18 @@ div.tocify {
 <li><strong>Converts from Fahrenheit to degrees Celsius using the equation below.</strong></li>
 </ol>
 <p><span class="math display">\[C=\frac{5}{9}(F - 32)\]</span></p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co"># Creating our function</span></a>
-<a class="sourceLine" id="cb55-2" title="2"></a>
-<a class="sourceLine" id="cb55-3" title="3">fahrenheit_to_degrees_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(input) {</a>
-<a class="sourceLine" id="cb55-4" title="4">  </a>
-<a class="sourceLine" id="cb55-5" title="5">  commands</a>
-<a class="sourceLine" id="cb55-6" title="6">  </a>
-<a class="sourceLine" id="cb55-7" title="7">  <span class="kw">return</span>(celsius)</a>
-<a class="sourceLine" id="cb55-8" title="8">}</a>
-<a class="sourceLine" id="cb55-9" title="9"></a>
-<a class="sourceLine" id="cb55-10" title="10"><span class="co"># Calling our function</span></a>
-<a class="sourceLine" id="cb55-11" title="11"><span class="kw">fahrenheit_to_degrees_celsius</span>(input)</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="co"># Creating our function</span></a>
+<a class="sourceLine" id="cb57-2" title="2"></a>
+<a class="sourceLine" id="cb57-3" title="3">fahrenheit_to_degrees_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(input) {</a>
+<a class="sourceLine" id="cb57-4" title="4">  </a>
+<a class="sourceLine" id="cb57-5" title="5">  commands</a>
+<a class="sourceLine" id="cb57-6" title="6">  </a>
+<a class="sourceLine" id="cb57-7" title="7">  <span class="kw">return</span>(celsius)</a>
+<a class="sourceLine" id="cb57-8" title="8">}</a>
+<a class="sourceLine" id="cb57-9" title="9"></a>
+<a class="sourceLine" id="cb57-10" title="10"><span class="co"># Calling our function</span></a>
+<a class="sourceLine" id="cb57-11" title="11"></a>
+<a class="sourceLine" id="cb57-12" title="12"><span class="kw">fahrenheit_to_degrees_celsius</span>(input)</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
@@ -2501,23 +2550,24 @@ div.tocify {
 <li>[1] 27.4</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="co"># Creating our function</span></a>
-<a class="sourceLine" id="cb56-2" title="2"></a>
-<a class="sourceLine" id="cb56-3" title="3">fahrenheit_to_degrees_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(fahrenheit) {</a>
-<a class="sourceLine" id="cb56-4" title="4">  celsius &lt;-<span class="st"> </span>(<span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">9</span>) <span class="op">*</span><span class="st"> </span>(fahrenheit <span class="op">-</span><span class="st"> </span><span class="dv">32</span>)</a>
-<a class="sourceLine" id="cb56-5" title="5">  <span class="kw">return</span>(celsius)</a>
-<a class="sourceLine" id="cb56-6" title="6">}</a>
-<a class="sourceLine" id="cb56-7" title="7"></a>
-<a class="sourceLine" id="cb56-8" title="8"><span class="co"># Calling our function</span></a>
-<a class="sourceLine" id="cb56-9" title="9"><span class="kw">fahrenheit_to_degrees_celsius</span>(<span class="dv">32</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co"># Creating our function</span></a>
+<a class="sourceLine" id="cb58-2" title="2"></a>
+<a class="sourceLine" id="cb58-3" title="3">fahrenheit_to_degrees_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(fahrenheit) {</a>
+<a class="sourceLine" id="cb58-4" title="4">  celsius &lt;-<span class="st"> </span>(<span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">9</span>) <span class="op">*</span><span class="st"> </span>(fahrenheit <span class="op">-</span><span class="st"> </span><span class="dv">32</span>)</a>
+<a class="sourceLine" id="cb58-5" title="5">  <span class="kw">return</span>(celsius)</a>
+<a class="sourceLine" id="cb58-6" title="6">}</a>
+<a class="sourceLine" id="cb58-7" title="7"></a>
+<a class="sourceLine" id="cb58-8" title="8"><span class="co"># Calling our function</span></a>
+<a class="sourceLine" id="cb58-9" title="9"></a>
+<a class="sourceLine" id="cb58-10" title="10"><span class="kw">fahrenheit_to_degrees_celsius</span>(<span class="dv">32</span>)</a></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 </div>
 </div>
 </div>
 <div id="deeper-understanding" class="section level1">
 <h1><span class="header-section-number">5</span> Deeper Understanding</h1>
-<div id="arguements" class="section level2 unnumbered">
-<h2>Arguements</h2>
+<div id="arguments" class="section level2 unnumbered">
+<h2>Arguments</h2>
 <p>In short, arguments are things you pass to a function, when you call it, to enable the function to perform it’s task.</p>
 <hr />
 <p><br></p>
@@ -2528,13 +2578,13 @@ div.tocify {
 <div id="required-arguments" class="section level4 unnumbered">
 <h4><strong>Required Arguments</strong></h4>
 <p>Like the name suggests, these are arguments which are required by a function and must be passed in the correct order.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co"># Creating our function</span></a>
-<a class="sourceLine" id="cb58-2" title="2">arithmetic &lt;-<span class="st"> </span><span class="cf">function</span>(a, b) {</a>
-<a class="sourceLine" id="cb58-3" title="3">  <span class="kw">return</span> ((a <span class="op">^</span><span class="st"> </span>b) <span class="op">/</span><span class="st"> </span>b)</a>
-<a class="sourceLine" id="cb58-4" title="4">}</a>
-<a class="sourceLine" id="cb58-5" title="5"></a>
-<a class="sourceLine" id="cb58-6" title="6"><span class="co"># Calling our function</span></a>
-<a class="sourceLine" id="cb58-7" title="7"><span class="kw">arithmetic</span>(<span class="dv">4</span>, <span class="dv">9</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="co"># Creating our function</span></a>
+<a class="sourceLine" id="cb60-2" title="2">arithmetic &lt;-<span class="st"> </span><span class="cf">function</span>(a, b) {</a>
+<a class="sourceLine" id="cb60-3" title="3">  <span class="kw">return</span> ((a <span class="op">^</span><span class="st"> </span>b) <span class="op">/</span><span class="st"> </span>b)</a>
+<a class="sourceLine" id="cb60-4" title="4">}</a>
+<a class="sourceLine" id="cb60-5" title="5"></a>
+<a class="sourceLine" id="cb60-6" title="6"><span class="co"># Calling our function</span></a>
+<a class="sourceLine" id="cb60-7" title="7"><span class="kw">arithmetic</span>(<span class="dv">4</span>, <span class="dv">9</span>)</a></code></pre></div>
 <pre><code>## [1] 29127.11</code></pre>
 <p><code>a</code> and <code>b</code> are both required arguments. We would get a missing error if we did not pass both arguments.</p>
 <blockquote>
@@ -2546,16 +2596,16 @@ div.tocify {
 <div id="default-arguments" class="section level4 unnumbered">
 <h4><strong>Default arguments</strong></h4>
 <p>This is where, in the function declaration, the value of the parameter is pre-set. The function will retain this value unless it is changed when the function is called.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="co"># Creating our function</span></a>
-<a class="sourceLine" id="cb60-2" title="2">arithmetic &lt;-<span class="st"> </span><span class="cf">function</span>(a, <span class="dt">b =</span> <span class="dv">1</span>) {</a>
-<a class="sourceLine" id="cb60-3" title="3">  <span class="kw">return</span> ((a <span class="op">^</span><span class="st"> </span>b) <span class="op">/</span><span class="st"> </span>b)</a>
-<a class="sourceLine" id="cb60-4" title="4">}</a>
-<a class="sourceLine" id="cb60-5" title="5"></a>
-<a class="sourceLine" id="cb60-6" title="6"><span class="co"># Calling our function</span></a>
-<a class="sourceLine" id="cb60-7" title="7"><span class="kw">arithmetic</span>(<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="co"># Creating our function</span></a>
+<a class="sourceLine" id="cb62-2" title="2">arithmetic &lt;-<span class="st"> </span><span class="cf">function</span>(a, <span class="dt">b =</span> <span class="dv">1</span>) {</a>
+<a class="sourceLine" id="cb62-3" title="3">  <span class="kw">return</span> ((a <span class="op">^</span><span class="st"> </span>b) <span class="op">/</span><span class="st"> </span>b)</a>
+<a class="sourceLine" id="cb62-4" title="4">}</a>
+<a class="sourceLine" id="cb62-5" title="5"></a>
+<a class="sourceLine" id="cb62-6" title="6"><span class="co"># Calling our function</span></a>
+<a class="sourceLine" id="cb62-7" title="7"><span class="kw">arithmetic</span>(<span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="co"># Calling our function</span></a>
-<a class="sourceLine" id="cb62-2" title="2"><span class="kw">arithmetic</span>(<span class="dv">5</span>, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="co"># Calling our function</span></a>
+<a class="sourceLine" id="cb64-2" title="2"><span class="kw">arithmetic</span>(<span class="dv">5</span>, <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 12.5</code></pre>
 <p>In the example above the function will take <code>a = 5</code> and use the default value <code>b = 1</code>. Where as, in the example below, we overwrite <code>b = 1</code> by passing the argument <code>2</code>.</p>
 <hr />
@@ -2568,24 +2618,24 @@ div.tocify {
 </blockquote>
 <p>You will often see in list of arguments a function takes, in the documentation, this <code>...</code>. This is a special argument which captures any number of arguments that aren’t otherwise matched.</p>
 <p>Sometimes being able to pass an arbitrary number of arguments can be useful, especially when another function is called within a wrapper function. This requires the ellipsis construct, …, which is designed to pass a variable number of arguments to a function. Here’s an example:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="co"># This function produces a plot of x vs y</span></a>
-<a class="sourceLine" id="cb64-2" title="2">plot_x_and_y &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, ...) {</a>
-<a class="sourceLine" id="cb64-3" title="3">  </a>
-<a class="sourceLine" id="cb64-4" title="4">  <span class="kw">plot</span>(x, y, ...)</a>
-<a class="sourceLine" id="cb64-5" title="5">  </a>
-<a class="sourceLine" id="cb64-6" title="6">}</a>
-<a class="sourceLine" id="cb64-7" title="7"></a>
-<a class="sourceLine" id="cb64-8" title="8"><span class="co"># Creating Vectors</span></a>
-<a class="sourceLine" id="cb64-9" title="9">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb64-10" title="10"></a>
-<a class="sourceLine" id="cb64-11" title="11">y &lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb64-12" title="12"></a>
-<a class="sourceLine" id="cb64-13" title="13"></a>
-<a class="sourceLine" id="cb64-14" title="14"><span class="co"># The function can be called with only the required arguments:</span></a>
-<a class="sourceLine" id="cb64-15" title="15"><span class="kw">plot_x_and_y</span>(x, y)</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="co"># This function produces a plot of x vs y</span></a>
+<a class="sourceLine" id="cb66-2" title="2">plot_x_and_y &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, ...) {</a>
+<a class="sourceLine" id="cb66-3" title="3">  </a>
+<a class="sourceLine" id="cb66-4" title="4">  <span class="kw">plot</span>(x, y, ...)</a>
+<a class="sourceLine" id="cb66-5" title="5">  </a>
+<a class="sourceLine" id="cb66-6" title="6">}</a>
+<a class="sourceLine" id="cb66-7" title="7"></a>
+<a class="sourceLine" id="cb66-8" title="8"><span class="co"># Creating Vectors</span></a>
+<a class="sourceLine" id="cb66-9" title="9">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb66-10" title="10"></a>
+<a class="sourceLine" id="cb66-11" title="11">y &lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb66-12" title="12"></a>
+<a class="sourceLine" id="cb66-13" title="13"></a>
+<a class="sourceLine" id="cb66-14" title="14"><span class="co"># The function can be called with only the required arguments:</span></a>
+<a class="sourceLine" id="cb66-15" title="15"><span class="kw">plot_x_and_y</span>(x, y)</a></code></pre></div>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABUAAAAPACAMAAADDuCPrAAAAulBMVEUAAAAAADoAAGYAOjoAOmYAOpAAZrY6AAA6OgA6Ojo6OmY6ZmY6ZpA6ZrY6kNtmAABmOgBmOjpmZjpmZmZmZpBmkJBmkLZmkNtmtttmtv+QOgCQZgCQZjqQkDqQkLaQtraQttuQtv+Q2/+2ZgC2Zjq2kGa2kLa2tpC2tra2ttu227a229u22/+2///bkDrbkGbbtmbbtpDbtrbb27bb29vb2//b////tmb/25D/27b/29v//7b//9v///+9LqNWAAAACXBIWXMAAB2HAAAdhwGP5fFlAAAZZ0lEQVR4nO3dbX8T14HG4TEhuGmTQOptNtDstsXQkiU4IRAMQf7+X2s1si2PH+JIN8czOnOu60Vi/JPlOdbor3me7gSASDf1BADUSkABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKENrtgHYAxZRPVPFnLGjqvzYwL8UbVfoJS7qDDwygWQIKEBJQgJCAAoQqDOji7S8vXrz4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BBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBJSaHXfdvVf9F4snXfdg6qmhOQJKzdbdXJcURiSgVO39frf39OTk48Ouezz1tNAeAaVuh133+buz/8LIBJS6rZY9lyvw/XIojExAqdwynp/td93XU08HLRJQKtfvR7ICzzQElNq937cCz0QElNr1i6AOYWISAkrtjvpVeJtAmYKAUrmPD7u9fevwTEJAqdzhcvHzyHmcTEJAqdtxvwfeiUhMQ0CpWr8H6bFT4ZmIgFK1o9NDQPuO2o/E6ASUmr0/333kZE6mIKDU7HC99+jQfiTGJ6AAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAof8H4Y7hpxxz4yAAAAAASUVORK5CYII=" width="672" /></p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="co"># Or the function can be called with any optional arguments accepted by the plot function:</span></a>
-<a class="sourceLine" id="cb65-2" title="2"><span class="kw">plot_x_and_y</span>(x, y, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="co"># Or the function can be called with any optional arguments accepted by the plot function:</span></a>
+<a class="sourceLine" id="cb67-2" title="2"><span class="kw">plot_x_and_y</span>(x, y, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>)</a></code></pre></div>
 <p><img src="data:image/png;base64,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0+o3+Oc3c9+PEb37av1BlZUu8WpAfSonQCoCChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgZHa8WDz6sfvD8sVi8WTue0NzBJTMLrp5UVKYkICS2of9xd53Jyd/PF0sns99X2iPgJLb4WLx6a9n/wsTE1ByW+97rgb4bj8UJiagJLeK5yf7i8WXc98PWiSgJNcdRzLAMw8BJbsP+wZ4ZiKgZNftgjqFiVkIKNkddSO8l0CZg4CS3B9PF3v7ZnhmIaAkd7ja/TzyPk5mIaDkdtwdgfdGJOYhoKTWHUF67q3wzERASe3o9BTQrqOOIzE5ASWzD+eHj7yZkzkIKJkdXhw9OnQciekJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKEDQ/wPVIuj5IgUuWwAAAABJRU5ErkJggg==" width="672" /></p>
 <hr />
 <p><br></p>
@@ -2595,22 +2645,22 @@ div.tocify {
 <div id="scope" class="section level2">
 <h2><span class="header-section-number">5.1</span> Scope</h2>
 <p>It’s important to notice here that the variables I create within my functions are not available outside of my function.</p>
-<p>In R storage is broken down into environments and then scopes. Most of the time you’ll be working in the global environment (right hand panel).</p>
-<p>In the global environment there are two types of scopes, <em>global</em> and <em>local</em>. Variables that have <em>global</em> scope are visible everywhere - in every function, loop, conditional, basically every part of the code. However, variables that have <em>local</em> scope are only visible inside said scope and hence can only be used within that local scope.</p>
+<p>In R storage is broken down into environments and then scopes. Most of the time you’ll be working in the global environment (right-hand panel).</p>
+<p>In the global environment, there are two types of scopes, <em>global</em> and <em>local</em>. Variables that have <em>global</em> scope are visible everywhere - in every function, loop, conditional, basically every part of the code. However, variables that have <em>local</em> scope are only visible inside said the scope and hence can only be used within that local scope.</p>
 <p>When we create a new function we effectively create a new local scope – so the variables we declare within our functions are only available within that local scope.</p>
 <p>Here is a classical example to demonstrate this.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="co"># Creating a function</span></a>
-<a class="sourceLine" id="cb66-2" title="2">example_function &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb66-3" title="3">  z &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb66-4" title="4">  <span class="kw">paste</span>(<span class="st">&quot;This is z inside the function: &quot;</span>, z)</a>
-<a class="sourceLine" id="cb66-5" title="5">}</a>
-<a class="sourceLine" id="cb66-6" title="6"></a>
-<a class="sourceLine" id="cb66-7" title="7"><span class="co"># Calling a function</span></a>
-<a class="sourceLine" id="cb66-8" title="8"><span class="kw">example_function</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="co"># Creating a function</span></a>
+<a class="sourceLine" id="cb68-2" title="2">example_function &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb68-3" title="3">  z &lt;-<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb68-4" title="4">  <span class="kw">paste</span>(<span class="st">&quot;This is z inside the function: &quot;</span>, z)</a>
+<a class="sourceLine" id="cb68-5" title="5">}</a>
+<a class="sourceLine" id="cb68-6" title="6"></a>
+<a class="sourceLine" id="cb68-7" title="7"><span class="co"># Calling a function</span></a>
+<a class="sourceLine" id="cb68-8" title="8"><span class="kw">example_function</span>()</a></code></pre></div>
 <pre><code>## [1] &quot;This is z inside the function:  10&quot;</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="co"># To display the result</span></a>
-<a class="sourceLine" id="cb68-2" title="2"><span class="co"># This will not work as this does not exist outside the function</span></a>
-<a class="sourceLine" id="cb68-3" title="3"><span class="kw">print</span>(z)</a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="co"># To display the result</span></a>
+<a class="sourceLine" id="cb70-2" title="2"><span class="co"># This will not work as this does not exist outside the function</span></a>
+<a class="sourceLine" id="cb70-3" title="3"><span class="kw">print</span>(z)</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
@@ -2636,7 +2686,7 @@ div.tocify {
 </ul></li>
 <li>Write and apply user defined functions.</li>
 <li>Apply functions to <code>vector</code> and <code>tibble</code> objects.</li>
-<li>Understand programming concept of Loops.</li>
+<li>Understand the programming concept of Loops.</li>
 <li><p>Utilise loops and understand their place in R.</p></li>
 </ul>
 <hr />

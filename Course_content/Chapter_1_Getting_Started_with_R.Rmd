@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 ***
-# The Basics{-}
+# Getting Started with R{-}
 
 ***
 
@@ -98,6 +98,8 @@ If you dont see the **Code editor pane**, go to the tool bar and click **View ->
 
 The positions of these can be adjusted under the ‘Preferences’ menu, but we will keep like this for now.
 
+You can also make panes bigger or smaller by hovering between two panes and then clicking and dragging.
+
 We will go through what we can do with each of these panes.
 
 ***
@@ -134,6 +136,7 @@ To change this setting go to **Tools -> Global Options -> “Save workspace to .
 ![Image showing the workspace in Rstudio](../Images/workspace.PNG)\ 
 
 
+
 <br>
 
 ***
@@ -145,7 +148,9 @@ To change this setting go to **Tools -> Global Options -> “Save workspace to .
 
 We are first going to learn about how to interact with the console, which is the bottom left pane.
 
-This is where you can type code that executes immediately. This is also known as the **command line**. 
+This is where you can type code that executes immediately. This is also known as the **command line**.
+
+This is where you will see R output. You can also type in and run code from here if you don’t want to save it.
 
 We’ll spend a little time practising running code in the Console by exploring some basic properties of coding in R.
 
@@ -286,7 +291,7 @@ Type the following in your script and run the code.
 
 "I am learning R"
 
-2+4
+2 + 4
 
 23 - 6; 36 + 5
 
@@ -470,24 +475,29 @@ Functions in R are a word followed by a set of parentheses, like so: **`print()`
 Let’s see what they do:
 
 ```{r}
-#Calculating the square root of 9
-#using built in function sqrt()
+# Calculating the square root of 9
+# Using built in function sqrt()
+
 sqrt(9)
 
 
-#using built in function round()
+# Using built in function round()
+
 round(3.6357)
 
 ```
 
+
 You can specify what you want a function to do with what we call a parameter and argument. This is specified within the brackets of the function. We  will talk more about parameters and arguments(inputs) in chapter 6, 
 
-The input of function is called a parameter and what we specify is called an argument.
+The input of function is called an argument and what we specify is called a value.
 
-**A parameter is a name or a label for an argument that follows it**. e.g in the round function below our parameter is `digits` and our argument is `2`.
+**A argument is a name or a label for the value that follows it**. e.g in the round function below our argument is `digits` and our value is `2`.
+
 
 ```{r}
-#using built in function round()
+# Using built in function round()
+
 round(3.6357, digits = 2)
 ```
 
@@ -671,9 +681,9 @@ typeof(TRUE)
 
 typeof("ten")
 
-typeof("T")
+typeof("TRUE")
 
-typeof(F)
+typeof(FALSE)
 
 typeof("FALSE")
 
@@ -695,31 +705,6 @@ R doesn't require you to set the data type when you create it, instead it figure
 Given that R is a dynamically typed language, sometimes the data type you want to work with, and the one R infers are not the same.
 
 Sometimes you want to ensure that a particular object is actually a certain type, rather than leaving it up to R. This is done using data type conversion. R has a range of in-built functions that enable you to convert data from one type to another.
-
-Firstly, the **`typeof()`** function returns the (R internal) type of any given object. e.g.
-
-```{r}
-typeof("is this a character?")
-```
-
-```{r}
-typeof(5L)
-```
-
-```{r}
-typeof(5)
-```
-
-We could equivalently use functions such as `is.` function which checks if our object is a given type. (set cursor after `is.` and hit tab).
-
-```{r, eval = FALSE}
-is.
-```
-
-```{r}
-is.integer(5)
-```
-
 
 In order to convert the data, you need to use the **as.** functions. When writing the command, you specify the data type you are converting to. The commands are as follows:
 
@@ -744,12 +729,17 @@ We will look at some other ways to do convert types later in the course.
 
 # Variable Assignment
 
+Everything in R is an object, We can assign these objects names, this is called a variable.
+
 Variables are an integral part of any programming language. Variables allow us to store and label data under a specific name. It is like a place holder, used to store information. Think of it as a container, they main purpose is to label and store the data in memory.
+
 
 We can assign a value to a variable using the `<-` operator, for example in the below code where `weight_kg` is the variable name and the value `60` is the data being assigned to `weight_kg`. 
 
+
 ```{r}
-#To assign a variable
+# To assign a variable
+
 weight_kg <- 60
 ```
 
@@ -758,79 +748,137 @@ When reading that code say `“weight_kg gets the value 60”` in your head.
 Once an object has been created it will appear in your Environment window which helps you keep track of what objects you have in your current workspace - the top right pane.
 
 
+
 After the assignment, to access or use the value we simply reference `weight_kg` in our code. 
 ```{r}
-#To assign a variable
+# To assign a variable
+
 weight_kg <- 60
 
 
-#To display the variable
+# To display the variable
+
 weight_kg
 ```
 
-We can use the variable name in mathematical operations. Here we are using `weight_kg` to calculate `weight_lb`.
+If you wanted to display that a bit better you could use the `cat()` function like below, the `\n` starts a new line.
+```{r}
+# Using the cat() function to display our result
+
+cat('my weight is', sep = '\n', weight_kg)
+```
+
+
+We can use our variables in mathematical operations. Here we are using `weight_kg` to calculate `weight_lb`.
+
 
 
 ```{r}
-#Multiplication using our variable name
+# Multiplication using our variable name
+
 weight_lb <- weight_kg * 2.2
 
-#To display the variable
+# To display the variable
+
 weight_lb
+```
+
+If we ever want to reassign a variable we would simply use the operator above again. 
+
+For example: I am assigning height as 5.
+
+```{r}
+# To assign a variable
+
+height <- 5
+
+
+# To display the variable
+
+height
+
+```
+
+Using the same variable name will overwrite the previously assigned variable.
+Now I am reassigning height which was assigned to 5 to 7.
+
+This will overwrite our value for height to 7.
+
+
+```{r}
+# To assign a variable
+
+height <- 7
+
+# To display the variable
+
+height
 ```
 
 <br>
 
->**`<-` is the most commonly used assignment operator in R and therefore the one we will stick to(the short cut is ALT + MINUS).**
+We can also assign a value to name (or label) using `=` operator and `->` operators. 
 
-RStudio automatically surrounds `<-` with spaces, which is a good code formatting practice. 
+Here are a few examples of them in action:
 
-R will also accept using an equals sign, or an inverted arrow to assign values, but these are considered bad practice and are not recommended:
+```{r}
+# PLEASE NOTE THIS IS BAD PRACTICE
 
-* `weight_kg = 40`
+# To assign a variable
 
-* `40 -> weight_kg`
+weight_kg = 50
 
-In R it is convention to use `<-` to assign variables and keep `=` reserved to passing arguments into a function. We will be sticking to this convention. 
+
+# To display the variable
+
+weight_kg
+
+# To assign a variable
+
+40 -> weight_kg
+
+# To display the variable
+
+weight_kg
+```
+
+
+<br>
+
+>**`<-` is the most commonly used assignment operator in R and therefore the one we will stick to.**  
+
+In R it is convention to use `<-` to assign variables and keep `=` reserved to passing key value pair to a function. We will be sticking to this convention. 
 
 `->` is considered bad practice. This is because it makes it harder for others to see where a object has been assigned.
 
+***
 
-If we ever want to reassign a variable we would simply use the operators above again. 
-
-For example:
-
-```{r}
-#To assign a variable
-my_second_variable <- 5L
-
-#To display the variable
-my_second_variable
-
-```
-```{r}
-#To assign a variable
-#Using the same variable name will overwrite the previously assigned variable
-my_second_variable <- 10
-
-#To display the variable
-my_second_variable
-```
-
-Typing the following into the Console will list everything you’ve loaded into the Environment:
-
-**`ls()`**
+<br>
 
 
-To remove a variable, we would utilise the **`rm()`** function of R. 
+## Removing Variables{-}
 
-For example:
+To remove a variable, we would utilise the `remove()` function of R. 
 
-```{r}
-rm(my_second_variable)
+For example: `remove(variable_name)` 
+
+```{r warning=FALSE}
+# Removing assigned variables using the remove function
+
+remove(height)
+
+# Alternatively
+
+# rm(), is short for remove
+
+rm(height)
 ```
 
-Variable names:
+***
+
+<br>
+
+## Variable Names{-}
 
 * Are case sensitive and must start with a letter.  
 * Cannot use reserved words such as `TRUE` or `FALSE` which already mean something in R. 
@@ -848,6 +896,7 @@ otherPeopleUseCamelCase
 some.people.use.periods
 
 ```
+`Snake` and `Camel` case are the most common ones, the `periods` example has been shown as you might see it used in other peoples codes.
 
 We have more detailed examples and information on good variables names in our other course **Best Practice in Programming -  Clean Code**
 
@@ -863,8 +912,12 @@ We have more detailed examples and information on good variables names in our ot
 1. Why does this code not work?
 
 ```{r,eval=FALSE}
+# To assign a variable
 
 my_variable <- 10
+
+
+# To display the variable
 
 my_varIable
 ```
@@ -873,20 +926,28 @@ my_varIable
 2. What is the value of each item at each step?
 
 ```{r, eval=FALSE}
-#1. travel_time?
-travel_time <- 30
+
+# To assign a variable
+
+#1. time_value?
+
+time_value <- 30
 
 #2. distance?
+
 distance <- 10
 
-#3. travel_time?
-travel_time <- 30 * 2
+#3. time_value?
+
+time_value <- 30 * 2
 
 #4. distance
+
 distance <- distance + 5
 
 #5. speed
-speed <- distance / travel_time
+
+speed <- distance / time_value
 
 
 
@@ -907,11 +968,14 @@ speed <- distance / travel_time
 ### **Show Answer** {-}
 
 
-1.Why does this code not work?
+1. Why does this code not work?
 
 ```{r,eval=FALSE}
+# To assign a variable
 
 my_variable <- 10
+
+# To display the variable
 
 my_varIable
 ```
@@ -924,52 +988,71 @@ The variable printed `my_varIable`is not the variable `my_variable` - one has a 
 
 Error messages of the form "object '...' not found" mean exactly what they say. R cannot find an object with that name. Unfortunately, the error does not tell you why that object cannot be found, because R does not know the reason that the object does not exist. 
 
+<br>
+
 
 2. What is the value of each item at each step?
 
 ```{r}
-#1. travel_time?
-travel_time <- 30
 
-#To display the variable
-travel_time
+# To assign a variable
 
-#2. distance?
+#1. time_value?
+
+time_value <- 30
+
+# To display the variable
+
+time_value
+
+# 2. distance?
+
 distance <- 10
 
-#To display the variable
+# To display the variable
+
 distance
 
-#3. travel_time?
-travel_time <- 30*2
 
-#To display the variable
-travel_time
+#3. time_value?
+
+time_value <- 30 * 2
+
+# To display the variable
+
+time_value
 
 #4. distance
+
 distance <- distance + 5
 
-#To display the variable
+# To display the variable
+
 distance
 
 #5. speed
-speed <- distance/travel_time
 
-#To display the variable
+speed <- distance/time_value
+
+# To display the variable
+
 speed
 
 ```
+
+<br>
 
 3. Use the remove function to remove a variable.
 
 ```{r echo=TRUE, message=TRUE}
 
+# To display the variable
 
-#To display the variable
 speed
 
-#To remove a variable 
-rm(speed)
+# To remove a variable
+
+remove(speed)
 
 ```
 
@@ -999,6 +1082,7 @@ You can access these by clicking on **Help** and then **Cheetsheets**.
 ![Image showing an example of Cheat Sheet](../Images/data-transformation-cheat-sheet.png)\ 
 
 
+
 <br>
 
 ***
@@ -1008,7 +1092,12 @@ You can access these by clicking on **Help** and then **Cheetsheets**.
 
 ### **Example**{-}
 
+
+Every time I use a function for a first time or reuse a function after some time , I spend time looking through the R help page for that function.
+
 From within RStudio we can access the Help documentation by using **`?`** or **`help()`** in the console
+
+You can do this by typing `?functionname` into your Console and pressing enter, where functionname is some R function you want to use. This means you have to know the name of the function you want to use in advance.
 
 Try and type the command below in the console,and you should see the Help panel on the bottom right side of your RStudio environment populate with documentation.
 
@@ -1020,6 +1109,7 @@ Try and type the command below in the console,and you should see the Help panel 
 
 ```{r, eval=FALSE}
 #To access the R help documentation
+
 ?mean 
 
 #or 
@@ -1046,7 +1136,7 @@ Which sections appear can vary from help page to help page, but you can usually 
 
 **Usage** - An example of how you would type the function. Each argument of the function will appear in the order R expects you to supply it (if you don’t use argument names).
 
-**Arguments** - A list of each argument the function takes, what type of information R expects you to supply for the argument, and what the function will do with the information.
+**Arguments** - A list of each argument the function takes, what type of information R expects you to supply for the argument, and what the function will do with the information.This is a section I often spend quite a bit of time in, figuring out what arguments do and the options available for each argument.
 
 **Details** - A more in-depth description of the function and how it operates. The details section also gives the function author a chance to alert you to anything you might want to know when using the function.
 
@@ -1056,14 +1146,13 @@ Which sections appear can vary from help page to help page, but you can usually 
 
 **Examples** - Example code that uses the function and is guaranteed to work. The examples section of a help page usually demonstrates a couple different ways to use a function. This helps give you an idea of what the function is capable of.
 
-
 ***
 
 <br>
 
 ## Stack Overflow
 
-[Stack Overflow](https://stackoverflow.com/) is a great site to check if anyone has has a similar problem to you, and see how they got around it.
+[Stack Overflow](https://stackoverflow.com/questions/tagged/r) is a great site to check if anyone has has a similar problem to you,its useful if you are looking for how to do something in R and I don’t have a function name (or sometimes even if you do), you can search the R-tagged questions on the Stack Overflow site. Stack Overflow is currently very active with R questions and answers, and very often you can find a solution to a problem you are having there based on a question someone else asked.
 
 
 ***
@@ -1085,6 +1174,7 @@ Within ONS we have two groups on Yammer,
 ## Cross Government Data Science Slack
 
 [The Cross Goverment Data Science Slack](https://govdatascience.slack.com/) is a place to talk to other people working with Data across government.
+It has about 3000 members and its mostly R and python based and people post training materials, blogs events etc.
 
 ***
 
@@ -1100,7 +1190,7 @@ Please be aware that due to training commitments there may be a small wait befor
 
 <br>
 
-# Summary - The Basics.{-}
+# Summary - Getting Started with R.{-}
 
 We have covered a lot material in R and yet there is still so much more to cover in terms of functionality, as R has so much to offer. By no means are you expected to remember all the above, but here are the key points to be aware of:
 

@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ```{r, echo=FALSE}
-htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+htmltools::img(src = knitr::image_uri("../Images/LATree.PNG"),
                alt = 'logo', 
                style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
 ```
@@ -69,7 +69,8 @@ titanic <- janitor::clean_names(titanic)
 ```
 
 ```{r}
-#To display the data
+# To display the data
+
 titanic
  
 ```
@@ -119,6 +120,7 @@ Let's look at some examples:
 
 # Calculating the mean of the column fare 
 # in the titanic dataset
+
 dplyr::summarise(.data = titanic, mean(fare))
 ```
 
@@ -135,6 +137,7 @@ This will omit any `NA` values in our calculation and produce a more meaningful 
 # in the titanic dataset
 # Setting na.rm=TRUE to remove missing values
 # from calculation
+
 dplyr::summarise(.data = titanic, mean(fare, na.rm = TRUE))
 
 ```
@@ -149,6 +152,7 @@ To assign this a meaningful column name, we'd pass a keyword argument in `summar
 # Setting na.rm=TRUE to remove missing values
 # from calculation
 # setting the name mean_fare for our result
+
 dplyr::summarise(.data = titanic, mean_fare = mean(fare, na.rm = TRUE))
 
 ```
@@ -165,6 +169,7 @@ If we didn't care about the `tibble` output we could simply compute using base R
 # in the titanic dataset
 # Setting na.rm=TRUE to remove missing values
 # from calculation
+
 base::mean(titanic$fare, na.rm = TRUE)
 
 ```
@@ -176,6 +181,7 @@ Like we saw with `mutate()` and other functions, we can compute multiple statist
 ```{r}
 # Calculating muiltiple summary statisitcs within
 # the summarise function
+
 dplyr::summarise(.data = titanic, 
                  
                  median_fare = median(fare, na.rm = TRUE),
@@ -206,6 +212,7 @@ Therefore, these functions have to be called on the data directly instead.
 ```{r}
 # Calculating the quartiles from the
 # fare column in the titanic dataset
+
 stats::quantile(titanic$fare, na.rm = TRUE)
 
 ```
@@ -219,6 +226,7 @@ We can also specify as below,
 # Calculating the quartiles from the
 # fare column in the titanic dataset
 # by specifying which points to display
+
 stats::quantile(titanic$fare, 
                 probs = c(0.25, 0.5, 0.75, 1),
                 na.rm = TRUE)
@@ -232,6 +240,7 @@ We can further specify as below,
 # Calculating the quartiles from the
 # fare column in the titanic dataset
 # by specifying which points to display
+
 stats::quantile(titanic$fare, 
                 probs = c(0, 0.2, 0.4, 0.6, 0.8, 1),
                 na.rm = TRUE)
@@ -259,6 +268,7 @@ Descriptive statistics below are for qualitative data, they don't work very well
 ```{r}
 # Calculating a frequency table for the number
 # of passengers and sorting in descending order
+
 dplyr::count(titanic, name_of_passenger, sort = TRUE)
 
 ```
@@ -269,6 +279,7 @@ Compared to:
 ```{r}
 # Calculating a frequency table for the number
 # of passengers and sorting in descending order
+
 dplyr::count(titanic, embarked, sort = TRUE)
 
 ```
@@ -299,16 +310,20 @@ dplyr::count(titanic, embarked, sort = TRUE)
 
 ```{r, eval=FALSE}
 
-# max gives you the heighest value
+# max gives you the highest value
+
 oldest_passenger <- base::max(data)
 
 ```
+
+<br>
 
 2. How many men and women are in the dataset?
 
 ```{r, eval=FALSE}
 
 # Count gives a frequency
+
 number_of_men_and_women <- dplyr::count(data, columns)
 
 ```
@@ -319,6 +334,7 @@ number_of_men_and_women <- dplyr::count(data, columns)
 
 ```{r, eval=FALSE}
 # Mutate lets you add new variables to the dataset
+
 standard_fare <- dplyr::mutate(data, 
                                name of new column = contents of new column)
 
@@ -333,8 +349,9 @@ standard_fare <- dplyr::mutate(data,
 1. How old is the oldest passenger in the dataset?
 
 ```{r}
-# Calculating the hieghest values in the 
+# Calculating the highest values in the 
 # age_of_passenger column
+
 oldest_passenger <- base::max(titanic$age_of_passenger, 
                               na.rm = TRUE)
 
@@ -345,6 +362,7 @@ oldest_passenger <- base::max(titanic$age_of_passenger,
 ```{r}
 # Calculating a frequency count of the
 # sex_of_passenger column
+
 number_of_men_and_women <- dplyr::count(titanic, 
                                         sex_of_passenger)
 
@@ -355,6 +373,7 @@ number_of_men_and_women <- dplyr::count(titanic,
 ```{r}
 
 # Using mutate to add a new column on the titanic dataset
+
 standard_fare <- dplyr::mutate(.data=titanic, 
                                std_fare = 
                                  (fare - mean(fare, na.rm = TRUE)) / sd(fare, na.rm = TRUE))
@@ -397,6 +416,7 @@ Let's look at that in code:
 ```{r}
 
 # Grouped tibble by pclass
+
 by_class <- dplyr::group_by(titanic, pclass)
 
 ```
@@ -419,6 +439,7 @@ Now let's find out the mean fare paid by each class
 ```{r}
 # calculating the mean from the fare column in the grouped 
 # dataset
+
 dplyr::summarise(by_class, 
                  mean_fare = mean(fare, na.rm = TRUE))
 ```
@@ -449,12 +470,14 @@ Here we are grouping by 2 columns `"pclass"` and `"embarked"`.
 ```{r}
 # Group by pclass and embarked. Then find the average fare 
 # paid by each group.
+
 by_class_embarked <- dplyr::group_by(titanic,
                                      pclass, embarked) %>%
                       dplyr::summarise(mean_fare = mean(fare, na.rm = TRUE))
 
 
-#To display the data
+# To display the data
+
 by_class_embarked
 
 ```
@@ -483,6 +506,7 @@ Here I have added some extra summary statistics, i.e standard deviation and a co
 # grouping by pclass and emabrked
 # summarising by shwoing the median fare and standard deviation
 # and a frequency count
+
 median_fare <- titanic %>%
   
   drop_na(embarked) %>%
@@ -496,6 +520,7 @@ median_fare <- titanic %>%
             count = n())
 
 #To display the data
+
 median_fare
 
 
@@ -514,6 +539,7 @@ Great. I plan on presenting this data, so I want something more meaningful in pl
 # grouping by pclass and emabrked
 # summarising by shwoing the median fare and 
 # standard deviation and a frequency count
+
 median_fare <- titanic %>%
   
   drop_na(embarked) %>% 
@@ -536,6 +562,7 @@ median_fare <- titanic %>%
   )
 
 #To display the data
+
 median_fare
 
 ```
@@ -580,6 +607,7 @@ ggplot2::ggplot(median_fare,
 # Calculating the average fare
 # Grouping by sex_of_passenger
 # summary showing the mean fare
+
 average_fare <- titanic %>% 
   
   group_by() %>% 
@@ -587,9 +615,11 @@ average_fare <- titanic %>%
   summarise()
 
 # To display the data
+
 average_fare
 ```
 
+<br>
 
 2. What is the median fare paid by men and women in each different class?
 
@@ -597,6 +627,7 @@ average_fare
 # Calculating the median fare
 # Grouping by sex_of_passenger and pclass
 # summary showing the mean fare
+
 median_fare <- titanic %>%
   
   group_by() %>%
@@ -604,6 +635,7 @@ median_fare <- titanic %>%
   summarise()
 
 # To display the data
+
 median_fare
 ```
 
@@ -620,6 +652,7 @@ median_fare
 # Calculating the average fare
 # Grouping by sex_of_passenger
 # summary showing the mean fare
+
 average_fare <- titanic %>% 
   
   group_by(sex_of_passenger) %>% 
@@ -627,9 +660,11 @@ average_fare <- titanic %>%
   summarise(mean_fare = mean(fare, na.rm = TRUE))
 
 #To display the data
+
 average_fare
 ```
 
+<br>
 
 2. What is the median fare paid by men and women in each different class?
 
