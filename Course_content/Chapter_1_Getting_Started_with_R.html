@@ -1914,20 +1914,12 @@ div.tocify {
 <a class="sourceLine" id="cb24-2" title="2"></a>
 <a class="sourceLine" id="cb24-3" title="3"><span class="kw">round</span>(<span class="fl">3.6357</span>)</a></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<<<<<<< HEAD
 <p>You can specify what you want a function to do with what we call a parameter and argument. This is specified within the brackets of the function. We will talk more about parameters and arguments(inputs) in chapter 6,</p>
-<p>The input of function is called a parameter and what we specify is called an argument.</p>
-<p><strong>A parameter is a name or a label for an argument that follows it</strong>. e.g in the round function below our parameter is <code>digits</code> and our argument is <code>2</code>.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co">#using built in function round()</span></a>
-<a class="sourceLine" id="cb26-2" title="2"><span class="kw">round</span>(<span class="fl">3.6357</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
-=======
-<p>You can specify what you the want a function to exactly do with what we call an argument. This is specified within the brackets of the function. We will talk more about arguments in chapter 6,</p>
-<p>The inputs of function is called an argument and what we specify is called a value .</p>
-<p><strong>A argument is a name or a label for a value that follows it</strong>. e.g in the round function below our <code>arguement</code> is <code>digits</code> and our <code>value</code> is 2.</p>
+<p>The input of function is called an argument and what we specify is called a value.</p>
+<p><strong>A argument is a name or a label for the value that follows it</strong>. e.g in the round function below our argument is <code>digits</code> and our value is <code>2</code>.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Using built in function round()</span></a>
 <a class="sourceLine" id="cb26-2" title="2"></a>
 <a class="sourceLine" id="cb26-3" title="3"><span class="kw">round</span>(<span class="fl">3.6357</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</a></code></pre></div>
->>>>>>> campus_r_merge
 <pre><code>## [1] 3.64</code></pre>
 <p>There are many more built-in functions which you will discover with more exposure to R, but for now we will move onto the different types of numbers we might work with.</p>
 <ul>
@@ -2097,22 +2089,7 @@ div.tocify {
 <p>R doesn’t require you to set the data type when you create it, instead it figures out what the best data type is for the object you are creating - numeric, character, logical, or others.</p>
 <p>Given that R is a dynamically typed language, sometimes the data type you want to work with, and the one R infers are not the same.</p>
 <p>Sometimes you want to ensure that a particular object is actually a certain type, rather than leaving it up to R. This is done using data type conversion. R has a range of in-built functions that enable you to convert data from one type to another.</p>
-<<<<<<< HEAD
-<p>Firstly, the <strong><code>typeof()</code></strong> function returns the (R internal) type of any given object. e.g.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw">typeof</span>(<span class="st">&quot;is this a character?&quot;</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="kw">typeof</span>(5L)</a></code></pre></div>
-<pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="kw">typeof</span>(<span class="dv">5</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;double&quot;</code></pre>
-<p>We could equivalently use functions such as <code>is.</code> function which checks if our object is a given type. (set cursor after <code>is.</code> and hit tab).</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1">is.</a></code></pre></div>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="kw">is.integer</span>(<span class="dv">5</span>)</a></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
 <p>In order to convert the data, you need to use the <strong>as.</strong> functions. When writing the command, you specify the data type you are converting to. The commands are as follows:</p>
-=======
-<p>In order to convert the data, you need to use the <strong>as</strong> function. As part of this command, you specify the data type you are converting to. The commands are as follows:</p>
->>>>>>> campus_r_merge
 <ul>
 <li><p>as.numeric to convert to Numeric.</p></li>
 <li><p>as.character to convert to Characters.</p></li>
@@ -2131,26 +2108,12 @@ div.tocify {
 <h1><span class="header-section-number">4</span> Variable Assignment</h1>
 <p>Everything in R is an object, We can assign these objects names, this is called a variable.</p>
 <p>Variables are an integral part of any programming language. Variables allow us to store and label data under a specific name. It is like a place holder, used to store information. Think of it as a container, they main purpose is to label and store the data in memory.</p>
-<<<<<<< HEAD
 <p>We can assign a value to a variable using the <code>&lt;-</code> operator, for example in the below code where <code>weight_kg</code> is the variable name and the value <code>60</code> is the data being assigned to <code>weight_kg</code>.</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="co">#To assign a variable</span></a>
-<a class="sourceLine" id="cb78-2" title="2">weight_kg &lt;-<span class="st"> </span><span class="dv">60</span></a></code></pre></div>
-<p>When reading that code say <code>“weight_kg gets the value 60”</code> in your head.</p>
-<p>Once an object has been created it will appear in your Environment window which helps you keep track of what objects you have in your current workspace - the top right pane.</p>
-=======
-<p>R has a lot of flexibility when it comes to variable assignment.</p>
-<p>We assign variables using the assignemt operator <code>&lt;-</code>.</p>
-<blockquote>
-<p><strong>Short cut keys Alt + Minus</strong></p>
-</blockquote>
-<p>RStudio automatically surrounds <code>&lt;-</code> with spaces, which is a good code formatting practice.</p>
-<p>For example below; where <code>weight_kg</code> is the variable name and <code>value</code> being assigned to it is <code>60</code>.</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="co"># To assign a variable</span></a>
 <a class="sourceLine" id="cb69-2" title="2"></a>
 <a class="sourceLine" id="cb69-3" title="3">weight_kg &lt;-<span class="st"> </span><span class="dv">60</span></a></code></pre></div>
-<p>When reading that code say <code>“weight_kg  gets the value 60”</code> in your head.</p>
-<p>Once an object has been created it will appear in your Environment window which helps you keep track of what objects you have in your current workspace.(The top right pane).</p>
->>>>>>> campus_r_merge
+<p>When reading that code say <code>“weight_kg gets the value 60”</code> in your head.</p>
+<p>Once an object has been created it will appear in your Environment window which helps you keep track of what objects you have in your current workspace - the top right pane.</p>
 <p>After the assignment, to access or use the value we simply reference <code>weight_kg</code> in our code.</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="co"># To assign a variable</span></a>
 <a class="sourceLine" id="cb70-2" title="2"></a>
@@ -2161,14 +2124,6 @@ div.tocify {
 <a class="sourceLine" id="cb70-7" title="7"></a>
 <a class="sourceLine" id="cb70-8" title="8">weight_kg</a></code></pre></div>
 <pre><code>## [1] 60</code></pre>
-<<<<<<< HEAD
-<p>We can use the variable name in mathematical operations. Here we are using <code>weight_kg</code> to calculate <code>weight_lb</code>.</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="co">#Multiplication using our variable name</span></a>
-<a class="sourceLine" id="cb81-2" title="2">weight_lb &lt;-<span class="st"> </span>weight_kg <span class="op">*</span><span class="st"> </span><span class="fl">2.2</span></a>
-<a class="sourceLine" id="cb81-3" title="3"></a>
-<a class="sourceLine" id="cb81-4" title="4"><span class="co">#To display the variable</span></a>
-<a class="sourceLine" id="cb81-5" title="5">weight_lb</a></code></pre></div>
-=======
 <p>If you wanted to display that a bit better you could use the <code>cat()</code> function like below, the <code>\n</code> starts a new line.</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="co"># Using the cat() function to display our result</span></a>
 <a class="sourceLine" id="cb72-2" title="2"></a>
@@ -2183,19 +2138,19 @@ div.tocify {
 <a class="sourceLine" id="cb74-5" title="5"><span class="co"># To display the variable</span></a>
 <a class="sourceLine" id="cb74-6" title="6"></a>
 <a class="sourceLine" id="cb74-7" title="7">weight_lb</a></code></pre></div>
->>>>>>> campus_r_merge
 <pre><code>## [1] 132</code></pre>
-<p>If we ever want to reassign a variable we would simply use the operators above again.</p>
+<p>If we ever want to reassign a variable we would simply use the operator above again.</p>
 <p>For example: I am assigning height as 5.</p>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1"><span class="co"># To assign a variable</span></a>
 <a class="sourceLine" id="cb76-2" title="2"></a>
 <a class="sourceLine" id="cb76-3" title="3">height &lt;-<span class="st"> </span><span class="dv">5</span></a>
 <a class="sourceLine" id="cb76-4" title="4"></a>
-<a class="sourceLine" id="cb76-5" title="5"><span class="co"># To display the variable</span></a>
-<a class="sourceLine" id="cb76-6" title="6"></a>
-<a class="sourceLine" id="cb76-7" title="7">height</a></code></pre></div>
+<a class="sourceLine" id="cb76-5" title="5"></a>
+<a class="sourceLine" id="cb76-6" title="6"><span class="co"># To display the variable</span></a>
+<a class="sourceLine" id="cb76-7" title="7"></a>
+<a class="sourceLine" id="cb76-8" title="8">height</a></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<p>Using the same variable name will overwrite the previously assigned variable. Now am reassigning height which was assigned to 5 to 7.</p>
+<p>Using the same variable name will overwrite the previously assigned variable. Now I am reassigning height which was assigned to 5 to 7.</p>
 <p>This will overwrite our value for height to 7.</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="co"># To assign a variable</span></a>
 <a class="sourceLine" id="cb78-2" title="2"></a>
@@ -2208,10 +2163,6 @@ div.tocify {
 <p><br></p>
 <p>We can also assign a value to name (or label) using <code>=</code> operator and <code>-&gt;</code> operators.</p>
 <p>Here are a few examples of them in action:</p>
-<ul>
-<li><code>variable_name</code> = value</li>
-<li>value -&gt; <code>variable_name</code></li>
-</ul>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1"><span class="co"># PLEASE </span><span class="al">NOTE</span><span class="co"> THIS IS BAD PRACTICE</span></a>
 <a class="sourceLine" id="cb80-2" title="2"></a>
 <a class="sourceLine" id="cb80-3" title="3"><span class="co"># To assign a variable</span></a>
@@ -2233,42 +2184,8 @@ div.tocify {
 <pre><code>## [1] 40</code></pre>
 <p><br></p>
 <blockquote>
-<<<<<<< HEAD
-<p><strong><code>&lt;-</code> is the most commonly used assignment operator in R and therefore the one we will stick to(the short cut is ALT + MINUS).</strong></p>
-</blockquote>
-<p>RStudio automatically surrounds <code>&lt;-</code> with spaces, which is a good code formatting practice.</p>
-<p>R will also accept using an equals sign, or an inverted arrow to assign values, but these are considered bad practice and are not recommended:</p>
-<ul>
-<li><p><code>weight_kg = 40</code></p></li>
-<li><p><code>40 -&gt; weight_kg</code></p></li>
-</ul>
-<p>In R it is convention to use <code>&lt;-</code> to assign variables and keep <code>=</code> reserved to passing arguments into a function. We will be sticking to this convention.</p>
-<p><code>-&gt;</code> is considered bad practice. This is because it makes it harder for others to see where a object has been assigned.</p>
-<p>If we ever want to reassign a variable we would simply use the operators above again.</p>
-<p>For example:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1"><span class="co">#To assign a variable</span></a>
-<a class="sourceLine" id="cb83-2" title="2">my_second_variable &lt;-<span class="st"> </span>5L</a>
-<a class="sourceLine" id="cb83-3" title="3"></a>
-<a class="sourceLine" id="cb83-4" title="4"><span class="co">#To display the variable</span></a>
-<a class="sourceLine" id="cb83-5" title="5">my_second_variable</a></code></pre></div>
-<pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="co">#To assign a variable</span></a>
-<a class="sourceLine" id="cb85-2" title="2"><span class="co">#Using the same variable name will overwrite the previously assigned variable</span></a>
-<a class="sourceLine" id="cb85-3" title="3">my_second_variable &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb85-4" title="4"></a>
-<a class="sourceLine" id="cb85-5" title="5"><span class="co">#To display the variable</span></a>
-<a class="sourceLine" id="cb85-6" title="6">my_second_variable</a></code></pre></div>
-<pre><code>## [1] 10</code></pre>
-<p>Typing the following into the Console will list everything you’ve loaded into the Environment:</p>
-<p><strong><code>ls()</code></strong></p>
-<p>To remove a variable, we would utilise the <strong><code>rm()</code></strong> function of R.</p>
-<p>For example:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1"><span class="kw">rm</span>(my_second_variable)</a></code></pre></div>
-<p>Variable names:</p>
-=======
 <p><strong><code>&lt;-</code> is the most commonly used assignment operator in R and therefore the one we will stick to.</strong></p>
 </blockquote>
-<p><br></p>
 <p>In R it is convention to use <code>&lt;-</code> to assign variables and keep <code>=</code> reserved to passing key value pair to a function. We will be sticking to this convention.</p>
 <p><code>-&gt;</code> is considered bad practice. This is because it makes it harder for others to see where a object has been assigned.</p>
 <hr />
@@ -2291,7 +2208,6 @@ div.tocify {
 </div>
 <div id="variable-names" class="section level2 unnumbered">
 <h2>Variable Names</h2>
->>>>>>> campus_r_merge
 <ul>
 <li>Are case sensitive and must start with a letter.<br />
 </li>
@@ -2305,10 +2221,7 @@ otherPeopleUseCamelCase
 
 some.people.use.periods
 </code></pre>
-<<<<<<< HEAD
-=======
 <p><code>Snake</code> and <code>Camel</code> case are the most common ones, the <code>periods</code> example has been shown as you might see it used in other peoples codes.</p>
->>>>>>> campus_r_merge
 <p>We have more detailed examples and information on good variables names in our other course <strong>Best Practice in Programming - Clean Code</strong></p>
 <hr />
 <p><br></p>
@@ -2320,28 +2233,6 @@ some.people.use.periods
 <ol style="list-style-type: decimal">
 <li>Why does this code not work?</li>
 </ol>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1">my_variable &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb89-2" title="2"></a>
-<a class="sourceLine" id="cb89-3" title="3">my_varIable</a></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li>What is the value of each item at each step?</li>
-</ol>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1"><span class="co">#1. travel_time?</span></a>
-<a class="sourceLine" id="cb90-2" title="2">travel_time &lt;-<span class="st"> </span><span class="dv">30</span></a>
-<a class="sourceLine" id="cb90-3" title="3"></a>
-<a class="sourceLine" id="cb90-4" title="4"><span class="co">#2. distance?</span></a>
-<a class="sourceLine" id="cb90-5" title="5">distance &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb90-6" title="6"></a>
-<a class="sourceLine" id="cb90-7" title="7"><span class="co">#3. travel_time?</span></a>
-<a class="sourceLine" id="cb90-8" title="8">travel_time &lt;-<span class="st"> </span><span class="dv">30</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb90-9" title="9"></a>
-<a class="sourceLine" id="cb90-10" title="10"><span class="co">#4. distance</span></a>
-<a class="sourceLine" id="cb90-11" title="11">distance &lt;-<span class="st"> </span>distance <span class="op">+</span><span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb90-12" title="12"></a>
-<a class="sourceLine" id="cb90-13" title="13"><span class="co">#5. speed</span></a>
-<a class="sourceLine" id="cb90-14" title="14">speed &lt;-<span class="st"> </span>distance <span class="op">/</span><span class="st"> </span>travel_time</a></code></pre></div>
-=======
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1"><span class="co"># To assign a variable</span></a>
 <a class="sourceLine" id="cb86-2" title="2"></a>
 <a class="sourceLine" id="cb86-3" title="3">my_variable &lt;-<span class="st"> </span><span class="dv">10</span></a>
@@ -2374,7 +2265,6 @@ some.people.use.periods
 <a class="sourceLine" id="cb87-19" title="19"><span class="co">#5. speed</span></a>
 <a class="sourceLine" id="cb87-20" title="20"></a>
 <a class="sourceLine" id="cb87-21" title="21">speed &lt;-<span class="st"> </span>distance <span class="op">/</span><span class="st"> </span>time_value</a></code></pre></div>
->>>>>>> campus_r_merge
 <ol start="3" style="list-style-type: decimal">
 <li>Use the remove function to remove a variable.</li>
 </ol>
@@ -2403,13 +2293,6 @@ some.people.use.periods
 <ol start="2" style="list-style-type: decimal">
 <li>What is the value of each item at each step?</li>
 </ol>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1"><span class="co">#1. travel_time?</span></a>
-<a class="sourceLine" id="cb92-2" title="2">travel_time &lt;-<span class="st"> </span><span class="dv">30</span></a>
-<a class="sourceLine" id="cb92-3" title="3"></a>
-<a class="sourceLine" id="cb92-4" title="4"><span class="co">#To display the variable</span></a>
-<a class="sourceLine" id="cb92-5" title="5">travel_time</a></code></pre></div>
-=======
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="co"># To assign a variable</span></a>
 <a class="sourceLine" id="cb89-2" title="2"></a>
 <a class="sourceLine" id="cb89-3" title="3"><span class="co">#1. time_value?</span></a>
@@ -2419,7 +2302,6 @@ some.people.use.periods
 <a class="sourceLine" id="cb89-7" title="7"><span class="co"># To display the variable</span></a>
 <a class="sourceLine" id="cb89-8" title="8"></a>
 <a class="sourceLine" id="cb89-9" title="9">time_value</a></code></pre></div>
->>>>>>> campus_r_merge
 <pre><code>## [1] 30</code></pre>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1"><span class="co"># 2. distance?</span></a>
 <a class="sourceLine" id="cb91-2" title="2"></a>
@@ -2429,13 +2311,6 @@ some.people.use.periods
 <a class="sourceLine" id="cb91-6" title="6"></a>
 <a class="sourceLine" id="cb91-7" title="7">distance</a></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1"><span class="co">#3. travel_time?</span></a>
-<a class="sourceLine" id="cb96-2" title="2">travel_time &lt;-<span class="st"> </span><span class="dv">30</span><span class="op">*</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb96-3" title="3"></a>
-<a class="sourceLine" id="cb96-4" title="4"><span class="co">#To display the variable</span></a>
-<a class="sourceLine" id="cb96-5" title="5">travel_time</a></code></pre></div>
-=======
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1"><span class="co">#3. time_value?</span></a>
 <a class="sourceLine" id="cb93-2" title="2"></a>
 <a class="sourceLine" id="cb93-3" title="3">time_value &lt;-<span class="st"> </span><span class="dv">30</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a>
@@ -2443,7 +2318,6 @@ some.people.use.periods
 <a class="sourceLine" id="cb93-5" title="5"><span class="co"># To display the variable</span></a>
 <a class="sourceLine" id="cb93-6" title="6"></a>
 <a class="sourceLine" id="cb93-7" title="7">time_value</a></code></pre></div>
->>>>>>> campus_r_merge
 <pre><code>## [1] 60</code></pre>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1"><span class="co">#4. distance</span></a>
 <a class="sourceLine" id="cb95-2" title="2"></a>
@@ -2453,13 +2327,6 @@ some.people.use.periods
 <a class="sourceLine" id="cb95-6" title="6"></a>
 <a class="sourceLine" id="cb95-7" title="7">distance</a></code></pre></div>
 <pre><code>## [1] 15</code></pre>
-<<<<<<< HEAD
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1"><span class="co">#5. speed</span></a>
-<a class="sourceLine" id="cb100-2" title="2">speed &lt;-<span class="st"> </span>distance<span class="op">/</span>travel_time</a>
-<a class="sourceLine" id="cb100-3" title="3"></a>
-<a class="sourceLine" id="cb100-4" title="4"><span class="co">#To display the variable</span></a>
-<a class="sourceLine" id="cb100-5" title="5">speed</a></code></pre></div>
-=======
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1"><span class="co">#5. speed</span></a>
 <a class="sourceLine" id="cb97-2" title="2"></a>
 <a class="sourceLine" id="cb97-3" title="3">speed &lt;-<span class="st"> </span>distance<span class="op">/</span>time_value</a>
@@ -2467,7 +2334,6 @@ some.people.use.periods
 <a class="sourceLine" id="cb97-5" title="5"><span class="co"># To display the variable</span></a>
 <a class="sourceLine" id="cb97-6" title="6"></a>
 <a class="sourceLine" id="cb97-7" title="7">speed</a></code></pre></div>
->>>>>>> campus_r_merge
 <pre><code>## [1] 0.25</code></pre>
 <p><br></p>
 <ol start="3" style="list-style-type: decimal">
@@ -2503,30 +2369,18 @@ some.people.use.periods
 <h2><span class="header-section-number">5.2</span> R Documentation</h2>
 <div id="example" class="section level3 unnumbered">
 <h3><strong>Example</strong></h3>
-<<<<<<< HEAD
-<p>From within RStudio we can access the Help documentation by using <strong><code>?</code></strong> or <strong><code>help()</code></strong> in the console</p>
-<p>Try and type the command below in the console,and you should see the Help panel on the bottom right side of your RStudio environment populate with documentation.</p>
-<p><strong>This might not be helpful at this point in time as its quite complicated, we use this throughout the course and get plenty of practise on how to get the best of the R documentation.</strong></p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1"><span class="co">#To access the R help documentation</span></a>
-<a class="sourceLine" id="cb105-2" title="2">?mean </a>
-<a class="sourceLine" id="cb105-3" title="3"></a>
-<a class="sourceLine" id="cb105-4" title="4"><span class="co">#or </span></a>
-<a class="sourceLine" id="cb105-5" title="5"></a>
-<a class="sourceLine" id="cb105-6" title="6"><span class="kw">help</span>(mean)</a></code></pre></div>
-=======
 <p>Every time I use a function for a first time or reuse a function after some time , I spend time looking through the R help page for that function.</p>
-<p>From within RStudio we can access the Help documentation by using <code>?</code> or <code>??</code> in the console</p>
+<p>From within RStudio we can access the Help documentation by using <strong><code>?</code></strong> or <strong><code>help()</code></strong> in the console</p>
 <p>You can do this by typing <code>?functionname</code> into your Console and pressing enter, where functionname is some R function you want to use. This means you have to know the name of the function you want to use in advance.</p>
 <p>Try and type the command below in the console,and you should see the Help panel on the bottom right side of your RStudio environment populate with documentation.</p>
 <p><strong>This might not be helpful at this point in time as its quite complicated, we use this throughout the course and get plenty of practise on how to get the best of the R documentation.</strong></p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1"><span class="co"># To acces the R help documentation</span></a>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1"><span class="co">#To access the R help documentation</span></a>
 <a class="sourceLine" id="cb102-2" title="2"></a>
 <a class="sourceLine" id="cb102-3" title="3">?mean </a>
 <a class="sourceLine" id="cb102-4" title="4"></a>
-<a class="sourceLine" id="cb102-5" title="5">or </a>
+<a class="sourceLine" id="cb102-5" title="5"><span class="co">#or </span></a>
 <a class="sourceLine" id="cb102-6" title="6"></a>
 <a class="sourceLine" id="cb102-7" title="7"><span class="kw">help</span>(mean)</a></code></pre></div>
->>>>>>> campus_r_merge
 <hr />
 <p><br></p>
 </div>
@@ -2577,15 +2431,9 @@ some.people.use.periods
 <p><br></p>
 </div>
 </div>
-<<<<<<< HEAD
-<div id="summary---the-basics." class="section level1 unnumbered">
-<h1>Summary - The Basics.</h1>
-<p>We have covered a lot material in R and yet there is still so much more to cover in terms of functionality, as R has so much to offer. By no means are you expected to remember all the above, but here are the key points to be aware of:</p>
-=======
 <div id="summary---getting-started-with-r." class="section level1 unnumbered">
 <h1>Summary - Getting Started with R.</h1>
-<p>We have covered a lot material in R and yet there is still so much more to cover in terms of functionality, as R has so much to offer. By no means are you expected to remember all the above, but as we move forward, it is important you remain aware of:</p>
->>>>>>> campus_r_merge
+<p>We have covered a lot material in R and yet there is still so much more to cover in terms of functionality, as R has so much to offer. By no means are you expected to remember all the above, but here are the key points to be aware of:</p>
 <ul>
 <li><p>R is an open source <strong>programming language</strong> and environment for statistical computing and graphics.</p></li>
 <li><p>The benefits of using R.</p></li>

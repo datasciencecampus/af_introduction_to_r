@@ -670,7 +670,7 @@ As you can see we have various items of within our list and they all keep their 
 ```{r}
 # Creating a list
 
- <- list(c("apples", "bananas", "strawberries"), 
+shopping_list <- list(c("apples", "bananas", "strawberries"), 
                       c(5,10,15), 
                       20.2)
 
@@ -707,7 +707,7 @@ The above now displays the name associated with each element on top of the eleme
 
 <br>
 
-We can also name our list using the `names()` function. The names() function allows us to get or set the name attribute of a data structure.
+We can also name our list using the **`names()`** function. This function allows us to get or set the name attribute of a data structure.
 
 ```{r}
 
@@ -724,7 +724,7 @@ shopping_list
 <br>
 
 
-As demonstrated above, lists can hold all kinds of data structures, including vectors and other lists, they can then have an interesting tree like structure which we can observe using the structure function, str() function.
+As demonstrated above, lists can hold all kinds of data structures, including vectors and other lists, they can then have an interesting tree like structure which we can observe using the structure function, **`str()`** function.
 
 
 The structure function will return the contents stored in the list, as well as stating the data type of each item, for example, character, numeric, vector, etc.
@@ -1007,7 +1007,7 @@ Below is an example of a what a data frame and tibble look like, I have used the
 <br>
 
 ## Data Frame {-}
-```{r} 
+```{r echo=FALSE, message=FALSE, warning=FALSE} 
 # To display the dataframe
 iris
 ```
