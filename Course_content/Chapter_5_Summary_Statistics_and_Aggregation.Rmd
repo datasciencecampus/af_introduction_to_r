@@ -45,7 +45,7 @@ htmltools::img(src = knitr::image_uri("../Images/LATree.PNG"),
 
 # Dataset{-}
 
-We will use the titanic dataset in this chapter.
+We will use the titanic dataset in this chapter with cleaned names via janitor.
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 # Load libraries
@@ -60,7 +60,7 @@ library(kableExtra)
 
 # Read in data
 
-titanic <- readr::read_csv("D:/Git/Intro_to_R_Refresh/Data/titanic.csv", 
+titanic <- readr::read_csv("../Data/titanic.csv", 
                            na=c("", " ", "NULL"))
 
 titanic <- janitor::clean_names(titanic)
@@ -110,8 +110,7 @@ Base R does not provide a function for finding the mode.
 
 We would have to use a package to calculate the mode or write our own function.
 
-The function `mfv()`, for most frequent value, `in modeest package` can be used to find the statistical mode.
-
+The function `mfv()`, for most frequent value, in the `modeest` package can be used to find the statistical mode.
 
 There are plenty more we could use, but this, like the rest of the course, is intended to give you a taste of what's possible. 
 
@@ -202,10 +201,9 @@ dplyr::summarise(.data = titanic,
 
 The structure of our output above is not ideal. 
 
->**We could restructure using `tidyr` functions: pivot_wider()`, `separate()` and `pivot_longer()`. This is slightly advanced for what we have covered so far, but an examples have been added to the additional materials for those keen to know.**
+We could restructure it using the `tidyr` functions: **`pivot_wider()`**, *`separate()`* and **`pivot_longer()`**. This is slightly advanced for what we have covered so far, but examples have been added to the additional materials document for those keen to know.
 
-
-Functions which return more than one value won't work well with `summarise()`. 
+Functions which return more than one value won't work well with **`summarise()`**. 
 
 Therefore, these functions have to be called on the data directly instead.
 
@@ -330,7 +328,7 @@ number_of_men_and_women <- dplyr::count(data, columns)
 
 3. Create a new column called `'std_fare'` which is the `'fare'` minus the mean fare, divided by the standard deviation.
 
->**You will need to use you data manipulation skills from previous chapter.**
+You will need to use you data manipulation skills from previous chapter.
 
 ```{r, eval=FALSE}
 # Mutate lets you add new variables to the dataset
@@ -389,13 +387,11 @@ standard_fare <- dplyr::mutate(.data=titanic,
 
 Aggregation means grouping data together by a particular grouping variable and producing a summary of one or more columns for that grouping variable.
 
->**We'll use the `dplyr::group_by()` function.** 
+We'll use the **`dplyr::group_by()`** function.
 
 This function can be really useful, especially when your data are disaggregate - e.g. data about individual units of people or things. 
 
-`group_by()` allows you to aggregate by a categorical variable and then summarise numerical data into a new `tibble`.
-
-`group_by()` works on a principle known as 'split-summarise-combine':
+**`group_by()`** allows you to aggregate by a categorical variable and then summarise numerical data into a new `tibble`. It works on a principle known as 'split-summarise-combine':
 
 * Split - a `tibble` is divided into a set of smaller `tibbles` based on the grouping variable.
 
@@ -446,7 +442,7 @@ dplyr::summarise(by_class,
 
 <br>
 
-`group_by()` is a powerful tool, particularly when you are working with any kind of hierarchical data where you might want to know something aggregate about the groups within the data, for instance:
+**`group_by()`** is a powerful tool, particularly when you are working with any kind of hierarchical data where you might want to know something aggregate about the groups within the data, for instance:
 
 * individuals nested in households.
 
@@ -454,7 +450,7 @@ dplyr::summarise(by_class,
 
 * small area geographies (e.g. wards, output areas, postcodes etc.) nested in larger geographies (e.g. districts, counties etc.)
 
-* countries nested in supra-national entities or, demographic, cultural and socio-economic classes:
+* countries nested in supra-national entities or, demographic, cultural and socio-economic classes.
 
 * individuals by age, sex, ethnicity, religion etc.
 
@@ -463,7 +459,7 @@ dplyr::summarise(by_class,
 
 
 
->**We can also aggregate according to more complicated groupings:**
+>**We can also aggregate according to more complicated groupings**
 
 Here we are grouping by 2 columns `"pclass"` and `"embarked"`.
 
@@ -494,11 +490,9 @@ by_class_embarked %>%
 
 <br>
 
-Suppose with the above, the `NA` values bother us. To remove them we can add some code to our pipeline to handle this. 
+Suppose with the above, the `NA` values bother us. To remove them we can add some code to our pipeline to handle this. We can use the **`drop_na()`** function from the tidyr package.
 
->**We can use the `drop_na()` function from the tidyr package**
-
-Here I have added some extra summary statistics, i.e standard deviation and a count.
+Here I have added some extra summary statistics as well, i.e standard deviation and a count.
 
 ```{r}
 # Calculating the median fare
@@ -529,7 +523,7 @@ median_fare
 <br>
 
 
-Great. I plan on presenting this data, so I want something more meaningful in place than "C", "Q" and "S".
+I plan on presenting this data, so I want something more meaningful in place than "C", "Q" and "S".
 
 ```{r}
 
@@ -569,7 +563,7 @@ median_fare
 
 <br>
 
-We can simply visualise our data in a chart. (We are not covering how to plot here)
+We can simply visualise our data in a chart. (We are not covering how to plot here.)
 
 <br>
 
@@ -614,9 +608,6 @@ average_fare <- titanic %>%
   
   summarise()
 
-# To display the data
-
-average_fare
 ```
 
 <br>
@@ -634,9 +625,6 @@ median_fare <- titanic %>%
   
   summarise()
 
-# To display the data
-
-median_fare
 ```
 
 
