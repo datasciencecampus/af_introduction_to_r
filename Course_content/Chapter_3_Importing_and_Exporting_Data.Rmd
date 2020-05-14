@@ -1,0 +1,1213 @@
+---
+title: "Intro to R - Chapter Three"
+output:
+  html_document: 
+    theme: united
+    highlight: tango
+    toc: yes
+    toc_float: yes
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r, echo=FALSE}
+htmltools::img(src = knitr::image_uri("../Images/LATree.PNG"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
+
+
+<br>
+
+***
+# Importing Data and Exporting Data{-}
+
+***
+
+
+# Learning Objectives
+
+<br>
+
+**The goal of this session is to:**
+
+* Organise our work
+* Have an understanding of what packages are.
+* Be able to load and install a package.
+* Be able to check package versions and R version.
+* Be able to import data from multiple formats.
+* Be able to inspect loaded data and select elements within the data frame.
+* Be able to export data.
+* Be able to explore data.
+
+
+***
+
+<br>
+
+# Projects{.tabset .tabset-fade}
+
+## Non-ONS {-}
+
+It is highly recommended to manage your R work in "projects". When you’re starting work on a new project, choose **‘New project…’** from the File menu and **‘New Directory’** to create a directory for the project.
+
+
+If you already have data related to the project in an existing directory, you can choose that option instead.
+
+
+To work on this project in the future, you can select **‘Open Project…’** or **‘Recent Projects’** from the File menu and browse to the desired project.
+
+This will ensure that your working directory will be set to the project folder, meaning you won’t have to worry about full file paths for data you are reading in or writing to that same folder.
+
+***
+
+<br>
+
+## ONS {-}
+
+Within ONS, the default R working directory is within the `C:` drive. 
+
+
+
+**C drive -> My_RStudio -> Workspace**
+
+
+It is good practice to organise your folders. 
+
+As shown in the example below, where you include all files to a project in the same folder `Project A`
+
+<br>
+
+![](../Images/level1.PNG)
+
+<br>
+
+Within the folder, it is good practice to further organise your files within folders, as shown below.
+
+* The data folder would contain your raw and processed data.
+
+* Images would contains any photos you are using.
+
+* Scripts would contain all the R files. You don't have to stick with this exact folder structure, you could add in additional folders, for example an output folder.
+
+<br>
+
+![](../Images/level2.PNG)
+
+***
+
+<br>
+
+# Packages
+
+Our default R installation – often referred to as **“base R”** gives us a lot of functionality.
+
+
+A lot of this code has been around since R’s early days, back to when it was created in 1993. However, if we want to do more complicated, newer or more exciting things with our code we can install packages to achieve these goals.
+
+
+>**Packages are a collection of functions, compiled code and sometimes data sets which are stored in a “library” of code within R.**
+
+In order to use a package, we first need to download it.  
+R installs packages from [CRAN](https://cran.r-project.org/) – **The Comprehensive R Network.**
+
+Your department may have a slightly different way of installing packages.
+
+R has over 15,000 packages on CRAN, so it would be impossible to have them all downloaded on your machine. You can also install packages that are not part of CRAN; but please be aware of the source and quality; like any software these can damage your machine if they are malicious.
+
+***
+
+<br>
+
+## ONS Note!
+
+Within ONS we use a mirrored version of CRAN on our software repository called **Artifactory**. 
+
+Behind the scenes our R installation is set to install from *Artifactory* rather than *CRAN*. 
+
+This requires our up to date windows username and password. Without this the package will not install. This is why it is important for ONS staff to make sure their password is up to date in either your settings or your .RProfile.
+
+***
+
+
+<br>
+
+## Installing Packages
+
+To install a package, we use the code below. 
+
+
+>**It is important we use this WHOLE line of code every time we install a package.**
+
+
+
+```{r, eval = F}
+
+install.packages(“package_name”, dependencies = TRUE, type = “win.binary”)
+
+```
+
+
+<br>
+
+
+### Exercise{.tabset .tabset-fade}
+
+
+#### **Exercise** {-}
+
+1. Try installing the packages below using the **R console.**
+
+
+   **Run them line by line – this makes it easy to spot any error messages.**
+
+
+* `“tidyverse”`
+
+* `“janitor”`
+
+
+***
+
+<br>
+
+
+
+#### **Show Answer** {-}
+
+```{r, eval = F}
+# Installing packages
+
+install.packages("tidyverse", dependencies = TRUE, type = "win.binary")
+
+install.packages("janitor", dependencies = TRUE, type = "win.binary")
+
+
+```
+<br>
+
+Successful installation should finish with messages as below, the last box, the rest are warnings which you will get sometimes. With the default colour theme, installing packages generally displays a lot of ominous red text - this is absolutely fine!
+
+<br>
+
+```
+## package 'janitor' successfully unpacked and MD5 sums checked
+## 
+## The downloaded binary packages are in
+##  C:\Users\bandai1\AppData\Local\Temp\Rtmpm0ZY69\downloaded_packages
+```
+
+
+
+***
+
+
+
+<br>
+
+
+## Loading Packages
+
+Think of packages as owning a book; you purchase (install) the book once, and after that when you need to reference it you can pick it off your bookshelf. 
+
+In R we call this loading, and you should always load packages at the very top of your script.
+
+To load a package, use the code below;
+
+
+```{r eval=FALSE}
+
+library(package_name)
+
+```
+
+>**Note here there are no quotes around the package name.**
+
+
+<br>
+
+
+### Exercise{.tabset .tabset-fade}
+
+#### **Exercise** {-}
+
+
+1. Now try to load the package below.
+
+* `tidyverse`
+
+
+
+***
+
+<br>
+
+
+#### **Show Answer** {-}
+
+1. Now try to load the package below.
+
+* `tidyverse`
+
+
+
+```{r, eval = F}
+
+# loading packages
+
+library(tidyverse)
+
+
+```
+
+<br>
+
+Now that we've loaded all of the packages in, there is one point that needs to be made about syntax.
+
+When we start typing in a package name, R Studio will usually pop-up a window displaying the various functions available. The list of functions includes all base R functions along with all the functions from any libraries you have loaded in.
+
+
+```{r, eval = FALSE}
+
+# Press tab after the colons to access the list available functions
+
+readr::
+  
+readxl::
+```
+
+<br>
+
+We could select the function we want to use from the list and move on. 
+
+However, a problem arises when multiple functions from different libraries have identical names. It is not always clear which function you're referencing and implementing. We can avoid this by specifying the library before the function, like above.
+
+R Studio will then only display functions available from that library. This ensures we are implementing the correct function and makes our code easier to understand for ourselves and others!
+
+It is considered best practice to always spell out where an external function is coming from with `::` , particularly when writing production code.
+
+***
+
+
+<br>
+
+
+
+## When to load specific packages
+
+Returning to our book analogy, not all of the books you own are relevant to your project. If you are working on a gardening project, a cookbook isn’t very helpful and you wouldn’t need to use it; it’s exactly the same for your R project.
+
+We’re not using `janitor` in this session so we are not going to load it yet.
+
+***
+
+<br>
+
+
+##  R and Package Versions {.tabset .tabset-fade}
+
+You may have gotten a message that says,
+
+**package ‘readr’ was built under R version 3.4.4** 
+
+This means that we are using an older version of R than the one the package is built for.
+
+
+### **Check R Version** {-}
+
+We can check our R version by running the command version.
+
+```{r}
+# To check the version of R
+
+version
+```
+
+
+I am running version 3.4.4.
+
+Dont worry if you are running an older version.
+
+If you are curious on the [release names](https://livefreeordichotomize.com/2017/09/28/r-release-names/), they are references to Peanuts strips/films.
+
+Most packages are fully backwards compatible, so this is something to be aware of but we do not need to worry about it too much.
+
+***
+
+<br>
+
+
+### **Check Package Version**{-}
+
+To check the version of a package you can type, the code below;
+
+
+
+```{r}
+# Checking the package version
+
+packageVersion("dplyr")
+```
+
+If you are working collaboratively you should always check that you are all using the same versions of packages. 
+
+This helps with the reproducibility of your results and allows everyone on a team to work with the code.
+
+***
+
+<br>
+
+
+### **Masked Objects**{-}
+
+Some packages **overwrite or “mask”** functions from other existing packages.
+
+The `filter` function from `stats` deals with Linear Filtering on a Time Series
+
+`dplyr`’s version of `filter` selects rows based on specific conditions.
+
+As you can imagine these both take very different parameters – so it is important to know what we have masked. This is because after we have loaded the `dplyr` package it will assume we want to use the `dplyr` version of filter – **NOT** the one from the `stats` package.
+
+```{r}
+# Loading the package dplyr
+
+library(dplyr)
+```
+
+***
+
+
+<br>
+
+
+# Functions
+
+We have now used a few functions, we will go through a little bit more information about how they work. Please note that we will cover them in chapter 6 where we will get a chance to write our own functions.
+
+You should make it a habit to check out the help files when you are using a function for the first time so you know what the default settings are and to see what things you can control with different function arguments.
+
+Functions follow the form:
+
+`functionName(argument1 = value1, argument2 = value2, and so on)`
+
+Let's take a look at some of the built-in functions R has for carrying out basic statistics/analysis.
+
+
+***
+
+<br>
+
+
+## How functions work: the `seq()` function
+
+Let’s try using `seq()` which makes regular sequences of numbers, We used it in creating vectors. 
+
+Let's take a closer look at the help file for `seq()`.
+
+```{r Helpfile for seq(), eval = FALSE}
+
+?seq
+
+```
+
+
+<br>
+
+
+![](../Images/Seq_helpfile.png){width=650px}
+
+***
+
+
+<br>
+
+
+## Function help files
+
+Every help file will have a series of sections describing what the function does. I generally focus first on: **Description**, **Usage**, **Arguments**, and **Examples**. 
+
+**Description**
+
+For example, in the help file for `seq()` under **Description**, it tells us it is a function to "Generate regular sequences". 
+
+**Usage**
+
+We can see that `seq()` takes the arguments `from`, `to`, and `by`, and the optional arguments `length.out` and `along.with`. 
+
+**Arguments**
+
+Here, we can find out what these arguments are:
+
+  - `from, to`: the starting and maximal end values of the sequence.
+  - `by` number: increment of the sequence.
+
+
+***
+
+
+<br>
+
+
+## How are function arguments resolved?
+
+We used this function when creating vectors, like below.
+
+```{r}
+
+seq(from = 2, to = 6, by = 2)
+
+```
+
+
+
+What happens if we try:
+
+```{r}
+
+seq(1,10)
+```
+
+This has generated a sequence of numbers `from` 1 `to` 10. In this case we did not supply a value for `by`, so it took the default value, which in this case is 1.
+
+```{r How are function arguments resolved part 1}
+
+seq(10,1)
+
+```
+
+And what about:
+
+```{r How are function arguments resolved part 2}
+
+seq(to = 10, from = 1)
+
+```
+
+The above demonstrates something about how R resolves function arguments. You can always specify arguments in the form `name = value` But if you do not, R attempts to resolve by position. 
+
+So above, first it is assumed that we want a sequence from = 1 that goes to = 10. Then if we swap the numbers it is assumed we want to sequence from = 10 that goes to = 1. If we name the arguments explicitly using `name = value`, the order of the arguments doesn't matter. 
+
+>**I would encourage you to specify the arguments and parameters as it makes your code easier to understand**
+
+***
+
+<br>
+
+
+# Tidyverse
+
+So far we have seen a quick introduction to base R with vectors being the building blocks of everything else. 
+
+Now we will take a slight detour away from base R to the `tidyverse` which is a collection of various R packages.
+
+The packages in `tidyverse` share a common philosophy for data manipulation and exploration so they work well together. We will see the what the majority of the family of packages in `tidyverse` have to offer, but not all.
+
+***
+
+<br>
+
+
+## Advantages{-}
+
+`tidyverse` is:
+
+* Well documented. Each sub-library has its own website containing a 'cheat-sheet', as well as examples and a vignette which goes into further detail. We can access the useful information through several methods. The packages panel is links to the help panel if you click on the package name. The package summary below is hyper-linked to their respective website. 
+
+* Established in the R data science community, meaning common issues and queries are already answered on platforms such as Stack Overflow.
+
+* Designed such that all sub packages follow a core 'philosophy' which encourages best practices. 
+
+* Open-source software and free to use. As are the books written by the `tidyverse` creator Hadley Wickham. 
+
+<br>
+
+## Disadvantages{-}
+
+* Like R, `tidyverse` can have a steep learning curve, due to its flexibility. There are several ways to solve the same problem and it's not always clear which is best.
+
+* `tidyverse` does one thing and it does it well. Therefore, it's utility ends when your data are ready to be modelled.
+
+***
+
+<br>
+
+
+## tidyverse Breakdown{-}
+
+Below is a list of the core packages in `tidyverse` to provide some awareness into what they make possible:
+
+* [`readr`](http://readr.tidyverse.org) - Data Import,
+* [`tibble`](https://tibble.tidyverse.org/) - `Tibbles`, a modern re-imagining of data frames,
+* [`tidyr`](https://tidyr.tidyverse.org/) - Data Tidying,
+* [`dplyr`](https://dplyr.tidyverse.org/) - General Data Manipulation,
+* [`stringr`](https://stringr.tidyverse.org/) - Strings Manipulation,
+* [`forcats`](https://forcats.tidyverse.org/) - Factors Manipulation,
+* [`ggplot2`](https://ggplot2.tidyverse.org/) - Data Visualisation,
+* [`purrr`](https://purrr.tidyverse.org/) - Functional Programming,
+
+
+Note: The majority of the 'heavy lifting', with respect to data manipulation and exploration, will be done through the functions available through the `tidyverse` libraries. On some occasions, we will be using functions from other libraries.
+
+***
+
+<br>
+
+
+# Working Directory
+
+The **'working directory'** is the place that R will try to load files from, or save files to, without any more explicit instructions.
+
+***
+
+
+
+## Checking Working Directory
+
+We can check the working directory by calling the function `getwd()`.
+
+```{r}
+# Getting the working directory
+
+getwd()
+```
+
+
+> **In Windows file paths are specified using back slashes, but in R a backslash already has a meaning, so we use a forward slash or two back slashes instead.**
+
+***
+
+<br>
+
+## Setting Working Directory
+
+You can use **`setwd()`** function and provide an absolute or relative file path to change the working directory to.
+
+> **For example `"C:/My_RStudio/Workspace/Intro_to_R"`**
+
+```{r, eval=FALSE}
+# Setting the working directory
+
+setwd("C:/My_RStudio/Workspace/Intro_to_R")
+```
+
+>**Alternatively you could the keyboard short cut CTLR+SHIFT+H.**
+
+<br>
+
+## Relative File Paths
+
+We can also use what's called a relative file path to reference files. 
+
+These file paths are relative to whatever the working directory is at the time.
+
+For example if my full or absolute location is:
+
+```{r, eval=FALSE}
+"C:/My_RStudio/Workspace/Intro_to_R/Data/titanic.csv"
+```
+
+This is clear and explicit about where the data is stored. However if you were to use this link you would need to change elements of it – for example you might have your `Intro_to_R` in a different folder.
+
+I can use what’s called a relative path - the location relative to the working directory.
+
+For example, if my working directory is `Intro_to_R`, I can load the same file as above using the path:
+
+```{r,eval=FALSE}
+"Data/titanic.csv"
+```
+
+Think of a file structure like a tree diagram. 
+
+From a given folder you can either move up or down the file structure.
+
+```
+Introduction_to_R
+|    
+|
+ ---Course_content
+|       Intro to R - Chapter 1.Rmd
+|       Intro to R - Chapter 2.Rmd
+|       Intro to R - Chapter 3.Rmd
+|
+ ---Data
+|       titanic.csv
+|       police_data.xlsx
+|
+ ---Pre_course_information
+|       ons
+|       external    
+|           
+|         
+
+```
+
+If our current working directory is `'Course_content'`, and we want to switch to `'Data'`, we can use the relative path:
+
+```{r, eval = FALSE}
+
+("../Data")
+```
+This effectively says, first go up a directory (`..`), so from `Course_content` to `Intro_to_R`. Then go down a directory into `Data`.
+
+>**Going up a directory always requires `..`, whereas going down a directory always requires you to name the intended directory.**
+
+The relative path will work for any user – as long as their working directory is set to the `'Course_content'` in the Into_to_R folder.
+
+<br>
+
+Some great base R functions for exploring your directory are:
+
+```{r, eval = FALSE}
+#Exploring the directory using file.choose() function
+
+file.choose()
+
+#Exploring the directory using dir() function
+
+dir()
+
+```
+
+***
+
+<br>
+
+# Reading in Data
+
+There are a variety of ways of reading data into R, in this chapter we will look at reading data using `readr` and `readxl` packages.
+
+Here are a few other options for various file types:
+
+* `haven` - SPSS, Stata and SAS files,
+* `DBI` + `dplyr` or `dbplyr` - Databases,
+* `jsonlite` - json files,
+* `httr` - Web APIs,
+* `rvest` - HTML (Web Scraping)
+
+***
+
+<br>
+
+
+## Readr
+
+The package provides a fast and friendly way to read data from *csv* and *tsv* formats, it converts the data into *tibbles*.
+
+For this section we are going to use the **`read_csv()`** function.
+
+Before importing your data you need to know,
+
+* Where it is stored?
+
+* What kind of file it is?
+
+* Are missing values in the data?
+    + Missing values in R are denoted by `na`.
+
+The code below demonstrates how you can read csv data.
+
+```{r, eval=FALSE}
+# Reading in CSV data using readr package and read_csv function
+
+dataframe_name <- readr::read_csv(file_path)
+```
+
+
+<br>
+
+**Things To Keep in Mind**
+
+`readr` will assume that the first row of your data is the headings of the columns.
+
+`readr` will automatically try and guess the data types in your columns, for example; if a column has only numerical data, it will be classed as numeric or if it only contains logical values it will be classed as logical. If the values do not match then R keeps them as characters. It is good practise to check your column data types, just in case R chose the wrong type automatically.
+
+***
+
+<br>
+
+
+## Example 
+
+Load the titanic data using the code below,
+
+You will need to change the file path to your location
+
+You will have noticed that we had some parsing information after reading the file in.
+
+```{r}
+# Reading in CSV data using readr package and read_csv function
+
+titanic <- readr::read_csv("../Data/titanic.csv")
+```
+
+
+To look at the data in R we use the `View` command as below.
+
+
+>**Make sure you spell it with a capital V.**
+
+
+```{r eval=FALSE}
+# Viewing the data using the View() function
+
+View(titanic)
+```
+
+
+<br>
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+library(kableExtra)
+
+library(dplyr)
+
+titanic %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "500px")
+
+
+```
+
+
+***
+
+<br>
+
+
+## Exercise{.tabset .tabset-fade}
+
+
+
+### **Exercise**{-}
+
+
+1. Having read in the Titanic data above, have a look at the column `age_of_passenger`.
+
+
+2. What type of data is this column?
+
+
+3. Use the `str()` function to see the data type R has set it to be.
+
+***
+
+<br>
+
+
+### **Show Answer**{-}
+
+1. Have a look at the column `age_of_passenger`.
+
+
+2. What type of data is this column?
+
+
+3. Then `str()` function to see the data type R has set it to be.
+
+
+<br>
+
+
+```{r}
+# Using the structure function to see the data types of the columns
+
+str(titanic)
+```
+
+
+The data is numeric data.
+
+
+We can see that R has classed the column as character because of the `NULL` within it.
+
+
+We can easily correct this by adding an additional argument when the reading the data to specify that `NULL` is a missing value.
+
+
+The code below, can be read as;
+
+> **Where there is nothing (""), a blank space (" ") or the word "NULL", class is it as a missing value.**
+
+
+```{r}
+# Importing CSV data using readr package and read_csv function
+# Specifying missing values by adding a vector, na=c() of what should be 
+# classed as missing values
+
+titanic <- readr::read_csv("../Data/titanic.csv", 
+                           na=c("", " ", "NULL"))
+
+
+```
+
+
+<br>
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+
+titanic %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "500px")
+
+
+```
+
+
+<br>
+
+
+We can now see that the NULL's in the age column have been replaced with NA's and the data has been read is as numerical data.
+
+On this instance our missing values have been classed as NULL, missing values in other datasets can be classed as other symbols or words. e.g.: `-`, `-9`.
+
+***
+
+<br>
+
+
+## Readxl
+
+We use readxl to read excel data into R, it supports both `.xls` and `.xlsx` formats.
+
+
+The code below demonstrates how you can read excel data.
+
+
+```{r eval=FALSE}
+dataframe_name <- readxl::read_excel(file_path)
+```  
+
+One handy thing to know is the **`excel_sheets()`** function.
+
+As excel files often have multiple sheets, this function will provide the names without having to open the file.
+
+We run this function with the code below:
+
+
+```{r eval=FALSE}
+# To find out the excel sheet names from excel file
+
+readxl::excel_sheets(file_path)
+```
+
+***
+
+<br>
+
+## Example 
+
+
+1. Read in the excel file Police data.
+
+
+```{r}
+# Reading in excel data using the readxl package
+# assigning the file name police_data
+# and read_excel function
+
+police_data <- readxl::read_excel("../Data/police_data.xlsx")
+```
+
+
+2. Use the `excel_sheets` function to see the names of the sheets in the police data.
+
+
+
+```{r}
+# finding out the excel sheet names from excel file
+
+readxl::excel_sheets("../Data/police_data.xlsx")
+```
+
+***
+
+<br>
+
+
+## Exercise{.tabset .tabset-fade}
+
+
+
+
+### **Exercise**{-}
+
+After reading in the file our data should look like this.
+
+<br>
+
+![](../Images/police_data_sheet_1.PNG)
+
+<br>
+
+This is the first sheet in our excel which is just the `Notes`.
+
+
+If we dont specify which sheet, the default setting from readxl is to give us the first sheet.
+
+
+1. Can you add an additional argument in the `read_excel` function to read in the second sheet (Table P1) from the police data.
+
+
+**HINT - look at the help documentation, maybe something that talks about "sheet"**
+
+***
+
+<br>
+
+
+### Show Answer{-}
+
+
+You can use the name of the sheet or the number/index. 
+
+
+This would be useful if you have a lot of sheets.
+
+```{r, eval=FALSE}
+
+# Reading in excel data using the readxl package
+# and the read_excel function
+# assigning the file name police_data
+# specifying which sheet to read, here it is the second sheet or Table P1
+
+
+police_data <- readxl::read_excel("Data/police_data.xlsx",
+                                  sheet = 2)
+
+# Alternatively
+
+police_data <- readxl::read_excel("Data/police_data.xlsx",
+                                  sheet = "Table P1")
+
+```
+
+Our file should now look like this,
+
+<br>
+
+![](../Images/sheet_2.PNG)
+
+<br>
+
+As we can see the top columns are mostly blank with no real significant data, to get around this we can add in a range of columns and rows that have the data we want to analyse. This sorts out the column names as well.
+
+<br>
+
+```{r}
+# Reading in excel data using the readxl package
+# and the read_excel function
+# assigning the file name police_data
+# specifying which sheet to read, here it is the second sheet or Table P1
+# specifying the range to only read the cells with data
+
+
+police_data <- readxl::read_excel("../Data/police_data.xlsx",
+                                  sheet = 2, 
+                                  range = "A5:AA48")
+
+```
+
+<br>
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+police_data %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "700px")
+```
+
+***
+
+<br>
+
+
+## Reading Url Files
+
+You can also read in URLs, see code below. Be careful reading in any files directly from the internet. 
+
+                   
+```{r eval=FALSE}
+# Reading in CSV data from a website
+# Here we include the url within the read_csv function
+
+school <- readr::read_csv(url("https://share.sp.ons.statistics.gov.uk/sites/KLC/LeAc/AnLe/CPD_Shared/Programming_Courses/R_Intro_Ruth/schools_inspection_data.csv")
+                  
+``` 
+
+***
+
+<br>
+
+# Exporting the Data
+
+When you read a file into R, the data is loaded into memory. This means that any changes you make won't be reflected in the original file you loaded. If you want to preserve the changes you make to the dataset you have to export the data object to a file.
+
+Exporting tables works in much the same way as importing it.
+
+`readr` allows us to export to csv file type or equivalent using the **`write.csv()`** function.
+
+As an example we will export the police data we just imported.
+
+```{r, eval=FALSE}
+# Exporting data using the readr package 
+# and write_csv function, we start with file we want to export
+# and the the path where we want to export it to
+
+readr::write_csv(police_data, path = "../Data/test.csv")
+```
+
+Our data frame `police_data` would now be stored as `test.csv` in the `Data/` folder.
+
+***
+
+<br>
+
+
+# Inspecting  the Data
+
+After importing our data, the first thing we may want to do is have a quick look at it to check it looks how we expect it to.
+
+We can do this by typing the various commands in the following exercise.
+
+
+
+***
+
+<br>
+
+## Exercise{.tabset .tabset-fade}
+
+
+### **Functions** {-}
+
+Have a play around with each command and see if you can figure out what they are doing.
+
+```{r eval=FALSE}
+# Inspecting our data
+
+str(titanic)
+
+dplyr::glimpse(titanic)
+
+dplyr::sample_n(titanic, size = 5)
+
+head(titanic) 
+
+tail(titanic) 
+
+dim(titanic)
+
+nrow(titanic)
+
+ncol(titanic)
+
+names(titanic)
+
+titanic[1,1] 
+
+titanic[3:6,] 
+
+# Type the code below and press tab
+
+titanic$
+  
+unique(titanic$Pclass)
+
+
+```
+***
+
+<br>
+
+### Show Answer {-}
+
+```{r eval=FALSE}
+
+library(dplyr)
+
+str(titanic) # Structure of the table
+
+dplyr::glimpse(titanic)  # Similar to str - from dplyr package
+
+dplyr::sample_n(titanic, size = 5) # select a random sample from out data of a given `size`
+
+View(titanic)  # Pops file into a Viewer.
+
+head(titanic) # Top of the table
+
+tail(titanic) # Bottom of the table
+
+dim(titanic) # Dimensions
+
+nrow(titanic) # Number of rows
+
+ncol(titanic) # Number of columns
+
+names(titanic) # Names of columns
+
+# selecting elements
+
+school[1,1] # selecting the first row and column
+
+school[3:6,] # selecting row 3 to 6 and all columns
+
+titanic$age_of_passenger # selecting a column from the dataset
+
+unique(titanic$Pclass) #Tells us the unique elements of a variable.
+
+
+```
+
+***
+
+<br>
+
+# Summary - Importing Data{-}
+
+
+So far we have gone through
+ 
+ * How to organise our work; using projects or have organised folders
+ 
+ * Packages
+    + How to install them
+    + How to load them
+    + How to check the versions
+    
+ * Functions, how they work.
+ 
+ * Quick description of what the `tidyverse` is.
+ 
+ * Working directories
+    + checking working directories
+    + Setting working directories
+    
+ * Reading in data
+    + CSV data
+    + Excel data
+    
+ * Exporting data
+    
+ * Exploring data
+
+
+***
+
+<br>
+
+# Next Chapter{-}
+
+
+***
+
+**In the next chapter we will look at Working with Data frames.**
+
+*** 
+ 

@@ -1,0 +1,465 @@
+---
+title: "Pre-Course Information"
+output:
+  html_document: 
+    theme: united
+    highlight: tango
+    toc: yes
+    toc_float: yes
+    number_sections: true
+---
+
+```{r, echo=FALSE}
+htmltools::img(src = knitr::image_uri("../Images/LATree.PNG"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
+
+<br>
+
+***
+
+<br>
+
+# General Information
+
+This is an introductory level course for Introduction to R. This course will cover basic concepts and give you the confidence to work independently.
+
+No prior coding or statistical knowledge is assumed.
+
+The course is split into chapters; each chapter will build upon the previous one.
+
+You can see the course overview at the end of this document.
+
+In this course we emphasise the application of skills, and building confidence and resilience in programming in R so that you can continue to learn back at your desk. 
+
+It is essential that you have frequent opportunities to practice what you have learnt from the course. 
+
+
+***
+
+<br>
+
+# Course Materials
+
+A folder containing the dataset and teaching files for the course will be provided or can be downloaded from the [Learning Hub](https://uksalearning.co.uk/login/index.php) , please download and unzip this to folder you are familiar with.
+
+To unzip the file save it to a location. Right click and choose Unzip file.
+
+The course materials are in several folders:
+
+* Additional Content - Documents etc to support the course.
+
+* Data - contains the data we will use during the course.
+
+* Course Content - Contains the learning Documents which are in html format.
+
+* Pre Course Information - Contains documents with instructions on how prepare for the course.
+
+
+***
+
+<br>
+
+# File Formats
+
+This course contains documents in the following formats:
+
+* HTML Files
+*	CSV Files
+* .R files
+*	Excel Files
+
+*** 
+
+<br>
+
+# Software Requirements
+
+* R and R studio.
+
+    + _R studio is makes interacting with R much easier_
+
+* Web browser.
+
+    + _Internet connection not necessary_
+
+*	Excel/Spreadsheet program. 
+
+    + _Viewing csv and xlsx documents in the native program_
+
+* Packages we use during this course are
+
+    + tidyverse
+
+    + readxl
+
+    + janitor
+
+***
+
+<br>
+
+# Pre-Course Check-list:
+
+* Install the new RStudio bundle on your laptop `(see instructions below)`
+
+* Install packages `(see instructions below)`
+
+* Bring your laptop, charger, and your WIFI connector (contact Learning Academy immediately if you do not have a laptop).
+
+* Please bring with you a water bottle, and a mug for hot drinks (not provided – however you have access to a hot water boiler. Please bring your own supplies). 
+
+* Arrive 10 – 15 minutes before the course starts to get set up and ready to learn.
+
+***
+
+<br>
+
+# Install R and R studio via the Service Desk:
+
+
+* I Want SomethingTop Requested Forms > Computer Software > Add / Transfer / Remove.
+
+<br>
+
+![](../Images/service_desk_1.png)
+
+<br>
+
+* Select `install`
+
+<br>
+
+
+![](../Images/service_desk_2.png)
+
+
+<br>
+
+* Type `THE` in the box and then select `THE RSTUDIO BUNDLE` and click the arrow to move it in the selected box.
+
+<br>
+
+
+![](../Images/service_desk_3.png)
+
+<br>
+
+* You shoud now have `THE RSTUDIO BUNDLE` in the selected box.
+
+<br>
+
+
+![](../Images/service_desk_4.png)
+
+<br>
+
+* The type in your Asset number, this is the number starting with `ONS` on the sticker on your laptop
+
+* Then select `No` for software to be installed on multiple PC's.
+
+<br>
+
+![](../Images/service_desk_5.png)
+
+<br>
+
+* In the box enter the text:
+
+   “Hi, Please can I have the New RStudio Bundle?
+
+     My ID is <your id>
+
+     My asset number is <ONS……>
+
+   “As agreed with Management, the new RStudio Bundle has to be installed to the end-user’ 
+
+     ONS Laptop”
+
+     Thanks”
+
+***
+
+<br>
+
+## Set up R Studio{.tabset .tabset-fade}
+
+### New Bundle{-}
+
+The [Wiki pages](https://collaborate2.ons.gov.uk/confluence/display/WIKIRS/1+-+RStudio+New+Bundle) (section 1.2) will help you to self install and run RStudio on your machine once your service desk request has been completed. 
+
+Please email Enterprise.Group@ons.gov.uk if you cannot access this page, and with any issues you have with your RStudio install.
+
+***
+<br>
+
+#### **Get Artifactory Hashed Password**{-}
+
+Artifactory is used to store all available packages, and must be linked to your RStudio install. 
+
+Visit http://art-p-01/artifactory/webapp/#/login and login with your Windows username and password. 
+
+If this does not work, you will need to request access via the service desk – 
+
+**I Want Something -> Software / Applications -> Product Support -> Artifactory -> Generic Support -> “In the further details box: Need access to artifactory to install R Packages”.** 
+
+Once logged into artifactory, 
+
+* Click your username in the top right hand corner.
+
+* Enter your password again and press “unlock”.
+
+* Press the copy icon next to the Encrypted Password (to the right of the eye, the icon looks like a pair of documents.
+
+Now this is on your clipboard, it is ready to use in RStudio
+
+***
+
+<br>
+
+#### **Running RStudio**{-}
+
+* Double click the RStudio short cut on your desktop, and press Open on the warning popup.
+
+* Click Settings on the window that appears.
+
+* Enter your windows username into the Username box.
+
+* Copy your Hashed Password into the Hash tag box.
+
+* Select R.3.4.0 from the New Library drop down menu on the right hand side. 
+Press Save, and then, Run Application. 
+
+<br>
+
+**Note: Any time you change your windows password you will need to generate a new hashed password from artifactory and replace the old version by following the instructions for Get Artifactory Hashed Password and Running RStudio again.** 
+
+***
+
+<br>
+
+### Old R Studio Install Instructions{-}
+
+This set up will allow you to download and install packages for R if you have the old RStudio install rather than the new bundle.
+
+**If you load RStudio from your desktop you have the new version and can ignore these instructions.**
+
+We do highly recommend that you request the new bundle of RStudio.
+
+**You MUST complete all steps!**
+
+* On your D: drive create a folder called R,
+
+* Inside that create a folder called `lib`, and open that folder.
+
+* Copy the `.Rprofile` from here to your `D:/R/lib` folder. Save it as `.Rprofile` .
+Make sure it has the dot at the front!
+
+* In your start menu, locate RStudio, right click and pin to start menu.
+
+* Open your start menu and right click on RStudio, then go to properties.
+
+* Where it says start in delete the contents, replace with D:\R\lib and click apply.
+
+* Go to http://art-p-01/artifactory/webapp/#/login, log in with your Windows username and password.
+
+* Click on your user name (top right), retype your password.
+
+* Next to Encrypted Password click the copy button (the clipboard).
+
+* Now open the .Rprofile in notepad,replace username with your username and hashed Password with what you copied from the artifactory and save.
+
+
+**You need to always start R from the pin in your start menu.**
+
+***
+
+<br>
+
+## Installing Packages
+
+***
+
+### Open R Studio{-}
+
+Once installed, RStudio should be accessible from the start menu. Start up RStudio. 
+Once running it should look something like:
+
+![Image showing the pane layout in Rstudio](../Images/studio2.PNG)
+
+<br>
+
+If you dont see the **Code editor pane**, go to the tool bar and click **View -> Panes -> Show All Panes**.
+
+***
+
+<br>
+
+### Find “Console” Pane{-}
+
+By default the console window will be on the left side of RStudio. Find that pane.
+
+***
+
+<br>
+
+### Installing Packages{-}
+
+To installs the packages, type **EXACTLY** the code below in the console and then press `Enter`. 
+
+
+>**It is important we use this WHOLE line of code every time we install a package.**
+
+
+```{r warning=FALSE, eval=FALSE}
+# Installing packages
+
+install.packages("tidyverse", dependencies = TRUE, type = "win.binary")
+
+install.packages("janitor", dependencies = TRUE, type = "win.binary")
+
+```
+
+<br>
+
+>**Successful installation should finish with message as below, the last box.**
+
+```{r echo=FALSE, warning=FALSE}
+# Installing packages
+
+install.packages("tidyverse", dependencies = TRUE, type = "win.binary")
+
+
+install.packages("janitor", dependencies = TRUE, type = "win.binary")
+
+```
+
+
+<br>
+
+If you have any issues with this section try and find some help from someone who uses R in your area or contact **GSS Training team – gss.capability@statistics.gov.uk**. Please be aware that due to training commitments there may be a small wait before we respond to your query. We also expect that you have attempted to solve your query yourself before contacting us.
+
+
+
+
+
+***
+
+<br>
+
+# Course Overview
+
+The course is divided into 6 chapters, over the 2 days we will cover,
+
+1. **Chapter One - Getting Started with R**
+
+    * Be familiar with R Studio.
+    
+    * RStudio environment, layout, and customization.
+    
+    * Understand the Key Benefits of using R.
+    
+    * How to run code in R.
+    
+    * Know where to get help.
+    
+    * Discover R’s data types.
+    
+    * Be able to create Variables.
+
+***
+    
+<br>    
+    
+2. **Chapter Two - Data Structures**
+
+    * Be familiar with data structures in R.
+    
+    * Understand how vectors operate.
+    
+    * Be familiar with lists.
+    
+    * Be familiar with data frames and tibbles.
+
+***
+
+<br>    
+    
+    
+3. **Chapter Three - Importing and Exporting Data**
+
+    * Organise our work
+    
+    * Have an understanding of what packages are.
+    
+    * Be able to load and install a package.
+    
+    * Be able to check package versions and R version.
+    
+    * Be able to import data from multiple formats.
+    
+    * Be able to inspect loaded data and select elements within the data frame.
+    
+    * Be able to export data.
+    
+    * Be able to explore data.
+
+***
+
+<br>
+
+4. **Chapter Four - Working with Data frames**
+
+
+    * Understand the importance of clean variable names.
+
+    * Be able to clean column names using `janitor`or `gsub`.
+
+    * Be able to sort data.
+
+    * Be able to `select` data.
+
+    * Be able to `filter` data.
+
+    * Be able to use the `mutate` function and use the pipe operator.
+
+    * Be able to join data.
+
+***
+
+<br>
+    
+5. **Chapter Five - Summary Statistics and Aggregation**
+
+    * Describe numeric and categorical data
+
+    * Aggregate and data
+    
+***    
+
+<br>    
+    
+6. **Chapter Six - Control Flow and Functions**
+
+    * Be able to use conditional statements: *if*, *else* and *else if*.
+
+    * Be able to use loops: *for* loops and *while* loops.
+
+    * Learn what functions are.
+
+    * Understand why we need to use functions.
+
+    * Be able to write functions.
+
+    * Have a basic understanding of scoping within functions.
+
+***
+
+
+
+
+
+
+
+
