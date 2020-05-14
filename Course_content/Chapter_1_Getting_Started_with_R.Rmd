@@ -34,7 +34,7 @@ knitr::opts_chunk$set(echo = TRUE)
 **The goal of this session is to**
 
 * Be familiar with R Studio.
-* RStudio environment, layout, and customization.
+* Explore the RStudio environment, layout, and customization.
 * Understand the Key Benefits of using R.
 * How to run code in R.
 * Know where to get help.
@@ -74,7 +74,7 @@ There are several reasons for this trend:
 
 <br>
 
-## R Studio.
+## R Studio
 
 R is a programming language that runs computations while R Studio is an integrated development environment (IDE) that provides an interface by adding many convenient features and tools.
 
@@ -129,11 +129,12 @@ When you exit an R session, you are faced with the question of whether or not to
 
 >**We will look at better ways of saving our work later on during the course.**
 
-To change this setting go to **Tools -> Global Options -> “Save workspace to .Rdata on Exit”** change drop down to **“Never"**.
+To change this setting go to **Tools -> Global Options -> “Save workspace to .Rdata on Exit”** and change the drop down to **“Never"**.
 
 <br>
 
-![Image showing the workspace in Rstudio](../Images/workspace.PNG) 
+![Image showing the workspace in Rstudio](../Images/workspace.PNG)\ 
+
 
 
 <br>
@@ -157,7 +158,7 @@ To run code in the Console, you type your code next to the command prompt > and 
 
 
 
-**Try out some arithmetic in your console**;
+**Lets now try out some arithmetic in your console**;
 
 
 <br>
@@ -229,7 +230,7 @@ The R Studio Console automatically maintains a ‘history’ so that you can ret
 
 On a blank line in the Console, press the **`up arrow`**, and see what happens.
 
-The issue with coding in the console is that we cant save it and not easy to edit, which brings us to the code editor.
+The issue with coding in the console is that we can't save it and it is not easy to edit, which brings us to the code editor.
 
 ***
 
@@ -330,22 +331,20 @@ Type the **#** and write yourself a note.
 
 
 
-**If you think you’ll be writing more than one line of code, you can do a `hash (#)` sign followed by a single quotation mark (#'). This will continue to comment out lines of text or code each time you hit “Enter.” You can delete the #' on a new line where you want to write code for R to run. This method is useful when you’re writing a description of what you’re doing in R.**
+f you think you’ll be writing more than one line of code, you can do a `hash (#)` sign followed by a single quotation mark (#'). This will continue to comment out lines of text or code each time you hit “Enter.” You can delete the #' on a new line where you want to write code for R to run. This method is useful when you’re writing a description of what you’re doing in R.**
 
->**Alternatively you can press the short cut keys Ctrl+Shift+C.**
+>**Alternatively you can press the short cut keys Ctrl+Shift+C.
 
 <br>
 
 I  recommend to  save this script, type in the code as we go along, and only execute the required lines. That way you will have a record of what you have done.
 
-To save the script; 
+To save the script: 
 
 **Click on File -> Save as**
 
 >**Alternatively you can press the short cut keys Ctrl + S**.
 
-
-We will now look at the top left pane.
 
 ***
 
@@ -353,15 +352,13 @@ We will now look at the top left pane.
 
 ### Environment/History
 
-The Environment pane is very useful as it shows you what objects (such as; data frames, values and functions) you have in your environment (workspace).
+The top right pane is the Environment pane, which is very useful as it shows you what objects (such as data frames, variables and functions) you have in your environment (workspace).
 
 Also in the Environment is the History tab, where you can see all of the code executed during the current session. 
 
 This shows the previous code you were working on, and any storage of objects you are using such as variables, data frames.
 
 We will look at these later on in the session.
-
-We will now look at the bottom right pane.
 
 ***
 
@@ -371,7 +368,7 @@ We will now look at the bottom right pane.
 
 ### Files/Help/Packages
 
-This shows the files, packages and help documentation.
+The bottom right pane shows the files, packages and help documentation.
 
 This pane has a number of different tabs. 
 
@@ -471,7 +468,7 @@ There are also some built-in functions such as **sqrt()** or **round()**.
 > **Functions are commands that take an input do something and produce an output. You can think of them like mathematic functions, where you substitute in a value.**
 
 
-Functions in R can are a word followed by a set of parentheses, like so: print(). More often than not, the word is a verb, such as round(), suggesting that we’re about to perform an action.
+Functions in R are a word followed by a set of parentheses, like so: **`print()`**. More often than not, the word is a verb, such as round(), suggesting that we’re about to perform an action.
 
 
 
@@ -490,11 +487,13 @@ round(3.6357)
 
 ```
 
-You can specify what you the want a function to exactly do with what we call an argument. This is specified within the brackets of the function. We  will talk more about arguments in chapter 6, 
 
-The inputs of function is called an argument and what we specify is called a value .
+You can specify what you want a function to do with what we call a parameter and argument. This is specified within the brackets of the function. We  will talk more about parameters and arguments(inputs) in chapter 6, 
 
-**A argument is a name or a label for a value that follows it**. e.g in the round function below our `arguement` is `digits` and our `value` is 2.
+The input of function is called an argument and what we specify is called a value.
+
+**A argument is a name or a label for the value that follows it**. e.g in the round function below our argument is `digits` and our value is `2`.
+
 
 ```{r}
 # Using built in function round()
@@ -503,22 +502,17 @@ round(3.6357, digits = 2)
 ```
 
 
-
-
-
 There are many more built-in functions which you will discover with more exposure to R, but for now we will move onto the different types of numbers we might work with. 
-
 
 * Numeric (num) or Double (dbl)
 * Integers (int)
-
 
 `Integers` are whole numbers with no decimal place. for example:, -2, -1, 0, 1, 2, they are denoted in R by an `L` at the end of the number.
 
 
 A `Double` is treated as the general number type and by default R will treat all numbers you use as double unless you give it an explicit reason to think otherwise. So therefore, any number with or without a decimal place will be treated as double unless emphasised otherwise.
 
-These different types exist in R for operations behind the scenes.We need to worry about them too much at the moment.
+These different types exist in R for operations behind the scenes. We don't need to worry about them too much at the moment.
 
 We can see they type by using the **`typeof()`** function or command.
 
@@ -528,7 +522,6 @@ typeof(10)
 typeof(10L)
 ```
 
-The next data type that we will look at is text data.
 
 ***
 
@@ -552,7 +545,7 @@ You actually typed one  when you typed the code below earlier.
 'I am learning R'
 ```
 
-The choice between single and double quotes is up to the user. Unlike other languages, there is no difference in behaviour. I recommend always using ", unless you want to create a string that contains multiple ".
+The choice between single and double quotes is up to the user, as long as you start and end with the same symbol. Unlike other languages, there is no difference in behaviour. I recommend always using ", unless you want to create a string that contains multiple ".
 
 ```{r}
 'If I want to include a "quote" inside a string, I use single quotes'
@@ -563,10 +556,7 @@ The choice between single and double quotes is up to the user. Unlike other lang
 
 
 
-**A few symbols are awkward to get into character strings and this is because of they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you require will solve the problem. If not, Google will definitely have the answer!.**
-
-
-Our next data type is logical values.
+**A few symbols are awkward to get into character strings and this is because they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you require will solve the problem. If not, Google will definitely have the answer!**
 
 
 ***
@@ -581,9 +571,9 @@ In R these are written as `TRUE` or `FALSE`.
 > **They are special R data types - not strings! So they don't need '' or "" around them.**
 
 
-Note that you they can be abbreviated to `T` and `F`, this is not regarded as best practise.
+Note that while they can be abbreviated to `T` and `F`, this is not regarded as best practise.
 
-They also have numerical value behind them - `TRUE` is 1 and `FALSE` is 0.
+They also have numerical values behind them - `TRUE` is 1 and `FALSE` is 0.
 
 Therefore, we can treat them as numbers!
 ```{r}
@@ -637,9 +627,9 @@ That covers the simpler logical operators.
 
 The final two allow us to combine and check multiple conditions.
 
-We will look at these more in detail with examples in Chapter Four Data Manipulation.
+We will look at these more in detail with examples in Chapter Four -Data Manipulation.
 
->**Please note that there is other data types such as factors, dates, complex numbers, date times etc**
+>**Please note that there are other data types such as factors, dates, complex numbers, date times etc**
 
 
 ***
@@ -710,14 +700,13 @@ Now that there you know some of R's data types we will look at how we can conver
 
 ## Data Type Conversion
 
-Given that R is a dynamically typed language, sometimes the data type you want to work with, and the one R infers are not the same.
+R doesn't require you to set the data type when you create it, instead it figures out what the best data type is for the object you are creating - numeric, character, logical, or others. 
 
-R doesn't require you to set the data type when you create it, instead it figures out what the best data type is for the object you are creating - numeric, character, logical, or others.
+Given that R is a dynamically typed language, sometimes the data type you want to work with, and the one R infers are not the same.
 
 Sometimes you want to ensure that a particular object is actually a certain type, rather than leaving it up to R. This is done using data type conversion. R has a range of in-built functions that enable you to convert data from one type to another.
 
-
-In order to convert the data, you need to use the **as** function. As part of this command, you specify the data type you are converting to. The commands are as follows:
+In order to convert the data, you need to use the **as.** functions. When writing the command, you specify the data type you are converting to. The commands are as follows:
 
 * as.numeric to convert to Numeric.
 
@@ -744,15 +733,9 @@ Everything in R is an object, We can assign these objects names, this is called 
 
 Variables are an integral part of any programming language. Variables allow us to store and label data under a specific name. It is like a place holder, used to store information. Think of it as a container, they main purpose is to label and store the data in memory.
 
-R has a lot of flexibility when it comes to variable assignment.
 
-We assign variables using the assignemt operator `<-`.
+We can assign a value to a variable using the `<-` operator, for example in the below code where `weight_kg` is the variable name and the value `60` is the data being assigned to `weight_kg`. 
 
->**Short cut keys Alt + Minus**
-
-RStudio automatically surrounds `<-` with spaces, which is a good code formatting practice.
-
-For example below; where `weight_kg` is the variable name and `value` being assigned to it is `60`. 
 
 ```{r}
 # To assign a variable
@@ -760,9 +743,10 @@ For example below; where `weight_kg` is the variable name and `value` being assi
 weight_kg <- 60
 ```
 
-When reading that code say `“weight_kg  gets the value 60”` in your head.
+When reading that code say `“weight_kg gets the value 60”` in your head.
 
-Once an object has been created it will appear in your Environment window which helps you keep track of what objects you have in your current workspace.(The top right pane).
+Once an object has been created it will appear in your Environment window which helps you keep track of what objects you have in your current workspace - the top right pane.
+
 
 
 After the assignment, to access or use the value we simply reference `weight_kg` in our code. 
@@ -788,6 +772,7 @@ cat('my weight is', sep = '\n', weight_kg)
 We can use our variables in mathematical operations. Here we are using `weight_kg` to calculate `weight_lb`.
 
 
+
 ```{r}
 # Multiplication using our variable name
 
@@ -798,8 +783,7 @@ weight_lb <- weight_kg * 2.2
 weight_lb
 ```
 
-
-If we ever want to reassign a variable we would simply use the operators above again. 
+If we ever want to reassign a variable we would simply use the operator above again. 
 
 For example: I am assigning height as 5.
 
@@ -808,6 +792,7 @@ For example: I am assigning height as 5.
 
 height <- 5
 
+
 # To display the variable
 
 height
@@ -815,7 +800,7 @@ height
 ```
 
 Using the same variable name will overwrite the previously assigned variable.
-Now am reassigning height which was assigned to 5 to 7.
+Now I am reassigning height which was assigned to 5 to 7.
 
 This will overwrite our value for height to 7.
 
@@ -835,9 +820,6 @@ height
 We can also assign a value to name (or label) using `=` operator and `->` operators. 
 
 Here are a few examples of them in action:
-
-* `variable_name` = value
-*  value -> `variable_name`
 
 ```{r}
 # PLEASE NOTE THIS IS BAD PRACTICE
@@ -861,14 +843,9 @@ weight_kg
 ```
 
 
-
 <br>
 
 >**`<-` is the most commonly used assignment operator in R and therefore the one we will stick to.**  
-
- 
-
-<br>
 
 In R it is convention to use `<-` to assign variables and keep `=` reserved to passing key value pair to a function. We will be sticking to this convention. 
 
@@ -1007,7 +984,7 @@ You would have got the error below;
 
 >Error: object 'my_varIable' not found
 
-The variable printed `my_varIable`is not the variable `my_variable`
+The variable printed `my_varIable`is not the variable `my_variable` - one has a capital `I` while the other does not. Variables are case sensitive!
 
 Error messages of the form "object '...' not found" mean exactly what they say. R cannot find an object with that name. Unfortunately, the error does not tell you why that object cannot be found, because R does not know the reason that the object does not exist. 
 
@@ -1017,6 +994,7 @@ Error messages of the form "object '...' not found" mean exactly what they say. 
 2. What is the value of each item at each step?
 
 ```{r}
+
 # To assign a variable
 
 #1. time_value?
@@ -1034,6 +1012,7 @@ distance <- 10
 # To display the variable
 
 distance
+
 
 #3. time_value?
 
@@ -1100,7 +1079,8 @@ You can access these by clicking on **Help** and then **Cheetsheets**.
 
 <br>
 
-![Image showing an example of Cheat Sheet](../Images/data-transformation-cheat-sheet.png) 
+![Image showing an example of Cheat Sheet](../Images/data-transformation-cheat-sheet.png)\ 
+
 
 
 <br>
@@ -1112,9 +1092,10 @@ You can access these by clicking on **Help** and then **Cheetsheets**.
 
 ### **Example**{-}
 
+
 Every time I use a function for a first time or reuse a function after some time , I spend time looking through the R help page for that function.
 
-From within RStudio we can access the Help documentation by using `?` or `??` in the console
+From within RStudio we can access the Help documentation by using **`?`** or **`help()`** in the console
 
 You can do this by typing `?functionname` into your Console and pressing enter, where functionname is some R function you want to use. This means you have to know the name of the function you want to use in advance.
 
@@ -1127,11 +1108,11 @@ Try and type the command below in the console,and you should see the Help panel 
 
 
 ```{r, eval=FALSE}
-# To acces the R help documentation
+#To access the R help documentation
 
 ?mean 
 
-or 
+#or 
 
 help(mean)
 ```
@@ -1211,7 +1192,7 @@ Please be aware that due to training commitments there may be a small wait befor
 
 # Summary - Getting Started with R.{-}
 
-We have covered a lot material in R and yet there is still so much more to cover in terms of functionality, as R has so much to offer. By no means are you expected to remember all the above, but as we move forward, it is important you remain aware of:
+We have covered a lot material in R and yet there is still so much more to cover in terms of functionality, as R has so much to offer. By no means are you expected to remember all the above, but here are the key points to be aware of:
 
 * R is an open source **programming language** and environment for statistical computing and graphics.
 

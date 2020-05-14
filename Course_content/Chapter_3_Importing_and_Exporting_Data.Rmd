@@ -51,7 +51,7 @@ htmltools::img(src = knitr::image_uri("../Images/LATree.PNG"),
 
 ## Non-ONS {-}
 
-It is highly recommended to manage your R work in "projects". When you’re starting work on a new project, choose **‘New project…’** from the File menu and **‘New Directory’** to create a directory for the project (probably on your One Drive).
+It is highly recommended to manage your R work in "projects". When you’re starting work on a new project, choose **‘New project…’** from the File menu and **‘New Directory’** to create a directory for the project.
 
 
 If you already have data related to the project in an existing directory, you can choose that option instead.
@@ -111,11 +111,11 @@ A lot of this code has been around since R’s early days, back to when it was c
 >**Packages are a collection of functions, compiled code and sometimes data sets which are stored in a “library” of code within R.**
 
 In order to use a package, we first need to download it.  
-R installs packages from (CRAN)[ https://cran.r-project.org/] – **The Comprehensive R Network.**
+R installs packages from [CRAN](https://cran.r-project.org/) – **The Comprehensive R Network.**
 
 Your department may have a slightly different way of installing packages.
 
-R has over 15,000 packages on CRAN, so it would be impossible to have them all downloaded on your machine. You can also install packages that are not part of CRAN; but please be aware of the source and quality, like any software these can damage your machine if they are malicious.
+R has over 15,000 packages on CRAN, so it would be impossible to have them all downloaded on your machine. You can also install packages that are not part of CRAN; but please be aware of the source and quality; like any software these can damage your machine if they are malicious.
 
 ***
 
@@ -125,7 +125,7 @@ R has over 15,000 packages on CRAN, so it would be impossible to have them all d
 
 Within ONS we use a mirrored version of CRAN on our software repository called **Artifactory**. 
 
-Behind the scenes our R installation is set to install from *Artifcactory* rather than *CRAN*. 
+Behind the scenes our R installation is set to install from *Artifactory* rather than *CRAN*. 
 
 This requires our up to date windows username and password. Without this the package will not install. This is why it is important for ONS staff to make sure their password is up to date in either your settings or your .RProfile.
 
@@ -188,16 +188,18 @@ install.packages("janitor", dependencies = TRUE, type = "win.binary")
 ```
 <br>
 
->**Successful installation should finish with message as below, the last box, the rest are warnings which you will get sometimes**
+Successful installation should finish with messages as below, the last box, the rest are warnings which you will get sometimes. With the default colour theme, installing packages generally displays a lot of ominous red text - this is absolutely fine!
 
 <br>
 
-```{r echo=FALSE}
-
-install.packages("janitor", dependencies = TRUE, type = "win.binary")
-
-
 ```
+## package 'janitor' successfully unpacked and MD5 sums checked
+## 
+## The downloaded binary packages are in
+##  C:\Users\bandai1\AppData\Local\Temp\Rtmpm0ZY69\downloaded_packages
+```
+
+
 
 ***
 
@@ -208,20 +210,16 @@ install.packages("janitor", dependencies = TRUE, type = "win.binary")
 
 ## Loading Packages
 
-If you think of packages as owning a book. 
+Think of packages as owning a book; you purchase (install) the book once, and after that when you need to reference it you can pick it off your bookshelf. 
 
-You purchase (install) the book once, and after that when you need to reference it you can pick it off your bookshelf. 
-
-In R we call this loading.
-
-You should always load packages at the top of your script.
+In R we call this loading, and you should always load packages at the very top of your script.
 
 To load a package, use the code below;
 
 
 ```{r eval=FALSE}
 
-library(package-name)
+library(package_name)
 
 ```
 
@@ -299,11 +297,9 @@ It is considered best practice to always spell out where an external function is
 
 ## When to load specific packages
 
-Returning to our book analogy, not all of the books you own are relevant to your project. If you are working on a gardening project, a cookbook isn’t very helpful and you wouldn’t need to use it. 
+Returning to our book analogy, not all of the books you own are relevant to your project. If you are working on a gardening project, a cookbook isn’t very helpful and you wouldn’t need to use it; it’s exactly the same for your R project.
 
-It’s exactly the same for your R project.
-
-We’re not using `janitor` in this sessions so we are not going to load it yet.
+We’re not using `janitor` in this session so we are not going to load it yet.
 
 ***
 
@@ -317,10 +313,6 @@ You may have gotten a message that says,
 **package ‘readr’ was built under R version 3.4.4** 
 
 This means that we are using an older version of R than the one the package is built for.
-
-***
-
-<br>
 
 
 ### **Check R Version** {-}
@@ -398,9 +390,9 @@ You should make it a habit to check out the help files when you are using a func
 
 Functions follow the form:
 
-* `functionName(argument1 = value, argument2 = value, and so on)`
+`functionName(argument1 = value1, argument2 = value2, and so on)`
 
-Let's take a look at some of the built-in functions R has for carrying out basic statistics/analysis, starting with `seq()`. 
+Let's take a look at some of the built-in functions R has for carrying out basic statistics/analysis.
 
 
 ***
@@ -436,15 +428,15 @@ Let's take a closer look at the help file for `seq()`.
 
 Every help file will have a series of sections describing what the function does. I generally focus first on: **Description**, **Usage**, **Arguments**, and **Examples**. 
 
-* **Description**
+**Description**
 
 For example, in the help file for `seq()` under **Description**, it tells us it is a function to "Generate regular sequences". 
 
-* **Usage**
+**Usage**
 
 We can see that `seq()` takes the arguments `from`, `to`, and `by`, and the optional arguments `length.out` and `along.with`. 
 
-* **Arguments**
+**Arguments**
 
 Here, we can find out what these arguments are:
 
@@ -477,8 +469,7 @@ What happens if we try:
 seq(1,10)
 ```
 
-
-In the code we used above in sequence, we generated a sequence of numbers `from` 1 `to` 10. In this case we did not supply a value for `by`, so it took the default value, which in this case is 1.
+This has generated a sequence of numbers `from` 1 `to` 10. In this case we did not supply a value for `by`, so it took the default value, which in this case is 1.
 
 ```{r How are function arguments resolved part 1}
 
@@ -494,11 +485,11 @@ seq(to = 10, from = 1)
 
 ```
 
-The above demonstrates something about how R resolves function arguments. You can always specify in `name = value` form. But if you do not, R attempts to resolve by position. 
+The above demonstrates something about how R resolves function arguments. You can always specify arguments in the form `name = value` But if you do not, R attempts to resolve by position. 
 
 So above, first it is assumed that we want a sequence from = 1 that goes to = 10. Then if we swap the numbers it is assumed we want to sequence from = 10 that goes to = 1. If we name the arguments explicitly using `name = value`, the order of the arguments doesn't matter. 
 
->**I would encourage you to specify the arguments and parameters as it makes your code easy to read**
+>**I would encourage you to specify the arguments and parameters as it makes your code easier to understand**
 
 ***
 
@@ -570,9 +561,9 @@ The **'working directory'** is the place that R will try to load files from, or 
 
 ***
 
-<br>
 
-## Checking Working Directory{-}
+
+## Checking Working Directory
 
 We can check the working directory by calling the function `getwd()`.
 
@@ -582,14 +573,8 @@ We can check the working directory by calling the function `getwd()`.
 getwd()
 ```
 
-<br>
 
-
-### A Note on File Paths in R{-}
-
-
-
-**In windows file paths are specified using back slashes,In R a backslash already has a meaning, this means we use a forward slash or two back slashes instead.**
+> **In Windows file paths are specified using back slashes, but in R a backslash already has a meaning, so we use a forward slash or two back slashes instead.**
 
 ***
 
@@ -597,44 +582,40 @@ getwd()
 
 ## Setting Working Directory
 
-You can use `setwd()` function and provide an absolute or relative file path to change the working directory to.
+You can use **`setwd()`** function and provide an absolute or relative file path to change the working directory to.
 
-> **For example `"C:/users/[yourName]/Documents/Training/Intro_to_R"`**
+> **For example `"C:/My_RStudio/Workspace/Intro_to_R"`**
 
 ```{r, eval=FALSE}
 # Setting the working directory
 
-setwd()
+setwd("C:/My_RStudio/Workspace/Intro_to_R")
 ```
 
 >**Alternatively you could the keyboard short cut CTLR+SHIFT+H.**
 
 <br>
 
-## Relative File Paths{-}
+## Relative File Paths
 
-We can also use what's called a relative file path. 
+We can also use what's called a relative file path to reference files. 
 
 These file paths are relative to whatever the working directory is at the time.
-
-
 
 For example if my full or absolute location is:
 
 ```{r, eval=FALSE}
-"C:/My_RStudio/Workspace"/Intro_to_R_/Data/titanic.csv"
+"C:/My_RStudio/Workspace/Intro_to_R/Data/titanic.csv"
 ```
 
-This is clear and explicit about where the data is stored. However if you were to use this link you would need to change elements of it – for example you might have your `Intro_to_R` in separate folder.
+This is clear and explicit about where the data is stored. However if you were to use this link you would need to change elements of it – for example you might have your `Intro_to_R` in a different folder.
 
-I can use what’s called a relative path.
+I can use what’s called a relative path - the location relative to the working directory.
 
-A relative path is the location relative to the working directory.
-
-For example, I can load the same file as above using the path.
+For example, if my working directory is `Intro_to_R`, I can load the same file as above using the path:
 
 ```{r,eval=FALSE}
-"../Data/titanic.csv"
+"Data/titanic.csv"
 ```
 
 Think of a file structure like a tree diagram. 
@@ -655,11 +636,10 @@ Introduction_to_R
 |       police_data.xlsx
 |
  ---Pre_course_information
-|   |     
-|   |   ons
-|   |   external    
-|   |       
-|   |      
+|       ons
+|       external    
+|           
+|         
 
 ```
 
@@ -671,9 +651,7 @@ If our current working directory is `'Course_content'`, and we want to switch to
 ```
 This effectively says, first go up a directory (`..`), so from `Course_content` to `Intro_to_R`. Then go down a directory into `Data`.
 
->**Going up a directory always requires `..`,** 
-
->**Whereas going down a directory always requires you to name the intended directory.**
+>**Going up a directory always requires `..`, whereas going down a directory always requires you to name the intended directory.**
 
 The relative path will work for any user – as long as their working directory is set to the `'Course_content'` in the Into_to_R folder.
 
@@ -715,17 +693,9 @@ Here are a few other options for various file types:
 
 ## Readr
 
-The package provides a fast and friendly way to read data; csv, tsv formats, it converts the data into *tibbles*.
+The package provides a fast and friendly way to read data from *csv* and *tsv* formats, it converts the data into *tibbles*.
 
-For this section we are going to use the `read_csv` function.
-
-```{r, eval = FALSE}
-
-readr::read_csv()
-
-```
-
-
+For this section we are going to use the **`read_csv()`** function.
 
 Before importing your data you need to know,
 
@@ -734,15 +704,14 @@ Before importing your data you need to know,
 * What kind of file it is?
 
 * Are missing values in the data?
-
->**Missing values in R are denoted by `na`.**
+    + Missing values in R are denoted by `na`.
 
 The code below demonstrates how you can read csv data.
 
 ```{r, eval=FALSE}
 # Reading in CSV data using readr package and read_csv function
 
-dataframe_name <- readr::read_csv("file_path")
+dataframe_name <- readr::read_csv(file_path)
 ```
 
 
@@ -752,9 +721,7 @@ dataframe_name <- readr::read_csv("file_path")
 
 `readr` will assume that the first row of your data is the headings of the columns.
 
-`readr` will automatically try and guess the data types in your columns, for example; if a column has only numerical data, it will be classed as numeric or if it only contains logical values it will be classed as logical. If the values do not match then R keeps them as characters.
-
-It is good practise to check your column data types, just in case R chose the wrong type automatically.
+`readr` will automatically try and guess the data types in your columns, for example; if a column has only numerical data, it will be classed as numeric or if it only contains logical values it will be classed as logical. If the values do not match then R keeps them as characters. It is good practise to check your column data types, just in case R chose the wrong type automatically.
 
 ***
 
@@ -819,13 +786,13 @@ titanic %>%
 ### **Exercise**{-}
 
 
-1. Have a look at the column `age_of_passenger`.
+1. Having read in the Titanic data above, have a look at the column `age_of_passenger`.
 
 
 2. What type of data is this column?
 
 
-3. Then `str()` function to see the data type R has set it to be.
+3. Use the `str()` function to see the data type R has set it to be.
 
 ***
 
@@ -864,7 +831,7 @@ We can easily correct this by adding an additional argument when the reading the
 
 The code below, can be read as;
 
-> **Where there is nothing (""), a blank space (" ") and "NULL", class is it as a missing value.**
+> **Where there is nothing (""), a blank space (" ") or the word "NULL", class is it as a missing value.**
 
 
 ```{r}
@@ -898,7 +865,7 @@ titanic %>%
 
 We can now see that the NULL's in the age column have been replaced with NA's and the data has been read is as numerical data.
 
-On this instance our missing values have been classed as NULL, missing values in other datasets can be classed as other symbols or words. e.g -, -9,
+On this instance our missing values have been classed as NULL, missing values in other datasets can be classed as other symbols or words. e.g.: `-`, `-9`.
 
 ***
 
@@ -914,12 +881,10 @@ The code below demonstrates how you can read excel data.
 
 
 ```{r eval=FALSE}
-dataframe_name <- readxl::read_excel("file_path")
+dataframe_name <- readxl::read_excel(file_path)
 ```  
 
-One handy thing to know is the `excel_sheets()` function.
-
-
+One handy thing to know is the **`excel_sheets()`** function.
 
 As excel files often have multiple sheets, this function will provide the names without having to open the file.
 
@@ -929,7 +894,7 @@ We run this function with the code below:
 ```{r eval=FALSE}
 # To find out the excel sheet names from excel file
 
-readxl::excel_sheets("filePath")
+readxl::excel_sheets(file_path)
 ```
 
 ***
@@ -987,10 +952,10 @@ This is the first sheet in our excel which is just the `Notes`.
 If we dont specify which sheet, the default setting from readxl is to give us the first sheet.
 
 
-1. **Can you add an additional argument in the `read_excel` function to read in the second sheet (Table P1) from the police data.**
+1. Can you add an additional argument in the `read_excel` function to read in the second sheet (Table P1) from the police data.
 
 
->**HINT - look at the help documentation, maybe something that talks about "sheet"**
+**HINT - look at the help documentation, maybe something that talks about "sheet"**
 
 ***
 
@@ -1000,7 +965,7 @@ If we dont specify which sheet, the default setting from readxl is to give us th
 ### Show Answer{-}
 
 
-Alternatively you could use the name of the sheet rather than the number/index. 
+You can use the name of the sheet or the number/index. 
 
 
 This would be useful if you have a lot of sheets.
@@ -1008,8 +973,8 @@ This would be useful if you have a lot of sheets.
 ```{r, eval=FALSE}
 
 # Reading in excel data using the readxl package
+# and the read_excel function
 # assigning the file name police_data
-# and read_excel function
 # specifying which sheet to read, here it is the second sheet or Table P1
 
 
@@ -1031,14 +996,14 @@ Our file should now look like this,
 
 <br>
 
-As we can see the top columns are mostly blank with no real significant data, to get around this we can add in a range of columns and rows that have the data we want to analyse.
+As we can see the top columns are mostly blank with no real significant data, to get around this we can add in a range of columns and rows that have the data we want to analyse. This sorts out the column names as well.
 
 <br>
 
 ```{r}
 # Reading in excel data using the readxl package
+# and the read_excel function
 # assigning the file name police_data
-# and read_excel function
 # specifying which sheet to read, here it is the second sheet or Table P1
 # specifying the range to only read the cells with data
 
@@ -1065,7 +1030,7 @@ police_data %>%
 
 ## Reading Url Files
 
-You can also read in URLs, see code below.
+You can also read in URLs, see code below. Be careful reading in any files directly from the internet. 
 
                    
 ```{r eval=FALSE}
@@ -1086,13 +1051,7 @@ When you read a file into R, the data is loaded into memory. This means that any
 
 Exporting tables works in much the same way as importing it.
 
-`readr` allows us to export to csv file type or equivalent.
-
-The code below demonstrates how you can read excel data.
-
-```{r, eval=FALSE}
-write_csv(data_frame, "file path.extension")
-```
+`readr` allows us to export to csv file type or equivalent using the **`write.csv()`** function.
 
 As an example we will export the police data we just imported.
 
@@ -1101,10 +1060,10 @@ As an example we will export the police data we just imported.
 # and write_csv function, we start with file we want to export
 # and the the path where we want to export it to
 
-readr::write_csv(police_data, path = "Data/test.csv")
+readr::write_csv(police_data, path = "../Data/test.csv")
 ```
 
-Our data frame `police_data` would now be stored as `test.csv` in the `/Data/` folder.
+Our data frame `police_data` would now be stored as `test.csv` in the `Data/` folder.
 
 ***
 
@@ -1113,14 +1072,11 @@ Our data frame `police_data` would now be stored as `test.csv` in the `/Data/` f
 
 # Inspecting  the Data
 
+After importing our data, the first thing we may want to do is have a quick look at it to check it looks how we expect it to.
 
-After importing our data, The first thing we may want to do is have a quick look at it to check it looks how we expect it to.
-
-
-We can do this by typing the commands below.
+We can do this by typing the various commands in the following exercise.
 
 
-**Have a play around with each command and see if you can figure out what they are doing.**
 
 ***
 
@@ -1130,6 +1086,8 @@ We can do this by typing the commands below.
 
 
 ### **Functions** {-}
+
+Have a play around with each command and see if you can figure out what they are doing.
 
 ```{r eval=FALSE}
 # Inspecting our data

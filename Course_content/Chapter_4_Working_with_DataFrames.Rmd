@@ -66,7 +66,7 @@ htmltools::img(src = knitr::image_uri("../Images/LATree.PNG"),
 
 
 
-2. And then, read in the **`titanic.csv`** and assign it to `titanic`
+2. Read in the file **`titanic.csv`** and assign it to `titanic`
 
 ***
 
@@ -81,7 +81,7 @@ The code below demonstrates how you can load a package.
 ```{r eval = FALSE}
 # loading a package
 
-library(package-name)
+library(package_name)
 ```
 
 
@@ -90,7 +90,7 @@ The code below demonstrates how you can read csv data.
 ```{r, eval = FALSE}
 # Importing csv data
 
-dataframe_name <- readr::read_csv("file_path")
+dataframe_name <- readr::read_csv(file_path)
 ```
 
 ***
@@ -125,22 +125,15 @@ In the previous section we looked at reading data into R and also inspecting it.
 
 In this section we are going to look at how to manipulate it.
 
-In the previous session we stated that every column in a data frame is a variable and it is good practice to not have spaces within variable names.
-
-
-This makes it easier for us to call on the variables when we need to use them.
+In the previous session we stated that every column in a data frame is a variable and it is good practice to not have spaces within variable names, as spaces makes it harder for us to call on the variables when we need to use them.
 
 ***
-
-<br>
-
-## **Example**{-}
 
 
 For example if we wanted to pick the `name of Passenger` column from the titanic dataset. 
 
 
->**The code below does not work.** 
+>**The code below will not work!** 
 
 
 ```{r, eval = FALSE}
@@ -152,9 +145,7 @@ titanic$name of Passenger
 ```
 
 
-To get around this we enclose `name of passenger` with back ticks like the code below 
-
-The key above the tab key on left hand side.
+To get around this we enclose `name of passenger` with back ticks like the code below - this is the key above the tab key on the left hand side of your keyboard.
 
 
 ```{r, eval = FALSE}
@@ -167,7 +158,7 @@ titanic$`name Of Passenger`
 ```
 
 
-If your column names have spaces and you keep them, you must use backticks.
+If your column names have spaces and you don't get rid of them, you must use backticks.
 
 
 However its good practise to remove spaces and symbols.
@@ -185,8 +176,6 @@ As we can see our column names have spaces and some start with capital letters a
 
 ***
 
-<br>
-
 
 ## Cleaning Column Names {.tabset .tabset-fade}
 
@@ -195,15 +184,15 @@ As we can see our column names have spaces and some start with capital letters a
 
 The `janitor` package offers many functions used to manipulate data, for example removing empty rows and columns, finding duplicates within a data frame. In this session we will use the library to to clean our data set names.
 
->**We can clean the names of our dataset with the `clean_names()` function as shown below.**
+We can clean the names of our dataset with the **`clean_names()`** function as shown below.
 
-We are replacing the `titanic` frame with the newly created cleaned names frame.
+We are overwriting the original Titanic data frame with a version with the column names cleaned.
 
 ```{r}
 
 # Cleaning the column names using the janitor
 # package and the clean_names() function.
-# This will put all names in small letter and 
+# This will put all names in lower case letters and 
 # replace blank spaces with underscores.
 
 titanic <- janitor::clean_names(titanic)
@@ -249,12 +238,12 @@ janitor::clean_names(titanic, case = "snake")
  
 ### **gsub**{-}
 
-We can also do this using the function `gsub()`. 
+We can also do this using the function **`gsub()`**. 
 
-Here is used on the column names, but can be used on text columns too.
+Here this is used on the column names, but it can also be used on the contents of text columns too.
 
 
-The code below substitutes in any instance of the first symbol within the "" with the second set of "".
+The code below replaces any instance of the characters within the first set of quotes, with the contents of the second set of quotes.
 
 For example, the output of `gsub(" ", "_", "piece of text")` would be `piece_of_text`.
 
@@ -336,24 +325,22 @@ verb(data, more information)
 
 <br>
 
-![Image showing an example of Cheat Sheet](../Images/data-transformation-cheat-sheet.png) 
+![Image showing an example of Cheat Sheet](../Images/data-transformation-cheat-sheet.png) \
 
 
 <br>
-
-
 
 
 ## Arrange
 
 Our data is displayed in the same order as the source data.
 
-We may want to sort our data, based on specific columns, to do this we use the function `arrange()`.
+We may want to sort our data, based on specific columns, to do this we use the function **`arrange()`**.
 
 
 >**`arrange()` lets you sort data by a variable.**
 
-We can sort the column `fare` with code below.
+We can sort the column `fare` into ascending order with the code below.
 
 
 ```{r}
@@ -384,7 +371,7 @@ If we don't specify how we are sorting, the default is to sort in *ascending* or
 
 To sort in descending order, we use the code below:
 
-We input the data we want to sort, and what we are going to sort it by specifying `desc`.
+We input the data we want to sort, and how we are going to sort it, by specifying **`desc()`**.
 
 ```{r}
 # We input the data we want to sort, 
@@ -409,6 +396,8 @@ head(titanic$fare)
 
 
 ### **Exercise**{-}
+
+If you haven't cleaned your column names using janitor as in the previous section, do that now!
 
 1. Can you sort the titanic data set by age *and* fare.
 
@@ -437,7 +426,7 @@ titanic_sorted <- dplyr::arrange(.data = dataset,
 
 2. Can you sort the titanic data set by age *and* fare in descending order for both variables.
 
-To sort both descending order we have to use the `desc()` function.
+To sort both descending order we have to use the **`desc()`** function.
 
 ***
 
@@ -448,7 +437,6 @@ To sort both descending order we have to use the `desc()` function.
 
 1. Can you sort the titanic data set by age *and* fare.
 
-Sorting by multiple variables, arranged them within each other. meaning it will sort the data by `age` first and then will sort by `fare`.
 
 
 ```{r}
@@ -458,6 +446,8 @@ titanic_sorted <- dplyr::arrange(.data = titanic,
                                   age_of_passenger,
                                   fare)
 ```
+
+When sorting by multiple variables, R will sort the data by the first column specified - `age` - first and then will sort by `fare`.
 
 <br>
 
@@ -480,9 +470,7 @@ titanic_sorted %>%
 
 2. Can you sort the titanic data set by age *and* fare in descending order for both variables.
 
-To sort both descending order we have to use `desc()` around each column name.
-
-
+To sort both descending order we have to use **`desc()`** around each column name.
 
 If you only had one `desc` on the `age_of_passenger`, it will show `age_of_passenger` in descending order, but fare in ascending.
 
@@ -526,7 +514,7 @@ titanic_sorted %>%
 
 Sometimes we will want to work with smaller “cut down” Data Frames that contain fewer columns.
 
-> **`Select()` allows us to pick entire columns from our data.**
+**`select()`** allows us to pick entire columns from our data.
 
 
 Previously we selected columns using the `$` symbol and the indexing operator `[]`.
@@ -535,7 +523,7 @@ Previously we selected columns using the `$` symbol and the indexing operator `[
 We will opt to use `dplyr` functions which allow us to keep our code efficient and readable even with complex queries.
 
 
-`dplyr::select()` function, in its simplest form, takes two parameters. 
+The **`dplyr::select()`** function, in its simplest form, takes two parameters. 
 
 The first, like all `tidyverse` functions, being the tibble we are interested in, and the second being the column name.
 
@@ -554,14 +542,7 @@ titanic_one_variable
 
 This has returned the `name_of_passenger` column from `titanic` in the form of a tibble. 
 
-
-The `select()` function, like the majority of `tidyverse` functions, offers a lot of flexibility. This allows us to achieve the same result using a number of different methods, without it being clear which method is more fitting. With great flexibility, comes great uncertainty...
-
-
 If we want to select multiple columns, we have to first collect the column names together using a character vector, and then pass that as our second parameters. 
-
-
-Alternatively, we could just write out all the column names we want.
 
 ```{r}
 # Selecting data
@@ -582,9 +563,7 @@ titanic_three_variables
 The real power of the `select()` function comes from its flexibility.
 
 
-For example, suppose we wanted to select all columns excluding `name`, `age` and `pclass`. We could type all the columns names we need, 
-
-or instead:
+For example, suppose we wanted to select all columns excluding `name`, `age` and `pclass`. We could tediously type all the columns names we need, or instead:
 
 
 ```{r}
@@ -610,11 +589,10 @@ titanic_minus_three_variables %>%
   scroll_box(width = "100", height = "300px")
 ```
 
-<br>
 
 We can use the `-` to exclude sets of columns.
 
-We can also select the columns using numbers, positive numbers and negative numbers to drop.
+We can also select the columns using numbers, positive or negative, to drop.
 
 
 For example the code below will select the first 4 columns and then column 7.
@@ -672,12 +650,7 @@ titanic_number_select %>%
 
 <br>
 
-<br>
-
-This flexibility is further enhanced by the `select helper` functions. 
-
-
->**These are functions which allow you select columns based on their names.**
+This flexibility is further enhanced by the `select helper` functions. These are functions which allow you select columns based on their names.
 
 
 * `starts_with(match)`: Starts with a prefix.
@@ -737,10 +710,10 @@ It is important to note, all `tidyverse` functions work on and return a copy of 
 3. Can you select just the last column?
 
 
-4. Can you select the columns that end the word "passenger"?
+4. Can you select the columns that end in the word "passenger"?
 
 
-5. Can you select, `name_of_passenger`, `age_of_passenger` and everything else
+5. Can you select, `name_of_passenger`, `age_of_passenger` and then every other column?
 
 ***
 
@@ -769,8 +742,6 @@ titanic_select_exercise <- dplyr::select(.data = titanic,
 
 2. Can you select the columns, `pclass`, `survived`, `name_of_passenger`, `sex_of_passenger`, `age_of_passenger` and `embarked`?
 
-Selecting the columns, `pclass`, `survived`, `name_of_passenger`, `sex_of_passenger`, `age_of_passenger` and `embarked`.
-
 
 ```{r, eval = F}
 # Selecting data
@@ -783,43 +754,20 @@ titanic_select_exercise <- dplyr::select(.data = titanic,
 
 3. Can you select just the last column?
 
-Remember we can select by position or by name. HINT `embarked` is the last column.
+Remember we can select by position or by name. HINT: `embarked` is the last column.
 
 
-4. Can you select the columns that end the word "passenger"?
+4. Can you select the columns that end in the word "passenger"?
 
-Selecting the columns that end in the word “passenger”
+You might want to use something that helps you select the words of the columns, by what those columns `ends_with()`.
 
-
->**HINT You might want to use something that helps you select the words of the columns.**
-
-```{r, eval = FALSE}
-# Selecting data
-# You will need to specify the columns 
-# within the c() function
-
-titanic_select_exercise <- dplyr::select(.data = titanic, 
-                                          c())
-```
 
 5. Can you select, `name_of_passenger`, `age_of_passenger` and everything else
 
-Selecting `name_of_passenger`, `age_of_passenger` and everything else.
 
->**This is a great way to reorder the columns, if you wanted to set 2 columns to be next to each other.**
+This is a great way to reorder the columns, if you wanted to set 2 columns to be next to each other.
 
- When you select columns, its places them in the order that we select them, HINT You might want to select something that helps you select all the columns.
-
-```{r, eval = FALSE}
-# Selecting data
-# You will need to specify the columns 
-# within the c() function
-
-titanic_select_exercise <- dplyr::select(.data = titanic,
-                                          c())
-```
-
-
+When you select columns, its places them in the order that we select them, HINT You might want to select something that helps you select all the columns.
 
 
 ***
@@ -879,24 +827,30 @@ titanic_select_exercise
 base::names(titanic_select_exercise)
 ```
 
+3. Can you select just the last column?
+
+```{r}
+# Selecting data
+
+titanic_select_exercise <- dplyr::select(.data = titanic,
+                                         last_col()) 
+
+#To display the data
+titanic_select_exercise
+
+base::names(titanic_select_exercise)
+
+```
 
 <br>
 
-4. Can you select the columns that end the word "passenger"?
+4. Can you select the columns that end in the word "passenger"?
 
 You could also type the column names.
-
-
-Selecting the columns that end the word “passenger”
 
 ```{r}
 
 # Selecting data
-
-titanic_select_exercise <- dplyr::select(.data = titanic, 
-                                          c(ends_with("passenger")))
-
-# Alternative
 
 titanic_select_exercise <- dplyr::select(.data = titanic,
                                          ends_with("passenger")) 
@@ -915,9 +869,7 @@ base::names(titanic_select_exercise)
 
 5. Can you select, `name_of_passenger`, `age_of_passenger` and everything else
 
-Selecting `name_of_passenger`, `age_of_passenger` and everything else.
-
->**This is a great way to reorder the columns, if you wanted to set 2 columns to be next to each other.**
+This is a great way to reorder the columns, if you wanted to set 2 columns to be next to each other.
 
 ```{r}
 
@@ -949,13 +901,10 @@ base::names(titanic_select_exercise)
 
 ## Filter
 
-> **`Filter()` allows us to pick specific entries (rows) which satisfy a given logical condition.**
+**`filter()`** allows us to pick specific entries (rows) which satisfy a given logical condition.
 
 
-A conditional statement returns `TRUE` if the condition is met.
-
-
-To create a logical condition, we have to use the logical operators.
+A conditional statement returns `TRUE` if the condition is met. To create a logical condition, we have to use the logical operators.
 
 <br>
 
@@ -985,17 +934,17 @@ Logical Operator| Description
 >**Note: The `!` allows us to flip or invert an expression. Basically, if an expression returns `[TRUE, TRUE, FALSE]`, the same expression with a `!` in front of it will return `[FALSE, FALSE, TRUE]`.**
 
 
->**Remember that `==` is to test equality and `=` is to assign something.**
+>**Note: `==` is used to test equality and `=` is used to define values to pass into functions.**
 
 ***
 
 <br>
 
 
-### Single Conditional Filtering{-}
+### Single Conditional Filtering
 
 
-We can filter out a new data set where `pclass` is 2.
+We can filter out a new data set where `pclass` is equal to 2.
 
 This is referred to as single conditional filtering as we only have one condition.
 
@@ -1087,7 +1036,7 @@ base::unique(fare_more_than_200$fare)
 1. Show the row for the passenger named: 'Birkeland, Mr. Hans Martin Monsen'
 
 
->**Remember R is case sensitive and character data needs to have speech marks.**
+Remember R is case sensitive and character data needs to have speech marks.
 
 
 ```{r, eval = FALSE}
@@ -1104,20 +1053,12 @@ titanic_filter_exercise
 
 2. How many passengers in the dataset are male?
 
->**filter the data first**
+First filter the data.
 
->**find out the number of rows**
+Then find out the number of rows using **`nrow()`**.
 
 
 ```{r, eval = F}
-# filtering the dataset by sex_of_passenger
-
-titanic_filter_exercise <- dplyr::filter(data, 
-                                          condition)
-# To display the data
-
-titanic_filter_exercise
-
 # showing the number of rows in our new filtered dataset
 
 base::nrow(titanic_filter_exercise)
@@ -1126,47 +1067,20 @@ base::nrow(titanic_filter_exercise)
 
 3. How many passengers are under 18 years of age?
 
->**filter the data first**
+First filter the data.
 
->**find out the number of rows**
-
-
-```{r, eval = FALSE}
-# filtering the dataset by age_of_passenger
-
-titanic_filter_exercise <- dplyr::filter(data, 
-                                          condition)
-# To display the data
-
-titanic_filter_exercise
-
-# showing the number of rows in our new filtered dataset
-
-base::nrow(titanic_filter_exercise)
-```
+Then find out the number of rows using **`nrow()`**.
 
 
 4. What proportion of passenger in the dataset survived?
 
+First filter the data - passengers which survived are those with a `1` in  the `survived` column.
 
->**filter the data first**
+Then find out the number of rows using **`nrow()`**.
 
->**find out the number of rows**
-
->**calculate the percentage using the formula nrow(filtered data)/nrow(full data)*100**
+Then calculate the percentage using the formula nrow(filtered data)/nrow(full data)*100.
 
 ```{r, eval = FALSE}
-# filtering the dataset by survived
-
-titanic_filter_exercise <- dplyr::filter(data, 
-                                          condition)
-# To display the data
-
-titanic_filter_exercise
-
-# showing the number of rows in oure ew filtered dataset
-
-nrow(titanic_filter_exercise)
 
 # calculating the percentage, by dividing the total number 
 # of rows in new filtered dataset by the total number 
@@ -1233,7 +1147,7 @@ base::nrow(titanic_filter_exercise)
 
 titanic_filter_exercise <- dplyr::filter(.data = titanic, 
                                         age_of_passenger
-                                        < 18 )
+                                        < 18)
 
 # To display the data
 
@@ -1272,40 +1186,16 @@ percentage_of_passengers_survived
 
 <br>
 
-Another useful way to filter data is using the `dplyr::slice()` function.
-
-
->**This method of filtering rows is great if you know the indexes of the rows you are interested in.**
-
-```{r}
-# Select the 5th row
-
-dplyr::slice(titanic, 5)
-```
-
-What happens if we try:
-
-```{r}
-# Dropping rows
-
-dplyr::slice(titanic, -5)
-```
-
-***
-
-<br>
-
 
 ### Multiple Conditional Filtering 
 
 
-
-So far, we've only filtered according to individual conditions set on a single column, but there is no reason we can't use multiple conditions to filter by several conditions and/or columns at once. However, we do need to think about how the conditions relate to each other, we have two options to establish these relationships.
+So far, we've only filtered according to individual conditions set on a single column, but there is no reason we can't use multiple conditions to filter by several conditions and/or columns at once. However, we do need to think about how the conditions relate to each other, as we have two options to establish these relationships.
 
 * **and** relationships are given by the **&** symbol. This implies both/all conditions must be met for a row to evaluate to `TRUE`.
 * **or** relationships are given by the **|** symbol. This implies that if _any_ of the conditions can be met a given row evaluates to `TRUE`.
 
-You can think of `between()` as being special version of multiple condition filters. `between()` is an **and** condition - greater than (or equal to) the lower bound **and** less than (or equal to) the upper bound.
+You can think of **`between()`** as being special version of multiple condition filters. **`between()`** is an **and** condition - greater than (or equal to) the lower bound **and** less than (or equal to) the upper bound.
 
 R also implements a multiple 'or' condition in the form `%in%`, where any rows that have a value occurring in a given vector will be included in the output tibble.
 
@@ -1317,11 +1207,15 @@ titanic_filter_example <- dplyr::filter(.data = titanic,
                                         pclass == 1 
                                         & sex_of_passenger == "female")
 
-# To display the data
-
-titanic_filter_example
 ```
 
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+
+titanic_filter_example %>%
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "300px")
+```
 <br>
 
 ```{r}
@@ -1331,10 +1225,14 @@ titanic_filter_example <- dplyr::filter(.data = titanic,
                                         sex_of_passenger == "female" 
                                         | age_of_passenger < 18)
 
+```
 
-# To display the data
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 
-titanic_filter_example
+titanic_filter_example %>%
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "300px")
 ```
 
 <br>
@@ -1389,7 +1287,7 @@ titanic_filter_example %>%
 
 1. Select passengers who are in classes 2 and 3, what percentage of passengers is this?
 
-2. How many passengers who do not have siblings or spouses ('sibsp'), or parents or children ('parch') on the boat?
+2. How many passengers do not have siblings or spouses ('sibsp'), or parents or children ('parch') on the boat?
 
 3. What proportion of passengers who 'embarked' in Cherbourg ('C') or Queenstown ('Q') survived? 
 
@@ -1402,10 +1300,7 @@ titanic_filter_example %>%
 1. Select passengers who are in classes 2 and 3, what percentage of passengers is this?
 
 
-
-> **The | (Shift and \) symbol means an OR relationship**
-
-> **The & (Shift and 7) symbol indicates an AND relationship**
+The & (Shift and 7) symbol indicates an AND relationship.
 
 ```{r, eval = FALSE}
 # filtering the dataset on multiple conditions
@@ -1423,31 +1318,14 @@ base::nrow(titanic_filter_exercise) / nrow(titanic) * 100
 
 2. How many passengers who do not have siblings or spouses ('sibsp'), or parents or children ('parch') on the boat?
 
-```{r, eval = FALSE}
-# filtering the dataset on multiple conditions
+The & (Shift and 7) symbol indicates an AND relationship, and should be used to filter off the two columns listed - both values should be zero. 
 
-titanic_filter_exercise <- dplyr::filter(data,
-                                         condition)
-
-# showing the number of rows in the filtered dataset
-
-base::nrow(titanic_filter_exercise)
-```
 
 3. What proportion of passengers who 'embarked' in Cherbourg ('C') or Queenstown ('Q') survived? 
 
+We need to find the passengers who embarked in those two cities, and then the amount of them that survived. 
+
 ```{r, eval = FALSE}
-# filtering the dataset on multiple conditions
-
-embarked_cherbourg_and_queenstown <- dplyr::filter(data,
-                                                   condition)
-
-# filtering the dataset a single condition
-
-survived <- dplyr::filter(data,
-                          condition)
-
-# showing the number of rows in youre new filtered dataset
 
 base::nrow(survived) / nrow(embarked_cherbourg_and_queenstown)
 ```
@@ -1509,19 +1387,19 @@ titanic_filter_exercise %>%
 3. What proportion of passengers who 'embarked' in Cherbourg ('C') or Queenstown ('Q') survived? 
 
 ```{r}
-# filtering the dataset on multiple conditions
+# filtering the dataset on multiple conditions to find the embarked passengers
 
 embarked_cherbourg_and_queenstown <- dplyr::filter(.data = titanic,
                                                    embarked == 'C' | embarked == 'Q')
 
-# filtering the dataset a single condition
+# filtering the dataset a single condition to find the survivors
 
 survived <- dplyr::filter(embarked_cherbourg_and_queenstown, 
                           survived == 1)
 
-# showing the number of rows in oure ew filtered dataset
+# showing the number of rows in the filtered dataset
 
-base::nrow(survived) / nrow(embarked_cherbourg_and_queenstown)
+base::nrow(survived) / nrow(embarked_cherbourg_and_queenstown) * 100
 
 ```
 
@@ -1543,18 +1421,14 @@ survived %>%
 
 ## Generating New Variables
 
-To create a new variable, or a new column, in our `tibble` we will use the `dplyr::mutate()` function.
+To create a new variable, or a new column, in our `tibble` we will use the **`dplyr::mutate()`** function.
 
-```{r, eval = FALSE}
-dplyr::mutate()
-```
-
-Code to create a new column follow the pattern below, where we state the name of the new column and the use the = to state what we want to be in that column.
+Code to create a new column follows the pattern below, where we state the name of the new column and the use the = to state what we want to be in that column.
 
 ```{r, eval = F}
 # generating new variables
 
-data_frame_name <- dplyr::mutate(data,
+data_frame_name <- dplyr::mutate(data_frame,
                                  name_of_new_column = contents of new column)
 ```
 
@@ -1562,7 +1436,7 @@ data_frame_name <- dplyr::mutate(data,
 <br>
 
 
-### Constant Value Variables{-}
+### Constant Value Variables
 
 The simplest example would be adding a constant value to each row in our `tibble`. 
 
@@ -1572,20 +1446,21 @@ The simplest example would be adding a constant value to each row in our `tibble
 mutate_example <- dplyr::mutate(.data = titanic, 
                                 string_twos = "two")
 
-#To display the data
-
-mutate_example
-
-base::names(mutate_example)
 ```
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 
+mutate_example %>%
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "300px")
+```
 
 
 <br>
 
-### Creating Variables Based on Existing Columns{-}
+### Creating Variables Based on Existing Columns
 
-We can perform mathematical operations and even functions on existing columns in the `mutate()` function using column names.
+We can perform mathematical operations and even functions on existing columns in the **`mutate()`** function using column names.
 
 Let's look at some examples:
 
@@ -1596,15 +1471,18 @@ We can capitalise the sex column.
 
 mutate_example <- dplyr::mutate(.data = titanic,
                                 sex_of_passenger = stringr::str_to_upper(sex_of_passenger))
-#To display the data
-
-mutate_example
 
 ```
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 
+mutate_example %>%
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "300px")
+```
 <br>
 
-For example creating the family size of the person.
+Another example is creating the family size of the person.
 
 This is the number of siblings or spouses on board (sibsp), the number of parents or children on board (parch), plus 1 (the person themselves).
 
@@ -1613,12 +1491,13 @@ This is the number of siblings or spouses on board (sibsp), the number of parent
 
 mutate_example <- dplyr::mutate(.data = titanic,
                                 family_size = parch + sibsp + 1)
-#To display the data
+```
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 
-mutate_example
-
-base::names(mutate_example)
-
+mutate_example %>%
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "300px")
 ```
 
 
@@ -1632,20 +1511,22 @@ As well as mathematical operators and functions we can use conditionals.
 mutate_example <- dplyr::mutate(.data = titanic,
                                 is_female = (sex_of_passenger == "female"))
 
-#To display the data
-
-mutate_example
-
-base::names(mutate_example)
 
 ```
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 
+mutate_example %>%
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "300px")
+```
 
 <br>
 
-The key note from this being, with `mutate()`, we can do almost anything if we keep the number of rows the same. 
+The key note from this being, with **`mutate()`**, we can do almost anything to every row in our data frame. 
 
-There are some functions which work with `mutate()` and enable us to perform more complicated tasks. `recode()` lets us map one value to another throughout the entire column. e.g.
+There are some functions which work with **`mutate()`** and enable us to perform more complicated tasks. **`recode()`** lets us map one value to another throughout the entire column e.g.:
+
 ```{r, eval = FALSE}
 # Recoding variables
 
@@ -1653,7 +1534,7 @@ dplyr::recode(.data = titanic$survived,
               '1' = TRUE, '0' = FALSE)
 ```
 
-To do this in the context of an entire `tibble` we have to use `recode()` with `mutate()`.
+To do this in the context of an entire `tibble` we have to use **`recode()`** with **`mutate()`**.
 ```{r}
 # Generating new variables
 
@@ -1713,11 +1594,14 @@ titanic_mutate_exercise <- dplyr::mutate(data,
 titanic_mutate_exercise <- dplyr::mutate(.data = titanic,
                                          child = age_of_passenger < 18)
 
-# To display the data
+```
 
-titanic_mutate_exercise
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 
-base::names(titanic_mutate_exercise)
+titanic_mutate_exercise %>%
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "300px")
 ```
 
 ***
@@ -1726,11 +1610,11 @@ base::names(titanic_mutate_exercise)
 
 ### Deleting data
 
-We can also use the `mutate()` function to delete data.
+We can also use the **`mutate()`** function to delete data.
 
-For example, we previously added a new column called `child` to our titanic data set.
+In the above exercise, we added a new column called `child` to our titanic data set.
 
-We can quickly see the names of our data set using the the `names()` function.
+We can quickly see the names of our data set using the the **`names()`** function.
 
 ```{r}
 # Generating new variables
@@ -1772,19 +1656,14 @@ titanic_mutate_exercise$child <- NULL
 
 <br>
 
-## The Pipe Operator `%>%`
+## The Pipe Operator **`%>%`**
 
 
-The Pipe Operator `%>%` makes it possible to chain a sequence of functions. 
+The Pipe Operator **`%>%`** makes it possible to chain a sequence of functions. 
 
-In R code `%>%` can be read as "AND THEN". It takes the output of one action "AND THEN" uses that as the input of the next action. Where an action could be calling a variable, a function or anything else that returns some information. 
+In R code **`%>%`** can be read as "AND THEN". It takes the output of one action "AND THEN" uses that as the input of the next action. Where an action could be calling a variable, a function or anything else that returns some information. 
 
-
-**`%>%`**
-
->**The short cut is CTL + SHIFT + M**
-
-What this does is it takes the output of one statement and makes it an input to the next statement. You can think of it as saying **`and then`**
+The short cut for this operator is CTL + SHIFT + M
 
 Up until now if we wanted to perform a sequence of actions on data, we'd have do something along the lines of:
 
@@ -1852,14 +1731,14 @@ filter_adult_men %>%
 
 <br>
 
->**Notice how the `mutate()`, `arrange()` and `filter()` functions don't use the data argument as it already included in the pipe.**
+>**Notice how the `mutate()`, `arrange()` and `filter()` functions don't use the .data argument as it is being piped in from the previous command!**
 
 
 As you can see the pipe operator helps us:
 
-* Structure the sequence of your data operations from left to right, as opposed to from inside to out.
+* Structure the sequence of our data operations from left to right, as opposed to from inside to out.
 * Avoid nested function calls and make code more "readable".
-* Minimize the need for local variables.
+* Reduce the need for local variables.
 * Make it easy to add steps anywhere in the sequence of operations.
 
 
@@ -1885,7 +1764,7 @@ Lets practice piping a few `dplyr` functions.
 
 #### **Hint**{-}
 
->**Quick reminder of the dplyr commands**
+Here are some of the dplyr commands you can use.
 
 ```{r, eval = FALSE}
 
@@ -1951,14 +1830,14 @@ Linking data come in a number of forms and are commonly referred to as 'indexica
 
 ### Different ways to Join
 
-In R we use group of `join` functions. These are prefixed by the type of join we choose to implement.
+In R we use a group of `join` functions. These are prefixed by the type of join we choose to implement.
 
 Once you have established that two `tibbles` share a reference that will permit a join to be conducted, you will see:
 
-* `inner_` - Only rows with reference values that appear in both `tibbles` are merged.
-* `left_` - All data from the 'left' `tibble` is retained, and any matching rows are merged from the 'right' `tibble`.
-* `right_` - All data from the right and anything that matches from the left. Effectively, the reverse of 'Left'.
-* `full_` - All data from the left and right `tibble` is retained, matched up where possible.
+* `inner_join` - Only rows with reference values that appear in both `tibbles` are merged.
+* `left_join` - All data from the 'left' `tibble` is retained, and any matching rows are merged from the 'right' `tibble`.
+* `right_join` - All data from the right and anything that matches from the left. Effectively, the reverse of 'Left'.
+* `full_join` - All data from the left and right `tibble` is retained, matched up where possible.
 
 This can be easier to understand graphically:
 
@@ -1971,7 +1850,6 @@ This can be easier to understand graphically:
 
 <br>
 
-<br>
 
 Lets load our data for the example.
 
@@ -2015,8 +1893,6 @@ joining_data_two
 
 These two data frames have a column in common that we could use to join them on - **name**.
 
-We can create a variety of joins. These are often best demonstrated with a Venn diagram.
-
 I’m going to say that `joining_data1` is my “left” data frame, and that `joining_data2` is my “right” data frame.
 
 For this I’m going to highlight the position of three animal names. As we mentioned earlier:
@@ -2040,7 +1916,7 @@ For this I’m going to highlight the position of three animal names. As we ment
 
 As you can see "left" and "right" merges take the data from that data frame and any matches from the other. 
 
-This means that in our "left":
+This means that in our "left" join:
 
 "Arf Vader" is included because he has data in the "left" data frame. 
 
@@ -2050,7 +1926,7 @@ This means that in our "left":
 
 "Spiderpig" doesn’t have any data in this one. We’re only taking data from the "left", and he’s only in the "right".
 
-Let’s look at how we do this "left" merge in code. We’re going to use `left_join()` and do a "left" join.
+Let’s look at how we do this "left" merge in code. We’re going to use the function **`left_join()`**.
 
 
 ```{r}
@@ -2079,9 +1955,7 @@ This is shown below.
 join_left <- dplyr::left_join(joining_data_one, 
                               joining_data_two,
                               by = c("column name", "column name"))
-# To display the data
 
-join_left
 
 ```
 
@@ -2151,14 +2025,12 @@ marvel_full_join <- dplyr::full_join(dataframe,
                                      dataframe,
                                      by = column)
                                                                           
-# To display the data
 
-marvel_full_join
 ```
 
 <br>
 
-3. Using `marvel_left` and `marvel_righ`t perform a "left" join.
+3. Using `marvel_left` and `marvel_right` perform a "left" join.
 
    * Join on *BOTH* the column containing `names` and the column containing `years`.
   
@@ -2175,9 +2047,6 @@ marvel_left_join <- dplyr::left_join(dataframe,
                                      dataframe, 
                                      by = c(columns))
 
-# To display the data
-
-marvel_left_join
 
 ```
 
@@ -2260,13 +2129,13 @@ marvel_left_join
 
 <br>
 
-### bind_rows
+### bind_rows()
 
-Another common way in which datasets are combined is by binding them. Unlike the join function, the binding functions do not try to match by a variable, but instead simply combine datasets. If the datasets don’t match by the appropriate dimensions, one obtains an error.
+Another common way in which datasets are combined is by binding them. Unlike the join function, the binding functions do not try to match by a variable, but instead simply combine datasets by appending one set of data to the bottom of the other. If the datasets don’t match by the appropriate dimensions, one obtains an error.
 
-This is where we can add data on to the bottom of an existing data Frame, If you have two (or more) data frames that share the same data structure.
+This is where we can add data on to the bottom of an existing data frame, If you have two (or more) data frames that share the same data structure.
 
-You can use the `bind_rows()` function.
+You can use the **`bind_rows()**` function.
 
 
 
@@ -2292,7 +2161,7 @@ joining_data_three
 
 <br>
 
-We can use `bind_rows()` function, which will simply merge two data frames into one.
+We can use the **`bind_rows()`** function, which will simply merge two data frames into one by appending the rows.
 
 ```{r}
 # Combining 2 dataframes using bind_rows() function
@@ -2316,7 +2185,7 @@ We can see our new additions - Andy Warhowl, Voldetort and Repecka here now.
 
 Here we’re assigning the output to a new Data Frame – `binded_rows_data.
 
-Another function useful function is  `union()` which will merge the data from both data frames but keep only the distinct (unique) rows. That means, any duplicated rows that exist in the target data frames are not going to be brought over to the current data frame
+Another function useful function is  **`union()`** which will merge the data from both data frames but keep only the distinct (unique) rows. That means, any duplicated rows that exist in the target data frames are not going to be brought over to the current data frame
 
 
 <br>

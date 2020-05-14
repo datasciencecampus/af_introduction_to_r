@@ -10,13 +10,6 @@ output:
 ---
 
 
-
-
-
-
-
-
-
 ```{r, echo=FALSE}
 htmltools::img(src = knitr::image_uri("../Images/LATree.PNG"),
                alt = 'logo', 
@@ -53,11 +46,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 We do not work with single data values, we often work with a combination or collection of data.
 
-R organises these in certain structures.
+R organises these in certain structures, and stores this data so that  we can manipulate and work with it.
 
-R stores this data so that  we can manipulate and work with it.
-
-The first structure we will look at is a vector.
+Data structures we will be looking at include vectors, lists, and data frames. 
 
 ***
 
@@ -100,7 +91,7 @@ You will get the error below,
 >**Error: unexpected ',' in "my_friends <- "ian","**
 
 
-Which brings us to the `c()` function.
+Which brings us to the **`c()`** function.
 
 ***
 
@@ -137,9 +128,10 @@ c()
 
 ### **Show Answer** {-}
 
+
 1. Use the help section in R to find out what the `c()` function does.
 
-The c() function is used for creating a vector in R.
+The **`c()`** function is used for creating a vector in R - it stands for `combine`
 
 ```{r, eval=FALSE}
 
@@ -155,11 +147,12 @@ help(c)
 
 <br>
 
-![Image showing the help documentation for the c() function](../Images/combine_function.PNG)
+![Image showing the help documentation for the c() function](../Images/combine_function.PNG)\
+
 
 <br>
 
-I can now store multiple items by using the `c()` function, note elements are separated by commas 
+I can use the **`c`** function to store multiple items in a single variable, note that elements are separated by commas.
 ```{r}
 # Creating a vector
 
@@ -179,7 +172,7 @@ A `vector` is a one-dimensional ordered collection of elements, **all of the sam
 
 It is the basic data structure in R with a lot of useful properties.
 
-Since R insists all elements in a vector have to be of the same type we then can have  types of vectors. These are:
+Since R insists all elements in a vector have to be of the same type we then can have types of vectors. These are:
 
 * Logical vector - contains only logical values.
 * Numerical vector - contains only numerical values.
@@ -194,9 +187,7 @@ There are more types of vectors, but for the purpose of our learning these  are 
 
 ## Creating Vectors 
 
-There are several other ways of creating a vector:
-
-You can create a vector by using:
+There are several different ways of creating a vector. You can create a vector by using:
 
 - The combine function **c()**.
 
@@ -204,7 +195,7 @@ You can create a vector by using:
 
 - The **colon** to create a vector of consecutive numbers.
 
-- Another way to initialise a vector is by using the **vector()** function.
+- The **vector()** function.
 
 ### Combine function{-}
 
@@ -228,7 +219,7 @@ Here I am specifying the arguments, `from`, `to` and  `by` and with the values 2
 
 # Creating a vector using the sequence function,
 
-# Here I am specifying the arguements, `from`, `to` and  `by` and with the values 2, 6 and 2.
+#Here I am specifying the parameters, `from`, `to` and  `by` and the arguments 2, 6 and 2.
 
 sequence_vector <- seq(from = 2, to = 6, by = 2)
 
@@ -271,7 +262,7 @@ example_vector
 ```
 
 
-Play around with the `mode` and `length` parameters. (Try: mode = integer, double or character).
+Play around with the `mode` and `length` parameters. (Try: mode = `'integer'`, `'double'` or `'character'`).
 <br>
 
 ***
@@ -288,7 +279,7 @@ Play around with the `mode` and `length` parameters. (Try: mode = integer, doubl
 1. In your script leave yourself a comment to remind you that this exercise is about vectors.
 
 
-2. Create two vectors, one with numeric data and one with character data, e.g favourite_movies and lucky_numbers, see my    examples below. `(Feel free to be creative here)`.
+2. Create two vectors, one with numeric data and one with character data, e.g favourite_movies and lucky_numbers, see my examples below (but feel free to be creative here!)
 
 
 3. Now combine the two vectors to create a new vector, e.g movies_and_numbers, see my example below.
@@ -375,8 +366,8 @@ typeof(movies_and_numbers)
 
 ```
 
+We can see below that our new vector is a character vector; as vectors are supposed to be of the same data type, R will automatically convert the data of the 2 vectors to be the same. 
 
-We can see below that our new vector is a character vector, as vectors are supposed to be of the same data type, R will automatically convert the data of the 2 vectors to be the same, 
 
 > **This is known as coercion.**
 
@@ -388,13 +379,13 @@ We can see below that our new vector is a character vector, as vectors are suppo
 ## Vectorised Language
 
 
-Vectors aren't just containers for homogeneous (the same type of) data. 
+Vectors aren't just containers for homogeneous data (data of the same type). 
 
 > **As R is a vectorised language, this means operations are applied to each element of the vector automatically, without the need to loop through the vector.** 
 
 Since all the objects we have seen so far (`numeric`, `logical` and `character`) have all been secretly vectors, that means all the operations we have performed so far have been vectorised operations! 
 
-The operations will scale to an larger sized vector, rather than the individual elements we have worked with thus far. 
+The operations will scale to a larger sized vector, rather than the individual elements we have worked with thus far. 
 
 Let's explore!
 
@@ -465,7 +456,6 @@ sequence_vector
 
 2. Can you figure out what has happened?
 
-
 ***
 
 <br>
@@ -502,9 +492,9 @@ vector_after_addition
 
 When we try to add vectors of different lengths R gives a warning message as the longer object length is not a multiple of the shorter object length.
 
-As we can see R has recycled the elements in the shorter vector.
+As we can see R has recycled the elements in the shorter vector, wrapped them around to reach the length of the longer one.
 
-When applying arithmetic to two vectors their lengths must be either equal, or the length of the longer one must be a multiple of the shorter one.
+When applying arithmetic to two vectors their lengths should either be equal, or the length of the longer one a multiple of the length of the shorter one.
 
 
 > **All of the operations we have seen above were performed in an element-wise manner. This means the operation was performed on each respective element from each vector. In R this is implemented with a lot of flexibility. We could perform operations with vectors of different sizes. Other languages may not have the same flexibility and will give you an error.**
@@ -546,7 +536,7 @@ We can also index (select) multiple elements:
 favourite_movies[2:4] 
 ```
 
-The `2:4` is sequence vector which we give as the indexes we want.
+The `2:4` is a sequence vector which we put into the square brackets as the indexes we want.
 
 Or even index using another vector:
 
@@ -649,7 +639,7 @@ days_of_the_week[c(2,4)]
 
 ## Definition
 
-Lists are similar data structure to vectors whereby, they are an ordered collection of elements. They differ to vectors because their elements can be of any type, including lists themselves!
+Lists are similar data structure to vectors in that they are an ordered collection of elements. They differ to vectors because their elements can be of any type, including lists themselves!
 
 So why do you need lists? A list in R is like a to-do list: the different items on that list most likely differ in length, characteristic, type of activity etc. It enables you to gather a variety of objects under one name in an ordered way.
 
@@ -666,9 +656,9 @@ Lists are really useful, flexible data structures. Their elements can be any obj
 
 ### Creating Lists
 
-Similar to vectors, to create a list we have to use a function which returns a list. In this case, the name of the function is more fitting than `c()` for vectors. 
+Similar to vectors, to create a list we have to use a function which returns a list. In this case, the name of the function is more fitting than **`c()`** for vectors. 
 
-To create a list we will use the `list()` function.
+To create a list we will use the **`list()`** function.
 
 Each of the contents will appear on a new line. Before each content will be its index number in double square brackets, as in [[1]], [[1]], 
 
@@ -684,12 +674,10 @@ shopping_list <- list(c("apples", "bananas", "strawberries"),
                       c(5,10,15), 
                       20.2)
 
-# To display the list
-
+# To Display the list
 shopping_list
-
-
 ```
+Lists are really useful, flexible data structures. Their elements can be any object we've seen so far and any object you might ever see - including functions!
 
 
 ***
@@ -719,7 +707,7 @@ The above now displays the name associated with each element on top of the eleme
 
 <br>
 
-We can also name our list using the `names()` function. The names() function allows us to get or set the name attribute of a data structure.
+We can also name our list using the **`names()`** function. This function allows us to get or set the name attribute of a data structure.
 
 ```{r}
 
@@ -736,7 +724,7 @@ shopping_list
 <br>
 
 
-As demonstrated above, lists can hold all kinds of data structures, including vectors and other lists, they can then have an interesting tree like structure which we can observe using the structure function, str() function.
+As demonstrated above, lists can hold all kinds of data structures, including vectors and other lists, they can then have an interesting tree like structure which we can observe using the structure function, **`str()`** function.
 
 
 The structure function will return the contents stored in the list, as well as stating the data type of each item, for example, character, numeric, vector, etc.
@@ -1019,7 +1007,7 @@ Below is an example of a what a data frame and tibble look like, I have used the
 <br>
 
 ## Data Frame {-}
-```{r} 
+```{r echo=FALSE, message=FALSE, warning=FALSE} 
 # To display the dataframe
 iris
 ```
