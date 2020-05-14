@@ -322,7 +322,7 @@ We can check our R version by running the command version.
 ```{r}
 # To check the version of R
 
-base::version
+version
 ```
 
 
@@ -662,11 +662,11 @@ Some great base R functions for exploring your directory are:
 ```{r, eval = FALSE}
 #Exploring the directory using file.choose() function
 
-base::file.choose()
+file.choose()
 
 #Exploring the directory using dir() function
 
-base::dir()
+dir()
 
 ```
 
@@ -752,7 +752,7 @@ To look at the data in R we use the `View` command as below.
 ```{r eval=FALSE}
 # Viewing the data using the View() function
 
-base::View(titanic)
+View(titanic)
 ```
 
 
@@ -816,7 +816,7 @@ titanic %>%
 ```{r}
 # Using the structure function to see the data types of the columns
 
-utils::str(titanic)
+str(titanic)
 ```
 
 
@@ -1092,33 +1092,33 @@ Have a play around with each command and see if you can figure out what they are
 ```{r eval=FALSE}
 # Inspecting our data
 
-utils::(titanic)
+str(titanic)
 
 dplyr::glimpse(titanic)
 
 dplyr::sample_n(titanic, size = 5)
 
-base::head(titanic) 
+head(titanic) 
 
-base::tail(titanic) 
+tail(titanic) 
 
-base::dim(titanic)
+dim(titanic)
 
-base::nrow(titanic)
+nrow(titanic)
 
-base::ncol(titanic)
+ncol(titanic)
 
-base::names(titanic)
+names(titanic)
 
-base::titanic[1,1] 
+titanic[1,1] 
 
-base::titanic[3:6,] 
+titanic[3:6,] 
 
 # Type the code below and press tab
 
 titanic$
   
-base::unique(titanic$Pclass)
+unique(titanic$Pclass)
 
 
 ```
@@ -1132,25 +1132,25 @@ base::unique(titanic$Pclass)
 
 library(dplyr)
 
-utils::str(titanic) # Structure of the table
+str(titanic) # Structure of the table
 
 dplyr::glimpse(titanic)  # Similar to str - from dplyr package
 
 dplyr::sample_n(titanic, size = 5) # select a random sample from out data of a given `size`
 
-base::View(titanic)  # Pops file into a Viewer.
+View(titanic)  # Pops file into a Viewer.
 
-base::head(titanic) # Top of the table
+head(titanic) # Top of the table
 
-base::tail(titanic) # Bottom of the table
+tail(titanic) # Bottom of the table
 
-base::dim(titanic) # Dimensions
+dim(titanic) # Dimensions
 
-base::nrow(titanic) # Number of rows
+nrow(titanic) # Number of rows
 
-base::ncol(titanic) # Number of columns
+ncol(titanic) # Number of columns
 
-base::names(titanic) # Names of columns
+names(titanic) # Names of columns
 
 # selecting elements
 
@@ -1160,7 +1160,7 @@ school[3:6,] # selecting row 3 to 6 and all columns
 
 titanic$age_of_passenger # selecting a column from the dataset
 
-base::unique(titanic$Pclass) #Tells us the unique elements of a variable.
+unique(titanic$Pclass) #Tells us the unique elements of a variable.
 
 
 ```

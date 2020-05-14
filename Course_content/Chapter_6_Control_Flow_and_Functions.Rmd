@@ -283,7 +283,7 @@ while (stop_value < 5) {
   
   print(stop_value)
   
-  result <- base::append(result, values = stop_value + 1)
+  result <- append(result, values = stop_value + 1)
 }
 
 # To display the data
@@ -311,7 +311,7 @@ example_vector <- 1:5
 
 # Using a sqrt() function on our vector
 
-base::sqrt(example_vector)
+sqrt(example_vector)
 ```
 
 <br>
@@ -369,7 +369,7 @@ while (condition) {
   
   conditions
   
-  result <- base::append(result, temperature)
+  result <- append(result, temperature)
   
 }
 
@@ -414,7 +414,7 @@ while (temperature > 20) {
   
   temperature <- temperature - 2
   
-  result <- base::append(result, temperature)
+  result <- append(result, temperature)
   
 }
 

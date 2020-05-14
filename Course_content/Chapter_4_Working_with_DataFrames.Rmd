@@ -169,7 +169,7 @@ We can see the column names by using the  `names()` function to access the `name
 ```{r}
 # Getting the column names using the names function
 
-base::names(titanic)
+names(titanic)
 ```
 
 As we can see our column names have spaces and some start with capital letters and some with small letters, we can clean the names using the either the `janitor package` or `gsub`.
@@ -199,7 +199,7 @@ titanic <- janitor::clean_names(titanic)
 
 # Getting the column names of the dataset
 
-base::names(titanic)
+names(titanic)
 ```
 
 
@@ -252,11 +252,11 @@ For example, the output of `gsub(" ", "_", "piece of text")` would be `piece_of_
 ```{r, eval = F}
 # We can apply different substitution to the names of our columns.
 
-base::names(titanic) <- base::gsub(" ", "_", names(titanic))
+names(titanic) <- gsub(" ", "_", names(titanic))
 
-base::names(titanic) <- base::gsub("," , "", names(titanic))
+names(titanic) <- gsub("," , "", names(titanic))
 
-base::names(titanic) <- base::gsub("-" , "_", names(titanic))
+names(titanic) <- gsub("-" , "_", names(titanic))
 ```
 
 
@@ -266,7 +266,7 @@ The `tolower()` function changes a string of characters to lower case.
 ```{r, eval = F}
 # We can lower case the names of the data frame.
 
-base::names(titanic) <- base::tolower(names(titanic)) 
+names(titanic) <- tolower(names(titanic)) 
 ```
 
 
@@ -289,7 +289,7 @@ We can also use it on full columns.
 # Using the tolower function 
 # This lower cases all records in the column we have chosen.
 
-titanic$name_of_passenger <- base::tolower(titanic$name_of_passenger) 
+titanic$name_of_passenger <- tolower(titanic$name_of_passenger) 
 
 
 ```
@@ -798,7 +798,7 @@ titanic_select_exercise <-  dplyr::select(.data = titanic,
 
 titanic_select_exercise
 
-base::names(titanic_select_exercise)
+names(titanic_select_exercise)
 ```
 
 
@@ -824,7 +824,7 @@ titanic_select_exercise <- dplyr::select(.data = titanic,
 
 titanic_select_exercise
 
-base::names(titanic_select_exercise)
+names(titanic_select_exercise)
 ```
 
 3. Can you select just the last column?
@@ -838,7 +838,7 @@ titanic_select_exercise <- dplyr::select(.data = titanic,
 #To display the data
 titanic_select_exercise
 
-base::names(titanic_select_exercise)
+names(titanic_select_exercise)
 
 ```
 
@@ -860,7 +860,7 @@ titanic_select_exercise <- dplyr::select(.data = titanic,
 
 titanic_select_exercise
 
-base::names(titanic_select_exercise)
+names(titanic_select_exercise)
 ```
 
 
@@ -892,7 +892,7 @@ titanic_select_exercise <- dplyr::select(.data = titanic,
 
 titanic_select_exercise
 
-base::names(titanic_select_exercise)
+names(titanic_select_exercise)
 ```
 
 ***
@@ -974,13 +974,13 @@ Note here am using the `$` to select the column pclass.
 # finding out how many uniques values 
 # are in the titanic dataset pclass column
 
-base::unique(titanic$pclass)
+unique(titanic$pclass)
 
 
 # finding out how many uniques values 
 # are in the secondclass dataset pclass column
 
-base::unique(secondclass$pclass)
+unique(secondclass$pclass)
 ```
 
 We can see that on the original dataset the titanic, we have three(1,2,3) different unique values in the pclass column and in our new filtered dataset we have one unique value (2).
@@ -1002,7 +1002,7 @@ fare_more_than_200
 # finding out how many uniques values 
 # are in the faremorethan200 dataset fare column
 
-base::unique(fare_more_than_200$fare)
+unique(fare_more_than_200$fare)
 
 ```
 
@@ -1061,7 +1061,7 @@ Then find out the number of rows using **`nrow()`**.
 ```{r, eval = F}
 # showing the number of rows in our new filtered dataset
 
-base::nrow(titanic_filter_exercise)
+nrow(titanic_filter_exercise)
 ```
 
 
@@ -1134,7 +1134,7 @@ titanic_filter_exercise
 
 # showing the number of rows in our new filtered dataset
 
-base::nrow(titanic_filter_exercise)
+nrow(titanic_filter_exercise)
 ```
 
 <br>
@@ -1154,7 +1154,7 @@ titanic_filter_exercise <- dplyr::filter(.data = titanic,
 titanic_filter_exercise
 
 # showing the number of rows in our new filtered dataset
-base::nrow(titanic_filter_exercise)
+nrow(titanic_filter_exercise)
 ```
 
 <br>
@@ -1173,7 +1173,7 @@ titanic_filter_exercise
 
 
 # showing the number of rows in our new filtered dataset
-base::nrow(titanic_filter_exercise)
+nrow(titanic_filter_exercise)
 
 # calculating the percentage, by dividing the total 
 # number of rows in new filtered dataset by the total 
@@ -1313,7 +1313,7 @@ titanic_filter_exercise <- dplyr::filter(data,
 # by the total number of rows in fulldataset 
 # then multiplied by 100
 
-base::nrow(titanic_filter_exercise) / nrow(titanic) * 100 
+nrow(titanic_filter_exercise) / nrow(titanic) * 100 
 ```
 
 2. How many passengers who do not have siblings or spouses ('sibsp'), or parents or children ('parch') on the boat?
@@ -1327,7 +1327,7 @@ We need to find the passengers who embarked in those two cities, and then the am
 
 ```{r, eval = FALSE}
 
-base::nrow(survived) / nrow(embarked_cherbourg_and_queenstown)
+nrow(survived) / nrow(embarked_cherbourg_and_queenstown)
 ```
 
 ***
@@ -1353,7 +1353,7 @@ titanic_filter_exercise
 # number of rows in new filtered dataset 
 # by the total number of rows in fulldataset then multiplied by 100
 
-base::nrow(titanic_filter_exercise) / nrow(titanic) * 100 
+nrow(titanic_filter_exercise) / nrow(titanic) * 100 
 ```
 
 
@@ -1369,7 +1369,7 @@ titanic_filter_exercise <- dplyr::filter(.data = titanic,
 
 # showing the number of rows in the filtered dataset
 
-base::nrow(titanic_filter_exercise)
+nrow(titanic_filter_exercise)
 ```
 
 <br>
@@ -1399,7 +1399,7 @@ survived <- dplyr::filter(embarked_cherbourg_and_queenstown,
 
 # showing the number of rows in the filtered dataset
 
-base::nrow(survived) / nrow(embarked_cherbourg_and_queenstown) * 100
+nrow(survived) / nrow(embarked_cherbourg_and_queenstown) * 100
 
 ```
 
@@ -1623,7 +1623,7 @@ titanic_mutate_exercise <- dplyr::mutate(.data = titanic,
                                          child = age_of_passenger < 18)
 # To display the column names
 
-base::names(titanic_mutate_exercise)
+names(titanic_mutate_exercise)
 ```
 We can delete the column using the code below.
 

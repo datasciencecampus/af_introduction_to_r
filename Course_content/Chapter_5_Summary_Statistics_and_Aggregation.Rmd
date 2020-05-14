@@ -169,7 +169,7 @@ If we didn't care about the `tibble` output we could simply compute using base R
 # Setting na.rm=TRUE to remove missing values
 # from calculation
 
-base::mean(titanic$fare, na.rm = TRUE)
+mean(titanic$fare, na.rm = TRUE)
 
 ```
 
@@ -310,7 +310,7 @@ dplyr::count(titanic, embarked, sort = TRUE)
 
 # max gives you the highest value
 
-oldest_passenger <- base::max(data)
+oldest_passenger <- max(data)
 
 ```
 
@@ -350,7 +350,7 @@ standard_fare <- dplyr::mutate(data,
 # Calculating the highest values in the 
 # age_of_passenger column
 
-oldest_passenger <- base::max(titanic$age_of_passenger, 
+oldest_passenger <- max(titanic$age_of_passenger, 
                               na.rm = TRUE)
 
 ```
