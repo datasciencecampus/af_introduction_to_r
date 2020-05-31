@@ -1597,8 +1597,15 @@ div.tocify {
 <hr />
 <p><br></p>
 </div>
+<div id="programming-basics" class="section level1">
+<h1><span class="header-section-number">2</span> Programming Basics</h1>
+<p>We use R because its great for data analysis, data visualization communicating results. However, R is not just a data analysis environment but a programming language. Advanced R programmers can develop complex packages and even improve R itself.</p>
+<p>In this chapter, we introduce three <strong>key programming concepts: conditional statements, loops, and functions</strong>. These are not just key building blocks for advanced programming, but are sometimes useful during data analysis.</p>
+<hr />
+<p><br></p>
+</div>
 <div id="loops" class="section level1">
-<h1><span class="header-section-number">2</span> Loops</h1>
+<h1><span class="header-section-number">3</span> Loops</h1>
 <p>Loops are a fundamental concept in traditional programming languages.</p>
 <p>A loop is a way to repeat a number commands until a given condition is met.</p>
 <p>Since R is a vectorised language, loops are not as prominently used in R as in Python for example. Despite this, they are a key part of programming in general and can save you a large amount of time and typing in certain cases.</p>
@@ -1612,7 +1619,7 @@ div.tocify {
 <hr />
 <p><br></p>
 <div id="for-loops" class="section level2">
-<h2><span class="header-section-number">2.1</span> For Loops</h2>
+<h2><span class="header-section-number">3.1</span> For Loops</h2>
 <p>These are the most common type.</p>
 <p>They follow the basic structure below.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Basic Structure of a loop</span></a>
@@ -1641,7 +1648,7 @@ div.tocify {
 <hr />
 <p><br></p>
 <div id="example" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> Example</h3>
+<h3><span class="header-section-number">3.1.1</span> Example</h3>
 <p>Let’s look at an example.</p>
 <p>We start by creating an iterable, I have created a vector with <strong>numbers between 0 and 5</strong>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># Creating a vector</span></a>
@@ -1684,7 +1691,7 @@ div.tocify {
 </div>
 </div>
 <div id="while-loops" class="section level2">
-<h2><span class="header-section-number">2.2</span> While loops</h2>
+<h2><span class="header-section-number">3.2</span> While loops</h2>
 <p>Our other type of loops is the <code>while</code> loop.</p>
 <p><code>for</code> loops iterate a set amount of times, or over a set number of things. A <code>while</code> loop iterates until it no longer meets a certain condition.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Create an empty output</span></a>
@@ -1694,7 +1701,7 @@ div.tocify {
 <a class="sourceLine" id="cb7-5" title="5"></a>
 <a class="sourceLine" id="cb7-6" title="6"><span class="co"># Creating the loop</span></a>
 <a class="sourceLine" id="cb7-7" title="7"></a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="cf">while</span> (logical condition) { </a>
+<a class="sourceLine" id="cb7-8" title="8"><span class="cf">while</span> ( condition ) { </a>
 <a class="sourceLine" id="cb7-9" title="9">  </a>
 <a class="sourceLine" id="cb7-10" title="10">  result &lt;-<span class="st"> </span>commands</a>
 <a class="sourceLine" id="cb7-11" title="11">  </a>
@@ -1713,7 +1720,7 @@ div.tocify {
 <hr />
 <p><br></p>
 <div id="example-1" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Example</h3>
+<h3><span class="header-section-number">3.2.1</span> Example</h3>
 <p>Let’s look at an example:</p>
 <ul>
 <li><p>Let us first set the <code>stop_value</code> to 0.</p></li>
@@ -1739,7 +1746,7 @@ div.tocify {
 <a class="sourceLine" id="cb8-16" title="16">  </a>
 <a class="sourceLine" id="cb8-17" title="17">  stop_value &lt;-<span class="st"> </span>stop_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span> </a>
 <a class="sourceLine" id="cb8-18" title="18">  </a>
-<a class="sourceLine" id="cb8-19" title="19">  result &lt;-<span class="st">  </span><span class="kw">append</span>(result, stop_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb8-19" title="19">  result &lt;-<span class="st">  </span><span class="kw">append</span>(result, stop_value)</a>
 <a class="sourceLine" id="cb8-20" title="20">}</a></code></pre></div>
 <pre><code>## [1] 0
 ## [1] 1
@@ -1749,7 +1756,7 @@ div.tocify {
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># To display the data</span></a>
 <a class="sourceLine" id="cb10-2" title="2"></a>
 <a class="sourceLine" id="cb10-3" title="3">result</a></code></pre></div>
-<pre><code>## [1] 2 3 4 5 6</code></pre>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
 <p><br></p>
 <p>Can you guess what would happen if we removed the <code>stop_value &lt;- stop_value + 1</code> ?</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># Create an empty output</span></a>
@@ -1796,7 +1803,7 @@ div.tocify {
 </div>
 </div>
 <div id="exercise-loops" class="section level2 tabset tabset-fade">
-<h2><span class="header-section-number">2.3</span> Exercise loops</h2>
+<h2><span class="header-section-number">3.3</span> Exercise loops</h2>
 <div id="exercise" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <ol style="list-style-type: decimal">
@@ -1898,7 +1905,7 @@ div.tocify {
 </div>
 </div>
 <div id="conditional-statements" class="section level1">
-<h1><span class="header-section-number">3</span> Conditional Statements</h1>
+<h1><span class="header-section-number">4</span> Conditional Statements</h1>
 <p>A conditional statement will check whether a condition is TRUE or FALSE.</p>
 <p>So, if our statement meets this criterion apply this action, otherwise do nothing.</p>
 <p>This is useful if we want a function to run only when our data meets certain conditions, this is termed <code>control flow</code>.</p>
@@ -1992,7 +1999,7 @@ div.tocify {
 </blockquote>
 <p><br></p>
 <div id="example-2" class="section level2">
-<h2><span class="header-section-number">3.1</span> Example</h2>
+<h2><span class="header-section-number">4.1</span> Example</h2>
 <p>We can just have an <code>if</code> and an <code>else</code>.</p>
 <p>Let’s look at an example.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">height &lt;-<span class="st"> </span><span class="dv">6</span></a>
@@ -2075,7 +2082,7 @@ div.tocify {
 <p><br></p>
 </div>
 <div id="loops-and-conditional-statements" class="section level2">
-<h2><span class="header-section-number">3.2</span> Loops and Conditional Statements</h2>
+<h2><span class="header-section-number">4.2</span> Loops and Conditional Statements</h2>
 <p>We can combine a <code>loop</code> with <code>if else</code> statements.</p>
 <ul>
 <li><p>We have a vector, with values from <code>1-7</code> and assign it to <code>number_of_takeaways_ordered</code>.</p></li>
@@ -2115,7 +2122,7 @@ div.tocify {
 <p><br></p>
 </div>
 <div id="exercise-1" class="section level2 tabset tabset-fade">
-<h2><span class="header-section-number">3.3</span> Exercise</h2>
+<h2><span class="header-section-number">4.3</span> Exercise</h2>
 <div id="exercise-2" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <ol style="list-style-type: decimal">
@@ -2235,7 +2242,7 @@ div.tocify {
 </div>
 </div>
 <div id="functions" class="section level1">
-<h1><span class="header-section-number">4</span> Functions</h1>
+<h1><span class="header-section-number">5</span> Functions</h1>
 <p>In programming, a named section of a program that performs a specific task is called a function.</p>
 <p>Less formally, a function is a bit of code which, when called, performs a task. They can take various inputs, called arguments, and return outputs.</p>
 <p>Base R includes numerous built-in functions and there are thousands more R functions in packages available on CRAN and elsewhere.</p>
@@ -2244,7 +2251,7 @@ div.tocify {
 <hr />
 <p><br></p>
 <div id="why-we-use-functions" class="section level2">
-<h2><span class="header-section-number">4.1</span> Why we use functions</h2>
+<h2><span class="header-section-number">5.1</span> Why we use functions</h2>
 <ul>
 <li><p>They make code shorter and easier to understand.</p></li>
 <li><p>They make it easier to update code, as we only need to change one place.</p></li>
@@ -2259,7 +2266,7 @@ div.tocify {
 <p><br></p>
 </div>
 <div id="types-of-functions" class="section level2">
-<h2><span class="header-section-number">4.2</span> Types of Functions</h2>
+<h2><span class="header-section-number">5.2</span> Types of Functions</h2>
 <p>In R we have two types of functions:</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>‘Predefined’ Functions</strong></p>
@@ -2271,7 +2278,7 @@ div.tocify {
 <p><br></p>
 </div>
 <div id="how-to-write-a-function" class="section level2">
-<h2><span class="header-section-number">4.3</span> How to write a function</h2>
+<h2><span class="header-section-number">5.3</span> How to write a function</h2>
 <p>Basic structure of a function looks like below,</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># Basic structure of a function</span></a>
 <a class="sourceLine" id="cb38-2" title="2"></a>
@@ -2297,7 +2304,7 @@ div.tocify {
 <p><br></p>
 </div>
 <div id="examples-of-basic-functions" class="section level2">
-<h2><span class="header-section-number">4.4</span> Examples of basic functions</h2>
+<h2><span class="header-section-number">5.4</span> Examples of basic functions</h2>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># Here is a simple function to add together two values and return the sum.</span></a>
 <a class="sourceLine" id="cb39-2" title="2"></a>
 <a class="sourceLine" id="cb39-3" title="3">function_sum_values &lt;-<span class="st"> </span><span class="cf">function</span>(value_<span class="dv">1</span>, value_<span class="dv">2</span>) { </a>
@@ -2309,7 +2316,7 @@ div.tocify {
 <a class="sourceLine" id="cb39-9" title="9">}</a></code></pre></div>
 <p>Our new function <strong><code>function_sum_values()</code></strong> will exist in our global environment which can be seen in the panel on the right hand side.</p>
 <div id="calling-functions" class="section level3">
-<h3><span class="header-section-number">4.4.1</span> Calling Functions</h3>
+<h3><span class="header-section-number">5.4.1</span> Calling Functions</h3>
 <p>Calling user defined functions works the same way as calling the built-in functions we’ve used so far. Simply, type the function name followed by parentheses containing any required parameters.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># I can now run my function</span></a>
 <a class="sourceLine" id="cb40-2" title="2"></a>
@@ -2327,7 +2334,7 @@ div.tocify {
 <hr />
 </div>
 <div id="functions-with-multiple-arguments" class="section level3">
-<h3><span class="header-section-number">4.4.2</span> Functions with Multiple Arguments</h3>
+<h3><span class="header-section-number">5.4.2</span> Functions with Multiple Arguments</h3>
 <p>Functions can accept as many arguments as you like, but can only output one object (if it is necessary to output more than one object, then the desired outputs can be combined together into a list, and the list can be returned). Above is a function that requires two input variables.</p>
 <p>When you call a function, you can specify the arguments by position or name. In this example, the function accepts arguments called <code>value_1</code> and <code>value_2</code>, with the order specified as x then y in the function definition.</p>
 <p>Therefore when <strong><code>function_sum_values(1, 2)</code></strong> is called, the arguments are interpreted as <code>value_1 = 1</code> and <code>value_2 = 2</code>.</p>
@@ -2335,7 +2342,7 @@ div.tocify {
 <hr />
 </div>
 <div id="named-arguments" class="section level3">
-<h3><span class="header-section-number">4.4.3</span> Named Arguments</h3>
+<h3><span class="header-section-number">5.4.3</span> Named Arguments</h3>
 <p>For more complicated functions with lots of arguments, specifying the arguments by position becomes more error-prone and harder to understand. Therefore it is often desirable to specify some or all of the arguments by name, so the order of the arguments becomes unimportant:</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="kw">function_sum_values</span>(<span class="dt">value_2 =</span> <span class="dv">2</span>, <span class="dt">value_1 =</span> <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] 3</code></pre>
@@ -2344,7 +2351,7 @@ div.tocify {
 </div>
 </div>
 <div id="exercise-3" class="section level2 tabset tabset-fade">
-<h2><span class="header-section-number">4.5</span> Exercise</h2>
+<h2><span class="header-section-number">5.5</span> Exercise</h2>
 <div id="exercise-4" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <ol style="list-style-type: decimal">
@@ -2352,11 +2359,11 @@ div.tocify {
 </ol>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="co"># Creating a vector</span></a>
 <a class="sourceLine" id="cb46-2" title="2"></a>
-<a class="sourceLine" id="cb46-3" title="3">age &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">23</span>, <span class="dv">30</span>, <span class="dv">50</span>)</a>
+<a class="sourceLine" id="cb46-3" title="3">age_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">23</span>, <span class="dv">30</span>, <span class="dv">50</span>)</a>
 <a class="sourceLine" id="cb46-4" title="4"></a>
 <a class="sourceLine" id="cb46-5" title="5"><span class="co"># Calling the range function on the vector</span></a>
 <a class="sourceLine" id="cb46-6" title="6"></a>
-<a class="sourceLine" id="cb46-7" title="7"><span class="kw">range</span>(age)</a></code></pre></div>
+<a class="sourceLine" id="cb46-7" title="7"><span class="kw">range</span>(age_vector)</a></code></pre></div>
 <pre><code>## [1] 10 50</code></pre>
 <hr />
 <p><br></p>
@@ -2395,9 +2402,9 @@ div.tocify {
 </ol>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="co"># Creating my function</span></a>
 <a class="sourceLine" id="cb49-2" title="2"></a>
-<a class="sourceLine" id="cb49-3" title="3">my_range =<span class="st"> </span><span class="cf">function</span>(age){</a>
+<a class="sourceLine" id="cb49-3" title="3">my_range &lt;-<span class="st">  </span><span class="cf">function</span>(age_vector){</a>
 <a class="sourceLine" id="cb49-4" title="4">  </a>
-<a class="sourceLine" id="cb49-5" title="5">  result &lt;-<span class="st"> </span><span class="kw">max</span>(age) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(age) </a>
+<a class="sourceLine" id="cb49-5" title="5">  result &lt;-<span class="st"> </span><span class="kw">max</span>(age_vector) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(age_vector) </a>
 <a class="sourceLine" id="cb49-6" title="6">  </a>
 <a class="sourceLine" id="cb49-7" title="7">  <span class="kw">return</span>(result)</a>
 <a class="sourceLine" id="cb49-8" title="8"></a>
@@ -2405,18 +2412,18 @@ div.tocify {
 <a class="sourceLine" id="cb49-10" title="10"></a>
 <a class="sourceLine" id="cb49-11" title="11"><span class="co"># Running the base R range function</span></a>
 <a class="sourceLine" id="cb49-12" title="12"></a>
-<a class="sourceLine" id="cb49-13" title="13"><span class="kw">range</span>(age)</a></code></pre></div>
+<a class="sourceLine" id="cb49-13" title="13"><span class="kw">range</span>(age_vector)</a></code></pre></div>
 <pre><code>## [1] 10 50</code></pre>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="co"># Running my custom range function</span></a>
 <a class="sourceLine" id="cb51-2" title="2"></a>
-<a class="sourceLine" id="cb51-3" title="3"><span class="kw">my_range</span>(age)</a></code></pre></div>
+<a class="sourceLine" id="cb51-3" title="3"><span class="kw">my_range</span>(age_vector)</a></code></pre></div>
 <pre><code>## [1] 40</code></pre>
 <hr />
 <p><br></p>
 </div>
 </div>
 <div id="example-3" class="section level2">
-<h2><span class="header-section-number">4.6</span> Example</h2>
+<h2><span class="header-section-number">5.6</span> Example</h2>
 <p><strong>Pythagoras Function Example</strong></p>
 <p>We are now going to write a function that uses Pythagoras’ theorem in order to calculate the hypotenuse (longest side) of a right angle triangle given the two other sides. The equation is given as <span class="math display">\[a^2 + b^2 = c^2\]</span> where <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> are the two known sides and <span class="math inline">\(c\)</span> is the longest side. In order to find the value of <span class="math inline">\(c\)</span> we can rearrange the formula to <span class="math display">\[c = \sqrt{a^2 + b^2}\]</span></p>
 <p>The function will input values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and then return the value of <span class="math inline">\(c\)</span> below.</p>
@@ -2448,7 +2455,7 @@ div.tocify {
 <p><br></p>
 </div>
 <div id="exercise-5" class="section level2 tabset tabset-fade">
-<h2><span class="header-section-number">4.7</span> Exercise</h2>
+<h2><span class="header-section-number">5.7</span> Exercise</h2>
 <div id="exercise-6" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <p>Write a function which:</p>
@@ -2520,9 +2527,9 @@ div.tocify {
 </div>
 </div>
 <div id="deeper-understanding" class="section level1">
-<h1><span class="header-section-number">5</span> Deeper Understanding</h1>
+<h1><span class="header-section-number">6</span> Deeper Understanding</h1>
 <div id="arguments" class="section level2">
-<h2><span class="header-section-number">5.1</span> Arguments</h2>
+<h2><span class="header-section-number">6.1</span> Arguments</h2>
 <p>In short, arguments are things you pass to a function, when you call it, to enable the function to perform it’s task.</p>
 <hr />
 <div id="types-of-arguments" class="section level3 unnumbered">
@@ -2592,7 +2599,7 @@ div.tocify {
 </div>
 </div>
 <div id="scope" class="section level2">
-<h2><span class="header-section-number">5.2</span> Scope</h2>
+<h2><span class="header-section-number">6.2</span> Scope</h2>
 <p>It’s important to notice here that the variables I create within my functions are not available outside of my function.</p>
 <p>In R storage is broken down into environments and then scopes. Most of the time you’ll be working in the global environment (right-hand panel).</p>
 <p>In the global environment, there are two types of scopes, <em>global</em> and <em>local</em>. Variables that have <em>global</em> scope are visible everywhere - in every function, loop, conditional, basically every part of the code. However, variables that have <em>local</em> scope are only visible inside said the scope and hence can only be used within that local scope.</p>
@@ -2615,7 +2622,7 @@ div.tocify {
 </div>
 </div>
 <div id="summary---control-flow-and-functions" class="section level1">
-<h1><span class="header-section-number">6</span> Summary - Control Flow and Functions</h1>
+<h1><span class="header-section-number">7</span> Summary - Control Flow and Functions</h1>
 <hr />
 <div id="reminder-of-learning-objectives" class="section level2 unnumbered">
 <h2>Reminder of Learning Objectives</h2>

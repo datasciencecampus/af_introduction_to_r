@@ -36,7 +36,7 @@ htmltools::img(src = knitr::image_uri("../Images/LATree.PNG"),
 
 * Describe numeric and categorical data
 
-* Aggregate and data
+* Aggregate data
 
 
 ***
@@ -129,7 +129,9 @@ dplyr::summarise(.data = titanic, mean(fare))
 
 Most functions in R, for best practice reasons, propagate `NA` values, requiring us to set the common parameter `na.rm` to `TRUE`. 
 
-This will omit any `NA` values in our calculation and produce a more meaningful result, albeit on a subset of observed data. The intention here is that R wants the analyst to know `NA` values are present in the data and deal with them directly. 
+This will omit any `NA` values in our calculation and produce a more meaningful result, albeit on a subset of observed data. The intention here is that R wants the analyst to know `NA` values are present in the data and deal with them directly.
+
+
 
 ```{r}
 # Calculating the mean of the column fare 
@@ -140,6 +142,8 @@ This will omit any `NA` values in our calculation and produce a more meaningful 
 dplyr::summarise(.data = titanic, mean(fare, na.rm = TRUE))
 
 ```
+
+`na.rm = TRUE` removes the missing values from the calculation of the mean, they still exist in the data. 
 
 <br>
 
@@ -275,8 +279,10 @@ dplyr::count(titanic, name_of_passenger, sort = TRUE)
 
 Compared to:
 ```{r}
-# Calculating a frequency table for the number
-# of passengers and sorting in descending order
+
+# Calculating the  frequency  table  for the number 
+# of passengers based on where they embarked
+# and sorting in descending order
 
 dplyr::count(titanic, embarked, sort = TRUE)
 
@@ -296,7 +302,6 @@ dplyr::count(titanic, embarked, sort = TRUE)
 
 3. Create a new column called 'std_fare' which is the 'fare' minus the mean fare, divided by the standard deviation.
 
-4. Calculate the number of children in second class.
 
 ***
 
@@ -353,6 +358,9 @@ standard_fare <- dplyr::mutate(data,
 oldest_passenger <- max(titanic$age_of_passenger, 
                               na.rm = TRUE)
 
+# To Display the data
+
+oldest_passenger
 ```
 
 2. How many men and women are in the dataset?
@@ -364,6 +372,9 @@ oldest_passenger <- max(titanic$age_of_passenger,
 number_of_men_and_women <- dplyr::count(titanic, 
                                         sex_of_passenger)
 
+# To Display the data
+
+number_of_men_and_women
 ```
 
 3. Create a new column called 'std_fare' which is the 'fare' minus the mean fare, divided by the standard deviation.
@@ -375,6 +386,10 @@ number_of_men_and_women <- dplyr::count(titanic,
 standard_fare <- dplyr::mutate(.data=titanic, 
                                std_fare = 
                                  (fare - mean(fare, na.rm = TRUE)) / sd(fare, na.rm = TRUE))
+
+# To Display the data
+
+standard_fare
 
 ```
 
@@ -498,7 +513,7 @@ Here I have added some extra summary statistics as well, i.e standard deviation 
 # Calculating the median fare
 # dropping missing values using drop_na from tidyr package
 # grouping by pclass and emabrked
-# summarising by shwoing the median fare and standard deviation
+# summarising by showing the median and standard deviation
 # and a frequency count
 
 median_fare <- titanic %>%
@@ -513,7 +528,7 @@ median_fare <- titanic %>%
             
             count = n())
 
-#To display the data
+# To display the data
 
 median_fare
 

@@ -81,7 +81,7 @@ R is a programming language that runs computations while R Studio is an integrat
 You do not have to use R Studio to access R, and many people don’t!
 Other IDEs that work with R include: - [Jupyter notebook](https://jupyter.org/) -  [VisualStudio](https://visualstudio.microsoft.com/services/visual-studio-online/) - [Intellij IDEA](https://plugins.jetbrains.com/plugin/6632-r-language-for-intellij)
 
-R Studio is broken down into four panels for our convenience.
+R Studio is broken down into four panels for our convenience, each panel will help you do things in your R session.
 
 
 When we open R Studio for the first time, we’re likely to see this:
@@ -352,9 +352,9 @@ To save the script:
 
 ### Environment/History
 
-The top right pane is the Environment pane, which is very useful as it shows you what objects (such as data frames, variables and functions) you have in your environment (workspace).
+The top right pane is the **Environment pane**, which is very useful as it shows you what objects (such as data frames, variables and functions) you have in your environment (workspace).
 
-Also in the Environment is the History tab, where you can see all of the code executed during the current session. 
+Also in the Environment is the **History tab**, which keeps a record of all previous commands.This can be useful to retrieve code which maybe you forgot to save, you can do this by clicking the `To Console` button which will move to the console or by clicking the `To Source` button which will move the code to your script.
 
 This shows the previous code you were working on, and any storage of objects you are using such as variables, data frames.
 
@@ -856,7 +856,7 @@ In R it is convention to use `<-` to assign variables and keep `=` reserved to p
 <br>
 
 
-## Removing Variables{-}
+## Removing Variables
 
 To remove a variable, we would utilise the `remove()` function of R. 
 
@@ -878,7 +878,7 @@ rm(height)
 
 <br>
 
-## Variable Names{-}
+## Variable Names
 
 * Are case sensitive and must start with a letter.  
 * Cannot use reserved words such as `TRUE` or `FALSE` which already mean something in R. 
@@ -945,23 +945,38 @@ time_value <- 30 * 2
 
 distance <- distance + 5
 
-#5. speed
 
-speed <- distance / time_value
 
 
 
 ```
 
 
+<br>
 
-3. Use the remove function to remove a variable.
 
 
+#### **Extension Exercise**{-}
+
+1. Using the distance and speed values from the exercise above, calculate the speed as below.
+
+```{r, eval=FALSE}
+
+#5. speed
+
+speed <- distance / time_value
+
+```
 
 <br>
 
+2. Use the remove function to remove a variable.
+
+
+
 ***
+
+<br>
 
 
 
@@ -1030,9 +1045,22 @@ distance <- distance + 5
 
 distance
 
+```
+
+
+<br>
+
+
+
+#### **Extension Exercise**{-}
+
+1. Using the distance and speed values from the exercise above, calculate the speed as below.
+
+```{r}
+
 #5. speed
 
-speed <- distance/time_value
+speed <- distance / time_value
 
 # To display the variable
 
@@ -1040,9 +1068,11 @@ speed
 
 ```
 
+
 <br>
 
-3. Use the remove function to remove a variable.
+
+2. Use the remove function to remove a variable.
 
 ```{r echo=TRUE, message=TRUE}
 
@@ -1056,7 +1086,9 @@ remove(speed)
 
 ```
 
+
 ***
+
 
 <br>
 

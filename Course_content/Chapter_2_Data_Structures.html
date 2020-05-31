@@ -2215,12 +2215,18 @@ div.tocify {
 <li><p>Find out the names of the list, using the <code>names()</code> function.</p></li>
 <li><p>Check the structure using the <code>str()</code> function.</p></li>
 <li><p>Select chocolate bars.</p></li>
-<li><p>Select your favourite chocolate from the options.</p></li>
 <li><p>Add an item called price.</p></li>
+</ol>
+<p><br></p>
+<div id="extension-exercise" class="section level5 unnumbered">
+<h5><strong>Extension Exercise</strong></h5>
+<ol style="list-style-type: decimal">
+<li><p>Select your favourite chocolate from the options.</p></li>
 <li><p>Add a new chocolate bar.</p></li>
 </ol>
 <hr />
 <p><br></p>
+</div>
 </div>
 <div id="show-answer-4" class="section level4 unnumbered">
 <h4><strong>Show Answer</strong></h4>
@@ -2260,29 +2266,16 @@ div.tocify {
 <a class="sourceLine" id="cb96-3" title="3">chocolate[<span class="dv">2</span>]</a></code></pre></div>
 <pre><code>## $chocolate_bar
 ## [1] &quot;mars&quot;      &quot;milky way&quot; &quot;bounty&quot;    &quot;twix&quot;</code></pre>
-<p><br></p>
 <ol start="5" style="list-style-type: decimal">
-<li>Select your favourite chocolate from the options.</li>
-</ol>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1"><span class="co"># Select my favourite chocolate bar</span></a>
-<a class="sourceLine" id="cb98-2" title="2"></a>
-<a class="sourceLine" id="cb98-3" title="3">chocolate<span class="op">$</span>chocolate_bar[<span class="dv">3</span>]</a></code></pre></div>
-<pre><code>## [1] &quot;bounty&quot;</code></pre>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1">chocolate[[<span class="st">&quot;chocolate_bar&quot;</span>]][<span class="dv">3</span>]</a></code></pre></div>
-<pre><code>## [1] &quot;bounty&quot;</code></pre>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1">chocolate[[<span class="dv">2</span>]][<span class="dv">3</span>]</a></code></pre></div>
-<pre><code>## [1] &quot;bounty&quot;</code></pre>
-<p><br></p>
-<ol start="6" style="list-style-type: decimal">
 <li>Add item called price.</li>
 </ol>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1"><span class="co"># Updating the list by adding price</span></a>
-<a class="sourceLine" id="cb104-2" title="2"></a>
-<a class="sourceLine" id="cb104-3" title="3">chocolate[[<span class="dv">4</span>]] &lt;-<span class="st"> </span>(<span class="st">&quot;price&quot;</span>)</a>
-<a class="sourceLine" id="cb104-4" title="4"></a>
-<a class="sourceLine" id="cb104-5" title="5"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb104-6" title="6"></a>
-<a class="sourceLine" id="cb104-7" title="7">chocolate</a></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1"><span class="co"># Updating the list by adding price</span></a>
+<a class="sourceLine" id="cb98-2" title="2"></a>
+<a class="sourceLine" id="cb98-3" title="3">chocolate[[<span class="dv">4</span>]] &lt;-<span class="st"> </span>(<span class="st">&quot;price&quot;</span>)</a>
+<a class="sourceLine" id="cb98-4" title="4"></a>
+<a class="sourceLine" id="cb98-5" title="5"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb98-6" title="6"></a>
+<a class="sourceLine" id="cb98-7" title="7">chocolate</a></code></pre></div>
 <pre><code>## $brand
 ## [1] &quot;celebrations&quot;
 ## 
@@ -2294,13 +2287,13 @@ div.tocify {
 ## 
 ## [[4]]
 ## [1] &quot;price&quot;</code></pre>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1"><span class="co"># Updating the list using the list using append</span></a>
-<a class="sourceLine" id="cb106-2" title="2"></a>
-<a class="sourceLine" id="cb106-3" title="3">chocolate &lt;-<span class="st"> </span><span class="kw">append</span>(chocolate, <span class="st">&quot;price&quot;</span>)</a>
-<a class="sourceLine" id="cb106-4" title="4"></a>
-<a class="sourceLine" id="cb106-5" title="5"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb106-6" title="6"></a>
-<a class="sourceLine" id="cb106-7" title="7">chocolate</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1"><span class="co"># Updating the list using the list using append</span></a>
+<a class="sourceLine" id="cb100-2" title="2"></a>
+<a class="sourceLine" id="cb100-3" title="3">chocolate &lt;-<span class="st"> </span><span class="kw">append</span>(chocolate, <span class="st">&quot;price&quot;</span>)</a>
+<a class="sourceLine" id="cb100-4" title="4"></a>
+<a class="sourceLine" id="cb100-5" title="5"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb100-6" title="6"></a>
+<a class="sourceLine" id="cb100-7" title="7">chocolate</a></code></pre></div>
 <pre><code>## $brand
 ## [1] &quot;celebrations&quot;
 ## 
@@ -2316,7 +2309,21 @@ div.tocify {
 ## [[5]]
 ## [1] &quot;price&quot;</code></pre>
 <p><br></p>
-<ol start="7" style="list-style-type: decimal">
+<div id="extension-exercise-1" class="section level5 unnumbered">
+<h5><strong>Extension Exercise</strong></h5>
+<ol style="list-style-type: decimal">
+<li>Select your favourite chocolate from the options.</li>
+</ol>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1"><span class="co"># Select my favourite chocolate bar</span></a>
+<a class="sourceLine" id="cb102-2" title="2"></a>
+<a class="sourceLine" id="cb102-3" title="3">chocolate<span class="op">$</span>chocolate_bar[<span class="dv">3</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;bounty&quot;</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1">chocolate[[<span class="st">&quot;chocolate_bar&quot;</span>]][<span class="dv">3</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;bounty&quot;</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1">chocolate[[<span class="dv">2</span>]][<span class="dv">3</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;bounty&quot;</code></pre>
+<p><br></p>
+<ol start="2" style="list-style-type: decimal">
 <li>Add a new chocolate bar.</li>
 </ol>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">chocolate<span class="op">$</span>chocolate_bar[<span class="dv">5</span>]&lt;-<span class="st"> &quot;turkish delight&quot;</span></a>
@@ -2341,7 +2348,7 @@ div.tocify {
 ## [1] &quot;price&quot;</code></pre>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1">chocolate[[<span class="st">&quot;chocolate_bar&quot;</span>]][<span class="dv">5</span>]&lt;-<span class="st"> &quot;turkish delight&quot;</span></a>
 <a class="sourceLine" id="cb110-2" title="2"></a>
-<a class="sourceLine" id="cb110-3" title="3"><span class="co"># To display the </span></a>
+<a class="sourceLine" id="cb110-3" title="3"><span class="co"># To display the  list</span></a>
 <a class="sourceLine" id="cb110-4" title="4"></a>
 <a class="sourceLine" id="cb110-5" title="5">chocolate</a></code></pre></div>
 <pre><code>## $brand
@@ -2383,6 +2390,7 @@ div.tocify {
 ## [1] &quot;price&quot;</code></pre>
 <hr />
 <p><br></p>
+</div>
 </div>
 </div>
 </div>

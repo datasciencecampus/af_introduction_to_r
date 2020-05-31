@@ -502,7 +502,7 @@ In R, functionals are functions which take a function is as an input and returns
 
 Where should you turn when you discover the next step in your data wrangling/cleaning process requires you to apply a function to each column in a data frame? For example, if you wanted to know the maximum value of each column in a data frame? 
 
-Well you could use summarize as discussed in chapter five -summary statistics, but this becomes inconvenient when you have many columns, as summarize requires you to type out a column name and a data tranformation for each summary statistic that you want to calculate.
+Well you could use summarize as discussed in chapter five -summary statistics, but this becomes inconvenient when you have many columns, as summarize requires you to type out a column name and a data transformation for each summary statistic that you want to calculate.
 
 In cases like this, where you want to apply the same data transformation to all columns, it is more efficient to use purrr’s map function to apply it to each column. 
 
@@ -629,9 +629,9 @@ map_df(mtcars, function(df) max(df, na.rm  = TRUE))
 
 You can see that’s quite a bit of extra typing.
 
-So the creators of purrr have made a shortcut for this because it is so commonly done.
+So the creators of purrr have made a short cut for this because it is so commonly done.
 
-* In the shortcut we replace function(VARIABLE) with a ~
+* In the short cut we replace function(VARIABLE) with a ~
 
 * and replace the VARIABLE in the function call with a .
 

@@ -1624,7 +1624,7 @@ div.tocify {
 <h2><span class="header-section-number">2.2</span> R Studio</h2>
 <p>R is a programming language that runs computations while R Studio is an integrated development environment (IDE) that provides an interface by adding many convenient features and tools.</p>
 <p>You do not have to use R Studio to access R, and many people don’t! Other IDEs that work with R include: - <a href="https://jupyter.org/">Jupyter notebook</a> - <a href="https://visualstudio.microsoft.com/services/visual-studio-online/">VisualStudio</a> - <a href="https://plugins.jetbrains.com/plugin/6632-r-language-for-intellij">Intellij IDEA</a></p>
-<p>R Studio is broken down into four panels for our convenience.</p>
+<p>R Studio is broken down into four panels for our convenience, each panel will help you do things in your R session.</p>
 <p>When we open R Studio for the first time, we’re likely to see this:</p>
 <p><br></p>
 <div class="figure">
@@ -1777,8 +1777,8 @@ div.tocify {
 </div>
 <div id="environmenthistory" class="section level3">
 <h3><span class="header-section-number">2.2.7</span> Environment/History</h3>
-<p>The top right pane is the Environment pane, which is very useful as it shows you what objects (such as data frames, variables and functions) you have in your environment (workspace).</p>
-<p>Also in the Environment is the History tab, where you can see all of the code executed during the current session.</p>
+<p>The top right pane is the <strong>Environment pane</strong>, which is very useful as it shows you what objects (such as data frames, variables and functions) you have in your environment (workspace).</p>
+<p>Also in the Environment is the <strong>History tab</strong>, which keeps a record of all previous commands.This can be useful to retrieve code which maybe you forgot to save, you can do this by clicking the <code>To Console</code> button which will move to the console or by clicking the <code>To Source</code> button which will move the code to your script.</p>
 <p>This shows the previous code you were working on, and any storage of objects you are using such as variables, data frames.</p>
 <p>We will look at these later on in the session.</p>
 <hr />
@@ -2158,8 +2158,8 @@ div.tocify {
 <p><code>-&gt;</code> is considered bad practice. This is because it makes it harder for others to see where a object has been assigned.</p>
 <hr />
 <p><br></p>
-<div id="removing-variables" class="section level2 unnumbered">
-<h2>Removing Variables</h2>
+<div id="removing-variables" class="section level2">
+<h2><span class="header-section-number">4.1</span> Removing Variables</h2>
 <p>To remove a variable, we would utilise the <code>remove()</code> function of R.</p>
 <p>For example: <code>remove(variable_name)</code></p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1"><span class="co"># Removing assigned variables using the remove function</span></a>
@@ -2174,8 +2174,8 @@ div.tocify {
 <hr />
 <p><br></p>
 </div>
-<div id="variable-names" class="section level2 unnumbered">
-<h2>Variable Names</h2>
+<div id="variable-names" class="section level2">
+<h2><span class="header-section-number">4.2</span> Variable Names</h2>
 <ul>
 <li>Are case sensitive and must start with a letter.<br />
 </li>
@@ -2195,7 +2195,7 @@ some.people.use.periods
 <p><br></p>
 </div>
 <div id="exercise-4" class="section level2 tabset tabset-fade">
-<h2><span class="header-section-number">4.1</span> Exercise</h2>
+<h2><span class="header-section-number">4.3</span> Exercise</h2>
 <div id="exercise-5" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <ol style="list-style-type: decimal">
@@ -2228,29 +2228,36 @@ some.people.use.periods
 <a class="sourceLine" id="cb87-14" title="14"></a>
 <a class="sourceLine" id="cb87-15" title="15"><span class="co">#4. distance</span></a>
 <a class="sourceLine" id="cb87-16" title="16"></a>
-<a class="sourceLine" id="cb87-17" title="17">distance &lt;-<span class="st"> </span>distance <span class="op">+</span><span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb87-18" title="18"></a>
-<a class="sourceLine" id="cb87-19" title="19"><span class="co">#5. speed</span></a>
-<a class="sourceLine" id="cb87-20" title="20"></a>
-<a class="sourceLine" id="cb87-21" title="21">speed &lt;-<span class="st"> </span>distance <span class="op">/</span><span class="st"> </span>time_value</a></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
+<a class="sourceLine" id="cb87-17" title="17">distance &lt;-<span class="st"> </span>distance <span class="op">+</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<p><br></p>
+<div id="extension-exercise" class="section level4 unnumbered">
+<h4><strong>Extension Exercise</strong></h4>
+<ol style="list-style-type: decimal">
+<li>Using the distance and speed values from the exercise above, calculate the speed as below.</li>
+</ol>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="co">#5. speed</span></a>
+<a class="sourceLine" id="cb88-2" title="2"></a>
+<a class="sourceLine" id="cb88-3" title="3">speed &lt;-<span class="st"> </span>distance <span class="op">/</span><span class="st"> </span>time_value</a></code></pre></div>
+<p><br></p>
+<ol start="2" style="list-style-type: decimal">
 <li>Use the remove function to remove a variable.</li>
 </ol>
-<p><br></p>
 <hr />
+<p><br></p>
+</div>
 </div>
 <div id="show-answer-2" class="section level3 unnumbered">
 <h3><strong>Show Answer</strong></h3>
 <ol style="list-style-type: decimal">
 <li>Why does this code not work?</li>
 </ol>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="co"># To assign a variable</span></a>
-<a class="sourceLine" id="cb88-2" title="2"></a>
-<a class="sourceLine" id="cb88-3" title="3">my_variable &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb88-4" title="4"></a>
-<a class="sourceLine" id="cb88-5" title="5"><span class="co"># To display the variable</span></a>
-<a class="sourceLine" id="cb88-6" title="6"></a>
-<a class="sourceLine" id="cb88-7" title="7">my_varIable</a></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="co"># To assign a variable</span></a>
+<a class="sourceLine" id="cb89-2" title="2"></a>
+<a class="sourceLine" id="cb89-3" title="3">my_variable &lt;-<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb89-4" title="4"></a>
+<a class="sourceLine" id="cb89-5" title="5"><span class="co"># To display the variable</span></a>
+<a class="sourceLine" id="cb89-6" title="6"></a>
+<a class="sourceLine" id="cb89-7" title="7">my_varIable</a></code></pre></div>
 <p>You would have got the error below;</p>
 <blockquote>
 <p>Error: object ‘my_varIable’ not found</p>
@@ -2261,61 +2268,68 @@ some.people.use.periods
 <ol start="2" style="list-style-type: decimal">
 <li>What is the value of each item at each step?</li>
 </ol>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="co"># To assign a variable</span></a>
-<a class="sourceLine" id="cb89-2" title="2"></a>
-<a class="sourceLine" id="cb89-3" title="3"><span class="co">#1. time_value?</span></a>
-<a class="sourceLine" id="cb89-4" title="4"></a>
-<a class="sourceLine" id="cb89-5" title="5">time_value &lt;-<span class="st"> </span><span class="dv">30</span></a>
-<a class="sourceLine" id="cb89-6" title="6"></a>
-<a class="sourceLine" id="cb89-7" title="7"><span class="co"># To display the variable</span></a>
-<a class="sourceLine" id="cb89-8" title="8"></a>
-<a class="sourceLine" id="cb89-9" title="9">time_value</a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1"><span class="co"># To assign a variable</span></a>
+<a class="sourceLine" id="cb90-2" title="2"></a>
+<a class="sourceLine" id="cb90-3" title="3"><span class="co">#1. time_value?</span></a>
+<a class="sourceLine" id="cb90-4" title="4"></a>
+<a class="sourceLine" id="cb90-5" title="5">time_value &lt;-<span class="st"> </span><span class="dv">30</span></a>
+<a class="sourceLine" id="cb90-6" title="6"></a>
+<a class="sourceLine" id="cb90-7" title="7"><span class="co"># To display the variable</span></a>
+<a class="sourceLine" id="cb90-8" title="8"></a>
+<a class="sourceLine" id="cb90-9" title="9">time_value</a></code></pre></div>
 <pre><code>## [1] 30</code></pre>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1"><span class="co"># 2. distance?</span></a>
-<a class="sourceLine" id="cb91-2" title="2"></a>
-<a class="sourceLine" id="cb91-3" title="3">distance &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb91-4" title="4"></a>
-<a class="sourceLine" id="cb91-5" title="5"><span class="co"># To display the variable</span></a>
-<a class="sourceLine" id="cb91-6" title="6"></a>
-<a class="sourceLine" id="cb91-7" title="7">distance</a></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1"><span class="co"># 2. distance?</span></a>
+<a class="sourceLine" id="cb92-2" title="2"></a>
+<a class="sourceLine" id="cb92-3" title="3">distance &lt;-<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb92-4" title="4"></a>
+<a class="sourceLine" id="cb92-5" title="5"><span class="co"># To display the variable</span></a>
+<a class="sourceLine" id="cb92-6" title="6"></a>
+<a class="sourceLine" id="cb92-7" title="7">distance</a></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1"><span class="co">#3. time_value?</span></a>
-<a class="sourceLine" id="cb93-2" title="2"></a>
-<a class="sourceLine" id="cb93-3" title="3">time_value &lt;-<span class="st"> </span><span class="dv">30</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb93-4" title="4"></a>
-<a class="sourceLine" id="cb93-5" title="5"><span class="co"># To display the variable</span></a>
-<a class="sourceLine" id="cb93-6" title="6"></a>
-<a class="sourceLine" id="cb93-7" title="7">time_value</a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="co">#3. time_value?</span></a>
+<a class="sourceLine" id="cb94-2" title="2"></a>
+<a class="sourceLine" id="cb94-3" title="3">time_value &lt;-<span class="st"> </span><span class="dv">30</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb94-4" title="4"></a>
+<a class="sourceLine" id="cb94-5" title="5"><span class="co"># To display the variable</span></a>
+<a class="sourceLine" id="cb94-6" title="6"></a>
+<a class="sourceLine" id="cb94-7" title="7">time_value</a></code></pre></div>
 <pre><code>## [1] 60</code></pre>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1"><span class="co">#4. distance</span></a>
-<a class="sourceLine" id="cb95-2" title="2"></a>
-<a class="sourceLine" id="cb95-3" title="3">distance &lt;-<span class="st"> </span>distance <span class="op">+</span><span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb95-4" title="4"></a>
-<a class="sourceLine" id="cb95-5" title="5"><span class="co"># To display the variable</span></a>
-<a class="sourceLine" id="cb95-6" title="6"></a>
-<a class="sourceLine" id="cb95-7" title="7">distance</a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1"><span class="co">#4. distance</span></a>
+<a class="sourceLine" id="cb96-2" title="2"></a>
+<a class="sourceLine" id="cb96-3" title="3">distance &lt;-<span class="st"> </span>distance <span class="op">+</span><span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb96-4" title="4"></a>
+<a class="sourceLine" id="cb96-5" title="5"><span class="co"># To display the variable</span></a>
+<a class="sourceLine" id="cb96-6" title="6"></a>
+<a class="sourceLine" id="cb96-7" title="7">distance</a></code></pre></div>
 <pre><code>## [1] 15</code></pre>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1"><span class="co">#5. speed</span></a>
-<a class="sourceLine" id="cb97-2" title="2"></a>
-<a class="sourceLine" id="cb97-3" title="3">speed &lt;-<span class="st"> </span>distance<span class="op">/</span>time_value</a>
-<a class="sourceLine" id="cb97-4" title="4"></a>
-<a class="sourceLine" id="cb97-5" title="5"><span class="co"># To display the variable</span></a>
-<a class="sourceLine" id="cb97-6" title="6"></a>
-<a class="sourceLine" id="cb97-7" title="7">speed</a></code></pre></div>
+<p><br></p>
+<div id="extension-exercise-1" class="section level4 unnumbered">
+<h4><strong>Extension Exercise</strong></h4>
+<ol style="list-style-type: decimal">
+<li>Using the distance and speed values from the exercise above, calculate the speed as below.</li>
+</ol>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1"><span class="co">#5. speed</span></a>
+<a class="sourceLine" id="cb98-2" title="2"></a>
+<a class="sourceLine" id="cb98-3" title="3">speed &lt;-<span class="st"> </span>distance <span class="op">/</span><span class="st"> </span>time_value</a>
+<a class="sourceLine" id="cb98-4" title="4"></a>
+<a class="sourceLine" id="cb98-5" title="5"><span class="co"># To display the variable</span></a>
+<a class="sourceLine" id="cb98-6" title="6"></a>
+<a class="sourceLine" id="cb98-7" title="7">speed</a></code></pre></div>
 <pre><code>## [1] 0.25</code></pre>
 <p><br></p>
-<ol start="3" style="list-style-type: decimal">
+<ol start="2" style="list-style-type: decimal">
 <li>Use the remove function to remove a variable.</li>
 </ol>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1"><span class="co"># To display the variable</span></a>
-<a class="sourceLine" id="cb99-2" title="2"></a>
-<a class="sourceLine" id="cb99-3" title="3">speed</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1"><span class="co"># To display the variable</span></a>
+<a class="sourceLine" id="cb100-2" title="2"></a>
+<a class="sourceLine" id="cb100-3" title="3">speed</a></code></pre></div>
 <pre><code>## [1] 0.25</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" title="1"><span class="co"># To remove a variable</span></a>
-<a class="sourceLine" id="cb101-2" title="2"></a>
-<a class="sourceLine" id="cb101-3" title="3"><span class="kw">remove</span>(speed)</a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1"><span class="co"># To remove a variable</span></a>
+<a class="sourceLine" id="cb102-2" title="2"></a>
+<a class="sourceLine" id="cb102-3" title="3"><span class="kw">remove</span>(speed)</a></code></pre></div>
 <hr />
 <p><br></p>
+</div>
 </div>
 </div>
 </div>
@@ -2342,13 +2356,13 @@ some.people.use.periods
 <p>You can do this by typing <code>?functionname</code> into your Console and pressing enter, where functionname is some R function you want to use. This means you have to know the name of the function you want to use in advance.</p>
 <p>Try and type the command below in the console,and you should see the Help panel on the bottom right side of your RStudio environment populate with documentation.</p>
 <p><strong>This might not be helpful at this point in time as its quite complicated, we use this throughout the course and get plenty of practise on how to get the best of the R documentation.</strong></p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1"><span class="co">#To access the R help documentation</span></a>
-<a class="sourceLine" id="cb102-2" title="2"></a>
-<a class="sourceLine" id="cb102-3" title="3">?mean </a>
-<a class="sourceLine" id="cb102-4" title="4"></a>
-<a class="sourceLine" id="cb102-5" title="5"><span class="co">#or </span></a>
-<a class="sourceLine" id="cb102-6" title="6"></a>
-<a class="sourceLine" id="cb102-7" title="7"><span class="kw">help</span>(mean)</a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1"><span class="co">#To access the R help documentation</span></a>
+<a class="sourceLine" id="cb103-2" title="2"></a>
+<a class="sourceLine" id="cb103-3" title="3">?mean </a>
+<a class="sourceLine" id="cb103-4" title="4"></a>
+<a class="sourceLine" id="cb103-5" title="5"><span class="co">#or </span></a>
+<a class="sourceLine" id="cb103-6" title="6"></a>
+<a class="sourceLine" id="cb103-7" title="7"><span class="kw">help</span>(mean)</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>

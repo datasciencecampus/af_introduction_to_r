@@ -844,11 +844,19 @@ chocolate <- list(brand = "celebrations",
 
 4. Select chocolate bars.
 
-5. Select your favourite chocolate from the options.
+5. Add an item called price.
 
-6. Add an item called price.
+<br>
 
-7. Add a new chocolate bar.
+
+
+##### **Extension Exercise**{-}
+
+
+1. Select your favourite chocolate from the options.
+
+
+2. Add a new chocolate bar.
 
 
 ***
@@ -903,24 +911,7 @@ chocolate[2]
 
 ```
 
-<br>
-
-5. Select your favourite chocolate from the options.
-```{r}
-# Select my favourite chocolate bar
-
-chocolate$chocolate_bar[3]
-
-chocolate[["chocolate_bar"]][3]
-
-
-chocolate[[2]][3]
-
-```
-
-<br>
-
-6. Add item called price.
+5. Add item called price.
 
 ```{r}
 # Updating the list by adding price
@@ -940,9 +931,30 @@ chocolate <- append(chocolate, "price")
 chocolate
 ```
 
+
+
 <br>
 
-7. Add a new chocolate bar.
+##### **Extension Exercise**{-}
+
+1. Select your favourite chocolate from the options.
+
+```{r}
+# Select my favourite chocolate bar
+
+chocolate$chocolate_bar[3]
+
+chocolate[["chocolate_bar"]][3]
+
+
+chocolate[[2]][3]
+
+```
+
+
+<br>
+
+2. Add a new chocolate bar.
 
 ```{r}
 
@@ -954,7 +966,7 @@ chocolate
 
 chocolate[["chocolate_bar"]][5]<- "turkish delight"
 
-# To display the 
+# To display the  list
 
 chocolate
 
