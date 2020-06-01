@@ -48,6 +48,16 @@ htmltools::img(src = knitr::image_uri("../Images/LATree.PNG"),
 
 <br>
 
+# Programming Basics
+
+We use R because its great for data analysis, data visualization communicating results. However, R is not just a data analysis environment but a programming language. Advanced R programmers can develop complex packages and even improve R itself.
+
+In this chapter, we introduce three **key programming concepts: conditional statements, loops, and functions**. These are not just key building blocks for advanced programming, but are sometimes useful during data analysis.
+
+***
+
+<br>
+
 # Loops
 
 Loops are a fundamental concept in traditional programming languages. 
@@ -193,7 +203,7 @@ result <- c()
 
 # Creating the loop
 
-while (logical condition) { 
+while ( condition ) { 
   
   result <- commands
   
@@ -254,7 +264,7 @@ while (stop_value < 5) {
   
   stop_value <- stop_value + 1 
   
-  result <-  append(result, stop_value + 1)
+  result <-  append(result, stop_value)
 }
 
 # To display the data
@@ -950,11 +960,11 @@ function_sum_values(value_2 = 2, value_1 = 1)
 ```{r}
 # Creating a vector
 
-age <- c(10, 23, 30, 50)
+age_vector <- c(10, 23, 30, 50)
 
 # Calling the range function on the vector
 
-range(age)
+range(age_vector)
 
 ```
  
@@ -1000,9 +1010,9 @@ my_range(input)
 ```{r}
 # Creating my function
 
-my_range = function(age){
+my_range <-  function(age_vector){
   
-  result <- max(age) - min(age) 
+  result <- max(age_vector) - min(age_vector) 
   
   return(result)
 
@@ -1010,11 +1020,11 @@ my_range = function(age){
 
 # Running the base R range function
 
-range(age)
+range(age_vector)
 
 # Running my custom range function
 
-my_range(age)
+my_range(age_vector)
 ```
 
 ***

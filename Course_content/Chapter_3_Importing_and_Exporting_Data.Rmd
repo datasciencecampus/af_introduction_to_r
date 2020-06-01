@@ -149,6 +149,7 @@ install.packages(“package_name”, dependencies = TRUE, type = “win.binary�
 
 ```
 
+When installing packages you can either get a message, warning or an error, generally a message will mean there is no problem, a warning is usually fine (generally) and an error is not fine, means that something is wrong.
 
 <br>
 
@@ -226,6 +227,7 @@ library(package_name)
 >**Note here there are no quotes around the package name.**
 
 
+
 <br>
 
 
@@ -234,9 +236,13 @@ library(package_name)
 #### **Exercise** {-}
 
 
-1. Now try to load the package below.
+1. Now try to load the packages below.
 
-* `tidyverse`
+* `readr`
+
+* `readxl`
+
+
 
 
 
@@ -249,15 +255,19 @@ library(package_name)
 
 1. Now try to load the package below.
 
-* `tidyverse`
+* `readr`
+
+* `readxl`
 
 
 
-```{r, eval = F}
+```{r}
 
 # loading packages
 
-library(tidyverse)
+library(readr)
+
+library(readxl)
 
 
 ```
@@ -313,6 +323,8 @@ You may have gotten a message that says,
 **package ‘readr’ was built under R version 3.4.4** 
 
 This means that we are using an older version of R than the one the package is built for.
+
+<br>
 
 
 ### **Check R Version** {-}
@@ -375,6 +387,64 @@ As you can imagine these both take very different parameters – so it is import
 
 library(dplyr)
 ```
+
+***
+
+<br>
+
+
+# Tidyverse
+
+So far we have seen a quick introduction to base R with vectors being the building blocks of everything else. 
+
+Now we will take a slight detour away from base R to the `tidyverse` which is a collection of various R packages.
+
+The packages in `tidyverse` share a common philosophy for data manipulation and exploration so they work well together. We will see the what the majority of the family of packages in `tidyverse` have to offer, but not all.
+
+***
+
+<br>
+
+
+## Advantages{-}
+
+`tidyverse` is:
+
+* Well documented. Each sub-library has its own website containing a 'cheat-sheet', as well as examples and a vignette which goes into further detail. We can access the useful information through several methods. The packages panel is links to the help panel if you click on the package name. The package summary below is hyper-linked to their respective website. 
+
+* Established in the R data science community, meaning common issues and queries are already answered on platforms such as Stack Overflow.
+
+* Designed such that all sub packages follow a core 'philosophy' which encourages best practices. 
+
+* Open-source software and free to use. As are the books written by the `tidyverse` creator Hadley Wickham. 
+
+<br>
+
+## Disadvantages{-}
+
+* Like R, `tidyverse` can have a steep learning curve, due to its flexibility. There are several ways to solve the same problem and it's not always clear which is best.
+
+
+***
+
+<br>
+
+
+## tidyverse Breakdown{-}
+
+Below is a list of the core packages in `tidyverse` to provide some awareness into what they make possible:
+
+* [`readr`](http://readr.tidyverse.org) - Data Import,
+* [`tibble`](https://tibble.tidyverse.org/) - `Tibbles`, a modern re-imagining of data frames,
+* [`tidyr`](https://tidyr.tidyverse.org/) - Data Tidying,
+* [`dplyr`](https://dplyr.tidyverse.org/) - General Data Manipulation,
+* [`stringr`](https://stringr.tidyverse.org/) - Strings Manipulation,
+* [`forcats`](https://forcats.tidyverse.org/) - Factors Manipulation,
+* [`ggplot2`](https://ggplot2.tidyverse.org/) - Data Visualisation,
+* [`purrr`](https://purrr.tidyverse.org/) - Functional Programming,
+
+
+Note: The majority of the 'heavy lifting', with respect to data manipulation and exploration, will be done through the functions available through the `tidyverse` libraries. On some occasions, we will be using functions from other libraries.
 
 ***
 
@@ -493,64 +563,7 @@ So above, first it is assumed that we want a sequence from = 1 that goes to = 10
 
 ***
 
-<br>
 
-
-# Tidyverse
-
-So far we have seen a quick introduction to base R with vectors being the building blocks of everything else. 
-
-Now we will take a slight detour away from base R to the `tidyverse` which is a collection of various R packages.
-
-The packages in `tidyverse` share a common philosophy for data manipulation and exploration so they work well together. We will see the what the majority of the family of packages in `tidyverse` have to offer, but not all.
-
-***
-
-<br>
-
-
-## Advantages{-}
-
-`tidyverse` is:
-
-* Well documented. Each sub-library has its own website containing a 'cheat-sheet', as well as examples and a vignette which goes into further detail. We can access the useful information through several methods. The packages panel is links to the help panel if you click on the package name. The package summary below is hyper-linked to their respective website. 
-
-* Established in the R data science community, meaning common issues and queries are already answered on platforms such as Stack Overflow.
-
-* Designed such that all sub packages follow a core 'philosophy' which encourages best practices. 
-
-* Open-source software and free to use. As are the books written by the `tidyverse` creator Hadley Wickham. 
-
-<br>
-
-## Disadvantages{-}
-
-* Like R, `tidyverse` can have a steep learning curve, due to its flexibility. There are several ways to solve the same problem and it's not always clear which is best.
-
-* `tidyverse` does one thing and it does it well. Therefore, it's utility ends when your data are ready to be modelled.
-
-***
-
-<br>
-
-
-## tidyverse Breakdown{-}
-
-Below is a list of the core packages in `tidyverse` to provide some awareness into what they make possible:
-
-* [`readr`](http://readr.tidyverse.org) - Data Import,
-* [`tibble`](https://tibble.tidyverse.org/) - `Tibbles`, a modern re-imagining of data frames,
-* [`tidyr`](https://tidyr.tidyverse.org/) - Data Tidying,
-* [`dplyr`](https://dplyr.tidyverse.org/) - General Data Manipulation,
-* [`stringr`](https://stringr.tidyverse.org/) - Strings Manipulation,
-* [`forcats`](https://forcats.tidyverse.org/) - Factors Manipulation,
-* [`ggplot2`](https://ggplot2.tidyverse.org/) - Data Visualisation,
-* [`purrr`](https://purrr.tidyverse.org/) - Functional Programming,
-
-
-Note: The majority of the 'heavy lifting', with respect to data manipulation and exploration, will be done through the functions available through the `tidyverse` libraries. On some occasions, we will be using functions from other libraries.
-
-***
 
 <br>
 
@@ -915,6 +928,20 @@ readxl::excel_sheets(file_path)
 police_data <- readxl::read_excel("../Data/police_data.xlsx")
 ```
 
+After reading in the file our data should look like this.
+
+<br>
+
+![](../Images/police_data_sheet_1.PNG)
+
+<br>
+
+This is the first sheet in our excel which is just the `Notes`.
+
+
+If we dont specify which sheet, the default setting from readxl is to give us the first sheet.
+
+<br>
 
 2. Use the `excel_sheets` function to see the names of the sheets in the police data.
 
@@ -938,18 +965,6 @@ readxl::excel_sheets("../Data/police_data.xlsx")
 
 ### **Exercise**{-}
 
-After reading in the file our data should look like this.
-
-<br>
-
-![](../Images/police_data_sheet_1.PNG)
-
-<br>
-
-This is the first sheet in our excel which is just the `Notes`.
-
-
-If we dont specify which sheet, the default setting from readxl is to give us the first sheet.
 
 
 1. Can you add an additional argument in the `read_excel` function to read in the second sheet (Table P1) from the police data.
@@ -1152,15 +1167,15 @@ ncol(titanic) # Number of columns
 
 names(titanic) # Names of columns
 
-# selecting elements
+# Selecting elements
 
-school[1,1] # selecting the first row and column
+school[1,1] # Selecting the first row and column
 
-school[3:6,] # selecting row 3 to 6 and all columns
+school[3:6,] # Selecting row 3 to 6 and all columns
 
-titanic$age_of_passenger # selecting a column from the dataset
+titanic$Fare # Selecting a column from the dataset
 
-unique(titanic$Pclass) #Tells us the unique elements of a variable.
+unique(titanic$Pclass) # Tells us the unique elements of a variable.
 
 
 ```

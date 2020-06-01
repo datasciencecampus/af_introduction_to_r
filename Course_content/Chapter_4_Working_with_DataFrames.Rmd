@@ -113,7 +113,25 @@ library(janitor)
 
 titanic <- readr::read_csv("../Data/titanic.csv", 
                            na = c("", " ", "NULL"))
+
+# To display the data
+titanic
 ```
+<br>
+
+We can see these these are columns,
+
+* **Pclass**: Passenger’s class
+* **Survived**: Survived (1) or died (0)
+* **Name**: Passenger’s name
+* **Sex**: Passenger’s sex
+* **Age**: Passenger’s age
+* **SibSp**: Number of siblings/spouses aboard
+* **Parch**: Number of parents/children aboard
+* **Ticket**: Ticket number
+* **Fare**: Fare
+* **Cabin**: Cabin
+* **Embarked**: Port of embarkation
 
 ***
 
@@ -274,22 +292,27 @@ We can also rename column names. The first argument is the data frame to be chan
 
 
 
-```{r, eval = F}
+```{r}
 # Renaming a column using the package dplyr
 # using the rename() function
 # here we are renaming age_of_passenger with age
 
-titanic <- dplyr::rename(titanic, age_of_passenger = age)
+titanic_renamed <- dplyr::rename(titanic, age = age_of_passenger)
+
+# To Display the Data
+
+titanic_renamed
+
 ```
 
 We can also use it on full columns.
  
-```{r, eval = F}
+```{r}
 # Selecting the name of passenger column using the $ symbol
 # Using the tolower function 
 # This lower cases all records in the column we have chosen.
 
-titanic$name_of_passenger <- tolower(titanic$name_of_passenger) 
+titanic_renamed$name_of_passenger <- tolower(titanic$name_of_passenger) 
 
 
 ```
@@ -995,9 +1018,6 @@ Another example, we can filter out the passengers who paid more than 200.
 fare_more_than_200 <-  dplyr::filter(.data = titanic, 
                                      fare > 200)
 
-#To display the data
-
-fare_more_than_200
 
 # finding out how many uniques values 
 # are in the faremorethan200 dataset fare column
@@ -1006,6 +1026,21 @@ unique(fare_more_than_200$fare)
 
 ```
 
+<br> 
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+
+# To display just part of the dataset
+
+library(kableExtra)
+
+library(dplyr)
+
+fare_more_than_200 %>%
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "500px")
+```
 
 <br>
 
@@ -1021,6 +1056,13 @@ unique(fare_more_than_200$fare)
 
 
 3. How many passengers are under 18 years of age?
+
+
+<br>
+
+
+
+##### **Extension Exercise**{-}
 
 
 4. What proportion of passenger in the dataset survived?
@@ -1070,6 +1112,12 @@ nrow(titanic_filter_exercise)
 First filter the data.
 
 Then find out the number of rows using **`nrow()`**.
+
+<br>
+
+
+
+##### **Extension Exercise**{-}
 
 
 4. What proportion of passenger in the dataset survived?
@@ -1158,6 +1206,10 @@ nrow(titanic_filter_exercise)
 ```
 
 <br>
+
+
+
+##### **Extension Exercise**{-}
 
 4. What proportion of passenger in the dataset survived?
 
@@ -1261,11 +1313,25 @@ titanic_filter_example %>%
 ```{r}
 # Select passengers who embarked 
 # in Southampton or Cherbourg.
+
+
+titanic_filter_example <- dplyr::filter(.data = titanic,
+                                        embarked == "C" | embarked == "S" )
+
+# If you are filtering more than one value
+# You can use the %in% which is
 # A more compact method of looking 
 # for a set of specific values.
 
 titanic_filter_example <- dplyr::filter(.data = titanic,
                                         embarked %in% c('S','C'))
+
+# Alternatively if is easier to  not  select  
+# an item, here we are not  selecting  "Q"
+# which leaves us with "S" and  "C"
+
+titanic_filter_example <- dplyr::filter(.data = titanic,
+                                          embarked != "Q")
 ```
 
 <br>
@@ -1285,9 +1351,15 @@ titanic_filter_example %>%
 
 #### **Exercise**{-}
 
-1. Select passengers who are in classes 2 and 3, what percentage of passengers is this?
+1. Select passengers who are in classes 2 or 3, what percentage of passengers is this?
 
-2. How many passengers do not have siblings or spouses ('sibsp'), or parents or children ('parch') on the boat?
+2. How many passengers do not have siblings or spouses ('sibsp'), and parents or children ('parch') on the boat?
+
+
+<br>
+
+
+##### **Extension Exercise**{-}
 
 3. What proportion of passengers who 'embarked' in Cherbourg ('C') or Queenstown ('Q') survived? 
 
@@ -1297,7 +1369,7 @@ titanic_filter_example %>%
 
 #### **Hint**{-}
 
-1. Select passengers who are in classes 2 and 3, what percentage of passengers is this?
+1. Select passengers who are in classes 2 or 3, what percentage of passengers is this?
 
 
 The & (Shift and 7) symbol indicates an AND relationship.
@@ -1316,9 +1388,14 @@ titanic_filter_exercise <- dplyr::filter(data,
 nrow(titanic_filter_exercise) / nrow(titanic) * 100 
 ```
 
-2. How many passengers who do not have siblings or spouses ('sibsp'), or parents or children ('parch') on the boat?
+2. How many passengers who do not have siblings or spouses ('sibsp'), and parents or children ('parch') on the boat?
 
-The & (Shift and 7) symbol indicates an AND relationship, and should be used to filter off the two columns listed - both values should be zero. 
+The & (Shift and 7) symbol indicates an AND relationship, and should be used to filter off the two columns listed - both values should be zero.
+
+<br>
+
+
+##### **Extension Exercise**{-}
 
 
 3. What proportion of passengers who 'embarked' in Cherbourg ('C') or Queenstown ('Q') survived? 
@@ -1336,7 +1413,7 @@ nrow(survived) / nrow(embarked_cherbourg_and_queenstown)
 
 #### **Show Answer**{-}
 
-1. Select passengers who are in classes 2 and 3, what percentage of passengers is this?
+1. Select passengers who are in classes 2 or 3, what percentage of passengers is this?
 
 ```{r}
 # filtering the dataset on multiple conditions
@@ -1359,7 +1436,7 @@ nrow(titanic_filter_exercise) / nrow(titanic) * 100
 
 <br>
 
-2. How many passengers who do not have siblings or spouses ('sibsp'), or parents or children ('parch') on the boat?
+2. How many passengers who do not have siblings or spouses ('sibsp'), and parents or children ('parch') on the boat?
 
 ```{r}
 # filtering the dataset on multiple conditions
@@ -1383,6 +1460,9 @@ titanic_filter_exercise %>%
 ```
 
 <br>
+
+
+##### **Extension Exercise**{-}
 
 3. What proportion of passengers who 'embarked' in Cherbourg ('C') or Queenstown ('Q') survived? 
 
@@ -1468,6 +1548,9 @@ We can capitalise the sex column.
 
 ```{r}
 # Capitalise sex column
+# Here we are over writting the  sex_of_passenger column
+# If you give your new column the same name  as  an existing column 
+# It will overwrite it.
 
 mutate_example <- dplyr::mutate(.data = titanic,
                                 sex_of_passenger = stringr::str_to_upper(sex_of_passenger))
@@ -1977,7 +2060,11 @@ join_left <- dplyr::left_join(joining_data_one,
 
 <br>
 
-3. Using `marvel_left` and `marvel_righ`t perform a "left" join.
+
+
+##### **Extension Exercise**{-}
+
+3. Using `marvel_left` and `marvel_right` perform a "left" join.
 
    * Join on *BOTH* the column containing `names` and the column containing `years`.
   
@@ -2029,6 +2116,10 @@ marvel_full_join <- dplyr::full_join(dataframe,
 ```
 
 <br>
+
+
+
+##### **Extension Exercise**{-}
 
 3. Using `marvel_left` and `marvel_right` perform a "left" join.
 
@@ -2107,7 +2198,11 @@ marvel_full_join
 
 <br>
 
-3. Using `marvel_left` and `marvel_righ`t perform a "left" join.
+
+
+##### **Extension Exercise**{-}
+
+3. Using `marvel_left` and `marvel_right` perform a "left" join.
 
    * Join on *BOTH* the column containing `names` and the column containing `years`.
   
