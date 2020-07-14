@@ -119,7 +119,7 @@ This course contains documents in the following formats:
 # Install R and R studio via the Service Desk:
 
 
-* I Want SomethingTop Requested Forms > Computer Software > Add / Transfer / Remove.
+* I Want Something > Top Requested Forms > Computer Software > Add / Transfer / Remove.
 
 <br>
 
@@ -146,7 +146,7 @@ This course contains documents in the following formats:
 
 <br>
 
-* You shoud now have `THE RSTUDIO BUNDLE` in the selected box.
+* You should now have `THE RSTUDIO BUNDLE` in the selected box.
 
 <br>
 
@@ -187,9 +187,11 @@ This course contains documents in the following formats:
 
 ### New Bundle{-}
 
-The [Wiki pages](https://collaborate2.ons.gov.uk/confluence/display/WIKIRS/1+-+RStudio+New+Bundle) (section 1.2) will help you to self install and run RStudio on your machine once your service desk request has been completed. 
+The [Wiki pages](https://collaborate2.ons.gov.uk/confluence/display/WIKIRS/1+-+RStudio+New+Bundle) (section 1.2) will help you to self install and run RStudio on your machine once your service desk request has been completed. You will need a confluence account to access this page, which can be requested on the service desk, but the instructions are replicated below: 
 
-Please email Enterprise.Group@ons.gov.uk if you cannot access this page, and with any issues you have with your RStudio install.
+Once your service desk call requesting the software has been closed, you should see RStudio in your Software Center - this can be found by pressing the search button on your task bar and typing Software Center, or by going to Microsoft System Center from the Start Menu. 
+
+The new RStudio bundle will appear in the list, and will say COIRAM/ONS underneath the name. Click on this, and press Install. A window will pop up informing you that the software is installing - do not close this window until the process is complete! It should take about 5 minutes. 
 
 ***
 <br>
@@ -290,7 +292,7 @@ Once running it should look something like:
 
 <br>
 
-If you dont see the **Code editor pane**, go to the tool bar and click **View -> Panes -> Show All Panes**.
+If you don't see the **Code editor pane**, go to the tool bar and click **View -> Panes -> Show All Panes**.
 
 ***
 
