@@ -180,6 +180,8 @@ Since R insists all elements in a vector have to be of the same type we then can
 
 There are more types of vectors, but for the purpose of our learning these  are sufficient.
 
+![\Image showing visual representation of a vector](../Images/vector.png)
+
 ***
 
 <br>
@@ -213,6 +215,8 @@ sample_vector
 
 ### Sequence function{-}
 
+A sequence of values from a value (from), to another value (to), by a step value (by) could be generated as a vector using the function seq().
+
 Here I am specifying the arguments, `from`, `to` and  `by` and with the values 2, 6 and 2.
 
 ```{r}
@@ -230,6 +234,8 @@ sequence_vector
 ```
 
 ### Colon{-}
+
+A range of values (i.e., consecutive values) could be generated as a vector using a colon (:) in R.
 
 ```{r}
 # Creating a vector using a colon
@@ -572,6 +578,25 @@ Above we have selected the 1st, 3rd and 4th elements from `favourite_movies` in 
 
 4. Select Tuesday and Thursday.
 
+
+#### **Extension Exercise**{-}
+
+1. What happens when you do this?
+
+```{r, eval=FALSE}
+
+
+
+days_of_the_week[3] <- "Wensday"
+
+
+
+days_of_the_week[c(-6,-7)]
+
+
+```
+
+
 ***
 
 <br>
@@ -627,6 +652,38 @@ days_of_the_week[c(2,4)]
 
 ```
 
+#### **Extension Exercise**{-}
+
+1. What happens when you do this?
+
+```{r}
+
+# Modify the third element of the vector
+
+days_of_the_week[3] <- "Wensday"
+
+# To display the vector to see the changes
+days_of_the_week
+
+
+# Deleting elements of a vector
+
+week_days <- days_of_the_week[c(-6,-7)]
+
+# To display the vector to see the changes
+
+week_days
+
+
+
+
+```
+
+
+
+
+
+
 
 ***
 
@@ -645,6 +702,8 @@ So why do you need lists? A list in R is like a to-do list: the different items 
 
 Lists are really useful, flexible data structures. Their elements can be any object we’ve seen so far and any object you might ever see! (This also includes functions).
 
+
+![\Image showing visual representation of a List](../Images/list.png)
 
 ***
 
@@ -995,6 +1054,9 @@ Data frames are like the tables we are used to from Excel and other programs.
 * Can hold variables of different types
 * Columns are variables 
 * Rows are observations
+
+
+![\Image showing visual representation of a Dataframe](../Images/dataframe.png)
 
 In the next session we are going to use special type of data frame called a **tibble**.
 

@@ -2285,6 +2285,9 @@ Another function useful function is  **`union()`** which will merge the data fro
 
 <br>
 
+
+
+
 # Summary - Working with Data frames{-}
 
 * You should now be able to import data into R

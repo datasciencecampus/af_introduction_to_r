@@ -747,7 +747,10 @@ Load the titanic data using the code below,
 
 You will need to change the file path to your location
 
-You will have noticed that we had some parsing information after reading the file in.
+You will have noticed that we had some parsing information after reading the file in,
+displayed at the end of the process (as a warning). This is to let us know the data type  for each column. 
+
+This is not an error and its useful to inspect the chosen datatypes. 
 
 ```{r}
 # Reading in CSV data using readr package and read_csv function
@@ -1211,6 +1214,16 @@ So far we have gone through
  * Exporting data
     
  * Exploring data
+
+
+***
+
+<br>
+
+# Practice Project - Exploring Data
+
+
+
 
 
 ***

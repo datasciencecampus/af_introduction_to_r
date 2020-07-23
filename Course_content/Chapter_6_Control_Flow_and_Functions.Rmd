@@ -58,12 +58,15 @@ In this chapter, we introduce three **key programming concepts: conditional stat
 
 <br>
 
+
 # Loops
 
 Loops are a fundamental concept in traditional programming languages. 
 
 
 A loop is a way to repeat a number commands until a given condition is met.
+
+This repetition of code is called iteration.
 
 
 Since R is a vectorised language, loops are not as prominently used in R as in Python for example. Despite this, they are a key part of programming in general and can save you a  large amount of time and typing in certain cases.
@@ -181,6 +184,21 @@ My command is assigned to `result`. The command here is to multiply each number 
 The **`append()`** function simply adds an element to a vector, we first specify the vector we want to add to which is `result` and then specify the values that we want to add to it, within the function this is set to the argument `values`.
 
 
+1. You are given a vector of measurements that are in terms of millimeters (mm). For this exercise, we actually want to convert all of these measurements in terms of meters (m). For reference, 1 meters is the same as 1000 millimeters.
+
+Using a for loop, create and append to a new vector called meter_measurements that contains the values converted to meters.
+
+```{r, eval=FALSE}
+
+millimeter_measurements <- c(10000, 54900, 94312, 49185, 2100)
+meter_measurements <- c()
+for (measurement in millimeter_measurements) {
+  meter <- measurement / 1000
+  meter_measurements <- c(meter_measurements, meter)
+}
+
+
+```
 
 
 ***
@@ -329,6 +347,7 @@ sqrt(example_vector)
 To make this calculation, there is no need for a loop. However, not all functions work this way. 
 
 
+While there are many functions out there that vectorize particular calculations, there are still some tasks that cannot be vectorized. This is where iteration becomes useful. While we should always be looking to vectorize calculations, we can take comfort knowing that we have a back up tool to use just in case it fails us.
 <br>
 
 ## Exercise loops{.tabset .tabset-fade}
@@ -446,6 +465,19 @@ So, if our statement meets this criterion apply this action, otherwise do nothin
 
 This is useful if we want a function to run only when our data meets certain conditions, this is termed `control flow`.
 
+Control flow is just a techical term for something we do in everyday life: decision making. Imagine going to a supermarket to get some fruit for yourself. As you walk into the fruit section, you find your favorite fruit: oranges. When picking fruit to buy, we normally want to buy the ones that look juicy and healthy and avoid the ones that look rotten or bruised. As we pick up our fruit and inspect it, we are actually using control flow.
+
+
+![Image showing Control Flow](../Images/control_flow_image.png)
+
+
+This concept of guiding decisions also appears in programming, where we may need to use different code for different situations.
+
+In order to move through this decision process, we need to answer either "Yes" or "No" to each question. A series of "Yes" answers will lead us to buy a given orange.
+
+This links in with logical or bolean data types that we covered in Chapter One, Getting Started With R. As our statement has to be either `TRUE` or `FALSE`. To evaluate these we use comparison operators which we used in Chapter Working With Dataframes where we used the `filter()` function.
+
+
 We use comparison and logical operators.
 
 <br>
@@ -476,6 +508,10 @@ We use comparison and logical operators.
 
 
 <br>
+
+So far, we've worked under the assumption that each of the decisions in our tree had only two branches: one corresponding to TRUE and another to FALSE. There are plenty occasions where we have more than two since some decisions don't boil down to a "Yes" vs "No".
+
+R provides a way to incorporate more than two branches in an if statement with the else if keyword. The else if keyword provides another code block to use in an if statement, and we can have as many as we see fit.
 
 
 You might want an action to be performed depending on the outcome, to be able to do this in R, we use the:
@@ -516,6 +552,8 @@ if (first logical condition) {
 ```
 
 >**It’s important that the `else if` keyword comes on the same line as the closing bracket of the previous part of the control structure.**
+
+![Image flow of if, elseif and else](../Images/control_flow_if_elseif_and_else.png)
 
 <br>
 
@@ -631,11 +669,143 @@ if (height == 5) {
 }
 ```
 
+***
 
 <br>
 
 
+
+We have seen how we can use the  if statement  to create branching paths in our code. A singular if statement is useful if we need to perform different code for a single condition, but it's not useful in cases where there are a lot of values that need comparison.
+
+dplyr has a function called `if_else()`
+
+The if_else() function is designed to be used with multiple values, like with a vector or a column in a tibble.
+
+```{r,eval=FALSE}
+
+schools2 <- schools %>% 
+  mutate(test_more = if_else(condition = `Local authority` == "Camden" , TRUE, FALSE )
+    )
+
+```
+
+Here we have created a new column and for each rw the `if_else()` function takes the local authority and checks if it equal to the character "Camden". 
+
+The if_else() function takes that single comparison operator condition = `Local authority` == "Camden" and vectorizes it.
+
+Looking at help documentation for the function, we can see that it need 3 functions.
+
+1. condition.
+A statement (e.g. comparison operator) that evaluates to TRUE or FALSE. Instead of passing it a single value, you need to give it a specific column in the data.
+
+2. true
+The value that the new column should take if the comparison operator is TRUE. In this case, we also want the column to be TRUE, but it can be any single value that we would want it to be.
+
+3. false
+The value that the new column should take if the comparison operator is FALSE. Like the second argument, it can be anything you specify.
+
+
+So far we have looked at else if to add more option to an if statement, We know about the if_else() function, but it works best with simpler conditions that evaluate to TRUE or FALSE.
+
+
 Their is also a **`case_when()`** function from `dplyr` which is great for dealing with multiple complex conditions.
+
+We could potentially nest if_else() functions in other functions, but this could make for hard-to-read code. Theree is a more elegant solution in the case_when() function.
+
+You can think of the case_when() function as a generalization of the if_else() function, which incorporates more branches.
+
+
+
+```{r, eval=FALSE}
+
+new_recent_grads <- recent_grads %>% 
+  mutate(
+    size_classification = case_when(
+      Total < 2000 ~ "Small",
+      Total > 20000 ~ "Large",
+      TRUE ~ "Medium
+    ) 
+  )
+
+```
+
+
+Within the case_when() function, we have a series of conditions and assignments. The first example is Total < 2000 ~ "Small. The condition Total < 2000 is separated from the assignment "Small" by the character ~ (prounounced tilde). You can think of each of these lines as shortened if branches. The last line, TRUE ~ "Medium, acts as a catch-all in case the Total amount does not fall into either of the conditions above. Another way of interpreting the TRUE ~ "Medium" line is that it is a safety net: if the Total satisfies neither the Total < 2000 or the Total > 20000 condition, then it will be "caught" by the TRUE ~ "Medium" line.
+
+
+
+Use the case_when() function to create a new column in the recent_grads dataset called unemployment_level. This new column should have 5 levels total:
+If Unemployment_rate is less than 20%, unemployment_level should be "<20%"
+Between 20% and less than 40%: "20% to 40%"
+Between 40% and less than 60%: "40% to 60%"
+Between 60% and less than 80%: "60% to 80%"
+Greater than or equal to 80%: ">=80%"
+Assign your tibble with the new column to the variable new_recent_grads.
+
+
+
+```{r,eval=FALSE}
+
+new_recent_grads <- recent_grads %>% 
+  mutate(
+    unemployment_level = case_when(
+      Unemployment_rate < 0.2 ~ "<20%",
+      Unemployment_rate >= 0.2 && Unemployment_rate < 0.4 ~ "20% to 40%",
+      Unemployment_rate >= 0.4 && Unemployment_rate < 0.6 ~ "40% to 60%",
+      Unemployment_rate >= 0.6 && Unemployment_rate < 0.8 ~ "60% to 80%",
+      Unemployment_rate >= 0.8 ~ ">=80%"
+    )
+  )
+
+```
+
+
+
+***
+
+<br>
+
+## Exercise{.tabset .tabset-fade}
+
+
+
+### **Exercise**{-}
+
+1. Create a new column school_size in the school dataset. If the  Total number of pupils` is greater than 1000, then school_size should take the value "Big School". If not, then school_size should take the value "Small School".
+
+***
+
+<br>
+
+
+### **Hint**{-}
+
+
+```{r, eval=FALSE}
+
+
+```
+
+
+
+
+***
+
+<br>
+
+### **Show Answer**{-}
+
+```{r, eval=FALSE}
+library(tidyverse)
+
+schools <- read_csv("Intro_to_R_Refresh/Data/schools_data.csv")
+
+
+schools2 <- schools %>% 
+  mutate(school_size = if_else(condition = `Total number of pupils` > 1000 , true = "Big School", false = "Small School" )
+    )
+```
+
 
 ***
 
@@ -831,6 +1001,28 @@ Up until now we've been writing code line by line and running it sequentially. A
 We can avoid messy code by organising it into chunks of reusable code called functions. This allows us to create blocks of code dedicated to performing a specific procedure or task. We can then 'call' this function to perform its specific task as and when needed. Understanding why and how to write functions is an important part of writing code that is consistent, readable and reproducible.
 
 In addition to this, we use functions to do everything in R - from making a vector to creating models and plots. Having more hands on experience with functions can give you a greater appreciation for how the functions, we heavily depend on, are implemented.
+
+
+We can take one complicated operation and wrap it up inside a function and use it wherever we need. For example, take the mean() function from base R that calculates the average value of a given vector — we could write out the average calculation by hand:
+
+```{r}
+
+numbers <- 1:19
+
+mean(numbers)
+
+
+
+mean_numbers <- sum(numbers) / length(numbers)
+
+mean_numbers
+
+
+
+
+```
+
+Nothing stops us from writing out sum(nums) / length(nums) every time we need to calculate an average and this can get tiring.
 
 ***
 

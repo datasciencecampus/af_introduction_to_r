@@ -1,0 +1,70 @@
+---
+title: "Intro to R"
+output:
+  html_document: 
+    theme: united
+    highlight: tango
+    toc: yes
+    toc_float: yes
+    number_sections: true
+
+---
+```{r, echo=FALSE, eval=FALSE}
+htmltools::img(src = knitr::image_uri("images/LATree.png"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:60px; width:400px;')
+```
+
+
+# Data Cleaning
+
+So far, you've worked with several datasets as you've learned to analyze and visualize data using R. These datasets have consisted of a single .csv file that you imported into R, saved as a data frame, and were able to begin working with right away. Those data were fairly "clean". In other words, the data were organized properly for the analyses you needed to perform, there were few if any missing values, and all the data you needed were in the file you imported.
+
+As you continue working with data, though, you'll find that much of the data you encounter will be messy, and lots of your time will be spent preparing it for analysis. These preparations, known as data cleaning, include:
+
+* Removing data you don't need for your analysis.
+* Removing duplicate data.
+* Dealing with missing data and outliers.
+* Creating new variables where necessary.
+* Combining separate datasets.
+
+We will go through some of steps you would follow to clean your data.
+
+When you're working with new data, it's important to familiarize yourself with any available descriptions of the datasets, referred to as metadata, and do a bit of research to make sure you're familiar with what the data represent.
+
+1. Which data do we need for our analysis? Often, you won't need all the data contained in datasets to answer your research questions, and it may make sense to create a new data frame containing only the necessary data. This will help you work more efficiently when you're working with large datasets.
+
+2. Do we need to create any new variables? Sometimes, your analysis will require a variable that is not currently defined in your data, averages, percentages etc
+
+3. Are the data of the correct type? Are any of the data that you need to use to calculate new variables, for example, formatted as character instead of numeric?
+
+4. Do we need to combine data frames? 
+
+5. Do the data need to be reshaped? When you learned to visualize data, you saw that different arrangements of variables in rows and columns were needed for different tasks.
+
+6. Are there missing data?  missing values (represented by NA). We will have to decide how to handle these missing values as we clean the data.
+
+## Exercise
+
+1. Change the data types of the following columns from character to numeric:
+
+2. Create a new variable,
+
+3. Save the modified data frame as sat_results to overwrite the original
+
+# Missing Data
+
+When a data point is missing, it means that no value is present for an observation of a variable. In R, missing values are represented by NA, which stands for "not available."
+
+we have looked at 2 ways two approaches to exclude missing values from your analysis:
+
+1 .Including the na.rm = TRUE argument when performing calculations on numeric data
+
+2. Using the drop_na() function to drop rows for which a specified variable has a value of NA
+using the drop_na() function. If you don't specify any variables, the function will automatically drop rows for which any variable in the dataframe contains an NA.
+
+how you choose to handle missing data can affect the results of your analysis, sometimes quite significantly.
+
+If a certain variable has an especially large number of missing values, dropping those rows could bias the analysis of a different variable.
+
+We could also impute the data which is replacing it with a substituted value, could a mean or a median value. We can do this using the function `replace_na()` from the tidy package.

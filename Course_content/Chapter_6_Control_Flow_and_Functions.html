@@ -1608,6 +1608,7 @@ div.tocify {
 <h1><span class="header-section-number">3</span> Loops</h1>
 <p>Loops are a fundamental concept in traditional programming languages.</p>
 <p>A loop is a way to repeat a number commands until a given condition is met.</p>
+<p>This repetition of code is called iteration.</p>
 <p>Since R is a vectorised language, loops are not as prominently used in R as in Python for example. Despite this, they are a key part of programming in general and can save you a large amount of time and typing in certain cases.</p>
 <p>They allow you to automate parts of your code that are in need of repetition.</p>
 <p>Similar to how functions help make our code more abstract and general, loops are similar. As we are essentially simplifying a specific case to a more general case.</p>
@@ -1686,6 +1687,16 @@ div.tocify {
 <p>The keyword <code>in</code> is followed by the iterable I want to loop over (here it is <code>example_vector</code>).</p>
 <p>My command is assigned to <code>result</code>. The command here is to multiply each number in <code>example_vector</code> by 2.</p>
 <p>The <strong><code>append()</code></strong> function simply adds an element to a vector, we first specify the vector we want to add to which is <code>result</code> and then specify the values that we want to add to it, within the function this is set to the argument <code>values</code>.</p>
+<ol style="list-style-type: decimal">
+<li>You are given a vector of measurements that are in terms of millimeters (mm). For this exercise, we actually want to convert all of these measurements in terms of meters (m). For reference, 1 meters is the same as 1000 millimeters.</li>
+</ol>
+<p>Using a for loop, create and append to a new vector called meter_measurements that contains the values converted to meters.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">millimeter_measurements &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10000</span>, <span class="dv">54900</span>, <span class="dv">94312</span>, <span class="dv">49185</span>, <span class="dv">2100</span>)</a>
+<a class="sourceLine" id="cb7-2" title="2">meter_measurements &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="cf">for</span> (measurement <span class="cf">in</span> millimeter_measurements) {</a>
+<a class="sourceLine" id="cb7-4" title="4">  meter &lt;-<span class="st"> </span>measurement <span class="op">/</span><span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb7-5" title="5">  meter_measurements &lt;-<span class="st"> </span><span class="kw">c</span>(meter_measurements, meter)</a>
+<a class="sourceLine" id="cb7-6" title="6">}</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
@@ -1694,22 +1705,22 @@ div.tocify {
 <h2><span class="header-section-number">3.2</span> While loops</h2>
 <p>Our other type of loops is the <code>while</code> loop.</p>
 <p><code>for</code> loops iterate a set amount of times, or over a set number of things. A <code>while</code> loop iterates until it no longer meets a certain condition.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Create an empty output</span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="co"># Which we will fill when the loop runs</span></a>
-<a class="sourceLine" id="cb7-3" title="3"></a>
-<a class="sourceLine" id="cb7-4" title="4">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb7-5" title="5"></a>
-<a class="sourceLine" id="cb7-6" title="6"><span class="co"># Creating the loop</span></a>
-<a class="sourceLine" id="cb7-7" title="7"></a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="cf">while</span> ( condition ) { </a>
-<a class="sourceLine" id="cb7-9" title="9">  </a>
-<a class="sourceLine" id="cb7-10" title="10">  result &lt;-<span class="st"> </span>commands</a>
-<a class="sourceLine" id="cb7-11" title="11">  </a>
-<a class="sourceLine" id="cb7-12" title="12">}</a>
-<a class="sourceLine" id="cb7-13" title="13"></a>
-<a class="sourceLine" id="cb7-14" title="14"><span class="co"># To display the data</span></a>
-<a class="sourceLine" id="cb7-15" title="15"></a>
-<a class="sourceLine" id="cb7-16" title="16">result</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># Create an empty output</span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="co"># Which we will fill when the loop runs</span></a>
+<a class="sourceLine" id="cb8-3" title="3"></a>
+<a class="sourceLine" id="cb8-4" title="4">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb8-5" title="5"></a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="co"># Creating the loop</span></a>
+<a class="sourceLine" id="cb8-7" title="7"></a>
+<a class="sourceLine" id="cb8-8" title="8"><span class="cf">while</span> ( condition ) { </a>
+<a class="sourceLine" id="cb8-9" title="9">  </a>
+<a class="sourceLine" id="cb8-10" title="10">  result &lt;-<span class="st"> </span>commands</a>
+<a class="sourceLine" id="cb8-11" title="11">  </a>
+<a class="sourceLine" id="cb8-12" title="12">}</a>
+<a class="sourceLine" id="cb8-13" title="13"></a>
+<a class="sourceLine" id="cb8-14" title="14"><span class="co"># To display the data</span></a>
+<a class="sourceLine" id="cb8-15" title="15"></a>
+<a class="sourceLine" id="cb8-16" title="16">result</a></code></pre></div>
 <p><br></p>
 <ul>
 <li><p>So we start with creating an empty vector for our output</p></li>
@@ -1728,59 +1739,59 @@ div.tocify {
 <li><p>then print out the value of <code>stop_value</code></p></li>
 <li><p>and then add one to the value.</p></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># Create an empty output</span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="co"># Which we will fill when the loop runs</span></a>
-<a class="sourceLine" id="cb8-3" title="3"></a>
-<a class="sourceLine" id="cb8-4" title="4">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb8-5" title="5"></a>
-<a class="sourceLine" id="cb8-6" title="6"><span class="co"># Setting the value</span></a>
-<a class="sourceLine" id="cb8-7" title="7"></a>
-<a class="sourceLine" id="cb8-8" title="8">stop_value &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb8-9" title="9"></a>
-<a class="sourceLine" id="cb8-10" title="10"><span class="co"># Creating the loop</span></a>
-<a class="sourceLine" id="cb8-11" title="11"><span class="co"># Our condition here is that stop_value &lt; 5</span></a>
-<a class="sourceLine" id="cb8-12" title="12"></a>
-<a class="sourceLine" id="cb8-13" title="13"><span class="cf">while</span> (stop_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) { </a>
-<a class="sourceLine" id="cb8-14" title="14">  </a>
-<a class="sourceLine" id="cb8-15" title="15">  <span class="kw">print</span>(stop_value)</a>
-<a class="sourceLine" id="cb8-16" title="16">  </a>
-<a class="sourceLine" id="cb8-17" title="17">  stop_value &lt;-<span class="st"> </span>stop_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span> </a>
-<a class="sourceLine" id="cb8-18" title="18">  </a>
-<a class="sourceLine" id="cb8-19" title="19">  result &lt;-<span class="st">  </span><span class="kw">append</span>(result, stop_value)</a>
-<a class="sourceLine" id="cb8-20" title="20">}</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Create an empty output</span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="co"># Which we will fill when the loop runs</span></a>
+<a class="sourceLine" id="cb9-3" title="3"></a>
+<a class="sourceLine" id="cb9-4" title="4">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb9-5" title="5"></a>
+<a class="sourceLine" id="cb9-6" title="6"><span class="co"># Setting the value</span></a>
+<a class="sourceLine" id="cb9-7" title="7"></a>
+<a class="sourceLine" id="cb9-8" title="8">stop_value &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb9-9" title="9"></a>
+<a class="sourceLine" id="cb9-10" title="10"><span class="co"># Creating the loop</span></a>
+<a class="sourceLine" id="cb9-11" title="11"><span class="co"># Our condition here is that stop_value &lt; 5</span></a>
+<a class="sourceLine" id="cb9-12" title="12"></a>
+<a class="sourceLine" id="cb9-13" title="13"><span class="cf">while</span> (stop_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) { </a>
+<a class="sourceLine" id="cb9-14" title="14">  </a>
+<a class="sourceLine" id="cb9-15" title="15">  <span class="kw">print</span>(stop_value)</a>
+<a class="sourceLine" id="cb9-16" title="16">  </a>
+<a class="sourceLine" id="cb9-17" title="17">  stop_value &lt;-<span class="st"> </span>stop_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span> </a>
+<a class="sourceLine" id="cb9-18" title="18">  </a>
+<a class="sourceLine" id="cb9-19" title="19">  result &lt;-<span class="st">  </span><span class="kw">append</span>(result, stop_value)</a>
+<a class="sourceLine" id="cb9-20" title="20">}</a></code></pre></div>
 <pre><code>## [1] 0
 ## [1] 1
 ## [1] 2
 ## [1] 3
 ## [1] 4</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="co"># To display the data</span></a>
-<a class="sourceLine" id="cb10-2" title="2"></a>
-<a class="sourceLine" id="cb10-3" title="3">result</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># To display the data</span></a>
+<a class="sourceLine" id="cb11-2" title="2"></a>
+<a class="sourceLine" id="cb11-3" title="3">result</a></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
 <p><br></p>
 <p>Can you guess what would happen if we removed the <code>stop_value &lt;- stop_value + 1</code> ?</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># Create an empty output</span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="co"># Which we will fill when the loop runs</span></a>
-<a class="sourceLine" id="cb12-3" title="3"></a>
-<a class="sourceLine" id="cb12-4" title="4">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb12-5" title="5"></a>
-<a class="sourceLine" id="cb12-6" title="6"><span class="co"># Setting the value</span></a>
-<a class="sourceLine" id="cb12-7" title="7"></a>
-<a class="sourceLine" id="cb12-8" title="8">stop_value &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb12-9" title="9"></a>
-<a class="sourceLine" id="cb12-10" title="10"><span class="co"># Creating the loop</span></a>
-<a class="sourceLine" id="cb12-11" title="11"><span class="co"># Our condition here is that 0&lt;5 i.e stop_value</span></a>
-<a class="sourceLine" id="cb12-12" title="12"></a>
-<a class="sourceLine" id="cb12-13" title="13"><span class="cf">while</span> (stop_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) { </a>
-<a class="sourceLine" id="cb12-14" title="14">  </a>
-<a class="sourceLine" id="cb12-15" title="15">  <span class="kw">print</span>(stop_value)</a>
-<a class="sourceLine" id="cb12-16" title="16">  </a>
-<a class="sourceLine" id="cb12-17" title="17">  result &lt;-<span class="st"> </span><span class="kw">append</span>(result, <span class="dt">values =</span> stop_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb12-18" title="18">}</a>
-<a class="sourceLine" id="cb12-19" title="19"></a>
-<a class="sourceLine" id="cb12-20" title="20"><span class="co"># To display the data</span></a>
-<a class="sourceLine" id="cb12-21" title="21"></a>
-<a class="sourceLine" id="cb12-22" title="22">result</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Create an empty output</span></a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="co"># Which we will fill when the loop runs</span></a>
+<a class="sourceLine" id="cb13-3" title="3"></a>
+<a class="sourceLine" id="cb13-4" title="4">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb13-5" title="5"></a>
+<a class="sourceLine" id="cb13-6" title="6"><span class="co"># Setting the value</span></a>
+<a class="sourceLine" id="cb13-7" title="7"></a>
+<a class="sourceLine" id="cb13-8" title="8">stop_value &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb13-9" title="9"></a>
+<a class="sourceLine" id="cb13-10" title="10"><span class="co"># Creating the loop</span></a>
+<a class="sourceLine" id="cb13-11" title="11"><span class="co"># Our condition here is that 0&lt;5 i.e stop_value</span></a>
+<a class="sourceLine" id="cb13-12" title="12"></a>
+<a class="sourceLine" id="cb13-13" title="13"><span class="cf">while</span> (stop_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) { </a>
+<a class="sourceLine" id="cb13-14" title="14">  </a>
+<a class="sourceLine" id="cb13-15" title="15">  <span class="kw">print</span>(stop_value)</a>
+<a class="sourceLine" id="cb13-16" title="16">  </a>
+<a class="sourceLine" id="cb13-17" title="17">  result &lt;-<span class="st"> </span><span class="kw">append</span>(result, <span class="dt">values =</span> stop_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb13-18" title="18">}</a>
+<a class="sourceLine" id="cb13-19" title="19"></a>
+<a class="sourceLine" id="cb13-20" title="20"><span class="co"># To display the data</span></a>
+<a class="sourceLine" id="cb13-21" title="21"></a>
+<a class="sourceLine" id="cb13-22" title="22">result</a></code></pre></div>
 <p>If we removed the code <code>stop_value &lt;- stop_value +1</code> , <code>stop_value</code> (<code>0</code>) would always be less than <code>5</code> and the loop would be stuck in an infinite loop, as R will never stop running the code!</p>
 <blockquote>
 <p><strong>You will have to hit the stop sign to exit the loop!</strong></p>
@@ -1789,17 +1800,17 @@ div.tocify {
 <p>Although it is useful to know how to use loops in R, it is often faster to accomplish the same thing using vectorised operations in R.</p>
 <p>We already saw examples in the Vector Arithmetic section. A vectorized function is a function that will apply the same operation on each of the vectors.</p>
 <p>For example,</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># Creating a vector</span></a>
-<a class="sourceLine" id="cb13-2" title="2"></a>
-<a class="sourceLine" id="cb13-3" title="3">example_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb13-4" title="4"></a>
-<a class="sourceLine" id="cb13-5" title="5"><span class="co"># Using a sqrt() function on our vector</span></a>
-<a class="sourceLine" id="cb13-6" title="6"></a>
-<a class="sourceLine" id="cb13-7" title="7"><span class="kw">sqrt</span>(example_vector)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># Creating a vector</span></a>
+<a class="sourceLine" id="cb14-2" title="2"></a>
+<a class="sourceLine" id="cb14-3" title="3">example_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb14-4" title="4"></a>
+<a class="sourceLine" id="cb14-5" title="5"><span class="co"># Using a sqrt() function on our vector</span></a>
+<a class="sourceLine" id="cb14-6" title="6"></a>
+<a class="sourceLine" id="cb14-7" title="7"><span class="kw">sqrt</span>(example_vector)</a></code></pre></div>
 <pre><code>## [1] 1.000000 1.414214 1.732051 2.000000 2.236068</code></pre>
 <p><br></p>
 <p>To make this calculation, there is no need for a loop. However, not all functions work this way.</p>
-<p><br></p>
+<p>While there are many functions out there that vectorize particular calculations, there are still some tasks that cannot be vectorized. This is where iteration becomes useful. While we should always be looking to vectorize calculations, we can take comfort knowing that we have a back up tool to use just in case it fails us. <br></p>
 </div>
 </div>
 <div id="exercise-loops" class="section level2 tabset tabset-fade">
@@ -1829,28 +1840,28 @@ div.tocify {
 <li><p>The first command in the body should print out <code>&quot;Its way too hot!&quot;</code></p></li>
 <li><p>The next command should decrease the <code>temperature</code> by <code>2</code> and assign this new value to <code>temperature</code> again.</p></li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co"># Create an empty output</span></a>
-<a class="sourceLine" id="cb15-2" title="2"><span class="co"># Which we will fill when the loop runs</span></a>
-<a class="sourceLine" id="cb15-3" title="3"></a>
-<a class="sourceLine" id="cb15-4" title="4">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb15-5" title="5"></a>
-<a class="sourceLine" id="cb15-6" title="6"><span class="co"># Setting the temperature value</span></a>
-<a class="sourceLine" id="cb15-7" title="7"></a>
-<a class="sourceLine" id="cb15-8" title="8">temperature &lt;-<span class="st"> </span><span class="dv">40</span></a>
-<a class="sourceLine" id="cb15-9" title="9"></a>
-<a class="sourceLine" id="cb15-10" title="10"><span class="co"># Code the while loop</span></a>
-<a class="sourceLine" id="cb15-11" title="11"></a>
-<a class="sourceLine" id="cb15-12" title="12"><span class="cf">while</span> (condition) {</a>
-<a class="sourceLine" id="cb15-13" title="13">  </a>
-<a class="sourceLine" id="cb15-14" title="14">  conditions</a>
-<a class="sourceLine" id="cb15-15" title="15">  </a>
-<a class="sourceLine" id="cb15-16" title="16">  result &lt;-<span class="st"> </span><span class="kw">append</span>(result, temperature)</a>
-<a class="sourceLine" id="cb15-17" title="17">  </a>
-<a class="sourceLine" id="cb15-18" title="18">}</a>
-<a class="sourceLine" id="cb15-19" title="19"></a>
-<a class="sourceLine" id="cb15-20" title="20"><span class="co"># To display the data</span></a>
-<a class="sourceLine" id="cb15-21" title="21"></a>
-<a class="sourceLine" id="cb15-22" title="22">result</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># Create an empty output</span></a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="co"># Which we will fill when the loop runs</span></a>
+<a class="sourceLine" id="cb16-3" title="3"></a>
+<a class="sourceLine" id="cb16-4" title="4">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb16-5" title="5"></a>
+<a class="sourceLine" id="cb16-6" title="6"><span class="co"># Setting the temperature value</span></a>
+<a class="sourceLine" id="cb16-7" title="7"></a>
+<a class="sourceLine" id="cb16-8" title="8">temperature &lt;-<span class="st"> </span><span class="dv">40</span></a>
+<a class="sourceLine" id="cb16-9" title="9"></a>
+<a class="sourceLine" id="cb16-10" title="10"><span class="co"># Code the while loop</span></a>
+<a class="sourceLine" id="cb16-11" title="11"></a>
+<a class="sourceLine" id="cb16-12" title="12"><span class="cf">while</span> (condition) {</a>
+<a class="sourceLine" id="cb16-13" title="13">  </a>
+<a class="sourceLine" id="cb16-14" title="14">  conditions</a>
+<a class="sourceLine" id="cb16-15" title="15">  </a>
+<a class="sourceLine" id="cb16-16" title="16">  result &lt;-<span class="st"> </span><span class="kw">append</span>(result, temperature)</a>
+<a class="sourceLine" id="cb16-17" title="17">  </a>
+<a class="sourceLine" id="cb16-18" title="18">}</a>
+<a class="sourceLine" id="cb16-19" title="19"></a>
+<a class="sourceLine" id="cb16-20" title="20"><span class="co"># To display the data</span></a>
+<a class="sourceLine" id="cb16-21" title="21"></a>
+<a class="sourceLine" id="cb16-22" title="22">result</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
@@ -1865,26 +1876,26 @@ div.tocify {
 <li><p>The first command in the body should print out <code>&quot;Its way too hot!&quot;</code></p></li>
 <li><p>The next command should decrease the <code>temperature</code> by <code>2</code> and assign this new value to <code>temperature</code> again.</p></li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="co"># Create an empty output</span></a>
-<a class="sourceLine" id="cb16-2" title="2"><span class="co"># Which we will fill when the loop runs</span></a>
-<a class="sourceLine" id="cb16-3" title="3"></a>
-<a class="sourceLine" id="cb16-4" title="4">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
-<a class="sourceLine" id="cb16-5" title="5"></a>
-<a class="sourceLine" id="cb16-6" title="6"><span class="co"># Setting the temperature value</span></a>
-<a class="sourceLine" id="cb16-7" title="7"></a>
-<a class="sourceLine" id="cb16-8" title="8">temperature &lt;-<span class="st"> </span><span class="dv">40</span></a>
-<a class="sourceLine" id="cb16-9" title="9"></a>
-<a class="sourceLine" id="cb16-10" title="10"><span class="co"># Code the while loop</span></a>
-<a class="sourceLine" id="cb16-11" title="11"></a>
-<a class="sourceLine" id="cb16-12" title="12"><span class="cf">while</span> (temperature <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>) {</a>
-<a class="sourceLine" id="cb16-13" title="13">  </a>
-<a class="sourceLine" id="cb16-14" title="14">  <span class="kw">print</span>(<span class="st">&quot;It way too hot!&quot;</span>)</a>
-<a class="sourceLine" id="cb16-15" title="15">  </a>
-<a class="sourceLine" id="cb16-16" title="16">  temperature &lt;-<span class="st"> </span>temperature <span class="op">-</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb16-17" title="17">  </a>
-<a class="sourceLine" id="cb16-18" title="18">  result &lt;-<span class="st"> </span><span class="kw">append</span>(result, temperature)</a>
-<a class="sourceLine" id="cb16-19" title="19">  </a>
-<a class="sourceLine" id="cb16-20" title="20">}</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="co"># Create an empty output</span></a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="co"># Which we will fill when the loop runs</span></a>
+<a class="sourceLine" id="cb17-3" title="3"></a>
+<a class="sourceLine" id="cb17-4" title="4">result &lt;-<span class="st"> </span><span class="kw">c</span>()</a>
+<a class="sourceLine" id="cb17-5" title="5"></a>
+<a class="sourceLine" id="cb17-6" title="6"><span class="co"># Setting the temperature value</span></a>
+<a class="sourceLine" id="cb17-7" title="7"></a>
+<a class="sourceLine" id="cb17-8" title="8">temperature &lt;-<span class="st"> </span><span class="dv">40</span></a>
+<a class="sourceLine" id="cb17-9" title="9"></a>
+<a class="sourceLine" id="cb17-10" title="10"><span class="co"># Code the while loop</span></a>
+<a class="sourceLine" id="cb17-11" title="11"></a>
+<a class="sourceLine" id="cb17-12" title="12"><span class="cf">while</span> (temperature <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>) {</a>
+<a class="sourceLine" id="cb17-13" title="13">  </a>
+<a class="sourceLine" id="cb17-14" title="14">  <span class="kw">print</span>(<span class="st">&quot;It way too hot!&quot;</span>)</a>
+<a class="sourceLine" id="cb17-15" title="15">  </a>
+<a class="sourceLine" id="cb17-16" title="16">  temperature &lt;-<span class="st"> </span>temperature <span class="op">-</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb17-17" title="17">  </a>
+<a class="sourceLine" id="cb17-18" title="18">  result &lt;-<span class="st"> </span><span class="kw">append</span>(result, temperature)</a>
+<a class="sourceLine" id="cb17-19" title="19">  </a>
+<a class="sourceLine" id="cb17-20" title="20">}</a></code></pre></div>
 <pre><code>## [1] &quot;It way too hot!&quot;
 ## [1] &quot;It way too hot!&quot;
 ## [1] &quot;It way too hot!&quot;
@@ -1895,9 +1906,9 @@ div.tocify {
 ## [1] &quot;It way too hot!&quot;
 ## [1] &quot;It way too hot!&quot;
 ## [1] &quot;It way too hot!&quot;</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># To display the data</span></a>
-<a class="sourceLine" id="cb18-2" title="2"></a>
-<a class="sourceLine" id="cb18-3" title="3">result</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co"># To display the data</span></a>
+<a class="sourceLine" id="cb19-2" title="2"></a>
+<a class="sourceLine" id="cb19-3" title="3">result</a></code></pre></div>
 <pre><code>##  [1] 38 36 34 32 30 28 26 24 22 20</code></pre>
 <hr />
 <p><br></p>
@@ -1909,6 +1920,14 @@ div.tocify {
 <p>A conditional statement will check whether a condition is TRUE or FALSE.</p>
 <p>So, if our statement meets this criterion apply this action, otherwise do nothing.</p>
 <p>This is useful if we want a function to run only when our data meets certain conditions, this is termed <code>control flow</code>.</p>
+<p>Control flow is just a techical term for something we do in everyday life: decision making. Imagine going to a supermarket to get some fruit for yourself. As you walk into the fruit section, you find your favorite fruit: oranges. When picking fruit to buy, we normally want to buy the ones that look juicy and healthy and avoid the ones that look rotten or bruised. As we pick up our fruit and inspect it, we are actually using control flow.</p>
+<div class="figure">
+<img src="data:image/png;base64,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" alt="Image showing Control Flow" />
+<p class="caption">Image showing Control Flow</p>
+</div>
+<p>This concept of guiding decisions also appears in programming, where we may need to use different code for different situations.</p>
+<p>In order to move through this decision process, we need to answer either “Yes” or “No” to each question. A series of “Yes” answers will lead us to buy a given orange.</p>
+<p>This links in with logical or bolean data types that we covered in Chapter One, Getting Started With R. As our statement has to be either <code>TRUE</code> or <code>FALSE</code>. To evaluate these we use comparison operators which we used in Chapter Working With Dataframes where we used the <code>filter()</code> function.</p>
 <p>We use comparison and logical operators.</p>
 <p><br></p>
 <p><strong>Comparison Operators.</strong></p>
@@ -1971,6 +1990,8 @@ div.tocify {
 </tbody>
 </table>
 <p><br></p>
+<p>So far, we’ve worked under the assumption that each of the decisions in our tree had only two branches: one corresponding to TRUE and another to FALSE. There are plenty occasions where we have more than two since some decisions don’t boil down to a “Yes” vs “No”.</p>
+<p>R provides a way to incorporate more than two branches in an if statement with the else if keyword. The else if keyword provides another code block to use in an if statement, and we can have as many as we see fit.</p>
 <p>You might want an action to be performed depending on the outcome, to be able to do this in R, we use the:</p>
 <ul>
 <li><p><code>if</code> statement</p></li>
@@ -1981,129 +2002,200 @@ div.tocify {
 <p>These take a conditional argument, and if that is met (evaluates to <code>TRUE</code>) then the associated action is completed.</p>
 <p>If the condition is not met it will move to an <code>else if</code> (if present) and if that condition is met the associated action will be completed.</p>
 <p>Finally, if none of the conditions is met the actions for the <code>else</code> condition is met.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="cf">if</span> (first logical condition) { </a>
-<a class="sourceLine" id="cb20-2" title="2">  </a>
-<a class="sourceLine" id="cb20-3" title="3">  Commands <span class="op">-</span><span class="st"> </span>executed <span class="cf">if</span> logical condition is true</a>
-<a class="sourceLine" id="cb20-4" title="4">  </a>
-<a class="sourceLine" id="cb20-5" title="5">} <span class="cf">else</span> <span class="cf">if</span> (second condition) { </a>
-<a class="sourceLine" id="cb20-6" title="6">  </a>
-<a class="sourceLine" id="cb20-7" title="7">  Commands <span class="op">-</span><span class="st"> </span>executed <span class="cf">if</span> the logical condition is false and second condtion is true</a>
-<a class="sourceLine" id="cb20-8" title="8">  </a>
-<a class="sourceLine" id="cb20-9" title="9">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb20-10" title="10">  </a>
-<a class="sourceLine" id="cb20-11" title="11">  Commands <span class="op">-</span><span class="st"> </span>executed when all conditions are false</a>
-<a class="sourceLine" id="cb20-12" title="12">  </a>
-<a class="sourceLine" id="cb20-13" title="13">}</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="cf">if</span> (first logical condition) { </a>
+<a class="sourceLine" id="cb21-2" title="2">  </a>
+<a class="sourceLine" id="cb21-3" title="3">  Commands <span class="op">-</span><span class="st"> </span>executed <span class="cf">if</span> logical condition is true</a>
+<a class="sourceLine" id="cb21-4" title="4">  </a>
+<a class="sourceLine" id="cb21-5" title="5">} <span class="cf">else</span> <span class="cf">if</span> (second condition) { </a>
+<a class="sourceLine" id="cb21-6" title="6">  </a>
+<a class="sourceLine" id="cb21-7" title="7">  Commands <span class="op">-</span><span class="st"> </span>executed <span class="cf">if</span> the logical condition is false and second condtion is true</a>
+<a class="sourceLine" id="cb21-8" title="8">  </a>
+<a class="sourceLine" id="cb21-9" title="9">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb21-10" title="10">  </a>
+<a class="sourceLine" id="cb21-11" title="11">  Commands <span class="op">-</span><span class="st"> </span>executed when all conditions are false</a>
+<a class="sourceLine" id="cb21-12" title="12">  </a>
+<a class="sourceLine" id="cb21-13" title="13">}</a></code></pre></div>
 <blockquote>
 <p><strong>It’s important that the <code>else if</code> keyword comes on the same line as the closing bracket of the previous part of the control structure.</strong></p>
 </blockquote>
+<div class="figure">
+<img src="data:image/png;base64,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" alt="Image flow of if, elseif and else" />
+<p class="caption">Image flow of if, elseif and else</p>
+</div>
 <p><br></p>
 <div id="example-2" class="section level2">
 <h2><span class="header-section-number">4.1</span> Example</h2>
 <p>We can just have an <code>if</code> and an <code>else</code>.</p>
 <p>Let’s look at an example.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">height &lt;-<span class="st"> </span><span class="dv">6</span></a>
-<a class="sourceLine" id="cb21-2" title="2"></a>
-<a class="sourceLine" id="cb21-3" title="3"><span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) { </a>
-<a class="sourceLine" id="cb21-4" title="4">  </a>
-<a class="sourceLine" id="cb21-5" title="5">  <span class="kw">print</span>(<span class="st">&quot;We&#39;re the same height&quot;</span>)</a>
-<a class="sourceLine" id="cb21-6" title="6">  </a>
-<a class="sourceLine" id="cb21-7" title="7">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb21-8" title="8">  </a>
-<a class="sourceLine" id="cb21-9" title="9">  <span class="kw">print</span>(<span class="st">&quot;Your height is different&quot;</span>)</a>
-<a class="sourceLine" id="cb21-10" title="10">  </a>
-<a class="sourceLine" id="cb21-11" title="11">}</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">height &lt;-<span class="st"> </span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb22-2" title="2"></a>
+<a class="sourceLine" id="cb22-3" title="3"><span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) { </a>
+<a class="sourceLine" id="cb22-4" title="4">  </a>
+<a class="sourceLine" id="cb22-5" title="5">  <span class="kw">print</span>(<span class="st">&quot;We&#39;re the same height&quot;</span>)</a>
+<a class="sourceLine" id="cb22-6" title="6">  </a>
+<a class="sourceLine" id="cb22-7" title="7">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb22-8" title="8">  </a>
+<a class="sourceLine" id="cb22-9" title="9">  <span class="kw">print</span>(<span class="st">&quot;Your height is different&quot;</span>)</a>
+<a class="sourceLine" id="cb22-10" title="10">  </a>
+<a class="sourceLine" id="cb22-11" title="11">}</a></code></pre></div>
 <pre><code>## [1] &quot;Your height is different&quot;</code></pre>
 <p><br></p>
 <p>Remember our <code>if</code>, <code>else if</code> and <code>else</code> statements take a condition so we need a double equals sign (<code>==</code>) for checking equivalence. If the first criteria isn’t met it will move to the else statement and action that.</p>
 <p>We can add in more choices using an <code>else if</code> statement.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">height &lt;-<span class="st"> </span><span class="dv">7</span></a>
-<a class="sourceLine" id="cb23-2" title="2"></a>
-<a class="sourceLine" id="cb23-3" title="3"><span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) { </a>
-<a class="sourceLine" id="cb23-4" title="4">  </a>
-<a class="sourceLine" id="cb23-5" title="5">  <span class="kw">print</span>(<span class="st">&quot;We&#39;re the same height&quot;</span>)</a>
-<a class="sourceLine" id="cb23-6" title="6">  </a>
-<a class="sourceLine" id="cb23-7" title="7">} <span class="cf">else</span> <span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">7</span>) { </a>
-<a class="sourceLine" id="cb23-8" title="8">  </a>
-<a class="sourceLine" id="cb23-9" title="9">  <span class="kw">print</span>(<span class="st">&quot;You&#39;re tall!&quot;</span>)</a>
-<a class="sourceLine" id="cb23-10" title="10"> </a>
-<a class="sourceLine" id="cb23-11" title="11">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb23-12" title="12">  </a>
-<a class="sourceLine" id="cb23-13" title="13">  <span class="kw">print</span>(<span class="st">&quot;Your height is different&quot;</span>)</a>
-<a class="sourceLine" id="cb23-14" title="14">  </a>
-<a class="sourceLine" id="cb23-15" title="15">}</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">height &lt;-<span class="st"> </span><span class="dv">7</span></a>
+<a class="sourceLine" id="cb24-2" title="2"></a>
+<a class="sourceLine" id="cb24-3" title="3"><span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) { </a>
+<a class="sourceLine" id="cb24-4" title="4">  </a>
+<a class="sourceLine" id="cb24-5" title="5">  <span class="kw">print</span>(<span class="st">&quot;We&#39;re the same height&quot;</span>)</a>
+<a class="sourceLine" id="cb24-6" title="6">  </a>
+<a class="sourceLine" id="cb24-7" title="7">} <span class="cf">else</span> <span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">7</span>) { </a>
+<a class="sourceLine" id="cb24-8" title="8">  </a>
+<a class="sourceLine" id="cb24-9" title="9">  <span class="kw">print</span>(<span class="st">&quot;You&#39;re tall!&quot;</span>)</a>
+<a class="sourceLine" id="cb24-10" title="10"> </a>
+<a class="sourceLine" id="cb24-11" title="11">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb24-12" title="12">  </a>
+<a class="sourceLine" id="cb24-13" title="13">  <span class="kw">print</span>(<span class="st">&quot;Your height is different&quot;</span>)</a>
+<a class="sourceLine" id="cb24-14" title="14">  </a>
+<a class="sourceLine" id="cb24-15" title="15">}</a></code></pre></div>
 <pre><code>## [1] &quot;You&#39;re tall!&quot;</code></pre>
 <p><br></p>
 <p>Within these we can use our logical operators too: <code>&amp;</code> (and); <code>|</code> (or).</p>
 <p>Here we want the action to happen if the value is greater than 7 and less than 10.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">height &lt;-<span class="st"> </span><span class="dv">9</span></a>
-<a class="sourceLine" id="cb25-2" title="2"></a>
-<a class="sourceLine" id="cb25-3" title="3"><span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) { </a>
-<a class="sourceLine" id="cb25-4" title="4">  </a>
-<a class="sourceLine" id="cb25-5" title="5">  <span class="kw">print</span>(<span class="st">&quot;We&#39;re the same height&quot;</span>)</a>
-<a class="sourceLine" id="cb25-6" title="6">  </a>
-<a class="sourceLine" id="cb25-7" title="7">} <span class="cf">else</span> <span class="cf">if</span> (height <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span> <span class="op">&amp;</span><span class="st"> </span>height <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>) { </a>
-<a class="sourceLine" id="cb25-8" title="8">  </a>
-<a class="sourceLine" id="cb25-9" title="9">  <span class="kw">print</span>(<span class="st">&quot;You&#39;re tall!&quot;</span>)</a>
-<a class="sourceLine" id="cb25-10" title="10">  </a>
-<a class="sourceLine" id="cb25-11" title="11">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb25-12" title="12">  </a>
-<a class="sourceLine" id="cb25-13" title="13">  <span class="kw">print</span>(<span class="st">&quot;Your height is different&quot;</span>)</a>
-<a class="sourceLine" id="cb25-14" title="14">  </a>
-<a class="sourceLine" id="cb25-15" title="15">}</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">height &lt;-<span class="st"> </span><span class="dv">9</span></a>
+<a class="sourceLine" id="cb26-2" title="2"></a>
+<a class="sourceLine" id="cb26-3" title="3"><span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) { </a>
+<a class="sourceLine" id="cb26-4" title="4">  </a>
+<a class="sourceLine" id="cb26-5" title="5">  <span class="kw">print</span>(<span class="st">&quot;We&#39;re the same height&quot;</span>)</a>
+<a class="sourceLine" id="cb26-6" title="6">  </a>
+<a class="sourceLine" id="cb26-7" title="7">} <span class="cf">else</span> <span class="cf">if</span> (height <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span> <span class="op">&amp;</span><span class="st"> </span>height <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>) { </a>
+<a class="sourceLine" id="cb26-8" title="8">  </a>
+<a class="sourceLine" id="cb26-9" title="9">  <span class="kw">print</span>(<span class="st">&quot;You&#39;re tall!&quot;</span>)</a>
+<a class="sourceLine" id="cb26-10" title="10">  </a>
+<a class="sourceLine" id="cb26-11" title="11">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb26-12" title="12">  </a>
+<a class="sourceLine" id="cb26-13" title="13">  <span class="kw">print</span>(<span class="st">&quot;Your height is different&quot;</span>)</a>
+<a class="sourceLine" id="cb26-14" title="14">  </a>
+<a class="sourceLine" id="cb26-15" title="15">}</a></code></pre></div>
 <pre><code>## [1] &quot;You&#39;re tall!&quot;</code></pre>
 <p><br></p>
 <p>It’s important to know how the <code>if</code>, <code>else if</code>, <code>else</code> works.</p>
 <p>Below we have two options for when the value is 5. However it will only print out “We’re the same height!” When the condition is met it performs the action associated with it and then stops.</p>
 <p>Try changing the value stored in <code>my_height</code> to see the other results.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">height &lt;-<span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb27-2" title="2"></a>
-<a class="sourceLine" id="cb27-3" title="3"><span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) { </a>
-<a class="sourceLine" id="cb27-4" title="4">  </a>
-<a class="sourceLine" id="cb27-5" title="5">  <span class="kw">print</span>(<span class="st">&quot;We&#39;re the same height&quot;</span>)</a>
-<a class="sourceLine" id="cb27-6" title="6">  </a>
-<a class="sourceLine" id="cb27-7" title="7">} <span class="cf">else</span> <span class="cf">if</span> (height <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span> <span class="op">&amp;</span><span class="st"> </span>height <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>) { </a>
-<a class="sourceLine" id="cb27-8" title="8">  </a>
-<a class="sourceLine" id="cb27-9" title="9">  <span class="kw">print</span>(<span class="st">&quot;You&#39;re tall!&quot;</span>)</a>
-<a class="sourceLine" id="cb27-10" title="10">  </a>
-<a class="sourceLine" id="cb27-11" title="11">} <span class="cf">else</span> <span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb27-12" title="12">  </a>
-<a class="sourceLine" id="cb27-13" title="13">  <span class="kw">print</span>(<span class="st">&quot;Wow, it&#39;s still 5!&quot;</span>)</a>
-<a class="sourceLine" id="cb27-14" title="14">  </a>
-<a class="sourceLine" id="cb27-15" title="15">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb27-16" title="16">  </a>
-<a class="sourceLine" id="cb27-17" title="17">  <span class="kw">print</span>(<span class="st">&quot;Your height is different&quot;</span>)</a>
-<a class="sourceLine" id="cb27-18" title="18">  </a>
-<a class="sourceLine" id="cb27-19" title="19">}</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">height &lt;-<span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb28-2" title="2"></a>
+<a class="sourceLine" id="cb28-3" title="3"><span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) { </a>
+<a class="sourceLine" id="cb28-4" title="4">  </a>
+<a class="sourceLine" id="cb28-5" title="5">  <span class="kw">print</span>(<span class="st">&quot;We&#39;re the same height&quot;</span>)</a>
+<a class="sourceLine" id="cb28-6" title="6">  </a>
+<a class="sourceLine" id="cb28-7" title="7">} <span class="cf">else</span> <span class="cf">if</span> (height <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span> <span class="op">&amp;</span><span class="st"> </span>height <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>) { </a>
+<a class="sourceLine" id="cb28-8" title="8">  </a>
+<a class="sourceLine" id="cb28-9" title="9">  <span class="kw">print</span>(<span class="st">&quot;You&#39;re tall!&quot;</span>)</a>
+<a class="sourceLine" id="cb28-10" title="10">  </a>
+<a class="sourceLine" id="cb28-11" title="11">} <span class="cf">else</span> <span class="cf">if</span> (height <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb28-12" title="12">  </a>
+<a class="sourceLine" id="cb28-13" title="13">  <span class="kw">print</span>(<span class="st">&quot;Wow, it&#39;s still 5!&quot;</span>)</a>
+<a class="sourceLine" id="cb28-14" title="14">  </a>
+<a class="sourceLine" id="cb28-15" title="15">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb28-16" title="16">  </a>
+<a class="sourceLine" id="cb28-17" title="17">  <span class="kw">print</span>(<span class="st">&quot;Your height is different&quot;</span>)</a>
+<a class="sourceLine" id="cb28-18" title="18">  </a>
+<a class="sourceLine" id="cb28-19" title="19">}</a></code></pre></div>
 <pre><code>## [1] &quot;We&#39;re the same height&quot;</code></pre>
+<hr />
 <p><br></p>
+<p>We have seen how we can use the if statement to create branching paths in our code. A singular if statement is useful if we need to perform different code for a single condition, but it’s not useful in cases where there are a lot of values that need comparison.</p>
+<p>dplyr has a function called <code>if_else()</code></p>
+<p>The if_else() function is designed to be used with multiple values, like with a vector or a column in a tibble.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">schools2 &lt;-<span class="st"> </span>schools <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">test_more =</span> <span class="kw">if_else</span>(<span class="dt">condition =</span> <span class="st">`</span><span class="dt">Local authority</span><span class="st">`</span> <span class="op">==</span><span class="st"> &quot;Camden&quot;</span> , <span class="ot">TRUE</span>, <span class="ot">FALSE</span> )</a>
+<a class="sourceLine" id="cb30-3" title="3">    )</a></code></pre></div>
+<p>Here we have created a new column and for each rw the <code>if_else()</code> function takes the local authority and checks if it equal to the character “Camden”.</p>
+<p>The if_else() function takes that single comparison operator condition = <code>Local authority</code> == “Camden” and vectorizes it.</p>
+<p>Looking at help documentation for the function, we can see that it need 3 functions.</p>
+<ol style="list-style-type: decimal">
+<li><p>condition. A statement (e.g. comparison operator) that evaluates to TRUE or FALSE. Instead of passing it a single value, you need to give it a specific column in the data.</p></li>
+<li><p>true The value that the new column should take if the comparison operator is TRUE. In this case, we also want the column to be TRUE, but it can be any single value that we would want it to be.</p></li>
+<li><p>false The value that the new column should take if the comparison operator is FALSE. Like the second argument, it can be anything you specify.</p></li>
+</ol>
+<p>So far we have looked at else if to add more option to an if statement, We know about the if_else() function, but it works best with simpler conditions that evaluate to TRUE or FALSE.</p>
 <p>Their is also a <strong><code>case_when()</code></strong> function from <code>dplyr</code> which is great for dealing with multiple complex conditions.</p>
+<p>We could potentially nest if_else() functions in other functions, but this could make for hard-to-read code. Theree is a more elegant solution in the case_when() function.</p>
+<p>You can think of the case_when() function as a generalization of the if_else() function, which incorporates more branches.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">new_recent_grads &lt;-<span class="st"> </span>recent_grads <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb31-3" title="3">    <span class="dt">size_classification =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb31-4" title="4">      Total <span class="op">&lt;</span><span class="st"> </span><span class="dv">2000</span> <span class="op">~</span><span class="st"> &quot;Small&quot;</span>,</a>
+<a class="sourceLine" id="cb31-5" title="5">      Total <span class="op">&gt;</span><span class="st"> </span><span class="dv">20000</span> <span class="op">~</span><span class="st"> &quot;Large&quot;</span>,</a>
+<a class="sourceLine" id="cb31-6" title="6">      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;Medium</span></a>
+<a class="sourceLine" id="cb31-7" title="7"><span class="st">    ) </span></a>
+<a class="sourceLine" id="cb31-8" title="8"><span class="st">  )</span></a></code></pre></div>
+<p>Within the case_when() function, we have a series of conditions and assignments. The first example is Total &lt; 2000 ~ “Small. The condition Total &lt; 2000 is separated from the assignment”Small&quot; by the character ~ (prounounced tilde). You can think of each of these lines as shortened if branches. The last line, TRUE ~ “Medium, acts as a catch-all in case the Total amount does not fall into either of the conditions above. Another way of interpreting the TRUE ~”Medium&quot; line is that it is a safety net: if the Total satisfies neither the Total &lt; 2000 or the Total &gt; 20000 condition, then it will be “caught” by the TRUE ~ “Medium” line.</p>
+<p>Use the case_when() function to create a new column in the recent_grads dataset called unemployment_level. This new column should have 5 levels total: If Unemployment_rate is less than 20%, unemployment_level should be “&lt;20%” Between 20% and less than 40%: “20% to 40%” Between 40% and less than 60%: “40% to 60%” Between 60% and less than 80%: “60% to 80%” Greater than or equal to 80%: “&gt;=80%” Assign your tibble with the new column to the variable new_recent_grads.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">new_recent_grads &lt;-<span class="st"> </span>recent_grads <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb32-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb32-3" title="3">    <span class="dt">unemployment_level =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb32-4" title="4">      Unemployment_rate <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.2</span> <span class="op">~</span><span class="st"> &quot;&lt;20%&quot;</span>,</a>
+<a class="sourceLine" id="cb32-5" title="5">      Unemployment_rate <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.2</span> <span class="op">&amp;&amp;</span><span class="st"> </span>Unemployment_rate <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.4</span> <span class="op">~</span><span class="st"> &quot;20% to 40%&quot;</span>,</a>
+<a class="sourceLine" id="cb32-6" title="6">      Unemployment_rate <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.4</span> <span class="op">&amp;&amp;</span><span class="st"> </span>Unemployment_rate <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.6</span> <span class="op">~</span><span class="st"> &quot;40% to 60%&quot;</span>,</a>
+<a class="sourceLine" id="cb32-7" title="7">      Unemployment_rate <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.6</span> <span class="op">&amp;&amp;</span><span class="st"> </span>Unemployment_rate <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.8</span> <span class="op">~</span><span class="st"> &quot;60% to 80%&quot;</span>,</a>
+<a class="sourceLine" id="cb32-8" title="8">      Unemployment_rate <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.8</span> <span class="op">~</span><span class="st"> &quot;&gt;=80%&quot;</span></a>
+<a class="sourceLine" id="cb32-9" title="9">    )</a>
+<a class="sourceLine" id="cb32-10" title="10">  )</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
+<div id="exercise-1" class="section level2 tabset tabset-fade">
+<h2><span class="header-section-number">4.2</span> Exercise</h2>
+<div id="exercise-2" class="section level3 unnumbered">
+<h3><strong>Exercise</strong></h3>
+<ol style="list-style-type: decimal">
+<li>Create a new column school_size in the school dataset. If the Total number of pupils` is greater than 1000, then school_size should take the value “Big School”. If not, then school_size should take the value “Small School”.</li>
+</ol>
+<hr />
+<p><br></p>
+</div>
+<div id="hint-1" class="section level3 unnumbered">
+<h3><strong>Hint</strong></h3>
+<hr />
+<p><br></p>
+</div>
+<div id="show-answer-1" class="section level3 unnumbered">
+<h3><strong>Show Answer</strong></h3>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb33-2" title="2"></a>
+<a class="sourceLine" id="cb33-3" title="3">schools &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Intro_to_R_Refresh/Data/schools_data.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb33-4" title="4"></a>
+<a class="sourceLine" id="cb33-5" title="5"></a>
+<a class="sourceLine" id="cb33-6" title="6">schools2 &lt;-<span class="st"> </span>schools <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb33-7" title="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">school_size =</span> <span class="kw">if_else</span>(<span class="dt">condition =</span> <span class="st">`</span><span class="dt">Total number of pupils</span><span class="st">`</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span> , <span class="dt">true =</span> <span class="st">&quot;Big School&quot;</span>, <span class="dt">false =</span> <span class="st">&quot;Small School&quot;</span> )</a>
+<a class="sourceLine" id="cb33-8" title="8">    )</a></code></pre></div>
+<hr />
+<p><br></p>
+</div>
+</div>
 <div id="loops-and-conditional-statements" class="section level2">
-<h2><span class="header-section-number">4.2</span> Loops and Conditional Statements</h2>
+<h2><span class="header-section-number">4.3</span> Loops and Conditional Statements</h2>
 <p>We can combine a <code>loop</code> with <code>if else</code> statements.</p>
 <ul>
 <li><p>We have a vector, with values from <code>1-7</code> and assign it to <code>number_of_takeaways_ordered</code>.</p></li>
 <li><p>And a <code>for</code> loop with an <code>if</code> and <code>else</code> statement shows that if you order more than <code>2</code> takeaways a week it will print <code>&quot;too many&quot;</code> and if you order less than two it prints <code>&quot;enough&quot;</code>.</p></li>
 </ul>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">number_of_takeaways_ordered &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>)</a>
-<a class="sourceLine" id="cb29-2" title="2"></a>
-<a class="sourceLine" id="cb29-3" title="3"><span class="cf">for</span> (number <span class="cf">in</span> number_of_takeaways_ordered) { </a>
-<a class="sourceLine" id="cb29-4" title="4">  </a>
-<a class="sourceLine" id="cb29-5" title="5">  <span class="kw">print</span>(number)</a>
-<a class="sourceLine" id="cb29-6" title="6">  </a>
-<a class="sourceLine" id="cb29-7" title="7">  <span class="cf">if</span> (number <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>) { </a>
-<a class="sourceLine" id="cb29-8" title="8">    </a>
-<a class="sourceLine" id="cb29-9" title="9">    <span class="kw">print</span>(<span class="st">&quot;too many&quot;</span>)</a>
-<a class="sourceLine" id="cb29-10" title="10">    </a>
-<a class="sourceLine" id="cb29-11" title="11">  } <span class="cf">else</span> { </a>
-<a class="sourceLine" id="cb29-12" title="12">    </a>
-<a class="sourceLine" id="cb29-13" title="13">  <span class="kw">print</span>(<span class="st">&quot;enough&quot;</span>)</a>
-<a class="sourceLine" id="cb29-14" title="14">    </a>
-<a class="sourceLine" id="cb29-15" title="15">  }</a>
-<a class="sourceLine" id="cb29-16" title="16">}</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">number_of_takeaways_ordered &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb34-2" title="2"></a>
+<a class="sourceLine" id="cb34-3" title="3"><span class="cf">for</span> (number <span class="cf">in</span> number_of_takeaways_ordered) { </a>
+<a class="sourceLine" id="cb34-4" title="4">  </a>
+<a class="sourceLine" id="cb34-5" title="5">  <span class="kw">print</span>(number)</a>
+<a class="sourceLine" id="cb34-6" title="6">  </a>
+<a class="sourceLine" id="cb34-7" title="7">  <span class="cf">if</span> (number <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>) { </a>
+<a class="sourceLine" id="cb34-8" title="8">    </a>
+<a class="sourceLine" id="cb34-9" title="9">    <span class="kw">print</span>(<span class="st">&quot;too many&quot;</span>)</a>
+<a class="sourceLine" id="cb34-10" title="10">    </a>
+<a class="sourceLine" id="cb34-11" title="11">  } <span class="cf">else</span> { </a>
+<a class="sourceLine" id="cb34-12" title="12">    </a>
+<a class="sourceLine" id="cb34-13" title="13">  <span class="kw">print</span>(<span class="st">&quot;enough&quot;</span>)</a>
+<a class="sourceLine" id="cb34-14" title="14">    </a>
+<a class="sourceLine" id="cb34-15" title="15">  }</a>
+<a class="sourceLine" id="cb34-16" title="16">}</a></code></pre></div>
 <pre><code>## [1] 1
 ## [1] &quot;enough&quot;
 ## [1] 2
@@ -2121,9 +2213,9 @@ div.tocify {
 <hr />
 <p><br></p>
 </div>
-<div id="exercise-1" class="section level2 tabset tabset-fade">
-<h2><span class="header-section-number">4.3</span> Exercise</h2>
-<div id="exercise-2" class="section level3 unnumbered">
+<div id="exercise-3" class="section level2 tabset tabset-fade">
+<h2><span class="header-section-number">4.4</span> Exercise</h2>
+<div id="exercise-4" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <ol style="list-style-type: decimal">
 <li><p>Can you write a loop with an <code>if</code>, <code>else if</code> and <code>else</code> statement, that loops through the numbers from 1 to 30.</p>
@@ -2134,18 +2226,18 @@ div.tocify {
 </ol>
 <p>Note: You can use the modulus operator for this - this is the <strong><code>%%</code></strong> in R, and shows us our remainder.</p>
 <p>For example checking if something is divisible by 3 we can do:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="co"># Example of Modulo</span></a>
-<a class="sourceLine" id="cb31-2" title="2"><span class="co"># Returns FALSE (10 / 3 has a remainder of 1 - so does not have a remainder of 0)</span></a>
-<a class="sourceLine" id="cb31-3" title="3"><span class="dv">10</span> <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span></a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co"># Example of Modulo</span></a>
+<a class="sourceLine" id="cb36-2" title="2"><span class="co"># Returns FALSE (10 / 3 has a remainder of 1 - so does not have a remainder of 0)</span></a>
+<a class="sourceLine" id="cb36-3" title="3"><span class="dv">10</span> <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span></a></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># Second example of Modulo</span></a>
-<a class="sourceLine" id="cb33-2" title="2"><span class="co"># Returns TRUE (9 / 3 has a remainder of 0)</span></a>
-<a class="sourceLine" id="cb33-3" title="3"><span class="dv">9</span> <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span></a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># Second example of Modulo</span></a>
+<a class="sourceLine" id="cb38-2" title="2"><span class="co"># Returns TRUE (9 / 3 has a remainder of 0)</span></a>
+<a class="sourceLine" id="cb38-3" title="3"><span class="dv">9</span> <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span></a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <hr />
 <p><br></p>
 </div>
-<div id="hint-1" class="section level3 unnumbered">
+<div id="hint-2" class="section level3 unnumbered">
 <h3><strong>Hint</strong></h3>
 <ol style="list-style-type: decimal">
 <li><p>Can you write a loop with an <code>if</code>, <code>else if</code> and <code>else</code> statement, that loops through the numbers from 1 to 30.</p>
@@ -2154,30 +2246,30 @@ div.tocify {
 <p>If the number is a multiple of 5, print the word “Buzz”.</p>
 <p>For all other values print the number.</p></li>
 </ol>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="cf">for</span> (each_number <span class="cf">in</span> vector) { </a>
-<a class="sourceLine" id="cb35-2" title="2">  </a>
-<a class="sourceLine" id="cb35-3" title="3">  <span class="cf">if</span> (first conditions) {</a>
-<a class="sourceLine" id="cb35-4" title="4">    </a>
-<a class="sourceLine" id="cb35-5" title="5">    output</a>
-<a class="sourceLine" id="cb35-6" title="6">  }</a>
-<a class="sourceLine" id="cb35-7" title="7">  <span class="cf">else</span> <span class="cf">if</span> (second condition) {</a>
-<a class="sourceLine" id="cb35-8" title="8">    </a>
-<a class="sourceLine" id="cb35-9" title="9">    output</a>
-<a class="sourceLine" id="cb35-10" title="10">  }</a>
-<a class="sourceLine" id="cb35-11" title="11">  <span class="cf">else</span> <span class="cf">if</span> (third condition) { </a>
-<a class="sourceLine" id="cb35-12" title="12">    </a>
-<a class="sourceLine" id="cb35-13" title="13">    output</a>
-<a class="sourceLine" id="cb35-14" title="14">  }</a>
-<a class="sourceLine" id="cb35-15" title="15">  <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb35-16" title="16">    </a>
-<a class="sourceLine" id="cb35-17" title="17">    <span class="kw">print</span>(each_number)</a>
-<a class="sourceLine" id="cb35-18" title="18">  }</a>
-<a class="sourceLine" id="cb35-19" title="19">  </a>
-<a class="sourceLine" id="cb35-20" title="20">}</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="cf">for</span> (each_number <span class="cf">in</span> vector) { </a>
+<a class="sourceLine" id="cb40-2" title="2">  </a>
+<a class="sourceLine" id="cb40-3" title="3">  <span class="cf">if</span> (first conditions) {</a>
+<a class="sourceLine" id="cb40-4" title="4">    </a>
+<a class="sourceLine" id="cb40-5" title="5">    output</a>
+<a class="sourceLine" id="cb40-6" title="6">  }</a>
+<a class="sourceLine" id="cb40-7" title="7">  <span class="cf">else</span> <span class="cf">if</span> (second condition) {</a>
+<a class="sourceLine" id="cb40-8" title="8">    </a>
+<a class="sourceLine" id="cb40-9" title="9">    output</a>
+<a class="sourceLine" id="cb40-10" title="10">  }</a>
+<a class="sourceLine" id="cb40-11" title="11">  <span class="cf">else</span> <span class="cf">if</span> (third condition) { </a>
+<a class="sourceLine" id="cb40-12" title="12">    </a>
+<a class="sourceLine" id="cb40-13" title="13">    output</a>
+<a class="sourceLine" id="cb40-14" title="14">  }</a>
+<a class="sourceLine" id="cb40-15" title="15">  <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb40-16" title="16">    </a>
+<a class="sourceLine" id="cb40-17" title="17">    <span class="kw">print</span>(each_number)</a>
+<a class="sourceLine" id="cb40-18" title="18">  }</a>
+<a class="sourceLine" id="cb40-19" title="19">  </a>
+<a class="sourceLine" id="cb40-20" title="20">}</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
-<div id="show-answer-1" class="section level3 unnumbered">
+<div id="show-answer-2" class="section level3 unnumbered">
 <h3><strong>Show Answer</strong></h3>
 <ol style="list-style-type: decimal">
 <li><p>Can you write a loop with an <code>if</code>, <code>else if</code> and <code>else</code> statement, that loops through the numbers from 1 to 30.</p>
@@ -2186,26 +2278,26 @@ div.tocify {
 <p>If the number is a multiple of 5, print the word “Buzz”.</p>
 <p>For all other values print the number.</p></li>
 </ol>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>) { </a>
-<a class="sourceLine" id="cb36-2" title="2">  </a>
-<a class="sourceLine" id="cb36-3" title="3">  <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>i <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb36-4" title="4">    </a>
-<a class="sourceLine" id="cb36-5" title="5">    <span class="kw">print</span>(<span class="st">&quot;FizzBuzz&quot;</span>)</a>
-<a class="sourceLine" id="cb36-6" title="6">  }</a>
-<a class="sourceLine" id="cb36-7" title="7">  <span class="cf">else</span> <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb36-8" title="8">    </a>
-<a class="sourceLine" id="cb36-9" title="9">    <span class="kw">print</span>(<span class="st">&quot;Fizz&quot;</span>)</a>
-<a class="sourceLine" id="cb36-10" title="10">  }</a>
-<a class="sourceLine" id="cb36-11" title="11">  <span class="cf">else</span> <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) { </a>
-<a class="sourceLine" id="cb36-12" title="12">    </a>
-<a class="sourceLine" id="cb36-13" title="13">    <span class="kw">print</span>(<span class="st">&quot;Buzz&quot;</span>)</a>
-<a class="sourceLine" id="cb36-14" title="14">  }</a>
-<a class="sourceLine" id="cb36-15" title="15">  <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb36-16" title="16">    </a>
-<a class="sourceLine" id="cb36-17" title="17">    <span class="kw">print</span>(i)</a>
-<a class="sourceLine" id="cb36-18" title="18">  }</a>
-<a class="sourceLine" id="cb36-19" title="19">  </a>
-<a class="sourceLine" id="cb36-20" title="20">}</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>) { </a>
+<a class="sourceLine" id="cb41-2" title="2">  </a>
+<a class="sourceLine" id="cb41-3" title="3">  <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>i <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb41-4" title="4">    </a>
+<a class="sourceLine" id="cb41-5" title="5">    <span class="kw">print</span>(<span class="st">&quot;FizzBuzz&quot;</span>)</a>
+<a class="sourceLine" id="cb41-6" title="6">  }</a>
+<a class="sourceLine" id="cb41-7" title="7">  <span class="cf">else</span> <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb41-8" title="8">    </a>
+<a class="sourceLine" id="cb41-9" title="9">    <span class="kw">print</span>(<span class="st">&quot;Fizz&quot;</span>)</a>
+<a class="sourceLine" id="cb41-10" title="10">  }</a>
+<a class="sourceLine" id="cb41-11" title="11">  <span class="cf">else</span> <span class="cf">if</span> (i <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) { </a>
+<a class="sourceLine" id="cb41-12" title="12">    </a>
+<a class="sourceLine" id="cb41-13" title="13">    <span class="kw">print</span>(<span class="st">&quot;Buzz&quot;</span>)</a>
+<a class="sourceLine" id="cb41-14" title="14">  }</a>
+<a class="sourceLine" id="cb41-15" title="15">  <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb41-16" title="16">    </a>
+<a class="sourceLine" id="cb41-17" title="17">    <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb41-18" title="18">  }</a>
+<a class="sourceLine" id="cb41-19" title="19">  </a>
+<a class="sourceLine" id="cb41-20" title="20">}</a></code></pre></div>
 <pre><code>## [1] 1
 ## [1] 2
 ## [1] &quot;Fizz&quot;
@@ -2262,6 +2354,16 @@ div.tocify {
 <p>Up until now we’ve been writing code line by line and running it sequentially. As effective as this has been, things can get messy as we scale up to larger problems.</p>
 <p>We can avoid messy code by organising it into chunks of reusable code called functions. This allows us to create blocks of code dedicated to performing a specific procedure or task. We can then ‘call’ this function to perform its specific task as and when needed. Understanding why and how to write functions is an important part of writing code that is consistent, readable and reproducible.</p>
 <p>In addition to this, we use functions to do everything in R - from making a vector to creating models and plots. Having more hands on experience with functions can give you a greater appreciation for how the functions, we heavily depend on, are implemented.</p>
+<p>We can take one complicated operation and wrap it up inside a function and use it wherever we need. For example, take the mean() function from base R that calculates the average value of a given vector — we could write out the average calculation by hand:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">numbers &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">19</span></a>
+<a class="sourceLine" id="cb43-2" title="2"></a>
+<a class="sourceLine" id="cb43-3" title="3"><span class="kw">mean</span>(numbers)</a></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">mean_numbers &lt;-<span class="st"> </span><span class="kw">sum</span>(numbers) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(numbers)</a>
+<a class="sourceLine" id="cb45-2" title="2"></a>
+<a class="sourceLine" id="cb45-3" title="3">mean_numbers</a></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<p>Nothing stops us from writing out sum(nums) / length(nums) every time we need to calculate an average and this can get tiring.</p>
 <hr />
 <p><br></p>
 </div>
@@ -2280,15 +2382,15 @@ div.tocify {
 <div id="how-to-write-a-function" class="section level2">
 <h2><span class="header-section-number">5.3</span> How to write a function</h2>
 <p>Basic structure of a function looks like below,</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># Basic structure of a function</span></a>
-<a class="sourceLine" id="cb38-2" title="2"></a>
-<a class="sourceLine" id="cb38-3" title="3">function_name &lt;-<span class="st"> </span><span class="cf">function</span>(input) { </a>
-<a class="sourceLine" id="cb38-4" title="4">  </a>
-<a class="sourceLine" id="cb38-5" title="5">  statements of what the <span class="cf">function</span> is doing</a>
-<a class="sourceLine" id="cb38-6" title="6">  </a>
-<a class="sourceLine" id="cb38-7" title="7">  <span class="kw">return</span>(the <span class="cf">function</span> output)</a>
-<a class="sourceLine" id="cb38-8" title="8">  </a>
-<a class="sourceLine" id="cb38-9" title="9">}</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="co"># Basic structure of a function</span></a>
+<a class="sourceLine" id="cb47-2" title="2"></a>
+<a class="sourceLine" id="cb47-3" title="3">function_name &lt;-<span class="st"> </span><span class="cf">function</span>(input) { </a>
+<a class="sourceLine" id="cb47-4" title="4">  </a>
+<a class="sourceLine" id="cb47-5" title="5">  statements of what the <span class="cf">function</span> is doing</a>
+<a class="sourceLine" id="cb47-6" title="6">  </a>
+<a class="sourceLine" id="cb47-7" title="7">  <span class="kw">return</span>(the <span class="cf">function</span> output)</a>
+<a class="sourceLine" id="cb47-8" title="8">  </a>
+<a class="sourceLine" id="cb47-9" title="9">}</a></code></pre></div>
 <p><br></p>
 <blockquote>
 <p><strong>In R, we use a function to make a function!.</strong></p>
@@ -2305,31 +2407,31 @@ div.tocify {
 </div>
 <div id="examples-of-basic-functions" class="section level2">
 <h2><span class="header-section-number">5.4</span> Examples of basic functions</h2>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># Here is a simple function to add together two values and return the sum.</span></a>
-<a class="sourceLine" id="cb39-2" title="2"></a>
-<a class="sourceLine" id="cb39-3" title="3">function_sum_values &lt;-<span class="st"> </span><span class="cf">function</span>(value_<span class="dv">1</span>, value_<span class="dv">2</span>) { </a>
-<a class="sourceLine" id="cb39-4" title="4">  </a>
-<a class="sourceLine" id="cb39-5" title="5">  result &lt;-<span class="st"> </span>value_<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>value_<span class="dv">2</span></a>
-<a class="sourceLine" id="cb39-6" title="6">  </a>
-<a class="sourceLine" id="cb39-7" title="7">  <span class="kw">return</span>(result)</a>
-<a class="sourceLine" id="cb39-8" title="8">  </a>
-<a class="sourceLine" id="cb39-9" title="9">}</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co"># Here is a simple function to add together two values and return the sum.</span></a>
+<a class="sourceLine" id="cb48-2" title="2"></a>
+<a class="sourceLine" id="cb48-3" title="3">function_sum_values &lt;-<span class="st"> </span><span class="cf">function</span>(value_<span class="dv">1</span>, value_<span class="dv">2</span>) { </a>
+<a class="sourceLine" id="cb48-4" title="4">  </a>
+<a class="sourceLine" id="cb48-5" title="5">  result &lt;-<span class="st"> </span>value_<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>value_<span class="dv">2</span></a>
+<a class="sourceLine" id="cb48-6" title="6">  </a>
+<a class="sourceLine" id="cb48-7" title="7">  <span class="kw">return</span>(result)</a>
+<a class="sourceLine" id="cb48-8" title="8">  </a>
+<a class="sourceLine" id="cb48-9" title="9">}</a></code></pre></div>
 <p>Our new function <strong><code>function_sum_values()</code></strong> will exist in our global environment which can be seen in the panel on the right hand side.</p>
 <div id="calling-functions" class="section level3">
 <h3><span class="header-section-number">5.4.1</span> Calling Functions</h3>
 <p>Calling user defined functions works the same way as calling the built-in functions we’ve used so far. Simply, type the function name followed by parentheses containing any required parameters.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># I can now run my function</span></a>
-<a class="sourceLine" id="cb40-2" title="2"></a>
-<a class="sourceLine" id="cb40-3" title="3"><span class="kw">function_sum_values</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="co"># I can now run my function</span></a>
+<a class="sourceLine" id="cb49-2" title="2"></a>
+<a class="sourceLine" id="cb49-3" title="3"><span class="kw">function_sum_values</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="co"># Calling the function by itself prints the result to the console</span></a>
-<a class="sourceLine" id="cb42-2" title="2"><span class="co"># Alternatively the result can be saved as a new variable</span></a>
-<a class="sourceLine" id="cb42-3" title="3"></a>
-<a class="sourceLine" id="cb42-4" title="4">my_result &lt;-<span class="st"> </span><span class="kw">function_sum_values</span>(<span class="dv">3</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb42-5" title="5"></a>
-<a class="sourceLine" id="cb42-6" title="6"><span class="co">#To display the data</span></a>
-<a class="sourceLine" id="cb42-7" title="7"></a>
-<a class="sourceLine" id="cb42-8" title="8">my_result</a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="co"># Calling the function by itself prints the result to the console</span></a>
+<a class="sourceLine" id="cb51-2" title="2"><span class="co"># Alternatively the result can be saved as a new variable</span></a>
+<a class="sourceLine" id="cb51-3" title="3"></a>
+<a class="sourceLine" id="cb51-4" title="4">my_result &lt;-<span class="st"> </span><span class="kw">function_sum_values</span>(<span class="dv">3</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb51-5" title="5"></a>
+<a class="sourceLine" id="cb51-6" title="6"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb51-7" title="7"></a>
+<a class="sourceLine" id="cb51-8" title="8">my_result</a></code></pre></div>
 <pre><code>## [1] 7</code></pre>
 <hr />
 </div>
@@ -2344,79 +2446,79 @@ div.tocify {
 <div id="named-arguments" class="section level3">
 <h3><span class="header-section-number">5.4.3</span> Named Arguments</h3>
 <p>For more complicated functions with lots of arguments, specifying the arguments by position becomes more error-prone and harder to understand. Therefore it is often desirable to specify some or all of the arguments by name, so the order of the arguments becomes unimportant:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="kw">function_sum_values</span>(<span class="dt">value_2 =</span> <span class="dv">2</span>, <span class="dt">value_1 =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="kw">function_sum_values</span>(<span class="dt">value_2 =</span> <span class="dv">2</span>, <span class="dt">value_1 =</span> <span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <hr />
 <p><br></p>
 </div>
 </div>
-<div id="exercise-3" class="section level2 tabset tabset-fade">
+<div id="exercise-5" class="section level2 tabset tabset-fade">
 <h2><span class="header-section-number">5.5</span> Exercise</h2>
-<div id="exercise-4" class="section level3 unnumbered">
+<div id="exercise-6" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <ol style="list-style-type: decimal">
 <li>The <strong><code>range()</code></strong> in R, doesn’t show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called <strong><code>my_range()</code></strong> which return the difference between the highest value and the lowest value?</li>
 </ol>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="co"># Creating a vector</span></a>
-<a class="sourceLine" id="cb46-2" title="2"></a>
-<a class="sourceLine" id="cb46-3" title="3">age_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">23</span>, <span class="dv">30</span>, <span class="dv">50</span>)</a>
-<a class="sourceLine" id="cb46-4" title="4"></a>
-<a class="sourceLine" id="cb46-5" title="5"><span class="co"># Calling the range function on the vector</span></a>
-<a class="sourceLine" id="cb46-6" title="6"></a>
-<a class="sourceLine" id="cb46-7" title="7"><span class="kw">range</span>(age_vector)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co"># Creating a vector</span></a>
+<a class="sourceLine" id="cb55-2" title="2"></a>
+<a class="sourceLine" id="cb55-3" title="3">age_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">23</span>, <span class="dv">30</span>, <span class="dv">50</span>)</a>
+<a class="sourceLine" id="cb55-4" title="4"></a>
+<a class="sourceLine" id="cb55-5" title="5"><span class="co"># Calling the range function on the vector</span></a>
+<a class="sourceLine" id="cb55-6" title="6"></a>
+<a class="sourceLine" id="cb55-7" title="7"><span class="kw">range</span>(age_vector)</a></code></pre></div>
 <pre><code>## [1] 10 50</code></pre>
 <hr />
 <p><br></p>
 </div>
-<div id="hint-2" class="section level3 unnumbered">
+<div id="hint-3" class="section level3 unnumbered">
 <h3><strong>Hint</strong></h3>
 <ol style="list-style-type: decimal">
 <li>The <strong><code>range()</code></strong> in R, doesn’t show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called <strong><code>my_range()</code></strong> which return the difference between the highest value and the lowest value?</li>
 </ol>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co"># Creating my function</span></a>
-<a class="sourceLine" id="cb48-2" title="2"></a>
-<a class="sourceLine" id="cb48-3" title="3">my_range &lt;-<span class="st">  </span><span class="cf">function</span>(input) {</a>
-<a class="sourceLine" id="cb48-4" title="4">  </a>
-<a class="sourceLine" id="cb48-5" title="5">  commands</a>
-<a class="sourceLine" id="cb48-6" title="6">  </a>
-<a class="sourceLine" id="cb48-7" title="7">  <span class="kw">return</span>(result)</a>
-<a class="sourceLine" id="cb48-8" title="8"></a>
-<a class="sourceLine" id="cb48-9" title="9">}</a>
-<a class="sourceLine" id="cb48-10" title="10"></a>
-<a class="sourceLine" id="cb48-11" title="11"></a>
-<a class="sourceLine" id="cb48-12" title="12"><span class="co"># To show the difference between the 2 functions</span></a>
-<a class="sourceLine" id="cb48-13" title="13"><span class="co"># Running the base R range function</span></a>
-<a class="sourceLine" id="cb48-14" title="14"></a>
-<a class="sourceLine" id="cb48-15" title="15"><span class="kw">range</span>(input)</a>
-<a class="sourceLine" id="cb48-16" title="16"></a>
-<a class="sourceLine" id="cb48-17" title="17"><span class="co"># Running my custom range function</span></a>
-<a class="sourceLine" id="cb48-18" title="18"></a>
-<a class="sourceLine" id="cb48-19" title="19"><span class="kw">my_range</span>(input)</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="co"># Creating my function</span></a>
+<a class="sourceLine" id="cb57-2" title="2"></a>
+<a class="sourceLine" id="cb57-3" title="3">my_range &lt;-<span class="st">  </span><span class="cf">function</span>(input) {</a>
+<a class="sourceLine" id="cb57-4" title="4">  </a>
+<a class="sourceLine" id="cb57-5" title="5">  commands</a>
+<a class="sourceLine" id="cb57-6" title="6">  </a>
+<a class="sourceLine" id="cb57-7" title="7">  <span class="kw">return</span>(result)</a>
+<a class="sourceLine" id="cb57-8" title="8"></a>
+<a class="sourceLine" id="cb57-9" title="9">}</a>
+<a class="sourceLine" id="cb57-10" title="10"></a>
+<a class="sourceLine" id="cb57-11" title="11"></a>
+<a class="sourceLine" id="cb57-12" title="12"><span class="co"># To show the difference between the 2 functions</span></a>
+<a class="sourceLine" id="cb57-13" title="13"><span class="co"># Running the base R range function</span></a>
+<a class="sourceLine" id="cb57-14" title="14"></a>
+<a class="sourceLine" id="cb57-15" title="15"><span class="kw">range</span>(input)</a>
+<a class="sourceLine" id="cb57-16" title="16"></a>
+<a class="sourceLine" id="cb57-17" title="17"><span class="co"># Running my custom range function</span></a>
+<a class="sourceLine" id="cb57-18" title="18"></a>
+<a class="sourceLine" id="cb57-19" title="19"><span class="kw">my_range</span>(input)</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
-<div id="show-answer-2" class="section level3 unnumbered">
+<div id="show-answer-3" class="section level3 unnumbered">
 <h3><strong>Show Answer</strong></h3>
 <ol style="list-style-type: decimal">
 <li>The <strong><code>range()</code></strong> in R, doesn’t show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called <strong><code>my_range()</code></strong> which return the difference between the highest value and the lowest value?</li>
 </ol>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="co"># Creating my function</span></a>
-<a class="sourceLine" id="cb49-2" title="2"></a>
-<a class="sourceLine" id="cb49-3" title="3">my_range &lt;-<span class="st">  </span><span class="cf">function</span>(age_vector){</a>
-<a class="sourceLine" id="cb49-4" title="4">  </a>
-<a class="sourceLine" id="cb49-5" title="5">  result &lt;-<span class="st"> </span><span class="kw">max</span>(age_vector) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(age_vector) </a>
-<a class="sourceLine" id="cb49-6" title="6">  </a>
-<a class="sourceLine" id="cb49-7" title="7">  <span class="kw">return</span>(result)</a>
-<a class="sourceLine" id="cb49-8" title="8"></a>
-<a class="sourceLine" id="cb49-9" title="9">}</a>
-<a class="sourceLine" id="cb49-10" title="10"></a>
-<a class="sourceLine" id="cb49-11" title="11"><span class="co"># Running the base R range function</span></a>
-<a class="sourceLine" id="cb49-12" title="12"></a>
-<a class="sourceLine" id="cb49-13" title="13"><span class="kw">range</span>(age_vector)</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co"># Creating my function</span></a>
+<a class="sourceLine" id="cb58-2" title="2"></a>
+<a class="sourceLine" id="cb58-3" title="3">my_range &lt;-<span class="st">  </span><span class="cf">function</span>(age_vector){</a>
+<a class="sourceLine" id="cb58-4" title="4">  </a>
+<a class="sourceLine" id="cb58-5" title="5">  result &lt;-<span class="st"> </span><span class="kw">max</span>(age_vector) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(age_vector) </a>
+<a class="sourceLine" id="cb58-6" title="6">  </a>
+<a class="sourceLine" id="cb58-7" title="7">  <span class="kw">return</span>(result)</a>
+<a class="sourceLine" id="cb58-8" title="8"></a>
+<a class="sourceLine" id="cb58-9" title="9">}</a>
+<a class="sourceLine" id="cb58-10" title="10"></a>
+<a class="sourceLine" id="cb58-11" title="11"><span class="co"># Running the base R range function</span></a>
+<a class="sourceLine" id="cb58-12" title="12"></a>
+<a class="sourceLine" id="cb58-13" title="13"><span class="kw">range</span>(age_vector)</a></code></pre></div>
 <pre><code>## [1] 10 50</code></pre>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="co"># Running my custom range function</span></a>
-<a class="sourceLine" id="cb51-2" title="2"></a>
-<a class="sourceLine" id="cb51-3" title="3"><span class="kw">my_range</span>(age_vector)</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="co"># Running my custom range function</span></a>
+<a class="sourceLine" id="cb60-2" title="2"></a>
+<a class="sourceLine" id="cb60-3" title="3"><span class="kw">my_range</span>(age_vector)</a></code></pre></div>
 <pre><code>## [1] 40</code></pre>
 <hr />
 <p><br></p>
@@ -2427,36 +2529,36 @@ div.tocify {
 <p><strong>Pythagoras Function Example</strong></p>
 <p>We are now going to write a function that uses Pythagoras’ theorem in order to calculate the hypotenuse (longest side) of a right angle triangle given the two other sides. The equation is given as <span class="math display">\[a^2 + b^2 = c^2\]</span> where <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> are the two known sides and <span class="math inline">\(c\)</span> is the longest side. In order to find the value of <span class="math inline">\(c\)</span> we can rearrange the formula to <span class="math display">\[c = \sqrt{a^2 + b^2}\]</span></p>
 <p>The function will input values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and then return the value of <span class="math inline">\(c\)</span> below.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1"><span class="co"># Function to calculate the value of the hypotenuse</span></a>
-<a class="sourceLine" id="cb53-2" title="2"></a>
-<a class="sourceLine" id="cb53-3" title="3">find_the_hypotenuse &lt;-<span class="st"> </span><span class="cf">function</span>(a_value, b_value) {</a>
-<a class="sourceLine" id="cb53-4" title="4">  </a>
-<a class="sourceLine" id="cb53-5" title="5">  <span class="co"># Calculate the values of a^2 + b^2</span></a>
-<a class="sourceLine" id="cb53-6" title="6">  squared_sum_of_values &lt;-<span class="st"> </span>a_value<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>b_value<span class="op">^</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb53-7" title="7">  </a>
-<a class="sourceLine" id="cb53-8" title="8">  <span class="co"># Calculate the value of c using the square root function `sqrt()`</span></a>
-<a class="sourceLine" id="cb53-9" title="9">  c_value &lt;-<span class="st"> </span><span class="kw">sqrt</span>(squared_sum_of_values)</a>
-<a class="sourceLine" id="cb53-10" title="10">  </a>
-<a class="sourceLine" id="cb53-11" title="11">  <span class="co"># Return the output value of our function.</span></a>
-<a class="sourceLine" id="cb53-12" title="12">  <span class="kw">return</span>(c_value)</a>
-<a class="sourceLine" id="cb53-13" title="13">}</a>
-<a class="sourceLine" id="cb53-14" title="14"></a>
-<a class="sourceLine" id="cb53-15" title="15"></a>
-<a class="sourceLine" id="cb53-16" title="16"><span class="co"># Assign test values to make sure our function works</span></a>
-<a class="sourceLine" id="cb53-17" title="17"></a>
-<a class="sourceLine" id="cb53-18" title="18">a_test &lt;-<span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb53-19" title="19">b_test &lt;-<span class="st"> </span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb53-20" title="20"></a>
-<a class="sourceLine" id="cb53-21" title="21"><span class="co"># This should give us a value of c = 5</span></a>
-<a class="sourceLine" id="cb53-22" title="22"></a>
-<a class="sourceLine" id="cb53-23" title="23"><span class="kw">find_the_hypotenuse</span>(a_test, b_test)</a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="co"># Function to calculate the value of the hypotenuse</span></a>
+<a class="sourceLine" id="cb62-2" title="2"></a>
+<a class="sourceLine" id="cb62-3" title="3">find_the_hypotenuse &lt;-<span class="st"> </span><span class="cf">function</span>(a_value, b_value) {</a>
+<a class="sourceLine" id="cb62-4" title="4">  </a>
+<a class="sourceLine" id="cb62-5" title="5">  <span class="co"># Calculate the values of a^2 + b^2</span></a>
+<a class="sourceLine" id="cb62-6" title="6">  squared_sum_of_values &lt;-<span class="st"> </span>a_value<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>b_value<span class="op">^</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb62-7" title="7">  </a>
+<a class="sourceLine" id="cb62-8" title="8">  <span class="co"># Calculate the value of c using the square root function `sqrt()`</span></a>
+<a class="sourceLine" id="cb62-9" title="9">  c_value &lt;-<span class="st"> </span><span class="kw">sqrt</span>(squared_sum_of_values)</a>
+<a class="sourceLine" id="cb62-10" title="10">  </a>
+<a class="sourceLine" id="cb62-11" title="11">  <span class="co"># Return the output value of our function.</span></a>
+<a class="sourceLine" id="cb62-12" title="12">  <span class="kw">return</span>(c_value)</a>
+<a class="sourceLine" id="cb62-13" title="13">}</a>
+<a class="sourceLine" id="cb62-14" title="14"></a>
+<a class="sourceLine" id="cb62-15" title="15"></a>
+<a class="sourceLine" id="cb62-16" title="16"><span class="co"># Assign test values to make sure our function works</span></a>
+<a class="sourceLine" id="cb62-17" title="17"></a>
+<a class="sourceLine" id="cb62-18" title="18">a_test &lt;-<span class="st"> </span><span class="dv">3</span></a>
+<a class="sourceLine" id="cb62-19" title="19">b_test &lt;-<span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb62-20" title="20"></a>
+<a class="sourceLine" id="cb62-21" title="21"><span class="co"># This should give us a value of c = 5</span></a>
+<a class="sourceLine" id="cb62-22" title="22"></a>
+<a class="sourceLine" id="cb62-23" title="23"><span class="kw">find_the_hypotenuse</span>(a_test, b_test)</a></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <hr />
 <p><br></p>
 </div>
-<div id="exercise-5" class="section level2 tabset tabset-fade">
+<div id="exercise-7" class="section level2 tabset tabset-fade">
 <h2><span class="header-section-number">5.7</span> Exercise</h2>
-<div id="exercise-6" class="section level3 unnumbered">
+<div id="exercise-8" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <p>Write a function which:</p>
 <ol style="list-style-type: decimal">
@@ -2483,45 +2585,45 @@ div.tocify {
 <hr />
 <p><br></p>
 </div>
-<div id="hint-3" class="section level3 unnumbered">
+<div id="hint-4" class="section level3 unnumbered">
 <h3><strong>Hint</strong></h3>
 <p>Write a function which:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Converts from Fahrenheit to degrees Celsius using the equation below.</strong></li>
 </ol>
 <p><span class="math display">\[C=\frac{5}{9}(F - 32)\]</span></p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co"># Creating our function</span></a>
-<a class="sourceLine" id="cb55-2" title="2"></a>
-<a class="sourceLine" id="cb55-3" title="3">fahrenheit_to_degrees_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(input) {</a>
-<a class="sourceLine" id="cb55-4" title="4">  </a>
-<a class="sourceLine" id="cb55-5" title="5">  commands</a>
-<a class="sourceLine" id="cb55-6" title="6">  </a>
-<a class="sourceLine" id="cb55-7" title="7">  <span class="kw">return</span>(celsius)</a>
-<a class="sourceLine" id="cb55-8" title="8">}</a>
-<a class="sourceLine" id="cb55-9" title="9"></a>
-<a class="sourceLine" id="cb55-10" title="10"><span class="co"># Calling our function</span></a>
-<a class="sourceLine" id="cb55-11" title="11"></a>
-<a class="sourceLine" id="cb55-12" title="12"><span class="kw">fahrenheit_to_degrees_celsius</span>(input)</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="co"># Creating our function</span></a>
+<a class="sourceLine" id="cb64-2" title="2"></a>
+<a class="sourceLine" id="cb64-3" title="3">fahrenheit_to_degrees_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(input) {</a>
+<a class="sourceLine" id="cb64-4" title="4">  </a>
+<a class="sourceLine" id="cb64-5" title="5">  commands</a>
+<a class="sourceLine" id="cb64-6" title="6">  </a>
+<a class="sourceLine" id="cb64-7" title="7">  <span class="kw">return</span>(celsius)</a>
+<a class="sourceLine" id="cb64-8" title="8">}</a>
+<a class="sourceLine" id="cb64-9" title="9"></a>
+<a class="sourceLine" id="cb64-10" title="10"><span class="co"># Calling our function</span></a>
+<a class="sourceLine" id="cb64-11" title="11"></a>
+<a class="sourceLine" id="cb64-12" title="12"><span class="kw">fahrenheit_to_degrees_celsius</span>(input)</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
-<div id="show-answer-3" class="section level3 unnumbered">
+<div id="show-answer-4" class="section level3 unnumbered">
 <h3><strong>Show Answer</strong></h3>
 <p>Write a function which:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Converts from Fahrenheit to degrees Celsius using the equation below.</strong></li>
 </ol>
 <p><span class="math display">\[C=\frac{5}{9}(F-32)\]</span></p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="co"># Creating our function</span></a>
-<a class="sourceLine" id="cb56-2" title="2"></a>
-<a class="sourceLine" id="cb56-3" title="3">fahrenheit_to_degrees_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(fahrenheit) {</a>
-<a class="sourceLine" id="cb56-4" title="4">  celsius &lt;-<span class="st"> </span>(<span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">9</span>) <span class="op">*</span><span class="st"> </span>(fahrenheit <span class="op">-</span><span class="st"> </span><span class="dv">32</span>)</a>
-<a class="sourceLine" id="cb56-5" title="5">  <span class="kw">return</span>(celsius)</a>
-<a class="sourceLine" id="cb56-6" title="6">}</a>
-<a class="sourceLine" id="cb56-7" title="7"></a>
-<a class="sourceLine" id="cb56-8" title="8"><span class="co"># Calling our function</span></a>
-<a class="sourceLine" id="cb56-9" title="9"></a>
-<a class="sourceLine" id="cb56-10" title="10"><span class="kw">fahrenheit_to_degrees_celsius</span>(<span class="dv">32</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="co"># Creating our function</span></a>
+<a class="sourceLine" id="cb65-2" title="2"></a>
+<a class="sourceLine" id="cb65-3" title="3">fahrenheit_to_degrees_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(fahrenheit) {</a>
+<a class="sourceLine" id="cb65-4" title="4">  celsius &lt;-<span class="st"> </span>(<span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">9</span>) <span class="op">*</span><span class="st"> </span>(fahrenheit <span class="op">-</span><span class="st"> </span><span class="dv">32</span>)</a>
+<a class="sourceLine" id="cb65-5" title="5">  <span class="kw">return</span>(celsius)</a>
+<a class="sourceLine" id="cb65-6" title="6">}</a>
+<a class="sourceLine" id="cb65-7" title="7"></a>
+<a class="sourceLine" id="cb65-8" title="8"><span class="co"># Calling our function</span></a>
+<a class="sourceLine" id="cb65-9" title="9"></a>
+<a class="sourceLine" id="cb65-10" title="10"><span class="kw">fahrenheit_to_degrees_celsius</span>(<span class="dv">32</span>)</a></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 </div>
 </div>
@@ -2539,13 +2641,13 @@ div.tocify {
 <div id="required-arguments" class="section level4 unnumbered">
 <h4>Required Arguments</h4>
 <p>Like the name suggests, these are arguments which are required by a function and must be passed in the correct order.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co"># Creating our function</span></a>
-<a class="sourceLine" id="cb58-2" title="2">arithmetic &lt;-<span class="st"> </span><span class="cf">function</span>(a, b) {</a>
-<a class="sourceLine" id="cb58-3" title="3">  <span class="kw">return</span> ((a <span class="op">^</span><span class="st"> </span>b) <span class="op">/</span><span class="st"> </span>b)</a>
-<a class="sourceLine" id="cb58-4" title="4">}</a>
-<a class="sourceLine" id="cb58-5" title="5"></a>
-<a class="sourceLine" id="cb58-6" title="6"><span class="co"># Calling our function</span></a>
-<a class="sourceLine" id="cb58-7" title="7"><span class="kw">arithmetic</span>(<span class="dv">4</span>, <span class="dv">9</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="co"># Creating our function</span></a>
+<a class="sourceLine" id="cb67-2" title="2">arithmetic &lt;-<span class="st"> </span><span class="cf">function</span>(a, b) {</a>
+<a class="sourceLine" id="cb67-3" title="3">  <span class="kw">return</span> ((a <span class="op">^</span><span class="st"> </span>b) <span class="op">/</span><span class="st"> </span>b)</a>
+<a class="sourceLine" id="cb67-4" title="4">}</a>
+<a class="sourceLine" id="cb67-5" title="5"></a>
+<a class="sourceLine" id="cb67-6" title="6"><span class="co"># Calling our function</span></a>
+<a class="sourceLine" id="cb67-7" title="7"><span class="kw">arithmetic</span>(<span class="dv">4</span>, <span class="dv">9</span>)</a></code></pre></div>
 <pre><code>## [1] 29127.11</code></pre>
 <p><code>a</code> and <code>b</code> are both required arguments. We would get a missing error if we did not pass both arguments.</p>
 <p>Also, order of passing the values in is essential, as <code>arithmetic(a, b) != arithmetic(b, a)</code> (in most cases!).</p>
@@ -2555,16 +2657,16 @@ div.tocify {
 <div id="default-arguments" class="section level4 unnumbered">
 <h4>Default arguments</h4>
 <p>This is where, in the function declaration, the value of the parameter is pre-set. The function will retain this value unless it is changed when the function is called.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="co"># Creating our function</span></a>
-<a class="sourceLine" id="cb60-2" title="2">arithmetic &lt;-<span class="st"> </span><span class="cf">function</span>(a, <span class="dt">b =</span> <span class="dv">1</span>) {</a>
-<a class="sourceLine" id="cb60-3" title="3">  <span class="kw">return</span> ((a <span class="op">^</span><span class="st"> </span>b) <span class="op">/</span><span class="st"> </span>b)</a>
-<a class="sourceLine" id="cb60-4" title="4">}</a>
-<a class="sourceLine" id="cb60-5" title="5"></a>
-<a class="sourceLine" id="cb60-6" title="6"><span class="co"># Calling our function</span></a>
-<a class="sourceLine" id="cb60-7" title="7"><span class="kw">arithmetic</span>(<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="co"># Creating our function</span></a>
+<a class="sourceLine" id="cb69-2" title="2">arithmetic &lt;-<span class="st"> </span><span class="cf">function</span>(a, <span class="dt">b =</span> <span class="dv">1</span>) {</a>
+<a class="sourceLine" id="cb69-3" title="3">  <span class="kw">return</span> ((a <span class="op">^</span><span class="st"> </span>b) <span class="op">/</span><span class="st"> </span>b)</a>
+<a class="sourceLine" id="cb69-4" title="4">}</a>
+<a class="sourceLine" id="cb69-5" title="5"></a>
+<a class="sourceLine" id="cb69-6" title="6"><span class="co"># Calling our function</span></a>
+<a class="sourceLine" id="cb69-7" title="7"><span class="kw">arithmetic</span>(<span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="co"># Calling our function</span></a>
-<a class="sourceLine" id="cb62-2" title="2"><span class="kw">arithmetic</span>(<span class="dv">5</span>, <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co"># Calling our function</span></a>
+<a class="sourceLine" id="cb71-2" title="2"><span class="kw">arithmetic</span>(<span class="dv">5</span>, <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 12.5</code></pre>
 <p>In the first example above the function will take <code>a = 5</code> and use the default value <code>b = 1</code>. Whereas, in the second example, we overwrite <code>b = 1</code> by passing the argument <code>2</code>.</p>
 <hr />
@@ -2575,24 +2677,24 @@ div.tocify {
 <p>This is also known as the ellipsis argument.</p>
 <p>You will often see in list of arguments a function takes, in the documentation, this <code>...</code>. This is a special argument which captures any number of arguments that aren’t otherwise matched.</p>
 <p>Sometimes being able to pass an arbitrary number of arguments can be useful, especially when another function is called within a wrapper function. This requires the ellipsis construct, …, which is designed to pass a variable number of arguments to a function. Here’s an example:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="co"># This function produces a plot of x vs y</span></a>
-<a class="sourceLine" id="cb64-2" title="2">plot_x_and_y &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, ...) {</a>
-<a class="sourceLine" id="cb64-3" title="3">  </a>
-<a class="sourceLine" id="cb64-4" title="4">  <span class="kw">plot</span>(x, y, ...)</a>
-<a class="sourceLine" id="cb64-5" title="5">  </a>
-<a class="sourceLine" id="cb64-6" title="6">}</a>
-<a class="sourceLine" id="cb64-7" title="7"></a>
-<a class="sourceLine" id="cb64-8" title="8"><span class="co"># Creating Vectors</span></a>
-<a class="sourceLine" id="cb64-9" title="9">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb64-10" title="10"></a>
-<a class="sourceLine" id="cb64-11" title="11">y &lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb64-12" title="12"></a>
-<a class="sourceLine" id="cb64-13" title="13"></a>
-<a class="sourceLine" id="cb64-14" title="14"><span class="co"># The function can be called with only the required arguments:</span></a>
-<a class="sourceLine" id="cb64-15" title="15"><span class="kw">plot_x_and_y</span>(x, y)</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="co"># This function produces a plot of x vs y</span></a>
+<a class="sourceLine" id="cb73-2" title="2">plot_x_and_y &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, ...) {</a>
+<a class="sourceLine" id="cb73-3" title="3">  </a>
+<a class="sourceLine" id="cb73-4" title="4">  <span class="kw">plot</span>(x, y, ...)</a>
+<a class="sourceLine" id="cb73-5" title="5">  </a>
+<a class="sourceLine" id="cb73-6" title="6">}</a>
+<a class="sourceLine" id="cb73-7" title="7"></a>
+<a class="sourceLine" id="cb73-8" title="8"><span class="co"># Creating Vectors</span></a>
+<a class="sourceLine" id="cb73-9" title="9">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb73-10" title="10"></a>
+<a class="sourceLine" id="cb73-11" title="11">y &lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb73-12" title="12"></a>
+<a class="sourceLine" id="cb73-13" title="13"></a>
+<a class="sourceLine" id="cb73-14" title="14"><span class="co"># The function can be called with only the required arguments:</span></a>
+<a class="sourceLine" id="cb73-15" title="15"><span class="kw">plot_x_and_y</span>(x, y)</a></code></pre></div>
 <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABUAAAAPACAMAAADDuCPrAAAAulBMVEUAAAAAADoAAGYAOjoAOmYAOpAAZrY6AAA6OgA6Ojo6OmY6ZmY6ZpA6ZrY6kNtmAABmOgBmOjpmZjpmZmZmZpBmkJBmkLZmkNtmtttmtv+QOgCQZgCQZjqQkDqQkLaQtraQttuQtv+Q2/+2ZgC2Zjq2kGa2kLa2tpC2tra2ttu227a229u22/+2///bkDrbkGbbtmbbtpDbtrbb27bb29vb2//b////tmb/25D/27b/29v//7b//9v///+9LqNWAAAACXBIWXMAAB2HAAAdhwGP5fFlAAAZZ0lEQVR4nO3dbX8T14HG4TEhuGmTQOptNtDstsXQkiU4IRAMQf7+X2s1si2PH+JIN8czOnOu60Vi/JPlOdbor3me7gSASDf1BADUSkABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKENrtgHYAxZRPVPFnLGjqvzYwL8UbVfoJS7qDDwygWQIKEBJQgJCAAoQqDOji7S8vXrz4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BBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBJSaHXfdvVf9F4snXfdg6qmhOQJKzdbdXJcURiSgVO39frf39OTk48Ouezz1tNAeAaVuh133+buz/8LIBJS6rZY9lyvw/XIojExAqdwynp/td93XU08HLRJQKtfvR7ICzzQElNq937cCz0QElNr1i6AOYWISAkrtjvpVeJtAmYKAUrmPD7u9fevwTEJAqdzhcvHzyHmcTEJAqdtxvwfeiUhMQ0CpWr8H6bFT4ZmIgFK1o9NDQPuO2o/E6ASUmr0/333kZE6mIKDU7HC99+jQfiTGJ6AAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAIQEFCAkoQEhAAUICChASUICQgAKEBBQgJKAAof8H4Y7hpxxz4yAAAAAASUVORK5CYII=" width="672" /></p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="co"># Or the function can be called with any optional arguments accepted by the plot function:</span></a>
-<a class="sourceLine" id="cb65-2" title="2"><span class="kw">plot_x_and_y</span>(x, y, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="co"># Or the function can be called with any optional arguments accepted by the plot function:</span></a>
+<a class="sourceLine" id="cb74-2" title="2"><span class="kw">plot_x_and_y</span>(x, y, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>, <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>)</a></code></pre></div>
 <p><img src="data:image/png;base64,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0+o3+Oc3c9+PEb37av1BlZUu8WpAfSonQCoCChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgAEECChAkoABBAgoQJKAAQQIKECSgZHa8WDz6sfvD8sVi8WTue0NzBJTMLrp5UVKYkICS2of9xd53Jyd/PF0sns99X2iPgJLb4WLx6a9n/wsTE1ByW+97rgb4bj8UJiagJLeK5yf7i8WXc98PWiSgJNcdRzLAMw8BJbsP+wZ4ZiKgZNftgjqFiVkIKNkddSO8l0CZg4CS3B9PF3v7ZnhmIaAkd7ja/TzyPk5mIaDkdtwdgfdGJOYhoKTWHUF67q3wzERASe3o9BTQrqOOIzE5ASWzD+eHj7yZkzkIKJkdXhw9OnQciekJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKECQgAIECShAkIACBAkoQJCAAgQJKEDQ/wPVIuj5IgUuWwAAAABJRU5ErkJggg==" width="672" /></p>
 <hr />
 </div>
@@ -2605,18 +2707,18 @@ div.tocify {
 <p>In the global environment, there are two types of scopes, <em>global</em> and <em>local</em>. Variables that have <em>global</em> scope are visible everywhere - in every function, loop, conditional, basically every part of the code. However, variables that have <em>local</em> scope are only visible inside said the scope and hence can only be used within that local scope.</p>
 <p>When we create a new function we effectively create a new local scope – so the variables we declare within our functions are only available within that local scope.</p>
 <p>Here is a classical example to demonstrate this.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="co"># Creating a function</span></a>
-<a class="sourceLine" id="cb66-2" title="2">example_function &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb66-3" title="3">  z &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb66-4" title="4">  <span class="kw">paste</span>(<span class="st">&quot;This is z inside the function: &quot;</span>, z)</a>
-<a class="sourceLine" id="cb66-5" title="5">}</a>
-<a class="sourceLine" id="cb66-6" title="6"></a>
-<a class="sourceLine" id="cb66-7" title="7"><span class="co"># Calling a function</span></a>
-<a class="sourceLine" id="cb66-8" title="8"><span class="kw">example_function</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="co"># Creating a function</span></a>
+<a class="sourceLine" id="cb75-2" title="2">example_function &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb75-3" title="3">  z &lt;-<span class="st"> </span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb75-4" title="4">  <span class="kw">paste</span>(<span class="st">&quot;This is z inside the function: &quot;</span>, z)</a>
+<a class="sourceLine" id="cb75-5" title="5">}</a>
+<a class="sourceLine" id="cb75-6" title="6"></a>
+<a class="sourceLine" id="cb75-7" title="7"><span class="co"># Calling a function</span></a>
+<a class="sourceLine" id="cb75-8" title="8"><span class="kw">example_function</span>()</a></code></pre></div>
 <pre><code>## [1] &quot;This is z inside the function:  10&quot;</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="co"># To display the result</span></a>
-<a class="sourceLine" id="cb68-2" title="2"><span class="co"># This will not work as this does not exist outside the function</span></a>
-<a class="sourceLine" id="cb68-3" title="3"><span class="kw">print</span>(z)</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1"><span class="co"># To display the result</span></a>
+<a class="sourceLine" id="cb77-2" title="2"><span class="co"># This will not work as this does not exist outside the function</span></a>
+<a class="sourceLine" id="cb77-3" title="3"><span class="kw">print</span>(z)</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
@@ -2630,18 +2732,18 @@ div.tocify {
 <p><strong>You should now be able to</strong></p>
 <ul>
 <li><p>Be able to use conditional statements: <em>if</em>, <em>else</em> and <em>else if</em>.</p></li>
-<li>Know what functions are and why they are useful.</li>
-<li>Distinguish between a function’s parameters and arguments.
+<li><p>Know what functions are and why they are useful.</p></li>
+<li><p>Distinguish between a function’s parameters and arguments.</p>
 <ul>
 <li>Including different types of arguments</li>
 </ul></li>
-<li>Understand the idea of ‘scope’.
+<li><p>Understand the idea of ‘scope’.</p>
 <ul>
 <li>i.e. Global scope vs Local scope</li>
 </ul></li>
-<li>Write and apply user defined functions.</li>
-<li>Apply functions to <code>vector</code> and <code>tibble</code> objects.</li>
-<li>Understand the programming concept of Loops.</li>
+<li><p>Write and apply user defined functions.</p></li>
+<li><p>Apply functions to <code>vector</code> and <code>tibble</code> objects.</p></li>
+<li><p>Understand the programming concept of Loops.</p></li>
 <li><p>Utilise loops and understand their place in R.</p></li>
 </ul>
 <hr />

@@ -437,7 +437,7 @@ Let's have a play with some of these operators:
 
 Type the code below,
 
-```{r}
+```{r example of numerical operations}
 
 # This is my first R script
 
@@ -451,7 +451,7 @@ Type the code below,
 
 It’s also useful to note that R will follow BIDMAS for order of operations.
 
-```{r}
+```{r example showing bidmas}
 
 # This is my first R script
 
@@ -474,7 +474,7 @@ Functions in R are a word followed by a set of parentheses, like so: **`print()`
 
 Let’s see what they do:
 
-```{r}
+```{r example showing functions}
 # Calculating the square root of 9
 # Using built in function sqrt()
 
@@ -495,7 +495,7 @@ The input of function is called an argument and what we specify is called a valu
 **A argument is a name or a label for the value that follows it**. e.g in the round function below our argument is `digits` and our value is `2`.
 
 
-```{r}
+```{r example showing arguements within functions}
 # Using built in function round()
 
 round(3.6357, digits = 2)
@@ -516,7 +516,7 @@ These different types exist in R for operations behind the scenes. We don't need
 
 We can see they type by using the **`typeof()`** function or command.
 
-```{r}
+```{r type of function}
 typeof(10)
 
 typeof(10L)
@@ -535,13 +535,15 @@ Strings are contained within either 'single' or "double" quotation marks.
 
 All characters between the opening and the closing quote are part of the string.
 
-```{r}
-"This is a string"
+Character data is typically used in data analysis to store qualitative data. examples, cold, dry, wet, hot etc.
+
+```{r hello word character example}
+"Hellow World"
 ```
 
 You actually typed one  when you typed the code below earlier.
 
-```{r}
+```{r i am learning r character example}
 'I am learning R'
 ```
 
