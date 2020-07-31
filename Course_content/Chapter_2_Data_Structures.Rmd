@@ -576,23 +576,25 @@ Above we have selected the 1st, 3rd and 4th elements from `favourite_movies` in 
 
 3. Select the week days.
 
-4. Select Tuesday and Thursday.
+4. Select Tuesday and Thursday
+
+<br>
 
 
-#### **Extension Exercise**{-}
+**Extension Exercise**
 
 1. What happens when you do this?
 
 ```{r, eval=FALSE}
 
-
+# Find out what the code below does
 
 days_of_the_week[3] <- "Wensday"
 
 
+# Find out what the code below does
 
 days_of_the_week[c(-6,-7)]
-
 
 ```
 
@@ -603,7 +605,7 @@ days_of_the_week[c(-6,-7)]
 
 #### **Show Answer**{-}
 
-1. Create another vector containing days of the week (Monday - Sunday).
+1. Create another vector containing days of the week (Monday - Sunday), assign it the name days_of_the_week.
 
 ```{r}
 # Creating a vector
@@ -652,13 +654,16 @@ days_of_the_week[c(2,4)]
 
 ```
 
-#### **Extension Exercise**{-}
+<br>
+
+**Extension Exercise**
 
 1. What happens when you do this?
 
 ```{r}
 
 # Modify the third element of the vector
+# This will change the third element in our vector
 
 days_of_the_week[3] <- "Wensday"
 
@@ -667,15 +672,13 @@ days_of_the_week
 
 
 # Deleting elements of a vector
+# This will delete the chosen elements 
 
 week_days <- days_of_the_week[c(-6,-7)]
 
 # To display the vector to see the changes
 
 week_days
-
-
-
 
 ```
 

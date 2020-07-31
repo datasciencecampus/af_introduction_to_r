@@ -133,7 +133,7 @@ To change this setting go to **Tools -> Global Options -> “Save workspace to .
 
 <br>
 
-![Image showing the workspace in Rstudio](../Images/workspace.PNG)\ 
+![\Image showing the workspace in Rstudio](../Images/workspace.PNG)\ 
 
 
 
@@ -173,7 +173,7 @@ To run code in the Console, you type your code next to the command prompt > and 
    **Make sure you type and hit `Enter` one line at a time.**
 
 
-```{r, eval=FALSE}
+```{r exercise 1, eval=FALSE}
 
 2 + 4
 
@@ -190,7 +190,7 @@ To run code in the Console, you type your code next to the command prompt > and 
 
 #### **Show Answer**{-}
 
-```{r}
+```{r answer for exercise 1}
 
 2 + 4
 
@@ -202,7 +202,7 @@ We didn't just get 6, we also got [1]. This is R's way of printing to the screen
 
 A semi colon allows multiple commands to be entered on the same line before processing.
 
-```{r}
+```{r semiclon to run multiple lines of code}
 
 23 - 6; 36 + 5
 
@@ -213,7 +213,7 @@ A semi colon allows multiple commands to be entered on the same line before proc
 Note that if a **"+"** appears instead of the command prompt **">"**, this means that the statement you submitted was incomplete. 
 
 
-```{r, eval=FALSE}
+```{r incomplete code example, eval=FALSE}
 
 1 + 3 +
 
@@ -287,7 +287,7 @@ There are three main ways to run code in an .R script:
 
 Type the following in your script and run the code.
 
-```{r}
+```{r running code in a script}
 
 "I am learning R"
 
@@ -319,7 +319,7 @@ Lets write a note in our script.
 Type the **#** and write yourself a note.
 
 
-```{r}
+```{r leaving comments in a script}
 
 # This is my first R script
 
@@ -333,7 +333,7 @@ Type the **#** and write yourself a note.
 
 f you think you’ll be writing more than one line of code, you can do a `hash (#)` sign followed by a single quotation mark (#'). This will continue to comment out lines of text or code each time you hit “Enter.” You can delete the #' on a new line where you want to write code for R to run. This method is useful when you’re writing a description of what you’re doing in R.**
 
->**Alternatively you can press the short cut keys Ctrl+Shift+C.
+>**Alternatively you can press the short cut keys Ctrl+Shift+C.**
 
 <br>
 
@@ -538,7 +538,7 @@ All characters between the opening and the closing quote are part of the string.
 Character data is typically used in data analysis to store qualitative data. examples, cold, dry, wet, hot etc.
 
 ```{r hello word character example}
-"Hellow World"
+"Hello World"
 ```
 
 You actually typed one  when you typed the code below earlier.
@@ -549,7 +549,7 @@ You actually typed one  when you typed the code below earlier.
 
 The choice between single and double quotes is up to the user, as long as you start and end with the same symbol. Unlike other languages, there is no difference in behaviour. I recommend always using ", unless you want to create a string that contains multiple ".
 
-```{r}
+```{r including quotes within text}
 'If I want to include a "quote" inside a string, I use single quotes'
 ```
 
@@ -578,11 +578,11 @@ Note that while they can be abbreviated to `T` and `F`, this is not regarded as 
 They also have numerical values behind them - `TRUE` is 1 and `FALSE` is 0.
 
 Therefore, we can treat them as numbers!
-```{r}
+```{r showing numerical value of TRUE}
 TRUE + TRUE
 ```
 And use all the other operators too!
-```{r}
+```{r showing numerical value of TRUE second example}
 TRUE * 2.5
 ```
 
@@ -611,17 +611,17 @@ Let's see how these work:
 
 Is 4 greater than 5?
 
-```{r}
+```{r comparison operator example}
 4 > 5
 ```
 
 Is 25 equal to 5 squared?
-```{r}
+```{r comparison operator second example}
 25 == 5^2
 ```
 
 Does 1 not equal 2?
-```{r}
+```{r compariosn operator third example}
 1 != 2
 ```
 
@@ -645,7 +645,7 @@ We will look at these more in detail with examples in Chapter Four -Data Manipul
 
 1.What is the data type of the following?
 
-```{r, eval=FALSE}
+```{r data types exercise, eval=FALSE}
 
 "10"
 
@@ -671,7 +671,7 @@ FALSE
 
 The typeof notation determines the (R internal) type or storage mode of any object.
 
-```{r}
+```{r answers to datatypes exercise}
 
 typeof("10")
 
@@ -717,7 +717,7 @@ In order to convert the data, you need to use the **as.** functions. When writin
 * as.logical to convert to Logical.
 
 
-```{r}
+```{r datatype conversion example}
 as.integer(4.996453)
 
 as.numeric("2")
@@ -739,7 +739,7 @@ Variables are an integral part of any programming language. Variables allow us t
 We can assign a value to a variable using the `<-` operator, for example in the below code where `weight_kg` is the variable name and the value `60` is the data being assigned to `weight_kg`. 
 
 
-```{r}
+```{r assignment operator example}
 # To assign a variable
 
 weight_kg <- 60
@@ -752,7 +752,7 @@ Once an object has been created it will appear in your Environment window which 
 
 
 After the assignment, to access or use the value we simply reference `weight_kg` in our code. 
-```{r}
+```{r assigning and displaying the variable}
 # To assign a variable
 
 weight_kg <- 60
@@ -763,8 +763,22 @@ weight_kg <- 60
 weight_kg
 ```
 
+<br>
+
+> **TIP If we wanted to assign and display our variable in the console at the time we can wrap our code is brackets as below.**
+
+```{r assigning and displaying variable at the same time}
+# Adding brackets to our code
+# Will assign and also print our value in the console
+
+(weight_kg <- 60)
+
+```
+
+<br>
+
 If you wanted to display that a bit better you could use the `cat()` function like below, the `\n` starts a new line.
-```{r}
+```{r example using the cat function}
 # Using the cat() function to display our result
 
 cat('my weight is', sep = '\n', weight_kg)
@@ -775,7 +789,7 @@ We can use our variables in mathematical operations. Here we are using `weight_k
 
 
 
-```{r}
+```{r example showing numerical operations with a variable}
 # Multiplication using our variable name
 
 weight_lb <- weight_kg * 2.2
@@ -789,7 +803,7 @@ If we ever want to reassign a variable we would simply use the operator above ag
 
 For example: I am assigning height as 5.
 
-```{r}
+```{r example assigning a variable}
 # To assign a variable
 
 height <- 5
@@ -807,7 +821,7 @@ Now I am reassigning height which was assigned to 5 to 7.
 This will overwrite our value for height to 7.
 
 
-```{r}
+```{r example of overwritting a variable}
 # To assign a variable
 
 height <- 7
@@ -823,7 +837,7 @@ We can also assign a value to name (or label) using `=` operator and `->` operat
 
 Here are a few examples of them in action:
 
-```{r}
+```{r bad practice assignement}
 # PLEASE NOTE THIS IS BAD PRACTICE
 
 # To assign a variable
@@ -864,7 +878,7 @@ To remove a variable, we would utilise the `remove()` function of R.
 
 For example: `remove(variable_name)` 
 
-```{r warning=FALSE}
+```{r removing variables, warning=FALSE}
 # Removing assigned variables using the remove function
 
 remove(height)
@@ -913,7 +927,7 @@ We have more detailed examples and information on good variables names in our ot
 
 1. Why does this code not work?
 
-```{r,eval=FALSE}
+```{r variable assignment exercise,eval=FALSE}
 # To assign a variable
 
 my_variable <- 10
@@ -927,7 +941,7 @@ my_varIable
 
 2. What is the value of each item at each step?
 
-```{r, eval=FALSE}
+```{r variable assignment exercise 2, eval=FALSE}
 
 # To assign a variable
 
@@ -962,7 +976,7 @@ distance <- distance + 5
 
 1. Using the distance and speed values from the exercise above, calculate the speed as below.
 
-```{r, eval=FALSE}
+```{r variable assignment extension exercise, eval=FALSE}
 
 #5. speed
 
@@ -987,7 +1001,7 @@ speed <- distance / time_value
 
 1. Why does this code not work?
 
-```{r,eval=FALSE}
+```{r variable assignment answer,eval=FALSE}
 # To assign a variable
 
 my_variable <- 10
@@ -1010,7 +1024,7 @@ Error messages of the form "object '...' not found" mean exactly what they say. 
 
 2. What is the value of each item at each step?
 
-```{r}
+```{r variable assignment answer 2}
 
 # To assign a variable
 
@@ -1058,7 +1072,7 @@ distance
 
 1. Using the distance and speed values from the exercise above, calculate the speed as below.
 
-```{r}
+```{r variable assignment extension  answer}
 
 #5. speed
 
@@ -1076,7 +1090,7 @@ speed
 
 2. Use the remove function to remove a variable.
 
-```{r echo=TRUE, message=TRUE}
+```{r variable assignment extension  answer 2, echo=TRUE, message=TRUE}
 
 # To display the variable
 
@@ -1141,7 +1155,7 @@ Try and type the command below in the console,and you should see the Help panel 
 
 
 
-```{r, eval=FALSE}
+```{r using R help documentation, eval=FALSE}
 #To access the R help documentation
 
 ?mean 

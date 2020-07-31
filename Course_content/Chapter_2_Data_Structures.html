@@ -1971,26 +1971,28 @@ div.tocify {
 <li><p>Create another vector containing days of the week (Monday - Sunday).</p></li>
 <li><p>Select the third day of the week.</p></li>
 <li><p>Select the week days.</p></li>
-<li><p>Select Tuesday and Thursday.</p></li>
+<li><p>Select Tuesday and Thursday</p></li>
 </ol>
-</div>
-<div id="extension-exercise" class="section level4 unnumbered">
-<h4><strong>Extension Exercise</strong></h4>
+<p><br></p>
+<p><strong>Extension Exercise</strong></p>
 <ol style="list-style-type: decimal">
 <li>What happens when you do this?</li>
 </ol>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1">days_of_the_week[<span class="dv">3</span>] &lt;-<span class="st"> &quot;Wensday&quot;</span></a>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co"># Find out what the code below does</span></a>
 <a class="sourceLine" id="cb55-2" title="2"></a>
-<a class="sourceLine" id="cb55-3" title="3"></a>
+<a class="sourceLine" id="cb55-3" title="3">days_of_the_week[<span class="dv">3</span>] &lt;-<span class="st"> &quot;Wensday&quot;</span></a>
 <a class="sourceLine" id="cb55-4" title="4"></a>
-<a class="sourceLine" id="cb55-5" title="5">days_of_the_week[<span class="kw">c</span>(<span class="op">-</span><span class="dv">6</span>,<span class="op">-</span><span class="dv">7</span>)]</a></code></pre></div>
+<a class="sourceLine" id="cb55-5" title="5"></a>
+<a class="sourceLine" id="cb55-6" title="6"><span class="co"># Find out what the code below does</span></a>
+<a class="sourceLine" id="cb55-7" title="7"></a>
+<a class="sourceLine" id="cb55-8" title="8">days_of_the_week[<span class="kw">c</span>(<span class="op">-</span><span class="dv">6</span>,<span class="op">-</span><span class="dv">7</span>)]</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
 <div id="show-answer-3" class="section level4 unnumbered">
 <h4><strong>Show Answer</strong></h4>
 <ol style="list-style-type: decimal">
-<li>Create another vector containing days of the week (Monday - Sunday).</li>
+<li>Create another vector containing days of the week (Monday - Sunday), assign it the name days_of_the_week.</li>
 </ol>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="co"># Creating a vector</span></a>
 <a class="sourceLine" id="cb56-2" title="2"></a>
@@ -2025,26 +2027,27 @@ div.tocify {
 <a class="sourceLine" id="cb61-4" title="4"></a>
 <a class="sourceLine" id="cb61-5" title="5">days_of_the_week[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] </a></code></pre></div>
 <pre><code>## [1] &quot;Tuesday&quot;  &quot;Thursday&quot;</code></pre>
-</div>
-<div id="extension-exercise-1" class="section level4 unnumbered">
-<h4><strong>Extension Exercise</strong></h4>
+<p><br></p>
+<p><strong>Extension Exercise</strong></p>
 <ol style="list-style-type: decimal">
 <li>What happens when you do this?</li>
 </ol>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="co"># Modify the third element of the vector</span></a>
-<a class="sourceLine" id="cb63-2" title="2"></a>
-<a class="sourceLine" id="cb63-3" title="3">days_of_the_week[<span class="dv">3</span>] &lt;-<span class="st"> &quot;Wensday&quot;</span></a>
-<a class="sourceLine" id="cb63-4" title="4"></a>
-<a class="sourceLine" id="cb63-5" title="5"><span class="co"># To display the vector to see the changes</span></a>
-<a class="sourceLine" id="cb63-6" title="6">days_of_the_week</a></code></pre></div>
+<a class="sourceLine" id="cb63-2" title="2"><span class="co"># This will change the third element in our vector</span></a>
+<a class="sourceLine" id="cb63-3" title="3"></a>
+<a class="sourceLine" id="cb63-4" title="4">days_of_the_week[<span class="dv">3</span>] &lt;-<span class="st"> &quot;Wensday&quot;</span></a>
+<a class="sourceLine" id="cb63-5" title="5"></a>
+<a class="sourceLine" id="cb63-6" title="6"><span class="co"># To display the vector to see the changes</span></a>
+<a class="sourceLine" id="cb63-7" title="7">days_of_the_week</a></code></pre></div>
 <pre><code>## [1] &quot;Monday&quot;   &quot;Tuesday&quot;  &quot;Wensday&quot;  &quot;Thursday&quot; &quot;Friday&quot;   &quot;Saturday&quot; &quot;Sunday&quot;</code></pre>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="co"># Deleting elements of a vector</span></a>
-<a class="sourceLine" id="cb65-2" title="2"></a>
-<a class="sourceLine" id="cb65-3" title="3">week_days &lt;-<span class="st"> </span>days_of_the_week[<span class="kw">c</span>(<span class="op">-</span><span class="dv">6</span>,<span class="op">-</span><span class="dv">7</span>)]</a>
-<a class="sourceLine" id="cb65-4" title="4"></a>
-<a class="sourceLine" id="cb65-5" title="5"><span class="co"># To display the vector to see the changes</span></a>
-<a class="sourceLine" id="cb65-6" title="6"></a>
-<a class="sourceLine" id="cb65-7" title="7">week_days</a></code></pre></div>
+<a class="sourceLine" id="cb65-2" title="2"><span class="co"># This will delete the chosen elements </span></a>
+<a class="sourceLine" id="cb65-3" title="3"></a>
+<a class="sourceLine" id="cb65-4" title="4">week_days &lt;-<span class="st"> </span>days_of_the_week[<span class="kw">c</span>(<span class="op">-</span><span class="dv">6</span>,<span class="op">-</span><span class="dv">7</span>)]</a>
+<a class="sourceLine" id="cb65-5" title="5"></a>
+<a class="sourceLine" id="cb65-6" title="6"><span class="co"># To display the vector to see the changes</span></a>
+<a class="sourceLine" id="cb65-7" title="7"></a>
+<a class="sourceLine" id="cb65-8" title="8">week_days</a></code></pre></div>
 <pre><code>## [1] &quot;Monday&quot;   &quot;Tuesday&quot;  &quot;Wensday&quot;  &quot;Thursday&quot; &quot;Friday&quot;</code></pre>
 <hr />
 <p><br></p>
@@ -2260,7 +2263,7 @@ div.tocify {
 <li><p>Add an item called price.</p></li>
 </ol>
 <p><br></p>
-<div id="extension-exercise-2" class="section level5 unnumbered">
+<div id="extension-exercise" class="section level5 unnumbered">
 <h5><strong>Extension Exercise</strong></h5>
 <ol style="list-style-type: decimal">
 <li><p>Select your favourite chocolate from the options.</p></li>
@@ -2351,7 +2354,7 @@ div.tocify {
 ## [[5]]
 ## [1] &quot;price&quot;</code></pre>
 <p><br></p>
-<div id="extension-exercise-3" class="section level5 unnumbered">
+<div id="extension-exercise-1" class="section level5 unnumbered">
 <h5><strong>Extension Exercise</strong></h5>
 <ol style="list-style-type: decimal">
 <li>Select your favourite chocolate from the options.</li>

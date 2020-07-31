@@ -550,6 +550,10 @@ The **`dplyr::select()`** function, in its simplest form, takes two parameters.
 
 The first, like all `tidyverse` functions, being the tibble we are interested in, and the second being the column name.
 
+To select a few columns just add their names in the select statement. 
+
+The order in which you add them, will determine the order in which they appear in the output.
+
 
 ```{r}
 # Selecting data
@@ -578,6 +582,27 @@ titanic_three_variables <- dplyr::select(.data = titanic,
 # To display the data
 
 titanic_three_variables
+```
+
+We can select columns which are next to each other in chunck as below.
+
+To select a chunk of columns use the start_col:end_col syntax:
+
+```{r}
+# Selecting data
+# We can select multiple variables which are next to each other
+# By using the : the code below will select all columns between
+# pclass and age_of_passenger
+
+titanic_five_variables <- dplyr::select(.data = titanic,
+                                         c(pclass:age_of_passenger))
+
+# To display the data
+
+titanic_five_variables
+
+
+
 ```
 
 
