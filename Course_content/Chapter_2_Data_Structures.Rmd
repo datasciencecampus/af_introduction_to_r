@@ -56,12 +56,6 @@ Data structures we will be looking at include vectors, lists, and data frames.
 
 # Vectors
 
-
-
-Now it's time to almost forget everything you've just learned... In R the most fundamental object is a vector. To the extent all the data types we have seen so far have all been vectors. This is because R is a `"vectorised"` language. This is a really powerful concept that may seem foreign right now, but it should make more sense as we move on.
-
-
-
 In the previous section we looked at data types, where we said we could assign a name to a value.
 
 here `my_friends` is assigned to the value `ian`
@@ -346,6 +340,7 @@ favourite_movies
 lucky_numbers <- c(7, 12, 15, 1)  
 
 # To display the data
+
 lucky_numbers
 
 ```
@@ -459,6 +454,7 @@ sample_vector
 sequence_vector
 ```
 
+<br>
 
 2. Can you figure out what has happened?
 
@@ -701,9 +697,13 @@ week_days
 
 Lists are similar data structure to vectors in that they are an ordered collection of elements. They differ to vectors because their elements can be of any type, including lists themselves!
 
-So why do you need lists? A list in R is like a to-do list: the different items on that list most likely differ in length, characteristic, type of activity etc. It enables you to gather a variety of objects under one name in an ordered way.
+So why do you need lists? 
 
-Lists are really useful, flexible data structures. Their elements can be any object we’ve seen so far and any object you might ever see! (This also includes functions).
+A list in R is like a to-do list: the different items on that list most likely differ in length, characteristic, type of activity etc. It enables you to gather a variety of objects under one name in an ordered way.
+
+
+If you are going to use some modelling functions (like t.test() for the t test or lm() for linear models) you will notice that they produce lists as their return values.
+
 
 
 ![\Image showing visual representation of a List](../Images/list.png)
@@ -737,6 +737,7 @@ shopping_list <- list(c("apples", "bananas", "strawberries"),
                       20.2)
 
 # To Display the list
+
 shopping_list
 ```
 Lists are really useful, flexible data structures. Their elements can be any object we've seen so far and any object you might ever see - including functions!
@@ -774,12 +775,15 @@ We can also name our list using the **`names()`** function. This function allows
 ```{r}
 
 # To display the names of our list
+
 names(shopping_list)
 
 # Adding names to our items in the list
+
 names(shopping_list)<- c("favourite_fruits", "amount_of_fruit", "total_price_of_shopping")
 
 # To display the list
+
 shopping_list
 ```
 
@@ -865,14 +869,16 @@ shopping_list
 ```{r}
 # Adding an item to a list by position
 
-shopping_list[4] <- "custard creams"
+shopping_list$best_biscuits <- "custard creams"
 
 
 # To display the list
 
 shopping_list
 
+```
 
+```{r}
 # Adding an item to a list using the append function
 
 shopping_list <- append(shopping_list, "milk")
@@ -880,8 +886,8 @@ shopping_list <- append(shopping_list, "milk")
 # To display the list
 
 shopping_list
-
 ```
+
 
 <br>
 
@@ -895,6 +901,7 @@ shopping_list
 
 ```{r}
 # Creating a list with multiple items
+
 chocolate <- list(brand = "celebrations", 
                   chocolate_bar = c("mars", "milky way", "bounty", "twix", "maltesers"), 
                   rating = c("worst",  "terrible", "awful", "nice", "best"))
@@ -935,7 +942,7 @@ chocolate <- list(brand = "celebrations",
 # Creating a named list with multiple items
 
 chocolate <- list(brand = "celebrations", 
-                  chocolate_bar = c("mars", "milky way", "bounty", "twix"), 
+                  chocolate_bar = c("mars", "milky way", "bounty", "twix", "maltesers"), 
                   rating = c("worst",  "terrible", "awful", "nice", "best"))
 ```
 
@@ -969,28 +976,24 @@ str(chocolate)
 ```{r}
 # Select chocolate bars
 
-chocolate[2]
+chocolate$chocolate_bar
 
 ```
+
+<br>
 
 5. Add item called price.
 
 ```{r}
 # Updating the list by adding price
 
-chocolate[[4]] <- ("price")
+chocolate$cost <- "price"
 
 # To display the list
 
 chocolate
 
-# Updating the list using the list using append
 
-chocolate <- append(chocolate, "price")
-
-# To display the list
-
-chocolate
 ```
 
 
@@ -1021,21 +1024,6 @@ chocolate[[2]][3]
 ```{r}
 
 chocolate$chocolate_bar[5]<- "turkish delight"
-
-# To display the list
-
-chocolate
-
-chocolate[["chocolate_bar"]][5]<- "turkish delight"
-
-# To display the  list
-
-chocolate
-
-
-# Adding an item with list contained in a list
-
-chocolate[[2]][5] <- "turkish delight"
 
 # To display the list
 

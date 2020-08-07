@@ -329,15 +329,17 @@ Type the **#** and write yourself a note.
 
 <br>
 
+>**TIP - Comments can also be used to prevent R from running code**
 
 
-f you think you’ll be writing more than one line of code, you can do a `hash (#)` sign followed by a single quotation mark (#'). This will continue to comment out lines of text or code each time you hit “Enter.” You can delete the #' on a new line where you want to write code for R to run. This method is useful when you’re writing a description of what you’re doing in R.**
+
+If you think you’ll be writing more than one line of code, you can do a `hash (#)` sign followed by a single quotation mark (#'). This will continue to comment out lines of text or code each time you hit “Enter.” You can delete the #' on a new line where you want to write code for R to run. This method is useful when you’re writing a description of what you’re doing in R.
 
 >**Alternatively you can press the short cut keys Ctrl+Shift+C.**
 
 <br>
 
-I  recommend to  save this script, type in the code as we go along, and only execute the required lines. That way you will have a record of what you have done.
+I recommend to  save this script, type in the code as we go along, and only execute the required lines. That way you will have a record of what you have done.
 
 To save the script: 
 
@@ -488,7 +490,7 @@ round(3.6357)
 ```
 
 
-You can specify what you want a function to do with what we call a parameter and argument. This is specified within the brackets of the function. We  will talk more about parameters and arguments(inputs) in chapter 6, 
+You can specify what you want a function to do with what we call an an argument. This is specified within the brackets of the function. We  will talk more about and arguments in chapter 3.
 
 The input of function is called an argument and what we specify is called a value.
 
