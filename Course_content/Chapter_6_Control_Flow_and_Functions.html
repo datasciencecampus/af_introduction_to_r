@@ -52060,10 +52060,11 @@ NA
 </tbody>
 </table>
 </div>
-<p>Another example is when we did the FizzBuzz exercise.</p>
+<p><br></p>
+<p>Another example is when we did the FizzBuzz exercise. We had the code below,</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="co"># I have used i as the index variable here</span></a>
 <a class="sourceLine" id="cb41-2" title="2"><span class="co"># This is the most commonly used </span></a>
-<a class="sourceLine" id="cb41-3" title="3"><span class="co"># But for best practice i recomment to set it</span></a>
+<a class="sourceLine" id="cb41-3" title="3"><span class="co"># But for best practice I recomment to set it</span></a>
 <a class="sourceLine" id="cb41-4" title="4"><span class="co"># to be something more relevant</span></a>
 <a class="sourceLine" id="cb41-5" title="5"></a>
 <a class="sourceLine" id="cb41-6" title="6"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>) { </a>
@@ -52116,16 +52117,25 @@ NA
 ## [1] 28
 ## [1] 29
 ## [1] &quot;FizzBuzz&quot;</code></pre>
+<p><br></p>
 <p>This can be simplified using <code>dplyr::case_when()</code> as below.</p>
-<p>Key thing to keep in mind is arguements are evaluated in order.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">i &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">30</span></a>
+<p><strong>Key thing to keep in mind is arguements are evaluated in order.</strong></p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="co"># Creating a vector</span></a>
 <a class="sourceLine" id="cb43-2" title="2"></a>
-<a class="sourceLine" id="cb43-3" title="3"><span class="kw">case_when</span>(</a>
-<a class="sourceLine" id="cb43-4" title="4">  (i <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>i <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">~</span><span class="st"> &quot;FizzBuzz&quot;</span>,</a>
-<a class="sourceLine" id="cb43-5" title="5">  (i <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">~</span><span class="st"> &quot;Fizz&quot;</span>,</a>
-<a class="sourceLine" id="cb43-6" title="6">  (i <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">~</span><span class="st"> &quot;Buzz&quot;</span>,</a>
-<a class="sourceLine" id="cb43-7" title="7">  <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="kw">as.character</span>(i)</a>
-<a class="sourceLine" id="cb43-8" title="8">  )</a></code></pre></div>
+<a class="sourceLine" id="cb43-3" title="3">example_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">30</span></a>
+<a class="sourceLine" id="cb43-4" title="4"></a>
+<a class="sourceLine" id="cb43-5" title="5"><span class="co"># Using case when</span></a>
+<a class="sourceLine" id="cb43-6" title="6"><span class="co"># Conditions are evaluated in order</span></a>
+<a class="sourceLine" id="cb43-7" title="7"><span class="co"># The output must be the same same data type</span></a>
+<a class="sourceLine" id="cb43-8" title="8"><span class="co"># Here am using the TRUE to convert everything to character</span></a>
+<a class="sourceLine" id="cb43-9" title="9"><span class="co"># as &quot;fizz&quot; and &quot;Buzz&quot; are character data</span></a>
+<a class="sourceLine" id="cb43-10" title="10"></a>
+<a class="sourceLine" id="cb43-11" title="11"><span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb43-12" title="12">  (example_vector <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>example_vector <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">~</span><span class="st"> &quot;FizzBuzz&quot;</span>,</a>
+<a class="sourceLine" id="cb43-13" title="13">  (example_vector <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">~</span><span class="st"> &quot;Fizz&quot;</span>,</a>
+<a class="sourceLine" id="cb43-14" title="14">  (example_vector <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">~</span><span class="st"> &quot;Buzz&quot;</span>,</a>
+<a class="sourceLine" id="cb43-15" title="15">  <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="kw">as.character</span>(example_vector)</a>
+<a class="sourceLine" id="cb43-16" title="16">)</a></code></pre></div>
 <pre><code>##  [1] &quot;1&quot;        &quot;2&quot;        &quot;Fizz&quot;     &quot;4&quot;        &quot;Buzz&quot;     &quot;Fizz&quot;    
 ##  [7] &quot;7&quot;        &quot;8&quot;        &quot;Fizz&quot;     &quot;Buzz&quot;     &quot;11&quot;       &quot;Fizz&quot;    
 ## [13] &quot;13&quot;       &quot;14&quot;       &quot;FizzBuzz&quot; &quot;16&quot;       &quot;17&quot;       &quot;Fizz&quot;    
@@ -52137,16 +52147,32 @@ NA
 <div id="exercise-3" class="section level4 unnumbered">
 <h4><strong>Exercise</strong></h4>
 <ol style="list-style-type: decimal">
-<li>Use the case_when() function to create a new column in the titanic dataset called fare_level. This new column should have 4 levels total: If fare is less than 100, fare_level should be “cheap” Between 100 and less than 200: “fair” Between 200 and less than 300: “expensive” Greater than or equal to 300: “Very expensive” Assign your tibble with the new column to the variable titanic_fare_level.</li>
+<li>Use the case_when() function to create a new column in the titanic dataset called <strong>fare_level</strong>.</li>
 </ol>
+<p>This new column should have 4 levels total:</p>
+<ul>
+<li><p>If fare is less than 100, fare_level should be “cheap”</p></li>
+<li><p>Between 100 and less than 200: “fair”</p></li>
+<li><p>Between 200 and less than 300: “expensive”</p></li>
+<li><p>Greater than or equal to 300: “Very expensive”</p>
+<p>Assign your tibble to the variable <strong>titanic_fare_level</strong>.</p></li>
+</ul>
 <hr />
 <p><br></p>
 </div>
 <div id="hint-2" class="section level4 unnumbered">
 <h4><strong>Hint</strong></h4>
 <ol style="list-style-type: decimal">
-<li>Use the case_when() function to create a new column in the titanic dataset called fare_level. This new column should have 4 levels total: If fare is less than 100, fare_level should be “cheap” Between 100 and less than 200: “fair” Between 200 and less than 300: “expensive” Greater than or equal to 300: “Very expensive” Assign your tibble with the new column to the variable titanic_fare_level.</li>
+<li>Use the case_when() function to create a new column in the titanic dataset called <strong>fare_level</strong>.</li>
 </ol>
+<p>This new column should have 4 levels total:</p>
+<ul>
+<li><p>If fare is less than 100, fare_level should be “cheap”</p></li>
+<li><p>Between 100 and less than 200: “fair”</p></li>
+<li><p>Between 200 and less than 300: “expensive”</p></li>
+<li><p>Greater than or equal to 300: “Very expensive”</p>
+<p>Assign your tibble to the variable <strong>titanic_fare_level</strong>.</p></li>
+</ul>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">titanic_fare_level &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb45-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(</a>
 <a class="sourceLine" id="cb45-3" title="3">    <span class="dt">fare_level =</span> <span class="kw">case_when</span>(</a>

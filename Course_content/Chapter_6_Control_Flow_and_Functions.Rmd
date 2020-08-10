@@ -931,12 +931,15 @@ case_when_example %>%
   scroll_box(width = "100", height = "500px")
 ```
 
-Another example is when we did the FizzBuzz exercise.
+
+<br>
+
+Another example is when we did the FizzBuzz exercise. We had the code below,
 
 ```{r}
 # I have used i as the index variable here
 # This is the most commonly used 
-# But for best practice i recomment to set it
+# But for best practice I recomment to set it
 # to be something more relevant
 
 for (i in 1:30) { 
@@ -961,21 +964,30 @@ for (i in 1:30) {
 }
 ```
 
+<br>
 
 This can be simplified using `dplyr::case_when()` as below.
 
-Key thing to keep in mind is arguements are evaluated in order.
+**Key thing to keep in mind is arguements are evaluated in order.**
 
 
 ```{r}
-i <- 1:30
+# Creating a vector
+
+example_vector <- 1:30
+
+# Using case when
+# Conditions are evaluated in order
+# The output must be the same same data type
+# Here am using the TRUE to convert everything to character
+# as "fizz" and "Buzz" are character data
 
 case_when(
-  (i %% 3 == 0 & i %% 5 == 0) ~ "FizzBuzz",
-  (i %% 3 == 0) ~ "Fizz",
-  (i %% 5 == 0) ~ "Buzz",
-  TRUE ~ as.character(i)
-  )
+  (example_vector %% 3 == 0 & example_vector %% 5 == 0) ~ "FizzBuzz",
+  (example_vector %% 3 == 0) ~ "Fizz",
+  (example_vector %% 5 == 0) ~ "Buzz",
+  TRUE ~ as.character(example_vector)
+)
 ```
 
 
@@ -988,12 +1000,16 @@ case_when(
 
 #### **Exercise**{-}
 
-1. Use the case_when() function to create a new column in the titanic dataset called fare_level. This new column should have 4 levels total:
-If fare is less than 100, fare_level should be "cheap"
-Between 100 and less than 200: "fair"
-Between 200 and less than 300: "expensive"
-Greater than or equal to 300: "Very expensive"
-Assign your tibble with the new column to the variable titanic_fare_level.
+1. Use the case_when() function to create a new column in the titanic dataset called **fare_level**. 
+
+  This new column should have 4 levels total:
+
+* If fare is less than 100, fare_level should be "cheap"
+* Between 100 and less than 200: "fair"
+* Between 200 and less than 300: "expensive"
+* Greater than or equal to 300: "Very expensive"
+
+  Assign your tibble to the variable       **titanic_fare_level**.
 
 
 
@@ -1006,14 +1022,19 @@ Assign your tibble with the new column to the variable titanic_fare_level.
 
 #### **Hint**{-}
 
-1. Use the case_when() function to create a new column in the titanic dataset called fare_level. This new column should have 4 levels total:
-If fare is less than 100, fare_level should be "cheap"
-Between 100 and less than 200: "fair"
-Between 200 and less than 300: "expensive"
-Greater than or equal to 300: "Very expensive"
-Assign your tibble with the new column to the variable titanic_fare_level.
+1. Use the case_when() function to create a new column in the titanic dataset called **fare_level**. 
+
+  This new column should have 4 levels total:
+
+* If fare is less than 100, fare_level should be "cheap"
+* Between 100 and less than 200: "fair"
+* Between 200 and less than 300: "expensive"
+* Greater than or equal to 300: "Very expensive"
+
+  Assign your tibble to the variable       **titanic_fare_level**.
 
 ```{r}
+
 
 titanic_fare_level <- titanic %>% 
   mutate(
