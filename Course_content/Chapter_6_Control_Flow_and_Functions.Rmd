@@ -97,6 +97,10 @@ A loop is a way to repeat a number commands until a given condition is met.
 
 This repetition of code is called iteration.
 
+A repetitive action could be "create one of several plots".
+
+A for loop can produce literally anything we want it to produce (e.g., plots, models, reports, datasets).
+
 
 Since R is a vectorised language, loops are not as prominently used in R as in Python for example. Despite this, they are a key part of programming in general and can save you a  large amount of time and typing in certain cases.
 
@@ -284,7 +288,11 @@ grams <- c(100000, 7899900, 967312, 49185, 6100)
 
    Using a for loop, create and append to a new vector called kilo_grams that contains the          values converted to meters.
 
-```{r}
+```{r,eval=FALSE}
+
+# PLEASE NOTE: THIS IS NOT CODE
+# SHOWS STEPS NEEDED TP CREATE THE LOOP
+
 # Vector
 
 grams <- c(100000, 7899900, 967312, 49185, 6100)
@@ -295,11 +303,13 @@ kilo_grams <- c()
 
 # For loop
 
-for (measurement in grams) {
+for (each_number in vector) {
   
-  converted_kilo_grams <- measurement / 1000
+     convert to kilo_grams
   
-  kilo_grams <- append(kilo_grams, converted_kilo_grams)
+     append result to kilo_grams
+  
+ 
   
 }
 
@@ -792,17 +802,20 @@ anyNA(titanic)
 
 ```
 
-No that we know they are missing values in the data, we can use the `summary` function to see how many missing values we have.
+No that we know they are missing values in the data, we can use the `colSums()` function or the `summary()` function to see how many missing values we have.
 
 ```{r}
 
 # To get sum of missing values
+# This showing number of issing values in each columns in the dataset
 
 colSums(is.na(titanic))
 
 
 
 # Summary of our data
+# This is showing summary data for the age_of_passenger column
+# Part of the summary data shows number of missing values.
 
 summary(titanic$age_of_passenger)
 
@@ -812,24 +825,30 @@ summary(titanic$age_of_passenger)
 
 We can see that the column `age_of_passenger` has 267 missing values.
 
-We can impute(populate) our missing values using the dplyr `if_else` function. Here am going to use the mean value for `age_of_passenger`.
+<br>
+
+We can impute(populate) our missing values using the dplyr `if_else` function. 
+
+Here am going to use the mean value for `age_of_passenger`.
 
 >**Please refer to the Editing and Imputation Course for details on how to best impute your missing data, this is demonstration purposes only.**
 
-As we saw in Chapter Four - Working with Dataframes, the mutate function from the dplyr package is useful in creating a new variable. 
+<br>
+
+As we saw in **Chapter Four - Working with Dataframes**, the mutate function from the dplyr package is useful in creating a new variable. 
 
 We don't necessarily want to change the original column so we can create a new variable without the NA. mutate is easy to use, we just choose a variable name and define how to create this variable.
 
-Here my new column name is imputed_age_of_passenger.
+Here my new column name is **imputed_age_of_passenger**.
 
-The if_else() function takes that single comparison operator condition = is.na(age_of_passenger) and vectorizes it.
+The if_else() function takes that single comparison operator **condition = is.na(age_of_passenger)** and vectorizes it.
 
 ```{r}
 
 # Dealing with missing values
 # we can omit
 # we can immpute(populate)
-# here using the mean
+# here imputing using the mean
 
 imputed_titanic <- titanic %>%
                  # New column name                        # Condition to be met
@@ -848,7 +867,13 @@ summary(imputed_titanic$imputed_age_of_passenger)
 
 ```
 
+<br>
+
 >**If you need to more complicated conditions you could the case_when function from dplyr**.
+
+***
+
+<br>
 
 ## Dplyr Case when
 
@@ -868,9 +893,19 @@ case_when() takes a conditional command in the same format as the first command 
 
 lets look at an example.
 
+Consider you wanted to add in a new column of the Countries in which the passengers embarked, so those who embarked in "S"(Southampton) it should say England, those who embarked in "C" (Cherbourg) should say France and those who embarked in "Q" (Quenstown) should say Ireland.
+
 
 
 ```{r}
+# Here I am using case_when withing the mutate function as I want to create a new column within my dataset
+# My new column name is country_embarked
+# To use case_when, you specify the condition first
+# The the ~ tilde for the action when the condition met
+# we can also specify the TRUE which is what to happen if none of the set conditions are met.
+
+
+
 case_when_example <- titanic %>% 
   mutate(
     country_embarked = case_when(
