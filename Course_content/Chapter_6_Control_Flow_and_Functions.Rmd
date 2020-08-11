@@ -95,7 +95,7 @@ Loops are a fundamental concept in traditional programming languages.
 
 A loop is a way to repeat a number commands until a given condition is met.
 
-This repetition of code is called iteration.
+This repetition of code is called **iteration**.
 
 A repetitive action could be "create one of several plots".
 
@@ -216,8 +216,12 @@ My command is assigned to `result`. The command here is to multiply each number 
 
 The **`append()`** function simply adds an element to a vector, we first specify the vector we want to add to which is `result` and then specify the values that we want to add to it, within the function this is set to the argument `values`.
 
+<br>
+
+![Image showing Control Flow](../Images/loop_example.png)
 
 
+<br>
 
 ***
 
@@ -308,9 +312,6 @@ for (each_number in vector) {
      convert to kilo_grams
   
      append result to kilo_grams
-  
- 
-  
 }
 
 
@@ -383,6 +384,7 @@ Control flow is something we do in everyday life.
 
 For example when we go shopping and choose fruits, we normally want to buy the ones that look juicy and healthy and avoid the ones that look rotten or bruised. As we pick up our fruit and inspect it, we are actually using control flow.
 
+<br>
 
 ![Image showing Control Flow](../Images/control_flow_image.png)
 
@@ -392,7 +394,7 @@ For example when we go shopping and choose fruits, we normally want to buy the o
 
 In order to move through this decision process, we need to answer either "Yes" or "No" to each question. A series of "Yes" answers will lead us to buy an orange that matches our set criteria.
 
-This links in with logical or bolean data types that we covered in Chapter One, Getting Started With R. As our statement has to be either `TRUE` or `FALSE`. To evaluate these we use comparison operators which we used in Chapter Working With Dataframes where we used the `filter()` function.
+This links in with logical or boolean data types that we covered in Chapter One, Getting Started With R. As our statement has to be either `TRUE` or `FALSE`. To evaluate these we use comparison operators which we used in Chapter Working With Dataframes where we used the `filter()` function.
 
 
 We use comparison and logical operators.
@@ -759,13 +761,15 @@ for (i in 1:30) {
 
 ## Dplyr If_else
 
-We have seen how we can use the  if statement  to create branching paths in our code. A singular if statement is useful if we need to perform different code for a single condition, but it's not useful in cases where there are a lot of values that need comparison.
+We have seen how we can use the  if statement  to create branching paths in our code.
+
+A singular if statement is useful if we need to perform different code for a single condition, but it's not useful in cases where there are a lot of values that need comparison.
 
 dplyr has a function called `if_else()`
 
-The if_else() function is designed to be used with multiple values, like with a vector or a column in a tibble.
+The `if_else()` function is designed to be used with multiple values, like with a vector or a column in a tibble.
 
-lets look at the help information on the function to see what arguements we can specify.
+lets look at the help information on the function to see what arguments we can specify.
 
 >**I would strongly advice to look at the R help documentation when you come across a function you have not used before.**
 
@@ -777,21 +781,24 @@ lets look at the help information on the function to see what arguements we can 
 
 ```
 
-Looking at help documentation for the function, we can see that it needs 3 main arguements.
+Looking at help documentation for the function, we can see that it needs **3 main arguments**.
 
-1. condition.
+1. **condition**.
 A statement (e.g. comparison operator) that evaluates to TRUE or FALSE. Instead of passing it a single value, you need to give it a specific column in the data.
 
-2. true
+2. **true**
 The value that the new column should take if the comparison operator is TRUE. This can be anything that we specify. 
 
-3. false
+3. **false**
 The value that the new column should take if the comparison operator is FALSE. Like the second argument, it can be anything you specify.
+
+<br>
 
 
 lets look at an example.
 
 We will use the titanic dataset, let see if there is any missing values in our dataset.
+
 Here I am using the function `anyNA`, which will return `TRUE` if there are any missing values and `FALSE` if there are no missing values.
 
 ```{r}
@@ -802,12 +809,15 @@ anyNA(titanic)
 
 ```
 
-No that we know they are missing values in the data, we can use the `colSums()` function or the `summary()` function to see how many missing values we have.
+Now that we know they are missing values in the data, we can use the `colSums()` function or the `summary()` function to see how many missing values we have.
 
 ```{r}
 
 # To get sum of missing values
 # This showing number of issing values in each columns in the dataset
+# Here Iam using the colSums function, which gives the sum of columns
+# Inside the function, Iam using the is.na function which checks if 
+# the data is a missing value
 
 colSums(is.na(titanic))
 
@@ -889,11 +899,19 @@ You can think of the case_when() function as a generalization of the `dplyr::if_
 
 This command takes multiple conditions and tests them in order.
 
-case_when() takes a conditional command in the same format as the first command in ifelse(), however only the action for the TRUE condition is given, separated with a tilde ~.
+`dplyr::case_when()` takes a conditional command in the same format as the first command in ifelse(), however only the action for the TRUE condition is given, separated with a **tilde ~**.
 
 lets look at an example.
 
-Consider you wanted to add in a new column of the Countries in which the passengers embarked, so those who embarked in "S"(Southampton) it should say England, those who embarked in "C" (Cherbourg) should say France and those who embarked in "Q" (Quenstown) should say Ireland.
+Consider you wanted to add in a new column in the titanic dataset of the Countries in which the passengers embarked.
+
+So those who embarked in
+
+* "S"(Southampton) it should say England
+
+* those who embarked in "C" (Cherbourg) should say France
+
+* those who embarked in "Q" (Queenstown) should say Ireland
 
 
 
@@ -908,10 +926,13 @@ Consider you wanted to add in a new column of the Countries in which the passeng
 
 case_when_example <- titanic %>% 
   mutate(
-    country_embarked = case_when(
+    country_embarked = case_when( 
+      # condition        # action
       embarked == "S"  ~ "England",
       embarked == "C" ~ "France",
       embarked == "Q" ~ "Ireland",
+      # This is  what to happen if none of the set
+      # conditions are met
       TRUE ~ "Unknown") 
   )
 
@@ -930,68 +951,7 @@ case_when_example %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
   scroll_box(width = "100", height = "500px")
 ```
-
-
-<br>
-
-Another example is when we did the FizzBuzz exercise. We had the code below,
-
-```{r}
-# I have used i as the index variable here
-# This is the most commonly used 
-# But for best practice I recomment to set it
-# to be something more relevant
-
-for (i in 1:30) { 
-  
-  if (i %% 3 == 0 & i %% 5 == 0) {
-    
-    print("FizzBuzz")
-    
-  }else if (i %% 3 == 0) {
-    
-    print("Fizz")
-    
-  }else if (i %% 5 == 0) { 
-    
-    print("Buzz")
-    
-  }else {
-    
-    print(i)
-  }
-  
-}
-```
-
-<br>
-
-This can be simplified using `dplyr::case_when()` as below.
-
-**Key thing to keep in mind is arguements are evaluated in order.**
-
-
-```{r}
-# Creating a vector
-
-example_vector <- 1:30
-
-# Using case when
-# Conditions are evaluated in order
-# The output must be the same same data type
-# Here am using the TRUE to convert everything to character
-# as "fizz" and "Buzz" are character data
-
-case_when(
-  (example_vector %% 3 == 0 & example_vector %% 5 == 0) ~ "FizzBuzz",
-  (example_vector %% 3 == 0) ~ "Fizz",
-  (example_vector %% 5 == 0) ~ "Buzz",
-  TRUE ~ as.character(example_vector)
-)
-```
-
-
-
+***
 
 <br>
 
@@ -1033,19 +993,25 @@ case_when(
 
   Assign your tibble to the variable       **titanic_fare_level**.
 
-```{r}
+```{r, eval=FALSE}
+# PLEASE NOTE: THIS IS NOT CODE
+# SHOWS HOW TO USE THE CASE WHEN FUNCTION
+# FOR MORE INFORMATION USE THE R HELP DOCUMENTATION
+# ?casewhen
 
 
 titanic_fare_level <- titanic %>% 
   mutate(
     fare_level = case_when(
-      between(fare, left = 0, right = 100)~ "cheap",
-      between(fare, left = 100, right = 200) ~ "fair",
-      between( fare, left = 200, right = 300) ~ "expensive",
-      fare > 300 ~ "very expensive"
+      condition ~ action,
+      condition ~ action,
+      condition ~ action
       )
-       
-  )
+    )
+
+# To display the Data
+
+titanic_fare_level
 
 ```
 
@@ -1059,27 +1025,36 @@ titanic_fare_level <- titanic %>%
 
 #### **Show Answer**{-}
 
-1. Use the case_when() function to create a new column in the titanic dataset called fare_level. This new column should have 4 levels total:
-If fare is less than 100, fare_level should be "cheap"
-Between 100 and less than 200: "fair"
-Between 200 and less than 300: "expensive"
-Greater than or equal to 300: "Very expensive"
-Assign your tibble with the new column to the variable titanic_fare_level.
+1. Use the case_when() function to create a new column in the titanic dataset called **fare_level**. 
+
+  This new column should have 4 levels total:
+
+* If fare is less than 100, fare_level should be "cheap"
+* Between 100 and less than 200: "fair"
+* Between 200 and less than 300: "expensive"
+* Greater than or equal to 300: "Very expensive"
+
+  Assign your tibble to the variable       **titanic_fare_level**.
 
 ```{r}
+# Using case_when
+# Here Iam using the between function from dplyr 
+# To specify the ranges using dplyr's between function
+
 
 titanic_fare_level <- titanic %>% 
-  mutate(
-    fare_level = case_when(
-      between(fare, left = 0, right = 100)~ "cheap",
-      between(fare, left = 100, right = 200) ~ "fair",
-      between( fare, left = 200, right = 300) ~ "expensive",
-      fare > 300 ~ "very expensive"
+  dplyr::mutate(
+    fare_level = dplyr::case_when(
+      dplyr::between(fare, left = 0, right = 100)~ "cheap",
+      dplyr::between(fare, left = 100, right = 200) ~ "fair",
+      dplyr::between( fare, left = 200, right = 300) ~ "expensive",
+      fare > 300 ~ "very expensive",
+      TRUE ~ "unknown"
       )
-       
-  )
+    )
 
 ```
+
 
 
 ```{r echo = FALSE, message = FALSE, warning = FALSE}
@@ -1093,6 +1068,22 @@ titanic_fare_level %>%
   kable() %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
   scroll_box(width = "100", height = "500px")
+
+```
+<br>
+
+I can do a count of my data, we can see below that we have one unknown level.
+
+Can you take a guess why?
+
+```{r}
+# Geting a count of the levels created
+# Notice we have 1 unknown value
+# This is because we have 1 missing value in the fare column
+# Which we used to create the levels
+
+titanic_fare_level %>% 
+  count(fare_level, sort = TRUE)
 ```
 
 
@@ -1167,11 +1158,11 @@ mean(numbers)
 
 ```
 
-Nothing stops us from writing out sum(numbers) / length(nummbers) every time we need to calculate an average.
+Nothing stops us from writing out sum(numbers) / length(numbers) every time we need to calculate an average.
 
 Using the mean function is much easier.
 
-Another example here is in Chapter Four- Working with DataFrames when we cleaned our column names, it was much easier to use the `janitor::clean_names()` function than to run 4 lines of code using `gsub()`
+Another example here is in Chapter Four- Working with Data Frames when we cleaned our column names, it was much easier to use the `janitor::clean_names()` function than to run 4 lines of code using `gsub()`
 
 ***
 
@@ -1207,7 +1198,7 @@ Basic structure of a function looks like below,
 ```{r, eval=FALSE}
 # Basic structure of a function
 
-function_name <- function(input) { 
+function_name <- function(input){ 
   
   statements of what the function is doing
   
@@ -1258,7 +1249,9 @@ Our new function **`function_sum_values()`** will exist in our global environmen
 
 ### Calling Functions
 
-Calling user defined functions works the same way as calling the built-in functions we've used so far. Simply, type the function name followed by parentheses containing any required arguments.
+Calling user defined functions works the same way as calling the built-in functions we've used so far. 
+
+Simply, type the function name followed by parentheses containing any required arguments.
 
 ```{r}
 # I can now run my function
@@ -1276,8 +1269,8 @@ my_result
 
 ```
 
->**TIP - If you have written a chunck of code that you want to turn into a function, highlight the code chunk and press `Ctrl + ALt + x` on windows  or `control + option X` on a Mac.
-A pop up will appear that will ask you to select a function name and the inputs and code strucutre needed to turn your code into a function will be added automatically.**
+>**TIP - If you have written a chunk of code that you want to turn into a function, highlight the code chunk and press `Ctrl + ALt + x` on windows  or `control + option X` on a Mac.
+A pop up will appear that will ask you to select a function name and the inputs and code structure needed to turn your code into a function will be added automatically.**
 
 
 
@@ -1330,6 +1323,53 @@ $$C=\frac{5}{9}(F - 32)$$
 
 ### **Hint**{-}
 
+1. The **`range()`** in R, doesn't show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called **`my_range()`** which return the difference between the highest value and the lowest value?
+
+```{r, eval=FALSE}
+# Creating my function
+
+my_range <-  function(input){
+  
+  commands
+  
+  return(result)
+
+}
+
+# Running the base R range function
+
+range(input)
+
+# Running my custom range function
+
+my_range(input)
+```
+
+
+<br>
+
+2. Write a function which:
+
+   **Converts from Fahrenheit to degrees Celsius using the equation below.**
+
+
+$$C=\frac{5}{9}(F-32)$$
+
+```{r, eval=FALSE}
+
+# Creating our function
+
+fahrenheit_to_degrees_celsius <- function(input) {
+  
+  commands
+  
+  return(celsius)
+}
+
+# Calling our function
+
+fahrenheit_to_degrees_celsius(32)
+```
 
 ***
 
@@ -1360,9 +1400,11 @@ my_range(age_vector)
 ```
 
 
-Write a function which:
+<br>
 
-1. **Converts from Fahrenheit to degrees Celsius using the equation below.**
+2. Write a function which:
+
+   **Converts from Fahrenheit to degrees Celsius using the equation below.**
 
 
 $$C=\frac{5}{9}(F-32)$$
@@ -1372,7 +1414,9 @@ $$C=\frac{5}{9}(F-32)$$
 # Creating our function
 
 fahrenheit_to_degrees_celsius <- function(fahrenheit) {
+  
   celsius <- (5 / 9) * (fahrenheit - 32)
+  
   return(celsius)
 }
 
@@ -1598,7 +1642,7 @@ summarise(.data = titanic, minimum = min(fare, na.rm = TRUE),
 
 <br>
 
-If we we wanted another column we could keep on copying and pasting, copying and pasting but this is not recommended as its not effiecint and could lead to errors as above did above.
+If we we wanted another column we could keep on copying and pasting, copying and pasting but this is not recommended as its not efficient and could lead to errors as above did above.
 
 >**did you notice the error?**
 
@@ -1610,7 +1654,7 @@ To prevent this issue we can write our own function which will combine all these
 
 * Our input will be column, which will be the column that we are interested is seeing the descriptive statistics for.
 
-* My statements are the calculations for the desciptive statistics
+* My statements are the calculations for the descriptive statistics
 
 * My return value will be a tibble of my descriptive statistics.
 
