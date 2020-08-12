@@ -1294,6 +1294,20 @@ You can think of **`between()`** as being special version of multiple condition 
 
 R also implements a multiple 'or' condition in the form `%in%`, where any rows that have a value occurring in a given vector will be included in the output tibble.
 
+<br>
+
+| Condition 1 | Condition 2  | & (AND) Equates to |  &#124; (OR) Equates to |
+|:-----------:|:------------:|:------------------:|:------------------:|
+|     True    |     True     |        True        |        True        |
+|     True    |     False    |        False       |        True        |
+|    False    |     True     |        False       |        True        |
+|    False    |     False    |        False       |        False       | 
+
+
+<br>
+
+
+
 Let's look at some examples:
 ```{r}
 # Select passengers who were in class 1 AND female

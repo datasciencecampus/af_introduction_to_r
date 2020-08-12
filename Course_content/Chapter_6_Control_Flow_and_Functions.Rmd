@@ -22,11 +22,69 @@ htmltools::img(src = knitr::image_uri("../Images/LATree.PNG"),
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 
-library(tidyverse)
+library(kableExtra)
 
+```
+
+
+***
+
+<br>
+
+# Exercise {.tabset .tabset-fade}
+
+
+
+## **Exercise**{-}
+
+
+1. Before we begin, could you load the packages below,
+
+   - `tidyverse`
+
+   - `janitor`
+
+
+
+2. Read in the file **`titanic.csv`** and assign it to `titanic`
+
+***
+
+<br>
+
+## **Hint**{-}
+
+
+
+The code below demonstrates how you can load a package.
+
+```{r eval = FALSE}
+# loading a package
+
+library(package_name)
+```
+
+
+The code below demonstrates how you can read csv data.
+
+```{r, eval = FALSE}
+# Importing csv data
+
+dataframe_name <- readr::read_csv(file_path)
+```
+
+***
+
+<br>
+
+## **Show Answer**{-}
+
+```{r echo = TRUE, message = FALSE, warning = FALSE}
+# Load packages
+
+library(tidyverse)
 library(janitor)
 
-library(kableExtra)
 
 # Importing CSV data using readr package and read_csv function
 # Specifying missing values by adding a vector, 
@@ -36,18 +94,41 @@ library(kableExtra)
 titanic <- readr::read_csv("../Data/titanic.csv", 
                            na = c("", " ", "NULL"))
 
-# To display the data
-titanic
 
 # Clean column names
 titanic <- clean_names(titanic)
 
 
 
-```
+# To Inspect the data
+dplyr::glimpse(titanic)
 
+
+```
+<br>
+
+We can see these these are columns,
+
+* **Pclass**: Passenger’s class, 1 = 1st (Upper), 2 = 2nd(Middle), 3 = 3rd(Lower)
+* **Survived**: Survived (1) or died (0), 0 = No, 1 = Yes
+* **Name**: Passenger’s name
+* **Sex**: Passenger’s sex
+* **Age**: Passenger’s age
+* **SibSp**: Number of siblings/spouses aboard
+* **Parch**: Number of parents/children aboard
+* **Ticket**: Ticket number
+* **Fare**: Fare
+* **Cabin**: Cabin number
+* **Embarked**: Port of embarkation, C = Cherbourg, Q = Queenstown, S = Southampton
+
+
+We can see more details on the [Data Dictionary](https://www.kaggle.com/c/titanic/data)
 
 ***
+
+<br>
+
+
 # Control Flow and Functions{-}
 
 ***
@@ -909,9 +990,9 @@ So those who embarked in
 
 * "S"(Southampton) it should say England
 
-* those who embarked in "C" (Cherbourg) should say France
+* "C" (Cherbourg) should say France
 
-* those who embarked in "Q" (Queenstown) should say Ireland
+* "Q" (Queenstown) should say Ireland
 
 
 
@@ -1663,7 +1744,7 @@ To prevent this issue we can write our own function which will combine all these
 ```{r}
 # Creating my function
 
-my_descriptive_statistics <- function(column) {
+my_descriptive_statistics <- function(column){
   
   # Create an object "my_minimum" which contains the min of column
   my_minimum <- min(column, na.rm = TRUE)
@@ -1719,6 +1800,8 @@ Often when working with data, we want to manipulate multiple columns of data at 
 
 As an example using our  `my_descriptive_statistics()` on mutliple columns at the same time - how would we achieve this? 
 
+***
+
 <br>
 
 ### Functionals in R
@@ -1753,6 +1836,10 @@ titanic %>%
   dplyr::select(age_of_passenger,fare) %>% 
   purrr::map(my_descriptive_statistics)
 ```
+
+***
+
+<br>
 
 ### `map` vs `modify`
 
