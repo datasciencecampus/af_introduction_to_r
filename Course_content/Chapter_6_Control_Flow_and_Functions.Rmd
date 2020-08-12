@@ -12,10 +12,14 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+<!-- Sorry for chaning, the alignment and interference with the title when I knitted was upsetting me -JM -->
+
 ```{r, echo=FALSE}
-htmltools::img(src = knitr::image_uri("../Images/LATree.PNG"),
-               alt = "logo", 
-               style = "position:absolute; top:0; right:0; padding:10px; width:200px;")
+htmltools::img(src = knitr::image_uri("../Images/LATree.png"), 
+               alt = 'Learning academy logo', 
+               align = "right",
+               width = "40%")
 ```
 
 <br>
@@ -26,16 +30,18 @@ library(kableExtra)
 
 ```
 
+<br>
+<br>
 
 ***
 
 <br>
 
-# Exercise {.tabset .tabset-fade}
+## Exercise {.tabset .tabset-fade -}
 
 
 
-## **Exercise**{-}
+### **Exercise**{-}
 
 
 1. Before we begin, could you load the packages below,
@@ -52,7 +58,7 @@ library(kableExtra)
 
 <br>
 
-## **Hint**{-}
+### **Hint**{-}
 
 
 
@@ -77,7 +83,7 @@ dataframe_name <- readr::read_csv(file_path)
 
 <br>
 
-## **Show Answer**{-}
+### **Show Answer**{-}
 
 ```{r echo = TRUE, message = FALSE, warning = FALSE}
 # Load packages
@@ -129,7 +135,7 @@ We can see more details on the [Data Dictionary](https://www.kaggle.com/c/titani
 <br>
 
 
-# Control Flow and Functions{-}
+# Control Flow and Functions {-}
 
 ***
 
@@ -139,9 +145,9 @@ We can see more details on the [Data Dictionary](https://www.kaggle.com/c/titani
 
 **The goal of this chapter is to:**
 
-* Be able to use loops: *for* loops.
+* Be able to use *for* loops.
 
-* Be able to use conditional statements: *if*, *else* and *else if*.
+* Be able to use conditional statements: *if*, *else* and *else if*, as well as *case_when* and *if_else()*.
 
 * Learn what functions are.
 
@@ -151,6 +157,7 @@ We can see more details on the [Data Dictionary](https://www.kaggle.com/c/titani
 
 * Have a basic understanding of scoping within functions.
 
+* Be aware of functionals using `purr`.
 
 ***
 
@@ -162,7 +169,7 @@ We use R because its great for data analysis, data visualization communicating r
 
 Programming is basically giving instructions to a computer.
 
-In this chapter, we introduce three **key programming concepts: conditional statements, loops, and functions**. These are not just key building blocks for advanced programming, but are sometimes useful during data analysis.
+In this chapter, we introduce three **key programming concepts: loops, conditional statements, and functions**. These are not just key building blocks for advanced programming, but are sometimes useful during data analysis.
 
 ***
 
@@ -180,14 +187,14 @@ This repetition of code is called **iteration**.
 
 A repetitive action could be "create one of several plots".
 
-A for loop can produce literally anything we want it to produce (e.g., plots, models, reports, datasets).
+A `for` loop can produce literally anything we want it to produce (e.g., plots, models, reports, datasets).
 
 
 Since R is a vectorised language, loops are not as prominently used in R as in Python for example. Despite this, they are a key part of programming in general and can save you a  large amount of time and typing in certain cases.
 
 They allow you to automate parts of your code that are in need of repetition.
 
-Similar to how functions help make our code more abstract and general, loops are similar. As we are essentially simplifying a specific case to a more general case.
+Similar to how functions help make our code more abstract and general, loops perform a similar purpose. We are essentially simplifying a specific case of code to a more general case.
 
 We are going to look at `for` loops. 
 
@@ -197,26 +204,21 @@ We are going to look at `for` loops.
 
 ## For Loops
 
-These are the most common type.
+These are the most common type of loop, and the only one we are going to discuss in this course. The other type is a `while` loop.
 
-They follow the basic structure below.
+For loops follow the basic structure below.
 
-
+<!-- Have removed a comment about efficiency as I don't believe it is true. Happy to discuss -JM -->
 ```{r, eval=FALSE}
 
 # Basic Structure of a loop
 
-# Create an empty output
-# This is for effiency as loops are known to
-# Run quicker when output is defined
+# Create an empty output vector
 # Which we will fill when the loop runs
-
-# Create an empty vector
 
 output <- c()
 
 # Creating the loop
-
 for (each_item in my_iterable) { 
   
   output <- commands
@@ -232,13 +234,13 @@ for (each_item in my_iterable) {
 
 * Then we start with the loop with the word `for`,
 
-* Followed by `()` brackets where we specify an index variable, `i` is commonly used but it can be anything that you want. This is a place holder and will correspond to a different element for each part of the loop,
+* Followed by `()` brackets where we specify an index variable, `i` is commonly used but it can be anything that you want. Remember, we want to use clear and descriptive variable names. This is a place holder and will correspond to a different element for each part of the loop,
 
 * Then the word `in`.
 
 * Then specify an iterable. This could be a `vector`, a `list`, a `dataframe` etc. An iterable is an object that can be iterated through, one element at a time. 
 
-* Followed by the `{}` curly brackets, which will have our commands, these could be multiple lines of code.
+* Followed by the `{}` curly brackets, which will have our commands within, these could be multiple lines of code.
 
 ***
 
@@ -248,7 +250,7 @@ for (each_item in my_iterable) {
 
 Let's look at an example.
 
-We start by creating an iterable, I have created a vector with **numbers between 0 and 5**.
+We start by creating an iterable, I have created a vector with **numbers 0 through 5**.
 
 
 ```{r}
@@ -270,6 +272,7 @@ result <- c()
 
 for (each_number in example_vector) {
   
+  # Print the value at each step
   print(each_number * 2)
   
   result <- append(result, values = each_number * 2)
@@ -295,7 +298,7 @@ The keyword `in` is followed by the iterable I want to loop over (here it is `ex
 My command is assigned to `result`. The command here is to multiply each number in `example_vector` by 2.
 
 
-The **`append()`** function simply adds an element to a vector, we first specify the vector we want to add to which is `result` and then specify the values that we want to add to it, within the function this is set to the argument `values`.
+The **`append()`** function simply adds an element to the end of a vector. We first specify the vector we want to add to which is `result` and then specify the values that we want to add to it.  Within the function this is set to the parameter `values`.
 
 <br>
 
@@ -311,7 +314,7 @@ The **`append()`** function simply adds an element to a vector, we first specify
 
 Although it is useful to know how to use loops in R, it is often faster to accomplish the same thing using vectorised operations in R. 
 
-We already saw examples in the Vector Arithmetic section. A vectorized function is a function that will apply the same operation on each of the vectors.
+We already saw examples in the Vector Arithmetic section. A vectorized function is a function that will apply the same operation on each element of the vectors.
 
 For example,
 
@@ -343,11 +346,11 @@ You can a find a tutorial on them here, [While Loop](https://www.datamentor.io/r
 
 #### **Exercise**{-}
 
-1. You are given a vector of measurements that are grams (g). For this exercise, we    actually want to convert all of these measurements to kilograms (kg). 
+1. You are given a vector of measurements that are grams (g). For this exercise, we actually want to convert all of these measurements to kilograms (kg). 
 
-   For reference, 1kg is the same as 1000 grams.
+For reference, 1kg is the same as 1000 grams.
 
-   Using a for loop, create and append to a new vector called kilo_grams that contains the          values converted to meters.
+Using a `for` loop, create and append to a new vector called `kilo_grams` that contains the values converted to meters.
 
 ```{r}
 # Vector 
@@ -367,22 +370,22 @@ grams <- c(100000, 7899900, 967312, 49185, 6100)
 
 #### **Hint**{-}
 
-1. You are given a vector of measurements that are grams (g). For this exercise, we    actually want to convert all of these measurements to kilograms (kg). 
+1. You are given a vector of measurements that are grams (g). For this exercise, we actually want to convert all of these measurements to kilograms (kg). 
 
    For reference, 1kg is the same as 1000 grams.
 
-   Using a for loop, create and append to a new vector called kilo_grams that contains the          values converted to meters.
+   Using a for loop, create and append to a new vector called kilo_grams that contains the values converted to meters.
 
 ```{r,eval=FALSE}
 
 # PLEASE NOTE: THIS IS NOT CODE
-# SHOWS STEPS NEEDED TP CREATE THE LOOP
+# it shows the necessary steps
 
-# Vector
+# Starting vector
 
 grams <- c(100000, 7899900, 967312, 49185, 6100)
 
-# Empty vector for storage
+# Empty vector for result storage
 
 kilo_grams <- c()
 
@@ -411,29 +414,31 @@ kilo_grams
 
 #### **Show Answer**{-}
 
-1. You are given a vector of measurements that are grams (g). For this exercise, we    actually want to convert all of these measurements to kilograms (kg). 
+1. You are given a vector of measurements that are grams (g). For this exercise, we actually want to convert all of these measurements to kilograms (kg). 
 
    For reference, 1kg is the same as 1000 grams.
 
-   Using a for loop, create and append to a new vector called kilo_grams that contains the          values converted to meters.
+   Using a for loop, create and append to a new vector called kilo_grams that contains the values converted to meters.
+
 
 ```{r}
 
-# Vector
+# Starting vector
 
 grams <- c(100000, 7899900, 967312, 49185, 6100)
 
-# Empty vector for storage
+# Empty vector for result storage
 
 kilo_grams <- c()
 
 # For loop
 
 for (measurement in grams) {
+    # Converting grams to kg
+    converted_kilo_grams <- measurement / 1000 
   
-     converted_kilo_grams <- measurement / 1000 # Converting grams to kg
-  
-     kilo_grams <- append(kilo_grams, converted_kilo_grams) # Appending to kilo_grams vector
+    # Appending to kilo_grams result vector
+    kilo_grams <- append(kilo_grams, converted_kilo_grams) 
   
 }
 
@@ -455,11 +460,11 @@ kilo_grams
 
 ## If, Elseif, Else
 
-A conditional statement will check whether a condition is TRUE or FALSE.
+A conditional statement will check whether a statement is `TRUE` or `FALSE`.
 
-So, if our statement meets this criteria apply this action, otherwise do nothing.
+So, if our statement meets some criteria we may want to run different code than if it does not meet that criteria.
 
-This is useful if we want a function to run only when our data meets certain conditions, this is termed `control flow`.
+This is useful if we want a function or code block to run only when our data meets certain conditions, this is termed `control flow`.
 
 Control flow is something we do in everyday life. 
 
@@ -475,10 +480,10 @@ For example when we go shopping and choose fruits, we normally want to buy the o
 
 In order to move through this decision process, we need to answer either "Yes" or "No" to each question. A series of "Yes" answers will lead us to buy an orange that matches our set criteria.
 
-This links in with logical or boolean data types that we covered in Chapter One, Getting Started With R. As our statement has to be either `TRUE` or `FALSE`. To evaluate these we use comparison operators which we used in Chapter Working With Dataframes where we used the `filter()` function.
+This links in with logical or boolean data types that we covered in Chapter One, Getting Started With R. As our logical statement has to be either `TRUE` or `FALSE`. To evaluate these we use comparison operators which we used in Chapter 4 Working With Dataframes where we used the `filter()` function.
 
 
-We use comparison and logical operators.
+We use comparison and logical operators to control the flow of our code.
 
 <br>
 
@@ -509,10 +514,10 @@ We use comparison and logical operators.
 
 <br>
 
-Our example above shows that we can make a decision by answering "Yes" or "No" (2 branches). But most of the time this will not be the case. We can add some more branches to our responses.
+Our example above shows that we can make a decision by answering "Yes" or "No" (2 branches). But often this will not be the case. We can add some more branches to our responses.
 
 
-R provides a way to incorporate more than two branches in an if statement with the else if keyword. The else if keyword provides another code block to use in an if statement, and we can have as many as we see fit.
+R provides a way to incorporate more than two branches in an if statement with the else if keyword. The `else if` keyword provides another code block to use in an if statement, and we can have as many as we see fit.
 
 
 we use the:
@@ -520,7 +525,11 @@ we use the:
 
 - `if` statement
 
+then 
+
 - `else if` statement
+
+then
 
 - `else` statement
 
@@ -531,9 +540,9 @@ These take a conditional argument, and if that is met (evaluates to `TRUE`) then
 
 If the condition is not met it will move to an `else if` (if present) and if that condition is met the associated action will be completed.
 
-Finally, if none of the conditions is met the actions for the `else` condition is met.
+Finally, if none of the conditions are met the actions for the `else` condition is met and it's associated actions are run.
 
-
+We separate out out different command blocks relating to each condition using curly brackets `{}` around the corresponding block.
 
 ```{r, eval=FALSE}
 
@@ -553,7 +562,7 @@ if (first logical condition) {
 
 ```
 
->**It’s important that the `else if` keyword comes on the same line as the closing bracket of the previous part of the control structure.**
+> **It’s important that the `else if` keyword comes on the same line as the closing bracket of the previous part of the control structure.**
 
 <br>
 
@@ -587,6 +596,7 @@ if (height == 5) {
 <br>
 
 Remember our `if`, `else if` and `else` statements take a condition so we need a double equals sign (`==`) for checking equivalence.
+
 If the first criteria isn’t met it will move to the else statement and action that.
 
 We can add in more choices using an `else if` statement.
@@ -617,7 +627,7 @@ if (height == 5) {
 
 
 
-Within these we can use our logical operators too: `&` (and); `|` (or).
+Within our condition we can use the logical operators too: `&` (and); `|` (or), in order to make more complex conditions.
 
 
 Here we want the action to happen if the value is greater than 7 and less than 10.
@@ -647,7 +657,9 @@ if (height == 5) {
 
 It’s important to know how the `if`, `else if`, `else` works.
 
-Below we have two options for when the value is 5. However it will only print out  “We’re the same height!” When the condition is met it performs the action associated with it and then stops.
+Below we have two options for when the value is 5. However it will only print out  “We’re the same height!” when the condition is met it performs the action associated with it and then stops.
+
+In this code the block `print("Wow, it's still 5!")` will not ever run. This is because it will be skipped as it has the same condition `height == 5` as the first `if` condition.
 
 Try changing the value stored in `my_height` to see the other results.
 
@@ -701,7 +713,9 @@ for (number in number_of_takeaways_ordered) {
   } else { 
     
   print("enough")
-    
+
+# We have a loop, and else if statements, which means we 
+# need to careful about our closing brackets!
   }
 }
 
@@ -735,6 +749,7 @@ For example checking if something is divisible by 3 we can do:
 ```{r}
 # Example of Modulo
 # Returns FALSE (10 / 3 has a remainder of 1 - so does not have a remainder of 0)
+
 10 %% 3 == 0
 
 ```
@@ -742,6 +757,7 @@ For example checking if something is divisible by 3 we can do:
 ```{r}
 # Second example of Modulo
 # Returns TRUE (9 / 3 has a remainder of 0)
+
 9 %% 3 == 0
 
 ```
@@ -765,23 +781,23 @@ For example checking if something is divisible by 3 we can do:
 
 ```{r, eval=FALSE}
 
-for (each_number in vector) { 
+for (each number in vector) { 
   
   if (first conditions) {
     
     output
     
-  }else if (second condition) {
+  } else if (second condition) {
     
     output
     
-  }else if (third condition) { 
+  } else if (third condition) { 
     
     output
     
-  }else {
+  } else {
     
-    print(each_number)
+    print(each number)
     
   }
   
@@ -805,6 +821,8 @@ for (each_number in vector) {
 
    For all other values print the number.
 
+
+<!-- If it is not best practice to use `i` as an interator, should we be showing an example of it? -JM-->
 ```{r}
 
 # I have used i as the index variable here
@@ -818,17 +836,18 @@ for (i in 1:30) {
     
     print("FizzBuzz")
     
-  }else if (i %% 3 == 0) {
+  } else if (i %% 3 == 0) {
     
     print("Fizz")
     
-  }else if (i %% 5 == 0) { 
+  } else if (i %% 5 == 0) { 
     
     print("Buzz")
     
-  }else {
+  } else {
     
     print(i)
+    
   }
   
 }
@@ -840,47 +859,48 @@ for (i in 1:30) {
 <br>
 
 
-## Dplyr If_else
+## Dplyr if_else()
 
-We have seen how we can use the  if statement  to create branching paths in our code.
+We have seen how we can use the `if` statement to create branching paths in our code.
 
-A singular if statement is useful if we need to perform different code for a single condition, but it's not useful in cases where there are a lot of values that need comparison.
+A singular if statement is useful if we need to perform different code based on a single condition, but it's not useful in cases where there are a lot of values that need comparison, such as in a tibble.
 
-dplyr has a function called `if_else()`
+`dplyr` has a function called `if_else()`
 
 The `if_else()` function is designed to be used with multiple values, like with a vector or a column in a tibble.
 
-lets look at the help information on the function to see what arguments we can specify.
+Lets look at the help information on the function to see what arguments we can specify.
 
->**I would strongly advice to look at the R help documentation when you come across a function you have not used before.**
+> **I would strongly advice to look at the R help documentation when you come across a function you have not used before.**
 
 ```{r}
+library(dplyr)
 
 # Looking at the help documentation
 
-?if_else
+?dplyr::if_else
 
 ```
 
 Looking at help documentation for the function, we can see that it needs **3 main arguments**.
 
 1. **condition**.
-A statement (e.g. comparison operator) that evaluates to TRUE or FALSE. Instead of passing it a single value, you need to give it a specific column in the data.
+A statement (e.g. comparison operator) that evaluates to `TRUE` or `FALSE`. Instead of passing it a single value, you need to give it a specific column in the data.
 
 2. **true**
-The value that the new column should take if the comparison operator is TRUE. This can be anything that we specify. 
+The value that the new column should take if the comparison operator is `TRUE`. This can be anything that we specify. 
 
 3. **false**
-The value that the new column should take if the comparison operator is FALSE. Like the second argument, it can be anything you specify.
+The value that the new column should take if the comparison operator is `FALSE`. Like the second argument, it can be anything you specify.
 
 <br>
 
 
-lets look at an example.
+Lets look at an example.
 
-We will use the titanic dataset, let see if there is any missing values in our dataset.
+We will use the titanic dataset, lets see if there is any missing values in our dataset.
 
-Here I am using the function `anyNA`, which will return `TRUE` if there are any missing values and `FALSE` if there are no missing values.
+Here I am using the base R function `anyNA`, which will return `TRUE` if there are any missing values and `FALSE` if there are no missing values.
 
 ```{r}
 
@@ -895,9 +915,9 @@ Now that we know they are missing values in the data, we can use the `colSums()`
 ```{r}
 
 # To get sum of missing values
-# This showing number of issing values in each columns in the dataset
-# Here Iam using the colSums function, which gives the sum of columns
-# Inside the function, Iam using the is.na function which checks if 
+# This shows the number of missing values in each column in the dataset
+# Here I am using the colSums() function, which gives the sum of columns
+# Inside the function, I am using the is.na() function which checks if 
 # the data is a missing value
 
 colSums(is.na(titanic))
@@ -918,32 +938,35 @@ We can see that the column `age_of_passenger` has 267 missing values.
 
 <br>
 
-We can impute(populate) our missing values using the dplyr `if_else` function. 
+We can impute (populate) our missing values using the dplyr `if_else` function. 
 
 Here am going to use the mean value for `age_of_passenger`.
 
->**Please refer to the Editing and Imputation Course for details on how to best impute your missing data, this is demonstration purposes only.**
+> **Please refer to the Editing and Imputation Course for details on how to best impute your missing data, this is demonstration purposes only.** 
+
+<!-- Nice -JM -->
 
 <br>
 
-As we saw in **Chapter Four - Working with Dataframes**, the mutate function from the dplyr package is useful in creating a new variable. 
+As we saw in **Chapter Four - Working with Dataframes**, the mutate() function from the dplyr package is useful in creating a new variable. 
 
+<!--Could this be clarified? I think I understand what you are intending to do, but maybe restructure the wording? -JM -->
 We don't necessarily want to change the original column so we can create a new variable without the NA. mutate is easy to use, we just choose a variable name and define how to create this variable.
 
 Here my new column name is **imputed_age_of_passenger**.
 
-The if_else() function takes that single comparison operator **condition = is.na(age_of_passenger)** and vectorizes it.
+The `if_else()` function takes that single comparison operator **condition = is.na(age_of_passenger)** and vectorizes it.
 
 ```{r}
 
 # Dealing with missing values
-# we can omit
-# we can immpute(populate)
-# here imputing using the mean
+# if the value is missing we can fill it
+# if not we can use the original value
 
 imputed_titanic <- titanic %>%
                  # New column name                        # Condition to be met
-  dplyr::mutate(imputed_age_of_passenger = dplyr::if_else(condition = is.na(age_of_passenger),
+  dplyr::mutate(imputed_age_of_passenger = 
+                  dplyr::if_else(condition = is.na(age_of_passenger),
     
     # What to do when true
     true = mean(age_of_passenger, na.rm = TRUE),
@@ -953,42 +976,42 @@ imputed_titanic <- titanic %>%
     )
   )
 
-# To Display the output
+# To display the output
 summary(imputed_titanic$imputed_age_of_passenger)
 
 ```
 
 <br>
 
->**If you need to more complicated conditions you could the case_when function from dplyr**.
+>**If you need to more complicated conditions you could the case_when() function from dplyr**.
 
 ***
 
 <br>
 
-## Dplyr Case when
+## Dplyr case_when()
 
-So far we have looked at else if to add more options to an if statement.
+So far we have looked at `else if` to add more options to an if statement.
 
-We have also used the  the `dplyr::if_else()` function, but it works best with simpler conditions that evaluate to `TRUE` or `FALSE`.
+We have also used the the `dplyr::if_else()` function, but it works best with simpler conditions that evaluate to `TRUE` or `FALSE`.
 
-We can  put multiple `dplyr::ifelse()` commands inside each other but this makes code hard to read and not recommended.
+We can  put multiple `dplyr::if_else()` commands inside each other, but this makes code hard to read and is not recommended.
 
-If we are dealing with multiple complex conditions dplyr also has a function called `dplyr::case_when`
+If we are dealing with multiple complex conditions dplyr also has a function called `dplyr::case_when()`
 
-You can think of the case_when() function as a generalization of the `dplyr::if_else()` function, which incorporates more branches.
+You can think of the `case_when()` function as a generalization of the `dplyr::if_else()` function, which incorporates more branches.
 
 This command takes multiple conditions and tests them in order.
 
-`dplyr::case_when()` takes a conditional command in the same format as the first command in ifelse(), however only the action for the TRUE condition is given, separated with a **tilde ~**.
+`dplyr::case_when()` takes a conditional command in the same format as the first command in `if_else()`, however only the action for the TRUE condition is given, separated with a **tilde ~**.
 
-lets look at an example.
+Lets look at an example.
 
 Consider you wanted to add in a new column in the titanic dataset of the Countries in which the passengers embarked.
 
 So those who embarked in
 
-* "S"(Southampton) it should say England
+* "S" (Southampton) it should say England
 
 * "C" (Cherbourg) should say France
 
@@ -999,9 +1022,9 @@ So those who embarked in
 ```{r}
 # Here I am using case_when withing the mutate function as I want to create a new column within my dataset
 # My new column name is country_embarked
-# To use case_when, you specify the condition first
-# The the ~ tilde for the action when the condition met
-# we can also specify the TRUE which is what to happen if none of the set conditions are met.
+# To use case_when(), you specify the condition first
+# Them the ~ tilde for the action when the condition is met
+# We can also specify the TRUE which is what to happen if none of the set conditions are met.
 
 
 
@@ -1018,12 +1041,11 @@ case_when_example <- titanic %>%
   )
 
 ```
-
+<!-- love seeing this in action, is it worth mentioning the similarity with recode() in this example -JM -->
 
 ```{r echo = FALSE, message = FALSE, warning = FALSE}
 
 # To display just part of the dataset
-
 
 
 case_when_example %>%
@@ -1038,21 +1060,19 @@ case_when_example %>%
 
 ### Exercise Case When{.tabset .tabset-fade}
 
-
 #### **Exercise**{-}
 
 1. Use the case_when() function to create a new column in the titanic dataset called **fare_level**. 
 
-  This new column should have 4 levels total:
+  This new column should have 5 levels total:
 
 * If fare is less than 100, fare_level should be "cheap"
-* Between 100 and less than 200: "fair"
-* Between 200 and less than 300: "expensive"
-* Greater than or equal to 300: "Very expensive"
+* Between 100 and 200: "fair"
+* Between 200 and 300: "expensive"
+* Greater than or equal to 300: "very expensive"
+* Otherwise : "unknown"
 
   Assign your tibble to the variable       **titanic_fare_level**.
-
-
 
 
 
@@ -1065,18 +1085,19 @@ case_when_example %>%
 
 1. Use the case_when() function to create a new column in the titanic dataset called **fare_level**. 
 
-  This new column should have 4 levels total:
+  This new column should have 5 levels total:
 
 * If fare is less than 100, fare_level should be "cheap"
-* Between 100 and less than 200: "fair"
-* Between 200 and less than 300: "expensive"
-* Greater than or equal to 300: "Very expensive"
+* Between 100 and 200: "fair"
+* Between 200 and 300: "expensive"
+* Greater than or equal to 300: "very expensive"
+* Otherwise : "unknown"
 
   Assign your tibble to the variable       **titanic_fare_level**.
 
 ```{r, eval=FALSE}
-# PLEASE NOTE: THIS IS NOT CODE
-# SHOWS HOW TO USE THE CASE WHEN FUNCTION
+# PLEASE NOTE: THIS IS NOT REAL CODE
+# The example hint shows the structure of a case_when() 
 # FOR MORE INFORMATION USE THE R HELP DOCUMENTATION
 # ?casewhen
 
@@ -1111,15 +1132,15 @@ titanic_fare_level
   This new column should have 4 levels total:
 
 * If fare is less than 100, fare_level should be "cheap"
-* Between 100 and less than 200: "fair"
-* Between 200 and less than 300: "expensive"
-* Greater than or equal to 300: "Very expensive"
+* Between 100 and 200: "fair"
+* Between 200 and 300: "expensive"
+* Greater than or equal to 300: "very expensive"
 
   Assign your tibble to the variable       **titanic_fare_level**.
 
 ```{r}
 # Using case_when
-# Here Iam using the between function from dplyr 
+# Here I am using the between function from dplyr 
 # To specify the ranges using dplyr's between function
 
 
@@ -1177,8 +1198,6 @@ titanic_fare_level %>%
 
 # Functions
 
-
-
 A function is a bit of code which, when called, performs a task. It can take various inputs, called arguments, and return outputs.
 
 Base R includes numerous built-in functions and there are thousands more R functions in packages available on CRAN and elsewhere.
@@ -1209,12 +1228,14 @@ Up until now we've been writing code line by line and running it sequentially. A
 
 We can avoid messy code by organising it into chunks of reusable code called functions. This allows us to create blocks of code dedicated to performing a specific procedure or task. We can then 'call' this function to perform its specific task as and when needed. Understanding why and how to write functions is an important part of writing code that is consistent, readable and reproducible.
 
+
 In addition to this, we use functions to do everything in R - from making a vector to creating models and plots. Having more hands on experience with functions can give you a greater appreciation for how the functions, we heavily depend on, are implemented.
 
+<!--This description is really good -JM -->
 
 We can take one complicated operation and wrap it up inside a function and use it wherever we need. 
 
-For example, take the mean() function from base R that calculates the average value of a given vector — we could write out the average calculation by hand:
+For example, take the `mean()` function from base R that calculates the average value of a given vector — we could write out the average calculation by hand:
 
 ```{r}
 
@@ -1239,11 +1260,11 @@ mean(numbers)
 
 ```
 
-Nothing stops us from writing out sum(numbers) / length(numbers) every time we need to calculate an average.
+Nothing stops us from writing out `sum(numbers) / length(numbers)` every time we need to calculate an average.
 
 Using the mean function is much easier.
 
-Another example here is in Chapter Four- Working with Data Frames when we cleaned our column names, it was much easier to use the `janitor::clean_names()` function than to run 4 lines of code using `gsub()`
+Another example here is in Chapter Four - Working with Data Frames when we cleaned our column names, it was much easier to use the `janitor::clean_names()` function than to run 4 lines of code using `gsub()`
 
 ***
 
@@ -1279,7 +1300,7 @@ Basic structure of a function looks like below,
 ```{r, eval=FALSE}
 # Basic structure of a function
 
-function_name <- function(input){ 
+function_name <- function(input) { 
   
   statements of what the function is doing
   
@@ -1291,7 +1312,7 @@ function_name <- function(input){
 
 <br>
 
->**In R, we use a function to make a function!.**
+>**In R, we use a function to make a function!**
 
 We use **`function()`** to create a function and assign it to the object `function_name`.
 
@@ -1303,7 +1324,9 @@ The **`return()`** function will return whatever value is after it. When this is
 
 >**No code after the return statement will be executed**
 
-Note that the keyword return is not necessary; but any function without a `return` statement will return a value of `None` - it will produce no output for future code to work with. This could be useful if you just want to print out some results to the console, or display a graph, without returning any data.
+<!-- there was a part about non-returned values, this is not correct for R (is for python). I have changed it to my understanding of R functions. Happy to discuss -JM -->
+
+Note that the keyword return is not necessary; but any function without a `return` statement will return the final variable called - this is functionally the same as using a return statement, but more implicit and therefore less clear. If we do not give a variable to be returned, or state one at the end of our function we will get no value returned from our function. This could be useful in some cases, for example if you just want to print out some results to the console, or display a graph, without returning any data.
 
 ***
 
@@ -1353,7 +1376,7 @@ my_result
 >**TIP - If you have written a chunk of code that you want to turn into a function, highlight the code chunk and press `Ctrl + ALt + x` on windows  or `control + option X` on a Mac.
 A pop up will appear that will ask you to select a function name and the inputs and code structure needed to turn your code into a function will be added automatically.**
 
-
+<!-- This is cool! -JM-->
 
 
 ***
@@ -1381,7 +1404,9 @@ range(age_vector)
 
 2. Write a function which:
 
-   **Converts from Fahrenheit to degrees Celsius using the equation    below.**
+   **Converts from Fahrenheit to degrees Celsius using the equation below.**
+   
+Check it performs how you expect using the examples below.
 
 $$C=\frac{5}{9}(F - 32)$$
 
@@ -1433,6 +1458,7 @@ my_range(input)
 
    **Converts from Fahrenheit to degrees Celsius using the equation below.**
 
+Check it performs how you expect using the examples below.
 
 $$C=\frac{5}{9}(F-32)$$
 
@@ -1518,7 +1544,7 @@ It’s important to notice here that the variables I create within my functions 
 
 In R storage is broken down into environments and then scopes. Most of the time you'll be working in the global environment (right-hand panel).
 
-In the global environment, there are two types of scopes, _global_ and _local_. Variables that have _global_ scope are visible everywhere - in every function, loop, conditional, basically every part of the code. However, variables that have _local_ scope are only visible inside said the scope and hence can only be used within that local scope.
+In the global environment, there are two types of scopes, _global_ and _local_. Variables that have _global_ scope are visible everywhere - in every function, loop, conditional, basically every part of the code (after they have been declared). However, variables that have _local_ scope are only visible inside their specific area and hence can only be used within that local scope.
 
 When we create a new function we effectively create a new local scope – so the variables we declare within our functions are only available within that local scope.
 
@@ -1731,7 +1757,7 @@ If we we wanted another column we could keep on copying and pasting, copying and
 
 To prevent this issue we can write our own function which will combine all these descriptive statistics into one function.
 
-* Our function name is my_descriptive_statistics
+* Our function name is my_descriptive_statistics()
 
 * Our input will be column, which will be the column that we are interested is seeing the descriptive statistics for.
 
@@ -1774,7 +1800,7 @@ my_descriptive_statistics <- function(column){
 ```
 
 
-we can now use our function on different columns, without needing to copy and paste our code.
+We can now use our function on different columns, without needing to copy and paste our code.
 
 ```{r}
 # Calling our function
@@ -1786,6 +1812,7 @@ my_descriptive_statistics(titanic$parch)
 my_descriptive_statistics(titanic$sibsp)
 ```
 
+<!-- Really like this example for how we can use functions -JM-->
 
 
 ***
@@ -1817,7 +1844,7 @@ There are functionals in base R as well such as: `apply`, `sapply`, `vapply`, et
 
 `map()` and `modify()` will take a function in as an argument and apply it to every element of the given collection (e.g. vector, list).
 
-As an example we can use the `typeof()` function to see the data types of each of our columns in the titanic dataset
+As an example we can use the `typeof()` function to see the data types of each of our columns in the titanic dataset.
 
 
 ```{r}
@@ -1828,7 +1855,7 @@ purrr::map(titanic, typeof)
 
 In that example we used a built-in function `typeof`. 
 
-All the functionals listed above also work with user defined functions.
+All the functionals listed above also work with user defined functions. We can even apply this using our pipe operators.
 
 
 ```{r}
@@ -1853,6 +1880,8 @@ modify(titanic, typeof)
 ```
 As you can see, their difference sounds subtle but the effects are not.
 
+What you prefer as an output will determine which of these you would choose to use.
+
 ***
 
 <br>
@@ -1869,7 +1898,7 @@ As you can see, their difference sounds subtle but the effects are not.
 **You should now be able to**
 
 * Be able to use conditional statements: *if*, *else* and *else if*.
-
+* Be familiar with *else_if()* and *case_when()* from `dplyr`.
 * Know what functions are and why they are useful.
 * Distinguish between a function's parameters and arguments.
     * Including different types of arguments
