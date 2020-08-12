@@ -825,32 +825,32 @@ for (each number in vector) {
 <!-- If it is not best practice to use `i` as an interator, should we be showing an example of it? -JM-->
 ```{r}
 
-# I have used i as the index variable here
-# This is the most commonly used 
-# But for best practice i recomment to set it
-# to be something more relevant
+# Creating a loop with an with an `if`, `else if` and `else` statement
 
-for (i in 1:30) { 
+for (each_number in 1:30) { 
   
-  if (i %% 3 == 0 & i %% 5 == 0) {
+  if (each_number %% 3 == 0 & each_number %% 5 == 0) {
     
     print("FizzBuzz")
     
-  } else if (i %% 3 == 0) {
+  } else if (each_number %% 3 == 0) {
     
     print("Fizz")
     
-  } else if (i %% 5 == 0) { 
+  } else if (each_number %% 5 == 0) { 
     
     print("Buzz")
     
   } else {
     
-    print(i)
+    print(each_number)
     
   }
   
 }
+
+# We have a loop, and else if statements, which means we 
+# need to careful about our closing brackets!
 
 ```
 
@@ -951,7 +951,7 @@ Here am going to use the mean value for `age_of_passenger`.
 As we saw in **Chapter Four - Working with Dataframes**, the mutate() function from the dplyr package is useful in creating a new variable. 
 
 <!--Could this be clarified? I think I understand what you are intending to do, but maybe restructure the wording? -JM -->
-We don't necessarily want to change the original column so we can create a new variable without the NA. mutate is easy to use, we just choose a variable name and define how to create this variable.
+We don't necessarily want to change the original column so we can create a new variable without the NA.
 
 Here my new column name is **imputed_age_of_passenger**.
 
