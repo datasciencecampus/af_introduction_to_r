@@ -969,6 +969,7 @@ Here my new column name is **imputed_age_of_passenger**.
 
 The `if_else()` function takes that single comparison operator **condition = is.na(age_of_passenger)** and vectorizes it.
 
+<!-- Changed the indentation slightly to add alignment for the different bracket levels. Still looks a bit off, not really sure how to structure R code syntax so might be worth looking up --JM -->
 ```{r}
 
 # Dealing with missing values
@@ -976,15 +977,15 @@ The `if_else()` function takes that single comparison operator **condition = is.
 # if not we can use the original value
 
 imputed_titanic <- titanic %>%
-                 # New column name                        # Condition to be met
+                 # New column name                        
   dplyr::mutate(imputed_age_of_passenger = 
-                  dplyr::if_else(condition = is.na(age_of_passenger),
+                  dplyr::if_else(condition = is.na(age_of_passenger), # Condition to be met
     
-    # What to do when true
-    true = mean(age_of_passenger, na.rm = TRUE),
+                                 # What to do when true
+                                 true = mean(age_of_passenger, na.rm = TRUE),
     
-    # What do to when false
-    false = age_of_passenger
+                                 # What do to when false
+                                 false = age_of_passenger
     )
   )
 
@@ -1017,6 +1018,8 @@ This command takes multiple conditions and tests them in order.
 
 `case_when()` takes a conditional command in the same format as the first command in `if_else()`, however only the action for the TRUE condition is given, separated with a **tilde ~**.
 
+<!-- Really well structured explaination of what it does --JM -->
+
 Lets look at an example.
 
 Consider you wanted to add in a new column in the titanic dataset of the Countries in which the passengers embarked.
@@ -1047,7 +1050,7 @@ case_when_example <- titanic %>%
       embarked == "S"  ~ "England",
       embarked == "C" ~ "France",
       embarked == "Q" ~ "Ireland",
-      # This is  what to happen if none of the set
+      # This is what is going to happen if none of the set
       # conditions are met
       TRUE ~ "Unknown") 
   )
@@ -1073,11 +1076,11 @@ case_when_example %>%
 <br>
 
 
-case_when statements are two-sided formulas where the left-hand side is a logical test and the right-hand side is the value to assign when that test is TRUE.
+`case_when()` statements are two-sided formulas where the left-hand side is a logical test and the right-hand side is the value to assign when that test is `TRUE`.
 
 Values that are never matched by a logical test get a default replacement value: NA. 
 
-To keep these values from getting NAs, include a final catch-all test and replacement.
+To keep these values from getting NAs, include a final catch-all test and replacement. This is done by putting `TRUE` on the left-hand side and the catch-all value on the right.
 
 The Left-hand side must evaluate to a logical vector. 
 
@@ -1098,7 +1101,7 @@ Example shown in Chapter 4 Working With Dataframes, section 4.6.2 Creating Varia
 
 #### **Exercise**{-}
 
-1. Use the case_when() function to create a new column in the titanic dataset called **fare_level**. 
+1. Use the `case_when()` function to create a new column in the titanic dataset called **fare_level**. 
 
   This new column should have 5 levels total:
 
@@ -1108,7 +1111,7 @@ Example shown in Chapter 4 Working With Dataframes, section 4.6.2 Creating Varia
 * Greater than or equal to 300: "very expensive"
 * Otherwise : "unknown"
 
-  Assign your tibble to the variable       **titanic_fare_level**.
+  Assign your tibble to the variable **titanic_fare_level**.
   
 <br>
 
@@ -1120,9 +1123,9 @@ Use the case_when function to create a new column in the titanic dataset called 
 
 In this column we should have,
 
-* where ever the value of the sex_of_passenger is "male" and age of passenger value is     missing should be imputed with the mean age_of_passenger of only the male passengers.
+* wherever the value of the sex_of_passenger is "male" and age of passenger value is missing the imputed value should be the mean age_of_passenger of only the male passengers.
 
-* where ever the value sex_of_passenger is "female" and age of passenger value is missing   should be imputed with the mean age_of_passenger of only the female passengers.
+* wherever the value sex_of_passenger is "female" and age of passenger value is missing the imputed value should be imputed with the mean age_of_passenger of only the female passengers.
 
 * otherwise, take the value of the age_of_passenger.
 
@@ -1189,7 +1192,7 @@ titanic_fare_level
 * Between 200 and 300: "expensive"
 * Greater than or equal to 300: "very expensive"
 
-  Assign your tibble to the variable       **titanic_fare_level**.
+  Assign your tibble to the variable **titanic_fare_level**.
 
 ```{r}
 # Using case_when
@@ -1202,7 +1205,7 @@ titanic_fare_level <- titanic %>%
     fare_level = dplyr::case_when(
       dplyr::between(fare, left = 0, right = 100)~ "cheap",
       dplyr::between(fare, left = 100, right = 200) ~ "fair",
-      dplyr::between( fare, left = 200, right = 300) ~ "expensive",
+      dplyr::between(fare, left = 200, right = 300) ~ "expensive",
       fare > 300 ~ "very expensive",
       TRUE ~ "unknown"
       )
@@ -1215,8 +1218,6 @@ titanic_fare_level <- titanic %>%
 ```{r echo = FALSE, message = FALSE, warning = FALSE}
 
 # To display just part of the dataset
-
-
 
 titanic_fare_level %>%
   select(fare_level, fare, everything()) %>% 
@@ -1251,9 +1252,9 @@ Use the case_when function to create a new column in the titanic dataset called 
 
 In this column we should have,
 
-* where ever the value of the sex_of_passenger is "male" and age of passenger value is     missing should be imputed with the mean age_of_passenger of only the male passengers.
+* wherever the value of the sex_of_passenger is "male" and age of passenger value is missing the imputed value should be the mean age_of_passenger of only the male passengers.
 
-* where ever the value sex_of_passenger is "female" and age of passenger value is missing   should be imputed with the mean age_of_passenger of only the female passengers.
+* wherever the value sex_of_passenger is "female" and age of passenger value is missing the imputed value should be imputed with the mean age_of_passenger of only the female passengers.
 
 * otherwise, take the value of the age_of_passenger.
 
@@ -1263,16 +1264,16 @@ As a guide the mean value for female passenger is 28.6 and for male passengers i
 
 # Calculating the mean value for male passengers
 # Here I am assigning the value to male_passenger_mean_age
-# firstly filtering the titanic data for male passengers 
-# The calculating the mean
+# Firstly filtering the titanic data for male passengers 
+# Then calculating the mean of the age excluding missing values
 
 male_passenger_mean_age <- mean(filter(titanic, 
   sex_of_passenger == "male")$age_of_passenger, na.rm = TRUE)
 
-# Calculating the mean value for male passengers
-# Here I am assigning the value to male_passenger_mean_age
-# firstly filtering the titanic data for male passengers 
-# The calculating the mean
+# Calculating the mean value for female passengers
+# Here I am assigning the value to female_passenger_mean_age
+# firstly filtering the titanic data for female passengers 
+# Then calculating the mean of the age excluding missing values
 
 female_passenger_mean_age <- mean(filter(titanic, 
   sex_of_passenger == "female")$age_of_passenger, na.rm = TRUE)
@@ -1280,11 +1281,12 @@ female_passenger_mean_age <- mean(filter(titanic,
 
 # Using case_when
 # Here I am assigning it to titanic_imputed_mean_values
-# using mutate to ass the new column
-# casewhen specified inside the mutate function
+# using mutate to assign the new column
+# case_when() specified inside the mutate function
 
 titanic_imputed_mean_values <- titanic %>% 
   mutate(imputed_age_of_passenger = case_when(
+    
     sex_of_passenger == "male" & is.na(age_of_passenger) ~ male_passenger_mean_age,
     
     sex_of_passenger == "female" & is.na(age_of_passenger) ~ female_passenger_mean_age,
