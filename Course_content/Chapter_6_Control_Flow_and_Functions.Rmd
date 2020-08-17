@@ -346,11 +346,13 @@ You can a find a tutorial on them here, [While Loop](https://www.datamentor.io/r
 
 #### **Exercise**{-}
 
-1. You are given a vector of measurements that are grams (g). For this exercise, we actually want to convert all of these measurements to kilograms (kg). 
+1. You are given a vector of measurements that are grams (g). 
 
-For reference, 1kg is the same as 1000 grams.
+   For this exercise, we actually want to convert all of these measurements to kilograms (kg). 
 
-Using a `for` loop, create and append to a new vector called `kilo_grams` that contains the values converted to meters.
+   **For reference, 1kg is the same as 1000 grams.**
+
+   Using a for loop, create and append to a new vector called **my_kilograms** that contains the values            converted to kilograms.
 
 ```{r}
 # Vector 
@@ -370,11 +372,13 @@ grams <- c(100000, 7899900, 967312, 49185, 6100)
 
 #### **Hint**{-}
 
-1. You are given a vector of measurements that are grams (g). For this exercise, we actually want to convert all of these measurements to kilograms (kg). 
+1. You are given a vector of measurements that are grams (g). 
 
-   For reference, 1kg is the same as 1000 grams.
+   For this exercise, we actually want to convert all of these measurements to kilograms (kg). 
 
-   Using a for loop, create and append to a new vector called kilo_grams that contains the values converted to meters.
+   **For reference, 1kg is the same as 1000 grams.**
+
+   Using a for loop, create and append to a new vector called **my_kilograms** that contains the values            converted to kilograms.
 
 ```{r,eval=FALSE}
 
@@ -387,21 +391,21 @@ grams <- c(100000, 7899900, 967312, 49185, 6100)
 
 # Empty vector for result storage
 
-kilo_grams <- c()
+my_kilograms <- c()
 
 # For loop
 
 for (each_number in vector) {
   
-     convert to kilo_grams
+     convert to kilograms
   
-     append result to kilo_grams
+     append result to my_kilograms
 }
 
 
 # To display the data
 
-kilo_grams
+my_kilograms
 
 ```
 
@@ -414,12 +418,13 @@ kilo_grams
 
 #### **Show Answer**{-}
 
-1. You are given a vector of measurements that are grams (g). For this exercise, we actually want to convert all of these measurements to kilograms (kg). 
+1. You are given a vector of measurements that are grams (g). 
 
-   For reference, 1kg is the same as 1000 grams.
+   For this exercise, we actually want to convert all of these measurements to kilograms (kg). 
 
-   Using a for loop, create and append to a new vector called kilo_grams that contains the values converted to meters.
+   **For reference, 1kg is the same as 1000 grams.**
 
+   Using a for loop, create and append to a new vector called **my_kilograms** that contains the values            converted to kilograms.
 
 ```{r}
 
@@ -429,7 +434,7 @@ grams <- c(100000, 7899900, 967312, 49185, 6100)
 
 # Empty vector for result storage
 
-kilo_grams <- c()
+my_kilograms <- c()
 
 # For loop
 
@@ -438,13 +443,13 @@ for (measurement in grams) {
     converted_kilo_grams <- measurement / 1000 
   
     # Appending to kilo_grams result vector
-    kilo_grams <- append(kilo_grams, converted_kilo_grams) 
+    my_kilograms <- append(my_kilograms, converted_kilo_grams) 
   
 }
 
 # To display the data
 
-kilo_grams
+my_kilograms
 
 ```
 
@@ -468,7 +473,9 @@ This is useful if we want a function or code block to run only when our data mee
 
 Control flow is something we do in everyday life. 
 
-For example when we go shopping and choose fruits, we normally want to buy the ones that look juicy and healthy and avoid the ones that look rotten or bruised. As we pick up our fruit and inspect it, we are actually using control flow.
+For example when we go shopping and choose fruits, we normally want to buy the ones that look juicy and healthy and avoid the ones that look rotten or bruised. 
+
+As we pick up our fruit and inspect it, we are actually using control flow.
 
 <br>
 
@@ -478,10 +485,15 @@ For example when we go shopping and choose fruits, we normally want to buy the o
 
 
 
-In order to move through this decision process, we need to answer either "Yes" or "No" to each question. A series of "Yes" answers will lead us to buy an orange that matches our set criteria.
+In order to move through this decision process, we need to answer either "Yes" or "No" to each question.
 
-This links in with logical or boolean data types that we covered in Chapter One, Getting Started With R. As our logical statement has to be either `TRUE` or `FALSE`. To evaluate these we use comparison operators which we used in Chapter 4 Working With Dataframes where we used the `filter()` function.
+A series of "Yes" answers will lead us to buy an orange that matches our set criteria.
 
+This links in with logical or boolean data types that we covered in Chapter One, Getting Started With R. 
+
+As our logical statement has to be either `TRUE` or `FALSE`. 
+
+To evaluate these we use comparison operators which we used in Chapter 4 Working With Dataframes where we used the `filter()` function.
 
 We use comparison and logical operators to control the flow of our code.
 
@@ -859,7 +871,7 @@ for (each_number in 1:30) {
 <br>
 
 
-## Dplyr if_else()
+## dplyr if_else()
 
 We have seen how we can use the `if` statement to create branching paths in our code.
 
@@ -871,7 +883,7 @@ The `if_else()` function is designed to be used with multiple values, like with 
 
 Lets look at the help information on the function to see what arguments we can specify.
 
-> **I would strongly advice to look at the R help documentation when you come across a function you have not used before.**
+> **I would strongly advise to look at the R help documentation when you come across a function you have not used before.**
 
 ```{r}
 library(dplyr)
@@ -989,21 +1001,21 @@ summary(imputed_titanic$imputed_age_of_passenger)
 
 <br>
 
-## Dplyr case_when()
+## dplyr case_when()
 
 So far we have looked at `else if` to add more options to an if statement.
 
-We have also used the the `dplyr::if_else()` function, but it works best with simpler conditions that evaluate to `TRUE` or `FALSE`.
+We have also used the the `if_else()` function, but it works best with simpler conditions that evaluate to `TRUE` or `FALSE`.
 
-We can  put multiple `dplyr::if_else()` commands inside each other, but this makes code hard to read and is not recommended.
+We can  put multiple `if_else()` commands inside each other, but this makes code hard to read and is not recommended.
 
-If we are dealing with multiple complex conditions dplyr also has a function called `dplyr::case_when()`
+If we are dealing with multiple complex conditions dplyr also has a function called `case_when()`
 
-You can think of the `case_when()` function as a generalization of the `dplyr::if_else()` function, which incorporates more branches.
+You can think of the `case_when()` function as a generalisation of the `if_else()` function, which incorporates more branches.
 
 This command takes multiple conditions and tests them in order.
 
-`dplyr::case_when()` takes a conditional command in the same format as the first command in `if_else()`, however only the action for the TRUE condition is given, separated with a **tilde ~**.
+`case_when()` takes a conditional command in the same format as the first command in `if_else()`, however only the action for the TRUE condition is given, separated with a **tilde ~**.
 
 Lets look at an example.
 
@@ -1054,6 +1066,30 @@ case_when_example %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
   scroll_box(width = "100", height = "500px")
 ```
+
+
+
+
+<br>
+
+
+case_when statements are two-sided formulas where the left-hand side is a logical test and the right-hand side is the value to assign when that test is TRUE.
+
+Values that are never matched by a logical test get a default replacement value: NA. 
+
+To keep these values from getting NAs, include a final catch-all test and replacement.
+
+The Left-hand side must evaluate to a logical vector. 
+
+The Right-hand side does not need to be logical but it must evaluate to the same type of vector.
+
+<br>
+
+You could also use the recode function here.
+
+Example shown in Chapter 4 Working With Dataframes, section 4.6.2 Creating Variables Based on Existing Columns.
+
+
 ***
 
 <br>
@@ -1073,7 +1109,24 @@ case_when_example %>%
 * Otherwise : "unknown"
 
   Assign your tibble to the variable       **titanic_fare_level**.
+  
+<br>
 
+##### **Extension Exercise**{-}
+
+Building on from the earlier exercise when we imputed missing values using the mean value of the of the age_of_passenger column.
+
+Use the case_when function to create a new column in the titanic dataset called **imputed_age_of_passenger**.
+
+In this column we should have,
+
+* where ever the value of the sex_of_passenger is "male" and age of passenger value is     missing should be imputed with the mean age_of_passenger of only the male passengers.
+
+* where ever the value sex_of_passenger is "female" and age of passenger value is missing   should be imputed with the mean age_of_passenger of only the female passengers.
+
+* otherwise, take the value of the age_of_passenger.
+
+As a guide the mean value for female passenger is 28.6 and for male passengers is 30.5.
 
 
 ***
@@ -1187,6 +1240,76 @@ Can you take a guess why?
 titanic_fare_level %>% 
   count(fare_level, sort = TRUE)
 ```
+
+<br>
+
+##### **Extension Exercise**{-}
+
+Building on from the earlier exercise when we imputed missing values using the mean value of the of the age_of_passenger column.
+
+Use the case_when function to create a new column in the titanic dataset called **imputed_age_of_passenger**.
+
+In this column we should have,
+
+* where ever the value of the sex_of_passenger is "male" and age of passenger value is     missing should be imputed with the mean age_of_passenger of only the male passengers.
+
+* where ever the value sex_of_passenger is "female" and age of passenger value is missing   should be imputed with the mean age_of_passenger of only the female passengers.
+
+* otherwise, take the value of the age_of_passenger.
+
+As a guide the mean value for female passenger is 28.6 and for male passengers is 30.5.
+
+```{r}
+
+# Calculating the mean value for male passengers
+# Here I am assigning the value to male_passenger_mean_age
+# firstly filtering the titanic data for male passengers 
+# The calculating the mean
+
+male_passenger_mean_age <- mean(filter(titanic, 
+  sex_of_passenger == "male")$age_of_passenger, na.rm = TRUE)
+
+# Calculating the mean value for male passengers
+# Here I am assigning the value to male_passenger_mean_age
+# firstly filtering the titanic data for male passengers 
+# The calculating the mean
+
+female_passenger_mean_age <- mean(filter(titanic, 
+  sex_of_passenger == "female")$age_of_passenger, na.rm = TRUE)
+
+
+# Using case_when
+# Here I am assigning it to titanic_imputed_mean_values
+# using mutate to ass the new column
+# casewhen specified inside the mutate function
+
+titanic_imputed_mean_values <- titanic %>% 
+  mutate(imputed_age_of_passenger = case_when(
+    sex_of_passenger == "male" & is.na(age_of_passenger) ~ male_passenger_mean_age,
+    
+    sex_of_passenger == "female" & is.na(age_of_passenger) ~ female_passenger_mean_age,
+    
+    TRUE ~ age_of_passenger)
+  )
+
+
+```
+<br>
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+
+
+titanic_imputed_mean_values %>%
+  select(sex_of_passenger,age_of_passenger, imputed_age_of_passenger, everything()) %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "500px")
+
+```
+
+<br>
+
+
 
 
 
