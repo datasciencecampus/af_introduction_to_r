@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<!-- Sorry for chaning, the alignment and interference with the title when I knitted was upsetting me -JM -->
+<!-- Sorry for changing, the alignment and interference with the title when I knitted was upsetting me -JM -->
 
 ```{r, echo=FALSE}
 htmltools::img(src = knitr::image_uri("../Images/LATree.png"), 
@@ -302,7 +302,7 @@ The **`append()`** function simply adds an element to the end of a vector. We fi
 
 <br>
 
-![Image showing Control Flow](../Images/loop_example.png)
+![Image showing a for loop](../Images/loop_example.png)
 
 
 <br>
@@ -522,6 +522,18 @@ We use comparison and logical operators to control the flow of our code.
 |   \|    | Or |
 |    !    | Not|
 
+
+
+<br>
+
+<br>
+
+| Condition 1 | Condition 2  | & (AND) Equates to |  &#124; (OR) Equates to |
+|:-----------:|:------------:|:------------------:|:------------------:|
+|     True    |     True     |        True        |        True        |
+|     True    |     False    |        False       |        True        |
+|    False    |     True     |        False       |        True        |
+|    False    |     False    |        False       |        False       | 
 
 
 <br>
@@ -1044,15 +1056,15 @@ So those who embarked in
 
 
 case_when_example <- titanic %>% 
-  mutate(
-    country_embarked = case_when( 
-      # condition        # action
-      embarked == "S"  ~ "England",
-      embarked == "C" ~ "France",
-      embarked == "Q" ~ "Ireland",
-      # This is what is going to happen if none of the set
-      # conditions are met
-      TRUE ~ "Unknown") 
+  dplyr::mutate(
+    country_embarked = dplyr::case_when( 
+                     # condition        # action
+                      embarked == "S"  ~ "England",
+                      embarked == "C" ~ "France",
+                      embarked == "Q" ~ "Ireland",
+                     # This is what is going to happen if none of the set
+                     # conditions are met
+                      TRUE ~ "Unknown") 
   )
 
 ```
@@ -1090,7 +1102,7 @@ The Right-hand side does not need to be logical but it must evaluate to the same
 
 You could also use the recode function here.
 
-Example shown in Chapter 4 Working With Dataframes, section 4.6.2 Creating Variables Based on Existing Columns.
+**Example shown in Chapter 4 Working With Dataframes, section 4.6.2 Creating Variables Based on Existing Columns**.
 
 
 ***
@@ -1113,26 +1125,7 @@ Example shown in Chapter 4 Working With Dataframes, section 4.6.2 Creating Varia
 
   Assign your tibble to the variable **titanic_fare_level**.
   
-<br>
 
-##### **Extension Exercise**{-}
-
-Building on from the earlier exercise when we imputed missing values using the mean value of the of the age_of_passenger column.
-
-Use the case_when function to create a new column in the titanic dataset called **imputed_age_of_passenger**.
-
-In this column we should have,
-
-* wherever the value of the sex_of_passenger is "male" and age of passenger value is missing the imputed value should be the mean age_of_passenger of only the male passengers.
-
-* wherever the value sex_of_passenger is "female" and age of passenger value is missing the imputed value should be imputed with the mean age_of_passenger of only the female passengers.
-
-* otherwise, take the value of the age_of_passenger.
-
-As a guide the mean value for female passenger is 28.6 and for male passengers is 30.5.
-
-
-***
 
 <br>
 
@@ -1173,10 +1166,6 @@ titanic_fare_level
 
 ```
 
-
-
-
-***
 
 <br>
 
@@ -1242,9 +1231,15 @@ titanic_fare_level %>%
   count(fare_level, sort = TRUE)
 ```
 
+
+
 <br>
 
-##### **Extension Exercise**{-}
+
+### Extension Exercise Case When{.tabset .tabset-fade}
+
+#### **Exercise**{-}
+
 
 Building on from the earlier exercise when we imputed missing values using the mean value of the of the age_of_passenger column.
 
@@ -1260,14 +1255,131 @@ In this column we should have,
 
 As a guide the mean value for female passenger is 28.6 and for male passengers is 30.5.
 
+
+***
+
+<br>
+
+
+#### **Hint**{-}
+
+Building on from the earlier exercise when we imputed missing values using the mean value of the of the age_of_passenger column.
+
+Use the case_when function to create a new column in the titanic dataset called **imputed_age_of_passenger**.
+
+In this column we should have,
+
+* wherever the value of the sex_of_passenger is "male" and age of passenger value is missing the imputed value should be the mean age_of_passenger of only the male passengers.
+
+* wherever the value sex_of_passenger is "female" and age of passenger value is missing the imputed value should be imputed with the mean age_of_passenger of only the female passengers.
+
+* otherwise, take the value of the age_of_passenger.
+
+As a guide the mean value for female passenger is 28.6 and for male passengers is 30.5.
+
+```{r,eval=FALSE}
+
+# Please NOTE, this is not code, shows the steps required 
+
+Calculate the mean values for male and female passengers
+
+# Use case_when within a mutate to add the new column
+
+titanic_imputed_mean_values <- titanic %>% 
+  dplyr::mutate(imputed_age_of_passenger = dplyr::case_when(
+    
+            condtion ~ value,
+    
+            condition ~ value
+    
+            TRUE ~ value)
+  )
+
+
+```
+
+
+
+
+***
+
+<br>
+
+
+#### **Show Answer**{-}
+
+Building on from the earlier exercise when we imputed missing values using the mean value of the of the age_of_passenger column.
+
+Use the case_when function to create a new column in the titanic dataset called **imputed_age_of_passenger**.
+
+In this column we should have,
+
+* wherever the value of the sex_of_passenger is "male" and age of passenger value is missing the imputed value should be the mean age_of_passenger of only the male passengers.
+
+* wherever the value sex_of_passenger is "female" and age of passenger value is missing the imputed value should be imputed with the mean age_of_passenger of only the female passengers.
+
+* otherwise, take the value of the age_of_passenger.
+
+As a guide the mean value for female passenger is 28.6 and for male passengers is 30.5.
+
+
+
+
+
 ```{r}
+# Calculating the mean value for male passengers
+# Here I am assigning the value to male_passenger_mean_age
+# Firstly filtering the titanic data for male passengers
+# Then using the pull function to pull out a a single variable/vector
+# Then calculating the mean of the age excluding missing values
+
+male_passenger_mean_age <- titanic %>% 
+  dplyr::filter(sex_of_passenger == "male") %>%
+  dplyr::pull(age_of_passenger) %>% 
+  mean(na.rm = TRUE)
+
+# Calculating the mean value for female passengers
+# Here I am assigning the value to female_passenger_mean_age
+# firstly filtering the titanic data for female passengers 
+# Then calculating the mean of the age excluding missing values
+
+female_passenger_mean_age <- titanic %>% 
+  dplyr::filter(sex_of_passenger == "female") %>%
+  dplyr::pull(age_of_passenger) %>% 
+  mean(na.rm = TRUE)
+
+# Using case_when
+# Here I am assigning it to titanic_imputed_mean_values
+# using mutate to assign the new column
+# case_when() specified inside the mutate function
+
+titanic_imputed_mean_values <- titanic %>% 
+  dplyr::mutate(imputed_age_of_passenger = dplyr::case_when(
+    
+            sex_of_passenger == "male" & is.na(age_of_passenger) ~ male_passenger_mean_age,
+    
+            sex_of_passenger == "female" & is.na(age_of_passenger) ~ female_passenger_mean_age,
+    
+            TRUE ~ age_of_passenger)
+  )
+
+
+```
+
+<br>
+
+Alternatively you can do this without using the pipe operator as shown below,
+
+<br>
+
+```{r,eval=FALSE}
 
 # Calculating the mean value for male passengers
 # Here I am assigning the value to male_passenger_mean_age
 # Firstly filtering the titanic data for male passengers 
 # Then calculating the mean of the age excluding missing values
 
-male_passenger_mean_age <- mean(filter(titanic, 
+male_passenger_mean_age <- mean(dplyr::filter(titanic, 
   sex_of_passenger == "male")$age_of_passenger, na.rm = TRUE)
 
 # Calculating the mean value for female passengers
@@ -1275,7 +1387,7 @@ male_passenger_mean_age <- mean(filter(titanic,
 # firstly filtering the titanic data for female passengers 
 # Then calculating the mean of the age excluding missing values
 
-female_passenger_mean_age <- mean(filter(titanic, 
+female_passenger_mean_age <- mean(dplyr::filter(titanic, 
   sex_of_passenger == "female")$age_of_passenger, na.rm = TRUE)
 
 
@@ -1285,7 +1397,7 @@ female_passenger_mean_age <- mean(filter(titanic,
 # case_when() specified inside the mutate function
 
 titanic_imputed_mean_values <- titanic %>% 
-  mutate(imputed_age_of_passenger = case_when(
+  dplyr::mutate(imputed_age_of_passenger = dplyr::case_when(
     
     sex_of_passenger == "male" & is.na(age_of_passenger) ~ male_passenger_mean_age,
     
@@ -1296,6 +1408,7 @@ titanic_imputed_mean_values <- titanic %>%
 
 
 ```
+
 <br>
 
 ```{r echo = FALSE, message = FALSE, warning = FALSE}
@@ -1309,14 +1422,7 @@ titanic_imputed_mean_values %>%
 
 ```
 
-<br>
-
-
-
-
-
 ***
-
 <br>
 
 
@@ -1525,30 +1631,6 @@ range(age_vector)
 
 ```
 
-<br>
-
-2. Write a function which:
-
-   **Converts from Fahrenheit to degrees Celsius using the equation below.**
-   
-Check it performs how you expect using the examples below.
-
-$$C=\frac{5}{9}(F - 32)$$
-
-> Examples: 
-
-* `fahrenheit_to_degrees_celsius(32)` returns:
-    + [1] 0
-
-* `fahrenheit_to_degrees_celsius(11)` returns:
-    + [1] -11.7
-
-* `fahrenheit_to_degrees_celsius(81.3)` returns: 
-    + [1] 27.4
-    
-    
-   
-***
 
 <br>
 
@@ -1579,29 +1661,7 @@ my_range(input)
 
 <br>
 
-2. Write a function which:
 
-   **Converts from Fahrenheit to degrees Celsius using the equation below.**
-
-Check it performs how you expect using the examples below.
-
-$$C=\frac{5}{9}(F-32)$$
-
-```{r, eval=FALSE}
-
-# Creating our function
-
-fahrenheit_to_degrees_celsius <- function(input) {
-  
-  commands
-  
-  return(celsius)
-}
-
-# Calling our function
-
-fahrenheit_to_degrees_celsius(32)
-```
 
 ***
 
@@ -1634,6 +1694,66 @@ my_range(age_vector)
 
 <br>
 
+## Exercise{.tabset .tabset-fade}
+
+### **Exercise** {-}
+
+2. Write a function which:
+
+   **Converts from Fahrenheit to degrees Celsius using the equation below.**
+   
+   Check it performs how you expect using the examples below.
+
+$$C=\frac{5}{9}(F - 32)$$
+
+> Examples: 
+
+* `fahrenheit_to_degrees_celsius(32)` returns:
+    + [1] 0
+
+* `fahrenheit_to_degrees_celsius(11)` returns:
+    + [1] -11.7
+
+* `fahrenheit_to_degrees_celsius(81.3)` returns: 
+    + [1] 27.4
+    
+
+***
+
+<br>
+
+### **Hint**{-}
+
+2. Write a function which:
+
+   **Converts from Fahrenheit to degrees Celsius using the equation below.**
+
+   Check it performs how you expect using the examples below.
+
+$$C=\frac{5}{9}(F-32)$$
+
+```{r, eval=FALSE}
+
+# Creating our function
+
+fahrenheit_to_degrees_celsius <- function(input) {
+  
+  commands
+  
+  return(celsius)
+}
+
+# Calling our function
+
+fahrenheit_to_degrees_celsius(32)
+```
+
+***
+
+<br>
+
+### **Show Answer**{-}
+
 2. Write a function which:
 
    **Converts from Fahrenheit to degrees Celsius using the equation below.**
@@ -1656,7 +1776,6 @@ fahrenheit_to_degrees_celsius <- function(fahrenheit) {
 
 fahrenheit_to_degrees_celsius(32)
 ```
-
 
 ***
 
@@ -1874,7 +1993,7 @@ summarise(.data = titanic, minimum = min(fare, na.rm = TRUE),
 
 <br>
 
-If we we wanted another column we could keep on copying and pasting, copying and pasting but this is not recommended as its not efficient and could lead to errors as above did above.
+If we we wanted another column we could keep on copying and pasting, copying and pasting but this is not recommended as its not efficient and could lead to errors as above.
 
 >**did you notice the error?**
 
@@ -1965,7 +2084,7 @@ R being a functional programming language is packed with functionals. We will in
 * `purrr::map()`
 * `purrr::modify()`
 
-There are functionals in base R as well such as: `apply`, `sapply`, `vapply`, etc which are worth experimenting with as well. We will continue with our tidyverse theme and demonstrate the `purrr` equivalents. 
+There are functionals in base R as well such as: `apply`, `sapply`, `lapply`, etc which are worth experimenting with as well. We will continue with our tidyverse theme and demonstrate the `purrr` equivalents. 
 
 `map()` and `modify()` will take a function in as an argument and apply it to every element of the given collection (e.g. vector, list).
 
@@ -1998,10 +2117,10 @@ titanic %>%
 There is not a lot of difference between `map` and `modify`. `map` will return a list by default, whereas, `modify` always returns the same type as the input object.
 
 ```{r}
-map(titanic, typeof)
+purrr::map(titanic, typeof)
 ```
 ```{r}
-modify(titanic, typeof)
+purrr::modify(titanic, typeof)
 ```
 As you can see, their difference sounds subtle but the effects are not.
 
