@@ -200,7 +200,7 @@ We didn't just get 6, we also got [1]. This is R's way of printing to the screen
 
 <br>
 
-A semi colon allows multiple commands to be entered on the same line before processing.
+Generally, it’s a good idea to put separate commands on separate lines, but you can put multiple commands on the same line, as long as you separate them by a semicolon.
 
 ```{r semiclon to run multiple lines of code}
 
@@ -399,6 +399,8 @@ You will most likely be using data in R, we will now look at the different types
 
 To get the best out of R, you will need to have a strong understanding of the basic data types and structures and how to operate on them.
 
+R can store and manipulate different pieces of information, called data, and these data can be of several different types.
+
 Different processes apply to different types of data.
 
 Different data types have different properties; if you try to add `1 + "two"`, you will get an error due to a mismatch of types.
@@ -560,7 +562,9 @@ The choice between single and double quotes is up to the user, as long as you st
 
 
 
-**A few symbols are awkward to get into character strings and this is because they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you require will solve the problem. If not, Google will definitely have the answer!**
+A few symbols are awkward to get into character strings and this is because they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you require will solve the problem. If not, Google will definitely have the answer!.
+
+>**TIP -  If you forget to put quotes around something, you can highlight and press the quote key and it will add quotes to both sides.**
 
 
 ***

@@ -1692,7 +1692,7 @@ div.tocify {
 <pre><code>## [1] 6</code></pre>
 <p>We didn’t just get 6, we also got [1]. This is R’s way of printing to the screen; it’s telling us the position we’re at.</p>
 <p><br></p>
-<p>A semi colon allows multiple commands to be entered on the same line before processing.</p>
+<p>Generally, it’s a good idea to put separate commands on separate lines, but you can put multiple commands on the same line, as long as you separate them by a semicolon.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="dv">23</span> <span class="op">-</span><span class="st"> </span><span class="dv">6</span>; <span class="dv">36</span> <span class="op">+</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
 <pre><code>## [1] 17</code></pre>
 <pre><code>## [1] 41</code></pre>
@@ -1807,6 +1807,7 @@ div.tocify {
 <div id="data-types." class="section level1">
 <h1><span class="header-section-number">3</span> Data Types.</h1>
 <p>To get the best out of R, you will need to have a strong understanding of the basic data types and structures and how to operate on them.</p>
+<p>R can store and manipulate different pieces of information, called data, and these data can be of several different types.</p>
 <p>Different processes apply to different types of data.</p>
 <p>Different data types have different properties; if you try to add <code>1 + &quot;two&quot;</code>, you will get an error due to a mismatch of types.</p>
 <p>First data type we will look at is numbers.</p>
@@ -1923,7 +1924,10 @@ div.tocify {
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="st">&#39;If I want to include a &quot;quote&quot; inside a string, I use single quotes&#39;</span></a></code></pre></div>
 <pre><code>## [1] &quot;If I want to include a \&quot;quote\&quot; inside a string, I use single quotes&quot;</code></pre>
 <p><br></p>
-<p><strong>A few symbols are awkward to get into character strings and this is because they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you require will solve the problem. If not, Google will definitely have the answer!</strong></p>
+<p>A few symbols are awkward to get into character strings and this is because they have an underlying meaning elsewhere. Generally speaking, a backslash prior to the special character you require will solve the problem. If not, Google will definitely have the answer!.</p>
+<blockquote>
+<p><strong>TIP - If you forget to put quotes around something, you can highlight and press the quote key and it will add quotes to both sides.</strong></p>
+</blockquote>
 <hr />
 <p><br></p>
 </div>
