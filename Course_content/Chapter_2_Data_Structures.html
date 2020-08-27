@@ -1605,7 +1605,6 @@ div.tocify {
 </div>
 <div id="vectors" class="section level1">
 <h1><span class="header-section-number">3</span> Vectors</h1>
-<p>Now it’s time to almost forget everything you’ve just learned… In R the most fundamental object is a vector. To the extent all the data types we have seen so far have all been vectors. This is because R is a <code>&quot;vectorised&quot;</code> language. This is a really powerful concept that may seem foreign right now, but it should make more sense as we move on.</p>
 <p>In the previous section we looked at data types, where we said we could assign a name to a value.</p>
 <p>here <code>my_friends</code> is assigned to the value <code>ian</code></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># To assign a variable</span></a>
@@ -1681,6 +1680,10 @@ div.tocify {
 <li>Character vector - contains only character values.</li>
 </ul>
 <p>There are more types of vectors, but for the purpose of our learning these are sufficient.</p>
+<div class="figure">
+<img src="data:image/png;base64,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" alt="showing visual representation of a vector" />
+<p class="caption">showing visual representation of a vector</p>
+</div>
 <hr />
 <p><br></p>
 </div>
@@ -1706,6 +1709,7 @@ div.tocify {
 </div>
 <div id="sequence-function" class="section level3 unnumbered">
 <h3>Sequence function</h3>
+<p>A sequence of values from a value (from), to another value (to), by a step value (by) could be generated as a vector using the function seq().</p>
 <p>Here I am specifying the arguments, <code>from</code>, <code>to</code> and <code>by</code> and with the values 2, 6 and 2.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Creating a vector using the sequence function,</span></a>
 <a class="sourceLine" id="cb9-2" title="2"></a>
@@ -1720,6 +1724,7 @@ div.tocify {
 </div>
 <div id="colon" class="section level3 unnumbered">
 <h3>Colon</h3>
+<p>A range of values (i.e., consecutive values) could be generated as a vector using a colon (:) in R.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co"># Creating a vector using a colon</span></a>
 <a class="sourceLine" id="cb11-2" title="2"></a>
 <a class="sourceLine" id="cb11-3" title="3">colon_vector &lt;-<span class="st"> </span><span class="dv">6</span><span class="op">:</span><span class="dv">10</span></a>
@@ -1798,7 +1803,8 @@ div.tocify {
 <a class="sourceLine" id="cb18-3" title="3">lucky_numbers &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">1</span>)  </a>
 <a class="sourceLine" id="cb18-4" title="4"></a>
 <a class="sourceLine" id="cb18-5" title="5"><span class="co"># To display the data</span></a>
-<a class="sourceLine" id="cb18-6" title="6">lucky_numbers</a></code></pre></div>
+<a class="sourceLine" id="cb18-6" title="6"></a>
+<a class="sourceLine" id="cb18-7" title="7">lucky_numbers</a></code></pre></div>
 <pre><code>## [1]  7 12 15  1</code></pre>
 <p><br></p>
 <ol start="3" style="list-style-type: decimal">
@@ -1882,6 +1888,7 @@ div.tocify {
 <a class="sourceLine" id="cb37-2" title="2"></a>
 <a class="sourceLine" id="cb37-3" title="3">sequence_vector</a></code></pre></div>
 <pre><code>## [1] 2 4 6</code></pre>
+<p><br></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Can you figure out what has happened?</li>
 </ol>
@@ -1965,49 +1972,84 @@ div.tocify {
 <li><p>Create another vector containing days of the week (Monday - Sunday).</p></li>
 <li><p>Select the third day of the week.</p></li>
 <li><p>Select the week days.</p></li>
-<li><p>Select Tuesday and Thursday.</p></li>
+<li><p>Select Tuesday and Thursday</p></li>
 </ol>
+<p><br></p>
+<p><strong>Extension Exercise</strong></p>
+<ol style="list-style-type: decimal">
+<li>What happens when you do this?</li>
+</ol>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co"># Find out what the code below does</span></a>
+<a class="sourceLine" id="cb55-2" title="2"></a>
+<a class="sourceLine" id="cb55-3" title="3">days_of_the_week[<span class="dv">3</span>] &lt;-<span class="st"> &quot;Wensday&quot;</span></a>
+<a class="sourceLine" id="cb55-4" title="4"></a>
+<a class="sourceLine" id="cb55-5" title="5"></a>
+<a class="sourceLine" id="cb55-6" title="6"><span class="co"># Find out what the code below does</span></a>
+<a class="sourceLine" id="cb55-7" title="7"></a>
+<a class="sourceLine" id="cb55-8" title="8">days_of_the_week[<span class="kw">c</span>(<span class="op">-</span><span class="dv">6</span>,<span class="op">-</span><span class="dv">7</span>)]</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
 <div id="show-answer-3" class="section level4 unnumbered">
 <h4><strong>Show Answer</strong></h4>
 <ol style="list-style-type: decimal">
-<li>Create another vector containing days of the week (Monday - Sunday).</li>
+<li>Create another vector containing days of the week (Monday - Sunday), assign it the name days_of_the_week.</li>
 </ol>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="co"># Creating a vector</span></a>
-<a class="sourceLine" id="cb55-2" title="2"></a>
-<a class="sourceLine" id="cb55-3" title="3">days_of_the_week &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Monday&quot;</span>,<span class="st">&quot;Tuesday&quot;</span>,</a>
-<a class="sourceLine" id="cb55-4" title="4">                      <span class="st">&quot;Wednesday&quot;</span>,<span class="st">&quot;Thursday&quot;</span>,</a>
-<a class="sourceLine" id="cb55-5" title="5">                      <span class="st">&quot;Friday&quot;</span>,<span class="st">&quot;Saturday&quot;</span>,</a>
-<a class="sourceLine" id="cb55-6" title="6">                      <span class="st">&quot;Sunday&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="co"># Creating a vector</span></a>
+<a class="sourceLine" id="cb56-2" title="2"></a>
+<a class="sourceLine" id="cb56-3" title="3">days_of_the_week &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Monday&quot;</span>,<span class="st">&quot;Tuesday&quot;</span>,</a>
+<a class="sourceLine" id="cb56-4" title="4">                      <span class="st">&quot;Wednesday&quot;</span>,<span class="st">&quot;Thursday&quot;</span>,</a>
+<a class="sourceLine" id="cb56-5" title="5">                      <span class="st">&quot;Friday&quot;</span>,<span class="st">&quot;Saturday&quot;</span>,</a>
+<a class="sourceLine" id="cb56-6" title="6">                      <span class="st">&quot;Sunday&quot;</span>)</a></code></pre></div>
 <p><br></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Select the third day of the week.</li>
 </ol>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="co"># Selecting the 3rd day</span></a>
-<a class="sourceLine" id="cb56-2" title="2"></a>
-<a class="sourceLine" id="cb56-3" title="3">days_of_the_week[<span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1"><span class="co"># Selecting the 3rd day</span></a>
+<a class="sourceLine" id="cb57-2" title="2"></a>
+<a class="sourceLine" id="cb57-3" title="3">days_of_the_week[<span class="dv">3</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;Wednesday&quot;</code></pre>
 <p><br></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Select the week days.</li>
 </ol>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="co"># Selecting the week days</span></a>
-<a class="sourceLine" id="cb58-2" title="2"></a>
-<a class="sourceLine" id="cb58-3" title="3">days_of_the_week[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1"><span class="co"># Selecting the week days</span></a>
+<a class="sourceLine" id="cb59-2" title="2"></a>
+<a class="sourceLine" id="cb59-3" title="3">days_of_the_week[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;Monday&quot;    &quot;Tuesday&quot;   &quot;Wednesday&quot; &quot;Thursday&quot;  &quot;Friday&quot;</code></pre>
 <p><br></p>
 <ol start="4" style="list-style-type: decimal">
 <li>Select Tuesday and Thursday.</li>
 </ol>
 <p>Here we create a selection vector inside the [].</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="co"># Selecting Tuesday and Thursday</span></a>
-<a class="sourceLine" id="cb60-2" title="2"><span class="co"># Here we create a selection </span></a>
-<a class="sourceLine" id="cb60-3" title="3"><span class="co"># vector inside the [].</span></a>
-<a class="sourceLine" id="cb60-4" title="4"></a>
-<a class="sourceLine" id="cb60-5" title="5">days_of_the_week[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] </a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="co"># Selecting Tuesday and Thursday</span></a>
+<a class="sourceLine" id="cb61-2" title="2"><span class="co"># Here we create a selection </span></a>
+<a class="sourceLine" id="cb61-3" title="3"><span class="co"># vector inside the [].</span></a>
+<a class="sourceLine" id="cb61-4" title="4"></a>
+<a class="sourceLine" id="cb61-5" title="5">days_of_the_week[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] </a></code></pre></div>
 <pre><code>## [1] &quot;Tuesday&quot;  &quot;Thursday&quot;</code></pre>
+<p><br></p>
+<p><strong>Extension Exercise</strong></p>
+<ol style="list-style-type: decimal">
+<li>What happens when you do this?</li>
+</ol>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1"><span class="co"># Modify the third element of the vector</span></a>
+<a class="sourceLine" id="cb63-2" title="2"><span class="co"># This will change the third element in our vector</span></a>
+<a class="sourceLine" id="cb63-3" title="3"></a>
+<a class="sourceLine" id="cb63-4" title="4">days_of_the_week[<span class="dv">3</span>] &lt;-<span class="st"> &quot;Wensday&quot;</span></a>
+<a class="sourceLine" id="cb63-5" title="5"></a>
+<a class="sourceLine" id="cb63-6" title="6"><span class="co"># To display the vector to see the changes</span></a>
+<a class="sourceLine" id="cb63-7" title="7">days_of_the_week</a></code></pre></div>
+<pre><code>## [1] &quot;Monday&quot;   &quot;Tuesday&quot;  &quot;Wensday&quot;  &quot;Thursday&quot; &quot;Friday&quot;   &quot;Saturday&quot; &quot;Sunday&quot;</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="co"># Deleting elements of a vector</span></a>
+<a class="sourceLine" id="cb65-2" title="2"><span class="co"># This will delete the chosen elements </span></a>
+<a class="sourceLine" id="cb65-3" title="3"></a>
+<a class="sourceLine" id="cb65-4" title="4">week_days &lt;-<span class="st"> </span>days_of_the_week[<span class="kw">c</span>(<span class="op">-</span><span class="dv">6</span>,<span class="op">-</span><span class="dv">7</span>)]</a>
+<a class="sourceLine" id="cb65-5" title="5"></a>
+<a class="sourceLine" id="cb65-6" title="6"><span class="co"># To display the vector to see the changes</span></a>
+<a class="sourceLine" id="cb65-7" title="7"></a>
+<a class="sourceLine" id="cb65-8" title="8">week_days</a></code></pre></div>
+<pre><code>## [1] &quot;Monday&quot;   &quot;Tuesday&quot;  &quot;Wensday&quot;  &quot;Thursday&quot; &quot;Friday&quot;</code></pre>
 <hr />
 <p><br></p>
 </div>
@@ -2020,8 +2062,13 @@ div.tocify {
 <div id="definition" class="section level2">
 <h2><span class="header-section-number">4.1</span> Definition</h2>
 <p>Lists are similar data structure to vectors in that they are an ordered collection of elements. They differ to vectors because their elements can be of any type, including lists themselves!</p>
-<p>So why do you need lists? A list in R is like a to-do list: the different items on that list most likely differ in length, characteristic, type of activity etc. It enables you to gather a variety of objects under one name in an ordered way.</p>
-<p>Lists are really useful, flexible data structures. Their elements can be any object we’ve seen so far and any object you might ever see! (This also includes functions).</p>
+<p>So why do you need lists?</p>
+<p>A list in R is like a to-do list: the different items on that list most likely differ in length, characteristic, type of activity etc. It enables you to gather a variety of objects under one name in an ordered way.</p>
+<p>If you are going to use some modelling functions (like t.test() for the t test or lm() for linear models) you will notice that they produce lists as their return values.</p>
+<div class="figure">
+<img src="data:image/png;base64,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" alt="showing visual representation of a List" />
+<p class="caption">showing visual representation of a List</p>
+</div>
 <hr />
 <p><br></p>
 </div>
@@ -2035,14 +2082,15 @@ div.tocify {
 <p>Each of the contents will appear on a new line. Before each content will be its index number in double square brackets, as in [[1]], [[1]],</p>
 <p>Index numbers simply represent the order in which each item is stored in the list.</p>
 <p>As you can see we have various items of within our list and they all keep their data type.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1"><span class="co"># Creating a list</span></a>
-<a class="sourceLine" id="cb62-2" title="2"></a>
-<a class="sourceLine" id="cb62-3" title="3">shopping_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;apples&quot;</span>, <span class="st">&quot;bananas&quot;</span>, <span class="st">&quot;strawberries&quot;</span>), </a>
-<a class="sourceLine" id="cb62-4" title="4">                      <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>), </a>
-<a class="sourceLine" id="cb62-5" title="5">                      <span class="fl">20.2</span>)</a>
-<a class="sourceLine" id="cb62-6" title="6"></a>
-<a class="sourceLine" id="cb62-7" title="7"><span class="co"># To Display the list</span></a>
-<a class="sourceLine" id="cb62-8" title="8">shopping_list</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="co"># Creating a list</span></a>
+<a class="sourceLine" id="cb67-2" title="2"></a>
+<a class="sourceLine" id="cb67-3" title="3">shopping_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;apples&quot;</span>, <span class="st">&quot;bananas&quot;</span>, <span class="st">&quot;strawberries&quot;</span>), </a>
+<a class="sourceLine" id="cb67-4" title="4">                      <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>), </a>
+<a class="sourceLine" id="cb67-5" title="5">                      <span class="fl">20.2</span>)</a>
+<a class="sourceLine" id="cb67-6" title="6"></a>
+<a class="sourceLine" id="cb67-7" title="7"><span class="co"># To Display the list</span></a>
+<a class="sourceLine" id="cb67-8" title="8"></a>
+<a class="sourceLine" id="cb67-9" title="9">shopping_list</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;apples&quot;       &quot;bananas&quot;      &quot;strawberries&quot;
 ## 
@@ -2059,15 +2107,15 @@ div.tocify {
 <h3><span class="header-section-number">4.2.2</span> Naming List Elements</h3>
 <p>In R certain data structures have an attribute called names. They allow us to label (or name) each element held by a data structure.</p>
 <p>The list elements can be given names and they can be accessed using these names.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1"><span class="co"># Creating a list and naming the elements</span></a>
-<a class="sourceLine" id="cb64-2" title="2"></a>
-<a class="sourceLine" id="cb64-3" title="3">shopping_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">fruits =</span> <span class="kw">c</span>(<span class="st">&quot;apples&quot;</span>, <span class="st">&quot;bananas&quot;</span>, <span class="st">&quot;strawberries&quot;</span>), </a>
-<a class="sourceLine" id="cb64-4" title="4">                      <span class="dt">amounts =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>), </a>
-<a class="sourceLine" id="cb64-5" title="5">                      <span class="dt">total_price =</span> <span class="fl">20.2</span>)</a>
-<a class="sourceLine" id="cb64-6" title="6"></a>
-<a class="sourceLine" id="cb64-7" title="7"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb64-8" title="8"></a>
-<a class="sourceLine" id="cb64-9" title="9">shopping_list</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1"><span class="co"># Creating a list and naming the elements</span></a>
+<a class="sourceLine" id="cb69-2" title="2"></a>
+<a class="sourceLine" id="cb69-3" title="3">shopping_list &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">fruits =</span> <span class="kw">c</span>(<span class="st">&quot;apples&quot;</span>, <span class="st">&quot;bananas&quot;</span>, <span class="st">&quot;strawberries&quot;</span>), </a>
+<a class="sourceLine" id="cb69-4" title="4">                      <span class="dt">amounts =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">15</span>), </a>
+<a class="sourceLine" id="cb69-5" title="5">                      <span class="dt">total_price =</span> <span class="fl">20.2</span>)</a>
+<a class="sourceLine" id="cb69-6" title="6"></a>
+<a class="sourceLine" id="cb69-7" title="7"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb69-8" title="8"></a>
+<a class="sourceLine" id="cb69-9" title="9">shopping_list</a></code></pre></div>
 <pre><code>## $fruits
 ## [1] &quot;apples&quot;       &quot;bananas&quot;      &quot;strawberries&quot;
 ## 
@@ -2079,14 +2127,17 @@ div.tocify {
 <p>The above now displays the name associated with each element on top of the element.</p>
 <p><br></p>
 <p>We can also name our list using the <strong><code>names()</code></strong> function. This function allows us to get or set the name attribute of a data structure.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="co"># To display the names of our list</span></a>
-<a class="sourceLine" id="cb66-2" title="2"><span class="kw">names</span>(shopping_list)</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="co"># To display the names of our list</span></a>
+<a class="sourceLine" id="cb71-2" title="2"></a>
+<a class="sourceLine" id="cb71-3" title="3"><span class="kw">names</span>(shopping_list)</a></code></pre></div>
 <pre><code>## [1] &quot;fruits&quot;      &quot;amounts&quot;     &quot;total_price&quot;</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="co"># Adding names to our items in the list</span></a>
-<a class="sourceLine" id="cb68-2" title="2"><span class="kw">names</span>(shopping_list)&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;favourite_fruits&quot;</span>, <span class="st">&quot;amount_of_fruit&quot;</span>, <span class="st">&quot;total_price_of_shopping&quot;</span>)</a>
-<a class="sourceLine" id="cb68-3" title="3"></a>
-<a class="sourceLine" id="cb68-4" title="4"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb68-5" title="5">shopping_list</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1"><span class="co"># Adding names to our items in the list</span></a>
+<a class="sourceLine" id="cb73-2" title="2"></a>
+<a class="sourceLine" id="cb73-3" title="3"><span class="kw">names</span>(shopping_list)&lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;favourite_fruits&quot;</span>, <span class="st">&quot;amount_of_fruit&quot;</span>, <span class="st">&quot;total_price_of_shopping&quot;</span>)</a>
+<a class="sourceLine" id="cb73-4" title="4"></a>
+<a class="sourceLine" id="cb73-5" title="5"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb73-6" title="6"></a>
+<a class="sourceLine" id="cb73-7" title="7">shopping_list</a></code></pre></div>
 <pre><code>## $favourite_fruits
 ## [1] &quot;apples&quot;       &quot;bananas&quot;      &quot;strawberries&quot;
 ## 
@@ -2098,10 +2149,10 @@ div.tocify {
 <p><br></p>
 <p>As demonstrated above, lists can hold all kinds of data structures, including vectors and other lists, they can then have an interesting tree like structure which we can observe using the structure function, <strong><code>str()</code></strong> function.</p>
 <p>The structure function will return the contents stored in the list, as well as stating the data type of each item, for example, character, numeric, vector, etc.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="co"># Checking the structure of our list using the </span></a>
-<a class="sourceLine" id="cb70-2" title="2"><span class="co"># str() function</span></a>
-<a class="sourceLine" id="cb70-3" title="3"></a>
-<a class="sourceLine" id="cb70-4" title="4"><span class="kw">str</span>(shopping_list)</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1"><span class="co"># Checking the structure of our list using the </span></a>
+<a class="sourceLine" id="cb75-2" title="2"><span class="co"># str() function</span></a>
+<a class="sourceLine" id="cb75-3" title="3"></a>
+<a class="sourceLine" id="cb75-4" title="4"><span class="kw">str</span>(shopping_list)</a></code></pre></div>
 <pre><code>## List of 3
 ##  $ favourite_fruits       : chr [1:3] &quot;apples&quot; &quot;bananas&quot; &quot;strawberries&quot;
 ##  $ amount_of_fruit        : num [1:3] 5 10 15
@@ -2113,33 +2164,33 @@ div.tocify {
 <h3><span class="header-section-number">4.2.3</span> Indexing a list</h3>
 <p>To access an element from the list, we have to use square brackets containing the index of the element we are after, just like for vectors.</p>
 <p>You can select components using their name in <code>[[ ]]</code> or <code>$</code> sign (if you have a named list).</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="co"># Selecting items in a list using the $ symbol</span></a>
-<a class="sourceLine" id="cb72-2" title="2"></a>
-<a class="sourceLine" id="cb72-3" title="3">shopping_list<span class="op">$</span>favourite_fruits</a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1"><span class="co"># Selecting items in a list using the $ symbol</span></a>
+<a class="sourceLine" id="cb77-2" title="2"></a>
+<a class="sourceLine" id="cb77-3" title="3">shopping_list<span class="op">$</span>favourite_fruits</a></code></pre></div>
 <pre><code>## [1] &quot;apples&quot;       &quot;bananas&quot;      &quot;strawberries&quot;</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="co"># Selecting items in a list using the name</span></a>
-<a class="sourceLine" id="cb74-2" title="2"><span class="co"># for named lists</span></a>
-<a class="sourceLine" id="cb74-3" title="3"></a>
-<a class="sourceLine" id="cb74-4" title="4">shopping_list[[<span class="st">&quot;favourite_fruits&quot;</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" title="1"><span class="co"># Selecting items in a list using the name</span></a>
+<a class="sourceLine" id="cb79-2" title="2"><span class="co"># for named lists</span></a>
+<a class="sourceLine" id="cb79-3" title="3"></a>
+<a class="sourceLine" id="cb79-4" title="4">shopping_list[[<span class="st">&quot;favourite_fruits&quot;</span>]]</a></code></pre></div>
 <pre><code>## [1] &quot;apples&quot;       &quot;bananas&quot;      &quot;strawberries&quot;</code></pre>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1"><span class="co"># Selecting items in a list using the index position</span></a>
-<a class="sourceLine" id="cb76-2" title="2"></a>
-<a class="sourceLine" id="cb76-3" title="3">shopping_list[[<span class="dv">1</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="co"># Selecting items in a list using the index position</span></a>
+<a class="sourceLine" id="cb81-2" title="2"></a>
+<a class="sourceLine" id="cb81-3" title="3">shopping_list[[<span class="dv">1</span>]]</a></code></pre></div>
 <pre><code>## [1] &quot;apples&quot;       &quot;bananas&quot;      &quot;strawberries&quot;</code></pre>
 <p><br></p>
 <p>To return a single element or multiple elements you need to specify both the <code>component [[]]</code> and the <code>element[]</code>.These components are all vectors, and you can access an element within a vector the usual way.</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="co"># Selecting items in a list using the $ symbol</span></a>
-<a class="sourceLine" id="cb78-2" title="2"></a>
-<a class="sourceLine" id="cb78-3" title="3">shopping_list<span class="op">$</span>favourite_fruits[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1"><span class="co"># Selecting items in a list using the $ symbol</span></a>
+<a class="sourceLine" id="cb83-2" title="2"></a>
+<a class="sourceLine" id="cb83-3" title="3">shopping_list<span class="op">$</span>favourite_fruits[<span class="dv">1</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;apples&quot;</code></pre>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1"><span class="co"># Selecting items in a list using the name</span></a>
-<a class="sourceLine" id="cb80-2" title="2"><span class="co"># for named lists</span></a>
-<a class="sourceLine" id="cb80-3" title="3"></a>
-<a class="sourceLine" id="cb80-4" title="4">shopping_list[[<span class="st">&quot;favourite_fruits&quot;</span>]][<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1"><span class="co"># Selecting items in a list using the name</span></a>
+<a class="sourceLine" id="cb85-2" title="2"><span class="co"># for named lists</span></a>
+<a class="sourceLine" id="cb85-3" title="3"></a>
+<a class="sourceLine" id="cb85-4" title="4">shopping_list[[<span class="st">&quot;favourite_fruits&quot;</span>]][<span class="dv">1</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;apples&quot;</code></pre>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" title="1"><span class="co"># Selecting items in a list using the index position</span></a>
-<a class="sourceLine" id="cb82-2" title="2"></a>
-<a class="sourceLine" id="cb82-3" title="3">shopping_list[[<span class="dv">1</span>]][<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1"><span class="co"># Selecting items in a list using the index position</span></a>
+<a class="sourceLine" id="cb87-2" title="2"></a>
+<a class="sourceLine" id="cb87-3" title="3">shopping_list[[<span class="dv">1</span>]][<span class="dv">1</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;apples&quot;</code></pre>
 <hr />
 <p><br></p>
@@ -2147,9 +2198,9 @@ div.tocify {
 <div id="adding-elements-to-a-list" class="section level3">
 <h3><span class="header-section-number">4.2.4</span> Adding Elements to a List</h3>
 <p>Similar to vectors again, to add an element, we can either index to a blank space in the list or use the append() function:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb84-2" title="2"></a>
-<a class="sourceLine" id="cb84-3" title="3">shopping_list</a></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb89-2" title="2"></a>
+<a class="sourceLine" id="cb89-3" title="3">shopping_list</a></code></pre></div>
 <pre><code>## $favourite_fruits
 ## [1] &quot;apples&quot;       &quot;bananas&quot;      &quot;strawberries&quot;
 ## 
@@ -2158,14 +2209,14 @@ div.tocify {
 ## 
 ## $total_price_of_shopping
 ## [1] 20.2</code></pre>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1"><span class="co"># Adding an item to a list by position</span></a>
-<a class="sourceLine" id="cb86-2" title="2"></a>
-<a class="sourceLine" id="cb86-3" title="3">shopping_list[<span class="dv">4</span>] &lt;-<span class="st"> &quot;custard creams&quot;</span></a>
-<a class="sourceLine" id="cb86-4" title="4"></a>
-<a class="sourceLine" id="cb86-5" title="5"></a>
-<a class="sourceLine" id="cb86-6" title="6"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb86-7" title="7"></a>
-<a class="sourceLine" id="cb86-8" title="8">shopping_list</a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1"><span class="co"># Adding an item to a list by position</span></a>
+<a class="sourceLine" id="cb91-2" title="2"></a>
+<a class="sourceLine" id="cb91-3" title="3">shopping_list<span class="op">$</span>best_biscuits &lt;-<span class="st"> &quot;custard creams&quot;</span></a>
+<a class="sourceLine" id="cb91-4" title="4"></a>
+<a class="sourceLine" id="cb91-5" title="5"></a>
+<a class="sourceLine" id="cb91-6" title="6"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb91-7" title="7"></a>
+<a class="sourceLine" id="cb91-8" title="8">shopping_list</a></code></pre></div>
 <pre><code>## $favourite_fruits
 ## [1] &quot;apples&quot;       &quot;bananas&quot;      &quot;strawberries&quot;
 ## 
@@ -2175,15 +2226,15 @@ div.tocify {
 ## $total_price_of_shopping
 ## [1] 20.2
 ## 
-## [[4]]
+## $best_biscuits
 ## [1] &quot;custard creams&quot;</code></pre>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="co"># Adding an item to a list using the append function</span></a>
-<a class="sourceLine" id="cb88-2" title="2"></a>
-<a class="sourceLine" id="cb88-3" title="3">shopping_list &lt;-<span class="st"> </span><span class="kw">append</span>(shopping_list, <span class="st">&quot;milk&quot;</span>)</a>
-<a class="sourceLine" id="cb88-4" title="4"></a>
-<a class="sourceLine" id="cb88-5" title="5"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb88-6" title="6"></a>
-<a class="sourceLine" id="cb88-7" title="7">shopping_list</a></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1"><span class="co"># Adding an item to a list using the append function</span></a>
+<a class="sourceLine" id="cb93-2" title="2"></a>
+<a class="sourceLine" id="cb93-3" title="3">shopping_list &lt;-<span class="st"> </span><span class="kw">append</span>(shopping_list, <span class="st">&quot;milk&quot;</span>)</a>
+<a class="sourceLine" id="cb93-4" title="4"></a>
+<a class="sourceLine" id="cb93-5" title="5"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb93-6" title="6"></a>
+<a class="sourceLine" id="cb93-7" title="7">shopping_list</a></code></pre></div>
 <pre><code>## $favourite_fruits
 ## [1] &quot;apples&quot;       &quot;bananas&quot;      &quot;strawberries&quot;
 ## 
@@ -2193,7 +2244,7 @@ div.tocify {
 ## $total_price_of_shopping
 ## [1] 20.2
 ## 
-## [[4]]
+## $best_biscuits
 ## [1] &quot;custard creams&quot;
 ## 
 ## [[5]]
@@ -2207,10 +2258,11 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Create the list below.</li>
 </ol>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1"><span class="co"># Creating a list with multiple items</span></a>
-<a class="sourceLine" id="cb90-2" title="2">chocolate &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">brand =</span> <span class="st">&quot;celebrations&quot;</span>, </a>
-<a class="sourceLine" id="cb90-3" title="3">                  <span class="dt">chocolate_bar =</span> <span class="kw">c</span>(<span class="st">&quot;mars&quot;</span>, <span class="st">&quot;milky way&quot;</span>, <span class="st">&quot;bounty&quot;</span>, <span class="st">&quot;twix&quot;</span>, <span class="st">&quot;maltesers&quot;</span>), </a>
-<a class="sourceLine" id="cb90-4" title="4">                  <span class="dt">rating =</span> <span class="kw">c</span>(<span class="st">&quot;worst&quot;</span>,  <span class="st">&quot;terrible&quot;</span>, <span class="st">&quot;awful&quot;</span>, <span class="st">&quot;nice&quot;</span>, <span class="st">&quot;best&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1"><span class="co"># Creating a list with multiple items</span></a>
+<a class="sourceLine" id="cb95-2" title="2"></a>
+<a class="sourceLine" id="cb95-3" title="3">chocolate &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">brand =</span> <span class="st">&quot;celebrations&quot;</span>, </a>
+<a class="sourceLine" id="cb95-4" title="4">                  <span class="dt">chocolate_bar =</span> <span class="kw">c</span>(<span class="st">&quot;mars&quot;</span>, <span class="st">&quot;milky way&quot;</span>, <span class="st">&quot;bounty&quot;</span>, <span class="st">&quot;twix&quot;</span>, <span class="st">&quot;maltesers&quot;</span>), </a>
+<a class="sourceLine" id="cb95-5" title="5">                  <span class="dt">rating =</span> <span class="kw">c</span>(<span class="st">&quot;worst&quot;</span>,  <span class="st">&quot;terrible&quot;</span>, <span class="st">&quot;awful&quot;</span>, <span class="st">&quot;nice&quot;</span>, <span class="st">&quot;best&quot;</span>))</a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Find out the names of the list, using the <code>names()</code> function.</p></li>
 <li><p>Check the structure using the <code>str()</code> function.</p></li>
@@ -2233,80 +2285,59 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Create the list below.</li>
 </ol>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1"><span class="co"># Creating a named list with multiple items</span></a>
-<a class="sourceLine" id="cb91-2" title="2"></a>
-<a class="sourceLine" id="cb91-3" title="3">chocolate &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">brand =</span> <span class="st">&quot;celebrations&quot;</span>, </a>
-<a class="sourceLine" id="cb91-4" title="4">                  <span class="dt">chocolate_bar =</span> <span class="kw">c</span>(<span class="st">&quot;mars&quot;</span>, <span class="st">&quot;milky way&quot;</span>, <span class="st">&quot;bounty&quot;</span>, <span class="st">&quot;twix&quot;</span>), </a>
-<a class="sourceLine" id="cb91-5" title="5">                  <span class="dt">rating =</span> <span class="kw">c</span>(<span class="st">&quot;worst&quot;</span>,  <span class="st">&quot;terrible&quot;</span>, <span class="st">&quot;awful&quot;</span>, <span class="st">&quot;nice&quot;</span>, <span class="st">&quot;best&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1"><span class="co"># Creating a named list with multiple items</span></a>
+<a class="sourceLine" id="cb96-2" title="2"></a>
+<a class="sourceLine" id="cb96-3" title="3">chocolate &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">brand =</span> <span class="st">&quot;celebrations&quot;</span>, </a>
+<a class="sourceLine" id="cb96-4" title="4">                  <span class="dt">chocolate_bar =</span> <span class="kw">c</span>(<span class="st">&quot;mars&quot;</span>, <span class="st">&quot;milky way&quot;</span>, <span class="st">&quot;bounty&quot;</span>, <span class="st">&quot;twix&quot;</span>, <span class="st">&quot;maltesers&quot;</span>), </a>
+<a class="sourceLine" id="cb96-5" title="5">                  <span class="dt">rating =</span> <span class="kw">c</span>(<span class="st">&quot;worst&quot;</span>,  <span class="st">&quot;terrible&quot;</span>, <span class="st">&quot;awful&quot;</span>, <span class="st">&quot;nice&quot;</span>, <span class="st">&quot;best&quot;</span>))</a></code></pre></div>
 <p><br></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Find out the names of the list, using the <code>names()</code> function.</li>
 </ol>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1"><span class="co"># Finding the names </span></a>
-<a class="sourceLine" id="cb92-2" title="2"></a>
-<a class="sourceLine" id="cb92-3" title="3"><span class="kw">names</span>(chocolate)</a></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1"><span class="co"># Finding the names </span></a>
+<a class="sourceLine" id="cb97-2" title="2"></a>
+<a class="sourceLine" id="cb97-3" title="3"><span class="kw">names</span>(chocolate)</a></code></pre></div>
 <pre><code>## [1] &quot;brand&quot;         &quot;chocolate_bar&quot; &quot;rating&quot;</code></pre>
 <p><br></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Check the structure using the <code>str()</code> function.</li>
 </ol>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="co"># Checking the structure</span></a>
-<a class="sourceLine" id="cb94-2" title="2"></a>
-<a class="sourceLine" id="cb94-3" title="3"><span class="kw">str</span>(chocolate)</a></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1"><span class="co"># Checking the structure</span></a>
+<a class="sourceLine" id="cb99-2" title="2"></a>
+<a class="sourceLine" id="cb99-3" title="3"><span class="kw">str</span>(chocolate)</a></code></pre></div>
 <pre><code>## List of 3
 ##  $ brand        : chr &quot;celebrations&quot;
-##  $ chocolate_bar: chr [1:4] &quot;mars&quot; &quot;milky way&quot; &quot;bounty&quot; &quot;twix&quot;
+##  $ chocolate_bar: chr [1:5] &quot;mars&quot; &quot;milky way&quot; &quot;bounty&quot; &quot;twix&quot; ...
 ##  $ rating       : chr [1:5] &quot;worst&quot; &quot;terrible&quot; &quot;awful&quot; &quot;nice&quot; ...</code></pre>
 <p><br></p>
 <ol start="4" style="list-style-type: decimal">
 <li>Select chocolate bars.</li>
 </ol>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1"><span class="co"># Select chocolate bars</span></a>
-<a class="sourceLine" id="cb96-2" title="2"></a>
-<a class="sourceLine" id="cb96-3" title="3">chocolate[<span class="dv">2</span>]</a></code></pre></div>
-<pre><code>## $chocolate_bar
-## [1] &quot;mars&quot;      &quot;milky way&quot; &quot;bounty&quot;    &quot;twix&quot;</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" title="1"><span class="co"># Select chocolate bars</span></a>
+<a class="sourceLine" id="cb101-2" title="2"></a>
+<a class="sourceLine" id="cb101-3" title="3">chocolate<span class="op">$</span>chocolate_bar</a></code></pre></div>
+<pre><code>## [1] &quot;mars&quot;      &quot;milky way&quot; &quot;bounty&quot;    &quot;twix&quot;      &quot;maltesers&quot;</code></pre>
+<p><br></p>
 <ol start="5" style="list-style-type: decimal">
 <li>Add item called price.</li>
 </ol>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1"><span class="co"># Updating the list by adding price</span></a>
-<a class="sourceLine" id="cb98-2" title="2"></a>
-<a class="sourceLine" id="cb98-3" title="3">chocolate[[<span class="dv">4</span>]] &lt;-<span class="st"> </span>(<span class="st">&quot;price&quot;</span>)</a>
-<a class="sourceLine" id="cb98-4" title="4"></a>
-<a class="sourceLine" id="cb98-5" title="5"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb98-6" title="6"></a>
-<a class="sourceLine" id="cb98-7" title="7">chocolate</a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1"><span class="co"># Updating the list by adding price</span></a>
+<a class="sourceLine" id="cb103-2" title="2"></a>
+<a class="sourceLine" id="cb103-3" title="3">chocolate<span class="op">$</span>cost &lt;-<span class="st"> &quot;price&quot;</span></a>
+<a class="sourceLine" id="cb103-4" title="4"></a>
+<a class="sourceLine" id="cb103-5" title="5"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb103-6" title="6"></a>
+<a class="sourceLine" id="cb103-7" title="7">chocolate</a></code></pre></div>
 <pre><code>## $brand
 ## [1] &quot;celebrations&quot;
 ## 
 ## $chocolate_bar
-## [1] &quot;mars&quot;      &quot;milky way&quot; &quot;bounty&quot;    &quot;twix&quot;     
+## [1] &quot;mars&quot;      &quot;milky way&quot; &quot;bounty&quot;    &quot;twix&quot;      &quot;maltesers&quot;
 ## 
 ## $rating
 ## [1] &quot;worst&quot;    &quot;terrible&quot; &quot;awful&quot;    &quot;nice&quot;     &quot;best&quot;    
 ## 
-## [[4]]
-## [1] &quot;price&quot;</code></pre>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1"><span class="co"># Updating the list using the list using append</span></a>
-<a class="sourceLine" id="cb100-2" title="2"></a>
-<a class="sourceLine" id="cb100-3" title="3">chocolate &lt;-<span class="st"> </span><span class="kw">append</span>(chocolate, <span class="st">&quot;price&quot;</span>)</a>
-<a class="sourceLine" id="cb100-4" title="4"></a>
-<a class="sourceLine" id="cb100-5" title="5"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb100-6" title="6"></a>
-<a class="sourceLine" id="cb100-7" title="7">chocolate</a></code></pre></div>
-<pre><code>## $brand
-## [1] &quot;celebrations&quot;
-## 
-## $chocolate_bar
-## [1] &quot;mars&quot;      &quot;milky way&quot; &quot;bounty&quot;    &quot;twix&quot;     
-## 
-## $rating
-## [1] &quot;worst&quot;    &quot;terrible&quot; &quot;awful&quot;    &quot;nice&quot;     &quot;best&quot;    
-## 
-## [[4]]
-## [1] &quot;price&quot;
-## 
-## [[5]]
+## $cost
 ## [1] &quot;price&quot;</code></pre>
 <p><br></p>
 <div id="extension-exercise-1" class="section level5 unnumbered">
@@ -2314,23 +2345,23 @@ div.tocify {
 <ol style="list-style-type: decimal">
 <li>Select your favourite chocolate from the options.</li>
 </ol>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1"><span class="co"># Select my favourite chocolate bar</span></a>
-<a class="sourceLine" id="cb102-2" title="2"></a>
-<a class="sourceLine" id="cb102-3" title="3">chocolate<span class="op">$</span>chocolate_bar[<span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1"><span class="co"># Select my favourite chocolate bar</span></a>
+<a class="sourceLine" id="cb105-2" title="2"></a>
+<a class="sourceLine" id="cb105-3" title="3">chocolate<span class="op">$</span>chocolate_bar[<span class="dv">3</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;bounty&quot;</code></pre>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1">chocolate[[<span class="st">&quot;chocolate_bar&quot;</span>]][<span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1">chocolate[[<span class="st">&quot;chocolate_bar&quot;</span>]][<span class="dv">3</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;bounty&quot;</code></pre>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1">chocolate[[<span class="dv">2</span>]][<span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1">chocolate[[<span class="dv">2</span>]][<span class="dv">3</span>]</a></code></pre></div>
 <pre><code>## [1] &quot;bounty&quot;</code></pre>
 <p><br></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Add a new chocolate bar.</li>
 </ol>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1">chocolate<span class="op">$</span>chocolate_bar[<span class="dv">5</span>]&lt;-<span class="st"> &quot;turkish delight&quot;</span></a>
-<a class="sourceLine" id="cb108-2" title="2"></a>
-<a class="sourceLine" id="cb108-3" title="3"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb108-4" title="4"></a>
-<a class="sourceLine" id="cb108-5" title="5">chocolate</a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1">chocolate<span class="op">$</span>chocolate_bar[<span class="dv">5</span>]&lt;-<span class="st"> &quot;turkish delight&quot;</span></a>
+<a class="sourceLine" id="cb111-2" title="2"></a>
+<a class="sourceLine" id="cb111-3" title="3"><span class="co"># To display the list</span></a>
+<a class="sourceLine" id="cb111-4" title="4"></a>
+<a class="sourceLine" id="cb111-5" title="5">chocolate</a></code></pre></div>
 <pre><code>## $brand
 ## [1] &quot;celebrations&quot;
 ## 
@@ -2341,52 +2372,7 @@ div.tocify {
 ## $rating
 ## [1] &quot;worst&quot;    &quot;terrible&quot; &quot;awful&quot;    &quot;nice&quot;     &quot;best&quot;    
 ## 
-## [[4]]
-## [1] &quot;price&quot;
-## 
-## [[5]]
-## [1] &quot;price&quot;</code></pre>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1">chocolate[[<span class="st">&quot;chocolate_bar&quot;</span>]][<span class="dv">5</span>]&lt;-<span class="st"> &quot;turkish delight&quot;</span></a>
-<a class="sourceLine" id="cb110-2" title="2"></a>
-<a class="sourceLine" id="cb110-3" title="3"><span class="co"># To display the  list</span></a>
-<a class="sourceLine" id="cb110-4" title="4"></a>
-<a class="sourceLine" id="cb110-5" title="5">chocolate</a></code></pre></div>
-<pre><code>## $brand
-## [1] &quot;celebrations&quot;
-## 
-## $chocolate_bar
-## [1] &quot;mars&quot;            &quot;milky way&quot;       &quot;bounty&quot;          &quot;twix&quot;           
-## [5] &quot;turkish delight&quot;
-## 
-## $rating
-## [1] &quot;worst&quot;    &quot;terrible&quot; &quot;awful&quot;    &quot;nice&quot;     &quot;best&quot;    
-## 
-## [[4]]
-## [1] &quot;price&quot;
-## 
-## [[5]]
-## [1] &quot;price&quot;</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1"><span class="co"># Adding an item with list contained in a list</span></a>
-<a class="sourceLine" id="cb112-2" title="2"></a>
-<a class="sourceLine" id="cb112-3" title="3">chocolate[[<span class="dv">2</span>]][<span class="dv">5</span>] &lt;-<span class="st"> &quot;turkish delight&quot;</span></a>
-<a class="sourceLine" id="cb112-4" title="4"></a>
-<a class="sourceLine" id="cb112-5" title="5"><span class="co"># To display the list</span></a>
-<a class="sourceLine" id="cb112-6" title="6"></a>
-<a class="sourceLine" id="cb112-7" title="7">chocolate</a></code></pre></div>
-<pre><code>## $brand
-## [1] &quot;celebrations&quot;
-## 
-## $chocolate_bar
-## [1] &quot;mars&quot;            &quot;milky way&quot;       &quot;bounty&quot;          &quot;twix&quot;           
-## [5] &quot;turkish delight&quot;
-## 
-## $rating
-## [1] &quot;worst&quot;    &quot;terrible&quot; &quot;awful&quot;    &quot;nice&quot;     &quot;best&quot;    
-## 
-## [[4]]
-## [1] &quot;price&quot;
-## 
-## [[5]]
+## $cost
 ## [1] &quot;price&quot;</code></pre>
 <hr />
 <p><br></p>
@@ -2403,6 +2389,10 @@ div.tocify {
 <li>Columns are variables</li>
 <li>Rows are observations</li>
 </ul>
+<div class="figure">
+<img src="data:image/png;base64,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" alt="showing visual representation of a Dataframe" />
+<p class="caption">showing visual representation of a Dataframe</p>
+</div>
 <p>In the next session we are going to use special type of data frame called a <strong>tibble</strong>.</p>
 <p>They are becoming a standard way to work with data, they are very useful when working with large data sets.</p>
 <p><code>Tibbles</code> are data frames, but they tweak some older behaviours to make life a little easier. R is an old language, and some things that were useful 10 or 20 years ago now get in your way.</p>

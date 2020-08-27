@@ -111,7 +111,7 @@ A lot of this code has been around since R’s early days, back to when it was c
 >**Packages are a collection of functions, compiled code and sometimes data sets which are stored in a “library” of code within R.**
 
 In order to use a package, we first need to download it.  
-R installs packages from [CRAN](https://cran.r-project.org/) – **The Comprehensive R Network.**
+R installs packages from [CRAN](https://cran.r-project.org/) – **The Comprehensive R Archive Network.**
 
 Your department may have a slightly different way of installing packages.
 
@@ -149,7 +149,15 @@ install.packages(“package_name”, dependencies = TRUE, type = “win.binary�
 
 ```
 
-When installing packages you can either get a message, warning or an error, generally a message will mean there is no problem, a warning is usually fine (generally) and an error is not fine, means that something is wrong.
+When installing packages you can either get a,
+
+* Message
+
+* Warning 
+
+* An error
+
+Generally a message will mean there is no problem, a warning is usually fine (generally) and an error is not fine, means that something is wrong.
 
 <br>
 
@@ -189,7 +197,9 @@ install.packages("janitor", dependencies = TRUE, type = "win.binary")
 ```
 <br>
 
-Successful installation should finish with messages as below, the last box, the rest are warnings which you will get sometimes. With the default colour theme, installing packages generally displays a lot of ominous red text - this is absolutely fine!
+Successful installation should finish with messages as below, the last box, the rest are warnings which you will get sometimes.
+
+**With the default colour theme, installing packages generally displays a lot of ominous red text - this is absolutely fine!**
 
 <br>
 
@@ -446,6 +456,10 @@ Below is a list of the core packages in `tidyverse` to provide some awareness in
 
 Note: The majority of the 'heavy lifting', with respect to data manipulation and exploration, will be done through the functions available through the `tidyverse` libraries. On some occasions, we will be using functions from other libraries.
 
+
+![\Image showing visual representation of tidyverse packages and workflow](../Images/tidyverse.png)
+
+
 ***
 
 
@@ -472,11 +486,16 @@ Let's take a look at some of the built-in functions R has for carrying out basic
 
 ## How functions work: the `seq()` function
 
-Let’s try using `seq()` which makes regular sequences of numbers, We used it in creating vectors. 
+Let’s try using `seq()` which makes regular sequences of numbers.
+
+We used it in creating vectors. 
 
 Let's take a closer look at the help file for `seq()`.
 
 ```{r Helpfile for seq(), eval = FALSE}
+
+# Looking at R help documentation
+# for the sequence function
 
 ?seq
 
@@ -526,6 +545,9 @@ We used this function when creating vectors, like below.
 
 ```{r}
 
+# Creating a sequence of numbers
+# Here I am specifying the arguments
+
 seq(from = 2, to = 6, by = 2)
 
 ```
@@ -535,6 +557,10 @@ seq(from = 2, to = 6, by = 2)
 What happens if we try:
 
 ```{r}
+# Creating a sequence of numbers
+# Here I am NOT  specifying the arguments
+# When arguments are specified they are matched by position
+# The order of the values matters
 
 seq(1,10)
 ```
@@ -542,6 +568,10 @@ seq(1,10)
 This has generated a sequence of numbers `from` 1 `to` 10. In this case we did not supply a value for `by`, so it took the default value, which in this case is 1.
 
 ```{r How are function arguments resolved part 1}
+# Creating a sequence of numbers
+# Here I am NOT  specifying the arguments
+# When arguments are specified they are matched by position
+# The order of the values matters
 
 seq(10,1)
 
@@ -550,12 +580,18 @@ seq(10,1)
 And what about:
 
 ```{r How are function arguments resolved part 2}
+# Creating a sequence of numbers
+# Here I am specifying the arguments
+# When arguments are specified, order specified doesnt matter
+# THIS IS HIGLY RECOMMENDED
 
 seq(to = 10, from = 1)
 
 ```
 
-The above demonstrates something about how R resolves function arguments. You can always specify arguments in the form `name = value` But if you do not, R attempts to resolve by position. 
+The above demonstrates something about how R resolves function arguments. 
+
+You can always specify arguments in the form `name = value` But if you do not, R attempts to resolve by position. 
 
 So above, first it is assumed that we want a sequence from = 1 that goes to = 10. Then if we swap the numbers it is assumed we want to sequence from = 10 that goes to = 1. If we name the arguments explicitly using `name = value`, the order of the arguments doesn't matter. 
 
@@ -673,13 +709,18 @@ The relative path will work for any user – as long as their working directory 
 Some great base R functions for exploring your directory are:
 
 ```{r, eval = FALSE}
-#Exploring the directory using file.choose() function
+# Exploring the directory using file.choose() function
 
 file.choose()
 
-#Exploring the directory using dir() function
+# Exploring the directory using dir() function
 
 dir()
+
+# Exploring the directory using list.files() function
+
+list.files()
+
 
 ```
 
@@ -747,7 +788,10 @@ Load the titanic data using the code below,
 
 You will need to change the file path to your location
 
-You will have noticed that we had some parsing information after reading the file in.
+You will have noticed that we had some parsing information after reading the file in,
+displayed at the end of the process (as a warning). This is to let us know the data type  for each column. 
+
+This is not an error and its useful to inspect the chosen datatypes. 
 
 ```{r}
 # Reading in CSV data using readr package and read_csv function
@@ -817,7 +861,11 @@ titanic %>%
 1. Have a look at the column `age_of_passenger`.
 
 
+
+
 2. What type of data is this column?
+
+   The data is numeric data.
 
 
 3. Then `str()` function to see the data type R has set it to be.
@@ -831,9 +879,6 @@ titanic %>%
 
 str(titanic)
 ```
-
-
-The data is numeric data.
 
 
 We can see that R has classed the column as character because of the `NULL` within it.
@@ -1043,23 +1088,6 @@ police_data %>%
 <br>
 
 
-## Reading Url Files
-
-You can also read in URLs, see code below. Be careful reading in any files directly from the internet. 
-
-                   
-```{r eval=FALSE}
-# Reading in CSV data from a website
-# Here we include the url within the read_csv function
-
-school <- readr::read_csv(url("https://share.sp.ons.statistics.gov.uk/sites/KLC/LeAc/AnLe/CPD_Shared/Programming_Courses/R_Intro_Ruth/schools_inspection_data.csv")
-                  
-``` 
-
-***
-
-<br>
-
 # Exporting the Data
 
 When you read a file into R, the data is loaded into memory. This means that any changes you make won't be reflected in the original file you loaded. If you want to preserve the changes you make to the dataset you have to export the data object to a file.
@@ -1169,9 +1197,9 @@ names(titanic) # Names of columns
 
 # Selecting elements
 
-school[1,1] # Selecting the first row and column
+titanic[1,1] # Selecting the first row and column
 
-school[3:6,] # Selecting row 3 to 6 and all columns
+titanic[3:6,] # Selecting row 3 to 6 and all columns
 
 titanic$Fare # Selecting a column from the dataset
 
@@ -1211,6 +1239,16 @@ So far we have gone through
  * Exporting data
     
  * Exploring data
+
+
+***
+
+<br>
+
+# Practice Project - Exploring Data
+
+
+
 
 
 ***

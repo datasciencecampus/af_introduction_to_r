@@ -326,6 +326,7 @@ oldest_passenger <- max(data)
 ```{r, eval=FALSE}
 
 # Count gives a frequency
+# PLEASE NOTE, count doesnt have a .data argument
 
 number_of_men_and_women <- dplyr::count(data, columns)
 
@@ -413,6 +414,12 @@ This function can be really useful, especially when your data are disaggregate -
 * Summarise - an aggregation is applied to each of the groups to create a single row for each group in the original `tibble`.
 
 * Combine - bring together the aggregated `tibble` rows into a final new `tibble`.
+
+<br>
+
+![Image showing groupby split and combine](../Images/group_by_image.jpg)\
+
+<br>
 
 Let's walk through what that might look like for the `titanic` `tibble`:
 

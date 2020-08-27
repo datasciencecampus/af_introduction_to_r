@@ -121,8 +121,8 @@ titanic
 
 We can see these these are columns,
 
-* **Pclass**: Passenger’s class
-* **Survived**: Survived (1) or died (0)
+* **Pclass**: Passenger’s class, 1 = 1st (Upper), 2 = 2nd(Middle), 3 = 3rd(Lower)
+* **Survived**: Survived (1) or died (0), 0 = No, 1 = Yes
 * **Name**: Passenger’s name
 * **Sex**: Passenger’s sex
 * **Age**: Passenger’s age
@@ -130,8 +130,11 @@ We can see these these are columns,
 * **Parch**: Number of parents/children aboard
 * **Ticket**: Ticket number
 * **Fare**: Fare
-* **Cabin**: Cabin
-* **Embarked**: Port of embarkation
+* **Cabin**: Cabin number
+* **Embarked**: Port of embarkation, C = Cherbourg, Q = Queenstown, S = Southampton
+
+
+We can see more details on the [Data Dictionary](https://www.kaggle.com/c/titanic/data)
 
 ***
 
@@ -202,9 +205,9 @@ As we can see our column names have spaces and some start with capital letters a
 
 The `janitor` package offers many functions used to manipulate data, for example removing empty rows and columns, finding duplicates within a data frame. In this session we will use the library to to clean our data set names.
 
-We can clean the names of our dataset with the **`clean_names()`** function as shown below.
+We can clean the names of our dataset with the **janitor::`clean_names()`** function as shown below.
 
-We are overwriting the original Titanic data frame with a version with the column names cleaned.
+We are overwriting the original titanic data frame with a version with the column names cleaned.
 
 ```{r}
 
@@ -270,13 +273,20 @@ For example, the output of `gsub(" ", "_", "piece of text")` would be `piece_of_
 ```{r, eval = F}
 # We can apply different substitution to the names of our columns.
 
+# Using gsub to replace a blank space with an underscore
+
 names(titanic) <- gsub(" ", "_", names(titanic))
 
+# Using gsub to replace a comma with nothing
+
 names(titanic) <- gsub("," , "", names(titanic))
+
+# Using gsub to replace a hyphen space with an underscore
 
 names(titanic) <- gsub("-" , "_", names(titanic))
 ```
 
+<br>
 
 The `tolower()` function changes a string of characters to lower case.
 
@@ -287,8 +297,11 @@ The `tolower()` function changes a string of characters to lower case.
 names(titanic) <- tolower(names(titanic)) 
 ```
 
+<br>
 
-We can also rename column names. The first argument is the data frame to be changed, the second is the column and what it will be changed to.
+We can also rename column names. 
+
+The first argument is the data frame to be changed, the second is the column and what it will be changed to.
 
 
 
@@ -305,7 +318,10 @@ titanic_renamed
 
 ```
 
-We can also use it on full columns.
+<br>
+
+We can also use the `tolower()` on full columns as example below. 
+Here I am selecting the name_of_passenger column.
  
 ```{r}
 # Selecting the name of passenger column using the $ symbol
@@ -350,6 +366,7 @@ verb(data, more information)
 
 ![Image showing an example of Cheat Sheet](../Images/data-transformation-cheat-sheet.png) \
 
+***
 
 <br>
 
@@ -368,7 +385,7 @@ We can sort the column `fare` into ascending order with the code below.
 
 ```{r}
 # We input the data we want to sort, 
-# and what we are going to sort it by.
+# and what column we are going to sort it by.
 
 titanic_sorted <- dplyr::arrange(.data = titanic,
                                   fare)
@@ -420,7 +437,7 @@ head(titanic$fare)
 
 ### **Exercise**{-}
 
-If you haven't cleaned your column names using janitor as in the previous section, do that now!
+**If you haven't cleaned your column names using janitor as in the previous section, do that now!**
 
 1. Can you sort the titanic data set by age *and* fare.
 
@@ -449,7 +466,7 @@ titanic_sorted <- dplyr::arrange(.data = dataset,
 
 2. Can you sort the titanic data set by age *and* fare in descending order for both variables.
 
-To sort both descending order we have to use the **`desc()`** function.
+   To sort both descending order we have to use the **`desc()`** function.
 
 ***
 
@@ -493,14 +510,15 @@ titanic_sorted %>%
 
 2. Can you sort the titanic data set by age *and* fare in descending order for both variables.
 
-To sort both descending order we have to use **`desc()`** around each column name.
+   To sort both descending order we have to use **`desc()`** around each column name.
 
-If you only had one `desc` on the `age_of_passenger`, it will show `age_of_passenger` in descending order, but fare in ascending.
+   If you only had one `desc` on the `age_of_passenger`, it will show `age_of_passenger` in          descending order, but fare in ascending.
 
 
 ```{r}
 
 # Sorting both variables in descending order.
+# You have to specify desc for both variables
 
 titanic_sorted <- dplyr::arrange(.data = titanic,
                                   desc(age_of_passenger),
@@ -546,9 +564,13 @@ Previously we selected columns using the `$` symbol and the indexing operator `[
 We will opt to use `dplyr` functions which allow us to keep our code efficient and readable even with complex queries.
 
 
-The **`dplyr::select()`** function, in its simplest form, takes two parameters. 
+The **`dplyr::select()`** function, in its simplest form, takes two arguments. 
 
 The first, like all `tidyverse` functions, being the tibble we are interested in, and the second being the column name.
+
+To select a few columns just add their names in the select statement. 
+
+The order in which you add them, will determine the order in which they appear in the output.
 
 
 ```{r}
@@ -580,6 +602,29 @@ titanic_three_variables <- dplyr::select(.data = titanic,
 titanic_three_variables
 ```
 
+<br>
+
+We can select columns which are next to each other in chunck as below.
+
+To select a chunk of columns use the,start_col:end_col syntax:
+
+```{r}
+# Selecting data
+# We can select multiple variables which are next to each other
+# By using the : the code below will select all columns between
+# pclass and age_of_passenger
+
+titanic_five_variables <- dplyr::select(.data = titanic,
+                                         c(pclass:age_of_passenger))
+
+# To display the data
+
+titanic_five_variables
+
+
+
+```
+
 
 <br>
 
@@ -591,6 +636,7 @@ For example, suppose we wanted to select all columns excluding `name`, `age` and
 
 ```{r}
 # Selecting data
+# We can use the `-` to exclude sets of columns
 
 titanic_minus_three_variables <- dplyr::select(.data = titanic, 
                                                -c("name_of_passenger", 
@@ -614,6 +660,8 @@ titanic_minus_three_variables %>%
 
 
 We can use the `-` to exclude sets of columns.
+
+<br>
 
 We can also select the columns using numbers, positive or negative, to drop.
 
@@ -748,9 +796,9 @@ It is important to note, all `tidyverse` functions work on and return a copy of 
 
 1. Can you select from the titanic data set, the second, third and fourth columns?
 
-Selecting the second, third and fourth column.
+   Selecting the second, third and fourth column.
 
-Remember we can select by position or by name.
+   Remember we can select by position or by name.
 
 
 ```{r, eval = FALSE}
@@ -777,20 +825,20 @@ titanic_select_exercise <- dplyr::select(.data = titanic,
 
 3. Can you select just the last column?
 
-Remember we can select by position or by name. HINT: `embarked` is the last column.
+   Remember we can select by position or by name. HINT: `embarked` is the last column.
 
 
 4. Can you select the columns that end in the word "passenger"?
 
-You might want to use something that helps you select the words of the columns, by what those columns `ends_with()`.
+   You might want to use something that helps you select the words of the columns, by what those     columns `ends_with()`.
 
 
 5. Can you select, `name_of_passenger`, `age_of_passenger` and everything else
 
 
-This is a great way to reorder the columns, if you wanted to set 2 columns to be next to each other.
+   This is a great way to reorder the columns, if you wanted to set 2 columns to be next to each     other.
 
-When you select columns, its places them in the order that we select them, HINT You might want to select something that helps you select all the columns.
+   When you select columns, its places them in the order that we select them, HINT You might want    to select something that helps you select all the columns.
 
 
 ***
@@ -802,7 +850,7 @@ When you select columns, its places them in the order that we select them, HINT 
 
 1. Can you select from the titanic data set, the second, third and fourth columns?
 
-Selecting the second, third and fourth column.
+   Selecting the second, third and fourth column.
 
 ```{r}
 # Selecting data
@@ -830,7 +878,7 @@ names(titanic_select_exercise)
 
 2. Can you select the columns, `pclass`, `survived`, `name_of_passenger`, `sex_of_passenger`, `age_of_passenger` and `embarked`?
 
-Selecting the columns, pclass, survived, name_of_passenger, sex_of_passenger, age_of_passenger and embarked.
+  Selecting the columns, pclass, survived, name_of_passenger, sex_of_passenger, age_of_passenger    and embarked.
 
 ```{r}
 # Selecting data
@@ -849,6 +897,8 @@ titanic_select_exercise
 
 names(titanic_select_exercise)
 ```
+
+<br>
 
 3. Can you select just the last column?
 
@@ -869,7 +919,7 @@ names(titanic_select_exercise)
 
 4. Can you select the columns that end in the word "passenger"?
 
-You could also type the column names.
+   You could also type the column names.
 
 ```{r}
 
@@ -892,7 +942,7 @@ names(titanic_select_exercise)
 
 5. Can you select, `name_of_passenger`, `age_of_passenger` and everything else
 
-This is a great way to reorder the columns, if you wanted to set 2 columns to be next to each other.
+   This is a great way to reorder the columns, if you wanted to set 2 columns to be next to each     other.
 
 ```{r}
 
@@ -902,13 +952,6 @@ titanic_select_exercise <- dplyr::select(.data = titanic,
                                          c(name_of_passenger,
                                            age_of_passenger, 
                                            everything()))
-
-# Alternative
-
-titanic_select_exercise <- dplyr::select(.data = titanic,
-                                         name_of_passenger, 
-                                         age_of_passenger,
-                                         everything())
 
 
 #To display the data
@@ -927,7 +970,9 @@ names(titanic_select_exercise)
 **`filter()`** allows us to pick specific entries (rows) which satisfy a given logical condition.
 
 
-A conditional statement returns `TRUE` if the condition is met. To create a logical condition, we have to use the logical operators.
+A conditional statement returns `TRUE` if the condition is met. 
+
+To create a logical condition, we have to use the logical operators.
 
 <br>
 
@@ -947,7 +992,6 @@ Logical Operator| Description
       all()     | Checks if all values in a logical vector are TRUE
       is.na()   | Is NA?
       between() | Is between 2 numbers
-      near()    | Safe way to compare floating point numbers
 
       
 <br>
@@ -1049,7 +1093,7 @@ fare_more_than_200 %>%
 
 #### **Exercise**{-}
 
-1. Show the row for the passenger named: 'Birkeland, Mr. Hans Martin Monsen'
+1. Use filter to show the row for the passenger named: 'Birkeland, Mr. Hans Martin Monsen'
 
 
 2. How many passengers in the dataset are male?
@@ -1075,10 +1119,9 @@ fare_more_than_200 %>%
 #### **Hint**{-}
 
 
-1. Show the row for the passenger named: 'Birkeland, Mr. Hans Martin Monsen'
+1. Use filter to show the row for the passenger named: 'Birkeland, Mr. Hans Martin Monsen'
 
-
-Remember R is case sensitive and character data needs to have speech marks.
+  Remember R is case sensitive and character data needs to have speech marks.
 
 
 ```{r, eval = FALSE}
@@ -1095,9 +1138,9 @@ titanic_filter_exercise
 
 2. How many passengers in the dataset are male?
 
-First filter the data.
+   First filter the data.
 
-Then find out the number of rows using **`nrow()`**.
+   Then find out the number of rows using **`nrow()`**.
 
 
 ```{r, eval = F}
@@ -1109,9 +1152,9 @@ nrow(titanic_filter_exercise)
 
 3. How many passengers are under 18 years of age?
 
-First filter the data.
+   First filter the data.
 
-Then find out the number of rows using **`nrow()`**.
+   Then find out the number of rows using **`nrow()`**.
 
 <br>
 
@@ -1122,11 +1165,11 @@ Then find out the number of rows using **`nrow()`**.
 
 4. What proportion of passenger in the dataset survived?
 
-First filter the data - passengers which survived are those with a `1` in  the `survived` column.
+   First filter the data - passengers which survived are those with a `1` in  the `survived`         column.
 
-Then find out the number of rows using **`nrow()`**.
+   Then find out the number of rows using **`nrow()`**.
 
-Then calculate the percentage using the formula nrow(filtered data)/nrow(full data)*100.
+   Then calculate the percentage using the formula **nrow(filtered data)/nrow(full data)*100**.
 
 ```{r, eval = FALSE}
 
@@ -1149,7 +1192,7 @@ percentage_of_passengers_survived
 #### **Show Answer**{-}
 
 
-1. Show the row for the passenger named: 'Birkeland, Mr. Hans Martin Monsen'
+1. Use filter to show the row for the passenger named: 'Birkeland, Mr. Hans Martin Monsen'
 
 
 ```{r}
@@ -1251,6 +1294,20 @@ You can think of **`between()`** as being special version of multiple condition 
 
 R also implements a multiple 'or' condition in the form `%in%`, where any rows that have a value occurring in a given vector will be included in the output tibble.
 
+<br>
+
+| Condition 1 | Condition 2  | & (AND) Equates to |  &#124; (OR) Equates to |
+|:-----------:|:------------:|:------------------:|:------------------:|
+|     True    |     True     |        True        |        True        |
+|     True    |     False    |        False       |        True        |
+|    False    |     True     |        False       |        True        |
+|    False    |     False    |        False       |        False       | 
+
+
+<br>
+
+
+
 Let's look at some examples:
 ```{r}
 # Select passengers who were in class 1 AND female
@@ -1294,7 +1351,7 @@ titanic_filter_example %>%
 # but less than 250 for their fare.
 
 titanic_filter_example <- dplyr::filter(.data = titanic, 
-                                        between(fare, 100, 250))
+                                        between(fare, left = 100, right = 250))
 ```
 
 
@@ -1371,8 +1428,7 @@ titanic_filter_example %>%
 
 1. Select passengers who are in classes 2 or 3, what percentage of passengers is this?
 
-
-The & (Shift and 7) symbol indicates an AND relationship.
+   The & (Shift and 7) symbol indicates an AND relationship.
 
 ```{r, eval = FALSE}
 # filtering the dataset on multiple conditions
@@ -1390,7 +1446,7 @@ nrow(titanic_filter_exercise) / nrow(titanic) * 100
 
 2. How many passengers who do not have siblings or spouses ('sibsp'), and parents or children ('parch') on the boat?
 
-The & (Shift and 7) symbol indicates an AND relationship, and should be used to filter off the two columns listed - both values should be zero.
+   The & (Shift and 7) symbol indicates an AND relationship, and should be used to filter off the    two columns listed - both values should be zero.
 
 <br>
 
@@ -1400,7 +1456,7 @@ The & (Shift and 7) symbol indicates an AND relationship, and should be used to 
 
 3. What proportion of passengers who 'embarked' in Cherbourg ('C') or Queenstown ('Q') survived? 
 
-We need to find the passengers who embarked in those two cities, and then the amount of them that survived. 
+   We need to find the passengers who embarked in those two cities, and then the amount of them      that survived. 
 
 ```{r, eval = FALSE}
 
@@ -2284,6 +2340,9 @@ Another function useful function is  **`union()`** which will merge the data fro
 
 
 <br>
+
+
+
 
 # Summary - Working with Data frames{-}
 
