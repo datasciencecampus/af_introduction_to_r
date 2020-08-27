@@ -30,7 +30,7 @@ library(kableExtra)
 ```
 
 
-## Inital Exercise: Loading Packages {.tabset .tabset-fade -}
+## Initial Exercise: Loading Packages {.tabset .tabset-fade -}
 
 ### **Exercise**{-}
 
@@ -132,7 +132,7 @@ We can see more details on the [Data Dictionary](https://www.kaggle.com/c/titani
 * Be able to use conditional statements: *if*, *else* and *else if*.
 * Be familiar with *else_if()* and *case_when()* from `dplyr`.
 * Know what functions are and why they are useful.
-* Be able to istinguish between a function's parameters and arguments.
+* Be able to distinguish between a function's parameters and arguments.
     * Including different types of arguments
 * Understand the idea of 'scope'.
     * i.e. Global scope vs Local scope
@@ -911,7 +911,7 @@ We can impute (populate) our missing values using the dplyr `if_else` function.
 
 Here we are going to use the mean value for `age_of_passenger`.
 
-> **Please refer to the Editing and Imputation Course for details on how to best impute your missing data, this is fpr demonstration purposes only.** 
+> **Please refer to the Editing and Imputation Course for details on how to best impute your missing data, this is for demonstration purposes only.** 
 
 <!-- Nice -JM -->
 
@@ -1973,7 +1973,7 @@ What you prefer as an output will determine which of these you would choose to u
 * Be able to use conditional statements: *if*, *else* and *else if*.
 * Be familiar with *else_if()* and *case_when()* from `dplyr`.
 * Know what functions are and why they are useful.
-* Be able to istinguish between a function's parameters and arguments.
+* Be able to distinguish between a function's parameters and arguments.
     * Including different types of arguments
 * Understand the idea of 'scope'.
     * i.e. Global scope vs Local scope
