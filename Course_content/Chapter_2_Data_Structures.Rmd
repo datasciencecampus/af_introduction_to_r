@@ -162,9 +162,13 @@ my_friends
 
 ## Vector Definition
 
-A `vector` is a one-dimensional ordered collection of elements, **all of the same type**. 
+Vectors are probably simplest and  the most used commonly used data structure in R. 
+
+A vector is a collection of values that are all of the same type (numbers, characters, etc.).
 
 It is the basic data structure in R with a lot of useful properties.
+
+Vectors are particularly important as most of the functions you will write will work with vectors.
 
 Since R insists all elements in a vector have to be of the same type we then can have types of vectors. These are:
 
@@ -191,7 +195,6 @@ There are several different ways of creating a vector. You can create a vector b
 
 - The **colon** to create a vector of consecutive numbers.
 
-- The **vector()** function.
 
 ### Combine function{-}
 
@@ -242,28 +245,6 @@ colon_vector
 
 ```
 
-### Vector function{-}
-
-Here we can specify what type of vector by specifying the argument `mode` and the how long by specifying the argument `length`.
-
-```{r}
-
-# Creating a vector using the vector function
-
-
-# Here I am specifying 2 argument, mode and length with the values 2 and 7
-
-example_vector <- vector(mode = 'logical', length = 7)
-
-# To display the created vector
-
-example_vector
-
-```
-
-
-Play around with the `mode` and `length` parameters. (Try: mode = `'integer'`, `'double'` or `'character'`).
-<br>
 
 ***
 
@@ -592,6 +573,10 @@ days_of_the_week[3] <- "Wensday"
 
 days_of_the_week[c(-6,-7)]
 
+# Find out what the code below does
+
+days_of_the_week[8]
+
 ```
 
 
@@ -675,6 +660,12 @@ week_days <- days_of_the_week[c(-6,-7)]
 # To display the vector to see the changes
 
 week_days
+
+
+# If an index is out-of-range, a missing value will be reported via the symbol NA.
+# We will look at these more in the next chapter
+
+days_of_the_week[8]
 
 ```
 
@@ -1041,6 +1032,7 @@ chocolate
 
 # Data Frames and Tibbles {.tabset .tabset-fade}
 Data frames are like the tables we are used to from Excel and other programs.
+They are collections of vectors. What we learnt about vectors will pay off even more when we start working with data frames.
 
 * Can hold variables of different types
 * Columns are variables 
@@ -1069,12 +1061,18 @@ They are becoming a standard way to work with data, they are very useful when wo
 
 Below is an example of a what a data frame and tibble look like, I have used the same dataset.
 
+iris data set gives the measurements in centimeters of the variables sepal length, sepal width, petal length and petal width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
+
 <br>
 
 ## Data Frame {-}
 ```{r echo=FALSE, message=FALSE, warning=FALSE} 
+library(palmerpenguins)
+
+
 # To display the dataframe
-iris
+
+as.data.frame(penguins)
 ```
 
 
@@ -1090,7 +1088,7 @@ iris
 
 library(tibble)
 
-as_tibble(iris)
+penguins
 ```
 ***
 

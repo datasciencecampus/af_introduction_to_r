@@ -1277,6 +1277,192 @@ window.buildTabsets = function(tocID) {
     }
 });
 </script>
+<style type="text/css">
+.lightable-minimal {
+border-collapse: separate;
+border-spacing: 16px 1px;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-minimal td {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal th {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal thead tr:last-child th {
+border-bottom: 2px solid #00000050;
+empty-cells: hide;
+}
+.lightable-minimal tbody tr:first-child td {
+padding-top: 0.5em;
+}
+.lightable-minimal.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-minimal.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic {
+border-top: 0.16em solid #111111;
+width: 100%;
+margin-bottom: 10px;
+margin: 10px 5px;
+}
+.lightable-classic caption {
+color: #222222;
+}
+.lightable-classic td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic thead tr:last-child th {
+border-bottom: 0.10em solid #111111;
+}
+.lightable-classic tbody tr:last-child td {
+border-bottom: 0.14em solid #111111;
+}
+.lightable-classic.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic-2 {
+border-top: 3px double #111111;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-classic-2 caption {
+color: #222222;
+}
+.lightable-classic-2 td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic-2 th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic-2 tbody tr:last-child td {
+border-bottom: 3px double #111111;
+}
+.lightable-classic-2 thead tr:last-child th {
+border-bottom: 1px solid #111111;
+}
+.lightable-classic-2.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic-2.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #EEE;
+border-collapse: collapse;
+margin-bottom: 10px;
+}
+.lightable-material th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+}
+.lightable-material td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+border-top: 1px solid #eeeeee;
+}
+.lightable-material.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #ddd;
+}
+.lightable-material-dark {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #FFFFFF12;
+border-collapse: collapse;
+margin-bottom: 10px;
+background-color: #363640;
+}
+.lightable-material-dark th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF60;
+}
+.lightable-material-dark td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF;
+border-top: 1px solid #FFFFFF12;
+}
+.lightable-material-dark.lightable-hover tbody tr:hover {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody tr:nth-child(even) {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material-dark.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #FFFFFF12;
+}
+.lightable-paper {
+width: 100%;
+margin-bottom: 10px;
+color: #444;
+}
+.lightable-paper thead tr:last-child th {
+color: #666;
+vertical-align: bottom;
+border-bottom: 1px solid #00000020;
+line-height: 1.15em;
+padding: 10px 5px;
+}
+.lightable-paper td {
+vertical-align: middle;
+border-bottom: 1px solid #00000010;
+line-height: 1.15em;
+padding: 7px 5px;
+}
+.lightable-paper.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-paper.lightable-striped tbody tr:nth-child(even) {
+background-color: #00000008;
+}
+.lightable-paper.lightable-striped tbody td {
+border: 0;
+}
+</style>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -47795,6 +47981,7 @@ S
 <a class="sourceLine" id="cb33-3" title="3"></a>
 <a class="sourceLine" id="cb33-4" title="4">dplyr<span class="op">::</span><span class="kw">summarise</span>(by_class, </a>
 <a class="sourceLine" id="cb33-5" title="5">                 <span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 3 x 2
 ##   pclass mean_fare
 ##    &lt;dbl&gt;     &lt;dbl&gt;
@@ -47815,17 +48002,16 @@ S
 <p><strong>We can also aggregate according to more complicated groupings</strong></p>
 </blockquote>
 <p>Here we are grouping by 2 columns <code>&quot;pclass&quot;</code> and <code>&quot;embarked&quot;</code>.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="co"># Group by pclass and embarked. Then find the average fare </span></a>
-<a class="sourceLine" id="cb35-2" title="2"><span class="co"># paid by each group.</span></a>
-<a class="sourceLine" id="cb35-3" title="3"></a>
-<a class="sourceLine" id="cb35-4" title="4">by_class_embarked &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(titanic,</a>
-<a class="sourceLine" id="cb35-5" title="5">                                     pclass, embarked) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb35-6" title="6"><span class="st">                      </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb35-7" title="7"></a>
-<a class="sourceLine" id="cb35-8" title="8"></a>
-<a class="sourceLine" id="cb35-9" title="9"><span class="co"># To display the data</span></a>
-<a class="sourceLine" id="cb35-10" title="10"></a>
-<a class="sourceLine" id="cb35-11" title="11">by_class_embarked</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co"># Group by pclass and embarked. Then find the average fare </span></a>
+<a class="sourceLine" id="cb36-2" title="2"><span class="co"># paid by each group.</span></a>
+<a class="sourceLine" id="cb36-3" title="3"></a>
+<a class="sourceLine" id="cb36-4" title="4">by_class_embarked &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(titanic,</a>
+<a class="sourceLine" id="cb36-5" title="5">                                     pclass, embarked) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-6" title="6"><span class="st">                      </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;pclass&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># To display the data</span></a>
+<a class="sourceLine" id="cb38-2" title="2"></a>
+<a class="sourceLine" id="cb38-3" title="3">by_class_embarked</a></code></pre></div>
 <pre><code>## # A tibble: 10 x 3
 ## # Groups:   pclass [3]
 ##    pclass embarked mean_fare
@@ -47843,27 +48029,28 @@ S
 <p><br></p>
 <p>Suppose with the above, the <code>NA</code> values bother us. To remove them we can add some code to our pipeline to handle this. We can use the <strong><code>drop_na()</code></strong> function from the tidyr package.</p>
 <p>Here I have added some extra summary statistics as well, i.e standard deviation and a count.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="co"># Calculating the median fare</span></a>
-<a class="sourceLine" id="cb37-2" title="2"><span class="co"># dropping missing values using drop_na from tidyr package</span></a>
-<a class="sourceLine" id="cb37-3" title="3"><span class="co"># grouping by pclass and emabrked</span></a>
-<a class="sourceLine" id="cb37-4" title="4"><span class="co"># summarising by showing the median and standard deviation</span></a>
-<a class="sourceLine" id="cb37-5" title="5"><span class="co"># and a frequency count</span></a>
-<a class="sourceLine" id="cb37-6" title="6"></a>
-<a class="sourceLine" id="cb37-7" title="7">median_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-8" title="8"><span class="st">  </span></a>
-<a class="sourceLine" id="cb37-9" title="9"><span class="st">  </span><span class="kw">drop_na</span>(embarked) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-10" title="10"><span class="st">  </span></a>
-<a class="sourceLine" id="cb37-11" title="11"><span class="st">  </span><span class="kw">group_by</span>(pclass, embarked) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-12" title="12"><span class="st">  </span></a>
-<a class="sourceLine" id="cb37-13" title="13"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">median_fare=</span> <span class="kw">median</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb37-14" title="14">            </a>
-<a class="sourceLine" id="cb37-15" title="15">            <span class="dt">sd_fare =</span> <span class="kw">sd</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb37-16" title="16">            </a>
-<a class="sourceLine" id="cb37-17" title="17">            <span class="dt">count =</span> <span class="kw">n</span>())</a>
-<a class="sourceLine" id="cb37-18" title="18"></a>
-<a class="sourceLine" id="cb37-19" title="19"><span class="co"># To display the data</span></a>
-<a class="sourceLine" id="cb37-20" title="20"></a>
-<a class="sourceLine" id="cb37-21" title="21">median_fare</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># Calculating the median fare</span></a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="co"># dropping missing values using drop_na from tidyr package</span></a>
+<a class="sourceLine" id="cb40-3" title="3"><span class="co"># grouping by pclass and emabrked</span></a>
+<a class="sourceLine" id="cb40-4" title="4"><span class="co"># summarising by showing the median and standard deviation</span></a>
+<a class="sourceLine" id="cb40-5" title="5"><span class="co"># and a frequency count</span></a>
+<a class="sourceLine" id="cb40-6" title="6"></a>
+<a class="sourceLine" id="cb40-7" title="7">median_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-8" title="8"><span class="st">  </span></a>
+<a class="sourceLine" id="cb40-9" title="9"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">drop_na</span>(embarked) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-10" title="10"><span class="st">  </span></a>
+<a class="sourceLine" id="cb40-11" title="11"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(pclass, embarked) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-12" title="12"><span class="st">  </span></a>
+<a class="sourceLine" id="cb40-13" title="13"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">median_fare=</span> <span class="kw">median</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb40-14" title="14">            </a>
+<a class="sourceLine" id="cb40-15" title="15">            <span class="dt">sd_fare =</span> <span class="kw">sd</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb40-16" title="16">            </a>
+<a class="sourceLine" id="cb40-17" title="17">            <span class="dt">count =</span> <span class="kw">n</span>()</a>
+<a class="sourceLine" id="cb40-18" title="18">                  )</a></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;pclass&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="co"># To display the data</span></a>
+<a class="sourceLine" id="cb42-2" title="2"></a>
+<a class="sourceLine" id="cb42-3" title="3">median_fare</a></code></pre></div>
 <pre><code>## # A tibble: 9 x 5
 ## # Groups:   pclass [3]
 ##   pclass embarked median_fare sd_fare count
@@ -47879,37 +48066,38 @@ S
 ## 9      3 S               8.05   13.1    495</code></pre>
 <p><br></p>
 <p>I plan on presenting this data, so I want something more meaningful in place than “C”, “Q” and “S”.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># Calculating the median fare</span></a>
-<a class="sourceLine" id="cb39-2" title="2"><span class="co"># dropping missing values using drop_na from tidyr package</span></a>
-<a class="sourceLine" id="cb39-3" title="3"><span class="co"># using mutate to recode the variables &quot;C&quot;,&quot;Q&quot; and &quot;S&quot;</span></a>
-<a class="sourceLine" id="cb39-4" title="4"><span class="co"># grouping by pclass and emabrked</span></a>
-<a class="sourceLine" id="cb39-5" title="5"><span class="co"># summarising by shwoing the median fare and </span></a>
-<a class="sourceLine" id="cb39-6" title="6"><span class="co"># standard deviation and a frequency count</span></a>
-<a class="sourceLine" id="cb39-7" title="7"></a>
-<a class="sourceLine" id="cb39-8" title="8">median_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-9" title="9"><span class="st">  </span></a>
-<a class="sourceLine" id="cb39-10" title="10"><span class="st">  </span><span class="kw">drop_na</span>(embarked) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb39-11" title="11"><span class="st">  </span></a>
-<a class="sourceLine" id="cb39-12" title="12"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">embarked =</span> <span class="kw">recode</span>(embarked, </a>
-<a class="sourceLine" id="cb39-13" title="13">                           <span class="st">&quot;C&quot;</span> =<span class="st"> &quot;Cherbourg&quot;</span>, </a>
-<a class="sourceLine" id="cb39-14" title="14">                           <span class="st">&quot;Q&quot;</span> =<span class="st"> &quot;Queenstown&quot;</span>, </a>
-<a class="sourceLine" id="cb39-15" title="15">                           <span class="st">&quot;S&quot;</span> =<span class="st"> &quot;Southampton&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-16" title="16"><span class="st">  </span></a>
-<a class="sourceLine" id="cb39-17" title="17"><span class="st">  </span><span class="kw">group_by</span>(pclass, embarked) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-18" title="18"><span class="st">  </span></a>
-<a class="sourceLine" id="cb39-19" title="19"><span class="st">  </span><span class="kw">summarise</span>(</a>
-<a class="sourceLine" id="cb39-20" title="20">    </a>
-<a class="sourceLine" id="cb39-21" title="21">    <span class="dt">median_fare=</span> <span class="kw">median</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb39-22" title="22">            </a>
-<a class="sourceLine" id="cb39-23" title="23">    <span class="dt">sd_fare =</span> <span class="kw">sd</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
-<a class="sourceLine" id="cb39-24" title="24">            </a>
-<a class="sourceLine" id="cb39-25" title="25">    <span class="dt">count =</span> <span class="kw">n</span>()</a>
-<a class="sourceLine" id="cb39-26" title="26">    </a>
-<a class="sourceLine" id="cb39-27" title="27">  )</a>
-<a class="sourceLine" id="cb39-28" title="28"></a>
-<a class="sourceLine" id="cb39-29" title="29"><span class="co">#To display the data</span></a>
-<a class="sourceLine" id="cb39-30" title="30"></a>
-<a class="sourceLine" id="cb39-31" title="31">median_fare</a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="co"># Calculating the median fare</span></a>
+<a class="sourceLine" id="cb44-2" title="2"><span class="co"># dropping missing values using drop_na from tidyr package</span></a>
+<a class="sourceLine" id="cb44-3" title="3"><span class="co"># using mutate to recode the variables &quot;C&quot;,&quot;Q&quot; and &quot;S&quot;</span></a>
+<a class="sourceLine" id="cb44-4" title="4"><span class="co"># grouping by pclass and emabrked</span></a>
+<a class="sourceLine" id="cb44-5" title="5"><span class="co"># summarising by shwoing the median fare and </span></a>
+<a class="sourceLine" id="cb44-6" title="6"><span class="co"># standard deviation and a frequency count</span></a>
+<a class="sourceLine" id="cb44-7" title="7"></a>
+<a class="sourceLine" id="cb44-8" title="8">median_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-9" title="9"><span class="st">  </span></a>
+<a class="sourceLine" id="cb44-10" title="10"><span class="st">  </span>tidyr<span class="op">::</span><span class="kw">drop_na</span>(embarked) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb44-11" title="11"><span class="st">  </span></a>
+<a class="sourceLine" id="cb44-12" title="12"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">embarked =</span> <span class="kw">recode</span>(embarked, </a>
+<a class="sourceLine" id="cb44-13" title="13">                           <span class="st">&quot;C&quot;</span> =<span class="st"> &quot;Cherbourg&quot;</span>, </a>
+<a class="sourceLine" id="cb44-14" title="14">                           <span class="st">&quot;Q&quot;</span> =<span class="st"> &quot;Queenstown&quot;</span>, </a>
+<a class="sourceLine" id="cb44-15" title="15">                           <span class="st">&quot;S&quot;</span> =<span class="st"> &quot;Southampton&quot;</span>)</a>
+<a class="sourceLine" id="cb44-16" title="16">                ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-17" title="17"><span class="st">  </span></a>
+<a class="sourceLine" id="cb44-18" title="18"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(pclass, embarked) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-19" title="19"><span class="st">  </span></a>
+<a class="sourceLine" id="cb44-20" title="20"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb44-21" title="21">    </a>
+<a class="sourceLine" id="cb44-22" title="22">                   <span class="dt">median_fare=</span> <span class="kw">median</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb44-23" title="23">            </a>
+<a class="sourceLine" id="cb44-24" title="24">                   <span class="dt">sd_fare =</span> <span class="kw">sd</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb44-25" title="25">            </a>
+<a class="sourceLine" id="cb44-26" title="26">                   <span class="dt">count =</span> <span class="kw">n</span>()</a>
+<a class="sourceLine" id="cb44-27" title="27">    </a>
+<a class="sourceLine" id="cb44-28" title="28">                  )</a></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;pclass&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb46-2" title="2"></a>
+<a class="sourceLine" id="cb46-3" title="3">median_fare</a></code></pre></div>
 <pre><code>## # A tibble: 9 x 5
 ## # Groups:   pclass [3]
 ##   pclass embarked    median_fare sd_fare count
@@ -47944,28 +48132,28 @@ S
 <ol style="list-style-type: decimal">
 <li>What is the average fare paid by men and women?</li>
 </ol>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="co"># Calculating the average fare</span></a>
-<a class="sourceLine" id="cb41-2" title="2"><span class="co"># Grouping by sex_of_passenger</span></a>
-<a class="sourceLine" id="cb41-3" title="3"><span class="co"># summary showing the mean fare</span></a>
-<a class="sourceLine" id="cb41-4" title="4"></a>
-<a class="sourceLine" id="cb41-5" title="5">average_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb41-6" title="6"><span class="st">  </span></a>
-<a class="sourceLine" id="cb41-7" title="7"><span class="st">  </span><span class="kw">group_by</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb41-8" title="8"><span class="st">  </span></a>
-<a class="sourceLine" id="cb41-9" title="9"><span class="st">  </span><span class="kw">summarise</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="co"># Calculating the average fare</span></a>
+<a class="sourceLine" id="cb48-2" title="2"><span class="co"># Grouping by sex_of_passenger</span></a>
+<a class="sourceLine" id="cb48-3" title="3"><span class="co"># summary showing the mean fare</span></a>
+<a class="sourceLine" id="cb48-4" title="4"></a>
+<a class="sourceLine" id="cb48-5" title="5">average_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-6" title="6"><span class="st">  </span></a>
+<a class="sourceLine" id="cb48-7" title="7"><span class="st">  </span><span class="kw">group_by</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-8" title="8"><span class="st">  </span></a>
+<a class="sourceLine" id="cb48-9" title="9"><span class="st">  </span><span class="kw">summarise</span>()</a></code></pre></div>
 <p><br></p>
 <ol start="2" style="list-style-type: decimal">
 <li>What is the median fare paid by men and women in each different class?</li>
 </ol>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="co"># Calculating the median fare</span></a>
-<a class="sourceLine" id="cb42-2" title="2"><span class="co"># Grouping by sex_of_passenger and pclass</span></a>
-<a class="sourceLine" id="cb42-3" title="3"><span class="co"># summary showing the mean fare</span></a>
-<a class="sourceLine" id="cb42-4" title="4"></a>
-<a class="sourceLine" id="cb42-5" title="5">median_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb42-6" title="6"><span class="st">  </span></a>
-<a class="sourceLine" id="cb42-7" title="7"><span class="st">  </span><span class="kw">group_by</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb42-8" title="8"><span class="st">  </span></a>
-<a class="sourceLine" id="cb42-9" title="9"><span class="st">  </span><span class="kw">summarise</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="co"># Calculating the median fare</span></a>
+<a class="sourceLine" id="cb49-2" title="2"><span class="co"># Grouping by sex_of_passenger and pclass</span></a>
+<a class="sourceLine" id="cb49-3" title="3"><span class="co"># summary showing the mean fare</span></a>
+<a class="sourceLine" id="cb49-4" title="4"></a>
+<a class="sourceLine" id="cb49-5" title="5">median_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-6" title="6"><span class="st">  </span></a>
+<a class="sourceLine" id="cb49-7" title="7"><span class="st">  </span><span class="kw">group_by</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-8" title="8"><span class="st">  </span></a>
+<a class="sourceLine" id="cb49-9" title="9"><span class="st">  </span><span class="kw">summarise</span>()</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
@@ -47974,19 +48162,19 @@ S
 <ol style="list-style-type: decimal">
 <li>What is the average fare paid by men and women?</li>
 </ol>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="co"># Calculating the average fare</span></a>
-<a class="sourceLine" id="cb43-2" title="2"><span class="co"># Grouping by sex_of_passenger</span></a>
-<a class="sourceLine" id="cb43-3" title="3"><span class="co"># summary showing the mean fare</span></a>
-<a class="sourceLine" id="cb43-4" title="4"></a>
-<a class="sourceLine" id="cb43-5" title="5">average_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb43-6" title="6"><span class="st">  </span></a>
-<a class="sourceLine" id="cb43-7" title="7"><span class="st">  </span><span class="kw">group_by</span>(sex_of_passenger) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb43-8" title="8"><span class="st">  </span></a>
-<a class="sourceLine" id="cb43-9" title="9"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb43-10" title="10"></a>
-<a class="sourceLine" id="cb43-11" title="11"><span class="co">#To display the data</span></a>
-<a class="sourceLine" id="cb43-12" title="12"></a>
-<a class="sourceLine" id="cb43-13" title="13">average_fare</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="co"># Calculating the average fare</span></a>
+<a class="sourceLine" id="cb50-2" title="2"><span class="co"># Grouping by sex_of_passenger</span></a>
+<a class="sourceLine" id="cb50-3" title="3"><span class="co"># summary showing the mean fare</span></a>
+<a class="sourceLine" id="cb50-4" title="4"></a>
+<a class="sourceLine" id="cb50-5" title="5">average_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb50-6" title="6"><span class="st">  </span></a>
+<a class="sourceLine" id="cb50-7" title="7"><span class="st">  </span><span class="kw">group_by</span>(sex_of_passenger) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb50-8" title="8"><span class="st">  </span></a>
+<a class="sourceLine" id="cb50-9" title="9"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb52-2" title="2"></a>
+<a class="sourceLine" id="cb52-3" title="3">average_fare</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   sex_of_passenger mean_fare
 ##   &lt;chr&gt;                &lt;dbl&gt;
@@ -47996,17 +48184,17 @@ S
 <ol start="2" style="list-style-type: decimal">
 <li>What is the median fare paid by men and women in each different class?</li>
 </ol>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="co"># Calculating the median fare</span></a>
-<a class="sourceLine" id="cb45-2" title="2"><span class="co"># Grouping by sex_of_passenger and pclass</span></a>
-<a class="sourceLine" id="cb45-3" title="3"><span class="co"># summary showing the mean fare</span></a>
-<a class="sourceLine" id="cb45-4" title="4">median_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-5" title="5"><span class="st">  </span></a>
-<a class="sourceLine" id="cb45-6" title="6"><span class="st">  </span><span class="kw">group_by</span>(sex_of_passenger, pclass) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-7" title="7"><span class="st">  </span></a>
-<a class="sourceLine" id="cb45-8" title="8"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">median_fare =</span> <span class="kw">median</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a>
-<a class="sourceLine" id="cb45-9" title="9"></a>
-<a class="sourceLine" id="cb45-10" title="10"><span class="co">#To display the data</span></a>
-<a class="sourceLine" id="cb45-11" title="11">median_fare</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="co"># Calculating the median fare</span></a>
+<a class="sourceLine" id="cb54-2" title="2"><span class="co"># Grouping by sex_of_passenger and pclass</span></a>
+<a class="sourceLine" id="cb54-3" title="3"><span class="co"># summary showing the mean fare</span></a>
+<a class="sourceLine" id="cb54-4" title="4">median_fare &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb54-5" title="5"><span class="st">  </span></a>
+<a class="sourceLine" id="cb54-6" title="6"><span class="st">  </span><span class="kw">group_by</span>(sex_of_passenger, pclass) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb54-7" title="7"><span class="st">  </span></a>
+<a class="sourceLine" id="cb54-8" title="8"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">median_fare =</span> <span class="kw">median</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;sex_of_passenger&#39; (override with `.groups` argument)</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="co">#To display the data</span></a>
+<a class="sourceLine" id="cb56-2" title="2">median_fare</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 3
 ## # Groups:   sex_of_passenger [2]
 ##   sex_of_passenger pclass median_fare
@@ -48096,7 +48284,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

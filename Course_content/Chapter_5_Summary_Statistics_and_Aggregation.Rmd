@@ -525,15 +525,16 @@ Here I have added some extra summary statistics as well, i.e standard deviation 
 
 median_fare <- titanic %>%
   
-  drop_na(embarked) %>%
+  tidyr::drop_na(embarked) %>%
   
-  group_by(pclass, embarked) %>%
+  dplyr::group_by(pclass, embarked) %>%
   
-  summarise(median_fare= median(fare, na.rm = TRUE),
+  dplyr::summarise(median_fare= median(fare, na.rm = TRUE),
             
             sd_fare = sd(fare, na.rm = TRUE),
             
-            count = n())
+            count = n()
+                  )
 
 # To display the data
 
@@ -558,24 +559,25 @@ I plan on presenting this data, so I want something more meaningful in place tha
 
 median_fare <- titanic %>%
   
-  drop_na(embarked) %>% 
+  tidyr::drop_na(embarked) %>% 
   
-  mutate(embarked = recode(embarked, 
+  dplyr::mutate(embarked = recode(embarked, 
                            "C" = "Cherbourg", 
                            "Q" = "Queenstown", 
-                           "S" = "Southampton")) %>%
+                           "S" = "Southampton")
+                ) %>%
   
-  group_by(pclass, embarked) %>%
+  dplyr::group_by(pclass, embarked) %>%
   
-  summarise(
+  dplyr::summarise(
     
-    median_fare= median(fare, na.rm = TRUE),
+                   median_fare= median(fare, na.rm = TRUE),
             
-    sd_fare = sd(fare, na.rm = TRUE),
+                   sd_fare = sd(fare, na.rm = TRUE),
             
-    count = n()
+                   count = n()
     
-  )
+                  )
 
 #To display the data
 

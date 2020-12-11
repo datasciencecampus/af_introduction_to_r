@@ -64,10 +64,16 @@ There are many programming languages on the market that one can use, but R is be
 There are several reasons for this trend:
 
 * Free and open source, people can modify and share because its design is publicly accessible.
-* Great Community Support, diverse and welcoming community. e.g. #rstats twitter community, numerous [ R Meet Ups](https://www.meetup.com/topics/r-programming-language/). 
+
+* Great Community Support, diverse and welcoming community. e.g. #rstats twitter community, numerous [ R Meet Ups](https://www.meetup.com/topics/r-programming-language/).The R community is active online, and committed to create a friendly and welcoming environment for new everybody.
+This includes writing outsanding open access material that you can use to learn R.
+
 * There are lots of [packages available](https://cran.r-project.org/web/packages/available_packages_by_name.html) which contain implementations of processes and ready-made functions you might find useful
+
 * Cross Platform, it can be used across a range of operating systems i.e Windows, Linux, OS.
+
 * R has extensive and powerful graphics abilities. e.g [ The BBC use R to produce their graphics](https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535)
+
 * Powerful tool for communicating results, i.e.. [RMarkdown](https://rmarkdown.rstudio.com/)  makes its easy to turn your files into PDF'S, Power point presentations and [Shiny](https://shiny.rstudio.com/) allows you to make beautiful interactive apps and dashboards.
 
 ***
@@ -305,6 +311,8 @@ Its best practise to leave comments in your code to what your code is actually d
 
 We do this by using the **hash (#)**.
 
+>**The keyboard shortcut for # in Macs is ALT + 3 and it's ALT 35 if you have a numerical keyboard.**
+
 
 The **hash (#)** tells R not to run any of the text on that line to the right of the symbol. This is the standard way of commenting R code; it is **VERY** good practice to comment in detail so that you can understand later what you have done.
 
@@ -516,7 +524,7 @@ There are many more built-in functions which you will discover with more exposur
 
 A `Double` is treated as the general number type and by default R will treat all numbers you use as double unless you give it an explicit reason to think otherwise. So therefore, any number with or without a decimal place will be treated as double unless emphasised otherwise.
 
-These different types exist in R for operations behind the scenes. We don't need to worry about them too much at the moment.
+These differences (dbl - Double, int - Integer) are not relevant for most beginners and pertain to how these values are stored in memory. We don't need to worry about them too much at the moment.
 
 We can see they type by using the **`typeof()`** function or command.
 
@@ -736,6 +744,8 @@ We will look at some other ways to do convert types later in the course.
 <br>
 
 # Variable Assignment
+
+R does not provide direct access to the computer’s memory but rather provides a number of specialized data structures we will refer to as objects. 
 
 Everything in R is an object, We can assign these objects names, this is called a variable.
 
@@ -1170,6 +1180,11 @@ Try and type the command below in the console,and you should see the Help panel 
 
 help(mean)
 ```
+
+These help files are very useful, but also tend to contain a lot of technical jargon. 
+
+In learning to use R, you will begin to understand this jargon, making it much easier for you to learn more in the future.
+
 
 
 ***
