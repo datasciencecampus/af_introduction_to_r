@@ -185,7 +185,7 @@ Like we saw with `mutate()` and other functions, we can compute multiple statist
 # Calculating muiltiple summary statisitcs within
 # the summarise function
 
-dplyr::summarise(.data = titanic, 
+my_summary_stats <- dplyr::summarise(.data = titanic, 
                  
                  median_fare = median(fare, na.rm = TRUE),
                  
@@ -198,6 +198,9 @@ dplyr::summarise(.data = titanic,
                  mean_age = mean(age_of_passenger, na.rm = TRUE),
                  
                  sd_age = sd(age_of_passenger, na.rm = TRUE))
+
+# To display the data
+my_summary_stats
 ```
 
 
@@ -206,6 +209,20 @@ dplyr::summarise(.data = titanic,
 The structure of our output above is not ideal. 
 
 We could restructure it using the `tidyr` functions: **`pivot_wider()`**, *`separate()`* and **`pivot_longer()`**. This is slightly advanced for what we have covered so far, but examples have been added to the additional materials document for those keen to know.
+
+>**Code show below to dmeonstrate, refer to additional material for more details as tidy**
+
+```{r}
+# to demonstrate pivot longer
+# the code below is just to demonstrate 
+# what it does, please refer to additional material for more info
+
+my_summary_stats %>% 
+pivot_longer(cols = median_fare:sd_age,
+             names_to = "statistic",
+             values_to = "value")
+```
+
 
 Functions which return more than one value won't work well with **`summarise()`**. 
 
@@ -593,10 +610,62 @@ We can simply visualise our data in a chart. (We are not covering how to plot he
 
 ```{r, echo=FALSE}
 
+new_theme <- theme(
+  plot.title = element_text(
+    size = 16, # Set font size
+    face = "bold", # Bold typeface
+    hjust = 0, # Horizontal adjustment, left align
+    vjust = 1
+  ), # Vertical Adjustment, raises it slightly
+
+  plot.subtitle = element_text( # Subtitle
+  
+    size = 14, # Font size
+    hjust = 0
+  ), # Horizontal adjustment, this will left align
+
+  plot.caption = element_text( # Caption
+  
+    size = 9
+  ), # Font size
+
+  axis.title = element_text( # Axis titles
+
+    size = 12
+  ), # Font size
+
+  axis.text = element_text( # Axis text
+    
+    size = 12
+  ),
+
+  panel.grid.major = element_line(color = "#BEBEBE"), # Adding major grid
+  panel.grid.minor = element_blank(), # Removing minor grid lines
+  panel.border = element_blank(), # Remove panel border
+  axis.line = element_blank(), # Remove axis lines
+  axis.ticks = element_blank() # Remove axis ticks
+)
+
 ggplot2::ggplot(median_fare,
        aes(x = pclass,
            y = count))+
-  geom_col(position="dodge",aes(fill=embarked))+theme_grey()
+  geom_col(key_glyph = draw_key_dotplot,position="dodge",aes(fill=embarked)) + 
+  new_theme +
+  coord_flip() + # flip graph
+  scale_fill_manual(
+    values = c("#206095", "#a8bd3a", "#118c7b"),
+    labels = c("Southampton", "Queenstown", "Cherbourg"))+
+  new_theme + # best practice theme
+  theme(
+    legend.position = "bottom", # ammending theme
+    axis.title = element_text(hjust = 1), # align axis text
+    panel.grid.major.y = element_blank()
+  ) + # remove major gridlines on y axis
+  labs(
+    title = "Number of passengers In Each Class", # labels
+    x = "Passenger Class",
+    y = "Number of Passengers"
+  )
 ```
 
 
