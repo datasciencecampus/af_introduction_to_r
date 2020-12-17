@@ -210,7 +210,7 @@ The structure of our output above is not ideal.
 
 We could restructure it using the `tidyr` functions: **`pivot_wider()`**, *`separate()`* and **`pivot_longer()`**. This is slightly advanced for what we have covered so far, but examples have been added to the additional materials document for those keen to know.
 
->**Code show below to dmeonstrate, refer to additional material for more details as tidy**
+>**Code show below to dmeonstrate, refer to additional material for more details as tidyr is not covered in this course**
 
 ```{r}
 # to demonstrate pivot longer
@@ -404,12 +404,21 @@ number_of_men_and_women
 standard_fare <- dplyr::mutate(.data=titanic, 
                                std_fare = 
                                  (fare - mean(fare, na.rm = TRUE)) / sd(fare, na.rm = TRUE))
-
-# To Display the data
-
-standard_fare
-
 ```
+
+<br>
+
+```{r echo=FALSE}
+
+standard_fare %>% 
+  kable() %>% 
+   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  scroll_box(width = "100", height = "500px")
+ 
+```
+
+<br>
+
 
 ***
 
@@ -608,62 +617,82 @@ We can simply visualise our data in a chart. (We are not covering how to plot he
 
 <br>
 
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+test_theme <- theme_bw() +
+  # grid elements
+  theme(
+        panel.grid.major = element_line(color = "#BEBEBE"), # Adding major grid
+        panel.grid.minor = element_blank(), # Removing minor grid lines
+        panel.border = element_blank(), # Remove panel border
+        axis.line = element_blank(), # Remove axis lines
+        axis.ticks = element_blank(), # 
+        # Add axis line
+        #axis.line = element_line(colour = "black", # Colour to black
+                                 #size = 0.5), # Set thicness
+        
+        # Text elements
+        # Title
+        plot.title = element_text(size = 16, # Set font size
+                                  face = "bold", # Bold typeface
+                                  hjust = 0, # Left align
+                                  vjust = 2), # Raise slightly
+        # Subtitle
+        plot.subtitle = element_text(size = 14, # Font Size
+                                     margin = margin(t = 10) # Margin for plot text
+        ), 
+        # Caption
+        plot.caption = element_text(size = 9, # Font size
+                                    hjust = 1), # Right align 
+        # Axis titles
+        axis.title = element_text(size = 12), # Font size
+        
+        # Axis text
+        axis.text = element_text(size = 12), # Font size
+        
+        # Margin for axis text
+        axis.text.x = element_text(margin = margin(t = 5,
+                                                   b = 10)
+                                 
+        ),
+        legend.key = element_blank()  
+  )
+
+
+median_fare2 <- median_fare %>% 
+    dplyr::mutate(pclass = recode(pclass, 
+                           "1" = "First Class", 
+                           "2" = "Second Class", 
+                           "3" = "Third Class")
+                ) 
+
+```
+
+
 ```{r, echo=FALSE}
 
-new_theme <- theme(
-  plot.title = element_text(
-    size = 16, # Set font size
-    face = "bold", # Bold typeface
-    hjust = 0, # Horizontal adjustment, left align
-    vjust = 1
-  ), # Vertical Adjustment, raises it slightly
 
-  plot.subtitle = element_text( # Subtitle
-  
-    size = 14, # Font size
-    hjust = 0
-  ), # Horizontal adjustment, this will left align
-
-  plot.caption = element_text( # Caption
-  
-    size = 9
-  ), # Font size
-
-  axis.title = element_text( # Axis titles
-
-    size = 12
-  ), # Font size
-
-  axis.text = element_text( # Axis text
-    
-    size = 12
-  ),
-
-  panel.grid.major = element_line(color = "#BEBEBE"), # Adding major grid
-  panel.grid.minor = element_blank(), # Removing minor grid lines
-  panel.border = element_blank(), # Remove panel border
-  axis.line = element_blank(), # Remove axis lines
-  axis.ticks = element_blank() # Remove axis ticks
-)
-
-ggplot2::ggplot(median_fare,
+ggplot2::ggplot(median_fare2,
        aes(x = pclass,
            y = count))+
   geom_col(key_glyph = draw_key_dotplot,position="dodge",aes(fill=embarked)) + 
-  new_theme +
-  coord_flip() + # flip graph
+  #new_theme +
   scale_fill_manual(
-    values = c("#206095", "#a8bd3a", "#118c7b"),
+    values = c("#27a0cc", "#118c7b", "#206095"),
     labels = c("Southampton", "Queenstown", "Cherbourg"))+
-  new_theme + # best practice theme
+   #custom_theme+
+  #new_theme + # best practice theme
+ test_theme +
   theme(
     legend.position = "bottom", # ammending theme
-    axis.title = element_text(hjust = 1), # align axis text
-    panel.grid.major.y = element_blank()
+    #axis.title = element_text(hjust = 1), # align axis text
+    panel.grid.major.x = element_blank(),
+    legend.title = element_blank()
   ) + # remove major gridlines on y axis
   labs(
-    title = "Number of passengers In Each Class", # labels
-    x = "Passenger Class",
+    title = "Passenger Distribution By Port and Class", # labels
+    x = "Class",
     y = "Number of Passengers"
   )
 ```
