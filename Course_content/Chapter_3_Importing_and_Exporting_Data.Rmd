@@ -845,7 +845,7 @@ titanic %>%
 ### **Exercise**{-}
 
 
-1. Having read in the titanic data above, have a look at the column name Of Passenger.
+1. Having read in the titanic data above, have a look at the column Age of passenger.
 
 
 2. What type of data is this column?
@@ -860,7 +860,7 @@ titanic %>%
 
 ### **Show Answer**{-}
 
-1. Have a look at the column name Of Passenger.
+1. Have a look at the column Age of passenger.
 
 
 
@@ -900,7 +900,7 @@ The code below, can be read as;
 # classed as missing values
 
 titanic <- readr::read_csv("../Data/titanic.csv", 
-                           na = c("NULL"))
+                           na = "NULL")
 
 
 ```
@@ -934,7 +934,7 @@ On this instance our missing values have been classed as NULL, missing values in
 # This will skip the first 5 rows from the csv
 
 dataset_name <- readr::read_csv("file path", 
-                           na = c("NULL"), # missing value
+                           na = "NULL", # missing value
                            skip = 5) # skips the first 5 rows
 ```
 
@@ -945,7 +945,7 @@ dataset_name <- readr::read_csv("file path",
 # Should blank rows be ignored altogether? i.e. If this option is TRUE then blank rows will not be # represented at all. If it is FALSE then they will be represented by NA values in all the columns.
 
 dataset_name <- readr::read_csv("file path", 
-                           na = c("NULL"), # missing value
+                           na = "NULL", # missing value
                            skip_empty_rows = TRUE) # skips empty rows
 ```
 
@@ -1267,15 +1267,6 @@ So far we have gone through
  * Exporting data
     
  * Exploring data
-
-
-***
-
-<br>
-
-# Practice Project - Exploring Data
-
-
 
 
 

@@ -389,7 +389,7 @@ vector_addition <- sample_vector + colon_vector
 
 vector_addition
 
-# Multiplying vectors (element wise, dot product)
+# Multiplying vectors (element wise)
 
 vector_multiplication <- sample_vector * colon_vector
 
@@ -1061,7 +1061,7 @@ They are becoming a standard way to work with data, they are very useful when wo
 
 Below is an example of a what a data frame and tibble look like, I have used the same dataset.
 
-iris data set gives the measurements in centimeters of the variables sepal length, sepal width, petal length and petal width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
+The palmerpenguins data contains size measurements for three penguin species observed on three islands in the Palmer Archipelago, Antarctica.
 
 <br>
 

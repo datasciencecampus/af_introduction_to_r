@@ -48177,7 +48177,7 @@ S
 <div id="exercise-5" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <ol style="list-style-type: decimal">
-<li><p>Having read in the titanic data above, have a look at the column name Of Passenger.</p></li>
+<li><p>Having read in the titanic data above, have a look at the column Age of passenger.</p></li>
 <li><p>What type of data is this column?</p></li>
 <li><p>Use the <code>str()</code> function to see the data type R has set it to be.</p></li>
 </ol>
@@ -48187,7 +48187,7 @@ S
 <div id="show-answer-2" class="section level3 unnumbered">
 <h3><strong>Show Answer</strong></h3>
 <ol style="list-style-type: decimal">
-<li><p>Have a look at the column name Of Passenger.</p></li>
+<li><p>Have a look at the column Age of passenger.</p></li>
 <li><p>What type of data is this column?</p>
 <p>The data is numeric data.</p></li>
 <li><p>Then <code>str()</code> function to see the data type R has set it to be.</p></li>
@@ -48233,7 +48233,7 @@ S
 <a class="sourceLine" id="cb38-3" title="3"><span class="co"># classed as missing values</span></a>
 <a class="sourceLine" id="cb38-4" title="4"></a>
 <a class="sourceLine" id="cb38-5" title="5">titanic &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;../Data/titanic.csv&quot;</span>, </a>
-<a class="sourceLine" id="cb38-6" title="6">                           <span class="dt">na =</span> <span class="kw">c</span>(<span class="st">&quot;NULL&quot;</span>))</a></code></pre></div>
+<a class="sourceLine" id="cb38-6" title="6">                           <span class="dt">na =</span> <span class="st">&quot;NULL&quot;</span>)</a></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   Pclass = col_double(),
@@ -93101,7 +93101,7 @@ S
 <a class="sourceLine" id="cb40-2" title="2"><span class="co"># This will skip the first 5 rows from the csv</span></a>
 <a class="sourceLine" id="cb40-3" title="3"></a>
 <a class="sourceLine" id="cb40-4" title="4">dataset_name &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;file path&quot;</span>, </a>
-<a class="sourceLine" id="cb40-5" title="5">                           <span class="dt">na =</span> <span class="kw">c</span>(<span class="st">&quot;NULL&quot;</span>), <span class="co"># missing value</span></a>
+<a class="sourceLine" id="cb40-5" title="5">                           <span class="dt">na =</span> <span class="st">&quot;NULL&quot;</span>, <span class="co"># missing value</span></a>
 <a class="sourceLine" id="cb40-6" title="6">                           <span class="dt">skip =</span> <span class="dv">5</span>) <span class="co"># skips the first 5 rows</span></a></code></pre></div>
 <blockquote>
 <p><strong>Alternatively we can also skip empty rows as below</strong></p>
@@ -93110,7 +93110,7 @@ S
 <a class="sourceLine" id="cb41-2" title="2"><span class="co"># Should blank rows be ignored altogether? i.e. If this option is TRUE then blank rows will not be # represented at all. If it is FALSE then they will be represented by NA values in all the columns.</span></a>
 <a class="sourceLine" id="cb41-3" title="3"></a>
 <a class="sourceLine" id="cb41-4" title="4">dataset_name &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;file path&quot;</span>, </a>
-<a class="sourceLine" id="cb41-5" title="5">                           <span class="dt">na =</span> <span class="kw">c</span>(<span class="st">&quot;NULL&quot;</span>), <span class="co"># missing value</span></a>
+<a class="sourceLine" id="cb41-5" title="5">                           <span class="dt">na =</span> <span class="st">&quot;NULL&quot;</span>, <span class="co"># missing value</span></a>
 <a class="sourceLine" id="cb41-6" title="6">                           <span class="dt">skip_empty_rows =</span> <span class="ot">TRUE</span>) <span class="co"># skips empty rows</span></a></code></pre></div>
 <hr />
 <p><br></p>
@@ -96913,15 +96913,17 @@ WALES
 <a class="sourceLine" id="cb50-18" title="18"></a>
 <a class="sourceLine" id="cb50-19" title="19"><span class="kw">names</span>(titanic)</a>
 <a class="sourceLine" id="cb50-20" title="20"></a>
-<a class="sourceLine" id="cb50-21" title="21">titanic[<span class="dv">1</span>,<span class="dv">1</span>] </a>
+<a class="sourceLine" id="cb50-21" title="21"><span class="kw">summary</span>(titanic)</a>
 <a class="sourceLine" id="cb50-22" title="22"></a>
-<a class="sourceLine" id="cb50-23" title="23">titanic[<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>,] </a>
+<a class="sourceLine" id="cb50-23" title="23">titanic[<span class="dv">1</span>,<span class="dv">1</span>] </a>
 <a class="sourceLine" id="cb50-24" title="24"></a>
-<a class="sourceLine" id="cb50-25" title="25"><span class="co"># Type the code below and press tab</span></a>
+<a class="sourceLine" id="cb50-25" title="25">titanic[<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>,] </a>
 <a class="sourceLine" id="cb50-26" title="26"></a>
-<a class="sourceLine" id="cb50-27" title="27">titanic<span class="op">$</span></a>
-<a class="sourceLine" id="cb50-28" title="28"><span class="st">  </span></a>
-<a class="sourceLine" id="cb50-29" title="29"><span class="kw">unique</span>(titanic<span class="op">$</span>Pclass)</a></code></pre></div>
+<a class="sourceLine" id="cb50-27" title="27"><span class="co"># Type the code below and press tab</span></a>
+<a class="sourceLine" id="cb50-28" title="28"></a>
+<a class="sourceLine" id="cb50-29" title="29">titanic<span class="op">$</span></a>
+<a class="sourceLine" id="cb50-30" title="30"><span class="st">  </span></a>
+<a class="sourceLine" id="cb50-31" title="31"><span class="kw">unique</span>(titanic<span class="op">$</span>Pclass)</a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
@@ -96949,15 +96951,17 @@ WALES
 <a class="sourceLine" id="cb51-20" title="20"></a>
 <a class="sourceLine" id="cb51-21" title="21"><span class="kw">names</span>(titanic) <span class="co"># Names of columns</span></a>
 <a class="sourceLine" id="cb51-22" title="22"></a>
-<a class="sourceLine" id="cb51-23" title="23"><span class="co"># Selecting elements</span></a>
+<a class="sourceLine" id="cb51-23" title="23"><span class="kw">summary</span>(titanic) <span class="co"># summary statistics for data</span></a>
 <a class="sourceLine" id="cb51-24" title="24"></a>
-<a class="sourceLine" id="cb51-25" title="25">titanic[<span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># Selecting the first row and column</span></a>
+<a class="sourceLine" id="cb51-25" title="25"><span class="co"># Selecting elements</span></a>
 <a class="sourceLine" id="cb51-26" title="26"></a>
-<a class="sourceLine" id="cb51-27" title="27">titanic[<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>,] <span class="co"># Selecting row 3 to 6 and all columns</span></a>
+<a class="sourceLine" id="cb51-27" title="27">titanic[<span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># Selecting the first row and column</span></a>
 <a class="sourceLine" id="cb51-28" title="28"></a>
-<a class="sourceLine" id="cb51-29" title="29">titanic<span class="op">$</span>Fare <span class="co"># Selecting a column from the dataset</span></a>
+<a class="sourceLine" id="cb51-29" title="29">titanic[<span class="dv">3</span><span class="op">:</span><span class="dv">6</span>,] <span class="co"># Selecting row 3 to 6 and all columns</span></a>
 <a class="sourceLine" id="cb51-30" title="30"></a>
-<a class="sourceLine" id="cb51-31" title="31"><span class="kw">unique</span>(titanic<span class="op">$</span>Pclass) <span class="co"># Tells us the unique elements of a variable.</span></a></code></pre></div>
+<a class="sourceLine" id="cb51-31" title="31">titanic<span class="op">$</span>Fare <span class="co"># Selecting a column from the dataset</span></a>
+<a class="sourceLine" id="cb51-32" title="32"></a>
+<a class="sourceLine" id="cb51-33" title="33"><span class="kw">unique</span>(titanic<span class="op">$</span>Pclass) <span class="co"># Tells us the unique elements of a variable.</span></a></code></pre></div>
 <hr />
 <p><br></p>
 </div>
@@ -96989,11 +96993,6 @@ WALES
 <li><p>Exporting data</p></li>
 <li><p>Exploring data</p></li>
 </ul>
-<hr />
-<p><br></p>
-</div>
-<div id="practice-project---exploring-data" class="section level1">
-<h1><span class="header-section-number">10</span> Practice Project - Exploring Data</h1>
 <hr />
 <p><br></p>
 </div>
