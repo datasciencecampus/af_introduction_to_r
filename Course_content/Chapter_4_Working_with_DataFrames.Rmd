@@ -112,7 +112,7 @@ library(janitor)
 # classed as missing values
 
 titanic <- readr::read_csv("../Data/titanic.csv", 
-                           na = c("", " ", "NULL"))
+                           na = "NULL")
 
 # To display the data
 titanic
@@ -147,6 +147,12 @@ In the previous section we looked at reading data into R and also inspecting it.
 In this section we are going to look at how to manipulate it.
 
 In the previous session we stated that every column in a data frame is a variable and it is good practice to not have spaces within variable names, as spaces makes it harder for us to call on the variables when we need to use them.
+
+When you enter data in Excel, you most often don’t think too much about what you call each column. After all, you just label them once and as long as they are meaningful to you, what does it matter if the column name is a long combination of CAPITALLETTERS, lowercaseletters, and numbers?
+
+When you are working with variables in R though, you need to type the name of each variable, every time you want to work with it. So, it makes sense to make your column names as simple, but meaningful as possible.
+
+>**Ideally, they should also be consistently formatted.**
 
 ***
 
@@ -275,15 +281,9 @@ For example, the output of `gsub(" ", "_", "piece of text")` would be `piece_of_
 
 # Using gsub to replace a blank space with an underscore
 
-names(titanic) <- gsub(" ", "_", names(titanic))
-
-# Using gsub to replace a comma with nothing
-
-names(titanic) <- gsub("," , "", names(titanic))
-
-# Using gsub to replace a hyphen space with an underscore
-
-names(titanic) <- gsub("-" , "_", names(titanic))
+names(titanic) <- gsub( pattern = " ",  # what to look for
+                        replacement = "_", # what to replace it with
+                        x = names(titanic)) # where to look
 ```
 
 <br>
@@ -593,9 +593,9 @@ If we want to select multiple columns, we have to first collect the column names
 # Selecting data
 
 titanic_three_variables <- dplyr::select(.data = titanic,
-                                         c("name_of_passenger", 
-                                           "age_of_passenger",
-                                           "pclass"))
+                                         name_of_passenger, 
+                                         age_of_passenger,
+                                         pclass)
 
 # To display the data
 
@@ -615,7 +615,7 @@ To select a chunk of columns use the,start_col:end_col syntax:
 # pclass and age_of_passenger
 
 titanic_five_variables <- dplyr::select(.data = titanic,
-                                         c(pclass:age_of_passenger))
+                                         pclass:age_of_passenger)
 
 # To display the data
 
@@ -639,13 +639,21 @@ For example, suppose we wanted to select all columns excluding `name`, `age` and
 # We can use the `-` to exclude sets of columns
 
 titanic_minus_three_variables <- dplyr::select(.data = titanic, 
-                                               -c("name_of_passenger", 
-                                                  "age_of_passenger", 
-                                                  "pclass"))
+                                               -name_of_passenger, 
+                                               -age_of_passenger, 
+                                               -pclass)
 
 # To display the data
 
 titanic_minus_three_variables
+
+# we can also place the columns names in vector as below
+# we only need one minus symbol
+
+titanic_minus_three_variables <- dplyr::select(.data = titanic, 
+                                               -c(name_of_passenger, 
+                                                  age_of_passenger, 
+                                                  pclass))
 ```
 
 <br>
@@ -674,7 +682,7 @@ For example the code below will select the first 4 columns and then column 7.
 # and specific numbers.
 
 titanic_number_select <- dplyr::select(.data = titanic, 
-                                       c(1:4, 7))
+                                       1:4, 7)
 
 # To display the data
 
@@ -702,7 +710,7 @@ In this example we select all columns, except column 2.
 # The negative indicates which columns we do not want.
 
 titanic_number_select <- dplyr::select(.data = titanic, 
-                                       c(-2))
+                                       -2)
 
 # To display the data
 
@@ -856,14 +864,14 @@ titanic_select_exercise <- dplyr::select(.data = titanic,
 # Selecting data
 
 titanic_select_exercise <- dplyr::select(.data = titanic, 
-                                          c(2:3, 4))
+                                          2:4)
 
 # Alternative
 
 titanic_select_exercise <-  dplyr::select(.data = titanic, 
-                                          c(survived, 
-                                            name_of_passenger,
-                                            sex_of_passenger))
+                                          survived, 
+                                          name_of_passenger,
+                                          sex_of_passenger)
 
 # To display the data
 
@@ -884,12 +892,13 @@ names(titanic_select_exercise)
 # Selecting data
 
 titanic_select_exercise <- dplyr::select(.data = titanic, 
-                                          c(1:5, embarked))
+                                          1:5, embarked)
 
 # Alternative
 
 titanic_select_exercise <- dplyr::select(.data = titanic, 
-                                          c(1:5, last_col()))
+                                          1:5, last_col()
+                                         )
 
 # To display the data
 
@@ -949,9 +958,10 @@ names(titanic_select_exercise)
 # Selecting data
 
 titanic_select_exercise <- dplyr::select(.data = titanic,
-                                         c(name_of_passenger,
-                                           age_of_passenger, 
-                                           everything()))
+                                         name_of_passenger,
+                                         age_of_passenger, 
+                                         everything()
+                                         )
 
 
 #To display the data
@@ -960,6 +970,11 @@ titanic_select_exercise
 
 names(titanic_select_exercise)
 ```
+
+<br>
+
+For more advanced ways to select columns refer to this excellent blog [Data Wrangling Part 1: Basic to Advanced Ways to Select Columns](https://suzan.rbind.io/2018/01/dplyr-tutorial-1/)
+
 
 ***
 
@@ -1410,7 +1425,7 @@ titanic_filter_example %>%
 
 1. Select passengers who are in classes 2 or 3, what percentage of passengers is this?
 
-2. How many passengers do not have siblings or spouses ('sibsp'), and parents or children ('parch') on the boat?
+2. How many passengers were travelling alone?
 
 
 <br>
@@ -1444,7 +1459,7 @@ titanic_filter_exercise <- dplyr::filter(data,
 nrow(titanic_filter_exercise) / nrow(titanic) * 100 
 ```
 
-2. How many passengers who do not have siblings or spouses ('sibsp'), and parents or children ('parch') on the boat?
+2. How many passengers How many passengers were travelling alone? i.e do not have siblings or spouses ('sibsp'), and parents or children ('parch') on the boat?
 
    The & (Shift and 7) symbol indicates an AND relationship, and should be used to filter off the    two columns listed - both values should be zero.
 
@@ -1492,7 +1507,8 @@ nrow(titanic_filter_exercise) / nrow(titanic) * 100
 
 <br>
 
-2. How many passengers who do not have siblings or spouses ('sibsp'), and parents or children ('parch') on the boat?
+2. How many passengers How many passengers were travelling alone? i.e do not have siblings or spouses ('sibsp'), and parents or children ('parch') on the boat?
+
 
 ```{r}
 # filtering the dataset on multiple conditions
@@ -1549,7 +1565,12 @@ survived %>%
   scroll_box(width = "100", height = "300px")
 ```
 
+
+
 <br>
+
+For more advanced ways to filter columns refer to this excellent blog [Data Wrangling Part 1: Basic to Advanced Ways to Select Columns](https://suzan.rbind.io/2018/02/dplyr-tutorial-3/), this covers th functions, `filter_all()`, `filter_if()` and `filter_at`.
+
 
 ***
 
@@ -1668,9 +1689,11 @@ There are some functions which work with **`mutate()`** and enable us to perform
 
 ```{r, eval = FALSE}
 # Recoding variables
+# Note Recode does not have a .data arguement
 
-dplyr::recode(.data = titanic$survived, 
-              '1' = TRUE, '0' = FALSE)
+dplyr::recode(titanic$survived, 
+              '1' = TRUE, 
+              '0' = FALSE)
 ```
 
 To do this in the context of an entire `tibble` we have to use **`recode()`** with **`mutate()`**.
@@ -1742,6 +1765,9 @@ titanic_mutate_exercise %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
   scroll_box(width = "100", height = "300px")
 ```
+
+For more advanced ways to mutate columns refer to this excellent blog [Data Wrangling Part 1: Basic to Advanced Ways to Mutate Columns](https://suzan.rbind.io/2018/02/dplyr-tutorial-2/), this covers th functions, `mutate_all()`, `mutate_if()` and `mutate_at`.
+
 
 ***
 

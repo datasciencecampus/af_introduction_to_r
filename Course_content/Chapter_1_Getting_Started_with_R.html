@@ -1610,12 +1610,12 @@ div.tocify {
 <p>There are many programming languages on the market that one can use, but R is becoming very widely used.</p>
 <p>There are several reasons for this trend:</p>
 <ul>
-<li>Free and open source, people can modify and share because its design is publicly accessible.</li>
-<li>Great Community Support, diverse and welcoming community. e.g. #rstats twitter community, numerous <a href="https://www.meetup.com/topics/r-programming-language/">R Meet Ups</a>.</li>
-<li>There are lots of <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">packages available</a> which contain implementations of processes and ready-made functions you might find useful</li>
-<li>Cross Platform, it can be used across a range of operating systems i.e Windows, Linux, OS.</li>
-<li>R has extensive and powerful graphics abilities. e.g <a href="https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535">The BBC use R to produce their graphics</a></li>
-<li>Powerful tool for communicating results, i.e.. <a href="https://rmarkdown.rstudio.com/">RMarkdown</a> makes its easy to turn your files into PDF’S, Power point presentations and <a href="https://shiny.rstudio.com/">Shiny</a> allows you to make beautiful interactive apps and dashboards.</li>
+<li><p>Free and open source, people can modify and share because its design is publicly accessible.</p></li>
+<li><p>Great Community Support, diverse and welcoming community. e.g. #rstats twitter community, numerous <a href="https://www.meetup.com/topics/r-programming-language/">R Meet Ups</a>.The R community is active online, and committed to create a friendly and welcoming environment for new everybody. This includes writing outsanding open access material that you can use to learn R.</p></li>
+<li><p>There are lots of <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">packages available</a> which contain implementations of processes and ready-made functions you might find useful</p></li>
+<li><p>Cross Platform, it can be used across a range of operating systems i.e Windows, Linux, OS.</p></li>
+<li><p>R has extensive and powerful graphics abilities. e.g <a href="https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535">The BBC use R to produce their graphics</a></p></li>
+<li><p>Powerful tool for communicating results, i.e.. <a href="https://rmarkdown.rstudio.com/">RMarkdown</a> makes its easy to turn your files into PDF’S, Power point presentations and <a href="https://shiny.rstudio.com/">Shiny</a> allows you to make beautiful interactive apps and dashboards.</p></li>
 </ul>
 <hr />
 <p><br></p>
@@ -1751,6 +1751,9 @@ div.tocify {
 <p><br></p>
 <p>Its best practise to leave comments in your code to what your code is actually doing as code can get quite long and complicated and other people may need to use it.</p>
 <p>We do this by using the <strong>hash (#)</strong>.</p>
+<blockquote>
+<p><strong>The keyboard shortcut for # in Macs is ALT + 3 and it’s ALT 35 if you have a numerical keyboard.</strong></p>
+</blockquote>
 <p>The <strong>hash (#)</strong> tells R not to run any of the text on that line to the right of the symbol. This is the standard way of commenting R code; it is <strong>VERY</strong> good practice to comment in detail so that you can understand later what you have done.</p>
 <p>Even if you are the only person to ever work on your code, it can be helpful to write yourself notes about what you were trying to do with a specific piece of code.</p>
 <p>Another important comment you can include is explaining reasons behind why you are doing it that way.</p>
@@ -1900,7 +1903,7 @@ div.tocify {
 </ul>
 <p><code>Integers</code> are whole numbers with no decimal place. for example:, -2, -1, 0, 1, 2, they are denoted in R by an <code>L</code> at the end of the number.</p>
 <p>A <code>Double</code> is treated as the general number type and by default R will treat all numbers you use as double unless you give it an explicit reason to think otherwise. So therefore, any number with or without a decimal place will be treated as double unless emphasised otherwise.</p>
-<p>These different types exist in R for operations behind the scenes. We don’t need to worry about them too much at the moment.</p>
+<p>These differences (dbl - Double, int - Integer) are not relevant for most beginners and pertain to how these values are stored in memory. We don’t need to worry about them too much at the moment.</p>
 <p>We can see they type by using the <strong><code>typeof()</code></strong> function or command.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">typeof</span>(<span class="dv">10</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
@@ -2082,6 +2085,7 @@ div.tocify {
 </div>
 <div id="variable-assignment" class="section level1">
 <h1><span class="header-section-number">4</span> Variable Assignment</h1>
+<p>R does not provide direct access to the computer’s memory but rather provides a number of specialized data structures we will refer to as objects.</p>
 <p>Everything in R is an object, We can assign these objects names, this is called a variable.</p>
 <p>Variables are an integral part of any programming language. Variables allow us to store and label data under a specific name. It is like a place holder, used to store information. Think of it as a container, they main purpose is to label and store the data in memory.</p>
 <p>We can assign a value to a variable using the <code>&lt;-</code> operator, for example in the below code where <code>weight_kg</code> is the variable name and the value <code>60</code> is the data being assigned to <code>weight_kg</code>.</p>
@@ -2381,6 +2385,8 @@ some.people.use.periods
 <a class="sourceLine" id="cb105-5" title="5"><span class="co">#or </span></a>
 <a class="sourceLine" id="cb105-6" title="6"></a>
 <a class="sourceLine" id="cb105-7" title="7"><span class="kw">help</span>(mean)</a></code></pre></div>
+<p>These help files are very useful, but also tend to contain a lot of technical jargon.</p>
+<p>In learning to use R, you will begin to understand this jargon, making it much easier for you to learn more in the future.</p>
 <hr />
 <p><br></p>
 </div>
@@ -2504,7 +2510,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

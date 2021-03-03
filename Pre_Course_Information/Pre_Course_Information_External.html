@@ -1581,6 +1581,7 @@ div.tocify {
 <p><br></p>
 <div id="general-information" class="section level1">
 <h1><span class="header-section-number">1</span> General Information</h1>
+<p>These instructions are for wider GSS Learners. ONS staff should use ONS instructions.</p>
 <p>This is an introductory level course for Introduction to R. This course will cover basic concepts and give you the confidence to work independently.</p>
 <p>No prior coding or statistical knowledge is assumed.</p>
 <p>The course is split into chapters; each chapter will build upon the previous one.</p>
@@ -1592,7 +1593,7 @@ div.tocify {
 </div>
 <div id="course-materials" class="section level1">
 <h1><span class="header-section-number">2</span> Course Materials</h1>
-<p>A folder containing the dataset and teaching files for the course will be provided or can be downloaded from the <a href="https://uksalearning.co.uk/login/index.php">Learning Hub</a> , please download and unzip this to folder you are familiar with.</p>
+<p>A folder containing the dataset and teaching files for the course will be provided or can be downloaded from the <a href="https://uksalearning.co.uk/login/index.php">Learning Hub</a> , please download and unzip this to folder you are familiar with. Further information for the Data Folder is detailed in a later section.</p>
 <p>To unzip the file save it to a location. Right click and choose Unzip file.</p>
 <p>The course materials are in several folders:</p>
 <ul>
@@ -1636,7 +1637,8 @@ div.tocify {
 <li><p>tidyverse</p></li>
 <li><p>readxl</p></li>
 <li><p>janitor</p></li>
-</ul></li>
+</ul>
+<p>N.B Please check your department’s guidance on installing packages.</p></li>
 </ul>
 <hr />
 <p><br></p>
@@ -1645,11 +1647,11 @@ div.tocify {
 <h1><span class="header-section-number">5</span> Pre-Course Check-list:</h1>
 <ul>
 <li><p>Install R and RStudio on your laptop <code>(see instructions below)</code></p></li>
-<li><p>Ensure RStudio can install packages <code>(see instructions below)</code></p></li>
-<li><p>Save the data from the ZIP file to your hard drive.</p></li>
-<li><p>Bring your laptop, charger, and your WIFI connector (contact Learning Academy immediately if you do not have a laptop)</p></li>
-<li><p>Please bring with you a water bottle, and a mug for hot drinks (not provided – however you have access to a hot water boiler. Please bring your own supplies)</p></li>
-<li><p>Arrive 10 – 15 minutes before the course starts to get set up and ready to learn</p></li>
+<li><p>Check your department’s guidelines for installing packages. Some departments like <strong>Home Office</strong> should <strong>NOT</strong> install packages. If you are able to install packages <code>(see instructions below)</code></p></li>
+<li><p>Save the data from the ZIP file to your hard drive in your working directory. <code>(see instructions below)</code></p></li>
+<li><p>Ensure you have access too your laptop, charger, and your WIFI connector.</p></li>
+<li><p>In Person Courses - Please bring with you a water bottle, and a mug for hot drinks (not provided – however you have access to a hot water boiler. Please bring your own supplies)</p></li>
+<li><p>In Person Courses - Arrive 10 – 15 minutes before the course starts to get set up and ready to learn</p></li>
 </ul>
 <hr />
 <p><br></p>
@@ -1664,18 +1666,27 @@ div.tocify {
 <h2>Set up R Studio</h2>
 <p>This is vital for installing the packages we’ll use during the course. Packages are bundles of code and functions that allow you to extend the capability of R.</p>
 <p>Your department may have its own rules about how you can download packages.</p>
-<p>Please ensure you’re aware of any local restrictions. For example, within ONS all our packages must be downloaded via an artifactory – you may have to request packages in your department. Please ensure you leave plenty of time before the course to have this actioned.</p>
+<style>
+div.pale_orange { background-color:#dd4814; border-radius: 5px; padding: 20px; color: white}
+</style>
+<div class="pale_orange">
+<p><br> If you are from the <strong>Home Office</strong> you will not be able to install packages directly. Please ensure you have installed all the relavant software from the software centre.</p>
+<p>Please ensure you’re aware of any local restrictions. For example, within ONS all our packages must be downloaded via an artifactory – you may have to request packages in your department. Please ensure you leave plenty of time before the course to have this actioned. <br></p>
+</div>
+<p><br></p>
 <p>Packages we use during this course are</p>
 <ul>
 <li><p>tidyverse</p></li>
 <li><p>readxl</p></li>
-<li><p>janitor</p></li>
+<li><p>janitor (optional)</p></li>
 </ul>
 <hr />
 <p><br></p>
 </div>
 <div id="installing-packages" class="section level2">
 <h2><span class="header-section-number">6.1</span> Installing Packages</h2>
+<p>Again, please ensure you are permitted to install packages before following these instructions.</p>
+<p>Departments like <strong>Home Office</strong> are not permitted to install packages.</p>
 <hr />
 <div id="open-r-studio" class="section level3 unnumbered">
 <h3><strong>Open R Studio</strong></h3>
@@ -1715,22 +1726,56 @@ div.tocify {
 <pre><code>## package &#39;tidyverse&#39; successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-##  C:\Users\bandai1\AppData\Local\Temp\RtmpeO0Ouz\downloaded_packages</code></pre>
+##  C:\Users\bandai1\AppData\Local\Temp\RtmpEBriTB\downloaded_packages</code></pre>
 <pre><code>## package &#39;readxl&#39; successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-##  C:\Users\bandai1\AppData\Local\Temp\RtmpeO0Ouz\downloaded_packages</code></pre>
+##  C:\Users\bandai1\AppData\Local\Temp\RtmpEBriTB\downloaded_packages</code></pre>
 <pre><code>## package &#39;janitor&#39; successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-##  C:\Users\bandai1\AppData\Local\Temp\RtmpeO0Ouz\downloaded_packages</code></pre>
+##  C:\Users\bandai1\AppData\Local\Temp\RtmpEBriTB\downloaded_packages</code></pre>
 <hr />
 <p><br></p>
 </div>
 </div>
 </div>
+<div id="save-the-data-to-the-working-directory" class="section level1">
+<h1><span class="header-section-number">7</span> Save the Data to the working directory</h1>
+<p>R has a powerful notion of the working directory. This is where R looks for files that you ask it to load, and where it will put any files that you ask it to save.</p>
+<hr />
+<p><br></p>
+<div id="find-your-working-directory." class="section level2">
+<h2><span class="header-section-number">7.1</span> Find your working directory.</h2>
+<p>In the R Console type <code>getwd()</code></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># Getting the working directory</span></a>
+<a class="sourceLine" id="cb5-2" title="2"></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="kw">getwd</span>()</a></code></pre></div>
+<pre><code>## [1] &quot;D:/Git/Intro_to_R_Refresh/Pre_Course_Information&quot;</code></pre>
+<p>This will display your working directory. For ONS staff this is likely to be <code>&quot;C:/My_RStudio/Workspace&quot;</code></p>
+<hr />
+<p><br></p>
+</div>
+<div id="download-the-data-from-the-learning-hub" class="section level2">
+<h2><span class="header-section-number">7.2</span> Download the Data from the Learning Hub</h2>
+<p>Access the <a href="https://learninghub.ons.gov.uk/course/view.php?id=538">Learning Hub Introduction to R Page</a> and find the section called Data + Downloads.</p>
+<p>Click on the top folder called “Data” and choose “Download Folder”.</p>
+<p>This will download a <strong>zipped</strong> file to your downloads folder.</p>
+<hr />
+<p><br></p>
+</div>
+<div id="move-the-unzipped-folder-to-your-working-directory" class="section level2">
+<h2><span class="header-section-number">7.3</span> Move the unzipped folder to your working directory</h2>
+<p>When you open this folder you will see another folder called “Data” - this is an unzipped folder (it looks like a standard folder rather than one with a zip symbol)</p>
+<p>Copy this unzipped folder (Right click and copy, or CTRL + C)</p>
+<p>Navigate to the location you found using <code>getwd()</code></p>
+<p>Paste the unzipped folder to this location. (Right click and choose paste, or CTRL + V)</p>
+<hr />
+<p><br></p>
+</div>
+</div>
 <div id="course-overview" class="section level1">
-<h1><span class="header-section-number">7</span> Course Overview</h1>
+<h1><span class="header-section-number">8</span> Course Overview</h1>
 <p>The course is divided into 6 chapters, over the 2 days we will cover,</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>Chapter One - Getting Started with R</strong></p>
@@ -1859,7 +1904,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

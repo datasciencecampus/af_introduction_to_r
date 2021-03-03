@@ -1277,6 +1277,192 @@ window.buildTabsets = function(tocID) {
     }
 });
 </script>
+<style type="text/css">
+.lightable-minimal {
+border-collapse: separate;
+border-spacing: 16px 1px;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-minimal td {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal th {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal thead tr:last-child th {
+border-bottom: 2px solid #00000050;
+empty-cells: hide;
+}
+.lightable-minimal tbody tr:first-child td {
+padding-top: 0.5em;
+}
+.lightable-minimal.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-minimal.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic {
+border-top: 0.16em solid #111111;
+width: 100%;
+margin-bottom: 10px;
+margin: 10px 5px;
+}
+.lightable-classic caption {
+color: #222222;
+}
+.lightable-classic td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic thead tr:last-child th {
+border-bottom: 0.10em solid #111111;
+}
+.lightable-classic tbody tr:last-child td {
+border-bottom: 0.14em solid #111111;
+}
+.lightable-classic.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic-2 {
+border-top: 3px double #111111;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-classic-2 caption {
+color: #222222;
+}
+.lightable-classic-2 td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic-2 th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic-2 tbody tr:last-child td {
+border-bottom: 3px double #111111;
+}
+.lightable-classic-2 thead tr:last-child th {
+border-bottom: 1px solid #111111;
+}
+.lightable-classic-2.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic-2.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #EEE;
+border-collapse: collapse;
+margin-bottom: 10px;
+}
+.lightable-material th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+}
+.lightable-material td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+border-top: 1px solid #eeeeee;
+}
+.lightable-material.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #ddd;
+}
+.lightable-material-dark {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #FFFFFF12;
+border-collapse: collapse;
+margin-bottom: 10px;
+background-color: #363640;
+}
+.lightable-material-dark th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF60;
+}
+.lightable-material-dark td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF;
+border-top: 1px solid #FFFFFF12;
+}
+.lightable-material-dark.lightable-hover tbody tr:hover {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody tr:nth-child(even) {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material-dark.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #FFFFFF12;
+}
+.lightable-paper {
+width: 100%;
+margin-bottom: 10px;
+color: #444;
+}
+.lightable-paper thead tr:last-child th {
+color: #666;
+vertical-align: bottom;
+border-bottom: 1px solid #00000020;
+line-height: 1.15em;
+padding: 10px 5px;
+}
+.lightable-paper td {
+vertical-align: middle;
+border-bottom: 1px solid #00000010;
+line-height: 1.15em;
+padding: 7px 5px;
+}
+.lightable-paper.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-paper.lightable-striped tbody tr:nth-child(even) {
+background-color: #00000008;
+}
+.lightable-paper.lightable-striped tbody td {
+border: 0;
+}
+</style>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -1637,8 +1823,8 @@ div.tocify {
 <a class="sourceLine" id="cb3-20" title="20"></a>
 <a class="sourceLine" id="cb3-21" title="21"><span class="co"># To Inspect the data</span></a>
 <a class="sourceLine" id="cb3-22" title="22">dplyr<span class="op">::</span><span class="kw">glimpse</span>(titanic)</a></code></pre></div>
-<pre><code>## Observations: 1,309
-## Variables: 11
+<pre><code>## Rows: 1,309
+## Columns: 11
 ## $ pclass            &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
 ## $ survived          &lt;dbl&gt; 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0...
 ## $ name_of_passenger &lt;chr&gt; &quot;Allen, Miss. Elisabeth Walton&quot;, &quot;Allison, Master...
@@ -1879,7 +2065,7 @@ div.tocify {
 <a class="sourceLine" id="cb15-13" title="13">    converted_kilogram &lt;-<span class="st"> </span>measurement <span class="op">/</span><span class="st"> </span><span class="dv">1000</span> </a>
 <a class="sourceLine" id="cb15-14" title="14">  </a>
 <a class="sourceLine" id="cb15-15" title="15">    <span class="co"># Appending to kilo_grams result vector</span></a>
-<a class="sourceLine" id="cb15-16" title="16">    kilograms &lt;-<span class="st"> </span><span class="kw">append</span>(kilograms, converted_kilogram) </a>
+<a class="sourceLine" id="cb15-16" title="16">    kilograms &lt;-<span class="st"> </span><span class="kw">append</span>(kilograms, <span class="dt">values =</span> converted_kilogram) </a>
 <a class="sourceLine" id="cb15-17" title="17">  </a>
 <a class="sourceLine" id="cb15-18" title="18">}</a>
 <a class="sourceLine" id="cb15-19" title="19"></a>
@@ -2129,6 +2315,9 @@ div.tocify {
 <a class="sourceLine" id="cb24-18" title="18">  </a>
 <a class="sourceLine" id="cb24-19" title="19">}</a></code></pre></div>
 <pre><code>## [1] &quot;We&#39;re the same height&quot;</code></pre>
+<blockquote>
+<p><strong>A good practical example of if and else statements can be seen here <a href="https://github.com/publichealthengland/excess-deaths/blob/master/R/function_visualisations.R">PHE</a></strong></p>
+</blockquote>
 <hr />
 <p><br></p>
 </div>
@@ -52295,13 +52484,12 @@ NA
 <a class="sourceLine" id="cb47-6" title="6">titanic_fare_level &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb47-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(</a>
 <a class="sourceLine" id="cb47-8" title="8">    <span class="dt">fare_level =</span> dplyr<span class="op">::</span><span class="kw">case_when</span>(</a>
-<a class="sourceLine" id="cb47-9" title="9">      dplyr<span class="op">::</span><span class="kw">between</span>(fare, <span class="dt">left =</span> <span class="dv">0</span>, <span class="dt">right =</span> <span class="dv">100</span>)<span class="op">~</span><span class="st"> &quot;cheap&quot;</span>,</a>
-<a class="sourceLine" id="cb47-10" title="10">      dplyr<span class="op">::</span><span class="kw">between</span>(fare, <span class="dt">left =</span> <span class="dv">100</span>, <span class="dt">right =</span> <span class="dv">200</span>) <span class="op">~</span><span class="st"> &quot;middling&quot;</span>,</a>
-<a class="sourceLine" id="cb47-11" title="11">      dplyr<span class="op">::</span><span class="kw">between</span>(fare, <span class="dt">left =</span> <span class="dv">200</span>, <span class="dt">right =</span> <span class="dv">300</span>) <span class="op">~</span><span class="st"> &quot;expensive&quot;</span>,</a>
-<a class="sourceLine" id="cb47-12" title="12">      fare <span class="op">&gt;</span><span class="st"> </span><span class="dv">300</span> <span class="op">~</span><span class="st"> &quot;very expensive&quot;</span>,</a>
-<a class="sourceLine" id="cb47-13" title="13">      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;unknown&quot;</span></a>
-<a class="sourceLine" id="cb47-14" title="14">      )</a>
-<a class="sourceLine" id="cb47-15" title="15">    )</a></code></pre></div>
+<a class="sourceLine" id="cb47-9" title="9">      fare <span class="op">&lt;</span><span class="st"> </span><span class="dv">100</span> <span class="op">~</span><span class="st"> &quot;cheap&quot;</span>,</a>
+<a class="sourceLine" id="cb47-10" title="10">      fare <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span> <span class="op">&amp;</span><span class="st"> </span>fare <span class="op">&lt;</span><span class="st"> </span><span class="dv">200</span> <span class="op">~</span><span class="st"> &quot;middling&quot;</span>,</a>
+<a class="sourceLine" id="cb47-11" title="11">      fare <span class="op">&gt;=</span><span class="st"> </span><span class="dv">200</span> <span class="op">&amp;</span><span class="st"> </span>fare <span class="op">&lt;</span><span class="st"> </span><span class="dv">300</span> <span class="op">~</span><span class="st"> &quot;expensive&quot;</span>,</a>
+<a class="sourceLine" id="cb47-12" title="12">      fare <span class="op">&gt;=</span><span class="st"> </span><span class="dv">300</span> <span class="op">~</span><span class="st"> &quot;very expensive&quot;</span>,</a>
+<a class="sourceLine" id="cb47-13" title="13">      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;unknown&quot;</span>)</a>
+<a class="sourceLine" id="cb47-14" title="14">    )</a></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100; ">
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -152659,7 +152847,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

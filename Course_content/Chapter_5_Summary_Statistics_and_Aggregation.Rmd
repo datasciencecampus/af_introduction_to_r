@@ -185,7 +185,7 @@ Like we saw with `mutate()` and other functions, we can compute multiple statist
 # Calculating muiltiple summary statisitcs within
 # the summarise function
 
-dplyr::summarise(.data = titanic, 
+my_summary_stats <- dplyr::summarise(.data = titanic, 
                  
                  median_fare = median(fare, na.rm = TRUE),
                  
@@ -198,6 +198,9 @@ dplyr::summarise(.data = titanic,
                  mean_age = mean(age_of_passenger, na.rm = TRUE),
                  
                  sd_age = sd(age_of_passenger, na.rm = TRUE))
+
+# To display the data
+my_summary_stats
 ```
 
 
@@ -206,6 +209,20 @@ dplyr::summarise(.data = titanic,
 The structure of our output above is not ideal. 
 
 We could restructure it using the `tidyr` functions: **`pivot_wider()`**, *`separate()`* and **`pivot_longer()`**. This is slightly advanced for what we have covered so far, but examples have been added to the additional materials document for those keen to know.
+
+>**Code show below to dmeonstrate, refer to additional material for more details as tidyr is not covered in this course**
+
+```{r}
+# to demonstrate pivot longer
+# the code below is just to demonstrate 
+# what it does, please refer to additional material for more info
+
+my_summary_stats %>% 
+pivot_longer(cols = median_fare:sd_age,
+             names_to = "statistic",
+             values_to = "value")
+```
+
 
 Functions which return more than one value won't work well with **`summarise()`**. 
 
@@ -387,12 +404,21 @@ number_of_men_and_women
 standard_fare <- dplyr::mutate(.data=titanic, 
                                std_fare = 
                                  (fare - mean(fare, na.rm = TRUE)) / sd(fare, na.rm = TRUE))
-
-# To Display the data
-
-standard_fare
-
 ```
+
+<br>
+
+```{r echo=FALSE}
+
+standard_fare %>% 
+  kable() %>% 
+   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  scroll_box(width = "100", height = "500px")
+ 
+```
+
+<br>
+
 
 ***
 
@@ -525,15 +551,16 @@ Here I have added some extra summary statistics as well, i.e standard deviation 
 
 median_fare <- titanic %>%
   
-  drop_na(embarked) %>%
+  tidyr::drop_na(embarked) %>%
   
-  group_by(pclass, embarked) %>%
+  dplyr::group_by(pclass, embarked) %>%
   
-  summarise(median_fare= median(fare, na.rm = TRUE),
+  dplyr::summarise(median_fare= median(fare, na.rm = TRUE),
             
             sd_fare = sd(fare, na.rm = TRUE),
             
-            count = n())
+            count = n()
+                  )
 
 # To display the data
 
@@ -558,24 +585,25 @@ I plan on presenting this data, so I want something more meaningful in place tha
 
 median_fare <- titanic %>%
   
-  drop_na(embarked) %>% 
+  tidyr::drop_na(embarked) %>% 
   
-  mutate(embarked = recode(embarked, 
+  dplyr::mutate(embarked = recode(embarked, 
                            "C" = "Cherbourg", 
                            "Q" = "Queenstown", 
-                           "S" = "Southampton")) %>%
+                           "S" = "Southampton")
+                ) %>%
   
-  group_by(pclass, embarked) %>%
+  dplyr::group_by(pclass, embarked) %>%
   
-  summarise(
+  dplyr::summarise(
     
-    median_fare= median(fare, na.rm = TRUE),
+                   median_fare= median(fare, na.rm = TRUE),
             
-    sd_fare = sd(fare, na.rm = TRUE),
+                   sd_fare = sd(fare, na.rm = TRUE),
             
-    count = n()
+                   count = n()
     
-  )
+                  )
 
 #To display the data
 
@@ -589,12 +617,84 @@ We can simply visualise our data in a chart. (We are not covering how to plot he
 
 <br>
 
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+test_theme <- theme_bw() +
+  # grid elements
+  theme(
+        panel.grid.major = element_line(color = "#BEBEBE"), # Adding major grid
+        panel.grid.minor = element_blank(), # Removing minor grid lines
+        panel.border = element_blank(), # Remove panel border
+        axis.line = element_blank(), # Remove axis lines
+        axis.ticks = element_blank(), # 
+        # Add axis line
+        #axis.line = element_line(colour = "black", # Colour to black
+                                 #size = 0.5), # Set thicness
+        
+        # Text elements
+        # Title
+        plot.title = element_text(size = 16, # Set font size
+                                  face = "bold", # Bold typeface
+                                  hjust = 0, # Left align
+                                  vjust = 2), # Raise slightly
+        # Subtitle
+        plot.subtitle = element_text(size = 14, # Font Size
+                                     margin = margin(t = 10) # Margin for plot text
+        ), 
+        # Caption
+        plot.caption = element_text(size = 9, # Font size
+                                    hjust = 1), # Right align 
+        # Axis titles
+        axis.title = element_text(size = 12), # Font size
+        
+        # Axis text
+        axis.text = element_text(size = 12), # Font size
+        
+        # Margin for axis text
+        axis.text.x = element_text(margin = margin(t = 5,
+                                                   b = 10)
+                                 
+        ),
+        legend.key = element_blank()  
+  )
+
+
+median_fare2 <- median_fare %>% 
+    dplyr::mutate(pclass = recode(pclass, 
+                           "1" = "First Class", 
+                           "2" = "Second Class", 
+                           "3" = "Third Class")
+                ) 
+
+```
+
+
 ```{r, echo=FALSE}
 
-ggplot2::ggplot(median_fare,
+
+ggplot2::ggplot(median_fare2,
        aes(x = pclass,
            y = count))+
-  geom_col(position="dodge",aes(fill=embarked))+theme_grey()
+  geom_col(key_glyph = draw_key_dotplot,position="dodge",aes(fill=embarked)) + 
+  #new_theme +
+  scale_fill_manual(
+    values = c("#27a0cc", "#118c7b", "#206095"),
+    labels = c("Southampton", "Queenstown", "Cherbourg"))+
+   #custom_theme+
+  #new_theme + # best practice theme
+ test_theme +
+  theme(
+    legend.position = "bottom", # ammending theme
+    #axis.title = element_text(hjust = 1), # align axis text
+    panel.grid.major.x = element_blank(),
+    legend.title = element_blank()
+  ) + # remove major gridlines on y axis
+  labs(
+    title = "Passenger Distribution By Port and Class", # labels
+    x = "Class",
+    y = "Number of Passengers"
+  )
 ```
 
 

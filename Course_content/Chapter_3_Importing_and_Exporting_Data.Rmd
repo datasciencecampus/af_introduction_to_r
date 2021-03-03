@@ -606,7 +606,9 @@ So above, first it is assumed that we want a sequence from = 1 that goes to = 10
 
 # Working Directory
 
-The **'working directory'** is the place that R will try to load files from, or save files to, without any more explicit instructions.
+R has a powerful notion of the working directory. This is where R looks for files that you ask it to load, and where it will put any files that you ask it to save. 
+
+RStudio shows your current working directory at the top of the console.
 
 ***
 
@@ -614,7 +616,7 @@ The **'working directory'** is the place that R will try to load files from, or 
 
 ## Checking Working Directory
 
-We can check the working directory by calling the function `getwd()`.
+You can print this out in R code by running `getwd()`.
 
 ```{r}
 # Getting the working directory
@@ -843,7 +845,7 @@ titanic %>%
 ### **Exercise**{-}
 
 
-1. Having read in the Titanic data above, have a look at the column `age_of_passenger`.
+1. Having read in the titanic data above, have a look at the column Age of passenger.
 
 
 2. What type of data is this column?
@@ -858,7 +860,7 @@ titanic %>%
 
 ### **Show Answer**{-}
 
-1. Have a look at the column `age_of_passenger`.
+1. Have a look at the column Age of passenger.
 
 
 
@@ -889,7 +891,7 @@ We can easily correct this by adding an additional argument when the reading the
 
 The code below, can be read as;
 
-> **Where there is nothing (""), a blank space (" ") or the word "NULL", class is it as a missing value.**
+> **Where there is the word "NULL", class is it as a missing value.**
 
 
 ```{r}
@@ -898,7 +900,7 @@ The code below, can be read as;
 # classed as missing values
 
 titanic <- readr::read_csv("../Data/titanic.csv", 
-                           na=c("", " ", "NULL"))
+                           na = "NULL")
 
 
 ```
@@ -924,6 +926,28 @@ titanic %>%
 We can now see that the NULL's in the age column have been replaced with NA's and the data has been read is as numerical data.
 
 On this instance our missing values have been classed as NULL, missing values in other datasets can be classed as other symbols or words. e.g.: `-`, `-9`.
+
+>**Sometimes there are a few lines of metadata at the top of the file. You can use skip = n to skip the first n lines**
+
+```{r, eval=FALSE}
+# Please NOTE this is not code
+# This will skip the first 5 rows from the csv
+
+dataset_name <- readr::read_csv("file path", 
+                           na = "NULL", # missing value
+                           skip = 5) # skips the first 5 rows
+```
+
+>**Alternatively we can also skip empty rows as below**
+
+```{r, eval=FALSE}
+# Please NOTE this is not code
+# Should blank rows be ignored altogether? i.e. If this option is TRUE then blank rows will not be # represented at all. If it is FALSE then they will be represented by NA values in all the columns.
+
+dataset_name <- readr::read_csv("file path", 
+                           na = "NULL", # missing value
+                           skip_empty_rows = TRUE) # skips empty rows
+```
 
 ***
 
@@ -1153,6 +1177,8 @@ ncol(titanic)
 
 names(titanic)
 
+summary(titanic)
+
 titanic[1,1] 
 
 titanic[3:6,] 
@@ -1194,6 +1220,8 @@ nrow(titanic) # Number of rows
 ncol(titanic) # Number of columns
 
 names(titanic) # Names of columns
+
+summary(titanic) # summary statistics for data
 
 # Selecting elements
 
@@ -1239,15 +1267,6 @@ So far we have gone through
  * Exporting data
     
  * Exploring data
-
-
-***
-
-<br>
-
-# Practice Project - Exploring Data
-
-
 
 
 

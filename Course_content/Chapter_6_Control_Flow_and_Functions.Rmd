@@ -403,7 +403,7 @@ for (measurement in grams) {
     converted_kilogram <- measurement / 1000 
   
     # Appending to kilo_grams result vector
-    kilograms <- append(kilograms, converted_kilogram) 
+    kilograms <- append(kilograms, values = converted_kilogram) 
   
 }
 
@@ -659,6 +659,9 @@ if (height == 5) {
 }
 ```
 
+
+>**A good practical example of if and else statements can be seen here [PHE](https://github.com/publichealthengland/excess-deaths/blob/master/R/function_visualisations.R)**
+
 ***
 
 <br>
@@ -826,6 +829,9 @@ for (each_number in 1:30) {
 # need to careful about our closing brackets!
 
 ```
+
+
+
 
 ***
 
@@ -1122,12 +1128,11 @@ Assign your tibble to the variable **titanic_fare_level**.
 titanic_fare_level <- titanic %>% 
   dplyr::mutate(
     fare_level = dplyr::case_when(
-      dplyr::between(fare, left = 0, right = 100)~ "cheap",
-      dplyr::between(fare, left = 100, right = 200) ~ "middling",
-      dplyr::between(fare, left = 200, right = 300) ~ "expensive",
-      fare > 300 ~ "very expensive",
-      TRUE ~ "unknown"
-      )
+      fare < 100 ~ "cheap",
+      fare >= 100 & fare < 200 ~ "middling",
+      fare >= 200 & fare < 300 ~ "expensive",
+      fare >= 300 ~ "very expensive",
+      TRUE ~ "unknown")
     )
 
 ```
