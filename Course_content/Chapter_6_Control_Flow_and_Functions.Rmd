@@ -187,11 +187,6 @@ For loops follow the basic structure below.
 
 # Basic Structure of a loop
 
-# Create an empty output vector
-# Which we will fill when the loop runs
-
-output <- c()
-
 # Creating the loop
 for (each_item in my_iterable) { 
   
@@ -204,9 +199,7 @@ for (each_item in my_iterable) {
 <br>
 
 
-* First we create an empty vector for our output.
-
-* Then we start the loop with the word `for`,
+* We start the loop with the word `for`,
 
 * Followed by `()` brackets where we first specify an index variable, `i` is commonly used but it can be anything that you want. Remember, we want to use clear and descriptive variable names. This is a place holder and corresponds to each different element as we move through the loop,
 
@@ -234,7 +227,39 @@ example_vector <- c(0, 1, 2, 3, 4, 5)
 
 ```
 
-We can then create our loop which doubles every value, prints it out, and stores it in the results vector.
+We can then create our loop which doubles every value and prints it out.
+
+```{r}
+# Creating the loop
+
+for (each_number in example_vector) {
+  
+  # Print the value at each step
+  print(each_number * 2)
+  
+  }
+
+```
+
+<br>
+
+![Basic for loop as detailed in the previous exercise](../Images/for_loop.png)\
+
+
+<br>
+
+***
+
+In the above example we simply printed our results in the console, if we wanted to store our result, we can simply create a data structure of our choice and use the append function, as shown below.
+
+
+The keyword `for` is followed by a variable that refers to each item in my iterable. I’ve called this variable **`each_number`**. It is good to be clear and explicit when naming variables, so they explain what the variable is. 
+
+The keyword `in` is followed by the iterable I want to loop over - `example_vector`.
+
+The output of my command is appended to `result`. The command here is to multiply each number in `example_vector` by 2. The **`append()`** function simply adds an element to the end of a vector. We first specify the vector we want to add to which is `result` and then specify the values that we want to add to it. Within the function this is set to the parameter `values`.
+
+
 
 ```{r}
 # Create an empty output
@@ -258,19 +283,6 @@ for (each_number in example_vector) {
 result
 
 ```
-
-The keyword `for` is followed by a variable that refers to each item in my iterable. I’ve called this variable **`each_number`**. It is good to be clear and explicit when naming variables, so they explain what the variable is. 
-
-The keyword `in` is followed by the iterable I want to loop over - `example_vector`.
-
-The output of my command is appended to `result`. The command here is to multiply each number in `example_vector` by 2. The **`append()`** function simply adds an element to the end of a vector. We first specify the vector we want to add to which is `result` and then specify the values that we want to add to it. Within the function this is set to the parameter `values`.
-
-<br>
-
-![Basic for loop as detailed in the previous exercise](../Images/for_loop.png)\
-
-
-<br>
 
 ***
 
@@ -412,7 +424,152 @@ for (measurement in grams) {
 kilograms
 ```
 
+<br>
 
+
+### Extension Exercise Loops{.tabset .tabset-fade}
+
+
+#### **Exercise**{-}
+
+1. Complete the code below, Use a for loop to load all the files in the data folder. Some steps have been given to you already.
+
+* We have loaded the packages tidyverse and fs
+
+* We then use the function `fs::dir_ls()` which will give a list of all the file paths in the data folder, we have    assgined this to `file paths`.
+
+* We have created an empty list called `my_datasets` which we fill with out datasets after the loop runs.
+
+* Your task is to create a for loop to loop through the `file_paths` and store each dataset as an element in the list `my_datasets`
+
+
+```{r}
+# Loading packages
+
+library(tidyverse) # For loading data and manipulation of data
+library(fs) # File system
+
+
+# Get a list of the file paths
+file_paths <- fs::dir_ls("../Data") 
+
+# Display the file paths
+file_paths
+
+# Create a list to store all the dataframes
+my_datasets <- list()
+```
+***
+
+<br>
+
+#### **Hint**{-}
+
+1. Complete the code below, Use a for loop to load all the files in the data folder. Some steps have been given to you already.
+
+* We have loaded the packages tidyverse and fs
+
+* We then use the function `fs::dir_ls()` which will give a list of all the file paths in the data folder, we have    assgined this to `file paths`.
+
+* We have created an empty list called `my_datasets` which we fill with out datasets after the loop runs.
+
+* Your task is to create a for loop to loop through the `file_paths` and store each dataset as an element in the list `my_datasets`
+
+
+```{r, eval=FALSE}
+# Loading packages
+
+library(tidyverse) # For loading data and manipulation of data
+library(fs) # File system
+
+
+# Get a list of the file paths
+file_paths <- fs::dir_ls("../Data") 
+
+# Display the file paths
+file_paths
+
+# Create a list to store all the dataframes
+my_datasets <- list()
+
+
+# Loop through file paths and store in the list
+
+for (each_file_path in file_paths){
+  
+  # adding a new element in the my datasets list
+  my_datasets <- command 
+  }
+
+```
+
+***
+
+<br>
+
+#### **Show Answer**{-}
+
+1. Complete the code below, Use a for loop to load all the files in the data folder. Some steps have been given to you already.
+
+* We have loaded the packages tidyverse and fs
+
+* We then use the function `fs::dir_ls()` which will give a list of all the file paths in the data folder, we have    assgined this to `file paths`.
+
+* We have created an empty list called `my_datasets` which we fill with out datasets after the loop runs.
+
+* Your task is to create a for loop to loop through the `file_paths` and store each dataset as an element in the list `my_datasets`
+
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse) # For loading data and manipulation of data
+library(fs) # File system
+
+
+# Get a list of the file paths
+file_paths <- fs::dir_ls("../Data") 
+
+# Display the file paths
+file_paths
+
+# Create a list to store all the dataframes
+my_datasets <- list()
+
+# Loop through file paths and store in the list
+
+for (each_file_path in file_paths){
+  
+  # adding a new element in the my datasets list
+  my_datasets[[each_file_path]] <- readr::read_csv(file = file_paths[[each_file_path]])
+}
+
+# To display the list of dataframes
+dplyr::glimpse(my_datasets)
+
+```
+
+If you want the datasets to be displayed as separate datasets in the environment window, you can use the `list2env()`, here we specify the list `my_datasets` and the argument `envir=.GlobalEnv`.
+
+```{r}
+# To display in environment as separate datasets
+list2env(my_datasets,envir=.GlobalEnv)
+```
+
+Like we said lists are the not the only way to do this, other options would be to use the `lapply()` or the `purrr::map()` function.
+
+To use either of these functions all we need is to provide the file path list and then the function we want to run on the list.
+
+>**Please note that when we use the function inside lapply or map we dont include the brackets as we are not passing any inputs into the function, hence we read_csv instead of read_csv(), so lapply/map is the function and read_csv is like an input/argument**
+
+```{r, eval=FALSE}
+# Using lapply to load multiple files
+my_datasets <- lapply(file_paths, read_csv)
+ 
+ 
+# Using lapply to load multiple files
+my_datasets <- purrr::map(file_paths, read_csv)
+```
+
+As you can see that we can we achieve the same result as the loop
 
 ***
 
@@ -447,7 +604,7 @@ In order to move through this decision process, we need to answer either "Yes" o
 
 A series of "Yes" answers will lead us to buy an orange that matches our set criteria.
 
-This links in with the logical or boolean data types that we covered in **Chapter One, Getting Started With R**,  as our logical statement has to be either `TRUE` or `FALSE`. 
+This links in with the logical or Boolean data types that we covered in **Chapter One, Getting Started With R**,  as our logical statement has to be either `TRUE` or `FALSE`. 
 
 To evaluate these we use comparison operators which we used in **Chapter 4 Working With Dataframes** where we used the `filter()` function.
 
@@ -1353,7 +1510,6 @@ For example, take the `mean()` function from base R that calculates the average 
 ```{r}
 
 # Creating a vector
-
 numbers <- 1:19
 
 # Calculating the mean 
@@ -1789,7 +1945,9 @@ plot_x_and_y(x, y, col = 'red',
 
 <br>
 
-## Descriptive Statistics Example
+## Functions Extension
+
+### Descriptive Statistics Example
 
 For example if you wanted get the summary statistics below; We could use the summarise function.
 
@@ -1903,7 +2061,7 @@ descriptive_statistics(titanic$sibsp)
 
 <br>
 
-## Applying Functions using `purrr`
+### Applying Functions using `purrr`
 
 Often when working with data, we want to manipulate multiple columns of data at once.
 
