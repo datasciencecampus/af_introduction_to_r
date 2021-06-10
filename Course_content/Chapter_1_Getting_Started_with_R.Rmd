@@ -990,7 +990,7 @@ distance <- distance + 5
 
 #### **Extension Exercise**{-}
 
-1. Using the distance and speed values from the exercise above, calculate the speed as below.
+1. Using the distance and time_value from the exercise above, calculate the speed as below.
 
 ```{r variable assignment extension exercise, eval=FALSE}
 
@@ -1086,7 +1086,7 @@ distance
 
 #### **Extension Exercise**{-}
 
-1. Using the distance and speed values from the exercise above, calculate the speed as below.
+1. Using the distance and time_value from the exercise above, calculate the speed as below.
 
 ```{r variable assignment extension  answer}
 
