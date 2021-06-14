@@ -681,6 +681,465 @@ purrr::modify_if(.x = list(1, 4, 7),
 
 ```
 
+***
+
+<br>
+
+# Lists 
+
+***
+
+## Definition
+
+Lists are similar data structure to vectors in that they are an ordered collection of elements. They differ to vectors because their elements can be of any type, including lists themselves!
+
+So why do you need lists? 
+
+A list in R is like a to-do list: the different items on that list most likely differ in length, characteristic, type of activity etc. It enables you to gather a variety of objects under one name in an ordered way.
 
 
+If you are going to use some modelling functions (like t.test() for the t test or lm() for linear models) you will notice that they produce lists as their return values.
+
+
+
+![\Image showing visual representation of a List](../Images/list.png)
+
+***
+
+<br>
+
+## Manipulating lists
+
+***
+
+### Creating Lists
+
+Similar to vectors, to create a list we have to use a function which returns a list. In this case, the name of the function is more fitting than **`c()`** for vectors. 
+
+To create a list we will use the **`list()`** function.
+
+Each of the contents will appear on a new line. Before each content will be its index number in double square brackets, as in [[1]], [[1]], 
+
+Index numbers simply represent the order in which each item is stored in the list.
+
+As you can see we have various items of within our list and they all keep their data type.
+
+
+```{r}
+# Creating a list
+
+shopping_list <- list(c("apples", "bananas", "strawberries"), 
+                      c(5,10,15), 
+                      20.2)
+
+# To Display the list
+
+shopping_list
+```
+Lists are really useful, flexible data structures. Their elements can be any object we've seen so far and any object you might ever see - including functions!
+
+
+***
+
+<br>
+
+### Naming List Elements
+
+In R certain data structures have an attribute called names. They allow us to label (or name) each element held by a data structure.
+
+The list elements can be given names and they can be accessed using these names.
+```{r}
+# Creating a list and naming the elements
+
+shopping_list <- list(fruits = c("apples", "bananas", "strawberries"), 
+                      amounts = c(5,10,15), 
+                      total_price = 20.2)
+
+# To display the list
+
+shopping_list
+
+```
+
+
+The above now displays the name associated with each element on top of the element.
+
+<br>
+
+We can also name our list using the **`names()`** function. This function allows us to get or set the name attribute of a data structure.
+
+```{r}
+
+# To display the names of our list
+
+names(shopping_list)
+
+# Adding names to our items in the list
+
+names(shopping_list)<- c("favourite_fruits", "amount_of_fruit", "total_price_of_shopping")
+
+# To display the list
+
+shopping_list
+```
+
+<br>
+
+
+As demonstrated above, lists can hold all kinds of data structures, including vectors and other lists, they can then have an interesting tree like structure which we can observe using the structure function, **`str()`** function.
+
+
+The structure function will return the contents stored in the list, as well as stating the data type of each item, for example, character, numeric, vector, etc.
+
+
+
+```{r}
+# Checking the structure of our list using the 
+# str() function
+
+str(shopping_list)
+```
+
+***
+
+<br>
+
+### Indexing a list
+
+To access an element from the list, we have to use square brackets containing the index of the element we are after, just like for vectors.
+
+You can select components using their name in `[[ ]]` or `$` sign (if you have a named list).
+
+```{r}
+
+# Selecting items in a list using the $ symbol
+
+shopping_list$favourite_fruits
+
+# Selecting items in a list using the name
+# for named lists
+
+shopping_list[["favourite_fruits"]]
+
+# Selecting items in a list using the index position
+
+shopping_list[[1]]
+
+```
+
+<br>
+
+To return a single element or multiple elements you need to specify both the `component [[]]` and the `element[]`.These components are all vectors, and you can access an element within a vector the usual way.
+
+```{r}
+# Selecting items in a list using the $ symbol
+
+shopping_list$favourite_fruits[1]
+
+# Selecting items in a list using the name
+# for named lists
+
+shopping_list[["favourite_fruits"]][1]
+
+# Selecting items in a list using the index position
+
+shopping_list[[1]][1]
+
+```
+***
+
+<br>
+
+### Adding Elements to a List
+
+Similar to vectors again, to add an element, we can either index to a blank space in the list or use the append() function:
+
+```{r}
+
+# To display the list
+
+shopping_list
+
+```
+
+```{r}
+# Adding an item to a list by position
+
+shopping_list$best_biscuits <- "custard creams"
+
+
+# To display the list
+
+shopping_list
+
+```
+
+```{r}
+# Adding an item to a list using the append function
+
+shopping_list <- append(shopping_list, "milk")
+
+# To display the list
+
+shopping_list
+```
+
+
+<br>
+
+### Exercise{.tabset .tabset-fade}
+
+
+#### **Exercise**{-}
+
+
+1. Create the list below.
+
+```{r}
+# Creating a list with multiple items
+
+chocolate <- list(brand = "celebrations", 
+                  chocolate_bar = c("mars", "milky way", "bounty", "twix", "maltesers"), 
+                  rating = c("worst",  "terrible", "awful", "nice", "best"))
+```
+
+2. Find out the names of the list, using the `names()` function.
+
+3. Check the structure using the `str()` function.
+
+4. Select chocolate bars.
+
+5. Add an item called price.
+
+<br>
+
+
+
+##### **Extension Exercise**{-}
+
+
+1. Select your favourite chocolate from the options.
+
+
+2. Add a new chocolate bar.
+
+
+***
+
+<br>
+
+
+#### **Show Answer**{-}
+
+1. Create the list below.
+
+```{r}
+
+# Creating a named list with multiple items
+
+chocolate <- list(brand = "celebrations", 
+                  chocolate_bar = c("mars", "milky way", "bounty", "twix", "maltesers"), 
+                  rating = c("worst",  "terrible", "awful", "nice", "best"))
+```
+
+<br>
+
+2. Find out the names of the list, using the `names()` function.
+
+```{r}
+# Finding the names 
+
+names(chocolate)
+
+
+```
+
+<br>
+
+3. Check the structure using the `str()` function.
+
+```{r}
+# Checking the structure
+
+str(chocolate)
+
+```
+
+<br>
+
+4. Select chocolate bars.
+
+```{r}
+# Select chocolate bars
+
+chocolate$chocolate_bar
+
+```
+
+<br>
+
+5. Add item called price.
+
+```{r}
+# Updating the list by adding price
+
+chocolate$cost <- "price"
+
+# To display the list
+
+chocolate
+
+
+```
+
+
+
+<br>
+
+##### **Extension Exercise**{-}
+
+1. Select your favourite chocolate from the options.
+
+```{r}
+# Select my favourite chocolate bar
+
+chocolate$chocolate_bar[3]
+
+chocolate[["chocolate_bar"]][3]
+
+
+chocolate[[2]][3]
+
+```
+
+
+<br>
+
+2. Add a new chocolate bar.
+
+```{r}
+
+chocolate$chocolate_bar[5]<- "turkish delight"
+
+# To display the list
+
+chocolate
+
+```
+
+
+# Projects{.tabset .tabset-fade}
+
+## Non-ONS {-}
+
+It is highly recommended to manage your R work in "projects". When you’re starting work on a new project, choose **‘New project…’** from the File menu and **‘New Directory’** to create a directory for the project.
+
+
+If you already have data related to the project in an existing directory, you can choose that option instead.
+
+
+To work on this project in the future, you can select **‘Open Project…’** or **‘Recent Projects’** from the File menu and browse to the desired project.
+
+This will ensure that your working directory will be set to the project folder, meaning you won’t have to worry about full file paths for data you are reading in or writing to that same folder.
+
+***
+
+<br>
+
+## ONS {-}
+
+Within ONS, the default R working directory is within the `C:` drive. 
+
+
+
+**C drive -> My_RStudio -> Workspace**
+
+
+It is good practice to organise your folders. 
+
+As shown in the example below, where you include all files to a project in the same folder `Project A`
+
+<br>
+
+![](../Images/level1.PNG)
+
+<br>
+
+Within the folder, it is good practice to further organise your files within folders, as shown below.
+
+* The data folder would contain your raw and processed data.
+
+* Images would contains any photos you are using.
+
+* Scripts would contain all the R files. You don't have to stick with this exact folder structure, you could add in additional folders, for example an output folder.
+
+<br>
+
+![](../Images/level2.PNG)
+
+***
+
+<br>
+
+
+## Relative File Paths
+
+We can also use what's called a relative file path to reference files. 
+
+These file paths are relative to whatever the working directory is at the time.
+
+For example if my full or absolute location is:
+
+```{r, eval=FALSE}
+"C:/My_RStudio/Workspace/Intro_to_R/Data/titanic.csv"
+```
+
+This is clear and explicit about where the data is stored. However if you were to use this link you would need to change elements of it – for example you might have your `Intro_to_R` in a different folder.
+
+I can use what’s called a relative path - the location relative to the working directory.
+
+For example, if my working directory is `Intro_to_R`, I can load the same file as above using the path:
+
+```{r,eval=FALSE}
+"Data/titanic.csv"
+```
+
+Think of a file structure like a tree diagram. 
+
+From a given folder you can either move up or down the file structure.
+
+```
+Introduction_to_R
+|    
+|
+ ---Course_content
+|       Intro to R - Chapter 1.Rmd
+|       Intro to R - Chapter 2.Rmd
+|       Intro to R - Chapter 3.Rmd
+|
+ ---Data
+|       titanic.csv
+|       police_data.xlsx
+|
+ ---Pre_course_information
+|       ons
+|       external    
+|           
+|         
+
+```
+
+If our current working directory is `'Course_content'`, and we want to switch to `'Data'`, we can use the relative path:
+
+```{r, eval = FALSE}
+
+("../Data")
+```
+This effectively says, first go up a directory (`..`), so from `Course_content` to `Intro_to_R`. Then go down a directory into `Data`.
+
+>**Going up a directory always requires `..`, whereas going down a directory always requires you to name the intended directory.**
+
+The relative path will work for any user – as long as their working directory is set to the `'Course_content'` in the Into_to_R folder.
+
+<br>
 
