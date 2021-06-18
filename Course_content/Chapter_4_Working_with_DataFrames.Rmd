@@ -411,23 +411,44 @@ We can sort the column `fare` into ascending order with the code below.
 titanic_sorted <- dplyr::arrange(.data = titanic,
                                   fare)
 
-# This shows us some of the sorted data.
-
-head(titanic_sorted$fare)
-
-# This shows us some of the unsorted data.
-
-head(titanic$fare)
 ```
+
+<br>
+
+Lets look at the `fare` column before sorting the data.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(kableExtra)
+
+titanic %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "700px")
+```
+
+
+<br>
+
+<br>
+
+Lets now look at the `fare` column after sorting it. If we don't specify how we are sorting, the default is to sort in *ascending* order.
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+titanic_sorted %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "700px")
+```
+
+<br>
+
+<br>
 
 `.data` is the argument name for the data argument in `dplyr`.
 
 
 It is optional, but can help us read the code more effectively.
-
-<br>
-
-If we don't specify how we are sorting, the default is to sort in *ascending* order.
 
 
 To sort in descending order, we use the code below:
@@ -440,18 +461,16 @@ We input the data we want to sort, and how we are going to sort it, by specifyin
 
 titanic_sorted <- dplyr::arrange(.data = titanic,
                                   desc(fare))
-
-# This shows us some of the sorted data.
-
-head(titanic_sorted$fare)
-
-
-# This shows us some of the unsorted data.
-
-head(titanic$fare)
 ```
 
 <br>
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+titanic_sorted %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "700px")
+```
 
 ## Exercise{.tabset .tabset-fade}
 
@@ -811,7 +830,7 @@ It is important to note, all `tidyverse` functions work on and return a copy of 
 4. Can you select the columns that end in the word "passenger"?
 
 
-5. Can you select, `name_of_passenger`, `age_of_passenger` and then every other column?
+5. Can you reorder the columns so that, `name_of_passenger`, `age_of_passenger` are the first 2 columns? **Hint: You can use the relocate function**
 
 ***
 
@@ -860,12 +879,7 @@ titanic_select_exercise <- dplyr::select(.data = titanic,
    You might want to use something that helps you select the words of the columns, by what those     columns `ends_with()`.
 
 
-5. Can you select, `name_of_passenger`, `age_of_passenger` and everything else
-
-
-   This is a great way to reorder the columns, if you wanted to set 2 columns to be next to each     other.
-
-   When you select columns, its places them in the order that we select them, HINT You might want    to select something that helps you select all the columns.
+5. Can you reorder the columns so that, `name_of_passenger`, `age_of_passenger` are the first 2 columns? **Hint: You can use the relocate function**
 
 
 ***
@@ -968,9 +982,26 @@ names(titanic_select_exercise)
 <br>
 
 
-5. Can you select, `name_of_passenger`, `age_of_passenger` and everything else
+5. Can you reorder the columns so that, `name_of_passenger`, `age_of_passenger` are the first 2 columns? **Hint: You can use the relocate function**
 
-   This is a great way to reorder the columns, if you wanted to set 2 columns to be next to each     other.
+You will see that is lots of different ways to do this, you can use the function `relocate()`
+
+```{r}
+# Relocating data
+
+titanic_select_exercise <- dplyr::relocate(.data = titanic,
+                                           name_of_passenger,
+                                           age_of_passenger)
+
+# To display the data
+
+titanic_select_exercise 
+
+```
+
+
+You can also use the `select()` function, here we just have add the helper function `everything()` which selects the rest of the columns.
+
 
 ```{r}
 
@@ -1742,7 +1773,9 @@ recode_example %>%
 
 #### **Exercise**{-}
 
-1. Create a logical variable called 'child', it should have the value `TRUE` when the passenger is under 18 and `FALSE` otherwise.
+1. Create a new column, called `fare_dollars`, in this column we should have the fare converted to dollars, the exchange rate is £1 to $1.39.
+
+2. Round the `fare-dollars` column
 
 
 ***
@@ -1751,13 +1784,22 @@ recode_example %>%
 
 #### **Hint**{-}
 
-1. Create a logical variable called 'child', it should have the value `TRUE` when the passenger is under 18 and `FALSE` otherwise.
+1. Create a new column, called `fare_dollars`, in this column we should have the fare converted to dollars, the exchange rate is £1 to $1.39.
 
 ```{r, eval = FALSE}
 # Generating new variables
 
-titanic_mutate_exercise <- dplyr::mutate(data,
-                                         new column name = content of new column)
+fare_dollars <- dplyr::mutate(data,
+                              new column name = content of new column)
+```
+
+2. Round the `fare_dollars` column
+
+```{r, eval=FALSE}
+# Generating new variables
+
+round_fare <- dplyr::mutate(data,
+                            new column name = content of new column)
 ```
 
 
@@ -1767,23 +1809,42 @@ titanic_mutate_exercise <- dplyr::mutate(data,
 
 #### **Show Answer**{-}
 
-1. Create a logical variable called 'child', it should have the value `TRUE` when the passenger is under 18 and `FALSE` otherwise.
+1. Create a new column, called `fare_dollars`, in this column we should have the fare converted to dollars, the exchange rate is £1 to $1.39.
 
 ```{r}
 # Generating new variables
 
-titanic_mutate_exercise <- dplyr::mutate(.data = titanic,
-                                         child = age_of_passenger < 18)
-
+fare_dollars <- dplyr::mutate(.data = titanic,
+                              fare_dollars = fare * 1.39)
 ```
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 
-titanic_mutate_exercise %>%
+fare_dollars %>%
   kable() %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
   scroll_box(width = "100", height = "300px")
 ```
+
+<br>
+
+2. Round the `fare_dollars` column.
+
+```{r}
+# Generating new variables
+
+round_fare <- dplyr::mutate(.data = titanic,
+                            fare_dollars = round( fare * 1.39))
+```
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+
+round_fare %>%
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
+  scroll_box(width = "100", height = "300px")
+```
+
+<br>
 
 For more advanced ways to mutate columns refer to this excellent blog [Data Wrangling Part 1: Basic to Advanced Ways to Mutate Columns](https://suzan.rbind.io/2018/02/dplyr-tutorial-2/), this covers th functions, `mutate_all()`, `mutate_if()` and `mutate_at`.
 
@@ -1796,7 +1857,7 @@ For more advanced ways to mutate columns refer to this excellent blog [Data Wran
 
 We can also use the **`mutate()`** function to delete data.
 
-In the above exercise, we added a new column called `child` to our titanic data set.
+We can add a new column called `child` to our titanic data set.
 
 We can quickly see the names of our data set using the the **`names()`** function.
 
@@ -1852,26 +1913,26 @@ The short cut for this operator is CTL + SHIFT + M
 Up until now if we wanted to perform a sequence of actions on data, we'd have do something along the lines of:
 
 ```{r}
-# filtering the titanic dataset
 
-filter_male <- dplyr::filter(.data = titanic, 
-                             sex_of_passenger == 'male')
+# Filtering the titanic dataset  
+   
+first_class_survivors <- dplyr::filter(.data = titanic,
+                                        pclass == 1 & survived == 1)
 
-# Adding a new column adult men to the filtered data
+# Selecting only the columns needed 
+# Note here I am using first_class_survivors as my dataset
+  
+selected_first_class_survivors <- dplyr::select(.data = first_class_survivors,
+                                                 name_of_passenger, 
+                                                 age_of_passenger, 
+                                                 embarked, 
+                                                 fare)
 
-mutate_age <- dplyr::mutate(.data = filter_male, 
-                            adult_men = age_of_passenger > 18)
-
-# Sorting the data with the new added column
-
-arrange_fare <- dplyr::arrange(.data = mutate_age, 
-                               desc(fare)) 
-
-# filtering the sorted data with the new column
-
-filter_adult_men <- dplyr::filter(.data = arrange_fare,
-                                  adult_men == TRUE)
-
+# Sorting the data
+# Note here I am using selected_class_survivors as my dataset
+   
+sorted_first_class_survivors <- dplyr::arrange(.data = selected_first_class_survivors,
+                                                desc(age_of_passenger))  
 
 ```
 
@@ -1879,7 +1940,7 @@ filter_adult_men <- dplyr::filter(.data = arrange_fare,
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 
-filter_adult_men %>%
+sorted_first_class_survivors %>%
   kable() %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
   scroll_box(width = "100", height = "300px")
@@ -1893,21 +1954,19 @@ With the pipe operator, this simplifies to:
 ```{r}
 # Chaining dplyr commands
 
-filter_adult_men <- titanic %>% 
-  
-  dplyr::filter(sex_of_passenger == 'male') %>% 
-  
-  dplyr::mutate(adult_men = age_of_passenger > 18) %>% 
-  
-  dplyr::arrange(desc(fare)) %>% 
-  
-  dplyr::filter(adult_men == TRUE)
+sorted_first_class_survivors <- titanic %>%
+                                dplyr::filter(pclass == 1 & survived == 1) %>% 
+                                dplyr::select(name_of_passenger, 
+                                              age_of_passenger,
+                                              embarked, 
+                                              fare) %>% 
+                                dplyr::arrange(desc(age_of_passenger)) 
 ```
 
 
-```{r, echo = FALSE, message = FALSE, warning = FALSE, eval=FALSE}
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 
-filter_adult_men %>%
+sorted_first_class_survivors %>%
   kable() %>% 
   kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>% 
   scroll_box(width = "100", height = "300px")
@@ -1915,7 +1974,7 @@ filter_adult_men %>%
 
 <br>
 
->**Notice how the `mutate()`, `arrange()` and `filter()` functions don't use the .data argument as it is being piped in from the previous command!**
+>**Notice how the `select()`, `arrange()` and `filter()` functions don't use the .data argument as it is being piped in from the previous command!**
 
 
 As you can see the pipe operator helps us:
@@ -1940,7 +1999,7 @@ The pipe function is one of the most powerful features of the `tidyverse`. In fa
 Lets practice piping a few `dplyr` functions.
 
 
-1. Can you use at least 2 `dplyr` commands within a pipe? 
+1. Can you find the names of the 8 oldest passengers who embarked in Southampton?
 
 ***
 
@@ -1948,19 +2007,22 @@ Lets practice piping a few `dplyr` functions.
 
 #### **Hint**{-}
 
-Here are some of the dplyr commands you can use.
+1. Can you find the names of the 8 oldest passengers who embarked in Southampton?
 
 ```{r, eval = FALSE}
 
-dataframe_name <- titanic %>%
-  
-  dplyr::filter() %>%
-  
-  dplyr::mutate() %>%
-  
-  dplyr::select() %>%
-  
-  dplyr::arrange()
+# Chaining dplyr commands using the %>%
+
+Southampton_oldest_passengers <- titanic %>%
+  dplyr::filter() %>% # where they got on the boat
+  dplyr::select() %>% # keep only columns we need
+  dplyr::arrange() %>% # sort the data
+  head(n = 8) # This will only show the top 8
+
+
+#To display the data
+
+Southampton_oldest_passengers
 ```
 
 ***
@@ -1971,25 +2033,21 @@ dataframe_name <- titanic %>%
 
 #### **Show Answer**{-}
 
+1. Can you find the names of the 8 oldest passengers who embarked in Southampton?
+
 ```{r}
 # Chaining dplyr commands using the %>%
 
-age_survived_fare <- titanic %>%
-  
-  dplyr::filter(survived == 1) %>%
-  
-  dplyr::mutate(rounded_fare = (round(fare))) %>%
-  
-  dplyr::mutate(rounded_age = (round(age_of_passenger))) %>%
-  
-  dplyr::select(c(name_of_passenger, rounded_age, rounded_fare)) %>%
-  
-  dplyr::arrange(desc(rounded_age))
+Southampton_oldest_passengers <- titanic %>%
+  dplyr::filter(embarked == "S") %>%
+  dplyr::select(name_of_passenger, age_of_passenger) %>%
+  dplyr::arrange(desc(age_of_passenger)) %>% 
+  head(n = 8)
 
 
 #To display the data
 
-age_survived_fare
+Southampton_oldest_passengers
 ```
 
 
@@ -2287,7 +2345,7 @@ You can use the **`bind_rows()**` function.
 ```{r}
 # Creating vectors
 
-name <- c("Paul","ian", "almas", "shakeel")
+name <- c("Paul","Katherine", "Almas", "Pragya")
 
 band <- c("Beatles","Beatles", "Stones", "Stones")
 
@@ -2327,7 +2385,7 @@ binded_rows_data
 
 <br>
 
-We can see our new additions - Paul, ian, almas and shakeel here now.
+We can see our new additions - Paul, Katherine, Almas and Pragya here now.
 
 Here we’re assigning the output to a new Data Frame – `binded_rows_data.
 
@@ -2352,7 +2410,7 @@ We can see that Paul was duplicated and is not included when we use union instea
 
 <br>
 
-
+<hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
 
 
 # Summary - Working with Data frames{-}
@@ -2370,7 +2428,7 @@ We can see that Paul was duplicated and is not included when we use union instea
 
 
 
-***
+<hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1">
 
 <br>
 

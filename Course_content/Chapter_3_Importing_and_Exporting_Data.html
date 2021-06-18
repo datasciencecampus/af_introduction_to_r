@@ -1863,7 +1863,7 @@ Course Release: June 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Hel
 <p>You should make it a habit to check out the help files when you are using a function for the first time so you know what the default settings are and to see what things you can control with different function arguments.</p>
 <p>Functions follow the form:</p>
 <p><code>functionName(argument1 = value1, argument2 = value2, and so on)</code></p>
-<p>Let’s take a look at some of the built-in functions R has for carrying out basic statistics/analysis.</p>
+<p>Let’s take a look at an example of a function.</p>
 <hr />
 <p><br></p>
 <div id="how-functions-work-the-seq-function" class="section level2">
@@ -1950,9 +1950,14 @@ R installs packages from <a href="https://cran.r-project.org/">CRAN</a> – <str
 <p>Your department may have a slightly different way of installing packages.</p>
 <p>R has over 15,000 packages on CRAN, so it would be impossible to have them all downloaded on your machine. You can also install packages that are not part of CRAN; but please be aware of the source and quality; like any software these can damage your machine if they are malicious.</p>
 <hr />
+<div id="cran-task-views" class="section level2">
+<h2><span class="header-section-number">3.1</span> Cran Task Views</h2>
+<p>If you want to find what packages you can use for what task, you can use <a href="https://cran.r-project.org/web/views/">Cran task Views</a>, this gives a brief overview of the packages you can use.</p>
+<hr />
 <p><br></p>
+</div>
 <div id="ons-note" class="section level2">
-<h2><span class="header-section-number">3.1</span> ONS Note!</h2>
+<h2><span class="header-section-number">3.2</span> ONS Note!</h2>
 <p>Within ONS we use a mirrored version of CRAN on our software repository called <strong>Artifactory</strong>.</p>
 <p>Behind the scenes our R installation is set to install from <em>Artifactory</em> rather than <em>CRAN</em>.</p>
 <p>This requires our up to date windows username and password. Without this the package will not install. This is why it is important for ONS staff to make sure their password is up to date in either your settings or your .RProfile.</p>
@@ -1960,7 +1965,7 @@ R installs packages from <a href="https://cran.r-project.org/">CRAN</a> – <str
 <p><br></p>
 </div>
 <div id="installing-packages" class="section level2">
-<h2><span class="header-section-number">3.2</span> Installing Packages</h2>
+<h2><span class="header-section-number">3.3</span> Installing Packages</h2>
 <p>To install a package, we use the code below.</p>
 <blockquote>
 <p><strong>It is important we use this WHOLE line of code every time we install a package.</strong></p>
@@ -1977,7 +1982,7 @@ R installs packages from <a href="https://cran.r-project.org/">CRAN</a> – <str
 <p>Generally a message will mean there is no problem, a warning is usually fine (generally) and an error is not fine, means that something is wrong.</p>
 <p><br></p>
 <div id="exercise" class="section level3 tabset tabset-fade">
-<h3><span class="header-section-number">3.2.1</span> Exercise</h3>
+<h3><span class="header-section-number">3.3.1</span> Exercise</h3>
 <div id="exercise-1" class="section level4 unnumbered">
 <h4><strong>Exercise</strong></h4>
 <ol style="list-style-type: decimal">
@@ -2012,7 +2017,7 @@ R installs packages from <a href="https://cran.r-project.org/">CRAN</a> – <str
 </div>
 </div>
 <div id="loading-packages" class="section level2">
-<h2><span class="header-section-number">3.3</span> Loading Packages</h2>
+<h2><span class="header-section-number">3.4</span> Loading Packages</h2>
 <p>Think of packages as owning a book; you purchase (install) the book once, and after that when you need to reference it you can pick it off your bookshelf.</p>
 <p>In R we call this loading, and you should always load packages at the very top of your script.</p>
 <p>To load a package, use the code below;</p>
@@ -2024,7 +2029,7 @@ R installs packages from <a href="https://cran.r-project.org/">CRAN</a> – <str
 </blockquote>
 <p><br></p>
 <div id="exercise-2" class="section level3 tabset tabset-fade">
-<h3><span class="header-section-number">3.3.1</span> Exercise</h3>
+<h3><span class="header-section-number">3.4.1</span> Exercise</h3>
 <div id="exercise-3" class="section level4 unnumbered">
 <h4><strong>Exercise</strong></h4>
 <ol style="list-style-type: decimal">
@@ -2070,14 +2075,14 @@ R installs packages from <a href="https://cran.r-project.org/">CRAN</a> – <str
 </div>
 </div>
 <div id="when-to-load-specific-packages" class="section level2">
-<h2><span class="header-section-number">3.4</span> When to load specific packages</h2>
+<h2><span class="header-section-number">3.5</span> When to load specific packages</h2>
 <p>Returning to our book analogy, not all of the books you own are relevant to your project. If you are working on a gardening project, a cookbook isn’t very helpful and you wouldn’t need to use it; it’s exactly the same for your R project.</p>
 <p>We’re not using <code>janitor</code> in this session so we are not going to load it yet.</p>
 <hr />
 <p><br></p>
 </div>
 <div id="r-and-package-versions" class="section level2 tabset tabset-fade">
-<h2><span class="header-section-number">3.5</span> R and Package Versions</h2>
+<h2><span class="header-section-number">3.6</span> R and Package Versions</h2>
 <p>You may have gotten a message that says,</p>
 <p><strong>package ‘readr’ was built under R version 3.4.4</strong></p>
 <p>This means that we are using an older version of R than the one the package is built for.</p>
@@ -96923,7 +96928,7 @@ WALES
 <span id="cb47-29"><a href="#cb47-29"></a>titanic<span class="op">$</span></span>
 <span id="cb47-30"><a href="#cb47-30"></a><span class="st">  </span></span>
 <span id="cb47-31"><a href="#cb47-31"></a><span class="kw">unique</span>(titanic<span class="op">$</span>Pclass)</span></code></pre></div>
-<hr />
+<hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1">
 <p><br></p>
 </div>
 <div id="show-answer-4" class="section level3 unnumbered">
@@ -96961,7 +96966,7 @@ WALES
 <span id="cb48-31"><a href="#cb48-31"></a>titanic<span class="op">$</span>Fare <span class="co"># Selecting a column from the dataset</span></span>
 <span id="cb48-32"><a href="#cb48-32"></a></span>
 <span id="cb48-33"><a href="#cb48-33"></a><span class="kw">unique</span>(titanic<span class="op">$</span>Pclass) <span class="co"># Tells us the unique elements of a variable.</span></span></code></pre></div>
-<hr />
+<hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1">
 <p><br></p>
 </div>
 </div>
@@ -96992,7 +96997,7 @@ WALES
 <li><p>Exporting data</p></li>
 <li><p>Exploring data</p></li>
 </ul>
-<hr />
+<hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1">
 <p><br></p>
 </div>
 <div id="next-chapter" class="section level1 unnumbered">

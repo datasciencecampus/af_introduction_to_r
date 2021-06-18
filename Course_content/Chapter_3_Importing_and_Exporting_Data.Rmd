@@ -78,7 +78,7 @@ Functions follow the form:
 
 `functionName(argument1 = value1, argument2 = value2, and so on)`
 
-Let's take a look at some of the built-in functions R has for carrying out basic statistics/analysis.
+Let's take a look at an example of a function.
 
 
 ***
@@ -223,6 +223,13 @@ R installs packages from [CRAN](https://cran.r-project.org/) – **The Comprehen
 Your department may have a slightly different way of installing packages.
 
 R has over 15,000 packages on CRAN, so it would be impossible to have them all downloaded on your machine. You can also install packages that are not part of CRAN; but please be aware of the source and quality; like any software these can damage your machine if they are malicious.
+
+***
+
+## Cran Task Views
+
+If you want to find what packages you can use for what task, you can use [Cran task Views](https://cran.r-project.org/web/views/), this gives a brief overview of the packages you can use.
+
 
 ***
 
@@ -1105,7 +1112,8 @@ unique(titanic$Pclass)
 
 
 ```
-***
+
+<hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
 
 <br>
 
@@ -1150,7 +1158,7 @@ unique(titanic$Pclass) # Tells us the unique elements of a variable.
 
 ```
 
-***
+<hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
 
 <br>
 
@@ -1184,7 +1192,7 @@ So far we have gone through
 
 
 
-***
+<hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
 
 <br>
 

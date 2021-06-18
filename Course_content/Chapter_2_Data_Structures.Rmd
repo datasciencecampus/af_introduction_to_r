@@ -39,7 +39,7 @@ htmltools::img(src = knitr::image_uri("../images/AF_DSC_banner.png"),
 <hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
 
 <!--- Date course last updated and a contact for any help needed. --->
-<center> Course Release: MONTH YEAR | <a href="mailto:GSS.Capability@statistics.gov.uk=Help with course">Need help? Contact the team.</a></center>
+<center> Course Release: June 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Help with course">Need help? Contact the team.</a></center>
 
 
 ```{r setup, include=FALSE}
@@ -93,7 +93,7 @@ my_friends <- "ian"
 
 ```
 
-Suppose you wanted to store more than one value (more friends) other than `"ian"`. e.g "jonathon", "hannah", "mike", "almas".
+Suppose you wanted to store more than one value (more friends) other than `"ian"`. e.g "hannah", "mike", "almas".
 
 
 ```{r, eval=FALSE}
@@ -573,13 +573,25 @@ Above we have selected the 1st, 3rd and 4th elements from `favourite_movies` in 
 #### **Exercise**{-}
 
 
-1. Create another vector containing days of the week (Monday - Sunday).
+Use the vector below containing days of the week (Monday - Sunday), for the exercises.
 
-2. Select the third day of the week.
+```{r}
 
-3. Select the week days.
+# Creating a vector
 
-4. Select Tuesday and Thursday
+days_of_the_week <- c("Monday","Tuesday",
+                      "Wednesday","Thursday",
+                      "Friday","Saturday",
+                      "Sunday")
+
+```
+
+
+1. Select the third day of the week.
+
+2. Select the week days.
+
+3. Select Tuesday and Thursday
 
 <br>
 
@@ -612,21 +624,8 @@ days_of_the_week[8]
 
 #### **Show Answer**{-}
 
-1. Create another vector containing days of the week (Monday - Sunday), assign it the name days_of_the_week.
 
-```{r}
-# Creating a vector
-
-days_of_the_week <- c("Monday","Tuesday",
-                      "Wednesday","Thursday",
-                      "Friday","Saturday",
-                      "Sunday")
-
-```
-
-<br>
-
-2. Select the third day of the week.
+1. Select the third day of the week.
 
 ```{r}
 # Selecting the 3rd day
@@ -637,7 +636,7 @@ days_of_the_week[3]
 
 <br>
 
-3. Select the week days.
+2. Select the week days.
 
 ```{r}
 
@@ -648,7 +647,7 @@ days_of_the_week[1:5]
 
 <br>
 
-4. Select Tuesday and Thursday.
+3. Select Tuesday and Thursday.
 
 Here we create a selection vector inside the [].
 
@@ -821,7 +820,7 @@ movies_numbers_friends
 
 
 
-***
+<hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
 
 <br>
 
@@ -854,7 +853,7 @@ movies_numbers_friends <- tibble::tibble(favourite_movies, lucky_numbers, my_fri
 movies_numbers_friends
 ```
 
-***
+<hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
 
 <br>
 
@@ -888,7 +887,7 @@ movies_numbers_friends
 
 
 
-***
+<hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
 
 <br>
 
