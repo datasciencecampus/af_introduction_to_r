@@ -1619,7 +1619,7 @@ survived %>%
 
 <br>
 
-For more advanced ways to filter columns refer to this excellent blog [Data Wrangling Part 1: Basic to Advanced Ways to Select Columns](https://suzan.rbind.io/2018/02/dplyr-tutorial-3/), this covers th functions, `filter_all()`, `filter_if()` and `filter_at`.
+For more advanced ways to filter columns refer to this excellent blog [Data Wrangling Part 1: Basic to Advanced Ways to Select Columns](https://suzan.rbind.io/2018/02/dplyr-tutorial-3/), this covers the functions, `filter_all()`, `filter_if()` and `filter_at`.
 
 
 ***

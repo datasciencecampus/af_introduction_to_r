@@ -785,11 +785,11 @@ median_fare
 
 <br>
 
-# Next Chapter
+# End of Course
 
 ***
 
->**In the next chapter we will look at Control Flow and Functions.**
+>**You have now completed the Introduction to R course; please complete the post course survey on the Learning Hub.**
 
 ***
 
