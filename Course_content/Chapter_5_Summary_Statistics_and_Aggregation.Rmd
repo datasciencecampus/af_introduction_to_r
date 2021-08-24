@@ -81,7 +81,7 @@ library(kableExtra)
 # Read in data
 
 titanic <- readr::read_csv("../Data/titanic.csv", 
-                           na=c("", " ", "NULL"))
+                           na = c("*", ".", ""))
 
 titanic <- janitor::clean_names(titanic)
 
@@ -147,7 +147,8 @@ Let's look at some examples:
 # Calculating the mean of the column fare 
 # in the titanic dataset
 
-dplyr::summarise(.data = titanic, mean(fare))
+titanic %>% 
+dplyr::summarise(mean(fare))
 ```
 
 <br>
@@ -166,7 +167,8 @@ This will omit any `NA` values in our calculation and produce a more meaningful 
 # Setting na.rm=TRUE to remove missing values
 # from calculation
 
-dplyr::summarise(.data = titanic, mean(fare, na.rm = TRUE))
+titanic %>% 
+dplyr::summarise(mean(fare, na.rm = TRUE))
 
 ```
 
@@ -183,7 +185,8 @@ To assign this a meaningful column name, we'd pass a keyword argument in `summar
 # from calculation
 # setting the name mean_fare for our result
 
-dplyr::summarise(.data = titanic, mean_fare = mean(fare, na.rm = TRUE))
+titanic %>% 
+dplyr::summarise(mean_fare = mean(fare, na.rm = TRUE))
 
 ```
 
@@ -212,19 +215,13 @@ Like we saw with `mutate()` and other functions, we can compute multiple statist
 # Calculating muiltiple summary statisitcs within
 # the summarise function
 
-my_summary_stats <- dplyr::summarise(.data = titanic, 
-                 
-                 median_fare = median(fare, na.rm = TRUE),
-                 
-                 mean_fare = mean(fare, na.rm = TRUE),
-                 
-                 sd_fare = sd(fare, na.rm = TRUE),
-                 
-                 median_age = median(age_of_passenger, na.rm = TRUE),
-                 
-                 mean_age = mean(age_of_passenger, na.rm = TRUE),
-                 
-                 sd_age = sd(age_of_passenger, na.rm = TRUE))
+my_summary_stats <-titanic %>% 
+                 dplyr::summarise(median_fare = median(fare, na.rm = TRUE),
+                                  mean_fare = mean(fare, na.rm = TRUE),
+                                  sd_fare = sd(fare, na.rm = TRUE),
+                                  median_age = median(age_of_passenger, na.rm = TRUE),
+                                  mean_age = mean(age_of_passenger, na.rm = TRUE),
+                                  sd_age = sd(age_of_passenger, na.rm = TRUE))
 
 # To display the data
 my_summary_stats
@@ -245,9 +242,9 @@ We could restructure it using the `tidyr` functions: **`pivot_wider()`**, *`sepa
 # what it does, please refer to additional material for more info
 
 my_summary_stats %>% 
-pivot_longer(cols = median_fare:sd_age,
-             names_to = "statistic",
-             values_to = "value")
+tidyr::pivot_longer(cols = median_fare:sd_age,
+                    names_to = "statistic",
+                    values_to = "value")
 ```
 
 
@@ -257,7 +254,8 @@ We can also calculate `quantiles` within the summarise function, as shown below;
 # Calculating the quantiles from the
 # fare column in the titanic dataset
 
-dplyr::summarise(.data = titanic, fare_quantiles = quantile(fare,na.rm = TRUE))
+titanic %>% 
+dplyr::summarise(fare_quantiles = quantile(fare,na.rm = TRUE))
 
 ```
 
@@ -270,8 +268,8 @@ We can also specify as below,
 # fare column in the titanic dataset
 # by specifying which points to display
 
-
-dplyr::summarise(.data = titanic, fare_quantiles = quantile(fare,
+titanic %>% 
+dplyr::summarise(fare_quantiles = quantile(fare,
                                            probs = c(0, 0.2, 0.4, 0.6, 0.8, 1),
                                            na.rm = TRUE))
 ```
@@ -296,7 +294,8 @@ Descriptive statistics below are for qualitative data, they don't work very well
 # Calculating a frequency table for the number
 # of passengers and sorting in descending order
 
-dplyr::count(titanic, name_of_passenger, sort = TRUE)
+titanic %>% 
+dplyr::count(name_of_passenger, sort = TRUE)
 
 ```
 
@@ -310,7 +309,8 @@ Compared to:
 # of passengers based on where they embarked
 # and sorting in descending order
 
-dplyr::count(titanic, embarked, sort = TRUE)
+titanic %>% 
+dplyr::count(embarked, sort = TRUE)
 
 ```
 
@@ -321,7 +321,8 @@ Another example
 ```{r}
 # Select only unique/distinct rows from a tibble
  
-dplyr::distinct(titanic, embarked)
+titanic %>% 
+dplyr::distinct(embarked)
 ```
 
 
@@ -363,7 +364,8 @@ oldest_passenger <- max(data)
 # Count gives a frequency
 # PLEASE NOTE, count doesnt have a .data argument
 
-number_of_men_and_women <- dplyr::count(data, columns)
+number_of_men_and_women <- data %>% 
+                    dplyr::count(columns)
 
 ```
 
@@ -394,8 +396,8 @@ oldest_passenger
 # Calculating a frequency count of the
 # sex_of_passenger column
 
-number_of_men_and_women <- dplyr::count(titanic, 
-                                        sex_of_passenger)
+number_of_men_and_women <- titanic %>% 
+                     dplyr::count(sex_of_passenger)
 
 # To Display the data
 

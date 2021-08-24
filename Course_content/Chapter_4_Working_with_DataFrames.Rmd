@@ -133,7 +133,7 @@ library(janitor)
 # classed as missing values
 
 titanic <- readr::read_csv("../Data/titanic.csv", 
-                           na = "NULL")
+                           na = c("*", ".", ""))
 
 # To display the data
 titanic
@@ -851,10 +851,11 @@ It is important to note, all `tidyverse` functions work on and return a copy of 
 
 # Selecting data
 # You will need to specify the columns 
-# within the c() function
+
 
 titanic_select_exercise <- dplyr::select(.data = titanic, 
-                                          c())
+                                                  column_name,
+                                                  column_name)
 ```
 
 2. Can you select the columns, `pclass`, `survived`, `name_of_passenger`, `sex_of_passenger`, `age_of_passenger` and `embarked`?
@@ -863,10 +864,10 @@ titanic_select_exercise <- dplyr::select(.data = titanic,
 ```{r, eval = F}
 # Selecting data
 # You will need to specify the columns 
-# within the c() function
+
 
 titanic_select_exercise <- dplyr::select(.data = titanic, 
-                                          c())
+                                                 column_name:column_name, embarked)
 ```
 
 3. Can you select just the last column?
@@ -2014,10 +2015,10 @@ Lets practice piping a few `dplyr` functions.
 # Chaining dplyr commands using the %>%
 
 Southampton_oldest_passengers <- titanic %>%
-  dplyr::filter() %>% # where they got on the boat
-  dplyr::select() %>% # keep only columns we need
-  dplyr::arrange() %>% # sort the data
-  head(n = 8) # This will only show the top 8
+                          dplyr::filter() %>% # where they got on the boat
+                          dplyr::select() %>% # keep only columns we need
+                          dplyr::arrange() %>% # sort the data
+                          head(n = 8) # This will only show the top 8
 
 
 #To display the data
@@ -2039,10 +2040,10 @@ Southampton_oldest_passengers
 # Chaining dplyr commands using the %>%
 
 Southampton_oldest_passengers <- titanic %>%
-  dplyr::filter(embarked == "S") %>%
-  dplyr::select(name_of_passenger, age_of_passenger) %>%
-  dplyr::arrange(desc(age_of_passenger)) %>% 
-  head(n = 8)
+                          dplyr::filter(embarked == "S") %>%
+                          dplyr::select(name_of_passenger, age_of_passenger) %>%
+                          dplyr::arrange(desc(age_of_passenger)) %>% 
+                          head(n = 8)
 
 
 #To display the data
@@ -2095,7 +2096,7 @@ This can be easier to understand graphically:
 
 Lets look at some examples
 
-We will use the 2 datasets below, these data sets describe band members of the Beatles and Rolling Stones. 
+We will use the 2 datasets below there are inbuilt data sets within R, these data sets describe band members of the Beatles and Rolling Stones. 
 
 ```{r}
 # To display the data
@@ -2103,11 +2104,30 @@ We will use the 2 datasets below, these data sets describe band members of the B
 band_members
 ```
 
+You will need to assign it to see it within the environmental window as shown below,
+
+```{r}
+# assgning the data
+# band_members is an inbuilt dataset
+
+band_members <- band_members
+```
+
+
 ```{r}
 # To display the data
 
 band_instruments
 ```
+
+Lets assign this one as well.
+```{r}
+# assgning the data
+# band_instruments is an inbuilt dataset
+
+band_instruments <- band_instruments
+```
+
 
 These data sets have one common column which is `name`, so we can join them based on this.
 
@@ -2233,6 +2253,20 @@ join_left <- dplyr::left_join(x = first_dataset,
 
 1. Run the code below, can you figure out why its not working. **HINT:Remember what we need to be able to join 2 datasets.**
 
+```{r}
+# to display the data
+
+band_members
+```
+
+```{r}
+# to display the data
+
+band_instruments2
+```
+
+
+
 ```{r, eval=F}
 # Full join
 
@@ -2282,7 +2316,7 @@ The code above will give the error message below;
 
 **Error: `by` must be supplied when `x` and `y` have no common variables. i use by = character()` to perform a cross-join. Run `rlang::last_error()` to see where the error occurred.**
 
-This is because the datasets do not any columns with the same name, band_members has name while band_instruments2 has artist.
+This is because the datasets do not have any columns with the same name, band_members has name while band_instruments2 has artist.
 
 ```{r}
 # To display the data
@@ -2336,7 +2370,7 @@ Another common way in which datasets are combined is by binding them. Unlike the
 
 This is where we can add data on to the bottom of an existing data frame, If you have two (or more) data frames that share the same data structure.
 
-You can use the **`bind_rows()**` function.
+You can use the `bind_rows()` function.
 
 
 

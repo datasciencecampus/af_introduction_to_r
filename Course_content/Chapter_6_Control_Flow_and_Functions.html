@@ -1874,7 +1874,7 @@ Course Release: June 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Hel
 <span id="cb3-10"><a href="#cb3-10"></a><span class="co"># classed as missing values</span></span>
 <span id="cb3-11"><a href="#cb3-11"></a></span>
 <span id="cb3-12"><a href="#cb3-12"></a>titanic &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;../Data/titanic.csv&quot;</span>, </span>
-<span id="cb3-13"><a href="#cb3-13"></a>                           <span class="dt">na =</span> <span class="kw">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot; &quot;</span>, <span class="st">&quot;NULL&quot;</span>))</span>
+<span id="cb3-13"><a href="#cb3-13"></a>                           <span class="dt">na =</span> <span class="kw">c</span>(<span class="st">&quot;*&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="st">&quot;&quot;</span>))</span>
 <span id="cb3-14"><a href="#cb3-14"></a></span>
 <span id="cb3-15"><a href="#cb3-15"></a></span>
 <span id="cb3-16"><a href="#cb3-16"></a><span class="co"># Clean column names</span></span>
@@ -2265,14 +2265,40 @@ Course Release: June 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Hel
 ##   .. ..   animal = col_character(),
 ##   .. ..   age = col_double()
 ##   .. .. )
-##  $ ../Data/joining_data2.csv    : spec_tbl_df[,2] [6 x 2] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
-##   ..$ name      : chr [1:6] &quot;Catalie Portman&quot; &quot;Pico de Gato&quot; &quot;Chewbarka&quot; &quot;JK Meowling&quot; ...
-##   ..$ vaccinated: logi [1:6] TRUE TRUE FALSE TRUE FALSE TRUE
+##   ..- attr(*, &quot;problems&quot;)=&lt;externalptr&gt; 
+##  $ ../Data/joining_data2.csv    : spec_tbl_df[,8] [0 x 8] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##   ..$ name                       : chr(0) 
+##   ..$ vaccinated
+Catalie Portman: chr(0) 
+##   ..$ TRUE
+Pico de Gato         : chr(0) 
+##   ..$ TRUE
+Chewbarka            : chr(0) 
+##   ..$ FALSE
+JK Meowling         : chr(0) 
+##   ..$ TRUE
+K9                   : chr(0) 
+##   ..$ FALSE
+Spiderpig           : chr(0) 
+##   ..$ TRUE                       : chr(0) 
 ##   ..- attr(*, &quot;spec&quot;)=
 ##   .. .. cols(
 ##   .. ..   name = col_character(),
-##   .. ..   vaccinated = col_logical()
+##   .. ..   `vaccinated
+Catalie Portman` = col_character(),
+##   .. ..   `TRUE
+Pico de Gato` = col_character(),
+##   .. ..   `TRUE
+Chewbarka` = col_character(),
+##   .. ..   `FALSE
+JK Meowling` = col_character(),
+##   .. ..   `TRUE
+K9` = col_character(),
+##   .. ..   `FALSE
+Spiderpig` = col_character(),
+##   .. ..   `TRUE` = col_character()
 ##   .. .. )
+##   ..- attr(*, &quot;problems&quot;)=&lt;externalptr&gt; 
 ##  $ ../Data/joining_exercise1.csv: spec_tbl_df[,4] [20 x 4] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##   ..$ name                : chr [1:20] &quot;Iron Man&quot; &quot;The Incredible Hulk&quot; &quot;Iron Man 2&quot; &quot;Thor&quot; ...
 ##   ..$ year                : num [1:20] 2008 2008 2010 2011 2011 ...
@@ -2285,6 +2311,7 @@ Course Release: June 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Hel
 ##   .. ..   month = col_character(),
 ##   .. ..   worldwide_box_office = col_double()
 ##   .. .. )
+##   ..- attr(*, &quot;problems&quot;)=&lt;externalptr&gt; 
 ##  $ ../Data/joining_exercise2.csv: spec_tbl_df[,3] [20 x 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##   ..$ name        : chr [1:20] &quot;Iron Man&quot; &quot;The Incredible Hulk&quot; &quot;Iron Man 2&quot; &quot;Captain America: The First Avenger&quot; ...
 ##   ..$ release_year: num [1:20] 2008 2008 2010 2011 2012 ...
@@ -2295,12 +2322,14 @@ Course Release: June 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Hel
 ##   .. ..   release_year = col_double(),
 ##   .. ..   score = col_double()
 ##   .. .. )
+##   ..- attr(*, &quot;problems&quot;)=&lt;externalptr&gt; 
 ##  $ ../Data/police_data.xlsx     : spec_tbl_df[,1] [1 x 1] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##   ..$ &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;: chr &quot;&lt;Types xmlns=\&quot;http://schemas.openxmlformats.org/package/2006/content-types\&quot;&gt;&lt;Default Extension=\&quot;bin\&quot; Conten&quot;| __truncated__
 ##   ..- attr(*, &quot;spec&quot;)=
 ##   .. .. cols(
 ##   .. ..   `&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;` = col_character()
 ##   .. .. )
+##   ..- attr(*, &quot;problems&quot;)=&lt;externalptr&gt; 
 ##  $ ../Data/test.csv             : spec_tbl_df[,27] [43 x 27] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##   ..$ Area Codes                                                                 : chr [1:43] &quot;E23000013&quot; &quot;E23000008&quot; &quot;E23000007&quot; &quot;E23000006&quot; ...
 ##   ..$ Area Name                                                                  : chr [1:43] &quot;Cleveland&quot; &quot;Durham&quot; &quot;Northumbria&quot; &quot;Cheshire&quot; ...
@@ -2359,6 +2388,7 @@ Course Release: June 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Hel
 ##   .. ..   `Miscellaneous                 crimes         against                society` = col_double(),
 ##   .. ..   Fraud = col_double()
 ##   .. .. )
+##   ..- attr(*, &quot;problems&quot;)=&lt;externalptr&gt; 
 ##  $ ../Data/titanic.csv          : spec_tbl_df[,11] [1,309 x 11] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##   ..$ Pclass           : num [1:1309] 1 1 1 1 1 1 1 1 1 1 ...
 ##   ..$ Survived         : num [1:1309] 1 1 0 0 0 1 1 0 1 0 ...
@@ -2385,16 +2415,36 @@ Course Release: June 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Hel
 ##   .. ..   Cabin = col_character(),
 ##   .. ..   Embarked = col_character()
 ##   .. .. )
-##  $ ../Data/union_data.csv       : spec_tbl_df[,3] [3 x 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
-##   ..$ name  : chr [1:3] &quot;Andy Warhowl&quot; &quot;Voldetort&quot; &quot;Repecka&quot;
-##   ..$ animal: chr [1:3] &quot;dog&quot; &quot;tortoise&quot; &quot;chicken&quot;
-##   ..$ age   : num [1:3] 12 90 1
+##   ..- attr(*, &quot;problems&quot;)=&lt;externalptr&gt; 
+##  $ ../Data/union_data.csv       : spec_tbl_df[,9] [0 x 9] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##   ..$ name             : chr(0) 
+##   ..$ animal           : chr(0) 
+##   ..$ age
+Andy Warhowl: chr(0) 
+##   ..$ dog              : chr(0) 
+##   ..$ 12
+Voldetort    : chr(0) 
+##   ..$ tortoise         : chr(0) 
+##   ..$ 90
+Repecka      : chr(0) 
+##   ..$ chicken          : chr(0) 
+##   ..$ 1                : chr(0) 
 ##   ..- attr(*, &quot;spec&quot;)=
 ##   .. .. cols(
 ##   .. ..   name = col_character(),
 ##   .. ..   animal = col_character(),
-##   .. ..   age = col_double()
-##   .. .. )</code></pre>
+##   .. ..   `age
+Andy Warhowl` = col_character(),
+##   .. ..   dog = col_character(),
+##   .. ..   `12
+Voldetort` = col_character(),
+##   .. ..   tortoise = col_character(),
+##   .. ..   `90
+Repecka` = col_character(),
+##   .. ..   chicken = col_character(),
+##   .. ..   `1` = col_character()
+##   .. .. )
+##   ..- attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
 <p>If you want the datasets to be displayed as separate datasets in the environment window, you can use the <code>list2env()</code>, here we specify the list <code>my_datasets</code> and the argument <code>envir=.GlobalEnv</code>.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># To display in environment as separate datasets</span></span>
 <span id="cb27-2"><a href="#cb27-2"></a><span class="kw">list2env</span>(my_datasets,<span class="dt">envir=</span>.GlobalEnv)</span></code></pre></div>
@@ -2659,178 +2709,8 @@ Course Release: June 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Hel
 <hr />
 <p><br></p>
 </div>
-<div id="loops-and-conditional-statements" class="section level2">
-<h2><span class="header-section-number">4.2</span> Loops and Conditional Statements</h2>
-<p>We can combine a <code>loop</code> with <code>if else</code> statements.</p>
-<ul>
-<li><p>We have a vector, with values from <code>1-7</code> and assign it to <code>number_of_takeaways_ordered</code>.</p></li>
-<li><p>And a <code>for</code> loop with an <code>if</code> and <code>else</code> statement which shows that if you order more than <code>2</code> takeaways a week it will print <code>&quot;too many&quot;</code> and if you order less than two it prints <code>&quot;enough&quot;</code>.</p></li>
-</ul>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>number_of_takeaways_ordered &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>)</span>
-<span id="cb39-2"><a href="#cb39-2"></a></span>
-<span id="cb39-3"><a href="#cb39-3"></a><span class="cf">for</span> (number <span class="cf">in</span> number_of_takeaways_ordered) { </span>
-<span id="cb39-4"><a href="#cb39-4"></a>  </span>
-<span id="cb39-5"><a href="#cb39-5"></a>  <span class="kw">print</span>(number)</span>
-<span id="cb39-6"><a href="#cb39-6"></a>  </span>
-<span id="cb39-7"><a href="#cb39-7"></a>  <span class="cf">if</span> (number <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>) { </span>
-<span id="cb39-8"><a href="#cb39-8"></a>    </span>
-<span id="cb39-9"><a href="#cb39-9"></a>    <span class="kw">print</span>(<span class="st">&quot;too many&quot;</span>)</span>
-<span id="cb39-10"><a href="#cb39-10"></a>    </span>
-<span id="cb39-11"><a href="#cb39-11"></a>  } <span class="cf">else</span> { </span>
-<span id="cb39-12"><a href="#cb39-12"></a>    </span>
-<span id="cb39-13"><a href="#cb39-13"></a>  <span class="kw">print</span>(<span class="st">&quot;enough&quot;</span>)</span>
-<span id="cb39-14"><a href="#cb39-14"></a></span>
-<span id="cb39-15"><a href="#cb39-15"></a><span class="co"># We have a loop, and else if statements, which means we </span></span>
-<span id="cb39-16"><a href="#cb39-16"></a><span class="co"># need to careful about our closing brackets!</span></span>
-<span id="cb39-17"><a href="#cb39-17"></a>  }</span>
-<span id="cb39-18"><a href="#cb39-18"></a>}</span></code></pre></div>
-<pre><code>## [1] 1
-## [1] &quot;enough&quot;
-## [1] 2
-## [1] &quot;enough&quot;
-## [1] 3
-## [1] &quot;enough&quot;
-## [1] 4
-## [1] &quot;too many&quot;
-## [1] 5
-## [1] &quot;too many&quot;
-## [1] 6
-## [1] &quot;too many&quot;
-## [1] 7
-## [1] &quot;too many&quot;</code></pre>
-<hr />
-<p><br></p>
-<div id="entension-exercise-fizzbuzz" class="section level3 tabset tabset-fade">
-<h3><span class="header-section-number">4.2.1</span> Entension Exercise: FizzBuzz</h3>
-<div id="exercise-3" class="section level4 unnumbered">
-<h4><strong>Exercise</strong></h4>
-<ol style="list-style-type: decimal">
-<li><p>Can you write a loop with an <code>if</code>, <code>else if</code> and <code>else</code> statement, that loops through the numbers from 1 to 30.</p>
-<p>If the number is a multiple of both 3 and 5, print “FizzBuzz”.</p>
-<p>If the number is a multiple of 3, print the word “Fizz”.</p>
-<p>If the number is a multiple of 5, print the word “Buzz”.</p>
-<p>For all other values print the number.</p></li>
-</ol>
-<p>Note: You can use the modulus operator for this - this is the <strong><code>%%</code></strong> in R, and shows us our remainder.</p>
-<p>For example checking if something is divisible by 3 we can do:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="co"># Example of Modulo</span></span>
-<span id="cb41-2"><a href="#cb41-2"></a><span class="co"># Returns FALSE (10 / 3 has a remainder of 1 - so does not have a remainder of 0)</span></span>
-<span id="cb41-3"><a href="#cb41-3"></a></span>
-<span id="cb41-4"><a href="#cb41-4"></a><span class="dv">10</span> <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span></span></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># Second example of Modulo</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a><span class="co"># Returns TRUE (9 / 3 has a remainder of 0)</span></span>
-<span id="cb43-3"><a href="#cb43-3"></a></span>
-<span id="cb43-4"><a href="#cb43-4"></a><span class="dv">9</span> <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span></span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
-<hr />
-<p><br></p>
-</div>
-<div id="hint-3" class="section level4 unnumbered">
-<h4><strong>Hint</strong></h4>
-<ol style="list-style-type: decimal">
-<li><p>Can you write a loop with an <code>if</code>, <code>else if</code> and <code>else</code> statement, that loops through the numbers from 1 to 30.</p>
-<p>If the number is a multiple of both 3 and 5, print “FizzBuzz”.</p>
-<p>If the number is a multiple of 3, print the word “Fizz”.</p>
-<p>If the number is a multiple of 5, print the word “Buzz”.</p>
-<p>For all other values print the number.</p></li>
-</ol>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="cf">for</span> (each number <span class="cf">in</span> vector) { </span>
-<span id="cb45-2"><a href="#cb45-2"></a>  </span>
-<span id="cb45-3"><a href="#cb45-3"></a>    <span class="cf">if</span> (first conditions) {</span>
-<span id="cb45-4"><a href="#cb45-4"></a>    </span>
-<span id="cb45-5"><a href="#cb45-5"></a>        output</span>
-<span id="cb45-6"><a href="#cb45-6"></a>    </span>
-<span id="cb45-7"><a href="#cb45-7"></a>  } <span class="cf">else</span> <span class="cf">if</span> (second condition) {</span>
-<span id="cb45-8"><a href="#cb45-8"></a>    </span>
-<span id="cb45-9"><a href="#cb45-9"></a>             output</span>
-<span id="cb45-10"><a href="#cb45-10"></a>    </span>
-<span id="cb45-11"><a href="#cb45-11"></a>  } <span class="cf">else</span> <span class="cf">if</span> (third condition) { </span>
-<span id="cb45-12"><a href="#cb45-12"></a>    </span>
-<span id="cb45-13"><a href="#cb45-13"></a>             output</span>
-<span id="cb45-14"><a href="#cb45-14"></a>    </span>
-<span id="cb45-15"><a href="#cb45-15"></a>  } <span class="cf">else</span> {</span>
-<span id="cb45-16"><a href="#cb45-16"></a>    </span>
-<span id="cb45-17"><a href="#cb45-17"></a>            <span class="kw">print</span>(each number)</span>
-<span id="cb45-18"><a href="#cb45-18"></a>    </span>
-<span id="cb45-19"><a href="#cb45-19"></a>  }</span>
-<span id="cb45-20"><a href="#cb45-20"></a>  </span>
-<span id="cb45-21"><a href="#cb45-21"></a>}</span></code></pre></div>
-<hr />
-<p><br></p>
-</div>
-<div id="show-answer-3" class="section level4 unnumbered">
-<h4><strong>Show Answer</strong></h4>
-<ol style="list-style-type: decimal">
-<li><p>Can you write a loop with an <code>if</code>, <code>else if</code> and <code>else</code> statement, that loops through the numbers from 1 to 30.</p>
-<p>If the number is a multiple of both 3 and 5, print “FizzBuzz”.</p>
-<p>If the number is a multiple of 3, print the word “Fizz”.</p>
-<p>If the number is a multiple of 5, print the word “Buzz”.</p>
-<p>For all other values print the number.</p></li>
-</ol>
-<!-- If it is not best practice to use `i` as an interator, should we be showing an example of it? -JM-->
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="co"># Creating a loop with an with an `if`, `else if` and `else` statement</span></span>
-<span id="cb46-2"><a href="#cb46-2"></a></span>
-<span id="cb46-3"><a href="#cb46-3"></a><span class="cf">for</span> (each_number <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">30</span>) { </span>
-<span id="cb46-4"><a href="#cb46-4"></a>  </span>
-<span id="cb46-5"><a href="#cb46-5"></a>  <span class="cf">if</span> (each_number <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>each_number <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</span>
-<span id="cb46-6"><a href="#cb46-6"></a>    </span>
-<span id="cb46-7"><a href="#cb46-7"></a>      <span class="kw">print</span>(<span class="st">&quot;FizzBuzz&quot;</span>)</span>
-<span id="cb46-8"><a href="#cb46-8"></a>    </span>
-<span id="cb46-9"><a href="#cb46-9"></a>  } <span class="cf">else</span> <span class="cf">if</span> (each_number <span class="op">%%</span><span class="st"> </span><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</span>
-<span id="cb46-10"><a href="#cb46-10"></a>    </span>
-<span id="cb46-11"><a href="#cb46-11"></a>      <span class="kw">print</span>(<span class="st">&quot;Fizz&quot;</span>)</span>
-<span id="cb46-12"><a href="#cb46-12"></a>    </span>
-<span id="cb46-13"><a href="#cb46-13"></a>  } <span class="cf">else</span> <span class="cf">if</span> (each_number <span class="op">%%</span><span class="st"> </span><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) { </span>
-<span id="cb46-14"><a href="#cb46-14"></a>    </span>
-<span id="cb46-15"><a href="#cb46-15"></a>      <span class="kw">print</span>(<span class="st">&quot;Buzz&quot;</span>)</span>
-<span id="cb46-16"><a href="#cb46-16"></a>    </span>
-<span id="cb46-17"><a href="#cb46-17"></a>  } <span class="cf">else</span> {</span>
-<span id="cb46-18"><a href="#cb46-18"></a>    </span>
-<span id="cb46-19"><a href="#cb46-19"></a>      <span class="kw">print</span>(each_number)</span>
-<span id="cb46-20"><a href="#cb46-20"></a>    </span>
-<span id="cb46-21"><a href="#cb46-21"></a>  }</span>
-<span id="cb46-22"><a href="#cb46-22"></a>  </span>
-<span id="cb46-23"><a href="#cb46-23"></a>}</span></code></pre></div>
-<pre><code>## [1] 1
-## [1] 2
-## [1] &quot;Fizz&quot;
-## [1] 4
-## [1] &quot;Buzz&quot;
-## [1] &quot;Fizz&quot;
-## [1] 7
-## [1] 8
-## [1] &quot;Fizz&quot;
-## [1] &quot;Buzz&quot;
-## [1] 11
-## [1] &quot;Fizz&quot;
-## [1] 13
-## [1] 14
-## [1] &quot;FizzBuzz&quot;
-## [1] 16
-## [1] 17
-## [1] &quot;Fizz&quot;
-## [1] 19
-## [1] &quot;Buzz&quot;
-## [1] &quot;Fizz&quot;
-## [1] 22
-## [1] 23
-## [1] &quot;Fizz&quot;
-## [1] &quot;Buzz&quot;
-## [1] 26
-## [1] &quot;Fizz&quot;
-## [1] 28
-## [1] 29
-## [1] &quot;FizzBuzz&quot;</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="co"># We have a loop, and else if statements, which means we </span></span>
-<span id="cb48-2"><a href="#cb48-2"></a><span class="co"># need to careful about our closing brackets!</span></span></code></pre></div>
-<hr />
-<p><br></p>
-</div>
-</div>
-</div>
 <div id="dplyr-if_else" class="section level2">
-<h2><span class="header-section-number">4.3</span> dplyr if_else()</h2>
+<h2><span class="header-section-number">4.2</span> dplyr if_else()</h2>
 <p>We have seen how we can use the <code>if</code> statement to create branching paths in our code.</p>
 <p>A singular if statement is useful if we need to perform different code based on a single condition, but it’s not useful in cases where there are a lot of values that need comparison, such as in a tibble.</p>
 <p><code>dplyr</code> has a function called <code>if_else()</code></p>
@@ -2839,13 +2719,13 @@ Course Release: June 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Hel
 <blockquote>
 <p><strong>I would strongly advise to look at the R help documentation when you come across a function you have not used before.</strong></p>
 </blockquote>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="co"># Loading packages</span></span>
-<span id="cb49-2"><a href="#cb49-2"></a></span>
-<span id="cb49-3"><a href="#cb49-3"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb49-4"><a href="#cb49-4"></a></span>
-<span id="cb49-5"><a href="#cb49-5"></a><span class="co"># Looking at the help documentation</span></span>
-<span id="cb49-6"><a href="#cb49-6"></a></span>
-<span id="cb49-7"><a href="#cb49-7"></a>?dplyr<span class="op">::</span>if_else</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="co"># Loading packages</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a></span>
+<span id="cb39-3"><a href="#cb39-3"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb39-4"><a href="#cb39-4"></a></span>
+<span id="cb39-5"><a href="#cb39-5"></a><span class="co"># Looking at the help documentation</span></span>
+<span id="cb39-6"><a href="#cb39-6"></a></span>
+<span id="cb39-7"><a href="#cb39-7"></a>?dplyr<span class="op">::</span>if_else</span></code></pre></div>
 <p>Looking at help documentation for the function, we can see that it needs <strong>3 main arguments</strong>.</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>condition</strong>. A statement (e.g. comparison operator) that evaluates to <code>TRUE</code> or <code>FALSE</code>. Instead of passing it a single value, you need to give it a specific column in the data.</p></li>
@@ -2856,27 +2736,27 @@ Course Release: June 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Hel
 <p>Lets look at an example.</p>
 <p>We will use the Titanic dataset, lets see if there is any missing values in our dataset.</p>
 <p>Here I am using the base R function <code>anyNA</code>, which will return <code>TRUE</code> if there are any missing values and <code>FALSE</code> if there are no missing values.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="co"># Checks if there are missing values in our data</span></span>
-<span id="cb50-2"><a href="#cb50-2"></a></span>
-<span id="cb50-3"><a href="#cb50-3"></a><span class="kw">anyNA</span>(titanic)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="co"># Checks if there are missing values in our data</span></span>
+<span id="cb40-2"><a href="#cb40-2"></a></span>
+<span id="cb40-3"><a href="#cb40-3"></a><span class="kw">anyNA</span>(titanic)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Now that we know they are missing values in the data, we can use the <code>colSums()</code> function or the <code>summary()</code> function to see how many missing values we have.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="co"># Here I am using the colSums() function, which gives the sum of columns</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a><span class="co"># Inside the function, I am using the is.na() function which checks if </span></span>
-<span id="cb52-3"><a href="#cb52-3"></a><span class="co"># the data is a missing value</span></span>
-<span id="cb52-4"><a href="#cb52-4"></a></span>
-<span id="cb52-5"><a href="#cb52-5"></a><span class="kw">colSums</span>(<span class="kw">is.na</span>(titanic))</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="co"># Here I am using the colSums() function, which gives the sum of columns</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a><span class="co"># Inside the function, I am using the is.na() function which checks if </span></span>
+<span id="cb42-3"><a href="#cb42-3"></a><span class="co"># the data is a missing value</span></span>
+<span id="cb42-4"><a href="#cb42-4"></a></span>
+<span id="cb42-5"><a href="#cb42-5"></a><span class="kw">colSums</span>(<span class="kw">is.na</span>(titanic))</span></code></pre></div>
 <pre><code>##            pclass          survived name_of_passenger  sex_of_passenger 
 ##                 0                 0                 0                 0 
 ##  age_of_passenger             sibsp             parch            ticket 
 ##               267                 0                 0                 0 
 ##              fare             cabin          embarked 
 ##                 1              1014                 2</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="co"># Summary of our data</span></span>
-<span id="cb54-2"><a href="#cb54-2"></a><span class="co"># This is showing summary data for the age_of_passenger column</span></span>
-<span id="cb54-3"><a href="#cb54-3"></a><span class="co"># Part of the summary data shows number of missing values.</span></span>
-<span id="cb54-4"><a href="#cb54-4"></a></span>
-<span id="cb54-5"><a href="#cb54-5"></a><span class="kw">summary</span>(titanic<span class="op">$</span>age_of_passenger)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="co"># Summary of our data</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a><span class="co"># This is showing summary data for the age_of_passenger column</span></span>
+<span id="cb44-3"><a href="#cb44-3"></a><span class="co"># Part of the summary data shows number of missing values.</span></span>
+<span id="cb44-4"><a href="#cb44-4"></a></span>
+<span id="cb44-5"><a href="#cb44-5"></a><span class="kw">summary</span>(titanic<span class="op">$</span>age_of_passenger)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
 ##  0.1667 21.0000 28.0000 29.7943 38.8750 80.0000     267</code></pre>
 <p>We can see that the column <code>age_of_passenger</code> has 267 missing values.</p>
@@ -2891,23 +2771,23 @@ Course Release: June 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Hel
 <p>We don’t necessarily want to change the original column so we instead create a new column which contains the age data, but with the missing values imputed.</p>
 <p>Here my new column name is <strong>imputed_age_of_passenger</strong>.</p>
 <p>The <code>if_else()</code> function takes that single comparison operator <strong>condition = is.na(age_of_passenger)</strong> and vectorizes it.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="co"># Dealing with missing values</span></span>
-<span id="cb56-2"><a href="#cb56-2"></a><span class="co"># if the value is missing we can fill it</span></span>
-<span id="cb56-3"><a href="#cb56-3"></a><span class="co"># if not we can use the original value</span></span>
-<span id="cb56-4"><a href="#cb56-4"></a></span>
-<span id="cb56-5"><a href="#cb56-5"></a>imputed_titanic &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></span>
-<span id="cb56-6"><a href="#cb56-6"></a><span class="st">                      </span><span class="co"># New column name               # Condition to be met             </span></span>
-<span id="cb56-7"><a href="#cb56-7"></a><span class="st">      </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">imputed_age_of_passenger =</span> <span class="kw">if_else</span>(<span class="dt">condition =</span> <span class="kw">is.na</span>(age_of_passenger), </span>
-<span id="cb56-8"><a href="#cb56-8"></a>                                                       </span>
-<span id="cb56-9"><a href="#cb56-9"></a>                                                      <span class="co"># Response if true</span></span>
-<span id="cb56-10"><a href="#cb56-10"></a>                                                       <span class="dt">true =</span> <span class="kw">mean</span>(age_of_passenger,<span class="dt">na.rm =</span><span class="ot">TRUE</span>),</span>
-<span id="cb56-11"><a href="#cb56-11"></a>                                                       </span>
-<span id="cb56-12"><a href="#cb56-12"></a>                                                      <span class="co"># Response if false</span></span>
-<span id="cb56-13"><a href="#cb56-13"></a>                                                       <span class="dt">false =</span> age_of_passenger))</span>
-<span id="cb56-14"><a href="#cb56-14"></a>                                                         </span>
-<span id="cb56-15"><a href="#cb56-15"></a></span>
-<span id="cb56-16"><a href="#cb56-16"></a><span class="co"># To display the resulting number of missing values</span></span>
-<span id="cb56-17"><a href="#cb56-17"></a><span class="kw">colSums</span>(<span class="kw">is.na</span>(imputed_titanic))</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="co"># Dealing with missing values</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a><span class="co"># if the value is missing we can fill it</span></span>
+<span id="cb46-3"><a href="#cb46-3"></a><span class="co"># if not we can use the original value</span></span>
+<span id="cb46-4"><a href="#cb46-4"></a></span>
+<span id="cb46-5"><a href="#cb46-5"></a>imputed_titanic &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span></span>
+<span id="cb46-6"><a href="#cb46-6"></a><span class="st">                      </span><span class="co"># New column name               # Condition to be met             </span></span>
+<span id="cb46-7"><a href="#cb46-7"></a><span class="st">      </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">imputed_age_of_passenger =</span> <span class="kw">if_else</span>(<span class="dt">condition =</span> <span class="kw">is.na</span>(age_of_passenger), </span>
+<span id="cb46-8"><a href="#cb46-8"></a>                                                       </span>
+<span id="cb46-9"><a href="#cb46-9"></a>                                                      <span class="co"># Response if true</span></span>
+<span id="cb46-10"><a href="#cb46-10"></a>                                                       <span class="dt">true =</span> <span class="kw">mean</span>(age_of_passenger,<span class="dt">na.rm =</span><span class="ot">TRUE</span>),</span>
+<span id="cb46-11"><a href="#cb46-11"></a>                                                       </span>
+<span id="cb46-12"><a href="#cb46-12"></a>                                                      <span class="co"># Response if false</span></span>
+<span id="cb46-13"><a href="#cb46-13"></a>                                                       <span class="dt">false =</span> age_of_passenger))</span>
+<span id="cb46-14"><a href="#cb46-14"></a>                                                         </span>
+<span id="cb46-15"><a href="#cb46-15"></a></span>
+<span id="cb46-16"><a href="#cb46-16"></a><span class="co"># To display the resulting number of missing values</span></span>
+<span id="cb46-17"><a href="#cb46-17"></a><span class="kw">colSums</span>(<span class="kw">is.na</span>(imputed_titanic))</span></code></pre></div>
 <pre><code>##                   pclass                 survived        name_of_passenger 
 ##                        0                        0                        0 
 ##         sex_of_passenger         age_of_passenger                    sibsp 
@@ -52710,7 +52590,7 @@ S
 <p><br></p>
 </div>
 <div id="dplyr-case_when" class="section level2">
-<h2><span class="header-section-number">4.4</span> dplyr case_when()</h2>
+<h2><span class="header-section-number">4.3</span> dplyr case_when()</h2>
 <p>So far we have looked at <code>else if</code> to add more options to an if statement.</p>
 <p>We have also used the the <code>if_else()</code> function, but it works best with simpler conditions that evaluate to <code>TRUE</code> or <code>FALSE</code>.</p>
 <p>We can put multiple <code>if_else()</code> commands inside each other, but this makes code hard to read and is not recommended.</p>
@@ -52726,23 +52606,23 @@ S
 <li><p>“C” (Cherbourg) should say France</p></li>
 <li><p>“Q” (Queenstown) should say Ireland</p></li>
 </ul>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="co"># Here I am using case_when within the mutate function as I want to create a new column within my dataset</span></span>
-<span id="cb58-2"><a href="#cb58-2"></a><span class="co"># My new column name is country_embarked</span></span>
-<span id="cb58-3"><a href="#cb58-3"></a><span class="co"># To use case_when(), you specify the condition first</span></span>
-<span id="cb58-4"><a href="#cb58-4"></a><span class="co"># Then the ~ tilde for the action when the condition is met</span></span>
-<span id="cb58-5"><a href="#cb58-5"></a><span class="co"># We can also specify what we want to occur if none of the conditions match - the TRUE value</span></span>
-<span id="cb58-6"><a href="#cb58-6"></a></span>
-<span id="cb58-7"><a href="#cb58-7"></a>case_when_example &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb58-8"><a href="#cb58-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(</span>
-<span id="cb58-9"><a href="#cb58-9"></a>    <span class="dt">country_embarked =</span> dplyr<span class="op">::</span><span class="kw">case_when</span>( </span>
-<span id="cb58-10"><a href="#cb58-10"></a>                     <span class="co"># condition        # action</span></span>
-<span id="cb58-11"><a href="#cb58-11"></a>                      embarked <span class="op">==</span><span class="st"> &quot;S&quot;</span>  <span class="op">~</span><span class="st"> &quot;England&quot;</span>,</span>
-<span id="cb58-12"><a href="#cb58-12"></a>                      embarked <span class="op">==</span><span class="st"> &quot;C&quot;</span> <span class="op">~</span><span class="st"> &quot;France&quot;</span>,</span>
-<span id="cb58-13"><a href="#cb58-13"></a>                      embarked <span class="op">==</span><span class="st"> &quot;Q&quot;</span> <span class="op">~</span><span class="st"> &quot;Ireland&quot;</span>,</span>
-<span id="cb58-14"><a href="#cb58-14"></a>                     <span class="co"># This is what is going to happen if none of the set</span></span>
-<span id="cb58-15"><a href="#cb58-15"></a>                     <span class="co"># conditions are met</span></span>
-<span id="cb58-16"><a href="#cb58-16"></a>                      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;Unknown&quot;</span>) </span>
-<span id="cb58-17"><a href="#cb58-17"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="co"># Here I am using case_when within the mutate function as I want to create a new column within my dataset</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a><span class="co"># My new column name is country_embarked</span></span>
+<span id="cb48-3"><a href="#cb48-3"></a><span class="co"># To use case_when(), you specify the condition first</span></span>
+<span id="cb48-4"><a href="#cb48-4"></a><span class="co"># Then the ~ tilde for the action when the condition is met</span></span>
+<span id="cb48-5"><a href="#cb48-5"></a><span class="co"># We can also specify what we want to occur if none of the conditions match - the TRUE value</span></span>
+<span id="cb48-6"><a href="#cb48-6"></a></span>
+<span id="cb48-7"><a href="#cb48-7"></a>case_when_example &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb48-8"><a href="#cb48-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(</span>
+<span id="cb48-9"><a href="#cb48-9"></a>    <span class="dt">country_embarked =</span> dplyr<span class="op">::</span><span class="kw">case_when</span>( </span>
+<span id="cb48-10"><a href="#cb48-10"></a>                     <span class="co"># condition        # action</span></span>
+<span id="cb48-11"><a href="#cb48-11"></a>                      embarked <span class="op">==</span><span class="st"> &quot;S&quot;</span>  <span class="op">~</span><span class="st"> &quot;England&quot;</span>,</span>
+<span id="cb48-12"><a href="#cb48-12"></a>                      embarked <span class="op">==</span><span class="st"> &quot;C&quot;</span> <span class="op">~</span><span class="st"> &quot;France&quot;</span>,</span>
+<span id="cb48-13"><a href="#cb48-13"></a>                      embarked <span class="op">==</span><span class="st"> &quot;Q&quot;</span> <span class="op">~</span><span class="st"> &quot;Ireland&quot;</span>,</span>
+<span id="cb48-14"><a href="#cb48-14"></a>                     <span class="co"># This is what is going to happen if none of the set</span></span>
+<span id="cb48-15"><a href="#cb48-15"></a>                     <span class="co"># conditions are met</span></span>
+<span id="cb48-16"><a href="#cb48-16"></a>                      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;Unknown&quot;</span>) </span>
+<span id="cb48-17"><a href="#cb48-17"></a>  )</span></code></pre></div>
 <!-- love seeing this in action, is it worth mentioning the similarity with recode() in this example -JM -->
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100; ">
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -102543,8 +102423,8 @@ NA
 <hr />
 <p><br></p>
 <div id="exercise-case-when" class="section level3 tabset tabset-fade">
-<h3><span class="header-section-number">4.4.1</span> Exercise: Case When</h3>
-<div id="exercise-4" class="section level4 unnumbered">
+<h3><span class="header-section-number">4.3.1</span> Exercise: Case When</h3>
+<div id="exercise-3" class="section level4 unnumbered">
 <h4><strong>Exercise</strong></h4>
 <ol style="list-style-type: decimal">
 <li>Use the <code>case_when()</code> function to create a new column in the titanic dataset called <strong>fare_level</strong>.</li>
@@ -102559,7 +102439,7 @@ NA
 </ul>
 <p><br></p>
 </div>
-<div id="hint-4" class="section level4 unnumbered">
+<div id="hint-3" class="section level4 unnumbered">
 <h4><strong>Hint</strong></h4>
 <ol style="list-style-type: decimal">
 <li>Use the case_when() function to create a new column in the titanic dataset called <strong>fare_level</strong>.</li>
@@ -102573,27 +102453,27 @@ NA
 <li>Otherwise : “unknown”</li>
 </ul>
 <p>Assign your tibble to the variable <strong>titanic_fare_level</strong>.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="co"># PLEASE </span><span class="al">NOTE</span><span class="co">: THIS IS NOT REAL CODE</span></span>
-<span id="cb59-2"><a href="#cb59-2"></a><span class="co"># The example hint shows the structure of a case_when() </span></span>
-<span id="cb59-3"><a href="#cb59-3"></a><span class="co"># FOR MORE INFORMATION USE THE R HELP DOCUMENTATION</span></span>
-<span id="cb59-4"><a href="#cb59-4"></a><span class="co"># ?casewhen</span></span>
-<span id="cb59-5"><a href="#cb59-5"></a></span>
-<span id="cb59-6"><a href="#cb59-6"></a></span>
-<span id="cb59-7"><a href="#cb59-7"></a>titanic_fare_level &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb59-8"><a href="#cb59-8"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb59-9"><a href="#cb59-9"></a>    <span class="dt">fare_level =</span> <span class="kw">case_when</span>(</span>
-<span id="cb59-10"><a href="#cb59-10"></a>      condition <span class="op">~</span><span class="st"> </span>action,</span>
-<span id="cb59-11"><a href="#cb59-11"></a>      condition <span class="op">~</span><span class="st"> </span>action,</span>
-<span id="cb59-12"><a href="#cb59-12"></a>      condition <span class="op">~</span><span class="st"> </span>action</span>
-<span id="cb59-13"><a href="#cb59-13"></a>      )</span>
-<span id="cb59-14"><a href="#cb59-14"></a>    )</span>
-<span id="cb59-15"><a href="#cb59-15"></a></span>
-<span id="cb59-16"><a href="#cb59-16"></a><span class="co"># To display the Data</span></span>
-<span id="cb59-17"><a href="#cb59-17"></a></span>
-<span id="cb59-18"><a href="#cb59-18"></a>titanic_fare_level</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="co"># PLEASE </span><span class="al">NOTE</span><span class="co">: THIS IS NOT REAL CODE</span></span>
+<span id="cb49-2"><a href="#cb49-2"></a><span class="co"># The example hint shows the structure of a case_when() </span></span>
+<span id="cb49-3"><a href="#cb49-3"></a><span class="co"># FOR MORE INFORMATION USE THE R HELP DOCUMENTATION</span></span>
+<span id="cb49-4"><a href="#cb49-4"></a><span class="co"># ?casewhen</span></span>
+<span id="cb49-5"><a href="#cb49-5"></a></span>
+<span id="cb49-6"><a href="#cb49-6"></a></span>
+<span id="cb49-7"><a href="#cb49-7"></a>titanic_fare_level &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb49-8"><a href="#cb49-8"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb49-9"><a href="#cb49-9"></a>    <span class="dt">fare_level =</span> <span class="kw">case_when</span>(</span>
+<span id="cb49-10"><a href="#cb49-10"></a>      condition <span class="op">~</span><span class="st"> </span>action,</span>
+<span id="cb49-11"><a href="#cb49-11"></a>      condition <span class="op">~</span><span class="st"> </span>action,</span>
+<span id="cb49-12"><a href="#cb49-12"></a>      condition <span class="op">~</span><span class="st"> </span>action</span>
+<span id="cb49-13"><a href="#cb49-13"></a>      )</span>
+<span id="cb49-14"><a href="#cb49-14"></a>    )</span>
+<span id="cb49-15"><a href="#cb49-15"></a></span>
+<span id="cb49-16"><a href="#cb49-16"></a><span class="co"># To display the Data</span></span>
+<span id="cb49-17"><a href="#cb49-17"></a></span>
+<span id="cb49-18"><a href="#cb49-18"></a>titanic_fare_level</span></code></pre></div>
 <p><br></p>
 </div>
-<div id="show-answer-4" class="section level4 unnumbered">
+<div id="show-answer-3" class="section level4 unnumbered">
 <h4><strong>Show Answer</strong></h4>
 <ol style="list-style-type: decimal">
 <li>Use the case_when() function to create a new column in the titanic dataset called <strong>fare_level</strong>.</li>
@@ -102606,20 +102486,20 @@ NA
 <li>Greater than or equal to 300: “very expensive”</li>
 </ul>
 <p>Assign your tibble to the variable <strong>titanic_fare_level</strong>.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="co"># Using case_when</span></span>
-<span id="cb60-2"><a href="#cb60-2"></a><span class="co"># Here I am using the between function from dplyr </span></span>
-<span id="cb60-3"><a href="#cb60-3"></a><span class="co"># To specify the ranges using dplyr&#39;s between function</span></span>
-<span id="cb60-4"><a href="#cb60-4"></a></span>
-<span id="cb60-5"><a href="#cb60-5"></a></span>
-<span id="cb60-6"><a href="#cb60-6"></a>titanic_fare_level &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb60-7"><a href="#cb60-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(</span>
-<span id="cb60-8"><a href="#cb60-8"></a>    <span class="dt">fare_level =</span> dplyr<span class="op">::</span><span class="kw">case_when</span>(</span>
-<span id="cb60-9"><a href="#cb60-9"></a>      fare <span class="op">&lt;</span><span class="st"> </span><span class="dv">100</span> <span class="op">~</span><span class="st"> &quot;cheap&quot;</span>,</span>
-<span id="cb60-10"><a href="#cb60-10"></a>      fare <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span> <span class="op">&amp;</span><span class="st"> </span>fare <span class="op">&lt;</span><span class="st"> </span><span class="dv">200</span> <span class="op">~</span><span class="st"> &quot;middling&quot;</span>,</span>
-<span id="cb60-11"><a href="#cb60-11"></a>      fare <span class="op">&gt;=</span><span class="st"> </span><span class="dv">200</span> <span class="op">&amp;</span><span class="st"> </span>fare <span class="op">&lt;</span><span class="st"> </span><span class="dv">300</span> <span class="op">~</span><span class="st"> &quot;expensive&quot;</span>,</span>
-<span id="cb60-12"><a href="#cb60-12"></a>      fare <span class="op">&gt;=</span><span class="st"> </span><span class="dv">300</span> <span class="op">~</span><span class="st"> &quot;very expensive&quot;</span>,</span>
-<span id="cb60-13"><a href="#cb60-13"></a>      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;unknown&quot;</span>)</span>
-<span id="cb60-14"><a href="#cb60-14"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a><span class="co"># Using case_when</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a><span class="co"># Here I am using the between function from dplyr </span></span>
+<span id="cb50-3"><a href="#cb50-3"></a><span class="co"># To specify the ranges using dplyr&#39;s between function</span></span>
+<span id="cb50-4"><a href="#cb50-4"></a></span>
+<span id="cb50-5"><a href="#cb50-5"></a></span>
+<span id="cb50-6"><a href="#cb50-6"></a>titanic_fare_level &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb50-7"><a href="#cb50-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(</span>
+<span id="cb50-8"><a href="#cb50-8"></a>    <span class="dt">fare_level =</span> dplyr<span class="op">::</span><span class="kw">case_when</span>(</span>
+<span id="cb50-9"><a href="#cb50-9"></a>      fare <span class="op">&lt;</span><span class="st"> </span><span class="dv">100</span> <span class="op">~</span><span class="st"> &quot;cheap&quot;</span>,</span>
+<span id="cb50-10"><a href="#cb50-10"></a>      fare <span class="op">&gt;=</span><span class="st"> </span><span class="dv">100</span> <span class="op">&amp;</span><span class="st"> </span>fare <span class="op">&lt;</span><span class="st"> </span><span class="dv">200</span> <span class="op">~</span><span class="st"> &quot;middling&quot;</span>,</span>
+<span id="cb50-11"><a href="#cb50-11"></a>      fare <span class="op">&gt;=</span><span class="st"> </span><span class="dv">200</span> <span class="op">&amp;</span><span class="st"> </span>fare <span class="op">&lt;</span><span class="st"> </span><span class="dv">300</span> <span class="op">~</span><span class="st"> &quot;expensive&quot;</span>,</span>
+<span id="cb50-12"><a href="#cb50-12"></a>      fare <span class="op">&gt;=</span><span class="st"> </span><span class="dv">300</span> <span class="op">~</span><span class="st"> &quot;very expensive&quot;</span>,</span>
+<span id="cb50-13"><a href="#cb50-13"></a>      <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &quot;unknown&quot;</span>)</span>
+<span id="cb50-14"><a href="#cb50-14"></a>    )</span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100; ">
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -152411,13 +152291,13 @@ S
 <p><br></p>
 <p>I can do a count of my data, we can see below that we have one unknown level.</p>
 <p>Can you take a guess why?</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="co"># Geting a count of the levels created</span></span>
-<span id="cb61-2"><a href="#cb61-2"></a><span class="co"># Notice we have 1 unknown value</span></span>
-<span id="cb61-3"><a href="#cb61-3"></a><span class="co"># This is because we have 1 missing value in the fare column</span></span>
-<span id="cb61-4"><a href="#cb61-4"></a><span class="co"># Which we used to create the levels</span></span>
-<span id="cb61-5"><a href="#cb61-5"></a></span>
-<span id="cb61-6"><a href="#cb61-6"></a>titanic_fare_level <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb61-7"><a href="#cb61-7"></a><span class="st">        </span>dplyr<span class="op">::</span><span class="kw">count</span>(fare_level, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="co"># Geting a count of the levels created</span></span>
+<span id="cb51-2"><a href="#cb51-2"></a><span class="co"># Notice we have 1 unknown value</span></span>
+<span id="cb51-3"><a href="#cb51-3"></a><span class="co"># This is because we have 1 missing value in the fare column</span></span>
+<span id="cb51-4"><a href="#cb51-4"></a><span class="co"># Which we used to create the levels</span></span>
+<span id="cb51-5"><a href="#cb51-5"></a></span>
+<span id="cb51-6"><a href="#cb51-6"></a>titanic_fare_level <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb51-7"><a href="#cb51-7"></a><span class="st">        </span>dplyr<span class="op">::</span><span class="kw">count</span>(fare_level, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 2
 ##   fare_level         n
 ##   &lt;chr&gt;          &lt;int&gt;
@@ -152430,8 +152310,8 @@ S
 </div>
 </div>
 <div id="extension-exercise-case-when" class="section level3 tabset tabset-fade">
-<h3><span class="header-section-number">4.4.2</span> Extension Exercise Case When</h3>
-<div id="exercise-5" class="section level4 unnumbered">
+<h3><span class="header-section-number">4.3.2</span> Extension Exercise Case When</h3>
+<div id="exercise-4" class="section level4 unnumbered">
 <h4><strong>Exercise</strong></h4>
 <p>Building on from the earlier exercise when we imputed missing values using the mean value of the of the age_of_passenger column.</p>
 <p>Use the case_when function to create a new column in the titanic dataset called <strong>imputed_age_of_passenger</strong>.</p>
@@ -152445,7 +152325,7 @@ S
 <hr />
 <p><br></p>
 </div>
-<div id="hint-5" class="section level4 unnumbered">
+<div id="hint-4" class="section level4 unnumbered">
 <h4><strong>Hint</strong></h4>
 <p>Building on from the earlier exercise when we imputed missing values using the mean value of the of the age_of_passenger column.</p>
 <p>Use the case_when function to create a new column in the titanic dataset called <strong>imputed_age_of_passenger</strong>.</p>
@@ -152456,22 +152336,22 @@ S
 <li><p>otherwise, take the value of the age_of_passenger.</p></li>
 </ul>
 <p>As a guide the mean value for female passenger is 28.6 and for male passengers is 30.5.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="co"># Please </span><span class="al">NOTE</span><span class="co">, this is not code, shows the steps required </span></span>
-<span id="cb63-2"><a href="#cb63-2"></a></span>
-<span id="cb63-3"><a href="#cb63-3"></a>Calculate the mean values <span class="cf">for</span> male and female passengers</span>
-<span id="cb63-4"><a href="#cb63-4"></a></span>
-<span id="cb63-5"><a href="#cb63-5"></a><span class="co"># Use case_when within a mutate to add the new column</span></span>
-<span id="cb63-6"><a href="#cb63-6"></a></span>
-<span id="cb63-7"><a href="#cb63-7"></a>titanic_imputed_mean_values &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb63-8"><a href="#cb63-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">imputed_age_of_passenger =</span> dplyr<span class="op">::</span><span class="kw">case_when</span>(</span>
-<span id="cb63-9"><a href="#cb63-9"></a>            condtion <span class="op">~</span><span class="st"> </span>value,</span>
-<span id="cb63-10"><a href="#cb63-10"></a>            condition <span class="op">~</span><span class="st"> </span>value</span>
-<span id="cb63-11"><a href="#cb63-11"></a>            <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>value)</span>
-<span id="cb63-12"><a href="#cb63-12"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="co"># Please </span><span class="al">NOTE</span><span class="co">, this is not code, shows the steps required </span></span>
+<span id="cb53-2"><a href="#cb53-2"></a></span>
+<span id="cb53-3"><a href="#cb53-3"></a>Calculate the mean values <span class="cf">for</span> male and female passengers</span>
+<span id="cb53-4"><a href="#cb53-4"></a></span>
+<span id="cb53-5"><a href="#cb53-5"></a><span class="co"># Use case_when within a mutate to add the new column</span></span>
+<span id="cb53-6"><a href="#cb53-6"></a></span>
+<span id="cb53-7"><a href="#cb53-7"></a>titanic_imputed_mean_values &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb53-8"><a href="#cb53-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">imputed_age_of_passenger =</span> dplyr<span class="op">::</span><span class="kw">case_when</span>(</span>
+<span id="cb53-9"><a href="#cb53-9"></a>            condtion <span class="op">~</span><span class="st"> </span>value,</span>
+<span id="cb53-10"><a href="#cb53-10"></a>            condition <span class="op">~</span><span class="st"> </span>value</span>
+<span id="cb53-11"><a href="#cb53-11"></a>            <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>value)</span>
+<span id="cb53-12"><a href="#cb53-12"></a>  )</span></code></pre></div>
 <hr />
 <p><br></p>
 </div>
-<div id="show-answer-5" class="section level4 unnumbered">
+<div id="show-answer-4" class="section level4 unnumbered">
 <h4><strong>Show Answer</strong></h4>
 <p>Building on from the earlier exercise when we imputed missing values using the mean value of the of the age_of_passenger column.</p>
 <p>Use the case_when function to create a new column in the titanic dataset called <strong>imputed_age_of_passenger</strong>.</p>
@@ -152482,38 +152362,38 @@ S
 <li><p>otherwise, take the value of the age_of_passenger.</p></li>
 </ul>
 <p>As a guide the mean value for female passenger is 28.6 and for male passengers is 30.5.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a><span class="co"># Calculating the mean value for male passengers</span></span>
-<span id="cb64-2"><a href="#cb64-2"></a><span class="co"># Here I am assigning the value to male_passenger_mean_age</span></span>
-<span id="cb64-3"><a href="#cb64-3"></a><span class="co"># Firstly filtering the titanic data for male passengers</span></span>
-<span id="cb64-4"><a href="#cb64-4"></a><span class="co"># Then using the pull function to pull out a a single variable/vector</span></span>
-<span id="cb64-5"><a href="#cb64-5"></a><span class="co"># Then calculating the mean of the age excluding missing values</span></span>
-<span id="cb64-6"><a href="#cb64-6"></a></span>
-<span id="cb64-7"><a href="#cb64-7"></a>male_passenger_mean_age &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb64-8"><a href="#cb64-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(sex_of_passenger <span class="op">==</span><span class="st"> &quot;male&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb64-9"><a href="#cb64-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">pull</span>(age_of_passenger) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb64-10"><a href="#cb64-10"></a><span class="st">  </span><span class="kw">mean</span>(<span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb64-11"><a href="#cb64-11"></a></span>
-<span id="cb64-12"><a href="#cb64-12"></a><span class="co"># Calculating the mean value for female passengers</span></span>
-<span id="cb64-13"><a href="#cb64-13"></a><span class="co"># Here I am assigning the value to female_passenger_mean_age</span></span>
-<span id="cb64-14"><a href="#cb64-14"></a><span class="co"># firstly filtering the titanic data for female passengers </span></span>
-<span id="cb64-15"><a href="#cb64-15"></a><span class="co"># Then calculating the mean of the age excluding missing values</span></span>
-<span id="cb64-16"><a href="#cb64-16"></a></span>
-<span id="cb64-17"><a href="#cb64-17"></a>female_passenger_mean_age &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb64-18"><a href="#cb64-18"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(sex_of_passenger <span class="op">==</span><span class="st"> &quot;female&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb64-19"><a href="#cb64-19"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">pull</span>(age_of_passenger) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb64-20"><a href="#cb64-20"></a><span class="st">  </span><span class="kw">mean</span>(<span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb64-21"><a href="#cb64-21"></a></span>
-<span id="cb64-22"><a href="#cb64-22"></a><span class="co"># Using case_when</span></span>
-<span id="cb64-23"><a href="#cb64-23"></a><span class="co"># Here I am assigning it to titanic_imputed_mean_values</span></span>
-<span id="cb64-24"><a href="#cb64-24"></a><span class="co"># using mutate to assign the new column</span></span>
-<span id="cb64-25"><a href="#cb64-25"></a><span class="co"># case_when() specified inside the mutate function</span></span>
-<span id="cb64-26"><a href="#cb64-26"></a></span>
-<span id="cb64-27"><a href="#cb64-27"></a>titanic_imputed_mean_values &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb64-28"><a href="#cb64-28"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">imputed_age_of_passenger =</span> dplyr<span class="op">::</span><span class="kw">case_when</span>(</span>
-<span id="cb64-29"><a href="#cb64-29"></a>            sex_of_passenger <span class="op">==</span><span class="st"> &quot;male&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(age_of_passenger) <span class="op">~</span><span class="st"> </span>male_passenger_mean_age,</span>
-<span id="cb64-30"><a href="#cb64-30"></a>            sex_of_passenger <span class="op">==</span><span class="st"> &quot;female&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(age_of_passenger) <span class="op">~</span><span class="st"> </span>female_passenger_mean_age,</span>
-<span id="cb64-31"><a href="#cb64-31"></a>            <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>age_of_passenger)</span>
-<span id="cb64-32"><a href="#cb64-32"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="co"># Calculating the mean value for male passengers</span></span>
+<span id="cb54-2"><a href="#cb54-2"></a><span class="co"># Here I am assigning the value to male_passenger_mean_age</span></span>
+<span id="cb54-3"><a href="#cb54-3"></a><span class="co"># Firstly filtering the titanic data for male passengers</span></span>
+<span id="cb54-4"><a href="#cb54-4"></a><span class="co"># Then using the pull function to pull out a a single variable/vector</span></span>
+<span id="cb54-5"><a href="#cb54-5"></a><span class="co"># Then calculating the mean of the age excluding missing values</span></span>
+<span id="cb54-6"><a href="#cb54-6"></a></span>
+<span id="cb54-7"><a href="#cb54-7"></a>male_passenger_mean_age &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb54-8"><a href="#cb54-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(sex_of_passenger <span class="op">==</span><span class="st"> &quot;male&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb54-9"><a href="#cb54-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">pull</span>(age_of_passenger) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb54-10"><a href="#cb54-10"></a><span class="st">  </span><span class="kw">mean</span>(<span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb54-11"><a href="#cb54-11"></a></span>
+<span id="cb54-12"><a href="#cb54-12"></a><span class="co"># Calculating the mean value for female passengers</span></span>
+<span id="cb54-13"><a href="#cb54-13"></a><span class="co"># Here I am assigning the value to female_passenger_mean_age</span></span>
+<span id="cb54-14"><a href="#cb54-14"></a><span class="co"># firstly filtering the titanic data for female passengers </span></span>
+<span id="cb54-15"><a href="#cb54-15"></a><span class="co"># Then calculating the mean of the age excluding missing values</span></span>
+<span id="cb54-16"><a href="#cb54-16"></a></span>
+<span id="cb54-17"><a href="#cb54-17"></a>female_passenger_mean_age &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb54-18"><a href="#cb54-18"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(sex_of_passenger <span class="op">==</span><span class="st"> &quot;female&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb54-19"><a href="#cb54-19"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">pull</span>(age_of_passenger) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb54-20"><a href="#cb54-20"></a><span class="st">  </span><span class="kw">mean</span>(<span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb54-21"><a href="#cb54-21"></a></span>
+<span id="cb54-22"><a href="#cb54-22"></a><span class="co"># Using case_when</span></span>
+<span id="cb54-23"><a href="#cb54-23"></a><span class="co"># Here I am assigning it to titanic_imputed_mean_values</span></span>
+<span id="cb54-24"><a href="#cb54-24"></a><span class="co"># using mutate to assign the new column</span></span>
+<span id="cb54-25"><a href="#cb54-25"></a><span class="co"># case_when() specified inside the mutate function</span></span>
+<span id="cb54-26"><a href="#cb54-26"></a></span>
+<span id="cb54-27"><a href="#cb54-27"></a>titanic_imputed_mean_values &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb54-28"><a href="#cb54-28"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">imputed_age_of_passenger =</span> dplyr<span class="op">::</span><span class="kw">case_when</span>(</span>
+<span id="cb54-29"><a href="#cb54-29"></a>            sex_of_passenger <span class="op">==</span><span class="st"> &quot;male&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(age_of_passenger) <span class="op">~</span><span class="st"> </span>male_passenger_mean_age,</span>
+<span id="cb54-30"><a href="#cb54-30"></a>            sex_of_passenger <span class="op">==</span><span class="st"> &quot;female&quot;</span> <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(age_of_passenger) <span class="op">~</span><span class="st"> </span>female_passenger_mean_age,</span>
+<span id="cb54-31"><a href="#cb54-31"></a>            <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>age_of_passenger)</span>
+<span id="cb54-32"><a href="#cb54-32"></a>  )</span></code></pre></div>
 <p><br></p>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100; ">
 <table class="table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
@@ -202331,18 +202211,18 @@ S
 <!--This description is really good -JM -->
 <p>We can take one complicated operation and wrap it up inside a function and use it wherever we need.</p>
 <p>For example, take the <code>mean()</code> function from base R that calculates the average value of a given vector — we could write out the average calculation by hand:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="co"># Creating a vector</span></span>
-<span id="cb65-2"><a href="#cb65-2"></a>numbers &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">19</span></span>
-<span id="cb65-3"><a href="#cb65-3"></a></span>
-<span id="cb65-4"><a href="#cb65-4"></a><span class="co"># Calculating the mean </span></span>
-<span id="cb65-5"><a href="#cb65-5"></a><span class="co"># Here I am using the sum function and the length function</span></span>
-<span id="cb65-6"><a href="#cb65-6"></a>mean_numbers &lt;-<span class="st"> </span><span class="kw">sum</span>(numbers) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(numbers)</span>
-<span id="cb65-7"><a href="#cb65-7"></a></span>
-<span id="cb65-8"><a href="#cb65-8"></a><span class="co"># To Display the data</span></span>
-<span id="cb65-9"><a href="#cb65-9"></a>mean_numbers</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="co"># Creating a vector</span></span>
+<span id="cb55-2"><a href="#cb55-2"></a>numbers &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">19</span></span>
+<span id="cb55-3"><a href="#cb55-3"></a></span>
+<span id="cb55-4"><a href="#cb55-4"></a><span class="co"># Calculating the mean </span></span>
+<span id="cb55-5"><a href="#cb55-5"></a><span class="co"># Here I am using the sum function and the length function</span></span>
+<span id="cb55-6"><a href="#cb55-6"></a>mean_numbers &lt;-<span class="st"> </span><span class="kw">sum</span>(numbers) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(numbers)</span>
+<span id="cb55-7"><a href="#cb55-7"></a></span>
+<span id="cb55-8"><a href="#cb55-8"></a><span class="co"># To Display the data</span></span>
+<span id="cb55-9"><a href="#cb55-9"></a>mean_numbers</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="co"># Using the mean function</span></span>
-<span id="cb67-2"><a href="#cb67-2"></a><span class="kw">mean</span>(numbers)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="co"># Using the mean function</span></span>
+<span id="cb57-2"><a href="#cb57-2"></a><span class="kw">mean</span>(numbers)</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
 <p>Nothing stops us from writing out <code>sum(numbers) / length(numbers)</code> every time we need to calculate an average.</p>
 <p>Using the mean function is much easier.</p>
@@ -202368,14 +202248,14 @@ S
 <div id="how-to-write-a-function" class="section level2">
 <h2><span class="header-section-number">5.3</span> How to write a function</h2>
 <p>The basic structure of a function looks like this:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a><span class="co"># Basic structure of a function</span></span>
-<span id="cb69-2"><a href="#cb69-2"></a></span>
-<span id="cb69-3"><a href="#cb69-3"></a>function_name &lt;-<span class="st"> </span><span class="cf">function</span>(input) { </span>
-<span id="cb69-4"><a href="#cb69-4"></a>  </span>
-<span id="cb69-5"><a href="#cb69-5"></a>                 statements of what the <span class="cf">function</span> is doing</span>
-<span id="cb69-6"><a href="#cb69-6"></a>  </span>
-<span id="cb69-7"><a href="#cb69-7"></a>                 <span class="kw">return</span>(the <span class="cf">function</span> output)</span>
-<span id="cb69-8"><a href="#cb69-8"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="co"># Basic structure of a function</span></span>
+<span id="cb59-2"><a href="#cb59-2"></a></span>
+<span id="cb59-3"><a href="#cb59-3"></a>function_name &lt;-<span class="st"> </span><span class="cf">function</span>(input) { </span>
+<span id="cb59-4"><a href="#cb59-4"></a>  </span>
+<span id="cb59-5"><a href="#cb59-5"></a>                 statements of what the <span class="cf">function</span> is doing</span>
+<span id="cb59-6"><a href="#cb59-6"></a>  </span>
+<span id="cb59-7"><a href="#cb59-7"></a>                 <span class="kw">return</span>(the <span class="cf">function</span> output)</span>
+<span id="cb59-8"><a href="#cb59-8"></a>}</span></code></pre></div>
 <p><br></p>
 <blockquote>
 <p><strong>In R, we use a function to make a function!</strong></p>
@@ -202393,32 +202273,32 @@ S
 </div>
 <div id="example-of-a-basic-function" class="section level2">
 <h2><span class="header-section-number">5.4</span> Example of a basic function</h2>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a><span class="co"># Here is a simple function to add together two values and return the sum.</span></span>
-<span id="cb70-2"><a href="#cb70-2"></a></span>
-<span id="cb70-3"><a href="#cb70-3"></a>sum_two_values &lt;-<span class="st"> </span><span class="cf">function</span>(value_<span class="dv">1</span>, value_<span class="dv">2</span>) { </span>
-<span id="cb70-4"><a href="#cb70-4"></a>  </span>
-<span id="cb70-5"><a href="#cb70-5"></a>                  result &lt;-<span class="st"> </span>value_<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>value_<span class="dv">2</span></span>
-<span id="cb70-6"><a href="#cb70-6"></a>  </span>
-<span id="cb70-7"><a href="#cb70-7"></a>                  <span class="kw">return</span>(result)</span>
-<span id="cb70-8"><a href="#cb70-8"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="co"># Here is a simple function to add together two values and return the sum.</span></span>
+<span id="cb60-2"><a href="#cb60-2"></a></span>
+<span id="cb60-3"><a href="#cb60-3"></a>sum_two_values &lt;-<span class="st"> </span><span class="cf">function</span>(value_<span class="dv">1</span>, value_<span class="dv">2</span>) { </span>
+<span id="cb60-4"><a href="#cb60-4"></a>  </span>
+<span id="cb60-5"><a href="#cb60-5"></a>                  result &lt;-<span class="st"> </span>value_<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>value_<span class="dv">2</span></span>
+<span id="cb60-6"><a href="#cb60-6"></a>  </span>
+<span id="cb60-7"><a href="#cb60-7"></a>                  <span class="kw">return</span>(result)</span>
+<span id="cb60-8"><a href="#cb60-8"></a>}</span></code></pre></div>
 <p>Our new function <strong><code>sum_two_values()</code></strong> will exist in our global environment which can be seen in the panel on the right hand side.</p>
 <p><br></p>
 <div id="calling-functions" class="section level3">
 <h3><span class="header-section-number">5.4.1</span> Calling Functions</h3>
 <p>Calling user defined functions works the same way as calling the built-in functions we’ve used so far.</p>
 <p>Simply, type the function name followed by parentheses containing any required arguments.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="co"># I can now run my function</span></span>
-<span id="cb71-2"><a href="#cb71-2"></a></span>
-<span id="cb71-3"><a href="#cb71-3"></a><span class="kw">sum_two_values</span>(<span class="dt">value_1 =</span> <span class="dv">1</span>, <span class="dt">value_2 =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="co"># I can now run my function</span></span>
+<span id="cb61-2"><a href="#cb61-2"></a></span>
+<span id="cb61-3"><a href="#cb61-3"></a><span class="kw">sum_two_values</span>(<span class="dt">value_1 =</span> <span class="dv">1</span>, <span class="dt">value_2 =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="co"># Calling the function by itself prints the result to the console</span></span>
-<span id="cb73-2"><a href="#cb73-2"></a><span class="co"># Alternatively the result can be saved as a new variable</span></span>
-<span id="cb73-3"><a href="#cb73-3"></a></span>
-<span id="cb73-4"><a href="#cb73-4"></a>result &lt;-<span class="st"> </span><span class="kw">sum_two_values</span>(<span class="dt">value_1 =</span> <span class="dv">3</span>, <span class="dt">value_2 =</span> <span class="dv">4</span>)</span>
-<span id="cb73-5"><a href="#cb73-5"></a></span>
-<span id="cb73-6"><a href="#cb73-6"></a><span class="co">#To display the data</span></span>
-<span id="cb73-7"><a href="#cb73-7"></a></span>
-<span id="cb73-8"><a href="#cb73-8"></a>result</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="co"># Calling the function by itself prints the result to the console</span></span>
+<span id="cb63-2"><a href="#cb63-2"></a><span class="co"># Alternatively the result can be saved as a new variable</span></span>
+<span id="cb63-3"><a href="#cb63-3"></a></span>
+<span id="cb63-4"><a href="#cb63-4"></a>result &lt;-<span class="st"> </span><span class="kw">sum_two_values</span>(<span class="dt">value_1 =</span> <span class="dv">3</span>, <span class="dt">value_2 =</span> <span class="dv">4</span>)</span>
+<span id="cb63-5"><a href="#cb63-5"></a></span>
+<span id="cb63-6"><a href="#cb63-6"></a><span class="co">#To display the data</span></span>
+<span id="cb63-7"><a href="#cb63-7"></a></span>
+<span id="cb63-8"><a href="#cb63-8"></a>result</span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
 <blockquote>
 <p><strong>TIP - If you have written a chunk of code that you want to turn into a function, highlight the code chunk and press <code>Ctrl + ALt + x</code> on windows or <code>control + option X</code> on a Mac. A pop up will appear that will ask you to select a function name and the inputs and code structure needed to turn your code into a function will be added automatically.</strong></p>
@@ -202429,18 +202309,18 @@ S
 </div>
 <div id="exercise-basic-functions" class="section level2 tabset tabset-fade">
 <h2><span class="header-section-number">5.5</span> Exercise: Basic Functions</h2>
-<div id="exercise-6" class="section level3 unnumbered">
+<div id="exercise-5" class="section level3 unnumbered">
 <h3><strong>Exercise</strong></h3>
 <ol style="list-style-type: decimal">
 <li>The <strong><code>range()</code></strong> in R, doesn’t show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called <strong><code>range_difference()</code></strong> which returns the difference between the highest value and the lowest value?</li>
 </ol>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a><span class="co"># Creating a vector</span></span>
-<span id="cb75-2"><a href="#cb75-2"></a></span>
-<span id="cb75-3"><a href="#cb75-3"></a>age_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">23</span>, <span class="dv">30</span>, <span class="dv">50</span>)</span>
-<span id="cb75-4"><a href="#cb75-4"></a></span>
-<span id="cb75-5"><a href="#cb75-5"></a><span class="co"># Calling the range function on the vector</span></span>
-<span id="cb75-6"><a href="#cb75-6"></a></span>
-<span id="cb75-7"><a href="#cb75-7"></a><span class="kw">range</span>(age_vector)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="co"># Creating a vector</span></span>
+<span id="cb65-2"><a href="#cb65-2"></a></span>
+<span id="cb65-3"><a href="#cb65-3"></a>age_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">23</span>, <span class="dv">30</span>, <span class="dv">50</span>)</span>
+<span id="cb65-4"><a href="#cb65-4"></a></span>
+<span id="cb65-5"><a href="#cb65-5"></a><span class="co"># Calling the range function on the vector</span></span>
+<span id="cb65-6"><a href="#cb65-6"></a></span>
+<span id="cb65-7"><a href="#cb65-7"></a><span class="kw">range</span>(age_vector)</span></code></pre></div>
 <pre><code>## [1] 10 50</code></pre>
 <p><br></p>
 <ol start="2" style="list-style-type: decimal">
@@ -202466,70 +202346,70 @@ S
 <hr />
 <p><br></p>
 </div>
-<div id="hint-6" class="section level3 unnumbered">
+<div id="hint-5" class="section level3 unnumbered">
 <h3><strong>Hint</strong></h3>
 <ol style="list-style-type: decimal">
 <li>The <strong><code>range()</code></strong> in R, doesn’t show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called <strong><code>range_difference()</code></strong> which returns the difference between the highest value and the lowest value?</li>
 </ol>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a><span class="co"># Creating my function</span></span>
-<span id="cb77-2"><a href="#cb77-2"></a></span>
-<span id="cb77-3"><a href="#cb77-3"></a>range_difference &lt;-<span class="st">  </span><span class="cf">function</span>(input){</span>
-<span id="cb77-4"><a href="#cb77-4"></a>  </span>
-<span id="cb77-5"><a href="#cb77-5"></a>                     commands</span>
-<span id="cb77-6"><a href="#cb77-6"></a>  </span>
-<span id="cb77-7"><a href="#cb77-7"></a>                     <span class="kw">return</span>(result)</span>
-<span id="cb77-8"><a href="#cb77-8"></a>}</span>
-<span id="cb77-9"><a href="#cb77-9"></a></span>
-<span id="cb77-10"><a href="#cb77-10"></a><span class="co"># Running the base R range function</span></span>
-<span id="cb77-11"><a href="#cb77-11"></a></span>
-<span id="cb77-12"><a href="#cb77-12"></a><span class="kw">range</span>(input)</span>
-<span id="cb77-13"><a href="#cb77-13"></a></span>
-<span id="cb77-14"><a href="#cb77-14"></a><span class="co"># Running my custom range function</span></span>
-<span id="cb77-15"><a href="#cb77-15"></a></span>
-<span id="cb77-16"><a href="#cb77-16"></a><span class="kw">my_range</span>(input)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="co"># Creating my function</span></span>
+<span id="cb67-2"><a href="#cb67-2"></a></span>
+<span id="cb67-3"><a href="#cb67-3"></a>range_difference &lt;-<span class="st">  </span><span class="cf">function</span>(input){</span>
+<span id="cb67-4"><a href="#cb67-4"></a>  </span>
+<span id="cb67-5"><a href="#cb67-5"></a>                     commands</span>
+<span id="cb67-6"><a href="#cb67-6"></a>  </span>
+<span id="cb67-7"><a href="#cb67-7"></a>                     <span class="kw">return</span>(result)</span>
+<span id="cb67-8"><a href="#cb67-8"></a>}</span>
+<span id="cb67-9"><a href="#cb67-9"></a></span>
+<span id="cb67-10"><a href="#cb67-10"></a><span class="co"># Running the base R range function</span></span>
+<span id="cb67-11"><a href="#cb67-11"></a></span>
+<span id="cb67-12"><a href="#cb67-12"></a><span class="kw">range</span>(input)</span>
+<span id="cb67-13"><a href="#cb67-13"></a></span>
+<span id="cb67-14"><a href="#cb67-14"></a><span class="co"># Running my custom range function</span></span>
+<span id="cb67-15"><a href="#cb67-15"></a></span>
+<span id="cb67-16"><a href="#cb67-16"></a><span class="kw">my_range</span>(input)</span></code></pre></div>
 <p><br></p>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Write a function which:</p>
 <p><strong>Converts from Fahrenheit to degrees Celsius using the equation below.</strong></p></li>
 </ol>
 <p><span class="math display">\[C=\frac{5}{9}(F-32)\]</span></p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a><span class="co"># Creating our function</span></span>
-<span id="cb78-2"><a href="#cb78-2"></a></span>
-<span id="cb78-3"><a href="#cb78-3"></a>fahrenheit_to_degrees_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(input) {</span>
-<span id="cb78-4"><a href="#cb78-4"></a>  </span>
-<span id="cb78-5"><a href="#cb78-5"></a>                                 commands</span>
-<span id="cb78-6"><a href="#cb78-6"></a>  </span>
-<span id="cb78-7"><a href="#cb78-7"></a>                                 <span class="kw">return</span>(celsius)</span>
-<span id="cb78-8"><a href="#cb78-8"></a>}</span>
-<span id="cb78-9"><a href="#cb78-9"></a></span>
-<span id="cb78-10"><a href="#cb78-10"></a><span class="co"># Calling our function</span></span>
-<span id="cb78-11"><a href="#cb78-11"></a></span>
-<span id="cb78-12"><a href="#cb78-12"></a><span class="kw">fahrenheit_to_degrees_celsius</span>(<span class="dv">32</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a><span class="co"># Creating our function</span></span>
+<span id="cb68-2"><a href="#cb68-2"></a></span>
+<span id="cb68-3"><a href="#cb68-3"></a>fahrenheit_to_degrees_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(input) {</span>
+<span id="cb68-4"><a href="#cb68-4"></a>  </span>
+<span id="cb68-5"><a href="#cb68-5"></a>                                 commands</span>
+<span id="cb68-6"><a href="#cb68-6"></a>  </span>
+<span id="cb68-7"><a href="#cb68-7"></a>                                 <span class="kw">return</span>(celsius)</span>
+<span id="cb68-8"><a href="#cb68-8"></a>}</span>
+<span id="cb68-9"><a href="#cb68-9"></a></span>
+<span id="cb68-10"><a href="#cb68-10"></a><span class="co"># Calling our function</span></span>
+<span id="cb68-11"><a href="#cb68-11"></a></span>
+<span id="cb68-12"><a href="#cb68-12"></a><span class="kw">fahrenheit_to_degrees_celsius</span>(<span class="dv">32</span>)</span></code></pre></div>
 <hr />
 <p><br></p>
 </div>
-<div id="show-answer-6" class="section level3 unnumbered">
+<div id="show-answer-5" class="section level3 unnumbered">
 <h3><strong>Show Answer</strong></h3>
 <ol style="list-style-type: decimal">
 <li>The <strong><code>range()</code></strong> in R, doesn’t show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called <strong><code>range_difference()</code></strong> which returns the difference between the highest value and the lowest value?</li>
 </ol>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a><span class="co"># Creating my function</span></span>
-<span id="cb79-2"><a href="#cb79-2"></a></span>
-<span id="cb79-3"><a href="#cb79-3"></a>range_difference &lt;-<span class="st">  </span><span class="cf">function</span>(age_vector){</span>
-<span id="cb79-4"><a href="#cb79-4"></a>  </span>
-<span id="cb79-5"><a href="#cb79-5"></a>                     result &lt;-<span class="st"> </span><span class="kw">max</span>(age_vector) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(age_vector) </span>
-<span id="cb79-6"><a href="#cb79-6"></a>  </span>
-<span id="cb79-7"><a href="#cb79-7"></a>                     <span class="kw">return</span>(result)</span>
-<span id="cb79-8"><a href="#cb79-8"></a></span>
-<span id="cb79-9"><a href="#cb79-9"></a>}</span>
-<span id="cb79-10"><a href="#cb79-10"></a></span>
-<span id="cb79-11"><a href="#cb79-11"></a><span class="co"># Running the base R range function</span></span>
-<span id="cb79-12"><a href="#cb79-12"></a></span>
-<span id="cb79-13"><a href="#cb79-13"></a><span class="kw">range</span>(age_vector)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a><span class="co"># Creating my function</span></span>
+<span id="cb69-2"><a href="#cb69-2"></a></span>
+<span id="cb69-3"><a href="#cb69-3"></a>range_difference &lt;-<span class="st">  </span><span class="cf">function</span>(age_vector){</span>
+<span id="cb69-4"><a href="#cb69-4"></a>  </span>
+<span id="cb69-5"><a href="#cb69-5"></a>                     result &lt;-<span class="st"> </span><span class="kw">max</span>(age_vector) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(age_vector) </span>
+<span id="cb69-6"><a href="#cb69-6"></a>  </span>
+<span id="cb69-7"><a href="#cb69-7"></a>                     <span class="kw">return</span>(result)</span>
+<span id="cb69-8"><a href="#cb69-8"></a></span>
+<span id="cb69-9"><a href="#cb69-9"></a>}</span>
+<span id="cb69-10"><a href="#cb69-10"></a></span>
+<span id="cb69-11"><a href="#cb69-11"></a><span class="co"># Running the base R range function</span></span>
+<span id="cb69-12"><a href="#cb69-12"></a></span>
+<span id="cb69-13"><a href="#cb69-13"></a><span class="kw">range</span>(age_vector)</span></code></pre></div>
 <pre><code>## [1] 10 50</code></pre>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a><span class="co"># Running my custom range function</span></span>
-<span id="cb81-2"><a href="#cb81-2"></a></span>
-<span id="cb81-3"><a href="#cb81-3"></a><span class="kw">range_difference</span>(age_vector)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="co"># Running my custom range function</span></span>
+<span id="cb71-2"><a href="#cb71-2"></a></span>
+<span id="cb71-3"><a href="#cb71-3"></a><span class="kw">range_difference</span>(age_vector)</span></code></pre></div>
 <pre><code>## [1] 40</code></pre>
 <p><br></p>
 <ol start="2" style="list-style-type: decimal">
@@ -202537,18 +202417,18 @@ S
 <p><strong>Converts from Fahrenheit to degrees Celsius using the equation below.</strong></p></li>
 </ol>
 <p><span class="math display">\[C=\frac{5}{9}(F-32)\]</span></p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a><span class="co"># Creating our function</span></span>
-<span id="cb83-2"><a href="#cb83-2"></a></span>
-<span id="cb83-3"><a href="#cb83-3"></a>fahrenheit_to_degrees_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(fahrenheit) {</span>
-<span id="cb83-4"><a href="#cb83-4"></a>  </span>
-<span id="cb83-5"><a href="#cb83-5"></a>               celsius &lt;-<span class="st"> </span>(<span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">9</span>) <span class="op">*</span><span class="st"> </span>(fahrenheit <span class="op">-</span><span class="st"> </span><span class="dv">32</span>)</span>
-<span id="cb83-6"><a href="#cb83-6"></a>  </span>
-<span id="cb83-7"><a href="#cb83-7"></a>  <span class="kw">return</span>(celsius)</span>
-<span id="cb83-8"><a href="#cb83-8"></a>}</span>
-<span id="cb83-9"><a href="#cb83-9"></a></span>
-<span id="cb83-10"><a href="#cb83-10"></a><span class="co"># Calling our function</span></span>
-<span id="cb83-11"><a href="#cb83-11"></a></span>
-<span id="cb83-12"><a href="#cb83-12"></a><span class="kw">fahrenheit_to_degrees_celsius</span>(<span class="dv">32</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="co"># Creating our function</span></span>
+<span id="cb73-2"><a href="#cb73-2"></a></span>
+<span id="cb73-3"><a href="#cb73-3"></a>fahrenheit_to_degrees_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(fahrenheit) {</span>
+<span id="cb73-4"><a href="#cb73-4"></a>  </span>
+<span id="cb73-5"><a href="#cb73-5"></a>               celsius &lt;-<span class="st"> </span>(<span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">9</span>) <span class="op">*</span><span class="st"> </span>(fahrenheit <span class="op">-</span><span class="st"> </span><span class="dv">32</span>)</span>
+<span id="cb73-6"><a href="#cb73-6"></a>  </span>
+<span id="cb73-7"><a href="#cb73-7"></a>  <span class="kw">return</span>(celsius)</span>
+<span id="cb73-8"><a href="#cb73-8"></a>}</span>
+<span id="cb73-9"><a href="#cb73-9"></a></span>
+<span id="cb73-10"><a href="#cb73-10"></a><span class="co"># Calling our function</span></span>
+<span id="cb73-11"><a href="#cb73-11"></a></span>
+<span id="cb73-12"><a href="#cb73-12"></a><span class="kw">fahrenheit_to_degrees_celsius</span>(<span class="dv">32</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <hr />
 <p><br></p>
@@ -202561,19 +202441,19 @@ S
 <p>In the global environment, there are two types of scopes, <em>global</em> and <em>local</em>. Variables that have <em>global</em> scope are visible everywhere - in every function, loop, conditional, basically every part of the code (after they have been declared). However, variables that have <em>local</em> scope are only visible inside their specific area and hence can only be used within that local scope.</p>
 <p>When we create a new function we effectively create a new local scope – so the variables we declare within our functions are only available within that local scope.</p>
 <p>Here is a classical example to demonstrate this.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1"></a><span class="co"># Creating a function</span></span>
-<span id="cb85-2"><a href="#cb85-2"></a></span>
-<span id="cb85-3"><a href="#cb85-3"></a>scope_function =<span class="st"> </span><span class="cf">function</span>(){</span>
-<span id="cb85-4"><a href="#cb85-4"></a>  <span class="co"># this variable is local to the </span></span>
-<span id="cb85-5"><a href="#cb85-5"></a>  <span class="co"># scope_function and cannot be  </span></span>
-<span id="cb85-6"><a href="#cb85-6"></a>  <span class="co"># accessed outside this function </span></span>
-<span id="cb85-7"><a href="#cb85-7"></a>  weight_kg &lt;-<span class="st"> </span><span class="dv">60</span></span>
-<span id="cb85-8"><a href="#cb85-8"></a>  </span>
-<span id="cb85-9"><a href="#cb85-9"></a>} </span></code></pre></div>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1"></a><span class="co"># To display the result</span></span>
-<span id="cb86-2"><a href="#cb86-2"></a><span class="co"># This will not work as z does not exist outside the function</span></span>
-<span id="cb86-3"><a href="#cb86-3"></a></span>
-<span id="cb86-4"><a href="#cb86-4"></a>weight_kg</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a><span class="co"># Creating a function</span></span>
+<span id="cb75-2"><a href="#cb75-2"></a></span>
+<span id="cb75-3"><a href="#cb75-3"></a>scope_function =<span class="st"> </span><span class="cf">function</span>(){</span>
+<span id="cb75-4"><a href="#cb75-4"></a>  <span class="co"># this variable is local to the </span></span>
+<span id="cb75-5"><a href="#cb75-5"></a>  <span class="co"># scope_function and cannot be  </span></span>
+<span id="cb75-6"><a href="#cb75-6"></a>  <span class="co"># accessed outside this function </span></span>
+<span id="cb75-7"><a href="#cb75-7"></a>  weight_kg &lt;-<span class="st"> </span><span class="dv">60</span></span>
+<span id="cb75-8"><a href="#cb75-8"></a>  </span>
+<span id="cb75-9"><a href="#cb75-9"></a>} </span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a><span class="co"># To display the result</span></span>
+<span id="cb76-2"><a href="#cb76-2"></a><span class="co"># This will not work as z does not exist outside the function</span></span>
+<span id="cb76-3"><a href="#cb76-3"></a></span>
+<span id="cb76-4"><a href="#cb76-4"></a>weight_kg</span></code></pre></div>
 <p>This will give the error message below,</p>
 <p><strong>Error: object ‘weight_kg’ not found</strong></p>
 <hr />
@@ -202588,16 +202468,16 @@ S
 <div id="required-arguments" class="section level4 unnumbered">
 <h4>Required Arguments</h4>
 <p>Like the name suggests, these are arguments which are required by a function and must be passed in the correct order.</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1"></a><span class="co"># Creating our function</span></span>
-<span id="cb87-2"><a href="#cb87-2"></a></span>
-<span id="cb87-3"><a href="#cb87-3"></a>arithmetic &lt;-<span class="st"> </span><span class="cf">function</span>(a, b) {</span>
-<span id="cb87-4"><a href="#cb87-4"></a>  </span>
-<span id="cb87-5"><a href="#cb87-5"></a>              <span class="kw">return</span> ((a <span class="op">^</span><span class="st"> </span>b) <span class="op">/</span><span class="st"> </span>b)</span>
-<span id="cb87-6"><a href="#cb87-6"></a>}</span>
-<span id="cb87-7"><a href="#cb87-7"></a></span>
-<span id="cb87-8"><a href="#cb87-8"></a><span class="co"># Calling our function</span></span>
-<span id="cb87-9"><a href="#cb87-9"></a></span>
-<span id="cb87-10"><a href="#cb87-10"></a><span class="kw">arithmetic</span>(<span class="dt">a =</span> <span class="dv">4</span>, <span class="dt">b =</span> <span class="dv">9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a><span class="co"># Creating our function</span></span>
+<span id="cb77-2"><a href="#cb77-2"></a></span>
+<span id="cb77-3"><a href="#cb77-3"></a>arithmetic &lt;-<span class="st"> </span><span class="cf">function</span>(a, b) {</span>
+<span id="cb77-4"><a href="#cb77-4"></a>  </span>
+<span id="cb77-5"><a href="#cb77-5"></a>              <span class="kw">return</span> ((a <span class="op">^</span><span class="st"> </span>b) <span class="op">/</span><span class="st"> </span>b)</span>
+<span id="cb77-6"><a href="#cb77-6"></a>}</span>
+<span id="cb77-7"><a href="#cb77-7"></a></span>
+<span id="cb77-8"><a href="#cb77-8"></a><span class="co"># Calling our function</span></span>
+<span id="cb77-9"><a href="#cb77-9"></a></span>
+<span id="cb77-10"><a href="#cb77-10"></a><span class="kw">arithmetic</span>(<span class="dt">a =</span> <span class="dv">4</span>, <span class="dt">b =</span> <span class="dv">9</span>)</span></code></pre></div>
 <pre><code>## [1] 29127.11</code></pre>
 <p><code>a</code> and <code>b</code> are both required arguments. We would get a missing error if we did not pass both arguments.</p>
 <hr />
@@ -202605,20 +202485,20 @@ S
 <div id="default-arguments" class="section level4 unnumbered">
 <h4>Default arguments</h4>
 <p>This is where, in the function declaration, the value of the parameter is pre-set. The function will retain this value unless it is changed when the function is called.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1"></a><span class="co"># Creating our function</span></span>
-<span id="cb89-2"><a href="#cb89-2"></a></span>
-<span id="cb89-3"><a href="#cb89-3"></a>arithmetic &lt;-<span class="st"> </span><span class="cf">function</span>(a, <span class="dt">b =</span> <span class="dv">1</span>) {</span>
-<span id="cb89-4"><a href="#cb89-4"></a>  </span>
-<span id="cb89-5"><a href="#cb89-5"></a>              <span class="kw">return</span> ((a <span class="op">^</span><span class="st"> </span>b) <span class="op">/</span><span class="st"> </span>b)</span>
-<span id="cb89-6"><a href="#cb89-6"></a>}</span>
-<span id="cb89-7"><a href="#cb89-7"></a></span>
-<span id="cb89-8"><a href="#cb89-8"></a><span class="co"># Calling our function</span></span>
-<span id="cb89-9"><a href="#cb89-9"></a></span>
-<span id="cb89-10"><a href="#cb89-10"></a><span class="kw">arithmetic</span>(<span class="dt">a =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a><span class="co"># Creating our function</span></span>
+<span id="cb79-2"><a href="#cb79-2"></a></span>
+<span id="cb79-3"><a href="#cb79-3"></a>arithmetic &lt;-<span class="st"> </span><span class="cf">function</span>(a, <span class="dt">b =</span> <span class="dv">1</span>) {</span>
+<span id="cb79-4"><a href="#cb79-4"></a>  </span>
+<span id="cb79-5"><a href="#cb79-5"></a>              <span class="kw">return</span> ((a <span class="op">^</span><span class="st"> </span>b) <span class="op">/</span><span class="st"> </span>b)</span>
+<span id="cb79-6"><a href="#cb79-6"></a>}</span>
+<span id="cb79-7"><a href="#cb79-7"></a></span>
+<span id="cb79-8"><a href="#cb79-8"></a><span class="co"># Calling our function</span></span>
+<span id="cb79-9"><a href="#cb79-9"></a></span>
+<span id="cb79-10"><a href="#cb79-10"></a><span class="kw">arithmetic</span>(<span class="dt">a =</span> <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1"></a><span class="co"># Calling our function overwriting the default value for b</span></span>
-<span id="cb91-2"><a href="#cb91-2"></a></span>
-<span id="cb91-3"><a href="#cb91-3"></a><span class="kw">arithmetic</span>(<span class="dt">a =</span> <span class="dv">5</span>, <span class="dt">b =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a><span class="co"># Calling our function overwriting the default value for b</span></span>
+<span id="cb81-2"><a href="#cb81-2"></a></span>
+<span id="cb81-3"><a href="#cb81-3"></a><span class="kw">arithmetic</span>(<span class="dt">a =</span> <span class="dv">5</span>, <span class="dt">b =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 12.5</code></pre>
 <p>In the first example above the function will take <code>a = 5</code> and use the default value <code>b = 1</code>. Whereas, in the second example, we overwrite <code>b = 1</code> by passing the argument <code>2</code>.</p>
 <hr />
@@ -202629,25 +202509,25 @@ S
 <p>You will often see in list of arguments a function takes, in the documentation, this <code>...</code>. This is a special argument which captures any number of arguments that aren’t otherwise matched.</p>
 <p>Sometimes being able to pass an arbitrary number of arguments can be useful, especially when another function is called within a wrapper function. This requires the ellipsis construct, …, which is designed to pass a variable number of arguments to a function.</p>
 <p>Here’s an example: We created this function earlier.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1"></a><span class="co"># Creating our function</span></span>
-<span id="cb93-2"><a href="#cb93-2"></a>                                          <span class="co"># Added ...</span></span>
-<span id="cb93-3"><a href="#cb93-3"></a>fahrenheit_to_degrees_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(fahrenheit, ...) {</span>
-<span id="cb93-4"><a href="#cb93-4"></a>  </span>
-<span id="cb93-5"><a href="#cb93-5"></a>  celsius &lt;-<span class="st"> </span>(<span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">9</span>) <span class="op">*</span><span class="st"> </span>(fahrenheit <span class="op">-</span><span class="st"> </span><span class="dv">32</span>)</span>
-<span id="cb93-6"><a href="#cb93-6"></a>  <span class="co"># Added round() with ...</span></span>
-<span id="cb93-7"><a href="#cb93-7"></a>  celsius &lt;-<span class="st"> </span><span class="kw">round</span>(celsius, ...)</span>
-<span id="cb93-8"><a href="#cb93-8"></a>  </span>
-<span id="cb93-9"><a href="#cb93-9"></a>  <span class="kw">return</span>(celsius)</span>
-<span id="cb93-10"><a href="#cb93-10"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a><span class="co"># Creating our function</span></span>
+<span id="cb83-2"><a href="#cb83-2"></a>                                          <span class="co"># Added ...</span></span>
+<span id="cb83-3"><a href="#cb83-3"></a>fahrenheit_to_degrees_celsius &lt;-<span class="st"> </span><span class="cf">function</span>(fahrenheit, ...) {</span>
+<span id="cb83-4"><a href="#cb83-4"></a>  </span>
+<span id="cb83-5"><a href="#cb83-5"></a>  celsius &lt;-<span class="st"> </span>(<span class="dv">5</span> <span class="op">/</span><span class="st"> </span><span class="dv">9</span>) <span class="op">*</span><span class="st"> </span>(fahrenheit <span class="op">-</span><span class="st"> </span><span class="dv">32</span>)</span>
+<span id="cb83-6"><a href="#cb83-6"></a>  <span class="co"># Added round() with ...</span></span>
+<span id="cb83-7"><a href="#cb83-7"></a>  celsius &lt;-<span class="st"> </span><span class="kw">round</span>(celsius, ...)</span>
+<span id="cb83-8"><a href="#cb83-8"></a>  </span>
+<span id="cb83-9"><a href="#cb83-9"></a>  <span class="kw">return</span>(celsius)</span>
+<span id="cb83-10"><a href="#cb83-10"></a>}</span></code></pre></div>
 <p>We can use function as normally.</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1"></a><span class="co"># Calling the function</span></span>
-<span id="cb94-2"><a href="#cb94-2"></a></span>
-<span id="cb94-3"><a href="#cb94-3"></a><span class="kw">fahrenheit_to_degrees_celsius</span>(<span class="dt">fahrenheit =</span> <span class="dv">36</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1"></a><span class="co"># Calling the function</span></span>
+<span id="cb84-2"><a href="#cb84-2"></a></span>
+<span id="cb84-3"><a href="#cb84-3"></a><span class="kw">fahrenheit_to_degrees_celsius</span>(<span class="dt">fahrenheit =</span> <span class="dv">36</span>)</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
 <p>We can also include a digits argument within this function which is coming from the round function.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1"></a><span class="co"># Calling the function</span></span>
-<span id="cb96-2"><a href="#cb96-2"></a></span>
-<span id="cb96-3"><a href="#cb96-3"></a><span class="kw">fahrenheit_to_degrees_celsius</span>(<span class="dt">fahrenheit =</span> <span class="dv">36</span>, <span class="dt">digits =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1"></a><span class="co"># Calling the function</span></span>
+<span id="cb86-2"><a href="#cb86-2"></a></span>
+<span id="cb86-3"><a href="#cb86-3"></a><span class="kw">fahrenheit_to_degrees_celsius</span>(<span class="dt">fahrenheit =</span> <span class="dv">36</span>, <span class="dt">digits =</span> <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 2.2222</code></pre>
 <hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1">
 <p><br></p>

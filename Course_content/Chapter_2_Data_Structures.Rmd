@@ -74,7 +74,7 @@ We do not work with single data values, we often work with a combination or coll
 
 R organises these in certain structures, and stores this data so that  we can manipulate and work with it.
 
-Data structures we will be looking at include vectors, lists, and data frames. 
+Data structures we will be looking at include **vectors**, **lists**, and **data frames**. 
 
 ***
 
@@ -119,37 +119,13 @@ Which brings us to the **`c()`** function.
 
 
 
-## The c() Function {.tabset .tabset-fade}
+## The c() Function
 
 
 The code above will not work, which is where the `c()` function comes in. 
 
 
-### **Exercise** {-}
-
-
-1. Use the help section in R to find out what the `c()` function does.
-
-```{r, eval=F}
-# The c() function
-
-c()
-
-```
-
-2. Use the examples at the bottom of the help section to figure out how store mutliple values within the same data structure.
-
-
-
-***
-
-<br>
-
-
-### **Show Answer** {-}
-
-
-1. Use the help section in R to find out what the `c()` function does.
+lets look at the help section in R to find out what the `c()` function does.
 
 The **`c()`** function is used for creating a vector in R - it stands for `combine`
 
@@ -283,16 +259,14 @@ colon_vector
 ### **Exercise** {-}
 
 
-1. In your script leave yourself a comment to remind you that this exercise is about vectors.
+
+1. Create two vectors, one with numeric data and one with character data, e.g favourite_movies and lucky_numbers, see my examples below (but feel free to be creative here!)
 
 
-2. Create two vectors, one with numeric data and one with character data, e.g favourite_movies and lucky_numbers, see my examples below (but feel free to be creative here!)
+2. Now combine the two vectors to create a new vector, e.g movies_and_numbers, see my example below.
 
 
-3. Now combine the two vectors to create a new vector, e.g movies_and_numbers, see my example below.
-
-
-4. Then find out what type of vector your new vector is, use **typeof()**.
+3. Then find out what type of vector your new vector is, use **typeof()**.
 
 
 ```{r, eval=FALSE}
@@ -311,6 +285,10 @@ lucky_numbers <- c(7, 12, 15, 1)
 
 movies_and_numbers <- c(favourite_movies, lucky_numbers)
 
+# Checking the type of vector
+
+typeof(movies_and_numbers)
+
 ```
 
 ***
@@ -321,19 +299,12 @@ movies_and_numbers <- c(favourite_movies, lucky_numbers)
 
 ### **Show Answer**{-}
 
-1. In your script leave yourself a comment to remind you that this exercise is about vectors.
 
-<br>
-
-
-2. Create two vectors, one with numeric data and one with character data, e.g favourite_movies and lucky_numbers. 
+1. Create two vectors, one with numeric data and one with character data, e.g favourite_movies and lucky_numbers. 
 
 
 
 ```{r}
-# This exercise is about vectors
-
-
 # Creating a character vector
 
 favourite_movies <- c("Frozen", "The Lion King", "Moana", "The Dark Knight") 
@@ -354,7 +325,7 @@ lucky_numbers
 
 <br>
 
-3. Now combine the two vectors to create a new vector, e.g movies_and_numbers.
+2. Now combine the two vectors to create a new vector, e.g movies_and_numbers.
 
 ```{r}
 # Combining the 2 vectors
@@ -365,7 +336,7 @@ movies_and_numbers <- c(favourite_movies, lucky_numbers)
 
 <br>
 
-4. Then find out what type of vector your new vector is, use **typeof()**.
+3. Then find out what type of vector your new vector is, use **typeof()**.
 
 ```{r}
 # Checking the type of vector
@@ -579,9 +550,12 @@ Use the vector below containing days of the week (Monday - Sunday), for the exer
 
 # Creating a vector
 
-days_of_the_week <- c("Monday","Tuesday",
-                      "Wednesday","Thursday",
-                      "Friday","Saturday",
+days_of_the_week <- c("Monday",
+                      "Tuesday",
+                      "Wednesday",
+                      "Thursday",
+                      "Friday",
+                      "Saturday",
                       "Sunday")
 
 ```

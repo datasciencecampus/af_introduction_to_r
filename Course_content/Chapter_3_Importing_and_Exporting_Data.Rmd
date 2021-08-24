@@ -804,15 +804,15 @@ str(titanic)
 ```
 
 
-We can see that R has classed the column as character because of the `NULL` within it.
+We can see that R has classed the column as character because of the `.` and `*` within it.
 
 
-We can easily correct this by adding an additional argument when the reading the data to specify that `NULL` is a missing value.
+We can easily correct this by adding an additional argument when the reading the data to specify that `.` and `*` are a missing value.
 
 
 The code below, can be read as;
 
-> **Where there is the word "NULL", class is it as a missing value.**
+> **Where there is the a `.`, `*` and a blank space, class is it as a missing value.**
 
 
 ```{r}
@@ -821,7 +821,7 @@ The code below, can be read as;
 # classed as missing values
 
 titanic <- readr::read_csv("../Data/titanic.csv", 
-                           na = "NULL")
+                           na = c("*", ".", ""))
 
 
 ```
@@ -844,9 +844,9 @@ titanic %>%
 <br>
 
 
-We can now see that the NULL's in the age column have been replaced with NA's and the data has been read is as numerical data.
+We can now see that the `.` and `*` in the age column have been replaced with NA's and the data has been read is as numerical data.
 
-On this instance our missing values have been classed as NULL, missing values in other datasets can be classed as other symbols or words. e.g.: `-`, `-9`.
+On this instance our missing values have been classed as `.` and `*`, missing values in other datasets can be classed as other symbols or words. e.g.: `-`, `-9`.
 
 >**Sometimes there are a few lines of metadata at the top of the file. You can use skip = n to skip the first n lines**
 
@@ -855,7 +855,7 @@ On this instance our missing values have been classed as NULL, missing values in
 # This will skip the first 5 rows from the csv
 
 dataset_name <- readr::read_csv("file path", 
-                           na = "NULL", # missing value
+                           na = c("*", ".", ""), # missing value
                            skip = 5) # skips the first 5 rows
 ```
 
@@ -866,7 +866,7 @@ dataset_name <- readr::read_csv("file path",
 # Should blank rows be ignored altogether? i.e. If this option is TRUE then blank rows will not be # represented at all. If it is FALSE then they will be represented by NA values in all the columns.
 
 dataset_name <- readr::read_csv("file path", 
-                           na = "NULL", # missing value
+                           na = na = na = c("*", ".", ""), # missing value
                            skip_empty_rows = TRUE) # skips empty rows
 ```
 

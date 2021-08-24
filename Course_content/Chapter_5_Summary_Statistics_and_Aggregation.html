@@ -47746,7 +47746,8 @@ S
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Calculating the mean of the column fare </span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="co"># in the titanic dataset</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">.data =</span> titanic, <span class="kw">mean</span>(fare))</span></code></pre></div>
+<span id="cb1-4"><a href="#cb1-4"></a>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="kw">mean</span>(fare))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   `mean(fare)`
 ##          &lt;dbl&gt;
@@ -47762,7 +47763,8 @@ S
 <span id="cb3-3"><a href="#cb3-3"></a><span class="co"># Setting na.rm=TRUE to remove missing values</span></span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="co"># from calculation</span></span>
 <span id="cb3-5"><a href="#cb3-5"></a></span>
-<span id="cb3-6"><a href="#cb3-6"></a>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">.data =</span> titanic, <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<span id="cb3-6"><a href="#cb3-6"></a>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   `mean(fare, na.rm = TRUE)`
 ##                        &lt;dbl&gt;
@@ -47776,7 +47778,8 @@ S
 <span id="cb5-4"><a href="#cb5-4"></a><span class="co"># from calculation</span></span>
 <span id="cb5-5"><a href="#cb5-5"></a><span class="co"># setting the name mean_fare for our result</span></span>
 <span id="cb5-6"><a href="#cb5-6"></a></span>
-<span id="cb5-7"><a href="#cb5-7"></a>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">.data =</span> titanic, <span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<span id="cb5-7"><a href="#cb5-7"></a>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   mean_fare
 ##       &lt;dbl&gt;
@@ -47796,22 +47799,16 @@ S
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Calculating muiltiple summary statisitcs within</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a><span class="co"># the summarise function</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a></span>
-<span id="cb9-4"><a href="#cb9-4"></a>my_summary_stats &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">.data =</span> titanic, </span>
-<span id="cb9-5"><a href="#cb9-5"></a>                 </span>
-<span id="cb9-6"><a href="#cb9-6"></a>                 <span class="dt">median_fare =</span> <span class="kw">median</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb9-7"><a href="#cb9-7"></a>                 </span>
-<span id="cb9-8"><a href="#cb9-8"></a>                 <span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb9-9"><a href="#cb9-9"></a>                 </span>
-<span id="cb9-10"><a href="#cb9-10"></a>                 <span class="dt">sd_fare =</span> <span class="kw">sd</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb9-11"><a href="#cb9-11"></a>                 </span>
-<span id="cb9-12"><a href="#cb9-12"></a>                 <span class="dt">median_age =</span> <span class="kw">median</span>(age_of_passenger, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb9-13"><a href="#cb9-13"></a>                 </span>
-<span id="cb9-14"><a href="#cb9-14"></a>                 <span class="dt">mean_age =</span> <span class="kw">mean</span>(age_of_passenger, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb9-15"><a href="#cb9-15"></a>                 </span>
-<span id="cb9-16"><a href="#cb9-16"></a>                 <span class="dt">sd_age =</span> <span class="kw">sd</span>(age_of_passenger, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span>
-<span id="cb9-17"><a href="#cb9-17"></a></span>
-<span id="cb9-18"><a href="#cb9-18"></a><span class="co"># To display the data</span></span>
-<span id="cb9-19"><a href="#cb9-19"></a>my_summary_stats</span></code></pre></div>
+<span id="cb9-4"><a href="#cb9-4"></a>my_summary_stats &lt;-titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="st">                 </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">median_fare =</span> <span class="kw">median</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb9-6"><a href="#cb9-6"></a>                                  <span class="dt">mean_fare =</span> <span class="kw">mean</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb9-7"><a href="#cb9-7"></a>                                  <span class="dt">sd_fare =</span> <span class="kw">sd</span>(fare, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb9-8"><a href="#cb9-8"></a>                                  <span class="dt">median_age =</span> <span class="kw">median</span>(age_of_passenger, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb9-9"><a href="#cb9-9"></a>                                  <span class="dt">mean_age =</span> <span class="kw">mean</span>(age_of_passenger, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb9-10"><a href="#cb9-10"></a>                                  <span class="dt">sd_age =</span> <span class="kw">sd</span>(age_of_passenger, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb9-11"><a href="#cb9-11"></a></span>
+<span id="cb9-12"><a href="#cb9-12"></a><span class="co"># To display the data</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a>my_summary_stats</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 6
 ##   median_fare mean_fare sd_fare median_age mean_age sd_age
 ##         &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
@@ -47827,9 +47824,9 @@ S
 <span id="cb11-3"><a href="#cb11-3"></a><span class="co"># what it does, please refer to additional material for more info</span></span>
 <span id="cb11-4"><a href="#cb11-4"></a></span>
 <span id="cb11-5"><a href="#cb11-5"></a>my_summary_stats <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> median_fare<span class="op">:</span>sd_age,</span>
-<span id="cb11-7"><a href="#cb11-7"></a>             <span class="dt">names_to =</span> <span class="st">&quot;statistic&quot;</span>,</span>
-<span id="cb11-8"><a href="#cb11-8"></a>             <span class="dt">values_to =</span> <span class="st">&quot;value&quot;</span>)</span></code></pre></div>
+<span id="cb11-6"><a href="#cb11-6"></a>tidyr<span class="op">::</span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> median_fare<span class="op">:</span>sd_age,</span>
+<span id="cb11-7"><a href="#cb11-7"></a>                    <span class="dt">names_to =</span> <span class="st">&quot;statistic&quot;</span>,</span>
+<span id="cb11-8"><a href="#cb11-8"></a>                    <span class="dt">values_to =</span> <span class="st">&quot;value&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##   statistic   value
 ##   &lt;chr&gt;       &lt;dbl&gt;
@@ -47843,7 +47840,8 @@ S
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Calculating the quantiles from the</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="co"># fare column in the titanic dataset</span></span>
 <span id="cb13-3"><a href="#cb13-3"></a></span>
-<span id="cb13-4"><a href="#cb13-4"></a>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">.data =</span> titanic, <span class="dt">fare_quantiles =</span> <span class="kw">quantile</span>(fare,<span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<span id="cb13-4"><a href="#cb13-4"></a>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">fare_quantiles =</span> <span class="kw">quantile</span>(fare,<span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 1
 ##   fare_quantiles
 ##            &lt;dbl&gt;
@@ -47858,8 +47856,8 @@ S
 <span id="cb15-2"><a href="#cb15-2"></a><span class="co"># fare column in the titanic dataset</span></span>
 <span id="cb15-3"><a href="#cb15-3"></a><span class="co"># by specifying which points to display</span></span>
 <span id="cb15-4"><a href="#cb15-4"></a></span>
-<span id="cb15-5"><a href="#cb15-5"></a></span>
-<span id="cb15-6"><a href="#cb15-6"></a>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">.data =</span> titanic, <span class="dt">fare_quantiles =</span> <span class="kw">quantile</span>(fare,</span>
+<span id="cb15-5"><a href="#cb15-5"></a>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">fare_quantiles =</span> <span class="kw">quantile</span>(fare,</span>
 <span id="cb15-7"><a href="#cb15-7"></a>                                           <span class="dt">probs =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="dv">1</span>),</span>
 <span id="cb15-8"><a href="#cb15-8"></a>                                           <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 1
@@ -47885,7 +47883,8 @@ S
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Calculating a frequency table for the number</span></span>
 <span id="cb17-2"><a href="#cb17-2"></a><span class="co"># of passengers and sorting in descending order</span></span>
 <span id="cb17-3"><a href="#cb17-3"></a></span>
-<span id="cb17-4"><a href="#cb17-4"></a>dplyr<span class="op">::</span><span class="kw">count</span>(titanic, name_of_passenger, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<span id="cb17-4"><a href="#cb17-4"></a>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>dplyr<span class="op">::</span><span class="kw">count</span>(name_of_passenger, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 1,307 x 2
 ##    name_of_passenger                         n
 ##    &lt;chr&gt;                                 &lt;int&gt;
@@ -47906,7 +47905,8 @@ S
 <span id="cb19-2"><a href="#cb19-2"></a><span class="co"># of passengers based on where they embarked</span></span>
 <span id="cb19-3"><a href="#cb19-3"></a><span class="co"># and sorting in descending order</span></span>
 <span id="cb19-4"><a href="#cb19-4"></a></span>
-<span id="cb19-5"><a href="#cb19-5"></a>dplyr<span class="op">::</span><span class="kw">count</span>(titanic, embarked, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<span id="cb19-5"><a href="#cb19-5"></a>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>dplyr<span class="op">::</span><span class="kw">count</span>(embarked, <span class="dt">sort =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 2
 ##   embarked     n
 ##   &lt;chr&gt;    &lt;int&gt;
@@ -47918,7 +47918,8 @@ S
 <p>Another example</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Select only unique/distinct rows from a tibble</span></span>
 <span id="cb21-2"><a href="#cb21-2"></a> </span>
-<span id="cb21-3"><a href="#cb21-3"></a>dplyr<span class="op">::</span><span class="kw">distinct</span>(titanic, embarked)</span></code></pre></div>
+<span id="cb21-3"><a href="#cb21-3"></a>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb21-4"><a href="#cb21-4"></a>dplyr<span class="op">::</span><span class="kw">distinct</span>(embarked)</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 1
 ##   embarked
 ##   &lt;chr&gt;   
@@ -47954,7 +47955,8 @@ S
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># Count gives a frequency</span></span>
 <span id="cb24-2"><a href="#cb24-2"></a><span class="co"># PLEASE </span><span class="al">NOTE</span><span class="co">, count doesnt have a .data argument</span></span>
 <span id="cb24-3"><a href="#cb24-3"></a></span>
-<span id="cb24-4"><a href="#cb24-4"></a>number_of_men_and_women &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">count</span>(data, columns)</span></code></pre></div>
+<span id="cb24-4"><a href="#cb24-4"></a>number_of_men_and_women &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb24-5"><a href="#cb24-5"></a><span class="st">                    </span>dplyr<span class="op">::</span><span class="kw">count</span>(columns)</span></code></pre></div>
 <hr />
 <p><br></p>
 </div>
@@ -47979,8 +47981,8 @@ S
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="co"># Calculating a frequency count of the</span></span>
 <span id="cb27-2"><a href="#cb27-2"></a><span class="co"># sex_of_passenger column</span></span>
 <span id="cb27-3"><a href="#cb27-3"></a></span>
-<span id="cb27-4"><a href="#cb27-4"></a>number_of_men_and_women &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw">count</span>(titanic, </span>
-<span id="cb27-5"><a href="#cb27-5"></a>                                        sex_of_passenger)</span>
+<span id="cb27-4"><a href="#cb27-4"></a>number_of_men_and_women &lt;-<span class="st"> </span>titanic <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb27-5"><a href="#cb27-5"></a><span class="st">                     </span>dplyr<span class="op">::</span><span class="kw">count</span>(sex_of_passenger)</span>
 <span id="cb27-6"><a href="#cb27-6"></a></span>
 <span id="cb27-7"><a href="#cb27-7"></a><span class="co"># To Display the data</span></span>
 <span id="cb27-8"><a href="#cb27-8"></a></span>

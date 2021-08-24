@@ -1141,5 +1141,179 @@ This effectively says, first go up a directory (`..`), so from `Course_content` 
 
 The relative path will work for any user – as long as their working directory is set to the `'Course_content'` in the Into_to_R folder.
 
+<br
+
+
+## Functions Extension
+
+### Descriptive Statistics Example
+
+For example if you wanted get the summary statistics below; We could use the summarise function.
+
+* `min()`
+* `max()`
+* `mean()`
+* `length()`
+* `sd()` 
+
+```{r}
+# Using Summarise function to get descriptive statistics
+# We first specify our dataset using the .data arguement
+# The using the descriptive statisitcs functions
+# Also specify na.rm = TRUE to not include missing values 
+# within the calculations of the descriptive statistics
+
+summarise(.data = titanic, minimum = min(age_of_passenger, na.rm = TRUE),
+                           maximum = max(age_of_passenger, na.rm = TRUE),
+                           mean = mean(age_of_passenger, na.rm = TRUE),
+                           length = length(age_of_passenger),
+                           standard_deviation = sd(age_of_passenger, na.rm = TRUE)
+                           )
+
+
+```
+
 <br>
+
+If we wanted the same descriptive statistics for a different column we could copy and paste the code about and change the column name.
+
+```{r}
+# Using Summarise function to get descriptive statistics
+# We first specify our dataset using the .data arguement
+# The using the descriptive statisitcs functions
+# Also specify na.rm = TRUE to not include missing values 
+# within the calculations of the descriptive statistics
+
+summarise(.data = titanic, minimum = min(fare, na.rm = TRUE),
+                           maximum = max(fare, na.rm = TRUE),
+                           mean = mean(age_of_passenger, na.rm = TRUE),
+                           length = length(fare),
+                           standard_deviation = sd(fare, na.rm = TRUE)
+                           )
+
+```
+
+
+<br>
+
+If we we wanted another column we could keep on copying and pasting, copying and pasting but this is not recommended as its not efficient and could lead to errors as above.
+
+>**Did you notice the error?**
+
+<br>
+
+To prevent this issue we can write our own function which will combine all these descriptive statistics into one function.
+
+* Our function name is descriptive_statistics()
+
+* Our input will be column, which will be the column that we are interested is seeing the descriptive statistics for.
+
+* My statements are the calculations for the descriptive statistics
+
+* My return value will be a tibble of the descriptive statistics.
+
+
+
+```{r}
+# Creating my function
+
+descriptive_statistics <- function(column){
+  
+  # Create an object "my_minimum" which contains the min of column
+  column_minimum <- min(column, na.rm = TRUE)
+  
+  # Create an object "my_maximum" which contains the max of column
+  column_maximum <- max(column, na.rm = TRUE)
+  
+  # Create an object "my_mean" which contains the mean of column
+  column_mean <- mean(column, na.rm = TRUE)
+  
+  # Create an object "my_length" which contains the length of column
+  column_length <- length(column)
+  
+  # Create an object "my_standard_deviation" which contains the sd of  column
+  column_standard_deviation <- sd(column, na.rm = TRUE)
+  
+ # Combine the objects created into a tibble
+ return(tibble(column_minimum,
+               column_maximum,
+               column_mean,
+               column_length,
+               column_standard_deviation)
+   )
+}
+```
+
+
+We can now use our function on different columns, without needing to copy and paste our code. Once we are confident that are function works well, we can use it multiple times safe knowing it will do exactly what we want.
+
+```{r}
+# Calling our function
+# Here we can use it on different columns
+
+descriptive_statistics(titanic$parch)
+
+descriptive_statistics(titanic$sibsp)
+```
+
+***
+
+<br>
+
+### Applying Functions using `purrr`
+
+Often when working with data, we want to manipulate multiple columns of data at once.
+
+As an example using our `descriptive_statistics()` on mutliple columns at the same time - how would we achieve this? 
+
+***
+
+### Functionals in R
+
+In R, functionals are functions which take a function is as an input and returns a vector (or similar) as output.
+
+R being a functional programming language is packed with functionals. We will introduce the following:
+
+* `purrr::map()`
+* `purrr::modify()`
+
+There are functionals in base R as well such as: `apply`, `sapply`, `lapply`, etc which are worth experimenting with as well. We will continue with our tidyverse theme and demonstrate the `purrr` equivalents. 
+
+`map()` and `modify()` will take a function in as an argument and apply it to every element of the given collection (e.g. vector, list).
+
+As an example we can use the `typeof()` function to see the data types of each of our columns in the titanic dataset.
+
+
+```{r}
+purrr::map(titanic, typeof)
+```
+
+In that example we used a built-in function `typeof`. 
+
+All the functionals listed above also work with user defined functions. We can even apply this using our pipe operators.
+
+
+```{r}
+titanic %>% 
+  dplyr::select(age_of_passenger,fare) %>% 
+  purrr::map(descriptive_statistics)
+```
+
+***
+
+### `map` vs `modify`
+
+There is not a lot of difference between `map` and `modify`. `map` will return a list by default, whereas, `modify` always returns the same type as the input object.
+
+```{r}
+purrr::map(titanic, typeof)
+```
+```{r}
+purrr::modify(titanic, typeof)
+```
+As you can see, their difference sounds subtle but the effects are not.
+
+What you prefer as an output will determine which of these you would choose to use.
+
+***
 
