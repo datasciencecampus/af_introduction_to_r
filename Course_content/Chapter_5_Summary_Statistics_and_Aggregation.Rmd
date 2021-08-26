@@ -63,11 +63,11 @@ htmltools::img(src = knitr::image_uri("../images/AF_DSC_banner.png"),
 
 <br>
 
-# Dataset{-}
+## Packages and Data 
 
 We will use the titanic dataset in this chapter with cleaned names via janitor.
 
-```{r message=FALSE, warning=FALSE, include=FALSE}
+```{r message=FALSE, warning=FALSE, include=TRUE}
 # Load libraries
 
 library(readr)
@@ -787,11 +787,11 @@ median_fare
 
 <br>
 
-# Next Chapter
+# End of Course
 
 ***
 
->**In the next chapter we will look at Control Flow and Functions.**
+>**You have now completed the Introduction to R course; please complete the post course survey on the Learning Hub.**
 
 ***
 
