@@ -6,10 +6,10 @@ Pclass,Survived,name Of Passenger,Sex of passenger,Age of passenger,Sibsp,Parch,
 1,0,"Allison, Mrs. Hudson J C (Bessie Waldo Daniels)",female,25,1,2,113781,151.55,C22 C26,S
 1,1,"Anderson, Mr. Harry",male,48,0,0,19952,26.55,E12,S
 1,1,"Andrews, Miss. Kornelia Theodosia",female,63,1,0,13502,77.9583,D7,S
-1,0,"Andrews, Mr. Thomas Jr",male,NULL,0,0,112050,0,A36,S
-1,1,"Appleton, Mrs. Edward Dale (Charlotte Lamson)",female,NULL,2,0,11769,51.4792,C101,S
-1,0,"Artagaveytia, Mr. Ramon",male,NULL,0,0,PC 17609,49.5042,,C
-1,0,"Astor, Col. John Jacob",male,NULL,1,0,PC 17757,227.525,C62 C64,C
+1,0,"Andrews, Mr. Thomas Jr",male,*,0,0,112050,0,A36,S
+1,1,"Appleton, Mrs. Edward Dale (Charlotte Lamson)",female,*,2,0,11769,51.4792,C101,S
+1,0,"Artagaveytia, Mr. Ramon",male,.,0,0,PC 17609,49.5042,,C
+1,0,"Astor, Col. John Jacob",male,.,1,0,PC 17757,227.525,C62 C64,C
 1,1,"Astor, Mrs. John Jacob (Madeleine Talmadge Force)",female,18,1,0,PC 17757,227.525,C62 C64,C
 1,1,"Aubart, Mme. Leontine Pauline",female,24,0,0,PC 17477,69.3,B35,C
 1,1,"Barber, Miss. Ellen ""Nellie""",female,26,0,0,19877,78.85,,S
