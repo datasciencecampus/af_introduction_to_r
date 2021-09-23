@@ -140,65 +140,17 @@ This course contains documents in the following formats:
 # Install R and R studio via the Service Desk:
 
 
-* I Want Something > Top Requested Forms > Computer Software > Add / Transfer / Remove.
+1.	From Reggie choose "Service Desk" you may need to enter your email address.
+2.	Choose "I want something"
+3.	Choose "Software, Applications and Platforms"
+4.	Choose "Computer Software - Add/Transfer"
+5.	Choose "Install"
+6.	In the box underneath "Please select the Desktop/Laptop software you need to be Installed/Removed/Transferred" type "THE RSTUDIO BUNDLE" and click to select.
+7.  Add your asset number (on a sticker on your device)
+8.  Does this software need to be installed on/removed from multiple PCs? - Choose No
+9.  Choose Order Now.
 
-<br>
-
-![](../Images/service_desk_1.png)
-
-<br>
-
-* Select `install`
-
-<br>
-
-
-![](../Images/service_desk_2.png)
-
-
-<br>
-
-* Type `THE` in the box and then select `THE RSTUDIO BUNDLE` and click the arrow to move it in the selected box.
-
-<br>
-
-
-![](../Images/service_desk_3.png)
-
-<br>
-
-* You should now have `THE RSTUDIO BUNDLE` in the selected box.
-
-<br>
-
-
-![](../Images/service_desk_4.png)
-
-<br>
-
-* The type in your Asset number, this is the number starting with `ONS` on the sticker on your laptop
-
-* Then select `No` for software to be installed on multiple PC's.
-
-<br>
-
-![](../Images/service_desk_5.png)
-
-<br>
-
-* In the box enter the text:
-
-   “Hi, Please can I have the New RStudio Bundle?
-
-     My ID is <your id>
-
-     My asset number is <ONS……>
-
-   “As agreed with Management, the new RStudio Bundle has to be installed to the end-user’ 
-
-     ONS Laptop”
-
-     Thanks”
+During busy times it may take a few days for software to be installed. Please plan accordingly if you are on a course; online alternatives (RStudio cloud) are available if you cannot get software installed in time.
 
 ***
 
