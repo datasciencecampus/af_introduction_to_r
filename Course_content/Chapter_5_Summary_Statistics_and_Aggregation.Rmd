@@ -67,21 +67,22 @@ htmltools::img(src = knitr::image_uri("../images/AF_DSC_banner.png"),
 
 We will use the titanic dataset in this chapter with cleaned names via janitor.
 
-```{r message=FALSE, warning=FALSE, include=TRUE}
-# Load libraries
+```{r message=FALSE, warning=FALSE, include=FALSE}
 
-library(readr)
-library(janitor)
-library(dplyr)
-library(tidyr)
-library(ggplot2)
 library(kableExtra)
+```
 
+```{r message = FALSE, warning = FALSE, include = TRUE}
 
-# Read in data
+# Load in packages
+
+library(tidyverse)
+library(janitor)
+
+# Prepare the dataset
 
 titanic <- readr::read_csv("../Data/titanic.csv", 
-                           na = c("*", ".", ""))
+                           na = c("*", ".", "", "NULL"))
 
 titanic <- janitor::clean_names(titanic)
 
@@ -791,7 +792,11 @@ median_fare
 
 ***
 
->**You have now completed the Introduction to R course; please complete the post course survey on the Learning Hub.**
+You have now completed Introduction to R. 
+
+Please complete the anonymous [Post-Course Survey on the Learning Hub](https://learninghub.ons.gov.uk/mod/feedback/complete.php?id=1371&courseid).
+
+Have a look at our other courses on our [Learning Hub dashboard](https://learninghub.ons.gov.uk/totara/dashboard/index.php?id=6) to find out how to further your learning. 
 
 ***
 

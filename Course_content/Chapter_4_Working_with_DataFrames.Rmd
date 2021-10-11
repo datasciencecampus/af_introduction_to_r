@@ -38,7 +38,7 @@ htmltools::img(src = knitr::image_uri("../images/AF_DSC_banner.png"),
 <hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
 
 <!--- Date course last updated and a contact for any help needed. --->
-<center> Course Release: June 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Help with course">Need help? Contact the team.</a></center>
+<center> Course Updated: October 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Help with course">Need help? Contact the team.</a></center>
 <br>
 
 ***
@@ -133,7 +133,7 @@ library(janitor)
 # classed as missing values
 
 titanic <- readr::read_csv("../Data/titanic.csv", 
-                           na = c("*", ".", ""))
+                           na = c("*", ".", "", "NULL"))
 
 # To display the data
 titanic
@@ -644,7 +644,7 @@ titanic_three_variables
 
 <br>
 
-We can select columns which are next to each other in chunck as below.
+We can select columns which are next to each other in chunk as below.
 
 To select a chunk of columns use the,start_col:end_col syntax:
 
@@ -1104,13 +1104,13 @@ Note here am using the `$` to select the column pclass.
 
 ```{r}
 # Returns the set of unique values in the data set.
-# finding out how many uniques values 
+# finding out how many unique values 
 # are in the titanic dataset pclass column
 
 unique(titanic$pclass)
 
 
-# finding out how many uniques values 
+# finding out how many unique values 
 # are in the secondclass dataset pclass column
 
 unique(secondclass$pclass)
@@ -1129,7 +1129,7 @@ fare_more_than_200 <-  dplyr::filter(.data = titanic,
                                      fare > 200)
 
 
-# finding out how many uniques values 
+# finding out how many unique values 
 # are in the faremorethan200 dataset fare column
 
 unique(fare_more_than_200$fare)
@@ -1539,7 +1539,7 @@ nrow(survived) / nrow(embarked_cherbourg_and_queenstown)
 
 ```{r}
 # filtering the dataset on multiple conditions
-# The | idicates one condition or the other must be TRUE.
+# The | indicates one condition or the other must be TRUE.
 
 titanic_filter_exercise <- dplyr::filter(.data = titanic, 
                                          pclass == 2 | pclass == 3)
@@ -1676,7 +1676,7 @@ We can capitalise the sex column.
 
 ```{r}
 # Capitalise sex column
-# Here we are over writting the  sex_of_passenger column
+# Here we are over writing the  sex_of_passenger column
 # If you give your new column the same name  as  an existing column 
 # It will overwrite it.
 
@@ -1740,7 +1740,7 @@ There are some functions which work with **`mutate()`** and enable us to perform
 
 ```{r, eval = FALSE}
 # Recoding variables
-# Note Recode does not have a .data arguement
+# Note Recode does not have a .data argument
 
 dplyr::recode(titanic$survived, 
               '1' = TRUE, 
@@ -1847,7 +1847,7 @@ round_fare %>%
 
 <br>
 
-For more advanced ways to mutate columns refer to this excellent blog [Data Wrangling Part 1: Basic to Advanced Ways to Mutate Columns](https://suzan.rbind.io/2018/02/dplyr-tutorial-2/), this covers th functions, `mutate_all()`, `mutate_if()` and `mutate_at`.
+For more advanced ways to mutate columns refer to this excellent blog [Data Wrangling Part 1: Basic to Advanced Ways to Mutate Columns](https://suzan.rbind.io/2018/02/dplyr-tutorial-2/), this covers the functions, `mutate_all()`, `mutate_if()` and `mutate_at`.
 
 
 ***
@@ -2096,7 +2096,7 @@ This can be easier to understand graphically:
 
 Lets look at some examples
 
-We will use the 2 datasets below there are inbuilt data sets within R, these data sets describe band members of the Beatles and Rolling Stones. 
+We will use the 2 datasets, which come as part of the `dplyr` package. These data sets describe band members of the Beatles and Rolling Stones. 
 
 ```{r}
 # To display the data
@@ -2104,13 +2104,12 @@ We will use the 2 datasets below there are inbuilt data sets within R, these dat
 band_members
 ```
 
-You will need to assign it to see it within the environmental window as shown below,
+You will need to assign it to see it within the environment window as shown below,
 
 ```{r}
-# assgning the data
-# band_members is an inbuilt dataset
+# Assigning the data
 
-band_members <- band_members
+band_members <- dplyr::band_members
 ```
 
 
@@ -2120,12 +2119,12 @@ band_members <- band_members
 band_instruments
 ```
 
-Lets assign this one as well.
-```{r}
-# assgning the data
-# band_instruments is an inbuilt dataset
+Lets assign this one as well. Note that `dplyr` has two slightly different datasets (band_instruments and band_instruments2 - which we will use later on). 
 
-band_instruments <- band_instruments
+```{r}
+# Assigning the data
+
+band_instruments <- dplyr::band_instruments
 ```
 
 
@@ -2154,7 +2153,7 @@ band_membership_inner_join
 We can see that the inner join returned only the 2 members that appear in both datasets.
 
 
-If you dont specify which column to join by, `R` will look to match by any column that matches.
+If you don't specify which column to join by, `R` will look to match by any column that matches.
 
 
 We can also use the `pipe operator`, as shown below.
@@ -2189,7 +2188,7 @@ band_membership_full_join <- band_members %>%
 band_membership_full_join
 ```
 
-We can see that the full join returned all 4 members with some missing values for those that dont appear in both datasets.
+We can see that the full join returned all 4 members with some missing values for those that don't appear in both datasets.
 
 <br>
 
@@ -2253,31 +2252,24 @@ join_left <- dplyr::left_join(x = first_dataset,
 
 1. Run the code below, can you figure out why its not working. **HINT:Remember what we need to be able to join 2 datasets.**
 
-```{r}
-# to display the data
-
-band_members
-```
-
-```{r}
-# to display the data
-
-band_instruments2
-```
-
-
+We will be using band_instruments2 from the `dplyr` package for this exercise, rather than band_instruments as previously. 
 
 ```{r, eval=F}
+# Load the data
+
+band_members <- dplyr::band_members
+
+band_instruments2 <- dplyr::band_instruments2
+
 # Full join
 
-band_membership_right_join <- band_members %>% 
+band_membership_full_join <- band_members %>% 
                               dplyr::full_join(band_instruments2)
 
 # To display the data
 
-band_membership_right_join
+band_membership_full_join
 ```
-
 <br>
 
 
@@ -2301,15 +2293,24 @@ band_membership_right_join
 
 1. Run the code below, can you figure out why its not working. **HINT:Remember what we need to be able to join 2 datasets.**
 
+We will be using two datasets from the `dplyr` package for this exercise. 
+
 ```{r, eval=F}
+# Load the data
+  # Note later code will run without this step, it has been included to demonstrate that datasets from packages are available 
+
+band_members <- dplyr::band_members
+
+band_instruments2 <- dplyr::band_instruments2
+
 # Full join
 
-band_membership_right_join <- band_members %>% 
+band_membership_full_join <- band_members %>% 
                               dplyr::full_join(band_instruments2)
 
 # To display the data
 
-band_membership_right_join
+band_membership_full_join
 ```
 
 The code above will give the error message below;

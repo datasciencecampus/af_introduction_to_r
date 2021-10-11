@@ -37,7 +37,7 @@ htmltools::img(src = knitr::image_uri("../images/AF_DSC_banner.png"),
 <hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
 
 <!--- Date course last updated and a contact for any help needed. --->
-<center> Course Release: June 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Help with course">Need help? Contact the team.</a></center>
+<center> Course Updated: October 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Help with course">Need help? Contact the team.</a></center>
 
 
 ```{r setup, include=FALSE}
@@ -90,7 +90,7 @@ There are several reasons for this trend:
 * Free and open source, people can modify and share because its design is publicly accessible.
 
 * Great Community Support, diverse and welcoming community. e.g. #rstats twitter community, numerous [ R Meet Ups](https://www.meetup.com/topics/r-programming-language/).The R community is active online, and committed to create a friendly and welcoming environment for new everybody.
-This includes writing outsanding open access material that you can use to learn R.
+This includes writing outstanding open access material that you can use to learn R.
 
 * There are lots of [packages available](https://cran.r-project.org/web/packages/available_packages_by_name.html) which contain implementations of processes and ready-made functions you might find useful
 
@@ -98,7 +98,9 @@ This includes writing outsanding open access material that you can use to learn 
 
 * R has extensive and powerful graphics abilities. e.g [ The BBC use R to produce their graphics](https://medium.com/bbc-visual-and-data-journalism/how-the-bbc-visual-and-data-journalism-team-works-with-graphics-in-r-ed0b35693535)
 
-* Powerful tool for communicating results, i.e.. [RMarkdown](https://rmarkdown.rstudio.com/)  makes its easy to turn your files into PDF'S, Power point presentations and [Shiny](https://shiny.rstudio.com/) allows you to make beautiful interactive apps and dashboards.
+* Powerful tool for communicating results, including..
+  * [RMarkdown](https://rmarkdown.rstudio.com/)  makes its easy to turn your files into PDF'S, Power point presentations and   
+  * [Shiny](https://shiny.rstudio.com/) allows you to make beautiful interactive apps and dashboards.
 
 ***
 
@@ -106,15 +108,19 @@ This includes writing outsanding open access material that you can use to learn 
 
 ## R Studio
 
-R is a programming language that runs computations while R Studio is an integrated development environment (IDE) that provides an interface by adding many convenient features and tools.
+R is a programming language that runs computations, while R Studio is an integrated development environment (IDE) that provides an interface by adding many convenient features and tools.
 
 You do not have to use R Studio to access R, and many people don’t!
-Other IDEs that work with R include: - [Jupyter notebook](https://jupyter.org/) -  [VisualStudio](https://visualstudio.microsoft.com/services/visual-studio-online/) - [Intellij IDEA](https://plugins.jetbrains.com/plugin/6632-r-language-for-intellij)
+Other IDEs that work with R include: 
 
-R Studio is broken down into four panels for our convenience, each panel will help you do things in your R session.
+* [Jupyter notebook](https://jupyter.org/) 
+* [VisualStudio](https://visualstudio.microsoft.com/services/visual-studio-online/)
+* [Intellij IDEA](https://plugins.jetbrains.com/plugin/6632-r-language-for-intellij)
+
+R Studio is broken down into four panels for our convenience. Each panel will help you do things in your R session.
 
 
-When we open R Studio for the first time, we’re likely to see this:
+When we open R Studio for the first time, we see this:
 
 <br>
 
@@ -124,13 +130,13 @@ When we open R Studio for the first time, we’re likely to see this:
 
 <br>
 
-If you dont see the **Code editor pane**, go to the tool bar and click **View -> Panes -> Show All Panes**.
+If you don't see the **Code editor pane**, go to the tool bar and click **View -> Panes -> Show All Panes**.
 
 The positions of these can be adjusted under the ‘Preferences’ menu, but we will keep like this for now.
 
 You can also make panes bigger or smaller by hovering between two panes and then clicking and dragging.
 
-We will go through what we can do with each of these panes.
+We will now go through what we can do with each of these panes.
 
 ***
 
@@ -278,12 +284,12 @@ This is where you will do the majority of your coding, we will  be using scripts
 
 ### R Scripts
 
-A **script** is just a text file which we write our code in, generally we will use them to write code which will be longer than just a few lines.
+A **script** is just a text file which we write our code in, generally we will use them to write code that is longer than just a few lines.
 
 
 Lets create a script file which we will use to write and save our code during the course.
 
-To create a new script,
+To create a new script:
 
 **Click on File -> New file -> R Script** 
 
@@ -301,9 +307,11 @@ R Studio has the advantage of:
 
 We will see the benefits of these as you type your code throughout the course.
 
+Take a moment to save your script in a location that makes sense to you. We would recommend saving it in the same place you have stored the Introduction to R course materials. 
+
 <br>
 
-**Lets practise writing some code  and how to run it in a script**.
+**Lets practice writing some code, and how to run it in a script**.
 
 
 
@@ -340,9 +348,9 @@ We do this by using the **hash (#)**.
 
 The **hash (#)** tells R not to run any of the text on that line to the right of the symbol. This is the standard way of commenting R code; it is **VERY** good practice to comment in detail so that you can understand later what you have done.
 
-Even if you are the only person to ever work on your code, it can be helpful to write yourself notes about what you were trying to do with a specific piece of code. 
+Even if you are the only person to ever work on your code, it can be helpful to write yourself notes about what you were trying to do with a specific piece of code. Ideally, your code should follow best practice principles, and be understandable without any additional comments. However, particularly while you are learning R, we would recommend using comments to reinforce learning.
 
-Another important comment you can include is explaining reasons behind why you are doing it that way.
+Another important comment you could include is explaining reasons behind why you are doing it that way.
 
 >**Writing comments in your code as you work through the course is a great way to help reinforce what you’re learning.**
 
@@ -356,12 +364,13 @@ Type the **#** and write yourself a note.
 # This is my first R script
 
 
-
 ```
+
+Each cell of code in these files has a comment to explain what the code does. Although you the code will work in your own script without the comment, we would recommend including the notes for when you come back to look at the script later. 
 
 <br>
 
->**TIP - Comments can also be used to prevent R from running code**
+>**TIP - Comments can also be used to prevent R from running code that you don't want to delete**
 
 
 
@@ -371,7 +380,7 @@ If you think you’ll be writing more than one line of code, you can do a `hash 
 
 <br>
 
-I recommend to  save this script, type in the code as we go along, and only execute the required lines. That way you will have a record of what you have done.
+I recommend to save this script, type in the code (and comments) as we go along, and only execute the required lines. That way you will have a record of what you have done.
 
 To save the script: 
 
@@ -419,7 +428,7 @@ The Help tab allows you to search the R documentation for help and is where the 
 
 We have now gone through all the four panes of R Studio, you should now have a basic idea of what each do.
 
-For more information about R Studio, you can find the **R Studio** Cheat Sheet under the **Help -> Cheat sheet.**.
+For more information about R Studio, you can find the **R Studio** Cheat Sheet under the **Help -> Cheat sheet**.
 
 You will most likely be using data in R, we will now look at the different types.
 
@@ -446,7 +455,7 @@ First data type we will look at is numbers.
 
 ## Numbers
 
-You will most likely want to perform mathematical operations with numbers. Here is a list of some operators.
+You will most likely want to perform mathematical operations with numbers. Here is a list of some operators you may want to use.
 
 Operators in R:
 
@@ -528,10 +537,10 @@ You can specify what you want a function to do with what we call an an argument.
 
 The input of function is called an argument and what we specify is called a value.
 
-**A argument is a name or a label for the value that follows it**. e.g in the round function below our argument is `digits` and our value is `2`.
+**A argument is a name or a label for the value that follows it** e.g in the round function below our argument is `digits` and our value is `2`.
 
 
-```{r example showing arguements within functions}
+```{r example showing arguments within functions}
 # Using built in function round()
 
 round(3.6357, digits = 2)
@@ -611,15 +620,18 @@ In R these are written as `TRUE` or `FALSE`.
 > **They are special R data types - not strings! So they don't need '' or "" around them.**
 
 
-Note that while they can be abbreviated to `T` and `F`, this is not regarded as best practise.
+Note that while they can be abbreviated to `T` and `F`, this is not regarded as best practice.
 
 They also have numerical values behind them - `TRUE` is 1 and `FALSE` is 0.
 
 Therefore, we can treat them as numbers!
+
 ```{r showing numerical value of TRUE}
 TRUE + TRUE
 ```
-And use all the other operators too!
+
+And use any other operator too!
+
 ```{r showing numerical value of TRUE second example}
 TRUE * 2.5
 ```
@@ -659,7 +671,7 @@ Is 25 equal to 5 squared?
 ```
 
 Does 1 not equal 2?
-```{r compariosn operator third example}
+```{r comparison operator third example}
 1 != 2
 ```
 
@@ -667,7 +679,7 @@ That covers the simpler logical operators.
 
 The final two allow us to combine and check multiple conditions.
 
-We will look at these more in detail with examples in Chapter Four -Data Manipulation.
+We will look at these more in detail with examples in Chapter Four - Data Manipulation.
 
 >**Please note that there are other data types such as factors, dates, complex numbers, date times etc**
 
@@ -761,7 +773,7 @@ as.integer(4.996453)
 as.numeric("2")
 ```
 
-We will look at some other ways to do convert types later in the course.
+We will look at some other ways to convert types later in the course.
 
 ***
 
@@ -773,7 +785,7 @@ R does not provide direct access to the computer’s memory but rather provides 
 
 Everything in R is an object, We can assign these objects names, this is called a variable.
 
-Variables are an integral part of any programming language. Variables allow us to store and label data under a specific name. It is like a place holder, used to store information. Think of it as a container, they main purpose is to label and store the data in memory.
+Variables are an integral part of any programming language. Variables allow us to store and label data under a specific name. It is like a place holder, used to store information. Think of it as a container, the main purpose is to label and store the data in memory.
 
 
 We can assign a value to a variable using the `<-` operator, for example in the below code where `weight_kg` is the variable name and the value `60` is the data being assigned to `weight_kg`. 
@@ -825,7 +837,7 @@ cat('my weight is', sep = '\n', weight_kg)
 ```
 
 
-We can use our variables in mathematical operations. Here we are using `weight_kg` to calculate `weight_lb`.
+We can use our variables in mathematic operations. Here we are using `weight_kg` to calculate `weight_lb`.
 
 
 
@@ -954,7 +966,7 @@ some.people.use.periods
 ```
 `Snake` and `Camel` case are the most common ones, the `periods` example has been shown as you might see it used in other peoples codes.
 
-We have more detailed examples and information on good variables names in our other course **Best Practice in Programming -  Clean Code**
+We have more detailed examples and information on good variables names in our other course: [Best Practice in Programming -  Clean Code](https://learninghub.ons.gov.uk/course/view.php?name=best_practice_programming)
 
 ***
 
@@ -1162,7 +1174,7 @@ Very few - if any - people in the world know everything there is to know about R
 
 ## Cheat Sheets
 
-You can access these by clicking on **Help** and then **Cheetsheets**.
+You can access these by clicking on **Help** tab in R Studio and then **RStudio Cheat Sheets**.
 
 
 <br>
@@ -1190,7 +1202,7 @@ You can do this by typing `?functionname` into your Console and pressing enter, 
 Try and type the command below in the console,and you should see the Help panel on the bottom right side of your RStudio environment populate with documentation.
 
 
-**This might not be helpful at this point in time as its quite complicated, we use this throughout the course and get plenty of practise on how to get the best of the R documentation.**
+**This might not be helpful at this point in time as its quite complicated, we use this throughout the course and get plenty of practice on how to get the best of the R documentation.**
 
 
 

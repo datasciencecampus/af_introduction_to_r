@@ -39,7 +39,7 @@ htmltools::img(src = knitr::image_uri("../images/AF_DSC_banner.png"),
 <hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
 
 <!--- Date course last updated and a contact for any help needed. --->
-<center> Course Release: June 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Help with course">Need help? Contact the team.</a></center>
+<center> Course Updated: October 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Help with course">Need help? Contact the team.</a></center>
 
 
 ```{r setup, include=FALSE}
@@ -74,7 +74,7 @@ We do not work with single data values, we often work with a combination or coll
 
 R organises these in certain structures, and stores this data so that  we can manipulate and work with it.
 
-Data structures we will be looking at include **vectors**, **lists**, and **data frames**. 
+Data structures we will cover in this course include **vectors**, **lists**, and **data frames**. 
 
 ***
 
@@ -84,7 +84,7 @@ Data structures we will be looking at include **vectors**, **lists**, and **data
 
 In the previous section we looked at data types, where we said we could assign a name to a value.
 
-here `my_friends` is assigned to the value `ian`
+here the value `ian` is assigned to the variable `my_friends`
 
 ```{r}
 # To assign a variable
@@ -125,13 +125,13 @@ Which brings us to the **`c()`** function.
 The code above will not work, which is where the `c()` function comes in. 
 
 
-lets look at the help section in R to find out what the `c()` function does.
+Have a look at the help section in R to find out what the `c()` function does.
 
 The **`c()`** function is used for creating a vector in R - it stands for `combine`
 
 ```{r, eval=FALSE}
 
-#To acces the R help documentation
+#To access the R help documentation
 
 ?c()
 
@@ -266,7 +266,7 @@ colon_vector
 2. Now combine the two vectors to create a new vector, e.g movies_and_numbers, see my example below.
 
 
-3. Then find out what type of vector your new vector is, use **typeof()**.
+3. Then find out what type of vector your new vector is, use `typeof()`.
 
 
 ```{r, eval=FALSE}
@@ -336,7 +336,7 @@ movies_and_numbers <- c(favourite_movies, lucky_numbers)
 
 <br>
 
-3. Then find out what type of vector your new vector is, use **typeof()**.
+3. Then find out what type of vector your new vector is, use `typeof()`.
 
 ```{r}
 # Checking the type of vector
@@ -711,7 +711,7 @@ movies_numbers_friends <- list(favourite_movies, lucky_numbers, my_friends)
 movies_numbers_friends
 ```
 
-> **For more information on lists please refer to the extra material section** 
+> **For more information on lists please refer to the Additional_Resources document in the Additional_content folder** 
 
 
 ***
@@ -730,6 +730,8 @@ They are collections of vectors. What we learnt about vectors will pay off even 
 
 
 ![\Image showing visual representation of a Dataframe](../Images/dataframe.png)
+
+<br> 
 
 In the next session we are going to use special type of data frame called a **tibble**.
 

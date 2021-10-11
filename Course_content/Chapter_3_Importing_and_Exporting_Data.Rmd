@@ -37,7 +37,7 @@ htmltools::img(src = knitr::image_uri("../images/AF_DSC_banner.png"),
 <hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
 
 <!--- Date course last updated and a contact for any help needed. --->
-<center> Course Release: June 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Help with course">Need help? Contact the team.</a></center>
+<center> Course Updated: October 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Help with course">Need help? Contact the team.</a></center>
 
 <br>
 
@@ -72,7 +72,7 @@ htmltools::img(src = knitr::image_uri("../images/AF_DSC_banner.png"),
 
 We have now used a few functions, we will go through a little bit more information about how they work. Please note that we will cover them in chapter 6 where we will get a chance to write our own functions.
 
-You should make it a habit to check out the help files when you are using a function for the first time so you know what the default settings are and to see what things you can control with different function arguments.
+You should make it a habit to explore the help files when you are using a function for the first time so you know what the default settings are and to see what things you can control with different function arguments.
 
 Functions follow the form:
 
@@ -193,7 +193,7 @@ seq(to = 10, from = 1)
 
 The above demonstrates something about how R resolves function arguments. 
 
-You can always specify arguments in the form `name = value` But if you do not, R attempts to resolve by position. 
+You should always specify arguments in the form `name = value` . If you do not specify, R will attempt to resolve by position. 
 
 So above, first it is assumed that we want a sequence from = 1 that goes to = 10. Then if we swap the numbers it is assumed we want to sequence from = 10 that goes to = 1. If we name the arguments explicitly using `name = value`, the order of the arguments doesn't matter. 
 
@@ -618,13 +618,15 @@ You can use **`setwd()`** function and provide an absolute or relative file path
 
 > **For example `"C:/My_RStudio/Workspace/Intro_to_R"`**
 
+While you are working on this course, we recommend you set your working directory as the same folder as the course materials you downloaded from the learning hub. 
+
 ```{r, eval=FALSE}
 # Setting the working directory
 
 setwd("C:/My_RStudio/Workspace/Intro_to_R")
 ```
 
->**Alternatively you could the keyboard short cut CTLR+SHIFT+H.**
+>**Alternatively you could use the keyboard short cut CTLR+SHIFT+H.**
 
 <br>
 
@@ -709,10 +711,9 @@ dataframe_name <- readr::read_csv(file_path)
 
 Load the titanic data using the code below,
 
-You will need to change the file path to your location
+You will need to change the file path to where `titanic.csv` is saved in your files. The file path in this example maps from the folder where `Chapter_3_Importing_and_Exporting_Data.html` is saved to `titanic.csv`. 
 
-You will have noticed that we had some parsing information after reading the file in,
-displayed at the end of the process (as a warning). This is to let us know the data type  for each column. 
+You will have noticed that we had some parsing information after reading the file in, displayed at the end of the process (as a warning). This is to let us know the data type  for each column. 
 
 This is not an error and its useful to inspect the chosen datatypes. 
 
@@ -821,7 +822,7 @@ The code below, can be read as;
 # classed as missing values
 
 titanic <- readr::read_csv("../Data/titanic.csv", 
-                           na = c("*", ".", ""))
+                           na = c("*", ".", "", "NULL"))
 
 
 ```
@@ -855,7 +856,7 @@ On this instance our missing values have been classed as `.` and `*`, missing va
 # This will skip the first 5 rows from the csv
 
 dataset_name <- readr::read_csv("file path", 
-                           na = c("*", ".", ""), # missing value
+                           na = c("*", ".", "", "NULL"), # missing value
                            skip = 5) # skips the first 5 rows
 ```
 
@@ -866,7 +867,7 @@ dataset_name <- readr::read_csv("file path",
 # Should blank rows be ignored altogether? i.e. If this option is TRUE then blank rows will not be # represented at all. If it is FALSE then they will be represented by NA values in all the columns.
 
 dataset_name <- readr::read_csv("file path", 
-                           na = na = na = c("*", ".", ""), # missing value
+                           na = c("*", ".", "", "NULL"), # missing value
                            skip_empty_rows = TRUE) # skips empty rows
 ```
 
@@ -1084,7 +1085,7 @@ str(titanic)
 
 dplyr::glimpse(titanic)
 
-dplyr::sample_n(titanic, size = 5)
+dplyr::slice_sample(titanic, n = 5)
 
 head(titanic) 
 
@@ -1125,9 +1126,9 @@ library(dplyr)
 
 str(titanic) # Structure of the table
 
-dplyr::glimpse(titanic)  # Similar to str - from dplyr package
+dplyr::glimpse(titanic)  # Similar to str -  but from dplyr package
 
-dplyr::sample_n(titanic, size = 5) # select a random sample from out data of a given `size`
+dplyr::slice_sample(titanic, n = 5) # Selects a random sample of n rows from the dataset
 
 View(titanic)  # Pops file into a Viewer.
 
@@ -1143,7 +1144,7 @@ ncol(titanic) # Number of columns
 
 names(titanic) # Names of columns
 
-summary(titanic) # summary statistics for data
+summary(titanic) # Summary statistics for data
 
 # Selecting elements
 
