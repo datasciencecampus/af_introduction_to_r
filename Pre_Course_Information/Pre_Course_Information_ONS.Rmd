@@ -203,7 +203,7 @@ Now this is on your clipboard, it is ready to use in RStudio
 
 * Copy your Hashed Password into the Hash tag box.
 
-* Select R-4.0.2 from the New Library drop down menu on the right hand side. 
+* Select the highest number available/most recent version from the New Library drop down menu on the right hand side. 
 Press Save, and then, Run Application. 
 
 <br>
