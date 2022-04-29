@@ -9,6 +9,15 @@ output:
     number_sections: true
 ---
 
+```{r, setup, include=FALSE}
+
+# Working directory set to the Intro to R Refresh document so file paths can just
+# be "Data/file.csv" etc
+# n.b doesn't affect file paths for ![] imgs
+
+knitr::opts_knit$set(root.dir = '..')
+```
+
 <!-- Places the AF and DSC Logo above the table of contents -->
 <!-- This uses https://www.base64-image.de/ to convert image to base 64. -->
 <!-- This is an incredibly long string; we highly advise to use the > to shrink this section; currently on line 16 that starts #TOC --> 
@@ -30,7 +39,7 @@ output:
 
 <hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
 ```{r, echo=FALSE}
-htmltools::img(src = knitr::image_uri("../images/AF_DSC_banner.png"),
+htmltools::img(src = knitr::image_uri("images/AF_DSC_banner.png"),
                alt = 'Learning Academy, Analysis Function and Data Science Campus Logos', 
                style="vertical-align:middle")
 
@@ -132,21 +141,21 @@ library(janitor)
 # na = c() of what should be 
 # classed as missing values
 
-titanic <- readr::read_csv("../Data/titanic.csv", 
+titanic <- readr::read_csv("Data/titanic.csv", 
                            na = c("*", ".", "", "NULL"))
 
 # To display the data
 titanic
 ```
-<br>
+# {-}
 
-We can see these these are columns,
+As a reminder our columns are:
 
 * **Pclass**: Passenger’s class, 1 = 1st (Upper), 2 = 2nd(Middle), 3 = 3rd(Lower)
 * **Survived**: Survived (1) or died (0), 0 = No, 1 = Yes
 * **Name**: Passenger’s name
 * **Sex**: Passenger’s sex
-* **Age**: Passenger’s age
+* **Age of Passenger**: Passenger’s age
 * **SibSp**: Number of siblings/spouses aboard
 * **Parch**: Number of parents/children aboard
 * **Ticket**: Ticket number
@@ -189,7 +198,7 @@ For example if we wanted to pick the `name of Passenger` column from the titanic
 # Selecting data using the $ symbol
 # note this WILL NOT WORK because of the blank spaces
 
-titanic$name of Passenger
+titanic$name Of Passenger
 ```
 
 
@@ -318,7 +327,7 @@ The `tolower()` function changes a string of characters to lower case.
 names(titanic) <- tolower(names(titanic)) 
 ```
 
-<br>
+## {-}
 
 We can also rename column names. 
 
@@ -1272,7 +1281,12 @@ titanic_filter_exercise <- dplyr::filter(.data = titanic,
 
 titanic_filter_exercise
 ```
+Or as an alternative you could use the `str_detect` function from the `stringr` package.
 
+```{r}
+titanic_using_str_detect<- dplyr::filter(.data = titanic,
+                                stringr::str_detect(name_of_passenger,'Hans'))
+```
 <br>
 
 2. How many passengers in the dataset are male?
@@ -1937,6 +1951,23 @@ sorted_first_class_survivors <- dplyr::arrange(.data = selected_first_class_surv
 
 ```
 
+Or alternatively this very nested sequence!
+
+
+```{r}
+# This may be very hard to read and understand - the pipe will make this much more readable!
+
+sorted_first_class_survivors <- dplyr::arrange(.data = 
+                                                 dplyr::select(.data = 
+                                                                 dplyr::filter(.data = titanic,
+                                                                  pclass == 1 & survived == 1),
+                                                               name_of_passenger,
+                                                               age_of_passenger,
+                                                               embarked,
+                                                               fare)
+                                               , desc(age_of_passenger))
+
+```
 <br>
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
@@ -2014,7 +2045,7 @@ Lets practice piping a few `dplyr` functions.
 
 # Chaining dplyr commands using the %>%
 
-Southampton_oldest_passengers <- titanic %>%
+southampton_oldest_passengers <- titanic %>%
                           dplyr::filter() %>% # where they got on the boat
                           dplyr::select() %>% # keep only columns we need
                           dplyr::arrange() %>% # sort the data
@@ -2023,7 +2054,7 @@ Southampton_oldest_passengers <- titanic %>%
 
 #To display the data
 
-Southampton_oldest_passengers
+southampton_oldest_passengers
 ```
 
 ***
@@ -2039,7 +2070,7 @@ Southampton_oldest_passengers
 ```{r}
 # Chaining dplyr commands using the %>%
 
-Southampton_oldest_passengers <- titanic %>%
+southampton_oldest_passengers <- titanic %>%
                           dplyr::filter(embarked == "S") %>%
                           dplyr::select(name_of_passenger, age_of_passenger) %>%
                           dplyr::arrange(desc(age_of_passenger)) %>% 
@@ -2048,7 +2079,7 @@ Southampton_oldest_passengers <- titanic %>%
 
 #To display the data
 
-Southampton_oldest_passengers
+southampton_oldest_passengers
 ```
 
 
@@ -2305,12 +2336,12 @@ band_instruments2 <- dplyr::band_instruments2
 
 # Full join
 
-band_membership_full_join <- band_members %>% 
+band_membership_exercise <- band_members %>% 
                               dplyr::full_join(band_instruments2)
 
 # To display the data
 
-band_membership_full_join
+band_membership_exercise
 ```
 
 The code above will give the error message below;
@@ -2349,13 +2380,13 @@ band_instruments2
 # Full join
 # We can join with different column names
 
-band_membership_right_join <- band_members %>% 
+band_membership_exercise <- band_members %>% 
                               dplyr::full_join(band_instruments2,
                                                by = c("name" = "artist"))
 
 # To display the data
 
-band_membership_right_join
+band_membership_exercise
 ```
 
 

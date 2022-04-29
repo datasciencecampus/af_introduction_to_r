@@ -21,7 +21,14 @@ output:
 }
 </style>
 
+```{r, setup, include=FALSE}
 
+# Working directory set to the Intro to R Refresh document so file paths can just
+# be "Data/file.csv" etc
+# n.b doesn't affect file paths for ![] imgs
+
+knitr::opts_knit$set(root.dir = '..')
+```
 <!-- this # is needed to properly shrink the TOC -->
 # {.unnumbered .toc-ignore}
 
@@ -29,7 +36,7 @@ output:
 
 <hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
 ```{r, echo=FALSE}
-htmltools::img(src = knitr::image_uri("../images/AF_DSC_banner.png"),
+htmltools::img(src = knitr::image_uri("images/AF_DSC_banner.png"),
                alt = 'Learning Academy, Analysis Function and Data Science Campus Logos', 
                style="vertical-align:middle")
 
@@ -81,7 +88,7 @@ library(janitor)
 
 # Prepare the dataset
 
-titanic <- readr::read_csv("../Data/titanic.csv", 
+titanic <- readr::read_csv("Data/titanic.csv", 
                            na = c("*", ".", "", "NULL"))
 
 titanic <- janitor::clean_names(titanic)
@@ -545,7 +552,7 @@ Here I have added some extra summary statistics as well, i.e standard deviation 
 # summarising by showing the median and standard deviation
 # and a frequency count
 
-median_fare <- titanic %>%
+median_sd_fare <- titanic %>%
                tidyr::drop_na(embarked) %>%
                dplyr::group_by(pclass, embarked) %>%
                dplyr::summarise(median_fare= median(fare, na.rm = TRUE),
@@ -554,7 +561,7 @@ median_fare <- titanic %>%
 
 # To display the data
 
-median_fare
+median_sd_fare
 
 
 ```
@@ -573,7 +580,7 @@ I plan on presenting this data, so I want something more meaningful in place tha
 # summarising by shwoing the median fare and 
 # standard deviation and a frequency count
 
-median_fare <- titanic %>%
+median_sd_fare <- titanic %>%
                tidyr::drop_na(embarked) %>% 
                dplyr::mutate(embarked = recode(embarked, 
                                                "C" = "Cherbourg", 
@@ -586,7 +593,7 @@ median_fare <- titanic %>%
 
 #To display the data
 
-median_fare
+median_sd_fare
 
 ```
 
@@ -639,7 +646,7 @@ test_theme <- theme_bw() +
   )
 
 
-median_fare2 <- median_fare %>% 
+median_fare2 <- median_sd_fare %>% 
     dplyr::mutate(pclass = recode(pclass, 
                            "1" = "First Class", 
                            "2" = "Second Class", 

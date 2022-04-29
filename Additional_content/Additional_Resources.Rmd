@@ -55,6 +55,7 @@ library(downloadthis)
 library(pander)
 
 library(kableExtra)
+# If you get the error object ‘faststack’ is not exported by 'namespace:fastmap' you must also install or update faststack
 
 library(reactable)
 
@@ -445,6 +446,11 @@ titanic %>%
 <br>
 
 Let's look at examples using the `fare` column. 
+
+```{r}
+titanic <- janitor::clean_names(titanic)
+```
+
 ```{r}
 #cut_number() - makes n groups with (approximately) equal numbers of observations
 table(ggplot2::cut_number(titanic$fare, 3, labels = c("low", "med", "high")))
@@ -469,7 +475,7 @@ Let's have a look at a simple example:
 ```{r}
 #Creating a table frequency table using baser table function
 #here we are creating atable for survived and sex columns
-class_survived_frequency <- table(titanic$survived, titanic$sex)
+class_survived_frequency <- table(titanic$survived, titanic$sex_of_passenger)
 
 #To display the data
 class_survived_frequency
@@ -1317,343 +1323,64 @@ What you prefer as an output will determine which of these you would choose to u
 
 ***
 
-# Lists 
+# Converting Coulumn types
 
-***
+Sometimes columns will read in with an incorrect data type.
 
-## Definition
+This is usually because of an issue with the contents of a column. This can be something as simple as commas in numbers or missing values.
 
-Lists are similar data structure to vectors in that they are an ordered collection of elements. They differ to vectors because their elements can be of any type, including lists themselves!
+## Forcing Column types on reading in data
 
-So why do you need lists? A list in R is like a to-do list: the different items on that list most likely differ in length, characteristic, type of activity etc. It enables you to gather a variety of objects under one name in an ordered way.
+When reading in data using `readr::read_csv` and `readxl::read_xls` you can specify the column types.
 
-Lists are really useful, flexible data structures. Their elements can be any object weâve seen so far and any object you might ever see! (This also includes functions).
+Here the entries with missing values (* and . ) will show as parsing failures but will become `n/a` missing values.
 
-
-***
-
-<br>
-
-## Manipulating lists
-
-***
-
-### Creating Lists
-
-Similar to vectors, to create a list we have to use a function which returns a list. In this case, the name of the function is more fitting than **`c()`** for vectors. 
-
-To create a list we will use the **`list()`** function.
-
-Each of the contents will appear on a new line. Before each content will be its index number in double square brackets, as in [[1]], [[1]], 
-
-Index numbers simply represent the order in which each item is stored in the list.
-
-As you can see we have various items of within our list and they all keep their data type.
+Here they are true missing values - and replacing them with `n/a` isn't an issue - but this should be done with caution. A value of `1,0000` or `two` may cause a column to be read in as charachter but is still valid data that should be fixed before converting.
 
 
 ```{r}
-# Creating a list
 
-shopping_list <- list(c("apples", "bananas", "strawberries"), 
-                      c(5,10,15), 
-                      20.2)
-
-# To Display the list
-shopping_list
+titanic_2 <- readr::read_csv("../Data/titanic.csv",
+                             col_types = list(`Age of passenger` = col_double()))
 ```
-Lists are really useful, flexible data structures. Their elements can be any object we've seen so far and any object you might ever see - including functions!
 
+## What are my missing values?
 
-***
+Using `dplyr::count()` on a column can help to identify missing values.
 
-<br>
-
-### Naming List Elements
-
-In R certain data structures have an attribute called names. They allow us to label (or name) each element held by a data structure.
-
-The list elements can be given names and they can be accessed using these names.
 ```{r}
-# Creating a list and naming the elements
+# Read in with missing values
 
-shopping_list <- list(fruits = c("apples", "bananas", "strawberries"), 
-                      amounts = c(5,10,15), 
-                      total_price = 20.2)
+titanic_3 <- readr::read_csv("../Data/titanic.csv")
 
-# To display the list
+titanic_3 %>% 
+  dplyr::count(`Age of passenger`)
+```
 
-shopping_list
+
+## Converting column types after reading in
+
+This is ideally a 3 step procedure
+
+* Identify the error
+* Fix the error
+* Convert the column
+
+As seen above the issue in the `Age of passenger` column is `*` and `.` 
+
+```{r}
+# Fix error
+
+titanic_3 <- titanic_3 %>% 
+            dplyr::mutate(`Age of passenger` = dplyr::na_if(`Age of passenger`, "*")) %>%
+            dplyr::mutate(`Age of passenger` = dplyr::na_if(`Age of passenger`, "."))
+
+# Convert column
+
+titanic_3$`Age of passenger` <- as.numeric(titanic_3$`Age of passenger`)
 
 ```
 
 
-The above now displays the name associated with each element on top of the element.
-
-<br>
-
-We can also name our list using the **`names()`** function. This function allows us to get or set the name attribute of a data structure.
-
-```{r}
-
-# To display the names of our list
-names(shopping_list)
-
-# Adding names to our items in the list
-names(shopping_list)<- c("favourite_fruits", "amount_of_fruit", "total_price_of_shopping")
-
-# To display the list
-shopping_list
-```
-
-<br>
-
-
-As demonstrated above, lists can hold all kinds of data structures, including vectors and other lists, they can then have an interesting tree like structure which we can observe using the structure function, **`str()`** function.
-
-
-The structure function will return the contents stored in the list, as well as stating the data type of each item, for example, character, numeric, vector, etc.
-
-
-
-```{r}
-# Checking the structure of our list using the 
-# str() function
-
-str(shopping_list)
-```
-
-***
-
-<br>
-
-### Indexing a list
-
-To access an element from the list, we have to use square brackets containing the index of the element we are after, just like for vectors.
-
-You can select components using their name in `[[ ]]` or `$` sign (if you have a named list).
-
-```{r}
-
-# Selecting items in a list using the $ symbol
-
-shopping_list$favourite_fruits
-
-# Selecting items in a list using the name
-# for named lists
-
-shopping_list[["favourite_fruits"]]
-
-# Selecting items in a list using the index position
-
-shopping_list[[1]]
-
-```
-
-<br>
-
-To return a single element or multiple elements you need to specify both the `component [[]]` and the `element[]`.These components are all vectors, and you can access an element within a vector the usual way.
-
-```{r}
-# Selecting items in a list using the $ symbol
-
-shopping_list$favourite_fruits[1]
-
-# Selecting items in a list using the name
-# for named lists
-
-shopping_list[["favourite_fruits"]][1]
-
-# Selecting items in a list using the index position
-
-shopping_list[[1]][1]
-
-```
-***
-
-<br>
-
-### Adding Elements to a List
-
-Similar to vectors again, to add an element, we can either index to a blank space in the list or use the append() function:
-
-```{r}
-
-# To display the list
-
-shopping_list
-
-```
-
-```{r}
-# Adding an item to a list by position
-
-shopping_list[4] <- "custard creams"
-
-
-# To display the list
-
-shopping_list
-
-
-# Adding an item to a list using the append function
-
-shopping_list <- append(shopping_list, "milk")
-
-# To display the list
-
-shopping_list
-
-```
-
-<br>
-
-### Exercise{.tabset .tabset-fade}
-
-
-#### **Exercise**{-}
-
-
-1. Create the list below.
-
-```{r}
-# Creating a list with multiple items
-chocolate <- list(brand = "celebrations", 
-                  chocolate_bar = c("mars", "milky way", "bounty", "twix", "maltesers"), 
-                  rating = c("worst",  "terrible", "awful", "nice", "best"))
-```
-
-2. Find out the names of the list, using the `names()` function.
-
-3. Check the structure using the `str()` function.
-
-4. Select chocolate bars.
-
-5. Select your favourite chocolate from the options.
-
-6. Add an item called price.
-
-7. Add a new chocolate bar.
-
-
-***
-
-<br>
-
-
-#### **Show Answer**{-}
-
-1. Create the list below.
-
-```{r}
-
-# Creating a named list with multiple items
-
-chocolate <- list(brand = "celebrations", 
-                  chocolate_bar = c("mars", "milky way", "bounty", "twix"), 
-                  rating = c("worst",  "terrible", "awful", "nice", "best"))
-```
-
-<br>
-
-2. Find out the names of the list, using the `names()` function.
-
-```{r}
-# Finding the names 
-
-names(chocolate)
-
-
-```
-
-<br>
-
-3. Check the structure using the `str()` function.
-
-```{r}
-# Checking the structure
-
-str(chocolate)
-
-```
-
-<br>
-
-4. Select chocolate bars.
-
-```{r}
-# Select chocolate bars
-
-chocolate[2]
-
-```
-
-<br>
-
-5. Select your favourite chocolate from the options.
-```{r}
-# Select my favourite chocolate bar
-
-chocolate$chocolate_bar[3]
-
-chocolate[["chocolate_bar"]][3]
-
-
-chocolate[[2]][3]
-
-```
-
-<br>
-
-6. Add item called price.
-
-```{r}
-# Updating the list by adding price
-
-chocolate[[4]] <- ("price")
-
-# To display the list
-
-chocolate
-
-# Updating the list using the list using append
-
-chocolate <- append(chocolate, "price")
-
-# To display the list
-
-chocolate
-```
-
-<br>
-
-7. Add a new chocolate bar.
-
-```{r}
-
-chocolate$chocolate_bar[5]<- "turkish delight"
-
-# To display the list
-
-chocolate
-
-chocolate[["chocolate_bar"]][5]<- "turkish delight"
-
-# To display the 
-
-chocolate
-
-
-# Adding an item with list contained in a list
-
-chocolate[[2]][5] <- "turkish delight"
-
-# To display the list
-
-chocolate
-
-```
-
-
-
-***
+Note that if you do convert a column to numeric without fixing the issues it will just make any character values missing values. This might be desirable but could also cause issues in your data.
 
