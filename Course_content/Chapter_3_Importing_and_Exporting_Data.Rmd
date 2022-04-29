@@ -8,6 +8,15 @@ output:
     toc_float: yes
     number_sections: true
 ---
+
+```{r, setup, include=FALSE}
+
+# Working directory set to the Intro to R Refresh document so file paths can just
+# be "Data/file.csv" etc
+
+knitr::opts_knit$set(root.dir = '..')
+```
+
 <!-- Places the AF and DSC Logo above the table of contents -->
 <!-- This uses https://www.base64-image.de/ to convert image to base 64. -->
 <!-- This is an incredibly long string; we highly advise to use the > to shrink this section; currently on line 16 that starts #TOC --> 
@@ -29,7 +38,7 @@ output:
 
 <hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
 ```{r, echo=FALSE}
-htmltools::img(src = knitr::image_uri("../images/AF_DSC_banner.png"),
+htmltools::img(src = knitr::image_uri("Images/AF_DSC_banner.png"),
                alt = 'Learning Academy, Analysis Function and Data Science Campus Logos', 
                style="vertical-align:middle")
 
@@ -70,7 +79,7 @@ htmltools::img(src = knitr::image_uri("../images/AF_DSC_banner.png"),
 
 # Functions
 
-We have now used a few functions, we will go through a little bit more information about how they work. Please note that we will cover them in chapter 6 where we will get a chance to write our own functions.
+We have now used a few functions, we will go through a little bit more information about how they work. Please note that there is a course on Functions, Loops and Control flow on the Learning Hub that covers creating user defined functions in more detail.
 
 You should make it a habit to explore the help files when you are using a function for the first time so you know what the default settings are and to see what things you can control with different function arguments.
 
@@ -107,7 +116,7 @@ Let's take a closer look at the help file for `seq()`.
 <br>
 
 
-![](../Images/Seq_helpfile.png){width=650px}
+![Seq help file](../Images/seq_helpfile.PNG){width=650px}
 
 ***
 
@@ -241,7 +250,7 @@ Within ONS we use a mirrored version of CRAN on our software repository called *
 
 Behind the scenes our R installation is set to install from *Artifactory* rather than *CRAN*. 
 
-This requires our up to date windows username and password. Without this the package will not install. This is why it is important for ONS staff to make sure their password is up to date in either your settings or your .RProfile.
+This requires our up to date windows username and password. Without this the package will not install. This is why it is important for ONS staff to make sure their password is up to date in either your settings. Some users with a very old version of R may have a .rprofile - we encourage you to update to the new RStudio bundle.
 
 ***
 
@@ -311,6 +320,8 @@ install.packages("janitor", dependencies = TRUE, type = "win.binary")
 
 ```
 <br>
+
+### {-}
 
 Successful installation should finish with messages as below, the last box, the rest are warnings which you will get sometimes.
 
@@ -397,6 +408,14 @@ library(readxl)
 
 
 ```
+
+### {-}
+
+You may see a message that says
+
+` package "X" was built under R Version "Y"` - this states that your R version may be lower than the one the package was written using. This doesn't usually cause issues.
+
+You may also see a message about masked objects - this is explained later in this document.
 
 <br>
 
@@ -630,7 +649,6 @@ setwd("C:/My_RStudio/Workspace/Intro_to_R")
 
 <br>
 
-
 Some great base R functions for exploring your directory are:
 
 ```{r, eval = FALSE}
@@ -711,7 +729,7 @@ dataframe_name <- readr::read_csv(file_path)
 
 Load the titanic data using the code below,
 
-You will need to change the file path to where `titanic.csv` is saved in your files. The file path in this example maps from the folder where `Chapter_3_Importing_and_Exporting_Data.html` is saved to `titanic.csv`. 
+You will need to change the file path to where `titanic.csv` is saved in your files.
 
 You will have noticed that we had some parsing information after reading the file in, displayed at the end of the process (as a warning). This is to let us know the data type  for each column. 
 
@@ -720,7 +738,7 @@ This is not an error and its useful to inspect the chosen datatypes.
 ```{r}
 # Reading in CSV data using readr package and read_csv function
 
-titanic <- readr::read_csv("../Data/titanic.csv")
+titanic <- readr::read_csv("Data/titanic.csv")
 ```
 
 
@@ -821,7 +839,7 @@ The code below, can be read as;
 # Specifying missing values by adding a vector, na=c() of what should be 
 # classed as missing values
 
-titanic <- readr::read_csv("../Data/titanic.csv", 
+titanic <- readr::read_csv("Data/titanic.csv", 
                            na = c("*", ".", "", "NULL"))
 
 
@@ -876,6 +894,7 @@ dataset_name <- readr::read_csv("file path",
 <br>
 
 
+
 ## Readxl
 
 We use readxl to read excel data into R, it supports both `.xls` and `.xlsx` formats.
@@ -916,7 +935,7 @@ readxl::excel_sheets(file_path)
 # assigning the file name police_data
 # and read_excel function
 
-police_data <- readxl::read_excel("../Data/police_data.xlsx")
+police_data <- readxl::read_excel("Data/police_data.xlsx")
 ```
 
 After reading in the file our data should look like this.
@@ -941,7 +960,7 @@ If we dont specify which sheet, the default setting from readxl is to give us th
 ```{r}
 # finding out the excel sheet names from excel file
 
-readxl::excel_sheets("../Data/police_data.xlsx")
+readxl::excel_sheets("Data/police_data.xlsx")
 ```
 
 ***
@@ -1014,7 +1033,7 @@ As we can see the top columns are mostly blank with no real significant data, to
 # specifying the range to only read the cells with data
 
 
-police_data <- readxl::read_excel("../Data/police_data.xlsx",
+police_data <- readxl::read_excel("Data/police_data.xlsx",
                                   sheet = 2, 
                                   range = "A5:AA48")
 
@@ -1049,7 +1068,7 @@ As an example we will export the police data we just imported.
 # and write_csv function, we start with file we want to export
 # and the the path where we want to export it to
 
-readr::write_csv(police_data, path = "../Data/test.csv")
+readr::write_csv(police_data, path = "Data/test.csv")
 ```
 
 Our data frame `police_data` would now be stored as `test.csv` in the `Data/` folder.
@@ -1057,6 +1076,22 @@ Our data frame `police_data` would now be stored as `test.csv` in the `Data/` fo
 ***
 
 <br>
+
+
+# A Note on File Paths
+
+You may see some file paths that start with two full stops such as `"../Data/titanic.csv"` - the `..` moves up a level in the folder structure.
+
+We may have a file structure that looks like this:
+
+![\An image showing a folder structure layout](../Images/folder_structure.jpg)
+Our default working directory may not be in the level 1 location - "Introduction to R". In fact if we create RMarkdown documents our working directory is in the folder the .rmd file is located. Here that would be in the Course Content folder.
+
+From this location `"Introduction to R /Course Content"` I can move between chapters but I can't move to `titanic.csv` or `img_1.jpg`.
+
+If I want to access the titanic file in the `Data` folder I need to ensure my file path is `"../Data/titanic.csv"`. I need to move up a level in my file structure (using `..`) before I can move forwards into the Data folder and my file.
+
+This is explained in more detail in the course in the Introduction to Command Line course on the Learning Hub. 
 
 
 # Inspecting  the Data

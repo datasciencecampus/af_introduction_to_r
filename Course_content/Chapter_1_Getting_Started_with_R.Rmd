@@ -773,7 +773,7 @@ as.integer(4.996453)
 as.numeric("2")
 ```
 
-We will look at some other ways to convert types later in the course.
+We will look at some other ways to convert types in the additional materials section.
 
 ***
 
@@ -913,7 +913,7 @@ weight_kg
 
 <br>
 
->**`<-` is the most commonly used assignment operator in R and therefore the one we will stick to.**  
+>**`<-` is considered best practice as an assignment operator in R and therefore the one we will stick to.**  
 
 In R it is convention to use `<-` to assign variables and keep `=` reserved to passing key value pair to a function. We will be sticking to this convention. 
 
