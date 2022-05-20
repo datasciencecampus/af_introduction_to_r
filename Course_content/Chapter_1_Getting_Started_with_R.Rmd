@@ -37,7 +37,7 @@ htmltools::img(src = knitr::image_uri("../images/AF_DSC_banner.png"),
 <hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
 
 <!--- Date course last updated and a contact for any help needed. --->
-<center> Course Updated: October 2021 | <a href="mailto:GSS.Capability@statistics.gov.uk=Help with course">Need help? Contact the team.</a></center>
+<center> Course Updated: October 2021 | <a href="mailto:Data.Science.Campus.Faculty@ons.gov.uk?subject=Help with course Intro to R">Need help? Contact the team.</a></center>
 
 
 ```{r setup, include=FALSE}
@@ -1285,7 +1285,7 @@ It has about 3000 members and its mostly R and python based and people post trai
 
 <br>
 
-## The **Analysis Function Training team – gss.capability@statistics.gov.uk**
+## The **Training team – Data.Science.Campus.Faculty@ons.gov.uk**
 
 If you have any issues with this course; or notice any errors, please contact the training team on the email above. The training team are also here to help with any R questions you have after you have completed the course.
 
