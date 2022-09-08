@@ -9,6 +9,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+In this appendix, we provide some more detailed suggestions on how to find help or solve errors/bugs in your R code; it is an expansion of <mark>Section XXX</mark> in the main Introduction to R course.
+
 # Finding a solution for a specific problem
 When you start coding in any language, you feel like you need to memorise everything to be able to code. However, this is not how most programmers do it: they use Google (or other search engines) to find the a solution to the parts of their problem.
 
@@ -21,10 +23,11 @@ Make sure you read the error message thoroughly, it may just be caused by a synt
 
 ## Forums and documentation
 ### Documentation
-Documentation for functions and packages are where you can find all the specifications that program/function can do. It is important to remember that these are written to be precise and extensive and so can be a bit daunting when starting out. However, if you want to go deeper and understand all the options and arguments of a function, the documentation should have all the information you need.
+Documentation for functions and packages are where you can find all the specifications that program/function can do. Each function available in R, whether that is in the "base" installation or within packages you load externall, will have documentation included with it. You can access this in R through the methods described in <mark>LINK TO COURSE SECTION</mark>.  
+It is important to remember that these are written to be precise and extensive and so can be a bit daunting when starting out. However, if you want to go deeper and understand all the options and arguments of a function, the documentation should have all the information you need.
 
 ### Forums
-Forums such as [StackOverflow](https://stackoverflow.com/) are a great place to find solutions to common problems. One of the most difficult parts of finding the solution to your problem is how to search for it in the first place. Finding the specific words that define your problem will save you a lot of looking through answers in forums.
+As highlighted in <mark>Section XXX of the main course</mark>, online forums such as [StackOverflow](https://stackoverflow.com/) are a great place to find solutions to common problems. One of the most difficult parts of finding the solution to your problem is how to search for it in the first place. Finding the specific words that define your problem will save you a lot of looking through answers in forums.
 
 For example: if you searched for a "vehicle fixer" would not give you the specific results searching for "mechanic" would.
 
