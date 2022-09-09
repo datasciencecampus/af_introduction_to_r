@@ -1,0 +1,75 @@
+---
+title: "Extended Exercise 4.1: Building Dataframes"
+output:
+  html_document: 
+    theme: united
+    highlight: textmate
+    toc: yes
+    toc_float: yes
+    number_sections: true
+---
+
+```{r, echo=FALSE, eval=FALSE}
+htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Although we will usually use R to read in data from other sources (`.csv` or
+`.xlsx` for example), this extended exercise illustrates how we can create
+data within an R script itself.
+
+In this exercise we will create and explore a hypothetical 'basket of goods'
+dataset. Throughout, we will provide example answers but encourage you to come
+up with your own examples.
+
+# Create a vector of 10 items that might be included {.tabset}
+A basket of goods dataset will contain average prices for items and goods
+bought by a large proportion of the population. Let's first create a vector of
+some of these items. Aim for at least 10 from a variety of categories. Save
+this vector to a well named object!
+
+## {-}
+
+## Hint {-}
+The `c()` function can be used to create a vector of objects.
+
+## Example Answer {-}
+```{r item_vector}
+basket_of_goods_items <-
+  c('Bread Rolls', 'Crumpets', 'Pasta', 'Haggis', 'Tea bags', 'Whisky', 'Beer',
+    'Shirt', 'Kilt', 'Jacket')
+```
+A [kilt](https://en.wikipedia.org/wiki/Kilt) is part of the national dress in
+Scotland.
+
+# Create vector of the prices of these items {.tabset}
+Next we want to create another vector containing the prices of each of these
+items. Don't worry too much about the actual prices here.
+
+It is important however that these two vectors are the same length, so that
+each item has a corresponding price, and vice versa. Can you check this
+programmatically?
+
+## {-}
+
+## Hint {-}
+Again, we can use the `c()` function to create a vector.
+
+## Example Answer {-}
+```{r price_vector}
+basket_of_goods_price <-
+  c(1.20, 0.85, 0.39, 2.6, 3.5, 45, 12, 30, 400, 100)
+```
+
+# Check datatypes
+# Create dataframe with appropriate column names
+# Perform summaries on created df
+# Create another one (from a different year/region)
+# Join together in list
+# save to xlsx (as seperate sheets(?))
