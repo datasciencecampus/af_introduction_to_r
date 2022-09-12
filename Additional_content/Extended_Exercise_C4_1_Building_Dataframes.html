@@ -1547,8 +1547,8 @@ div.tocify {
 <p>A <a href="https://en.wikipedia.org/wiki/Kilt">kilt</a> is part of the national dress in Scotland.</p>
 </div>
 </div>
-<div id="create-vector-of-the-prices-of-these-items" class="section level1 tabset">
-<h1><span class="header-section-number">2</span> Create vector of the prices of these items</h1>
+<div id="create-a-vector-of-the-prices-of-these-items" class="section level1 tabset">
+<h1><span class="header-section-number">2</span> Create a vector of the prices of these items</h1>
 <p>Next we want to create another vector containing the prices of each of these items. Don’t worry too much about the actual prices here.</p>
 <p>It is important however that these two vectors are the same length, so that each item has a corresponding price, and vice versa. Can you check this programmatically?</p>
 <div id="section-1" class="section level2 unnumbered">
@@ -1562,25 +1562,243 @@ div.tocify {
 <h2>Example Answer</h2>
 <pre class="r"><code>basket_of_goods_price &lt;-
   c(1.20, 0.85, 0.39, 2.6, 3.5, 45, 12, 30, 400, 100)</code></pre>
+<p>We can use <code>==</code> to check that the outputs of two functions are the same.</p>
+<pre class="r"><code>length(basket_of_goods_price) == length(basket_of_goods_items)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
 </div>
 </div>
-<div id="check-datatypes" class="section level1">
+<div id="check-datatypes" class="section level1 tabset">
 <h1><span class="header-section-number">3</span> Check datatypes</h1>
+<p>What datatypes are the vectors we just created? It can be a good idea to check your data is the right type as soon as possible to avoid unexpected results.</p>
+<p>Have a think about what datatypes you might want each of these objects to be. If they are something else can you change them?</p>
+<div id="section-2" class="section level2 unnumbered">
+<h2></h2>
 </div>
-<div id="create-dataframe-with-appropriate-column-names" class="section level1">
-<h1><span class="header-section-number">4</span> Create dataframe with appropriate column names</h1>
+<div id="hint-2" class="section level2 unnumbered">
+<h2>Hint</h2>
+<p>The <code>typeof()</code> function can be used to check the type of an object.</p>
 </div>
-<div id="perform-summaries-on-created-df" class="section level1">
-<h1><span class="header-section-number">5</span> Perform summaries on created df</h1>
+<div id="example-answer-2" class="section level2 unnumbered">
+<h2>Example Answer</h2>
+<pre class="r"><code>typeof(basket_of_goods_items)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>typeof(basket_of_goods_price)</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<p>We see that the items are <code>character</code> type and the prices are <code>doubles</code>. This sounds about right so we won’t change anything. If it was required, we could use the <code>as.integer()</code>, <code>as.numeric()</code>, or <code>as.character()</code> functions.</p>
+<p>We also notice that the types can actually just be read straight from the environment pane in RStudio.</p>
 </div>
-<div id="create-another-one-from-a-different-yearregion" class="section level1">
-<h1><span class="header-section-number">6</span> Create another one (from a different year/region)</h1>
 </div>
-<div id="join-together-in-list" class="section level1">
-<h1><span class="header-section-number">7</span> Join together in list</h1>
+<div id="create-dataframe" class="section level1 tabset">
+<h1><span class="header-section-number">4</span> Create dataframe</h1>
+<p>Now that we’ve created our data vectors, let’s join them together into a single data object. This can be a dataframe or a tibble, whichever you’re more comfortable with. Remember to name it something appropriate, and make sure all the column names make sense too.</p>
+<div id="section-3" class="section level2 unnumbered">
+<h2></h2>
 </div>
-<div id="save-to-xlsx-as-seperate-sheets" class="section level1">
-<h1><span class="header-section-number">8</span> save to xlsx (as seperate sheets(?))</h1>
+<div id="hint-3" class="section level2 unnumbered">
+<h2>Hint</h2>
+<p>The <code>data.frame()</code> function is used to create dataframes, and the <code>tibble::tibble()</code> fuction for tiblles. Remember to first load the <code>tibble</code> library for this one.</p>
+<pre class="r"><code>library(tibble)</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.6.3</code></pre>
+</div>
+<div id="example-answer-3" class="section level2 unnumbered">
+<h2>Example Answer</h2>
+<p>For both methods we assign column names while creating the object.</p>
+<p>For a dataframe:</p>
+<pre class="r"><code>basket_of_goods_df = data.frame(&quot;item&quot; = basket_of_goods_items,
+                                &quot;price&quot; = basket_of_goods_price)</code></pre>
+<p>And for a tibble:</p>
+<pre class="r"><code>basket_of_goods_tibble = tibble::tibble(&quot;item&quot; = basket_of_goods_items,
+                                        &quot;price&quot; = basket_of_goods_price)</code></pre>
+</div>
+</div>
+<div id="add-a-category-column" class="section level1 tabset">
+<h1><span class="header-section-number">5</span> Add a category column</h1>
+<p>It might be useful to have another column in our dataframes describing the category of the goods in our basket. Can you create this and then add it to your tibble or dataframe?</p>
+<div id="section-4" class="section level2 unnumbered">
+<h2></h2>
+</div>
+<div id="hint-4" class="section level2 unnumbered">
+<h2>Hint</h2>
+<p>Create a vector as before and then add it using <code>tibble::add_column()</code> (tidyverse) or <code>cbind()</code> (base R).</p>
+</div>
+<div id="example-answer-4" class="section level2 unnumbered">
+<h2>Example Answer</h2>
+<p>First we create the vector of categories.</p>
+<pre class="r"><code>basket_categories = c(&quot;food&quot;, &quot;food&quot;, &quot;food&quot;, &quot;food&quot;, &quot;drink&quot;, &quot;drink&quot;,
+                      &quot;drink&quot;, &quot;clothing&quot;, &quot;clothing&quot;, &quot;clothing&quot;)</code></pre>
+<p>We can then add it to our existing data object.</p>
+<pre class="r"><code>basket_of_goods_tibble &lt;- basket_of_goods_tibble %&gt;%
+  tibble::add_column(category = basket_categories,
+                     .before = &quot;item&quot;)</code></pre>
+<p>We use the <code>.before</code> argument to make sure the new column is at the start.</p>
+<p>We can also use base R on our dataframe for the same effect.</p>
+<pre class="r"><code>basket_of_goods_df &lt;- cbind(category = basket_categories, basket_of_goods_df)</code></pre>
+</div>
+</div>
+<div id="explore-created-data" class="section level1 tabset">
+<h1><span class="header-section-number">6</span> Explore created data</h1>
+<p>Now that we’ve got our data in a workable format, let’s explore it. Some of these steps may seem trivial on such a small dataset but it’s good practice.</p>
+<ol style="list-style-type: decimal">
+<li><p>How many different categories are there? (You may be able to count this easily, but can you find out using code?)</p></li>
+<li><p>What is the most expensive item?</p></li>
+<li><p>What are the mean and median prices, over all categories?</p></li>
+<li><p>What are the mean and median prices for each of the categories?</p></li>
+<li><p>Is there anything else you might want to know about the data?</p></li>
+</ol>
+<div id="section-5" class="section level2 unnumbered">
+<h2></h2>
+</div>
+<div id="hint-5" class="section level2 unnumbered">
+<h2>Hint</h2>
+<ol style="list-style-type: decimal">
+<li><p>After selecting the category column, the <code>unique()</code> function may be useful.</p></li>
+<li><p>We first need to find the highest price, and then we can use <code>filter()</code> to find the corresponding item.</p></li>
+<li><p>The functions <code>mean()</code> and <code>median()</code> should be useful here.</p></li>
+<li><p>We first need to filter by the different categories.</p></li>
+</ol>
+</div>
+<div id="example-answer-5" class="section level2 unnumbered">
+<h2>Example Answer</h2>
+<ol style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code># for a list of the unique categories
+unique(basket_of_goods_df$category)</code></pre>
+<pre><code>## [1] food     drink    clothing
+## Levels: clothing drink food</code></pre>
+<pre class="r"><code># to count how many there are
+length(unique(basket_of_goods_df$category))</code></pre>
+<pre><code>## [1] 3</code></pre>
+<p>There are 3 different categories.</p>
+<ol start="2" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>highest_price &lt;- max(basket_of_goods_df$price)
+basket_of_goods_df %&gt;% dplyr::filter(price == highest_price)</code></pre>
+<pre><code>##   category item price
+## 1 clothing Kilt   400</code></pre>
+<p>My most expensive item is the kilt.</p>
+<ol start="3" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>mean(basket_of_goods_df$price)</code></pre>
+<pre><code>## [1] 59.554</code></pre>
+<pre class="r"><code>median(basket_of_goods_df$price)</code></pre>
+<pre><code>## [1] 7.75</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li></li>
+</ol>
+<pre class="r"><code>basket_food &lt;- basket_of_goods_df %&gt;% dplyr::filter(category == &quot;food&quot;)
+mean(basket_food$price)</code></pre>
+<pre><code>## [1] 1.26</code></pre>
+<pre class="r"><code>median(basket_food$price)</code></pre>
+<pre><code>## [1] 1.025</code></pre>
+<pre class="r"><code>basket_drink &lt;- basket_of_goods_df %&gt;% dplyr::filter(category == &quot;drink&quot;)
+mean(basket_drink$price)</code></pre>
+<pre><code>## [1] 20.16667</code></pre>
+<pre class="r"><code>median(basket_drink$price)</code></pre>
+<pre><code>## [1] 12</code></pre>
+<pre class="r"><code>basket_clothes &lt;- basket_of_goods_df %&gt;% dplyr::filter(category == &quot;clothing&quot;)
+mean(basket_clothes$price)</code></pre>
+<pre><code>## [1] 176.6667</code></pre>
+<pre class="r"><code>median(basket_clothes$price)</code></pre>
+<pre><code>## [1] 100</code></pre>
+</div>
+</div>
+<div id="create-another-dataset" class="section level1 tabset">
+<h1><span class="header-section-number">7</span> Create another dataset</h1>
+<p>Let’s imagine we now want to create another basket_of_goods dataset, which represents different data. It could be from a different region or perhaps a different year, and it could cover the same items and categories as the first dataset or completely different ones.</p>
+<div id="section-6" class="section level2 unnumbered">
+<h2></h2>
+</div>
+<div id="hint-6" class="section level2 unnumbered">
+<h2>Hint</h2>
+<p>You can follow the earlier examples but fill in different values.</p>
+</div>
+<div id="example-answer-6" class="section level2 unnumbered">
+<h2>Example Answer</h2>
+<p>I’m going to suppose my new data is the latest release for 2022 and name my variables accordingly.</p>
+<pre class="r"><code>categories_22 &lt;- c(rep(&quot;food&quot;, 5), rep(&quot;drink&quot;, 5))
+items_22 &lt;- c(&quot;Pasta&quot;, &quot;Rice&quot;, &quot;Cake&quot;, &quot;Bananas&quot;, &quot;Haggis&quot;,
+              &quot;Whisky&quot;, &quot;Juice&quot;, &quot;Cola&quot;, &quot;Tea bags&quot;, &quot;Coffee&quot;)
+prices_22 &lt;- c(0.55, 0.45, 1.80, 0.30, 2.9, 44, 1.4, 0.8, 3.25, 2.85)
+
+basket_of_goods_22 &lt;- data.frame(category = categories_22,
+                                   item = items_22,
+                                   price = prices_22)</code></pre>
+</div>
+</div>
+<div id="perform-the-same-exploration-on-the-new-data" class="section level1">
+<h1><span class="header-section-number">8</span> Perform the same exploration on the new data</h1>
+<p>Can you perform the same explorations with this dataset as you did with the first one?</p>
+<ol style="list-style-type: decimal">
+<li><p>How many different categories are there? (You may be able to count this easily, but can you find out using code?)</p></li>
+<li><p>What is the most expensive item?</p></li>
+<li><p>What are the mean and median prices, over all categories?</p></li>
+<li><p>What are the mean and median prices for each of the categories?</p></li>
+</ol>
+<div id="section-7" class="section level2 unnumbered">
+<h2></h2>
+</div>
+<div id="hint-7" class="section level2 unnumbered">
+<h2>Hint</h2>
+<p>We’ve already written the code for this! We just need to repeat it but change the variable names.</p>
+</div>
+<div id="example-answer-7" class="section level2 unnumbered">
+<h2>Example Answer</h2>
+<p>This is where programming really comes into its own. For this example I’m just going to copy and paste the code from earlier but change the variable names.</p>
+<pre class="r"><code># for a list of the unique categories
+unique(basket_of_goods_22$category)</code></pre>
+<pre><code>## [1] food  drink
+## Levels: drink food</code></pre>
+<pre class="r"><code># to count how many there are
+length(unique(basket_of_goods_22$category))</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>highest_price_22 &lt;- max(basket_of_goods_22$price)
+basket_of_goods_22 %&gt;% dplyr::filter(price == highest_price_22)</code></pre>
+<pre><code>##   category   item price
+## 1    drink Whisky    44</code></pre>
+<pre class="r"><code>mean(basket_of_goods_22$price)</code></pre>
+<pre><code>## [1] 5.83</code></pre>
+<pre class="r"><code>median(basket_of_goods_22$price)</code></pre>
+<pre><code>## [1] 1.6</code></pre>
+<pre class="r"><code>basket_22_food &lt;- basket_of_goods_22 %&gt;% dplyr::filter(category == &quot;food&quot;)
+mean(basket_22_food$price)</code></pre>
+<pre><code>## [1] 1.2</code></pre>
+<pre class="r"><code>median(basket_22_food$price)</code></pre>
+<pre><code>## [1] 0.55</code></pre>
+<pre class="r"><code>basket_22_drink &lt;- basket_of_goods_22 %&gt;% dplyr::filter(category == &quot;drink&quot;)
+mean(basket_22_drink$price)</code></pre>
+<pre><code>## [1] 10.46</code></pre>
+<pre class="r"><code>median(basket_22_drink$price)</code></pre>
+<pre><code>## [1] 2.85</code></pre>
+<p>I would like to stess, however, that copy and pasting really isn’t best practice in programming since if you want to update your analysis at some point you also have to remember to update it at every point you have copied your code, and it increases the chance of introducing inconsistencies.</p>
+</div>
+</div>
+<div id="save-to-xlsx" class="section level1 tabset">
+<h1><span class="header-section-number">9</span> save to xlsx</h1>
+<p>Finally, lets save our data as <code>.xlsx</code> so as we can share it with colleagues (who perhaps don’t have access to R).</p>
+<div id="section-8" class="section level2 unnumbered">
+<h2></h2>
+</div>
+<div id="hint-8" class="section level2 unnumbered">
+<h2>Hint</h2>
+<p>Explore additional content on writing to <code>.xlsx</code> for tips on how to do this, or explore the documentation for the <code>openxlsx</code> package.</p>
+<pre class="r"><code>library(openxlsx)</code></pre>
+<pre><code>## Warning: package &#39;openxlsx&#39; was built under R version 3.6.3</code></pre>
+</div>
+<div id="example-answer-8" class="section level2 unnumbered">
+<h2>Example Answer</h2>
+<pre class="r"><code># create list of dfs for each sheet
+list_of_baskets = list(basket_21 = basket_of_goods_df,
+                       basket_22 = basket_of_goods_22)
+openxlsx::write.xlsx(x = list_of_baskets, 
+                     file = file.path(&quot;../Data/basket_of_goods.xlsx&quot;))</code></pre>
+</div>
+</div>
+<div id="section-9" class="section level1 unnumbered">
+<h1></h1>
+<p>We have now created a dataset within R, performed an initial exploration of it before saving it to <code>.xlsx</code> to share with colleagues.</p>
 </div>
 
 
