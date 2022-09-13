@@ -29,6 +29,9 @@ In this exercise we will create and explore a hypothetical 'basket of goods'
 dataset. Throughout, we will provide example answers but encourage you to come
 up with your own examples.
 
+To work through the exercise, please create a new R script in a suitable place
+in your working environment, and save it with a meaningful name.
+
 # Create a vector of 10 items that might be included {.tabset}
 
 A basket of goods dataset will contain average prices for items and goods
@@ -58,9 +61,11 @@ Scotland.
 Next we want to create another vector containing the prices of each of these
 items. Don't worry too much about the actual prices here.
 
-It is important however that these two vectors are the same length, so that
-each item has a corresponding price, and vice versa. Can you check this
-programmatically?
+It is important however that these two vectors are the same length, so that each
+item has a corresponding price, and vice versa. When you have created your
+vector of prices, add a line of code that checks whether the new vector with the
+prices is the same length as the vector with the names of goods you made
+earlier.
 
 ## {-}
 
@@ -106,19 +111,27 @@ We see that the items are `character` type and the prices are `doubles`. This
 sounds about right so we won't change anything. If it was required, we could
 use the `as.integer()`, `as.numeric()`, or `as.character()` functions.
 
-We also notice that the types can actually just be read straight from the environment pane in RStudio.
+We also notice that the types can actually just be read straight from the
+environment pane in RStudio.
 
 # Create dataframe {.tabset}
 
-Now that we've created our data vectors, let's join them together into a
-single data object. This can be a dataframe or a tibble, whichever you're more
-comfortable with. Remember to name it something appropriate, and make sure all the column names make sense too.
+Now that we've created our data vectors, let's join them together into a single
+data object. This can be a dataframe or a tibble, whichever you're more
+comfortable with. Remember to name it something appropriate, and make sure all
+the column names make sense too.  
+Once you've created your dataframe (or tibble), you can check the result by just
+typing their name. However, it is easier, more
+effective, and better practice to use summary functions like `head()` or
+`glimpse()` to do so.
 
 ## {-}
 
 ## Hint {-}
 
-The `data.frame()` function is used to create dataframes, and the `tibble::tibble()` fuction for tibles. Remember to first load the `tibble` library for this one.
+The `data.frame()` function is used to create dataframes, and the
+`tibble::tibble()` fuction for tibles. Remember to first load the `tibble`
+library for this one.  
 
 ```{r load_tibble}
 library(tibble)
@@ -140,6 +153,12 @@ And for a tibble:
 ```{r create_tibble}
 basket_of_goods_tibble = tibble::tibble("item" = basket_of_goods_items,
                                         "price" = basket_of_goods_price)
+```
+
+To have a look at the result:
+```{r check_df_and_tibble}
+head(basket_of_goods_df)
+glimpse(basket_of_goods_tibble)
 ```
 
 # Add a category column {.tabset}
