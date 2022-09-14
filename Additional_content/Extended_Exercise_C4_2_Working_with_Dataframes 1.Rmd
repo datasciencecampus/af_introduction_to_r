@@ -127,7 +127,7 @@ code in the `CPI indices example` table.
 
 ## Example answer {.unnumbered}
 
-### 1.{.unnumbered}
+### 1. Joining names to low-level code {.unnumbered}
 You can use `left_join()` to join data into a given table ("left"), from another
 table ("right"), indexed on a given column containing values to "join" on. In
 this case, that is the "code" column that you should have in both data sets,
@@ -146,7 +146,11 @@ places the new column in a slightly more suitable place in the `cpi_indices`
 table. This part is optional. I've also printed the top 10 rows and first five
 columns of the resulting table so we can see the join.
 
-### 2. {.unnumbered}
+### 2. Joining names to higher-level codes {.unnumbered}
+
+This task is somewhat more complex but only for two reasons. First, we now already have a "name" column in the table we are joining to, and second, the index we want to join on is named differently in the table we are joining _to_ (that is, in this case, we want to join using "short_code" in `CPI indices table` and "code" in `CPI names and codes`).  
+As a result, we need to add a couple of operations on top of the join used above. First, we use a second "piped" operation on the data set with the codes, renaming the "name" column to "name2" (this could be anything, as long as it's not "name" - this avoids `left_join()` adding subscripts to our column names). Second, in the "by=" argument in the call to `left_join()`, we specify that we are joining between the columns "short_code" in the left table, and "code" in the right.  
+Finally, we use `relocate()` as before to move the joined column ("name2") to a different place in the table; and we show the table limiting by the first five columns and first 20 rows.
 ```{r exercise 2.2}
 cpi_indices <- cpi_indices %>% 
   left_join(cpi_codes %>% 
