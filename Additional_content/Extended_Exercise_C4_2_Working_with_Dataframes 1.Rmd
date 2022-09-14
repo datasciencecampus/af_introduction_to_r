@@ -1,0 +1,61 @@
+---
+title: "Extended Exercise 4.2: Working with Dataframes 1"
+output:
+  html_document: 
+    theme: united
+    highlight: textmate
+    toc: yes
+    toc_float: yes
+    number_sections: true
+---
+
+```{r, echo=FALSE, eval=FALSE}
+htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr)
+```
+
+In this exercise, we will practice the data frame operations that we have
+covered so far (and introducea few more tips and tricks along the way); the
+different steps below are set up so that they build increasingly complex
+operations. To remind yourself of the core material we covered see
+<mark>XXX</mark> and <mark>XXX</mark>.
+For the exercises presented here, we will use extracts from published data on
+the UK CPI by the Office for National Statistics. The source data used, and more
+information on the background to it, can be found
+[here](https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/consumerpriceinflation).\
+Please note that:
+-   The example data used here are prepared specifically for the purposes of
+these exercises, and do not represent official statistics in any way.
+-   While these exercises are designed to cover the kind of operations that may
+be used in real-world CPI production workflows, they are not intended as
+directly representing true CPI calculations.
+
+# Reading, viewing, and cleaning up data {.tabset}
+
+We will start by working with two example data sets in XLSX format. The first is a table of CPI indices between 2008 and 2021 (`Data\CPI indices example.xlsx`). The second is a list of CPI codes and corresponding category names (`Data\CPI codes and names.xlsx`). Two start off with -
+1. Load each of these datasets into suitable R objects (dataframes or tibbles).
+2. Perform some initial checks of each dataset, ensuring that the data has been read in correctly.
+
+##  {.unnumbered}
+
+## Hint {.unnumbered}
+
+Tabset hint text
+
+## Example Answer {.unnumbered}
+
+Example answer text
+
+```{r code_block_1}
+```
+
+# Conclusion {.unnumbered}
+
+We have now created a dataset within R, performed an initial exploration of it before saving it to `.xlsx` to share with colleagues.
