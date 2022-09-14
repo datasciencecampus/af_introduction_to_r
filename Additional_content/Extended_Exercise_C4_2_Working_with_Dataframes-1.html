@@ -1681,9 +1681,9 @@ names(cpi_codes)</code></pre>
 </div>
 </div>
 </div>
-<div id="merging-data-from-one-dataset-with-another" class="section level1 tabset" number="2">
-<h1 class="tabset"><span class="header-section-number">2</span> Merging
-data from one dataset with another</h1>
+<div id="joining-data-1-category-names" class="section level1 tabset" number="2">
+<h1 class="tabset"><span class="header-section-number">2</span> Joining
+data (1): category names</h1>
 <p>As you will have noticed, the CPI indices data set contains indices
 for a range of item categories (rows) per year (columns). In this table,
 categories are labelled by two code columns; <code>long_code</code> and
@@ -1710,6 +1710,27 @@ Note that in this case you need to use the shorter code in the
 </div>
 <div id="hint-1" class="section level2 unnumbered">
 <h2 class="unnumbered">Hint</h2>
+<ul>
+<li>There are a number of different ways in which you can do joins
+(merges) between datasets. One approach is to use
+<code>left_join()</code>in the <code>dplyr</code> package.</li>
+<li>You can remind yourself of the arguments for the
+<code>left_join()</code> function by looking at its documentation
+(<code>?left_join</code>). Specifically, the “by” argument is important
+in this case.</li>
+<li>You will need to “index” on different columns between the two
+datasets, depending on which category names you want to join.</li>
+<li>You will need to consider the naming of the columns you are joining
+- you may end up with “name” twice! Alternatively, you could consider
+renaming the column in question before joining a second time. The
+function <code>rename()</code> (in the <mark>dplyr</mark> package) might
+come in handy. Have a look at its documentation
+(<code>?rename</code>).</li>
+<li>You can use the function <code>relocate()</code> to move columns to
+a different position in an existing table.</li>
+<li>Remember that the pipe operator (<code>%&gt;%</code> can be useful
+for sequential data manipulation operations).</li>
+</ul>
 </div>
 <div id="example-answer-1" class="section level2 unnumbered">
 <h2 class="unnumbered">Example answer</h2>

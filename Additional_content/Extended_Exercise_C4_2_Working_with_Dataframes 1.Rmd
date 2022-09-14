@@ -101,7 +101,7 @@ names(cpi_codes) <- c("code","name")
 names(cpi_codes)
 ```
 
-# Merging data from one dataset with another {.tabset}
+# Joining data (1): category names {.tabset}
 
 As you will have noticed, the CPI indices data set contains indices for a range
 of item categories (rows) per year (columns). In this table, categories are
@@ -124,6 +124,23 @@ table, this time finding and matching the correct "higher level" category name
 code in the `CPI indices example` table.
 
 ## Hint {.unnumbered}
+
+- There are a number of different ways in which you can do joins (merges)
+between datasets. One approach is to use `left_join()`in the `dplyr` package.
+- You can remind yourself of the arguments for the `left_join()` function by
+looking at its documentation (`?left_join`). Specifically, the "by" argument is
+important in this case. 
+- You will need to "index" on different columns between the two datasets,
+depending on which category names you want to join.
+- You will need to consider the naming of the columns you are joining - you may
+end up with "name" twice! Alternatively, you could consider renaming the column
+in question before joining a second time. The function `rename()` (in the
+<mark>dplyr</mark> package) might come in handy. Have a look at its
+documentation (`?rename`).
+- You can use the function `relocate()` to move columns to a different position
+in an existing table.
+- Remember that the pipe operator (`%>%` can be useful for sequential data
+manipulation operations).
 
 ## Example answer {.unnumbered}
 
