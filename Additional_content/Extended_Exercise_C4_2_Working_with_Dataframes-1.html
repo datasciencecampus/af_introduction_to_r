@@ -1519,34 +1519,267 @@ Dataframes 1</h1>
 
 
 <p>In this exercise, we will practice the data frame operations that we
-have covered so far (and introducea few more tips and tricks along the
+have covered so far (and introduce a few more tips and tricks along the
 way); the different steps below are set up so that they build
 increasingly complex operations. To remind yourself of the core material
-we covered see <mark>XXX</mark> and <mark>XXX</mark>.</p>
-<p>For the exercises presented here, we will use extracts from published
-data on the UK CPI by the Office for National Statistics. The source
-data used, and more information on the background to it, can be found <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/consumerpriceinflation">here</a>.<br />
-Please note that:</p>
+we covered see <mark>XXX</mark> and <mark>XXX</mark>. For the exercises
+presented here, we will use extracts from published data on the UK CPI
+by the Office for National Statistics. The source data used, and more
+information on the background to it, can be found <a href="https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/consumerpriceinflation">here</a>.</p>
+<p>Please note that:</p>
 <ul>
-<li><p>The example data used here are prepared specifically for the
+<li>The example data used here are prepared specifically for the
 purposes of these exercises, and do not represent official statistics in
-any way.</p></li>
-<li><p>While these exercises are designed to cover the kind of
-operations that may be used in real-world CPI production workflows, they
-are not intended as directly representing true CPI calculations.</p>
-<h1 id="tabset-heading" class="tabset">Tabset heading</h1></li>
+any way.</li>
+<li>While these exercises are designed to cover the kind of operations
+that may be used in real-world CPI production workflows, they are not
+intended as directly representing true CPI calculations.</li>
 </ul>
-<p>Tabset text</p>
-<div id="section" class="section level2 unnumbered">
-<h2 class="unnumbered"></h2>
+<div id="reading-viewing-and-cleaning-up-data" class="section level1 tabset" number="1">
+<h1 class="tabset"><span class="header-section-number">1</span> Reading,
+viewing, and cleaning up data</h1>
+<p>We will start by working with two example data sets in XLSX format.
+The first is a table of CPI indices between 2008 and 2021
+(<code>Data\CPI indices example.xlsx</code>). The second is a list of
+CPI codes and corresponding category names
+(<code>Data\CPI codes and names.xlsx</code>).</p>
+<div id="exercise-1" class="section level2 unnumbered">
+<h2 class="unnumbered">Exercise 1</h2>
+<ol style="list-style-type: decimal">
+<li>Load each of these datasets into suitable R objects (dataframes or
+tibbles).</li>
+<li>Perform some initial checks of each dataset, ensuring that the data
+has been read in correctly.</li>
+<li>Clean any column names as required.</li>
+</ol>
 </div>
 <div id="hint" class="section level2 unnumbered">
 <h2 class="unnumbered">Hint</h2>
-<p>Tabset hint text</p>
+<ol style="list-style-type: decimal">
+<li>You can use functions like <code>read_xlsx()</code> from the package
+<mark>readxl</mark> to read files in XLSX format.</li>
+<li>To explore loaded datasets, you could consider using functions like
+<code>head()</code>, <code>tail()</code>, <code>str()</code> or
+<code>glimpse()</code> (latter from package <mark>dplyr</mark> or
+<mark>tidyverse</mark>). Please consider what each of these functions
+does so you can gain the information you are looking for.</li>
+<li>You can list dataframe or tibble column names separately using
+<code>names()</code> or <code>colnames()</code>. Do any of the column
+names as imported include any awkward characters?</li>
+</ol>
 </div>
 <div id="example-answer" class="section level2 unnumbered">
-<h2 class="unnumbered">Example Answer</h2>
-<p>Example answer text</p>
+<h2 class="unnumbered">Example answer</h2>
+<div id="reading-in-the-data" class="section level3" number="1.0.1">
+<h3><span class="header-section-number">1.0.1</span> Reading in the
+data</h3>
+<p>Note that the path to the file you give to <code>read_xlsx()</code>
+needs to be correct relative to where you have stored your R script and
+data file. Using relative paths helps, here.</p>
+<pre class="r"><code>library(readxl)
+cpi_indices &lt;- read_xlsx(&quot;../Data/CPI indices example.xlsx&quot;)
+cpi_codes &lt;- read_xlsx(&quot;../Data/CPI codes and names.xlsx&quot;)</code></pre>
+</div>
+<div id="viewing-the-data" class="section level3" number="1.0.2">
+<h3><span class="header-section-number">1.0.2</span> Viewing the
+data</h3>
+<p>You could use the following, but note there are many different ways
+to do this and which you choose should depend on what you want to check
+or view:</p>
+<pre class="r"><code>head(cpi_indices)</code></pre>
+<pre><code>## # A tibble: 6 × 16
+##   CODE   Short cod…¹ i2008 i2009 i2010 i2011 i2012 i2013 i2014 i2015 i2016 i2017
+##   &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 01.1   01.1         84    88.7  91.4  96.1  99.1  103.  103.   100  97.6 100  
+## 2 01.1.1 01.1         85.6  89.7  91.6  97.5  99.6  104.  103.   100  98.4 101  
+## 3 01.1.2 01.1         84    89.5  90.3  95.2  98.8  103.  103.   100  95.9  97.6
+## 4 01.1.3 01.1         78.3  81.2  86.5  94.5  97.9  101.  104.   100  97.7 106. 
+## 5 01.1.4 01.1         95.3  99.3  99.5 102.  103.   104.  105.   100  96.6  98.5
+## 6 01.1.5 01.1         83.9  84    89.6 100.  103.   106.  105.   100  99.4 106. 
+## # … with 4 more variables: i2018 &lt;dbl&gt;, i2019 &lt;dbl&gt;, i2020 &lt;dbl&gt;, i2021 &lt;dbl&gt;,
+## #   and abbreviated variable name ¹​`Short code`</code></pre>
+<pre class="r"><code>head(cpi_codes)</code></pre>
+<pre><code>## # A tibble: 6 × 2
+##   Code   Name                 
+##   &lt;chr&gt;  &lt;chr&gt;                
+## 1 01.1   Food                 
+## 2 01.1.1 Bread and cereals    
+## 3 01.1.2 Meat                 
+## 4 01.1.3 Fish                 
+## 5 01.1.4 Milk, cheese and eggs
+## 6 01.1.5 Oils and fats</code></pre>
+<pre class="r"><code>str(cpi_indices)</code></pre>
+<pre><code>## tibble [112 × 16] (S3: tbl_df/tbl/data.frame)
+##  $ CODE      : chr [1:112] &quot;01.1&quot; &quot;01.1.1&quot; &quot;01.1.2&quot; &quot;01.1.3&quot; ...
+##  $ Short code: chr [1:112] &quot;01.1&quot; &quot;01.1&quot; &quot;01.1&quot; &quot;01.1&quot; ...
+##  $ i2008     : num [1:112] 84 85.6 84 78.3 95.3 83.9 77.1 88.1 74.9 85.3 ...
+##  $ i2009     : num [1:112] 88.7 89.7 89.5 81.2 99.3 84 80.8 93.7 80.2 92.2 ...
+##  $ i2010     : num [1:112] 91.4 91.6 90.3 86.5 99.5 89.6 87.1 96.4 84.7 92.8 ...
+##  $ i2011     : num [1:112] 96.1 97.5 95.2 94.5 102.1 ...
+##  $ i2012     : num [1:112] 99.1 99.6 98.8 97.9 103.1 ...
+##  $ i2013     : num [1:112] 103 104 103 101 104 ...
+##  $ i2014     : num [1:112] 103 103 103 104 105 ...
+##  $ i2015     : num [1:112] 100 100 100 100 100 100 100 100 100 100 ...
+##  $ i2016     : num [1:112] 97.6 98.4 95.9 97.7 96.6 ...
+##  $ i2017     : num [1:112] 100 101 97.6 106.3 98.5 ...
+##  $ i2018     : num [1:112] 101.8 102.1 98.5 110.3 100.9 ...
+##  $ i2019     : num [1:112] 103 103.4 98.4 112.2 101.1 ...
+##  $ i2020     : num [1:112] 104 105 100 114 101 ...
+##  $ i2021     : num [1:112] 104 105.7 99.6 111.1 101.6 ...</code></pre>
+<pre class="r"><code>glimpse(cpi_indices)</code></pre>
+<pre><code>## Rows: 112
+## Columns: 16
+## $ CODE         &lt;chr&gt; &quot;01.1&quot;, &quot;01.1.1&quot;, &quot;01.1.2&quot;, &quot;01.1.3&quot;, &quot;01.1.4&quot;, &quot;01.1.5&quot;,…
+## $ `Short code` &lt;chr&gt; &quot;01.1&quot;, &quot;01.1&quot;, &quot;01.1&quot;, &quot;01.1&quot;, &quot;01.1&quot;, &quot;01.1&quot;, &quot;01.1&quot;, &quot;…
+## $ i2008        &lt;dbl&gt; 84.0, 85.6, 84.0, 78.3, 95.3, 83.9, 77.1, 88.1, 74.9, 85.…
+## $ i2009        &lt;dbl&gt; 88.7, 89.7, 89.5, 81.2, 99.3, 84.0, 80.8, 93.7, 80.2, 92.…
+## $ i2010        &lt;dbl&gt; 91.4, 91.6, 90.3, 86.5, 99.5, 89.6, 87.1, 96.4, 84.7, 92.…
+## $ i2011        &lt;dbl&gt; 96.1, 97.5, 95.2, 94.5, 102.1, 100.2, 90.4, 99.6, 91.0, 9…
+## $ i2012        &lt;dbl&gt; 99.1, 99.6, 98.8, 97.9, 103.1, 102.6, 92.0, 102.9, 95.6, …
+## $ i2013        &lt;dbl&gt; 103.1, 103.5, 102.6, 101.1, 104.1, 105.5, 99.9, 109.3, 98…
+## $ i2014        &lt;dbl&gt; 102.8, 102.9, 103.2, 103.6, 104.7, 104.9, 100.2, 104.1, 1…
+## $ i2015        &lt;dbl&gt; 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 10…
+## $ i2016        &lt;dbl&gt; 97.6, 98.4, 95.9, 97.7, 96.6, 99.4, 101.1, 95.9, 98.4, 99…
+## $ i2017        &lt;dbl&gt; 100.0, 101.0, 97.6, 106.3, 98.5, 105.5, 103.8, 97.9, 99.9…
+## $ i2018        &lt;dbl&gt; 101.8, 102.1, 98.5, 110.3, 100.9, 111.7, 106.7, 99.8, 101…
+## $ i2019        &lt;dbl&gt; 103.0, 103.4, 98.4, 112.2, 101.1, 116.2, 107.3, 103.3, 10…
+## $ i2020        &lt;dbl&gt; 103.6, 104.8, 100.1, 113.6, 100.7, 113.0, 108.8, 102.0, 1…
+## $ i2021        &lt;dbl&gt; 104.0, 105.7, 99.6, 111.1, 101.6, 116.6, 110.4, 102.1, 10…</code></pre>
+</div>
+<div id="cleaning-up-the-data" class="section level3" number="1.0.3">
+<h3><span class="header-section-number">1.0.3</span> Cleaning up the
+data</h3>
+<p>One or more of your explorations of the loaded data above may have
+shown you that the names of the first two columns of the
+<code>CPI indices example.xlsx</code> file contain spaces. It is good
+practice to remove these or replace these with e.g. underscores. While
+you can do this manually, the function <code>clean_names()</code> in the
+<mark>janitor</mark> package provides a convenient way to do this in one
+go.</p>
+<pre class="r"><code>names(cpi_indices)</code></pre>
+<pre><code>##  [1] &quot;CODE&quot;       &quot;Short code&quot; &quot;i2008&quot;      &quot;i2009&quot;      &quot;i2010&quot;     
+##  [6] &quot;i2011&quot;      &quot;i2012&quot;      &quot;i2013&quot;      &quot;i2014&quot;      &quot;i2015&quot;     
+## [11] &quot;i2016&quot;      &quot;i2017&quot;      &quot;i2018&quot;      &quot;i2019&quot;      &quot;i2020&quot;     
+## [16] &quot;i2021&quot;</code></pre>
+<pre class="r"><code>cpi_indices &lt;- janitor::clean_names(cpi_indices)
+names(cpi_indices)</code></pre>
+<pre><code>##  [1] &quot;code&quot;       &quot;short_code&quot; &quot;i2008&quot;      &quot;i2009&quot;      &quot;i2010&quot;     
+##  [6] &quot;i2011&quot;      &quot;i2012&quot;      &quot;i2013&quot;      &quot;i2014&quot;      &quot;i2015&quot;     
+## [11] &quot;i2016&quot;      &quot;i2017&quot;      &quot;i2018&quot;      &quot;i2019&quot;      &quot;i2020&quot;     
+## [16] &quot;i2021&quot;</code></pre>
+<p>Note that in addition to replacing the spaces in the column names
+with underscores, <code>janitor::clean_names()</code> has also changed
+uppercases to lower case.<br />
+We can do the same for the other dataset,
+<code>Data\CPI codes and names.xlsx</code>. For the sake of argument, we
+here show how to do similar column name changes manually:</p>
+<pre class="r"><code>names(cpi_codes)</code></pre>
+<pre><code>## [1] &quot;Code&quot; &quot;Name&quot;</code></pre>
+<pre class="r"><code>names(cpi_codes) &lt;- c(&quot;code&quot;,&quot;name&quot;)
+names(cpi_codes)</code></pre>
+<pre><code>## [1] &quot;code&quot; &quot;name&quot;</code></pre>
+</div>
+</div>
+</div>
+<div id="merging-data-from-one-dataset-with-another" class="section level1 tabset" number="2">
+<h1 class="tabset"><span class="header-section-number">2</span> Merging
+data from one dataset with another</h1>
+<p>As you will have noticed, the CPI indices data set contains indices
+for a range of item categories (rows) per year (columns). In this table,
+categories are labelled by two code columns; <code>long_code</code> and
+<code>short_code</code>. These codes do not include the text description
+for each category. Instead, the text descriptions each code refers to
+are included the other data set (CPI codes and names). Needing to match
+data from one table to another (merges or “joins”) is a very common kind
+of operation.</p>
+<div id="exercise-2" class="section level2 unnumbered">
+<h2 class="unnumbered">Exercise 2</h2>
+<ol style="list-style-type: decimal">
+<li>Add a column to the <code>CPI indices example</code> table,
+containing the name of the CPI item category as referenced in the
+<code>CPI codes and names</code> table, using the appropriate code in
+each table to index on. Make sure you have loaded the tables as per the
+earlier exercise and use the names of the table object you supplied
+earlier.</li>
+<li>Using the same approach, add a further column to the
+<code>CPI indices example</code> table, this time finding and matching
+the correct “higher level” category name (e.g. “Food” or “Clothing”).
+Note that in this case you need to use the shorter code in the
+<code>CPI indices example</code> table.</li>
+</ol>
+</div>
+<div id="hint-1" class="section level2 unnumbered">
+<h2 class="unnumbered">Hint</h2>
+</div>
+<div id="example-answer-1" class="section level2 unnumbered">
+<h2 class="unnumbered">Example answer</h2>
+<div id="section" class="section level3 unnumbered">
+<h3 class="unnumbered">1.</h3>
+<p>You can use <code>left_join()</code> to join data into a given table
+(“left”), from another table (“right”), indexed on a given column
+containing values to “join” on. In this case, that is the “code” column
+that you should have in both data sets, containing numbered indexes for
+the CPI categories.</p>
+<pre class="r"><code>cpi_indices &lt;- cpi_indices %&gt;% 
+  left_join(cpi_codes, by =  &quot;code&quot;) %&gt;%
+  relocate(&quot;name&quot;, .after=&quot;code&quot;)
+head(cpi_indices[,1:5], 10)</code></pre>
+<pre><code>## # A tibble: 10 × 5
+##    code   name                                            short_code i2008 i2009
+##    &lt;chr&gt;  &lt;chr&gt;                                           &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
+##  1 01.1   Food                                            01.1        84    88.7
+##  2 01.1.1 Bread and cereals                               01.1        85.6  89.7
+##  3 01.1.2 Meat                                            01.1        84    89.5
+##  4 01.1.3 Fish                                            01.1        78.3  81.2
+##  5 01.1.4 Milk, cheese and eggs                           01.1        95.3  99.3
+##  6 01.1.5 Oils and fats                                   01.1        83.9  84  
+##  7 01.1.6 Fruit                                           01.1        77.1  80.8
+##  8 01.1.7 Vegetables including potatoes and tubers        01.1        88.1  93.7
+##  9 01.1.8 Sugar, jam, syrups, chocolate and confectionery 01.1        74.9  80.2
+## 10 01.1.9 Food products (nec)                             01.1        85.3  92.2</code></pre>
+<p>In the above example answer, we use the “pipe” operator to feed the
+<code>cpi_indices</code> table into the <code>left_join()</code>
+function. Alternatively you can use <code>left_join()</code> separately;
+however, using the pipe approach here, it is easy to add a second step
+to this operation (<code>relocate(&quot;name&quot;, .after=&quot;code&quot;)</code>) which
+places the new column in a slightly more suitable place in the
+<code>cpi_indices</code> table. This part is optional. I’ve also printed
+the top 10 rows and first five columns of the resulting table so we can
+see the join.</p>
+</div>
+<div id="section-1" class="section level3 unnumbered">
+<h3 class="unnumbered">2.</h3>
+<pre class="r"><code>cpi_indices &lt;- cpi_indices %&gt;% 
+  left_join(cpi_codes %&gt;% 
+              rename(name2=name), 
+            by = c(&quot;short_code&quot;=&quot;code&quot; )) %&gt;%
+  relocate(name2, .after=&quot;short_code&quot;)
+head(cpi_indices[,1:5],20)</code></pre>
+<pre><code>## # A tibble: 20 × 5
+##    code   name                                            short_code name2 i2008
+##    &lt;chr&gt;  &lt;chr&gt;                                           &lt;chr&gt;      &lt;chr&gt; &lt;dbl&gt;
+##  1 01.1   Food                                            01.1       Food   84  
+##  2 01.1.1 Bread and cereals                               01.1       Food   85.6
+##  3 01.1.2 Meat                                            01.1       Food   84  
+##  4 01.1.3 Fish                                            01.1       Food   78.3
+##  5 01.1.4 Milk, cheese and eggs                           01.1       Food   95.3
+##  6 01.1.5 Oils and fats                                   01.1       Food   83.9
+##  7 01.1.6 Fruit                                           01.1       Food   77.1
+##  8 01.1.7 Vegetables including potatoes and tubers        01.1       Food   88.1
+##  9 01.1.8 Sugar, jam, syrups, chocolate and confectionery 01.1       Food   74.9
+## 10 01.1.9 Food products (nec)                             01.1       Food   85.3
+## 11 01.2   Non-alcoholic beverages                         01.2       Non-…  79.5
+## 12 01.2.1 Coffee, tea and cocoa                           01.2       Non-…  78.1
+## 13 01.2.2 Mineral waters, soft drinks and juices          01.2       Non-…  80.1
+## 14 02.1   Alcoholic beverages                             02.1       Alco…  84.2
+## 15 02.1.1 Spirits                                         02.1       Alco…  80.3
+## 16 02.1.2 Wine                                            02.1       Alco…  83.1
+## 17 02.1.3 Beer                                            02.1       Alco…  91.9
+## 18 02.2   Tobacco                                         02.2       Toba…  60.6
+## 19 03.1   Clothing                                        03.1       Clot… 104. 
+## 20 03.1.2 Garments                                        03.1       Clot… 105.</code></pre>
+</div>
+</div>
 </div>
 <div id="conclusion" class="section level1 unnumbered">
 <h1 class="unnumbered">Conclusion</h1>

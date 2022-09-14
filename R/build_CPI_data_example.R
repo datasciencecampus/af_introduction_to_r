@@ -1,6 +1,8 @@
 ### Make example data file from ONS CPI data:
 
 library(readxl)
+library(tidyverse)
+library(openxlsx)
 
 ### Indices
 ### File sourced September 2022 from
@@ -39,7 +41,7 @@ dat$cat <- str_split_fixed(dat$cat, " ", 2)[,1]
 dat$code <- NULL
 dat$cat <- NULL
 ### Rename some columns for exercise purposes:
-names(dat)[names(dat)=="catn"] <- "Long code"
+names(dat)[names(dat)=="catn"] <- "CODE"
 names(dat)[names(dat)=="catn0"] <- "Short code"
 names(dat)[3:ncol(dat)] <- paste0("i",names(dat)[3:ncol(dat)])
 ### Save index data file example:

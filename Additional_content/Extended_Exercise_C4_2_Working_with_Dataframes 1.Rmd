@@ -17,20 +17,21 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
 library(dplyr)
 ```
 
 In this exercise, we will practice the data frame operations that we have
-covered so far (and introducea few more tips and tricks along the way); the
+covered so far (and introduce a few more tips and tricks along the way); the
 different steps below are set up so that they build increasingly complex
 operations. To remind yourself of the core material we covered see
-<mark>XXX</mark> and <mark>XXX</mark>.
-For the exercises presented here, we will use extracts from published data on
-the UK CPI by the Office for National Statistics. The source data used, and more
-information on the background to it, can be found
-[here](https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/consumerpriceinflation).\
+<mark>XXX</mark> and <mark>XXX</mark>. For the exercises presented here, we will
+use extracts from published data on the UK CPI by the Office for National
+Statistics. The source data used, and more information on the background to it,
+can be found
+[here](https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/consumerpriceinflation).
+
 Please note that:
+
 -   The example data used here are prepared specifically for the purposes of
 these exercises, and do not represent official statistics in any way.
 -   While these exercises are designed to cover the kind of operations that may
@@ -39,22 +40,122 @@ directly representing true CPI calculations.
 
 # Reading, viewing, and cleaning up data {.tabset}
 
-We will start by working with two example data sets in XLSX format. The first is a table of CPI indices between 2008 and 2021 (`Data\CPI indices example.xlsx`). The second is a list of CPI codes and corresponding category names (`Data\CPI codes and names.xlsx`). Two start off with -
-1. Load each of these datasets into suitable R objects (dataframes or tibbles).
-2. Perform some initial checks of each dataset, ensuring that the data has been read in correctly.
+We will start by working with two example data sets in XLSX format. The first is
+a table of CPI indices between 2008 and 2021 (`Data\CPI indices example.xlsx`).
+The second is a list of CPI codes and corresponding category names (`Data\CPI
+codes and names.xlsx`).
 
-##  {.unnumbered}
+## Exercise 1  {.unnumbered}
+
+1.  Load each of these datasets into suitable R objects (dataframes or tibbles).
+2.  Perform some initial checks of each dataset, ensuring that the data has been
+read in correctly.
+3.  Clean any column names as required.
 
 ## Hint {.unnumbered}
 
-Tabset hint text
+1.  You can use functions like `read_xlsx()` from the package
+<mark>readxl</mark> to read files in XLSX format.
+2.  To explore loaded datasets, you could consider using functions like
+`head()`, `tail()`, `str()` or `glimpse()` (latter from package
+<mark>dplyr</mark> or <mark>tidyverse</mark>). Please consider what each of
+these functions does so you can gain the information you are looking for.
+3.  You can list dataframe or tibble column names separately using `names()` or
+`colnames()`. Do any of the column names as imported include any awkward
+characters?
 
-## Example Answer {.unnumbered}
+## Example answer {.unnumbered}
 
-Example answer text
-
-```{r code_block_1}
+### Reading in the data
+Note that the path to the file you give to `read_xlsx()` needs to be correct
+relative to where you have stored your R script and data file. Using relative
+paths helps, here.
+```{r exercise 1.1}
+library(readxl)
+cpi_indices <- read_xlsx("../Data/CPI indices example.xlsx")
+cpi_codes <- read_xlsx("../Data/CPI codes and names.xlsx")
 ```
+
+### Viewing the data
+You could use the following, but note there are many different ways to do this
+and which you choose should depend on what you want to check or view:
+```{r exercise 1.2}
+head(cpi_indices)
+head(cpi_codes)
+str(cpi_indices)
+glimpse(cpi_indices)
+```
+
+### Cleaning up the data
+One or more of your explorations of the loaded data above may have shown you that the names of the first two columns of the `CPI indices example.xlsx` file contain spaces. It is good practice to remove these or replace these with e.g. underscores. While you can do this manually, the function `clean_names()` in the <mark>janitor</mark> package provides a convenient way to do this in one go.
+```{r exercise 1.3}
+names(cpi_indices)
+cpi_indices <- janitor::clean_names(cpi_indices)
+names(cpi_indices)
+```
+Note that in addition to replacing the spaces in the column names with underscores, `janitor::clean_names()` has also changed uppercases to lower case.  
+We can do the same for the other dataset, `Data\CPI codes and names.xlsx`. For the sake of argument, we here show how to do similar column name changes manually:  
+```{r exercise 1.3b}
+names(cpi_codes)
+names(cpi_codes) <- c("code","name")
+names(cpi_codes)
+```
+
+# Merging data from one dataset with another {.tabset}
+
+As you will have noticed, the CPI indices data set contains indices for a range
+of item categories (rows) per year (columns). In this table, categories are
+labelled by two code columns; `long_code` and `short_code`. These codes do not
+include the text description for each category. Instead, the text descriptions
+each code refers to are included the other data set (CPI codes and names).
+Needing to match data from one table to another (merges or "joins") is a very
+common kind of operation.
+
+## Exercise 2 {.unnumbered}
+
+1. Add a column to the `CPI indices example` table, containing the name of the
+CPI item category as referenced in the `CPI codes and names` table, using the
+appropriate code in each table to index on. Make sure you have loaded the tables
+as per the earlier exercise and use the names of the table object you supplied
+earlier.
+2. Using the same approach, add a further column to the `CPI indices example`
+table, this time finding and matching the correct "higher level" category name
+(e.g. "Food" or "Clothing"). Note that in this case you need to use the shorter
+code in the `CPI indices example` table.
+
+## Hint {.unnumbered}
+
+## Example answer {.unnumbered}
+
+### 1.{.unnumbered}
+You can use `left_join()` to join data into a given table ("left"), from another
+table ("right"), indexed on a given column containing values to "join" on. In
+this case, that is the "code" column that you should have in both data sets,
+containing numbered indexes for the CPI categories.
+```{r exercise 2.1}
+cpi_indices <- cpi_indices %>% 
+  left_join(cpi_codes, by =  "code") %>%
+  relocate("name", .after="code")
+head(cpi_indices[,1:5], 10)
+```
+In the above example answer, we use the "pipe" operator to feed the
+`cpi_indices` table into the `left_join()` function. Alternatively you can use
+`left_join()` separately; however, using the pipe approach here, it is easy to
+add a second step to this operation (`relocate("name", .after="code")`) which
+places the new column in a slightly more suitable place in the `cpi_indices`
+table. This part is optional. I've also printed the top 10 rows and first five
+columns of the resulting table so we can see the join.
+
+### 2. {.unnumbered}
+```{r exercise 2.2}
+cpi_indices <- cpi_indices %>% 
+  left_join(cpi_codes %>% 
+              rename(name2=name), 
+            by = c("short_code"="code" )) %>%
+  relocate(name2, .after="short_code")
+head(cpi_indices[,1:5],20)
+```
+
 
 # Conclusion {.unnumbered}
 
