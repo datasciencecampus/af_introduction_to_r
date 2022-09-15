@@ -1,0 +1,387 @@
+---
+title: "Extended Exercise 4.1: Building Dataframes"
+output:
+  html_document: 
+    theme: united
+    highlight: textmate
+    toc: yes
+    toc_float: yes
+    number_sections: true
+---
+
+```{r, echo=FALSE, eval=FALSE}
+htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr)
+```
+
+Although we will usually use R to read in data from other sources (`.csv` or
+`.xlsx` for example), this extended exercise illustrates how we can create
+data within an R script itself.
+
+In this exercise we will create and explore a hypothetical 'basket of goods'
+dataset. Throughout, we will provide example answers but encourage you to come
+up with your own examples.
+
+To work through the exercise, please create a new R script in a suitable place
+in your working environment, and save it with a meaningful name.
+
+# Create a vector of 10 items that might be included {.tabset}
+
+A basket of goods dataset will contain average prices for items and goods
+bought by a large proportion of the population. Let's first create a vector of
+some of these items. Aim for at least 10 from a variety of categories. Save
+this vector to a well named object!
+
+## {-}
+
+## Hint {-}
+
+The `c()` function can be used to create a vector of objects.
+
+## Example Answer {-}
+
+```{r item_vector}
+basket_of_goods_items <-
+  c('Bread Rolls', 'Crumpets', 'Pasta', 'Haggis', 'Tea bags', 'Whisky', 'Beer',
+    'Shirt', 'Kilt', 'Jacket')
+```
+
+A [kilt](https://en.wikipedia.org/wiki/Kilt) is part of the national dress in
+Scotland.
+
+# Create a vector of the prices of these items {.tabset}
+
+Next we want to create another vector containing the prices of each of these
+items. Don't worry too much about the actual prices here.
+
+It is important however that these two vectors are the same length, so that each
+item has a corresponding price, and vice versa. When you have created your
+vector of prices, add a line of code that checks whether the new vector with the
+prices is the same length as the vector with the names of goods you made
+earlier.
+
+## {-}
+
+## Hint {-}
+
+Again, we can use the `c()` function to create a vector.
+
+## Example Answer {-}
+
+```{r price_vector}
+basket_of_goods_price <-
+  c(1.20, 0.85, 0.39, 2.6, 3.5, 45, 12, 30, 400, 100)
+```
+
+We can use `==` to check that the outputs of two functions are the same.
+
+```{r length_check}
+length(basket_of_goods_price) == length(basket_of_goods_items)
+```
+
+# Check datatypes {.tabset}
+
+What datatypes are the vectors we just created? It can be a good idea to check
+your data is the right type as soon as possible to avoid unexpected results.
+
+Have a think about what datatypes you might want each of these objects to be.
+If they are something else can you change them?
+
+## {-}
+
+## Hint {-}
+
+The `typeof()` function can be used to check the type of an object.
+
+## Example Answer {-}
+
+```{r type_check}
+typeof(basket_of_goods_items)
+typeof(basket_of_goods_price)
+```
+
+We see that the items are `character` type and the prices are `doubles`. This
+sounds about right so we won't change anything. If it was required, we could
+use the `as.integer()`, `as.numeric()`, or `as.character()` functions.
+
+We also notice that the types can actually just be read straight from the
+environment pane in RStudio.
+
+# Create dataframe {.tabset}
+
+Now that we've created our data vectors, let's join them together into a single
+data object. This can be a dataframe or a tibble, whichever you're more
+comfortable with. Remember to name it something appropriate, and make sure all
+the column names make sense too.  
+Once you've created your dataframe (or tibble), you can check the result by just
+typing their name. However, it is easier, more
+effective, and better practice to use summary functions like `head()` or
+`glimpse()` to do so.
+
+## {-}
+
+## Hint {-}
+
+The `data.frame()` function is used to create dataframes, and the
+`tibble::tibble()` fuction for tibles. Remember to first load the `tibble`
+library for this one.  
+
+```{r load_tibble}
+library(tibble)
+```
+
+## Example Answer {-}
+
+For both methods we assign column names while creating the object.
+
+For a dataframe:
+
+```{r create_dataframe}
+basket_of_goods_df = data.frame("item" = basket_of_goods_items,
+                                "price" = basket_of_goods_price)
+```
+
+And for a tibble:
+
+```{r create_tibble}
+basket_of_goods_tibble = tibble::tibble("item" = basket_of_goods_items,
+                                        "price" = basket_of_goods_price)
+```
+
+To have a look at the result:
+```{r check_df_and_tibble}
+head(basket_of_goods_df)
+glimpse(basket_of_goods_tibble)
+```
+
+# Add a category column {.tabset}
+
+It might be useful to have another column in our dataframes describing the
+category of the goods in our basket. Can you create this and then add it to
+your tibble or dataframe?
+
+## {-}
+
+## Hint {-}
+
+Create a vector as before and then add it using `tibble::add_column()`
+(tidyverse) or `cbind()` (base R).
+
+## Example Answer {-}
+
+First we create the vector of categories.
+
+```{r create_categories}
+basket_categories = c("food", "food", "food", "food", "drink", "drink",
+                      "drink", "clothing", "clothing", "clothing")
+```
+
+We can then add it to our existing data object.
+
+```{r add_col_tibble}
+basket_of_goods_tibble <- basket_of_goods_tibble %>%
+  tibble::add_column(category = basket_categories,
+                     .before = "item")
+```
+
+We use the `.before` argument to make sure the new column is at the start.
+
+We can also use base R on our dataframe for the same effect.
+
+```{r add_col_df}
+basket_of_goods_df <- cbind(category = basket_categories, basket_of_goods_df)
+```
+
+# Explore created data {.tabset}
+
+Now that we've got our data in a workable format, let's explore it. Some of
+these steps may seem trivial on such a small dataset but it's good practice.
+
+1. How many different categories are there? (You may be able to count this
+easily, but can you find out using code?)
+
+1. What is the most expensive item?
+
+1. What are the mean and median prices, over all categories?
+
+1. What are the mean and median prices for each of the categories?
+
+1. Is there anything else you might want to know about the data?
+
+## {-}
+
+## Hint {-}
+
+1. After selecting the category column, the `unique()` function may be
+useful.
+
+1. We first need to find the highest price, and then we can use `filter()` to
+find the corresponding item.
+
+1. The functions `mean()` and `median()` should be useful here.
+
+1. We first need to filter by the different categories.
+
+## Example Answer {-}
+
+1. 
+
+```{r number_of_cats}
+# for a list of the unique categories
+unique(basket_of_goods_df$category)
+# to count how many there are
+length(unique(basket_of_goods_df$category))
+```
+
+There are 3 different categories.
+
+2.
+
+```{r most_expensive_item}
+highest_price <- max(basket_of_goods_df$price)
+basket_of_goods_df %>% dplyr::filter(price == highest_price)
+```
+
+My most expensive item is the kilt.
+
+3.
+
+```{r mean_and_median}
+mean(basket_of_goods_df$price)
+median(basket_of_goods_df$price)
+```
+
+4.
+
+```{r mean_and_median_cat}
+basket_food <- basket_of_goods_df %>% dplyr::filter(category == "food")
+mean(basket_food$price)
+median(basket_food$price)
+
+basket_drink <- basket_of_goods_df %>% dplyr::filter(category == "drink")
+mean(basket_drink$price)
+median(basket_drink$price)
+
+basket_clothes <- basket_of_goods_df %>% dplyr::filter(category == "clothing")
+mean(basket_clothes$price)
+median(basket_clothes$price)
+```
+
+# Create another dataset {.tabset}
+
+Let's imagine we now want to create another basket of goods dataset, which
+represents different data. It could be from a different region or perhaps a
+different year, and it could cover the same items and categories as the first
+dataset or completely different ones.
+
+## {-}
+
+## Hint {-}
+
+You can follow the earlier examples but fill in different values.
+
+## Example Answer {-}
+
+I'm going to suppose my new data is the latest release for 2022 and name my
+variables accordingly.
+
+```{r another_df}
+categories_22 <- c(rep("food", 5), rep("drink", 5))
+items_22 <- c("Pasta", "Rice", "Cake", "Bananas", "Haggis",
+              "Whisky", "Juice", "Cola", "Tea bags", "Coffee")
+prices_22 <- c(0.55, 0.45, 1.80, 0.30, 2.9, 44, 1.4, 0.8, 3.25, 2.85)
+
+basket_of_goods_22 <- data.frame(category = categories_22,
+                                   item = items_22,
+                                   price = prices_22)
+```
+
+# Perform the same exploration on the new data {.tabset}
+
+Can you perform the same explorations with this dataset as you did with the
+first one?
+
+1. How many different categories are there? (You may be able to count this
+easily, but can you find out using code?)
+
+1. What is the most expensive item?
+
+1. What are the mean and median prices, over all categories?
+
+1. What are the mean and median prices for each of the categories?
+
+## {-}
+
+## Hint {-}
+
+We've already written the code for this! We just need to repeat it but change the variable names.
+
+## Example Answer {-}
+
+This is where programming really comes into its own. For this example I'm just
+going to copy and paste the code from earlier but change the variable names.
+
+```{r second_dataset_explore}
+# for a list of the unique categories
+unique(basket_of_goods_22$category)
+# to count how many there are
+length(unique(basket_of_goods_22$category))
+
+highest_price_22 <- max(basket_of_goods_22$price)
+basket_of_goods_22 %>% dplyr::filter(price == highest_price_22)
+
+mean(basket_of_goods_22$price)
+median(basket_of_goods_22$price)
+
+basket_22_food <- basket_of_goods_22 %>% dplyr::filter(category == "food")
+mean(basket_22_food$price)
+median(basket_22_food$price)
+
+basket_22_drink <- basket_of_goods_22 %>% dplyr::filter(category == "drink")
+mean(basket_22_drink$price)
+median(basket_22_drink$price)
+```
+
+I would like to stess, however, that copy-and-pasting really isn't best
+practice in programming since if you want to update your analysis at some
+point you also have to remember to update it at every point you have copied
+your code, and it increases the chance of introducing inconsistencies. We will
+look at a better way to do this later in the week.
+
+# Save to xlsx {.tabset}
+
+Finally, lets save our data as `.xlsx` so as we can share it with colleagues
+(who perhaps don't have access to R).
+
+## {-}
+
+## Hint {-}
+
+Explore additional content on writing to `.xlsx` for tips on how to do this,
+or explore the documentation for the `openxlsx` package.
+
+```{r import_xlsx}
+library(openxlsx)
+```
+
+## Example Answer {-}
+
+```{r write_xlsx}
+# create list of dfs for each sheet
+list_of_baskets = list(basket_21 = basket_of_goods_df,
+                       basket_22 = basket_of_goods_22)
+openxlsx::write.xlsx(x = list_of_baskets, 
+                     file = file.path("../Data/basket_of_goods.xlsx"))
+```
+
+# Conclusion {-}
+
+We have now created a dataset within R, performed an initial exploration of it
+before saving it to `.xlsx` to share with colleagues.
