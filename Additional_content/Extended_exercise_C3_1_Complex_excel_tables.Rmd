@@ -15,7 +15,6 @@ htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
                style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
 ```
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -25,22 +24,36 @@ library(httr)
 ```
 ***
 
-It is likely that some data will be presented in excel sheets (`.xls` or `.xlsx`) 
-rather than in the `.csv` format. These will be tables that are probably focused 
-on being "human legible" so they are not the easiest to work with using R. Excel 
-files also have the added complexity of having multiple sheets. 
+It is likely that some data will be presented in excel sheets (`.xls` or
+`.xlsx`) rather than in the `.csv` format. Often, such "presentable Excel files"
+are used as appendices to official statistics, or even as part of analytical
+pipelines (import or export data). These will be tables that are probably
+focused on being "human legible", and rightly or wrongly are often laid out and
+presented in a way that moves away from simple tables of numbers with a single
+column header.For example, they can have the added complexity of having multiple
+sheets, contain multiple footnotes or header lines, blank rows or columns, etc.
+Because of this added formatting, they are often not the easiest to work with
+using R. While it is entirely possible to convert Excel files to (for example)
+simpler `.csv` files before loading them into R, this is bad practice as this
+process is error-prone and leads to numerous versions of the same file.
 
-Here we will explore how to load a files from a url, handle excel files, read 
-different sheets, and write new excel files. We will provide example answers but 
-it is encouraged you come up with your own examples.
+As introduced in <mark>Section XXX of Chapter X </mark>, there are a range of
+options in R to load Excel data files directly. This exercise builds on the
+material and techniques presented earlier. We will explore how to load a files
+from a url, read different sheets, write new excel files, and handle more
+sophisticated formatting.
+
+We will provide example answers but it is encouraged you come up with your own.
 
 To work through the exercise, please create a new R script in a suitable place
 in your working environment, and save it with a meaningful name.
 
 # Loading a file from the web
-We will first access the data. In this case we will get the Consumer Price 
-Inflation data from the Office for National Statistics website. We will use 
-the package `httr` see the documentation [here](https://httr.r-lib.org/).
+We will first access the data. We have previously shown how to use function
+`read_excel` from package <mark>readxl</mark> to load data from a local file. In
+this case we will get the Consumer Price Inflation data from the Office for
+National Statistics website. We will use the package `httr` see the
+documentation [here](https://httr.r-lib.org/).
 
 ```{r, eval = F}
 cpi_excel_url <- 'https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceinflation/current/consumerpriceinflationdetailedreferencetables.xls'
@@ -56,7 +69,6 @@ temporary files will be deleted when the computer session ends.
 Now we have the data  we want to explore what sheets this excel file contains. 
 
 ### Exercise{.tabset .tabset-fade}
-
 
 #### **Exercise** {-}
 

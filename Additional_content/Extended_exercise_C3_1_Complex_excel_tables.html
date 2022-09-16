@@ -1521,23 +1521,37 @@ excel table structures</h1>
 <hr />
 <p>It is likely that some data will be presented in excel sheets
 (<code>.xls</code> or <code>.xlsx</code>) rather than in the
-<code>.csv</code> format. These will be tables that are probably focused
-on being “human legible” so they are not the easiest to work with using
-R. Excel files also have the added complexity of having multiple
-sheets.</p>
-<p>Here we will explore how to load a files from a url, handle excel
-files, read different sheets, and write new excel files. We will provide
-example answers but it is encouraged you come up with your own
-examples.</p>
+<code>.csv</code> format. Often, such “presentable Excel files” are used
+as appendices to official statistics, or even as part of analytical
+pipelines (import or export data). These will be tables that are
+probably focused on being “human legible”, and rightly or wrongly are
+often laid out and presented in a way that moves away from simple tables
+of numbers with a single column header.For example, they can have the
+added complexity of having multiple sheets, contain multiple footnotes
+or header lines, blank rows or columns, etc. Because of this added
+formatting, they are often not the easiest to work with using R. While
+it is entirely possible to convert Excel files to (for example) simpler
+<code>.csv</code> files before loading them into R, this is bad practice
+as this process is error-prone and leads to numerous versions of the
+same file.</p>
+<p>As introduced in <mark>Section XXX of Chapter X </mark>, there are a
+range of options in R to load Excel data files directly. This exercise
+builds on the material and techniques presented earlier. We will explore
+how to load a files from a url, read different sheets, write new excel
+files, and handle more sophisticated formatting.</p>
+<p>We will provide example answers but it is encouraged you come up with
+your own.</p>
 <p>To work through the exercise, please create a new R script in a
 suitable place in your working environment, and save it with a
 meaningful name.</p>
 <div id="loading-a-file-from-the-web" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Loading a file from the
 web</h1>
-<p>We will first access the data. In this case we will get the Consumer
-Price Inflation data from the Office for National Statistics website. We
-will use the package <code>httr</code> see the documentation <a href="https://httr.r-lib.org/">here</a>.</p>
+<p>We will first access the data. We have previously shown how to use
+function <code>read_excel</code> from package <mark>readxl</mark> to
+load data from a local file. In this case we will get the Consumer Price
+Inflation data from the Office for National Statistics website. We will
+use the package <code>httr</code> see the documentation <a href="https://httr.r-lib.org/">here</a>.</p>
 <pre class="r"><code>cpi_excel_url &lt;- &#39;https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceinflation/current/consumerpriceinflationdetailedreferencetables.xls&#39;
 
 httr::GET(cpi_excel_url, write_disk(cpi_excel &lt;- tempfile(fileext = &quot;.xls&quot;)))</code></pre>
