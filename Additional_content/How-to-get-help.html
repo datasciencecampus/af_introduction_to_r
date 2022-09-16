@@ -1483,6 +1483,12 @@ div.tocify {
   border-radius: 0px;
 }
 
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
 
 </style>
 
@@ -1518,9 +1524,10 @@ get help</h1>
 </div>
 
 
-<p>In this appendix, we provide some more detailed suggestions on how to
-find help or solve errors/bugs in your R code; it is an expansion of
-<mark>Section XXX</mark> in the main Introduction to R course.</p>
+<p>In this appendix to the Introduction to R course, we provide some
+more detailed suggestions on how to find help or solve errors/bugs in
+your R code; it is an expansion of Section 5 in <a href="../Course_content/Chapter_1_Getting_Started_with_R.html">Chapter
+1</a> of the main course.</p>
 <div id="finding-a-solution-for-a-specific-problem" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Finding a solution for
 a specific problem</h1>
@@ -1529,7 +1536,7 @@ memorise everything to be able to code. However, this is not how most
 programmers do it: they use Google (or other search engines) to find the
 a solution to the parts of their problem.</p>
 <p>An important thing to note: <strong>When searching for R-related
-questions use use “R cran” instead of just “R”. Using just the letter
+questions use use “R cran”<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> instead of just “R”. Using just the letter
 “r” is not very specific for obvious reasons.</strong></p>
 <div id="error-messages" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Error messages</h2>
@@ -1556,9 +1563,9 @@ documentation</h2>
 <p>Documentation for functions and packages are where you can find all
 the specifications that program/function can do. Each function available
 in R, whether that is in the “base” installation or within packages you
-load externall, will have documentation included with it. You can access
-this in R through the methods described in <mark>LINK TO COURSE
-SECTION</mark>.<br />
+load externally, will have documentation included with it. You can
+access this in R through the methods described in Section 5.2 of <a href="../Course_content/Chapter_1_Getting_Started_with_R.html">Chapter
+1</a>.<br />
 It is important to remember that these are written to be precise and
 extensive and so can be a bit daunting when starting out. However, if
 you want to go deeper and understand all the options and arguments of a
@@ -1567,12 +1574,12 @@ need.</p>
 </div>
 <div id="forums" class="section level3" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> Forums</h3>
-<p>As highlighted in <mark>Section XXX of the main course</mark>, online
-forums such as <a href="https://stackoverflow.com/">StackOverflow</a>
-are a great place to find solutions to common problems. One of the most
-difficult parts of finding the solution to your problem is how to search
-for it in the first place. Finding the specific words that define your
-problem will save you a lot of looking through answers in forums.</p>
+<p>As highlighted in Section 5.3 of <a href="../Course_content/Chapter_1_Getting_Started_with_R.html">Chapter
+1</a>, online forums such as <a href="https://stackoverflow.com/">StackOverflow</a> are a great place to
+find solutions to common problems. One of the most difficult parts of
+finding the solution to your problem is how to search for it in the
+first place. Finding the specific words that define your problem will
+save you a lot of looking through answers in forums.</p>
 <p>For example: if you searched for a “vehicle fixer” would not give you
 the specific results searching for “mechanic” would.</p>
 <p>Another key element is using Google keywords that will focus the
@@ -1652,6 +1659,13 @@ sections that you are struggling with and this is essential to find the
 help you need to proceed.</p>
 </div>
 </div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>CRAN is the official online repository for R downloads
+and packages.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
 
 
 
@@ -1711,7 +1725,7 @@ $(document).ready(function ()  {
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
     };
-    options.showAndHide = true;
+    options.showAndHide = false;
     options.smoothScroll = true;
 
     // tocify
