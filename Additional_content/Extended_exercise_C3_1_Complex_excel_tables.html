@@ -1582,44 +1582,46 @@ cpi_df &lt;- cpi_excel %&gt;%
 <p>You will have seen that the output you get in the console says “New
 names:” a number of times. This is because the tables within each
 worksheet don’t have recognisable headers.</p>
+</div>
+</div>
+<div id="writing-a-new-excel-file" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Writing a new excel
+file</h1>
 <p>Now that we have all the sheets loaded as dataframes, we identify
 that we need “Table 13” and “Table 15” sheets and we would like to
 create a new excel file only containing those sheets.</p>
-</div>
-<div id="exercise-2" class="section level3 tabset tabset-fade" number="2.0.2">
-<h3 class="tabset tabset-fade"><span class="header-section-number">2.0.2</span> Exercise</h3>
+<div id="exercise-2" class="section level3 tabset tabset-fade" number="3.0.1">
+<h3 class="tabset tabset-fade"><span class="header-section-number">3.0.1</span> Exercise</h3>
 <div id="exercise-3" class="section level4 unnumbered">
 <h4 class="unnumbered"><strong>Exercise</strong></h4>
 <ol style="list-style-type: decimal">
-<li>Try looking at the sheet names for this file.</li>
-<li>Load all the sheets in a workbook into a list of data frames</li>
+<li>Isolate “Table 13” and “Table 15”</li>
+<li>Create a new excel file in your <code>Data/</code> directory with
+two sheets, one for each table.</li>
 </ol>
-<p><strong>HINT: Look at the <a href="https://readxl.tidyverse.org/articles/readxl-workflows.html">readxl
-workflows</a> page</strong></p>
+<p><strong>HINT: Use</strong></p>
 <hr />
 <p><br></p>
 </div>
 <div id="show-answer-1" class="section level4 unnumbered">
 <h4 class="unnumbered"><strong>Show Answer</strong></h4>
-<pre class="r"><code># This part of the code will tell us what the names of the sheets are
-readxl::excel_sheets(cpi_excel)
+<pre class="r"><code># There are several ways you could have got the sheets you needed.
+# 1. Reading the specific sheet using the `sheet =` arguments in `readxl::read_excel`
+cpi_table13 &lt;- readxl::read_excel(cpi_excel, sheet = &quot;Table 13&quot;)
+cpi_table15 &lt;- readxl::read_excel(cpi_excel, sheet = &quot;Table 15&quot;)
 
-# This part will look at all the sheets and load them as dataframes in a list
-cpi_df &lt;- cpi_excel %&gt;% 
-          excel_sheets() %&gt;% 
-          set_names() %&gt;% 
-          map(read_excel, path = cpi_excel)</code></pre>
+# 2. Finding the correct dataframe in your list of dataframes made earlier
+cpi_table13 &lt;- cpi_df[14]
+cpi_table15 &lt;- cpi_df[16]
+
+# Write a new excel file with two sheets
+dataset_names &lt;- list(&#39;Sheet1&#39; = cpi_table13, &#39;Sheet2&#39; = cpi_table15)
+openxlsx::write.xlsx(dataset_names, &#39;./Data/CPI_refTables.xlsx&#39;)</code></pre>
 <p><br></p>
 </div>
 </div>
 <div id="section-1" class="section level3 unnumbered">
 <h3 class="unnumbered"></h3>
-<pre class="r"><code>cpi_table13 &lt;- readxl::read_excel(cpi_excel, sheet = &quot;Table 13&quot;)
-cpi_table15 &lt;- readxl::read_excel(cpi_excel, sheet = &quot;Table 15&quot;)</code></pre>
-<p>We have identified we need “Table 13” and “Table 15” which we would
-like to print into a new excel file with two sheets</p>
-<pre class="r"><code>dataset_names &lt;- list(&#39;Sheet1&#39; = cpi_table13, &#39;Sheet2&#39; = cpi_table15)
-openxlsx::write.xlsx(dataset_names, &#39;./Data/CPI_refTables.xlsx&#39;)</code></pre>
 </div>
 </div>
 

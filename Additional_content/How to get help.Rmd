@@ -1,9 +1,19 @@
 ---
-title: "How to get help"
-output: 
-  html_document:
+title: "Intro to R - Extra Material 1.1 - How to get help"
+output:
+  html_document: 
+    theme: united
+    highlight: textmate
+    toc: yes
+    toc_float: yes
     number_sections: true
 ---
+
+```{r, echo=FALSE, eval=FALSE}
+htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
