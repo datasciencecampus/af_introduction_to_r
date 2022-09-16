@@ -47,6 +47,7 @@ to be because the first part broke.
 
 Make sure you read the error message thoroughly, it may just be caused by a
 syntax error (missing bracket, semi-colon, etc) which has a very easy fix.  
+
 When you get an error that you don't understand, google the exact error message,
 except for any parts which are machine specific (like the path in your home
 directory where the error occurred). It's important to remember error messages
@@ -61,6 +62,7 @@ whether that is in the "base" installation or within packages you load
 externally, will have documentation included with it. You can access this in R
 through the methods described in Section 5.2 of [Chapter
 1](../Course_content/Chapter_1_Getting_Started_with_R.html).  
+
 It is important to remember that these are written to be precise and extensive
 and so can be a bit daunting when starting out. However, if you want to go
 deeper and understand all the options and arguments of a function, the
