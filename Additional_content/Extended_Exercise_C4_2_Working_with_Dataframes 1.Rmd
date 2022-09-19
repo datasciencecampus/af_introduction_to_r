@@ -19,8 +19,15 @@ library(dplyr)
 In this exercise, we will practice the data frame operations that we have
 covered so far (and introduce a few more tips and tricks along the way); the
 different steps below are set up so that they build increasingly complex
-operations. To remind yourself of the core material we covered see
-<mark>XXX</mark> and <mark>XXX</mark>. For the exercises presented here, we will
+operations. To remind yourself of the core material we covered see [Chapter
+2](../Course_content/Chapter_2_Data_Structures.html) for an introduction to
+dataframes, [Chapter
+3](../Course_content/Chapter_3_Importing_and_Exporting_Data.html) for an
+introduction to aggregation and summary operations, and particularly [Chapter
+4](../Course_content/Chapter_4_Working_with_DataFrames.html) for how to work
+with them.
+
+For the exercises presented here, we will
 use extracts from published data on the UK Consumer Prices Index by the Office
 for National Statistics. The source data used, and more information on the
 background to it, can be found
@@ -59,9 +66,9 @@ format.
 2.  To explore loaded datasets, you could consider using functions like
 `head()`, `tail()`, `str()` or
 [`glimpse()`](https://dplyr.tidyverse.org/reference/glimpse.html) (latter from
-package [dplyr](https://dplyr.tidyverse.org/index.html) or
-[tidyverse](</mark>)). Please consider what each of these functions does so you
-can gain the information you are looking for.
+package [dplyr](https://dplyr.tidyverse.org/index.html). Please consider what
+each of these functions does so you can gain the information you are looking
+for.
 3.  You can list dataframe or tibble column names separately using `names()` or
 `colnames()`. Do any of the column names as imported include any awkward
 characters?
