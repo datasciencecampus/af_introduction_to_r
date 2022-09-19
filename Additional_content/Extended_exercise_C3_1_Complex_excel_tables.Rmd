@@ -56,7 +56,7 @@ in your working environment, and save it with a meaningful name.
 # Loading a file from the web {.unnumbered}
 We will first access the data. We have previously shown how to use function
 `read_excel()` from package [readxl](https://readxl.tidyverse.org/) to load data
-from a local file. In this case we will get the Consumer Price Inflation data
+from a local file. In this case we will get the Consumer Price Index data
 from the Office for National Statistics website. We will use the package `httr`
 see the documentation [here](https://httr.r-lib.org/).
 
