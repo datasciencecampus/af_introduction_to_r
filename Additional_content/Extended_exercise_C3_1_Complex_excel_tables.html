@@ -1532,19 +1532,20 @@ as appendices to official statistics, or even as part of analytical
 pipelines (import or export data). These will be tables that are
 probably focused on being “human legible”, and rightly or wrongly are
 often laid out and presented in a way that moves away from simple tables
-of numbers with a single column header.For example, they can have the
-added complexity of having multiple sheets, contain multiple footnotes
-or header lines, blank rows or columns, etc. Because of this added
-formatting, they are often not the easiest to work with using R. While
-it is entirely possible to convert Excel files to (for example) simpler
-<code>.csv</code> files before loading them into R, this is bad practice
-as this process is error-prone and leads to numerous versions of the
-same file.</p>
-<p>As introduced in <mark>Section XXX of Chapter X </mark>, there are a
-range of options in R to load Excel data files directly. This exercise
-builds on the material and techniques presented earlier. We will explore
-how to load a files from a url, read different sheets, write new excel
-files, and handle more sophisticated formatting.</p>
+of numbers with a single column header.</p>
+<p>For example, they can have the added complexity of having multiple
+sheets, contain multiple footnotes or header lines, blank rows or
+columns, etc. Because of this added formatting, they are often not the
+easiest to work with using R. While it is entirely possible to convert
+Excel files to (for example) simpler <code>.csv</code> files before
+loading them into R, this is bad practice as this process is error-prone
+and leads to numerous versions of the same file.</p>
+<p>As introduced in <a href="../Course_content/Chapter_3_Importing_and_Exporting_Data.html">Section
+3.6 of the main course</a>, there are a range of options in R to load
+Excel data files directly. This exercise builds on the material and
+techniques presented earlier. We will explore how to load a files from a
+url, read different sheets, write new excel files, and handle more
+sophisticated formatting.</p>
 <p>We will provide example answers but it is encouraged you come up with
 your own.</p>
 <p>To work through the exercise, please create a new R script in a
@@ -1553,10 +1554,10 @@ meaningful name.</p>
 <div id="loading-a-file-from-the-web" class="section level1 unnumbered">
 <h1 class="unnumbered">Loading a file from the web</h1>
 <p>We will first access the data. We have previously shown how to use
-function <code>read_excel</code> from package <mark>readxl</mark> to
-load data from a local file. In this case we will get the Consumer Price
-Inflation data from the Office for National Statistics website. We will
-use the package <code>httr</code> see the documentation <a href="https://httr.r-lib.org/">here</a>.</p>
+function <code>read_excel()</code> from package <a href="https://readxl.tidyverse.org/">readxl</a> to load data from a
+local file. In this case we will get the Consumer Price Inflation data
+from the Office for National Statistics website. We will use the package
+<code>httr</code> see the documentation <a href="https://httr.r-lib.org/">here</a>.</p>
 <pre class="r"><code>cpi_excel_url &lt;- &#39;https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceinflation/current/consumerpriceinflationdetailedreferencetables.xls&#39;
 
 get_msg &lt;- httr::GET(cpi_excel_url, write_disk(cpi_excel &lt;- tempfile(fileext = &quot;.xls&quot;)))</code></pre>
@@ -2016,13 +2017,13 @@ head(cpi_table13)</code></pre>
 <div id="writing-a-new-excel-file" class="section level1 tabset" number="5">
 <h1 class="tabset"><span class="header-section-number">5</span> Writing
 a new excel file</h1>
-<p>Unfortunately, the <mark>readxl</mark> package we have used so far
-does not have functionality to <em>write</em> Excel files. We can
-however do this using either the <mark>writexl</mark> package (which can
-write in both <code>.xls</code> and <code>.xlsx</code> format) or the
-<mark>openxlsx</mark> package. We here use the latter, and write to
-<code>.xlsx</code> format (as this is a newer file extension
-version).</p>
+<p>Unfortunately, the <a href="https://readxl.tidyverse.org/">readxl</a>
+package we have used so far does not have functionality to
+<em>write</em> Excel files. We can however do this using either the <a href="https://cran.r-project.org/web/packages/writexl/index.html">writexl</a>
+package (which can write in both <code>.xls</code> and
+<code>.xlsx</code> format) or the <a href="https://cran.r-project.org/web/packages/openxlsx/">openxlsx</a>
+package. We here use the latter, and write to <code>.xlsx</code> format
+(as this is a newer file extension version).</p>
 <div id="exercise-5" class="section level2 unnumbered">
 <h2 class="unnumbered">Exercise 5</h2>
 <ol style="list-style-type: decimal">
@@ -2035,15 +2036,14 @@ file.</li>
 <div id="hint-4" class="section level2 unnumbered">
 <h2 class="unnumbered">Hint</h2>
 <ol style="list-style-type: decimal">
-<li>Remember to install and load package <mark>openxlsx</mark> if you
-haven’t already done so. You’ll need to use function
-<code>write.xlsx()</code>.</li>
-<li>Have a look at the documentation for <code>write.xlsx()</code> to
-find out how you can write specific dataframes (or tibbles) to specific
-sheets. Basically, instead of giving <code>write.xlsx()</code> a single
-table to write, you can give it a named list of tables. See
-<mark>Section XXX of Chapter XXX</mark> for more information on how to
-deal with lists.</li>
+<li>Remember to install and load package <a href="https://cran.r-project.org/web/packages/openxlsx/">openxlsx</a> if
+you haven’t already done so. You’ll need to use function
+<code>write.xlsx()</code>. 2. Have a look at the documentation for
+<code>write.xlsx()</code> to find out how you can write specific
+dataframes (or tibbles) to specific sheets. Basically, instead of giving
+<code>write.xlsx()</code> a single table to write, you can give it a
+named list of tables. See <a href="../Course_content/Chapter_2_Data_Structures.html">Section 2.4 of
+the main course</a> for more information on how to deal with lists.</li>
 </ol>
 </div>
 <div id="example-answer-4" class="section level2 unnumbered">

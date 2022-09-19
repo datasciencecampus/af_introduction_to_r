@@ -32,18 +32,21 @@ are used as appendices to official statistics, or even as part of analytical
 pipelines (import or export data). These will be tables that are probably
 focused on being "human legible", and rightly or wrongly are often laid out and
 presented in a way that moves away from simple tables of numbers with a single
-column header.For example, they can have the added complexity of having multiple
+column header. 
+
+For example, they can have the added complexity of having multiple
 sheets, contain multiple footnotes or header lines, blank rows or columns, etc.
 Because of this added formatting, they are often not the easiest to work with
 using R. While it is entirely possible to convert Excel files to (for example)
 simpler `.csv` files before loading them into R, this is bad practice as this
 process is error-prone and leads to numerous versions of the same file.
 
-As introduced in <mark>Section XXX of Chapter X </mark>, there are a range of
-options in R to load Excel data files directly. This exercise builds on the
-material and techniques presented earlier. We will explore how to load a files
-from a url, read different sheets, write new excel files, and handle more
-sophisticated formatting.
+As introduced in [Section 3.6 of the main
+course](../Course_content/Chapter_3_Importing_and_Exporting_Data.html), there
+are a range of options in R to load Excel data files directly. This exercise
+builds on the material and techniques presented earlier. We will explore how to
+load a files from a url, read different sheets, write new excel files, and
+handle more sophisticated formatting.
 
 We will provide example answers but it is encouraged you come up with your own.
 
@@ -52,10 +55,10 @@ in your working environment, and save it with a meaningful name.
 
 # Loading a file from the web {.unnumbered}
 We will first access the data. We have previously shown how to use function
-`read_excel` from package <mark>readxl</mark> to load data from a local file. In
-this case we will get the Consumer Price Inflation data from the Office for
-National Statistics website. We will use the package `httr` see the
-documentation [here](https://httr.r-lib.org/).
+`read_excel()` from package [readxl](https://readxl.tidyverse.org/) to load data
+from a local file. In this case we will get the Consumer Price Inflation data
+from the Office for National Statistics website. We will use the package `httr`
+see the documentation [here](https://httr.r-lib.org/).
 
 ```{r load_from_www, warning=FALSE, message=FALSE}
 cpi_excel_url <- 'https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceinflation/current/consumerpriceinflationdetailedreferencetables.xls'
@@ -283,11 +286,14 @@ head(cpi_table13)
 
 # Writing a new excel file {.tabset}
 
-Unfortunately, the <mark>readxl</mark> package we have used so far does not have
-functionality to _write_ Excel files. We can however do this using either the
-<mark>writexl</mark> package (which can write in both `.xls` and `.xlsx` format)
-or the <mark>openxlsx</mark> package. We here use the latter, and write to
-`.xlsx` format (as this is a newer file extension version).
+Unfortunately, the [readxl](https://readxl.tidyverse.org/) package we have used
+so far does not have functionality to _write_ Excel files. We can however do
+this using either the
+[writexl](https://cran.r-project.org/web/packages/writexl/index.html) package
+(which can write in both `.xls` and `.xlsx` format) or the
+[openxlsx](https://cran.r-project.org/web/packages/openxlsx/) package. We here
+use the latter, and write to `.xlsx` format (as this is a newer file extension
+version).
 
 ## Exercise 5 {.unnumbered}
 
@@ -297,13 +303,15 @@ Excel to check your work.
 
 ## Hint {.unnumbered}
 
-1. Remember to install and load package <mark>openxlsx</mark> if you haven't
-already done so. You'll need to use function `write.xlsx()`.
-2. Have a look at the documentation for `write.xlsx()` to find out how you can
-write specific dataframes (or tibbles) to specific sheets. Basically, instead of
-giving `write.xlsx()` a single table to write, you can give it a named list of
-tables. See <mark>Section XXX of Chapter XXX</mark> for more information on how
-to deal with lists.
+1. Remember to install and load package
+[openxlsx](https://cran.r-project.org/web/packages/openxlsx/) if you haven't
+already done so. You'll need to use function `write.xlsx()`. 2. Have a look at
+the documentation for `write.xlsx()` to find out how you can write specific
+dataframes (or tibbles) to specific sheets. Basically, instead of giving
+`write.xlsx()` a single table to write, you can give it a named list of tables.
+See [Section 2.4 of the main
+course](../Course_content/Chapter_2_Data_Structures.html) for more information
+on how to deal with lists.
 
 ## Example answer {.unnumbered}
 
