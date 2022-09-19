@@ -1,19 +1,15 @@
 ---
-title: "Extended Exercise 4.2: Working with Dataframes 1"
+title: "Extended Exercise 4.2: Working with Dataframes"
 output:
   html_document: 
     theme: united
     highlight: textmate
     toc: yes
-    toc_float: yes
+    toc_depth: 2
+    toc_float: 
+      collapsed: no
     number_sections: true
 ---
-
-```{r, echo=FALSE, eval=FALSE}
-htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
-               alt = 'logo', 
-               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
-```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -25,16 +21,16 @@ covered so far (and introduce a few more tips and tricks along the way); the
 different steps below are set up so that they build increasingly complex
 operations. To remind yourself of the core material we covered see
 <mark>XXX</mark> and <mark>XXX</mark>. For the exercises presented here, we will
-use extracts from published data on the UK CPI by the Office for National
-Statistics. The source data used, and more information on the background to it,
-can be found
+use extracts from published data on the UK Consumer Prices Index by the Office
+for National Statistics. The source data used, and more information on the
+background to it, can be found
 [here](https://www.ons.gov.uk/economy/inflationandpriceindices/datasets/consumerpriceinflation).
 
 Please note that:
 
 -   The example data used here are prepared specifically for the purposes of
 these exercises, and do not represent official statistics in any way.
--   While these exercises are designed to cover the kind of operations that may
+-   While these exercises are designed to cover the _kind_ of operations that may
 be used in real-world CPI production workflows, they are not intended as
 directly representing true CPI calculations.
 
@@ -43,7 +39,9 @@ directly representing true CPI calculations.
 We will start by working with two example data sets in XLSX format. The first is
 a table of CPI indices between 2008 and 2021 (`Data\CPI indices example.xlsx`).
 The second is a list of CPI codes and corresponding category names (`Data\CPI
-codes and names.xlsx`).
+codes and names.xlsx`). Before starting the exercises, we encourage you to open
+these files in Excel (or similar software) separately so you have a good idea of
+what the data look like.
 
 ## Exercise 1  {.unnumbered}
 
@@ -54,29 +52,34 @@ read in correctly.
 
 ## Hint {.unnumbered}
 
-1.  You can use functions like `read_xlsx()` from the package
-<mark>readxl</mark> to read files in XLSX format.
+1.  You can use functions like
+[`read_xlsx()`](https://readxl.tidyverse.org/reference/read_excel.html) from the
+package [readxl](https://readxl.tidyverse.org/index.html) to read files in XLSX
+format.
 2.  To explore loaded datasets, you could consider using functions like
-`head()`, `tail()`, `str()` or `glimpse()` (latter from package
-<mark>dplyr</mark> or <mark>tidyverse</mark>). Please consider what each of
-these functions does so you can gain the information you are looking for.
+`head()`, `tail()`, `str()` or
+[`glimpse()`](https://dplyr.tidyverse.org/reference/glimpse.html) (latter from
+package [dplyr](https://dplyr.tidyverse.org/index.html) or
+[tidyverse](</mark>)). Please consider what each of these functions does so you
+can gain the information you are looking for.
 3.  You can list dataframe or tibble column names separately using `names()` or
 `colnames()`. Do any of the column names as imported include any awkward
 characters?
 
 ## Example answer {.unnumbered}
 
-### Reading in the data
-Note that the path to the file you give to `read_xlsx()` needs to be correct
-relative to where you have stored your R script and data file. Using relative
-paths helps, here.
+### Reading in the data {.unnumbered}
+Note that the path to the file you give to
+[`read_xlsx()`(https://readxl.tidyverse.org/reference/read_excel.html) needs to
+be correct relative to where you have stored your R script and data file. Using
+relative paths helps, here.
 ```{r exercise 1.1}
 library(readxl)
 cpi_indices <- read_xlsx("../Data/CPI indices example.xlsx")
 cpi_codes <- read_xlsx("../Data/CPI codes and names.xlsx")
 ```
 
-### Viewing the data
+### Viewing the data {.unnumbered}
 You could use the following, but note there are many different ways to do this
 and which you choose should depend on what you want to check or view:
 ```{r exercise 1.2}
@@ -86,15 +89,24 @@ str(cpi_indices)
 glimpse(cpi_indices)
 ```
 
-### Cleaning up the data
-One or more of your explorations of the loaded data above may have shown you that the names of the first two columns of the `CPI indices example.xlsx` file contain spaces. It is good practice to remove these or replace these with e.g. underscores. While you can do this manually, the function `clean_names()` in the <mark>janitor</mark> package provides a convenient way to do this in one go.
+### Cleaning up the data {.unnumbered}
+One or more of your explorations of the loaded data above may have shown you
+that the names of the first two columns of the `CPI indices example.xlsx` file
+are capitalised and contain dots. It is good practice to decapitalise names and
+replace characters like dots (or spaces) with underscores. While you can do this
+manually, the function `clean_names()` in the
+[janitor](https://cran.r-project.org/web/packages/janitor/index.html) package
+provides a convenient way to do this in one go.
 ```{r exercise 1.3}
 names(cpi_indices)
 cpi_indices <- janitor::clean_names(cpi_indices)
 names(cpi_indices)
 ```
-Note that in addition to replacing the spaces in the column names with underscores, `janitor::clean_names()` has also changed uppercases to lower case.  
-We can do the same for the other dataset, `Data\CPI codes and names.xlsx`. For the sake of argument, we here show how to do similar column name changes manually:  
+Note that in addition to replacing the dots in the column name with an
+underscore, `janitor::clean_names()` has also changed uppercases to lower case.
+We can do the same for the other dataset, `Data\CPI codes and names.xlsx`. For
+the sake of argument, we here show how to do similar column name changes
+manually:
 ```{r exercise 1.3b}
 names(cpi_codes)
 names(cpi_codes) <- c("code","name")
@@ -105,10 +117,10 @@ names(cpi_codes)
 
 As you will have noticed, the CPI indices data set contains indices for a range
 of item categories (rows) per year (columns). In this table, categories are
-labelled by two code columns; `long_code` and `short_code`. These codes do not
+labelled by two code columns; `code` and `short_code`. These codes do not
 include the text description for each category. Instead, the text descriptions
 each code refers to are included the other data set (CPI codes and names).
-Needing to match data from one table to another (merges or "joins") is a very
+Matching data from one table to another (merges or "joins") is a very
 common kind of operation.
 
 ## Exercise 2 {.unnumbered}
@@ -126,29 +138,35 @@ code in the `CPI indices example` table.
 ## Hint {.unnumbered}
 
 - There are a number of different ways in which you can do joins (merges)
-between datasets. One approach is to use `left_join()`in the `dplyr` package.
-- You can remind yourself of the arguments for the `left_join()` function by
-looking at its documentation (`?left_join`). Specifically, the "by" argument is
-important in this case. 
+between datasets. One approach is to use
+[`left_join()`](https://dtplyr.tidyverse.org/reference/left_join.dtplyr_step.html)
+in the [`dplyr`]((https://dplyr.tidyverse.org/index.html)) package.
+- You can remind yourself of the arguments for the
+[`left_join()`]((https://dtplyr.tidyverse.org/reference/left_join.dtplyr_step.html))
+function by looking at its documentation (`?left_join`). Specifically, the "by"
+argument is important in this case.
 - You will need to "index" on different columns between the two datasets,
 depending on which category names you want to join.
 - You will need to consider the naming of the columns you are joining - you may
 end up with "name" twice! Alternatively, you could consider renaming the column
-in question before joining a second time. The function `rename()` (in the
-<mark>dplyr</mark> package) might come in handy. Have a look at its
-documentation (`?rename`).
-- You can use the function `relocate()` to move columns to a different position
-in an existing table.
+in question before joining a second time. The function
+[`rename()`](https://dplyr.tidyverse.org/reference/rename.html)  might come in
+handy. Have a look at its documentation (`?rename`).
+- You can use the function
+[`relocate()`](https://dplyr.tidyverse.org/reference/relocate.html) to move
+columns to a different position in an existing table.
 - Remember that the pipe operator (`%>%` can be useful for sequential data
 manipulation operations).
 
 ## Example answer {.unnumbered}
 
-### 1. Joining names to low-level code {.unnumbered}
-You can use `left_join()` to join data into a given table ("left"), from another
-table ("right"), indexed on a given column containing values to "join" on. In
-this case, that is the "code" column that you should have in both data sets,
-containing numbered indexes for the CPI categories.
+### Joining names to low-level code {.unnumbered}
+You can use
+[`left_join()`]((https://dtplyr.tidyverse.org/reference/left_join.dtplyr_step.html))
+to join data into a given table ("left"), from another table ("right"), indexed
+on a given column containing values to "join" on. In this case, that is the
+"code" column that you should have in both data sets, containing numbered
+indexes for the CPI categories.
 ```{r exercise 2.1}
 cpi_indices <- cpi_indices %>% 
   left_join(cpi_codes, by =  "code") %>%
@@ -163,11 +181,23 @@ places the new column in a slightly more suitable place in the `cpi_indices`
 table. This part is optional. I've also printed the top 10 rows and first five
 columns of the resulting table so we can see the join.
 
-### 2. Joining names to higher-level codes {.unnumbered}
+### Joining names to higher-level codes {.unnumbered}
 
-This task is somewhat more complex but only for two reasons. First, we now already have a "name" column in the table we are joining to, and second, the index we want to join on is named differently in the table we are joining _to_ (that is, in this case, we want to join using "short_code" in `CPI indices table` and "code" in `CPI names and codes`).  
-As a result, we need to add a couple of operations on top of the join used above. First, we use a second "piped" operation on the data set with the codes, renaming the "name" column to "name2" (this could be anything, as long as it's not "name" - this avoids `left_join()` adding subscripts to our column names). Second, in the "by=" argument in the call to `left_join()`, we specify that we are joining between the columns "short_code" in the left table, and "code" in the right.  
-Finally, we use `relocate()` as before to move the joined column ("name2") to a different place in the table; and we show the table limiting by the first five columns and first 20 rows.
+This task is somewhat more complex but only for two reasons. First, we now
+already have a "name" column in the table we are joining to, and second, the
+index we want to join on is named differently in the table we are joining _to_
+(that is, in this case, we want to join using "short_code" in `CPI indices
+table` and "code" in `CPI names and codes`).
+As a result, we need to add a couple of operations on top of the join used
+above. First, we use a second "piped" operation on the data set with the codes,
+renaming the "name" column to "name2" (this could be anything, as long as it's
+not "name" - this avoids `left_join()` adding subscripts to our column names).
+Second, in the "by=" argument in the call to `left_join()`, we specify that we
+are joining between the columns "short_code" in the left table, and "code" in
+the right.
+Finally, we use `relocate()` as before to move the joined column ("name2") to a
+different place in the table; and we show the table limiting by the first five
+columns and first 20 rows.
 ```{r exercise 2.2}
 cpi_indices <- cpi_indices %>% 
   left_join(cpi_codes %>% 
@@ -177,7 +207,179 @@ cpi_indices <- cpi_indices %>%
 head(cpi_indices[,1:5],20)
 ```
 
+# Subset, calculate & join combinations (1) {.tabset}
 
-# Conclusion {.unnumbered}
+We can further practice joining data sets by creating our own subsets of data,
+and merging these back into the original data set. One common procedure would be
+to calculate means of categories, storing these as separate tables, and/or
+merging this back into existing tables.
 
-We have now created a dataset within R, performed an initial exploration of it before saving it to `.xlsx` to share with colleagues.
+## Exercise 3 {.unnumbered}
+
+1. From the CPI indices data table, count the number of lower level categories
+(as indexed by column `code` or) within each higher level category (as indexed
+by column `short_code`). Save this as a separate dataframe.
+2. Your new dataframe should have a column `code` and a column `n`. Join the
+descriptive higher level category _names_ into this dataframe, from those listed
+in the CPI indices table. Summarise/display the new table to check your work, by
+listing the top 2 most common higher level categories.
+3. Now join the count of lower-level categories back into the original CPI
+indices table. When doing this join, aim to not duplicate columns from the two
+original tables into the new one. Note that you should end up with a new column
+in your data set, which lists the number of lower-level categories within each
+higher-level category.
+
+## Hint {.unnumbered}
+
+1. The `count()` function should help here.
+2. For the joining, note that you are joining _from_ a table where the data you
+need (`name2` and `short_code` is essentially repeated a number of times, so it
+maybe easiest to subset and remove the repeated data (see e.g. `unique()`)
+before you join. The `arrange()` function is what you need for the ordering -
+you may need `desc()` also to specify descending order.
+3. Again, a join and a subset in sequence will do the trick. 
+
+## Example answer {.unnumbered}
+
+1. Create table with `short_code` category counts. 
+``` {r exercise3.1}
+n_scode <- cpi_indices %>% count(short_code)
+```
+
+2. Add short_code category names into count table.
+Note that to do this quickly and efficiently, it is easiest to subset the CPI
+indices table first, so that only the category names column and short code
+columns are listed, and then removing the duplicates from this table (as each
+short code - category name value will occur multiple times).
+We then arrange the resulting table by descending order of count `n`, and print
+the result. Note that the top 2 higher level categories are "Food" and
+"Audio-visual equipment and related products".
+``` {r exercise3.2}
+n_scode <- n_scode %>% 
+  left_join(select(cpi_indices, name2, short_code) %>% 
+               unique(), 
+             by = "short_code")
+n_scode %>% arrange(desc(n))
+```
+
+3. Re-join counts into the original CPI indices table. Note you could do this by
+either using the short code value to index on, or the category name.
+``` {r exercise3.3}
+cpi_indices <- cpi_indices %>% 
+  left_join(n_scode %>% 
+              select(short_code, n),
+            by = "short_code")
+
+```
+
+# Subset, calculate & join combinations (2) {.tabset}
+
+## Exercise 4 {.unnumbered}
+
+1. From the CPI indices data table, make a new subset including only the
+categories Food, Non-alcoholic beverages, Clothing, and Footwear repairs. In
+this new table, create a new category column separating "All foods" and "All
+garments".
+2. Calculate the mean index for both of these new categories for the last two
+years only, and store as a new table.
+3. In the original CPI indices data, create a new category column with
+corresponding names for "All foods" and "All garments". Rows not covered by
+these new categories may be blank (NA).
+4. Join the mean indices for these two new categories for the last two years
+from your new table, into the original CPI data, but make sure you retain all
+original data that doesn't belong to either of these categories.
+
+## Hint {.unnumbered}
+
+1. As a general tip, trying breaking down the specific steps you want to take to
+solve this problem. Remember you can use functions like
+[`filter()`](https://dplyr.tidyverse.org/reference/filter.html) to subset, and
+[`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) to create new
+columns, and you can combine these steps using the pipe (`%>%`) operator. It is
+also entirely legitimate to create intermediate tables, if that makes your life
+easier. Also note you can use
+[`bind_rows()`](https://dplyr.tidyverse.org/reference/bind.html) to concatenate
+two tables with the same column structure.
+2. The [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html)
+function should help you here, after grouping by the correct categories.
+3. The [`case_when()`](https://dplyr.tidyverse.org/reference/case_when.html)
+function should come in handy here - you can specify which of the old columns
+should be combined into one, listed in a new column.
+4. Consider what specific "join" function you want to use here, given that you
+want to retain all the data in the table you are joining into.
+
+## Example answer {.unnumbered}
+
+As is often the case, there are several ways to approach this.  
+What we show here is one way to do it. Note that we have chosen this approach
+here in part to showcase some of the operations that make a useful exercise, and
+build on techniques we've covered so far.
+By way of further practice, _we encourage you to complete the exercise as shown
+here, but consider other (better?) alternatives as well[^1]_. 
+
+[^1]: For example, one option would be to create an "index table" that has
+higher level categories (`name2`) and a second column that re-groups these
+categories into even higher level categories. These could then be joined to
+existing tables.
+
+1. Here, we split this task into two steps - first create a subset for all food,
+add the new category name, and then do the same for all garments. Doing it this
+way around makes it easiest to add the new category names.
+```{r exercise 4.1}
+all_foods <- cpi_indices %>% 
+  filter(name2 %in% c("Food","Non-alcoholic beverages")) %>% 
+  mutate(new_cat = "All foods")
+all_garments <- cpi_indices %>% 
+  filter(name2 %in% c("Clothing","Footwear including repairs")) %>% 
+  mutate(new_cat = "All garments")
+new_cats <- bind_rows(all_foods, all_garments)
+```
+
+2. Again, breaking the task into steps, using the piping operator, makes this
+relatively straightforward: first select only the columns you want to retain,
+then calculate the average for the last to years, grouping by the new category
+column:
+```{r exercise 4.2}
+new_cats_means <- new_cats %>% 
+  select(new_cat, i2020, i2021) %>% 
+  group_by(new_cat) %>% 
+  summarise(mean2020 = mean(i2020), mean2021 = mean(i2021))
+```
+
+3. In this example answer, we use `case_when()` to pick out the specific values
+we want to combine, and assign the result to a new column `new_cat`. When can
+show the result by displaying a subset of the resulting table:
+```{r exercise 4.3}
+cpi_indices <- cpi_indices %>% 
+  mutate(new_cat = 
+           case_when(name2 == "Food" ~ "All foods", 
+                     name2 == "Non-alcoholic beverages" ~ "All foods",
+                     name2 == "Clothing" ~ "All garments",
+                     name2 == "Footwear including repairs" ~ "All garments"
+           )
+        )
+cpi_indices[10:20,c(1:3,17:19)]
+```
+
+4. Here we use a "full join" between your previously created subset table and
+the original CPI indices table, now with the new higher-level categories column
+added. We again print a subset of the resulting table so we can check that our
+operation has done what we wanted it to do.
+```{r exercise 4.4}
+cpi_indices <- cpi_indices %>% full_join(new_cats_means, by = "new_cat")
+head(cpi_indices[c(1:3,17:20)],20)
+```
+
+## {-}
+
+# Conclusion
+
+In this extended exercise, we've practiced loading, subsetting and particularly
+joining between data sets. It should be stressed that this is a _huge_ topic to
+cover, and that there are infinite numbers of specific problems, and particurly
+many different solutions to these problems. What we have shown here as example
+answers are just one potential way to crack these nuts. In this case, we
+specifically use functions from the tidyverse, in particularly from the
+[`dplyr`](https://dplyr.tidyverse.org/) package - it's worth stressing that all
+the above problems can also be solved using functions from the "base" R
+installation.
