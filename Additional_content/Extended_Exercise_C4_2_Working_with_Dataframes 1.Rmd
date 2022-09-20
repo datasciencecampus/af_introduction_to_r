@@ -191,15 +191,16 @@ columns of the resulting table so we can see the join.
 
 ### Joining names to higher-level codes {.unnumbered}
 
-This task is somewhat more complex but only for two reasons. First, we now
-already have a "name" column in the table we are joining to, and second, the
-index we want to join on is named differently in the table we are joining _to_
-(that is, in this case, we want to join using "short_code" in `CPI indices
-table` and "code" in `CPI names and codes`).
+This task is somewhat more complex because of the column names we want to use to 
+join the tables: first, we have a column called "name" in the table we are 
+joining to so we will have to rename it to avoid `left_join()` adding subscripts 
+to our column names; and second, the index we want to use to join the two tables
+are named differently, as we want to join using "short_code" in `CPI indices
+table` and "code" in `CPI names and codes`.
 As a result, we need to add a couple of operations on top of the join used
 above. First, we use a second "piped" operation on the data set with the codes,
 renaming the "name" column to "name2" (this could be anything, as long as it's
-not "name" - this avoids `left_join()` adding subscripts to our column names).
+not "name").
 Second, in the "by=" argument in the call to `left_join()`, we specify that we
 are joining between the columns "short_code" in the left table, and "code" in
 the right.
