@@ -199,20 +199,20 @@ are named differently, as we want to join using "short_code" in `CPI indices
 table` and "code" in `CPI names and codes`.
 As a result, we need to add a couple of operations on top of the join used
 above. First, we use a second "piped" operation on the data set with the codes,
-renaming the "name" column to "name2" (this could be anything, as long as it's
-not "name").
+renaming the "name" column to "name_cat" (this could be anything, as long as
+it's not "name").
 Second, in the "by=" argument in the call to `left_join()`, we specify that we
 are joining between the columns "short_code" in the left table, and "code" in
 the right.
-Finally, we use `relocate()` as before to move the joined column ("name2") to a
-different place in the table; and we show the table limiting by the first five
-columns and first 20 rows.
+Finally, we use `relocate()` as before to move the joined column ("name_cat")
+to a different place in the table; and we show the table limiting by the first
+five columns and first 20 rows.
 ```{r exercise 2.2}
 cpi_indices <- cpi_indices %>% 
   left_join(cpi_codes %>% 
-              rename(name2=name), 
+              rename(name_cat=name), 
             by = c("short_code"="code" )) %>%
-  relocate(name2, .after="short_code")
+  relocate(name_cat, .after="short_code")
 head(cpi_indices[,1:5],20)
 ```
 
@@ -242,8 +242,8 @@ higher-level category.
 
 1. The `count()` function should help here.
 2. For the joining, note that you are joining _from_ a table where the data you
-need (`name2` and `short_code` is essentially repeated a number of times, so it
-maybe easiest to subset and remove the repeated data (see e.g. `unique()`)
+need (`name_cat` and `short_code` is essentially repeated a number of times, so
+it maybe easiest to subset and remove the repeated data (see e.g. `unique()`)
 before you join. The `arrange()` function is what you need for the ordering -
 you may need `desc()` also to specify descending order.
 3. Again, a join and a subset in sequence will do the trick. 
@@ -265,7 +265,7 @@ the result. Note that the top 2 higher level categories are "Food" and
 "Audio-visual equipment and related products".
 ``` {r exercise3.2}
 n_scode <- n_scode %>% 
-  left_join(select(cpi_indices, name2, short_code) %>% 
+  left_join(select(cpi_indices, name_cat, short_code) %>% 
                unique(), 
              by = "short_code")
 n_scode %>% arrange(desc(n))
@@ -327,7 +327,7 @@ By way of further practice, _we encourage you to complete the exercise as shown
 here, but consider other (better?) alternatives as well[^1]_. 
 
 [^1]: For example, one option would be to create an "index table" that has
-higher level categories (`name2`) and a second column that re-groups these
+higher level categories (`name_cat`) and a second column that re-groups these
 categories into even higher level categories. These could then be joined to
 existing tables.
 
@@ -336,10 +336,10 @@ add the new category name, and then do the same for all garments. Doing it this
 way around makes it easiest to add the new category names.
 ```{r exercise 4.1}
 all_foods <- cpi_indices %>% 
-  filter(name2 %in% c("Food","Non-alcoholic beverages")) %>% 
+  filter(name_cat %in% c("Food","Non-alcoholic beverages")) %>% 
   mutate(new_cat = "All foods")
 all_garments <- cpi_indices %>% 
-  filter(name2 %in% c("Clothing","Footwear including repairs")) %>% 
+  filter(name_cat %in% c("Clothing","Footwear including repairs")) %>% 
   mutate(new_cat = "All garments")
 new_cats <- bind_rows(all_foods, all_garments)
 ```
@@ -361,10 +361,10 @@ show the result by displaying a subset of the resulting table:
 ```{r exercise 4.3}
 cpi_indices <- cpi_indices %>% 
   mutate(new_cat = 
-           case_when(name2 == "Food" ~ "All foods", 
-                     name2 == "Non-alcoholic beverages" ~ "All foods",
-                     name2 == "Clothing" ~ "All garments",
-                     name2 == "Footwear including repairs" ~ "All garments"
+           case_when(name_cat == "Food" ~ "All foods", 
+                     name_cat == "Non-alcoholic beverages" ~ "All foods",
+                     name_cat == "Clothing" ~ "All garments",
+                     name_cat == "Footwear including repairs" ~ "All garments"
            )
         )
 cpi_indices[10:20,c(1:3,17:19)]
