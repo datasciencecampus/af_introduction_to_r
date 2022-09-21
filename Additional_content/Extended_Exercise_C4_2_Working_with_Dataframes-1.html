@@ -2007,21 +2007,22 @@ subset of the resulting table:</li>
                      name_cat == &quot;Footwear including repairs&quot; ~ &quot;All garments&quot;
            )
         )
-cpi_indices[10:20,c(1:3,17:19)]</code></pre>
-<pre><code>## # A tibble: 11 x 6
-##    code   name                                   short_code i2020 i2021     n
-##    &lt;chr&gt;  &lt;chr&gt;                                  &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
-##  1 01.1.9 Food products (nec)                    01.1       102.   103.    10
-##  2 01.2   Non-alcoholic beverages                01.2       107.   107.     3
-##  3 01.2.1 Coffee, tea and cocoa                  01.2       105.   103.     3
-##  4 01.2.2 Mineral waters, soft drinks and juices 01.2       108.   109      3
-##  5 02.1   Alcoholic beverages                    02.1       102    103.     4
-##  6 02.1.1 Spirits                                02.1        99.5  100.     4
-##  7 02.1.2 Wine                                   02.1       101    103.     4
-##  8 02.1.3 Beer                                   02.1       107.   107.     4
-##  9 02.2   Tobacco                                02.2       129.   134.     1
-## 10 03.1   Clothing                               03.1       102.   103.     4
-## 11 03.1.2 Garments                               03.1       102    102.     4</code></pre>
+cpi_indices[10:20,c(1:3,17:20)]</code></pre>
+<pre><code>## # A tibble: 11 x 7
+##    code   name                                 short~1 i2020 i2021     n new_cat
+##    &lt;chr&gt;  &lt;chr&gt;                                &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;  
+##  1 01.1.9 Food products (nec)                  01.1    102.   103.    10 All fo~
+##  2 01.2   Non-alcoholic beverages              01.2    107.   107.     3 All fo~
+##  3 01.2.1 Coffee, tea and cocoa                01.2    105.   103.     3 All fo~
+##  4 01.2.2 Mineral waters, soft drinks and jui~ 01.2    108.   109      3 All fo~
+##  5 02.1   Alcoholic beverages                  02.1    102    103.     4 &lt;NA&gt;   
+##  6 02.1.1 Spirits                              02.1     99.5  100.     4 &lt;NA&gt;   
+##  7 02.1.2 Wine                                 02.1    101    103.     4 &lt;NA&gt;   
+##  8 02.1.3 Beer                                 02.1    107.   107.     4 &lt;NA&gt;   
+##  9 02.2   Tobacco                              02.2    129.   134.     1 &lt;NA&gt;   
+## 10 03.1   Clothing                             03.1    102.   103.     4 All ga~
+## 11 03.1.2 Garments                             03.1    102    102.     4 All ga~
+## # ... with abbreviated variable name 1: short_code</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Here we use a “full join” between your previously created subset
 table and the original CPI indices table, now with the new higher-level
@@ -2030,31 +2031,31 @@ so we can check that our operation has done what we wanted it to
 do.</li>
 </ol>
 <pre class="r"><code>cpi_indices &lt;- cpi_indices %&gt;% full_join(new_cats_means, by = &quot;new_cat&quot;)
-head(cpi_indices[c(1:3,17:20)],20)</code></pre>
-<pre><code>## # A tibble: 20 x 7
-##    code   name                                 short~1 i2020 i2021     n new_cat
-##    &lt;chr&gt;  &lt;chr&gt;                                &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;  
-##  1 01.1   Food                                 01.1    104.  104      10 All fo~
-##  2 01.1.1 Bread and cereals                    01.1    105.  106.     10 All fo~
-##  3 01.1.2 Meat                                 01.1    100.   99.6    10 All fo~
-##  4 01.1.3 Fish                                 01.1    114.  111.     10 All fo~
-##  5 01.1.4 Milk, cheese and eggs                01.1    101.  102.     10 All fo~
-##  6 01.1.5 Oils and fats                        01.1    113   117.     10 All fo~
-##  7 01.1.6 Fruit                                01.1    109.  110.     10 All fo~
-##  8 01.1.7 Vegetables including potatoes and t~ 01.1    102   102.     10 All fo~
-##  9 01.1.8 Sugar, jam, syrups, chocolate and c~ 01.1    104.  104.     10 All fo~
-## 10 01.1.9 Food products (nec)                  01.1    102.  103.     10 All fo~
-## 11 01.2   Non-alcoholic beverages              01.2    107.  107.      3 All fo~
-## 12 01.2.1 Coffee, tea and cocoa                01.2    105.  103.      3 All fo~
-## 13 01.2.2 Mineral waters, soft drinks and jui~ 01.2    108.  109       3 All fo~
-## 14 02.1   Alcoholic beverages                  02.1    102   103.      4 &lt;NA&gt;   
-## 15 02.1.1 Spirits                              02.1     99.5 100.      4 &lt;NA&gt;   
-## 16 02.1.2 Wine                                 02.1    101   103.      4 &lt;NA&gt;   
-## 17 02.1.3 Beer                                 02.1    107.  107.      4 &lt;NA&gt;   
-## 18 02.2   Tobacco                              02.2    129.  134.      1 &lt;NA&gt;   
-## 19 03.1   Clothing                             03.1    102.  103.      4 All ga~
-## 20 03.1.2 Garments                             03.1    102   102.      4 All ga~
-## # ... with abbreviated variable name 1: short_code</code></pre>
+head(cpi_indices[c(1:3,18:22)],20)</code></pre>
+<pre><code>## # A tibble: 20 x 8
+##    code   name                       short~1 i2021     n new_cat mean2~2 mean2~3
+##    &lt;chr&gt;  &lt;chr&gt;                      &lt;chr&gt;   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+##  1 01.1   Food                       01.1    104      10 All fo~    106.    106.
+##  2 01.1.1 Bread and cereals          01.1    106.     10 All fo~    106.    106.
+##  3 01.1.2 Meat                       01.1     99.6    10 All fo~    106.    106.
+##  4 01.1.3 Fish                       01.1    111.     10 All fo~    106.    106.
+##  5 01.1.4 Milk, cheese and eggs      01.1    102.     10 All fo~    106.    106.
+##  6 01.1.5 Oils and fats              01.1    117.     10 All fo~    106.    106.
+##  7 01.1.6 Fruit                      01.1    110.     10 All fo~    106.    106.
+##  8 01.1.7 Vegetables including pota~ 01.1    102.     10 All fo~    106.    106.
+##  9 01.1.8 Sugar, jam, syrups, choco~ 01.1    104.     10 All fo~    106.    106.
+## 10 01.1.9 Food products (nec)        01.1    103.     10 All fo~    106.    106.
+## 11 01.2   Non-alcoholic beverages    01.2    107.      3 All fo~    106.    106.
+## 12 01.2.1 Coffee, tea and cocoa      01.2    103.      3 All fo~    106.    106.
+## 13 01.2.2 Mineral waters, soft drin~ 01.2    109       3 All fo~    106.    106.
+## 14 02.1   Alcoholic beverages        02.1    103.      4 &lt;NA&gt;        NA      NA 
+## 15 02.1.1 Spirits                    02.1    100.      4 &lt;NA&gt;        NA      NA 
+## 16 02.1.2 Wine                       02.1    103.      4 &lt;NA&gt;        NA      NA 
+## 17 02.1.3 Beer                       02.1    107.      4 &lt;NA&gt;        NA      NA 
+## 18 02.2   Tobacco                    02.2    134.      1 &lt;NA&gt;        NA      NA 
+## 19 03.1   Clothing                   03.1    103.      4 All ga~    102.    103.
+## 20 03.1.2 Garments                   03.1    102.      4 All ga~    102.    103.
+## # ... with abbreviated variable names 1: short_code, 2: mean2020, 3: mean2021</code></pre>
 </div>
 <div id="section" class="section level2 unnumbered">
 <h2 class="unnumbered"></h2>

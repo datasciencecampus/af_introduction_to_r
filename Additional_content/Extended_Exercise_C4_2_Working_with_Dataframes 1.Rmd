@@ -367,7 +367,7 @@ cpi_indices <- cpi_indices %>%
                      name_cat == "Footwear including repairs" ~ "All garments"
            )
         )
-cpi_indices[10:20,c(1:3,17:19)]
+cpi_indices[10:20,c(1:3,17:20)]
 ```
 
 4. Here we use a "full join" between your previously created subset table and
@@ -376,7 +376,7 @@ added. We again print a subset of the resulting table so we can check that our
 operation has done what we wanted it to do.
 ```{r exercise 4.4}
 cpi_indices <- cpi_indices %>% full_join(new_cats_means, by = "new_cat")
-head(cpi_indices[c(1:3,17:20)],20)
+head(cpi_indices[c(1:3,18:22)],20)
 ```
 
 ## {-}
