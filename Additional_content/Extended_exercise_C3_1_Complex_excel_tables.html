@@ -11,7 +11,7 @@
 
 
 
-<title>Extended exercise XXX: Dealing with complex excel table structures</title>
+<title>Extended exercise 3.1: Dealing with complex excel table structures</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1483,6 +1483,12 @@ div.tocify {
   border-radius: 0px;
 }
 
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
 
 </style>
 
@@ -1512,7 +1518,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Extended exercise XXX: Dealing with complex
+<h1 class="title toc-ignore">Extended exercise 3.1: Dealing with complex
 excel table structures</h1>
 
 </div>
@@ -1521,105 +1527,532 @@ excel table structures</h1>
 <hr />
 <p>It is likely that some data will be presented in excel sheets
 (<code>.xls</code> or <code>.xlsx</code>) rather than in the
-<code>.csv</code> format. These will be tables that are probably focused
-on being “human legible” so they are not the easiest to work with using
-R. Excel files also have the added complexity of having multiple
-sheets.</p>
-<p>Here we will explore how to load a files from a url, handle excel
-files, read different sheets, and write new excel files. We will provide
-example answers but it is encouraged you come up with your own
-examples.</p>
+<code>.csv</code> format. Often, such “presentable Excel files” are used
+as appendices to official statistics, or even as part of analytical
+pipelines (import or export data). These will be tables that are
+probably focused on being “human legible”, and rightly or wrongly are
+often laid out and presented in a way that moves away from simple tables
+of numbers with a single column header.</p>
+<p>For example, they can have the added complexity of having multiple
+sheets, contain multiple footnotes or header lines, blank rows or
+columns, etc. Because of this added formatting, they are often not the
+easiest to work with using R. While it is entirely possible to convert
+Excel files to (for example) simpler <code>.csv</code> files before
+loading them into R, this is bad practice as this process is error-prone
+and leads to numerous versions of the same file.</p>
+<p>As introduced in <a href="../Course_content/Chapter_3_Importing_and_Exporting_Data.html">Section
+3.6 of the main course</a>, there are a range of options in R to load
+Excel data files directly. This exercise builds on the material and
+techniques presented earlier. We will explore how to load a files from a
+url, read different sheets, write new excel files, and handle more
+sophisticated formatting.</p>
+<p>We will provide example answers but it is encouraged you come up with
+your own.</p>
 <p>To work through the exercise, please create a new R script in a
 suitable place in your working environment, and save it with a
 meaningful name.</p>
-<div id="loading-a-file-from-the-web" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Loading a file from the
-web</h1>
-<p>We will first access the data. In this case we will get the Consumer
-Price Inflation data from the Office for National Statistics website. We
-will use the package <code>httr</code> see the documentation <a href="https://httr.r-lib.org/">here</a>.</p>
+<div id="loading-a-file-from-the-web" class="section level1 unnumbered">
+<h1 class="unnumbered">Loading a file from the web</h1>
+<p>We will first access the data. We have previously shown how to use
+function <code>read_excel()</code> from package <a href="https://readxl.tidyverse.org/">readxl</a> to load data from a
+local file. In this case we will get the Consumer Price Inflation data
+from the Office for National Statistics website. We will use the package
+<code>httr</code> see the documentation <a href="https://httr.r-lib.org/">here</a>.</p>
 <pre class="r"><code>cpi_excel_url &lt;- &#39;https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceinflation/current/consumerpriceinflationdetailedreferencetables.xls&#39;
 
-httr::GET(cpi_excel_url, write_disk(cpi_excel &lt;- tempfile(fileext = &quot;.xls&quot;)))</code></pre>
+get_msg &lt;- httr::GET(cpi_excel_url, write_disk(cpi_excel &lt;- tempfile(fileext = &quot;.xls&quot;)))</code></pre>
 <p>This code will create a temporary file on your machine for the data.
 This is helpful when you are not sure if you want to keep the whole file
 indefinitely as temporary files will be deleted when the computer
 session ends.</p>
+<p><strong>If you have any trouble getting the above code to work,
+please just go ahead and copy the URL from the above code in your
+browser, save the file somewhere accessible on your computer, and copy
+the full path to the file to your clipboard. Then assign the variable
+<code>cpi_excel</code> the text path to the file you saved, for
+example:</strong></p>
+<pre class="r"><code>cpi_excel &lt;- &quot;C:/Downloads/myfile.xls&quot;</code></pre>
+<p>You should then be able to continue with the examples/code below.</p>
 </div>
-<div id="iterating-over-multiple-worksheets-in-a-workbook" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Iterating over multiple
-worksheets in a workbook</h1>
+<div id="listing-sheet-names-and-reading-different-sheets" class="section level1 tabset" number="1">
+<h1 class="tabset"><span class="header-section-number">1</span> Listing
+sheet names and reading different sheets</h1>
 <p>Now we have the data we want to explore what sheets this excel file
 contains.</p>
-<div id="exercise" class="section level3 tabset tabset-fade" number="2.0.1">
-<h3 class="tabset tabset-fade"><span class="header-section-number">2.0.1</span> Exercise</h3>
-<div id="exercise-1" class="section level4 unnumbered">
-<h4 class="unnumbered"><strong>Exercise</strong></h4>
+<div id="exercise-1" class="section level2 unnumbered">
+<h2 class="unnumbered">Exercise 1</h2>
 <ol style="list-style-type: decimal">
 <li>Try looking at the sheet names for this file.</li>
-<li>Load all the sheets in a workbook into a list of data frames</li>
+<li>Load sheets named “Table 13” and “Table 15” into separate
+objects.</li>
 </ol>
-<p><strong>HINT: Look at the <a href="https://readxl.tidyverse.org/articles/readxl-workflows.html">readxl
-workflows</a> page</strong></p>
-<hr />
-<p><br></p>
 </div>
-<div id="show-answer" class="section level4 unnumbered">
-<h4 class="unnumbered"><strong>Show Answer</strong></h4>
-<pre class="r"><code># This part of the code will tell us what the names of the sheets are
-readxl::excel_sheets(cpi_excel)
-
-# This part will look at all the sheets and load them as dataframes in a list
-cpi_df &lt;- cpi_excel %&gt;% 
-          excel_sheets() %&gt;% 
-          set_names() %&gt;% 
-          map(read_excel, path = cpi_excel)</code></pre>
-<p><br></p>
+<div id="hint" class="section level2 unnumbered">
+<h2 class="unnumbered">Hint</h2>
+<ol style="list-style-type: decimal">
+<li>Look at the <a href="https://readxl.tidyverse.org/articles/readxl-workflows.html">readxl
+workflows</a> page</li>
+<li>Try <code>?read_excel</code> to remind yourself of the
+<code>read_excel</code> function arguments that allow you to specify
+which sheet to read.</li>
+</ol>
+</div>
+<div id="example-answer" class="section level2 unnumbered">
+<h2 class="unnumbered">Example answer</h2>
+<pre class="r"><code># `excel_sheets()` will tell us what the names of the sheets are
+readxl::excel_sheets(cpi_excel)</code></pre>
+<pre><code>##  [1] &quot;Contents&quot;             &quot;Table 1&quot;              &quot;Table 2&quot;             
+##  [4] &quot;Table 3&quot;              &quot;Table 4&quot;              &quot;Table 5a, 5b&quot;        
+##  [7] &quot;Table 6a, 6b, 6c&quot;     &quot;Table 7&quot;              &quot;Table 8&quot;             
+## [10] &quot;Table 9&quot;              &quot;Table 10&quot;             &quot;Table 11&quot;            
+## [13] &quot;Table 12&quot;             &quot;Table 13&quot;             &quot;Table 14&quot;            
+## [16] &quot;Table 15&quot;             &quot;Table 16&quot;             &quot;Table 17&quot;            
+## [19] &quot;18a, 18b&quot;             &quot;Table 19&quot;             &quot;Table 20a, 20b, 20c&quot; 
+## [22] &quot;Table 21&quot;             &quot;Table 22&quot;             &quot;Table 23&quot;            
+## [25] &quot;Table 24&quot;             &quot;Table 25&quot;             &quot;Table 26&quot;            
+## [28] &quot;Table 27&quot;             &quot;Table 28&quot;             &quot;Table 29&quot;            
+## [31] &quot;Table 30 &quot;            &quot;Table 31&quot;             &quot;Table 32&quot;            
+## [34] &quot;Table 33&quot;             &quot;Table 34a, 34b&quot;       &quot;Table 35a, 35b, 35c &quot;
+## [37] &quot;Table 36 &quot;            &quot;Table 37&quot;             &quot;Table 38&quot;            
+## [40] &quot;Table 39&quot;             &quot;Table 40&quot;             &quot;Table 41&quot;            
+## [43] &quot;Table 42&quot;             &quot;Table 43 &quot;            &quot;Table 44&quot;            
+## [46] &quot;Table 45&quot;             &quot;Table 46a, 46b&quot;       &quot;Table 47&quot;            
+## [49] &quot;Table 48&quot;             &quot;Table 49&quot;             &quot;Table 50&quot;            
+## [52] &quot;Table 51a,51b&quot;        &quot;Table 52&quot;             &quot;Table 53&quot;            
+## [55] &quot;Table 54&quot;             &quot;Table 55&quot;             &quot;Table 56&quot;            
+## [58] &quot;Table 57&quot;             &quot;Table 58&quot;</code></pre>
+<pre class="r"><code># Here we use the &quot;sheet=&quot; argument to read specific sheets:
+cpi_table13 &lt;- readxl::read_excel(cpi_excel, sheet = &quot;Table 13&quot;)</code></pre>
+<pre><code>## New names:
+## * `` -&gt; `...2`
+## * `` -&gt; `...3`
+## * `` -&gt; `...4`
+## * `` -&gt; `...5`
+## * `` -&gt; `...6`
+## * `` -&gt; `...7`
+## * `` -&gt; `...8`
+## * `` -&gt; `...9`
+## * `` -&gt; `...10`
+## * `` -&gt; `...11`
+## * `` -&gt; `...12`
+## * `` -&gt; `...13`
+## * `` -&gt; `...14`
+## * `` -&gt; `...15`
+## * `` -&gt; `...16`
+## * `` -&gt; `...17`</code></pre>
+<pre class="r"><code>cpi_table15 &lt;- readxl::read_excel(cpi_excel, sheet = &quot;Table 15&quot;)</code></pre>
+<pre><code>## New names:
+## * `` -&gt; `...2`
+## * `` -&gt; `...3`
+## * `` -&gt; `...4`
+## * `` -&gt; `...5`
+## * `` -&gt; `...6`
+## * `` -&gt; `...7`
+## * `` -&gt; `...8`
+## * `` -&gt; `...9`
+## * `` -&gt; `...10`
+## * `` -&gt; `...11`
+## * `` -&gt; `...12`
+## * `` -&gt; `...13`
+## * `` -&gt; `...14`
+## * `` -&gt; `...15`
+## * `` -&gt; `...16`
+## * `` -&gt; `...17`</code></pre>
 </div>
 </div>
-<div id="section" class="section level3 unnumbered">
-<h3 class="unnumbered"></h3>
+<div id="section" class="section level1 unnumbered">
+<h1 class="unnumbered"></h1>
 <p>You will have seen that the output you get in the console says “New
 names:” a number of times. This is because the tables within each
 worksheet don’t have recognisable headers.</p>
-<p>Now that we have all the sheets loaded as dataframes, we identify
-that we need “Table 13” and “Table 15” sheets and we would like to
-create a new excel file only containing those sheets.</p>
 </div>
-<div id="exercise-2" class="section level3 tabset tabset-fade" number="2.0.2">
-<h3 class="tabset tabset-fade"><span class="header-section-number">2.0.2</span> Exercise</h3>
-<div id="exercise-3" class="section level4 unnumbered">
-<h4 class="unnumbered"><strong>Exercise</strong></h4>
+<div id="dealing-with-messy-excel-data-1" class="section level1 tabset" number="2">
+<h1 class="tabset"><span class="header-section-number">2</span> Dealing
+with “messy” Excel data (1)</h1>
+<p>Pretty much all of the sheets in the Excel file in question have
+formatting “issues” that need to be taken into account when reading data
+from it into R.</p>
+<div id="exercise-2" class="section level2 unnumbered">
+<h2 class="unnumbered">Exercise 2</h2>
 <ol style="list-style-type: decimal">
-<li>Try looking at the sheet names for this file.</li>
-<li>Load all the sheets in a workbook into a list of data frames</li>
+<li>Do some exploration/summaries of the tables you just loaded in, and
+try to list issues that you may need to deal with so it can be used as
+(well structured) dataframe or tibble in R.</li>
+<li>Re-load each of the tables as above, but using one or more of the
+arguments available in <code>read_excel()</code> to avoid some of the
+issues.</li>
+<li>Repeat the exploration/summary steps you used earlier to demonstrate
+you have addressed the issues you identified.</li>
 </ol>
-<p><strong>HINT: Look at the <a href="https://readxl.tidyverse.org/articles/readxl-workflows.html">readxl
-workflows</a> page</strong></p>
-<hr />
-<p><br></p>
 </div>
-<div id="show-answer-1" class="section level4 unnumbered">
-<h4 class="unnumbered"><strong>Show Answer</strong></h4>
-<pre class="r"><code># This part of the code will tell us what the names of the sheets are
-readxl::excel_sheets(cpi_excel)
-
-# This part will look at all the sheets and load them as dataframes in a list
-cpi_df &lt;- cpi_excel %&gt;% 
-          excel_sheets() %&gt;% 
-          set_names() %&gt;% 
-          map(read_excel, path = cpi_excel)</code></pre>
-<p><br></p>
+<div id="hint-1" class="section level2 unnumbered">
+<h2 class="unnumbered">Hint</h2>
+<ol style="list-style-type: decimal">
+<li>Looking at the Excel file itself, where does the actual data start?
+Are column names in the first row? Where would R expect them to be?
+Consider using functions like <code>head()</code>, <code>str()</code> or
+<code>names()</code>.</li>
+<li>Have a look at the arguments available for
+<code>read_excel()</code>. Setting a single one to a non-default value
+would get you quite some way.</li>
+<li>How have the column names changed? What are the column value types
+(think <code>str()</code>?)</li>
+</ol>
+</div>
+<div id="example-answer-1" class="section level2 unnumbered">
+<h2 class="unnumbered">Example answer</h2>
+<ol style="list-style-type: decimal">
+<li>These are some examples of what you might want to use to explore the
+data you loaded for one of the sheets. We suggest you repeat the process
+yourself for the other.</li>
+</ol>
+<pre class="r"><code># Note the blank lines at the top of the table. The actual data table does not
+# &quot;start&quot; until row 6, which contains the actual column names.
+head(cpi_table13)</code></pre>
+<pre><code>## # A tibble: 6 x 17
+##   `Back to Contents` ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9  ...10 ...11
+##   &lt;chr&gt;              &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+## 1 &lt;NA&gt;               &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+## 2 Table 13           CPIH~ &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+## 3 &lt;NA&gt;               &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+## 4 &lt;NA&gt;               2015~ &lt;NA&gt;  Annu~ &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+## 5 &lt;NA&gt;               &lt;NA&gt;  &lt;NA&gt;  2021  2021  2021  2021  2021  2021  2021  2022 
+## 6 &lt;NA&gt;               &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  Jul   Aug   Sep   Oct   Nov   Dec   Jan  
+## # ... with 6 more variables: ...12 &lt;chr&gt;, ...13 &lt;chr&gt;, ...14 &lt;chr&gt;,
+## #   ...15 &lt;chr&gt;, ...16 &lt;chr&gt;, ...17 &lt;chr&gt;</code></pre>
+<pre class="r"><code># Note that column names in the R object have just been inferred, and are not
+# very useful:
+names(cpi_table13)</code></pre>
+<pre><code>##  [1] &quot;Back to Contents&quot; &quot;...2&quot;             &quot;...3&quot;             &quot;...4&quot;            
+##  [5] &quot;...5&quot;             &quot;...6&quot;             &quot;...7&quot;             &quot;...8&quot;            
+##  [9] &quot;...9&quot;             &quot;...10&quot;            &quot;...11&quot;            &quot;...12&quot;           
+## [13] &quot;...13&quot;            &quot;...14&quot;            &quot;...15&quot;            &quot;...16&quot;           
+## [17] &quot;...17&quot;</code></pre>
+<pre class="r"><code># You can have a look at individual columns to see that while these really
+# should all be numbers, because of the layout of the Excel file, some contain
+# words, which means the data gets interpreted as text. The following prints out
+# the first ten (1:10) values of column 4:
+cpi_table13[1:10,4]</code></pre>
+<pre><code>## # A tibble: 10 x 1
+##    ...4              
+##    &lt;chr&gt;             
+##  1 &lt;NA&gt;              
+##  2 &lt;NA&gt;              
+##  3 &lt;NA&gt;              
+##  4 Annual average    
+##  5 2021              
+##  6 &lt;NA&gt;              
+##  7 111.59999999999999
+##  8 &lt;NA&gt;              
+##  9 108.3             
+## 10 108.7</code></pre>
+<pre class="r"><code># Using str() allows you to see which columns have been interpreted as what kind
+# of value. Note all columns have been interpreted as character strings (chr):
+str(cpi_table13)</code></pre>
+<pre><code>## tibble [117 x 17] (S3: tbl_df/tbl/data.frame)
+##  $ Back to Contents: chr [1:117] NA &quot;Table 13&quot; NA NA ...
+##  $ ...2            : chr [1:117] NA &quot;CPIH: Detailed Goods and Services Breakdown: Latest 13 months 1, 2, 3&quot; NA &quot;2015=100&quot; ...
+##  $ ...3            : chr [1:117] NA NA NA NA ...
+##  $ ...4            : chr [1:117] NA NA NA &quot;Annual average&quot; ...
+##  $ ...5            : chr [1:117] NA NA NA NA ...
+##  $ ...6            : chr [1:117] NA NA NA NA ...
+##  $ ...7            : chr [1:117] NA NA NA NA ...
+##  $ ...8            : chr [1:117] NA NA NA NA ...
+##  $ ...9            : chr [1:117] NA NA NA NA ...
+##  $ ...10           : chr [1:117] NA NA NA NA ...
+##  $ ...11           : chr [1:117] NA NA NA NA ...
+##  $ ...12           : chr [1:117] NA NA NA NA ...
+##  $ ...13           : chr [1:117] NA NA NA NA ...
+##  $ ...14           : chr [1:117] NA NA NA NA ...
+##  $ ...15           : chr [1:117] NA NA NA NA ...
+##  $ ...16           : chr [1:117] NA NA NA NA ...
+##  $ ...17           : chr [1:117] NA NA NA NA ...</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>You can use the “skip=” argument in <code>read_excel()</code> to
+skip any rows you don’t need. Looking at the raw Excel file, the first 6
+lines of Table 13 are either blank or contain descriptions/links. We
+also note that the Table column names are awkwardly distributed across
+two rows. We here just skip line 6, which is one of the column name
+rows. This is not ideal (we lose some information as this data is spread
+across two calendar years), but we just do this for the sake of
+simplicity here. <mark>We’ll cover additional ways to handle this at a
+later point</mark>.</li>
+</ol>
+<pre class="r"><code>cpi_table13 &lt;- readxl::read_excel(cpi_excel, sheet = &quot;Table 13&quot;, skip = 6)</code></pre>
+<pre><code>## New names:
+## * `` -&gt; `...1`
+## * `` -&gt; `...2`
+## * `` -&gt; `...3`
+## * `Jul` -&gt; `Jul...4`
+## * `Jul` -&gt; `Jul...16`</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>As above. When we’ve read in the data, we can use
+<code>names()</code> and <code>str()</code> again to check that this
+extra approach has certainly helped somewhat - note that the core value
+columns (for each year), have actually been interpreted as numeric
+values. We still have some column names that we need to clean up, but we
+will cover how to do this in a later exercise.</li>
+</ol>
+<pre class="r"><code>head(cpi_table13)</code></pre>
+<pre><code>## # A tibble: 6 x 16
+##   ...1  ...2        ...3 Jul...4   Aug   Sep   Oct   Nov   Dec   Jan   Feb   Mar
+##   &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 L522  CPIH (ove~  112.    111.  112.  112.  113.  114.  115.  115.  115.  116.
+## 2 &lt;NA&gt;  &lt;NA&gt;         NA      NA    NA    NA    NA    NA    NA    NA    NA    NA 
+## 3 L52F  All goods   108.    108.  109.  109.  111.  112.  113.  113.  114   116.
+## 4 L5JE  Food, alc~  109.    108.  109.  109.  109.  110.  111.  112.  113   114.
+## 5 L5JF  Processed~  105.    104.  106   106.  106.  107.  108.  109.  110.  110.
+## 6 L5JG  Non-proce~  103.    102.  103.  103.  104.  105.  107.  107.  108.  108.
+## # ... with 4 more variables: Apr &lt;dbl&gt;, May &lt;dbl&gt;, Jun &lt;dbl&gt;, Jul...16 &lt;dbl&gt;</code></pre>
+<pre class="r"><code>str(cpi_table13)</code></pre>
+<pre><code>## tibble [111 x 16] (S3: tbl_df/tbl/data.frame)
+##  $ ...1    : chr [1:111] &quot;L522&quot; NA &quot;L52F&quot; &quot;L5JE&quot; ...
+##  $ ...2    : chr [1:111] &quot;CPIH (overall index)&quot; NA &quot;All goods&quot; &quot;Food, alcoholic beverages &amp; tobacco&quot; ...
+##  $ ...3    : num [1:111] 112 NA 108 109 105 ...
+##  $ Jul...4 : num [1:111] 111 NA 108 108 104 ...
+##  $ Aug     : num [1:111] 112 NA 109 109 106 ...
+##  $ Sep     : num [1:111] 112 NA 109 109 106 ...
+##  $ Oct     : num [1:111] 113 NA 111 109 106 ...
+##  $ Nov     : num [1:111] 114 NA 112 110 107 ...
+##  $ Dec     : num [1:111] 115 NA 113 111 108 ...
+##  $ Jan     : num [1:111] 115 NA 113 112 109 ...
+##  $ Feb     : num [1:111] 115 NA 114 113 110 ...
+##  $ Mar     : num [1:111] 116 NA 116 114 110 ...
+##  $ Apr     : num [1:111] 119 NA 120 115 112 ...
+##  $ May     : num [1:111] 120 NA 121 116 114 ...
+##  $ Jun     : num [1:111] 120 NA 122 117 115 ...
+##  $ Jul...16: num [1:111] 121 NA 122 119 119 ...</code></pre>
+<pre class="r"><code>names(cpi_table13)</code></pre>
+<pre><code>##  [1] &quot;...1&quot;     &quot;...2&quot;     &quot;...3&quot;     &quot;Jul...4&quot;  &quot;Aug&quot;      &quot;Sep&quot;     
+##  [7] &quot;Oct&quot;      &quot;Nov&quot;      &quot;Dec&quot;      &quot;Jan&quot;      &quot;Feb&quot;      &quot;Mar&quot;     
+## [13] &quot;Apr&quot;      &quot;May&quot;      &quot;Jun&quot;      &quot;Jul...16&quot;</code></pre>
 </div>
 </div>
-<div id="section-1" class="section level3 unnumbered">
-<h3 class="unnumbered"></h3>
-<pre class="r"><code>cpi_table13 &lt;- readxl::read_excel(cpi_excel, sheet = &quot;Table 13&quot;)
-cpi_table15 &lt;- readxl::read_excel(cpi_excel, sheet = &quot;Table 15&quot;)</code></pre>
-<p>We have identified we need “Table 13” and “Table 15” which we would
-like to print into a new excel file with two sheets</p>
-<pre class="r"><code>dataset_names &lt;- list(&#39;Sheet1&#39; = cpi_table13, &#39;Sheet2&#39; = cpi_table15)
-openxlsx::write.xlsx(dataset_names, &#39;./Data/CPI_refTables.xlsx&#39;)</code></pre>
+<div id="dealing-with-messy-excel-data-2" class="section level1 tabset" number="3">
+<h1 class="tabset"><span class="header-section-number">3</span> Dealing
+with “messy” Excel data (2)</h1>
+<p>Sometimes, “formatted” Excel sheets go so far as laying out multiple
+separate tables in a single sheet. Have a look, for example, at sheet
+18a, 18b.</p>
+<div id="exercise-3" class="section level2 unnumbered">
+<h2 class="unnumbered">Exercise 3</h2>
+<p>Read in each of the tables listed on Sheet 18, but without using the
+“skip=” argument in <code>read_excel</code>. Print out some summaries
+for each table to make sure you have captured to correct parts for
+each.</p>
+</div>
+<div id="hint-2" class="section level2 unnumbered">
+<h2 class="unnumbered">Hint</h2>
+<p>Have another look at the arguments list for <code>read_excel</code>.
+What other argument could be useful in controlling which parts of a
+spreadsheet to read?</p>
+</div>
+<div id="example-answer-2" class="section level2 unnumbered">
+<h2 class="unnumbered">Example answer</h2>
+<p>The “range” argument in <code>read_excel()</code> can be used to
+specify what particular spreadsheet “range” to read, using the usual
+Excel syntax to do this. For example, “A2:B4” would refer to the block
+of cells defined by columns A and B, and rows 2 and 4.</p>
+<pre class="r"><code>cpi_table18a &lt;- readxl::read_excel(cpi_excel, sheet = &quot;18a, 18b&quot;, range = &quot;B6:O24&quot;)</code></pre>
+<pre><code>## New names:
+## * `` -&gt; `...1`</code></pre>
+<pre class="r"><code>cpi_table18b &lt;- readxl::read_excel(cpi_excel, sheet = &quot;18a, 18b&quot;, range = &quot;B30:O47&quot;)</code></pre>
+<pre><code>## New names:
+## * `` -&gt; `...1`</code></pre>
+<pre class="r"><code>head(cpi_table18a)</code></pre>
+<pre><code>## # A tibble: 6 x 14
+##   ...1     average   Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct
+##   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 2015=100    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA  
+## 2 2005        80    78.9  79.1  79.4  79.6  79.9  80    80    80.3  80.4  80.6
+## 3 2006        82    80.6  80.9  81    81.4  81.8  82.1  82.1  82.4  82.6  82.7
+## 4 2007        84.2  82.8  83.1  83.4  83.9  84.2  84.5  84.1  84.4  84.4  84.8
+## 5 2008        87.5  85.3  85.9  86.2  86.7  87.2  87.7  87.8  88.3  88.7  88.7
+## 6 2009        90.1  88.8  89.5  89.6  89.7  90.1  90.2  90.2  90.6  90.4  90.5
+## # ... with 2 more variables: Nov &lt;dbl&gt;, Dec &lt;dbl&gt;</code></pre>
+<pre class="r"><code>head(cpi_table18b)</code></pre>
+<pre><code>## # A tibble: 6 x 14
+##    ...1 change   Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov
+##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1    NA   NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA    NA  
+## 2  2006    2.5   2.2   2.3   2.1   2.3   2.4   2.7   2.6   2.6   2.7   2.7   3  
+## 3  2007    2.7   2.7   2.7   2.9   3     3     2.9   2.5   2.4   2.2   2.5   2.6
+## 4  2008    4     3     3.3   3.3   3.4   3.5   3.8   4.3   4.6   5.1   4.6   4.1
+## 5  2009    2.9   4.1   4.2   3.9   3.5   3.3   2.9   2.8   2.5   1.9   2.1   2.3
+## 6  2010    1.1   1.2   0.7   1     1.2   1     1     0.8   1     1.1   1.2   1.3
+## # ... with 1 more variable: Dec &lt;dbl&gt;</code></pre>
+<pre class="r"><code>str(cpi_table18a)</code></pre>
+<pre><code>## tibble [18 x 14] (S3: tbl_df/tbl/data.frame)
+##  $ ...1   : chr [1:18] &quot;2015=100&quot; &quot;2005&quot; &quot;2006&quot; &quot;2007&quot; ...
+##  $ average: num [1:18] NA 80 82 84.2 87.5 90.1 91.1 93.5 95.9 98.2 ...
+##  $ Jan    : num [1:18] NA 78.9 80.6 82.8 85.3 88.8 89.8 91.7 94.7 97 ...
+##  $ Feb    : num [1:18] NA 79.1 80.9 83.1 85.9 89.5 90.1 92.3 95.2 97.6 ...
+##  $ Mar    : num [1:18] NA 79.4 81 83.4 86.2 89.6 90.5 92.5 95.4 97.9 ...
+##  $ Apr    : num [1:18] NA 79.6 81.4 83.9 86.7 89.7 90.8 93.2 95.7 98 ...
+##  $ May    : num [1:18] NA 79.9 81.8 84.2 87.2 90.1 91 93.4 95.7 98.2 ...
+##  $ Jun    : num [1:18] NA 80 82.1 84.5 87.7 90.2 91.1 93.3 95.4 98 ...
+##  $ Jul    : num [1:18] NA 80 82.1 84.1 87.8 90.2 91 93.4 95.6 98.1 ...
+##  $ Aug    : num [1:18] NA 80.3 82.4 84.4 88.3 90.6 91.4 93.9 96 98.5 ...
+##  $ Sep    : num [1:18] NA 80.4 82.6 84.4 88.7 90.4 91.4 94.4 96.3 98.7 ...
+##  $ Oct    : num [1:18] NA 80.6 82.7 84.8 88.7 90.5 91.6 94.5 96.8 98.8 ...
+##  $ Nov    : num [1:18] NA 80.6 83 85.2 88.7 90.7 91.8 94.6 96.9 98.9 ...
+##  $ Dec    : num [1:18] NA 80.9 83.3 85.7 89.3 91.1 92.6 95.1 97.4 99.3 ...</code></pre>
+<pre class="r"><code>str(cpi_table18b)</code></pre>
+<pre><code>## tibble [17 x 14] (S3: tbl_df/tbl/data.frame)
+##  $ ...1  : num [1:17] NA 2006 2007 2008 2009 ...
+##  $ change: num [1:17] NA 2.5 2.7 4 2.9 1.1 2.6 2.6 2.4 1.5 ...
+##  $ Jan   : num [1:17] NA 2.2 2.7 3 4.1 1.2 2 3.3 2.5 1.8 ...
+##  $ Feb   : num [1:17] NA 2.3 2.7 3.3 4.2 0.7 2.4 3.1 2.6 1.7 ...
+##  $ Mar   : num [1:17] NA 2.1 2.9 3.3 3.9 1 2.2 3.1 2.6 1.6 ...
+##  $ Apr   : num [1:17] NA 2.3 3 3.4 3.5 1.2 2.6 2.7 2.3 1.8 ...
+##  $ May   : num [1:17] NA 2.4 3 3.5 3.3 1 2.6 2.5 2.6 1.5 ...
+##  $ Jun   : num [1:17] NA 2.7 2.9 3.8 2.9 1 2.5 2.3 2.7 1.8 ...
+##  $ Jul   : num [1:17] NA 2.6 2.5 4.3 2.8 0.8 2.6 2.4 2.6 1.6 ...
+##  $ Aug   : num [1:17] NA 2.6 2.4 4.6 2.5 1 2.7 2.3 2.6 1.5 ...
+##  $ Sep   : num [1:17] NA 2.7 2.2 5.1 1.9 1.1 3.3 2 2.5 1.3 ...
+##  $ Oct   : num [1:17] NA 2.7 2.5 4.6 2.1 1.2 3.2 2.4 2.1 1.4 ...
+##  $ Nov   : num [1:17] NA 3 2.6 4.1 2.3 1.3 3 2.5 2 1.1 ...
+##  $ Dec   : num [1:17] NA 3.1 2.9 4.2 2 1.7 2.6 2.4 2 0.7 ...</code></pre>
+</div>
+</div>
+<div id="reconstructing-column-headings-from-specific-rows" class="section level1 tabset" number="4">
+<h1 class="tabset"><span class="header-section-number">4</span>
+Reconstructing column headings from specific rows</h1>
+<p>As noted, in reading the Table 13 above, we skipped one of the rows
+that contained column headers. Essentially the row we skipped has the
+year number for the given month each column refers to. Ideally we would
+like to include these in our column names in R. Now that we know how to
+read in specific sheet ranges, we can apply this knowledge to address
+this.</p>
+<div id="exercise-4" class="section level2 unnumbered">
+<h2 class="unnumbered">Exercise 4</h2>
+<ol style="list-style-type: decimal">
+<li>Read the <em>two</em> table column headers in Table 13 into a
+separate R object. Use one of the <code>read_excel()</code> arguments to
+avoid interpreting any of the imported data as dataframe column
+names.</li>
+<li>Use <code>paste()</code> to combine the two rows (one with years,
+one with months) in the resulting dataframe (or tibble) into a single
+vector with “Month Year”.</li>
+<li>Replace the column names in Table 13 with the new vector of “Month
+Year” values; noting that you will have to manually add the names of the
+first two columns (e.g. “code” and “category”).</li>
+</ol>
+</div>
+<div id="hint-3" class="section level2 unnumbered">
+<h2 class="unnumbered">Hint</h2>
+</div>
+<div id="example-answer-3" class="section level2 unnumbered">
+<h2 class="unnumbered">Example answer</h2>
+<p>First, we can use the Excel range argument to specify which part of
+the Table 13 sheet contains the combined column name rows. Second, we
+can set the “col_names” argument to FALSE, to avoid the default
+behaviour where the first row of a data range is interpreted as
+containing column names. As a result of the latter, we get a dataframe
+of 2 rows and 14 columns. The first row lists year (the first part of
+the column name proper), and the second contains the month (the second
+part of the supposed column name). We print the dataframe to be sure we
+have achieved what we wanted:</p>
+<pre class="r"><code>cpi_table13_headers &lt;- readxl::read_excel(cpi_excel, 
+                                          sheet = &quot;Table 13&quot;, 
+                                          range = &quot;D6:Q7&quot;,
+                                          col_names = FALSE,
+                                          )</code></pre>
+<pre><code>## New names:
+## * `` -&gt; `...1`
+## * `` -&gt; `...2`
+## * `` -&gt; `...3`
+## * `` -&gt; `...4`
+## * `` -&gt; `...5`
+## * `` -&gt; `...6`
+## * `` -&gt; `...7`
+## * `` -&gt; `...8`
+## * `` -&gt; `...9`
+## * `` -&gt; `...10`
+## * `` -&gt; `...11`
+## * `` -&gt; `...12`
+## * `` -&gt; `...13`
+## * `` -&gt; `...14`</code></pre>
+<p>We can now extract the two rows of the dataframe as separate vectors,
+just to make our lives easier. We then combine the value of each of
+these vectors into a single string of 14 using the <code>paste()</code>
+function. <code>paste()</code> takes two character strings (or vectors
+of the same length) and pastes these together into a single character
+string or vector of strings. Note that in this case we want to make
+something reading “Month Year”, so we paste them together in that order.
+<code>paste()</code> is a very useful function for string operations;
+note that by default, it inserts a space between the two character
+strings. Again, we print the result so we can see what we’ve done:</p>
+<pre class="r"><code>col_months &lt;- cpi_table13_headers[2,]
+col_years &lt;- cpi_table13_headers[1,]
+new_col_names &lt;- paste(col_months, col_years)
+new_col_names</code></pre>
+<pre><code>##  [1] &quot;NA 2021&quot;  &quot;Jul 2021&quot; &quot;Aug 2021&quot; &quot;Sep 2021&quot; &quot;Oct 2021&quot; &quot;Nov 2021&quot;
+##  [7] &quot;Dec 2021&quot; &quot;Jan 2022&quot; &quot;Feb 2022&quot; &quot;Mar 2022&quot; &quot;Apr 2022&quot; &quot;May 2022&quot;
+## [13] &quot;Jun 2022&quot; &quot;Jul 2022&quot;</code></pre>
+<p>Finally, we note that we need to add column names for the first two
+columns in Table 3. We can just add these two strings to the front/top
+of the column name vector we just made (<code>new_col_names</code>),
+using the <code>c()</code> function. We can now simply replace the
+existing column names <code>names(cpi_table13)</code> with the values of
+<code>new_col_names</code>. We can check the top of the table to see the
+result:</p>
+<pre class="r"><code>new_col_names &lt;- c(&quot;code&quot;,&quot;category&quot;,new_col_names)
+names(cpi_table13) &lt;- new_col_names
+head(cpi_table13)</code></pre>
+<pre><code>## # A tibble: 6 x 16
+##   code  category           `NA 2021` `Jul 2021` `Aug 2021` `Sep 2021` `Oct 2021`
+##   &lt;chr&gt; &lt;chr&gt;                  &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+## 1 L522  CPIH (overall ind~      112.       111.       112.       112.       113.
+## 2 &lt;NA&gt;  &lt;NA&gt;                     NA         NA         NA         NA         NA 
+## 3 L52F  All goods               108.       108.       109.       109.       111.
+## 4 L5JE  Food, alcoholic b~      109.       108.       109.       109.       109.
+## 5 L5JF  Processed food &amp; ~      105.       104.       106        106.       106.
+## 6 L5JG  Non-processed food      103.       102.       103.       103.       104.
+## # ... with 9 more variables: `Nov 2021` &lt;dbl&gt;, `Dec 2021` &lt;dbl&gt;,
+## #   `Jan 2022` &lt;dbl&gt;, `Feb 2022` &lt;dbl&gt;, `Mar 2022` &lt;dbl&gt;, `Apr 2022` &lt;dbl&gt;,
+## #   `May 2022` &lt;dbl&gt;, `Jun 2022` &lt;dbl&gt;, `Jul 2022` &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div id="writing-a-new-excel-file" class="section level1 tabset" number="5">
+<h1 class="tabset"><span class="header-section-number">5</span> Writing
+a new excel file</h1>
+<p>Unfortunately, the <a href="https://readxl.tidyverse.org/">readxl</a>
+package we have used so far does not have functionality to
+<em>write</em> Excel files. We can however do this using either the <a href="https://cran.r-project.org/web/packages/writexl/index.html">writexl</a>
+package (which can write in both <code>.xls</code> and
+<code>.xlsx</code> format) or the <a href="https://cran.r-project.org/web/packages/openxlsx/">openxlsx</a>
+package. We here use the latter, and write to <code>.xlsx</code> format
+(as this is a newer file extension version).</p>
+<div id="exercise-5" class="section level2 unnumbered">
+<h2 class="unnumbered">Exercise 5</h2>
+<ol style="list-style-type: decimal">
+<li>Save your new Table 13 as a separate <code>.xlsx</code> file. If you
+can, open it in Excel to check your work.</li>
+<li>Save tables 18a and 18b as two sheets in another <code>.xlxs</code>
+file.</li>
+</ol>
+</div>
+<div id="hint-4" class="section level2 unnumbered">
+<h2 class="unnumbered">Hint</h2>
+<ol style="list-style-type: decimal">
+<li>Remember to install and load package <a href="https://cran.r-project.org/web/packages/openxlsx/">openxlsx</a> if
+you haven’t already done so. You’ll need to use function
+<code>write.xlsx()</code>. 2. Have a look at the documentation for
+<code>write.xlsx()</code> to find out how you can write specific
+dataframes (or tibbles) to specific sheets. Basically, instead of giving
+<code>write.xlsx()</code> a single table to write, you can give it a
+named list of tables. See <a href="../Course_content/Chapter_2_Data_Structures.html">Section 2.4 of
+the main course</a> for more information on how to deal with lists.</li>
+</ol>
+</div>
+<div id="example-answer-4" class="section level2 unnumbered">
+<h2 class="unnumbered">Example answer</h2>
+<pre class="r"><code># Write a new excel file with two sheets
+openxlsx::write.xlsx(cpi_table13, &#39;../Data/my_table_13.xlsx&#39;)</code></pre>
+<pre class="r"><code># Write a new excel file with two sheets
+dataset_names &lt;- list(&#39;Table 18a&#39; = cpi_table18a, &#39;Table 18b&#39; = cpi_table18b)
+openxlsx::write.xlsx(dataset_names, &#39;../Data/my_tables18.xlsx&#39;)</code></pre>
 </div>
 </div>
 
@@ -1681,7 +2114,7 @@ $(document).ready(function ()  {
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
     };
-    options.showAndHide = true;
+    options.showAndHide = false;
     options.smoothScroll = true;
 
     // tocify

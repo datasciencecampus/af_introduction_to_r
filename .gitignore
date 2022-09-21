@@ -10,3 +10,6 @@
 # Python cache and setup files
 .ipynb_checkpoints
 
+# NSA 2022 specific data files
+Data/CPI*
+Data/my_*
