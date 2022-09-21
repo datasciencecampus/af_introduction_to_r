@@ -1665,8 +1665,8 @@ or view:</p>
 <p>One or more of your explorations of the loaded data above may have
 shown you that the names of the first two columns of the
 <code>CPI indices example.xlsx</code> file are capitalised and contain
-dots. It is good practice to decapitalise names and replace characters
-like dots (or spaces) with underscores. While you can do this manually,
+spaces. It is good practice to decapitalise names and replace characters
+like spaces (or dots) with underscores. While you can do this manually,
 the function <code>clean_names()</code> in the <a href="https://cran.r-project.org/web/packages/janitor/index.html">janitor</a>
 package provides a convenient way to do this in one go.</p>
 <pre class="r"><code>names(cpi_indices)</code></pre>
@@ -1680,7 +1680,7 @@ names(cpi_indices)</code></pre>
 ##  [6] &quot;i2011&quot;      &quot;i2012&quot;      &quot;i2013&quot;      &quot;i2014&quot;      &quot;i2015&quot;     
 ## [11] &quot;i2016&quot;      &quot;i2017&quot;      &quot;i2018&quot;      &quot;i2019&quot;      &quot;i2020&quot;     
 ## [16] &quot;i2021&quot;</code></pre>
-<p>Note that in addition to replacing the dots in the column name with
+<p>Note that in addition to replacing the spaces in the column name with
 an underscore, <code>janitor::clean_names()</code> has also changed
 uppercases to lower case. We can do the same for the other dataset,
 <code>Data\CPI codes and names.xlsx</code>. For the sake of argument, we

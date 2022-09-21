@@ -99,9 +99,9 @@ glimpse(cpi_indices)
 ### Cleaning up the data {.unnumbered}
 One or more of your explorations of the loaded data above may have shown you
 that the names of the first two columns of the `CPI indices example.xlsx` file
-are capitalised and contain dots. It is good practice to decapitalise names and
-replace characters like dots (or spaces) with underscores. While you can do this
-manually, the function `clean_names()` in the
+are capitalised and contain spaces. It is good practice to decapitalise names
+and replace characters like spaces (or dots) with underscores. While you can do
+this manually, the function `clean_names()` in the
 [janitor](https://cran.r-project.org/web/packages/janitor/index.html) package
 provides a convenient way to do this in one go.
 ```{r exercise 1.3}
@@ -109,7 +109,7 @@ names(cpi_indices)
 cpi_indices <- janitor::clean_names(cpi_indices)
 names(cpi_indices)
 ```
-Note that in addition to replacing the dots in the column name with an
+Note that in addition to replacing the spaces in the column name with an
 underscore, `janitor::clean_names()` has also changed uppercases to lower case.
 We can do the same for the other dataset, `Data\CPI codes and names.xlsx`. For
 the sake of argument, we here show how to do similar column name changes
