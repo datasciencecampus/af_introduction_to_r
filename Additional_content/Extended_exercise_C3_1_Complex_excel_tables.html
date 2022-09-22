@@ -1709,10 +1709,9 @@ would get you quite some way.</li>
 <div id="example-answer-1" class="section level2 unnumbered">
 <h2 class="unnumbered">Example answer</h2>
 <ol style="list-style-type: decimal">
-<li>These are some examples of what you might want to use to explore the
-data you loaded for one of the sheets. We suggest you repeat the process
-yourself for the other.</li>
-</ol>
+<li><p>These are some examples of what you might want to use to explore
+the data you loaded for one of the sheets. We suggest you repeat the
+process yourself for the other.</p>
 <pre class="r"><code># Note the blank lines at the top of the table. The actual data table does not
 # &quot;start&quot; until row 6, which contains the actual column names.
 head(cpi_table13)</code></pre>
@@ -1773,9 +1772,8 @@ str(cpi_table13)</code></pre>
 ##  $ ...14           : chr [1:117] NA NA NA NA ...
 ##  $ ...15           : chr [1:117] NA NA NA NA ...
 ##  $ ...16           : chr [1:117] NA NA NA NA ...
-##  $ ...17           : chr [1:117] NA NA NA NA ...</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>You can use the “skip=” argument in <code>read_excel()</code> to
+##  $ ...17           : chr [1:117] NA NA NA NA ...</code></pre></li>
+<li><p>You can use the “skip=” argument in <code>read_excel()</code> to
 skip any rows you don’t need. Looking at the raw Excel file, the first 6
 lines of Table 13 are either blank or contain descriptions/links. We
 also note that the Table column names are awkwardly distributed across
@@ -1786,8 +1784,7 @@ simplicity here. We’ll cover additional ways to handle this at a later
 on in this exercise.<br />
 By printing the resulting table to screen (last line below), you can see
 that the top lines of the loaded data table now actually has the correct
-numbers/values.</li>
-</ol>
+numbers/values.</p>
 <pre class="r"><code>cpi_table13 &lt;- readxl::read_excel(cpi_excel, sheet = &quot;Table 13&quot;, skip = 6)</code></pre>
 <pre><code>## New names:
 ## * `` -&gt; `...1`
@@ -1810,15 +1807,13 @@ numbers/values.</li>
 ##  9 L524  Alcoholi~ 120.    119.  120.  120.   120.  123.  122.  123.  123.  125.
 ## 10 &lt;NA&gt;  &lt;NA&gt;       NA      NA    NA    NA     NA    NA    NA    NA    NA    NA 
 ## # ... with 101 more rows, and 4 more variables: Apr &lt;dbl&gt;, May &lt;dbl&gt;,
-## #   Jun &lt;dbl&gt;, Jul...16 &lt;dbl&gt;</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>As above. When we’ve read in the data, we can use
+## #   Jun &lt;dbl&gt;, Jul...16 &lt;dbl&gt;</code></pre></li>
+<li><p>As above. When we’ve read in the data, we can use
 <code>names()</code> and <code>str()</code> again to check that this
 extra approach has certainly helped somewhat - note that the core value
 columns (for each year), have actually been interpreted as numeric
 values. We still have some column names that we need to clean up, but we
-will cover how to do this in a later exercise.</li>
-</ol>
+will cover how to do this in a later exercise.</p>
 <pre class="r"><code>head(cpi_table13)</code></pre>
 <pre><code>## # A tibble: 6 x 16
 ##   ...1  ...2        ...3 Jul...4   Aug   Sep   Oct   Nov   Dec   Jan   Feb   Mar
@@ -1851,7 +1846,8 @@ will cover how to do this in a later exercise.</li>
 <pre class="r"><code>names(cpi_table13)</code></pre>
 <pre><code>##  [1] &quot;...1&quot;     &quot;...2&quot;     &quot;...3&quot;     &quot;Jul...4&quot;  &quot;Aug&quot;      &quot;Sep&quot;     
 ##  [7] &quot;Oct&quot;      &quot;Nov&quot;      &quot;Dec&quot;      &quot;Jan&quot;      &quot;Feb&quot;      &quot;Mar&quot;     
-## [13] &quot;Apr&quot;      &quot;May&quot;      &quot;Jun&quot;      &quot;Jul...16&quot;</code></pre>
+## [13] &quot;Apr&quot;      &quot;May&quot;      &quot;Jun&quot;      &quot;Jul...16&quot;</code></pre></li>
+</ol>
 </div>
 </div>
 <div id="dealing-with-messy-excel-data-2" class="section level1 tabset" number="3">
@@ -1967,6 +1963,19 @@ first two columns (e.g. “code” and “category”).</li>
 </div>
 <div id="hint-3" class="section level2 unnumbered">
 <h2 class="unnumbered">Hint</h2>
+<ol style="list-style-type: decimal">
+<li>You can use the “range” argument in <code>read_excel()</code> as
+shown above to specify which specific rows and columns to read. Also
+consider using the further “col_names” argument to avoid R setting
+explicit column headers (you just need this data to process into new
+headers, anyway).</li>
+<li>Have a look at the <code>paste()</code> help page and specifically
+the examples used.</li>
+<li>Remember you simply give a table new column names by assigning
+<code>names(table)</code> (or <code>col_names(table)</code>; those
+functions are equivalent) a new vector of values. Note that that new
+vector will need to be the same length as the number of columns.</li>
+</ol>
 </div>
 <div id="example-answer-3" class="section level2 unnumbered">
 <h2 class="unnumbered">Example answer</h2>

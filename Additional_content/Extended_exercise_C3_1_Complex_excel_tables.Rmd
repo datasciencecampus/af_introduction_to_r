@@ -149,7 +149,7 @@ one to a non-default value would get you quite some way.
 1. These are some examples of what you might want to use to explore the data you
 loaded for one of the sheets. We suggest you repeat the process yourself for the
 other.
-```{r exercise2_1}
+    ```{r exercise2_1}
 # Note the blank lines at the top of the table. The actual data table does not
 # "start" until row 6, which contains the actual column names.
 head(cpi_table13)
@@ -164,7 +164,7 @@ cpi_table13[1:10,4]
 # Using str() allows you to see which columns have been interpreted as what kind
 # of value. Note all columns have been interpreted as character strings (chr):
 str(cpi_table13)
-```
+    ```
   
 2. You can use the "skip=" argument in `read_excel()` to skip any rows you don't
 need. Looking at the raw Excel file, the first 6 lines of Table 13 are either
@@ -178,10 +178,10 @@ By printing the resulting table to screen (last line below), you
 can see that the top lines of the loaded data table now actually  has the
 correct numbers/values.
 
-```{r exercise2_2}
+    ```{r exercise2_2}
 cpi_table13 <- readxl::read_excel(cpi_excel, sheet = "Table 13", skip = 6)
 cpi_table13 
-```
+    ```
 
 
 3. As above. When we've read in the data, we can use `names()` and `str()` again
@@ -189,11 +189,11 @@ to check that this extra approach has certainly helped somewhat - note that the
 core value columns (for each year), have actually been interpreted as numeric
 values. We still have some column names that we need to clean up, but we will
 cover how to do this in a later exercise.
-```{r exercise2_3}
+    ```{r exercise2_3}
 head(cpi_table13)
 str(cpi_table13)
 names(cpi_table13)
-```
+    ```
 
 # Dealing with "messy" Excel data (2) {.tabset}
 
@@ -249,6 +249,16 @@ values; noting that you will have to manually add the names of the first two
 columns (e.g. "code" and "category").
 
 ## Hint {.unnumbered}
+
+1. You can use the "range" argument in `read_excel()` as shown above to specify
+which specific rows and columns to read. Also consider using the further
+"col_names" argument to avoid R setting explicit column headers (you just need
+this data to process into new headers, anyway).
+2. Have a look at the `paste()` help page and specifically the examples used.
+3. Remember you simply give a table new column names by assigning `names(table)`
+(or `col_names(table)`; those functions are equivalent) a new vector of values.
+Note that that new vector will need to be the same length as the number of
+columns.
 
 ## Example answer {.unnumbered}
 
