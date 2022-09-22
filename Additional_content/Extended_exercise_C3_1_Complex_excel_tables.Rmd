@@ -1,0 +1,367 @@
+---
+title: "Extended exercise 3.1: Dealing with complex excel table structures"
+output:
+  html_document: 
+    theme: united
+    highlight: textmate
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: no
+    number_sections: true
+---
+
+```{r, echo=FALSE, eval=FALSE}
+htmltools::img(src = knitr::image_uri("../Images/LATree.png"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readxl)
+library(openxlsx)
+library(httr)
+```
+***
+
+It is likely that some data will be presented in excel sheets (`.xls` or
+`.xlsx`) rather than in the `.csv` format. Often, such "presentable Excel files"
+are used as appendices to official statistics, or even as part of analytical
+pipelines (import or export data). These will be tables that are probably
+focused on being "human legible", and rightly or wrongly are often laid out and
+presented in a way that moves away from simple tables of numbers with a single
+column header. 
+
+For example, they can have the added complexity of having multiple
+sheets, contain multiple footnotes or header lines, blank rows or columns, etc.
+Because of this added formatting, they are often not the easiest to work with
+using R. While it is entirely possible to convert Excel files to (for example)
+simpler `.csv` files before loading them into R, this is bad practice as this
+process is error-prone and leads to numerous versions of the same file.
+
+As introduced in [Section 3.6 of the main
+course](../Course_content/Chapter_3_Importing_and_Exporting_Data.html), there
+is a range of options in R to load Excel data files directly. This exercise
+builds on the material and techniques presented earlier. We will explore how to
+load a file from a url, read different sheets, write new excel files, and
+handle more sophisticated formatting.
+
+We will provide example answers but it is encouraged you come up with your own.
+
+To work through the exercise, please create a new R script in a suitable place
+in your working environment, and save it with a meaningful name.
+
+# Loading a file from the web {.unnumbered}
+We will first access the data. We have previously shown how to use the function
+`read_excel()` from package [readxl](https://readxl.tidyverse.org/) to load data
+from a local file. In this case we will get the Consumer Price Index data
+from the Office for National Statistics website. We will use the package `httr`
+see the documentation [here](https://httr.r-lib.org/).
+
+```{r load_from_www, warning=FALSE, message=FALSE, eval=FALSE}
+library(httr) # For loading the data
+cpi_excel_url <- 'https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceinflation/current/consumerpriceinflationdetailedreferencetables.xls'
+
+get_msg <- httr::GET(cpi_excel_url, write_disk(cpi_excel <- tempfile(fileext = ".xls")))
+```
+
+This code will create a temporary file on your machine for the data. This is
+helpful when you are not sure if you want to keep the whole file indefinitely as
+temporary files will be deleted when the computer session ends.
+
+__If you have any trouble getting the above code to work, please just go ahead
+and copy the URL from the above code in your browser, save the file somewhere
+accessible on your computer, and copy the full path to the file to your
+clipboard. Then assign the variable `cpi_excel` the text path to the file you
+saved, for example:__
+```{r load_from_disk}
+cpi_excel <- "D:\\consumerpriceinflationdetailedreferencetables.xls"
+```
+You should then be able to continue with the examples/code below.
+
+> Throughout this exercise, we strongly encourage you to open and explore the
+Excel data file you have downloaded, either in Excel or another appropriate
+spreadsheet app. This will help you understand the structure of the data before
+you load and work with it in R.
+
+# Listing sheet names and reading different sheets {.tabset}
+Now we have the data  we want to explore what sheets this excel file contains. 
+
+## Exercise 1 {.unnumbered}
+
+1. Try looking at the sheet names for this file.
+2. Load sheets named "Table 13" and "Table 15" into separate objects.
+
+## Hint {.unnumbered}
+
+1. Look at the [readxl
+workflows](https://readxl.tidyverse.org/articles/readxl-workflows.html) page
+2. Try `?read_excel` to remind yourself of the `read_excel` function arguments
+that allow you to specify which sheet to read.
+
+## Example answer {.unnumbered}
+
+```{r exercise1_1}
+# `excel_sheets()` will tell us what the names of the sheets are
+readxl::excel_sheets(cpi_excel)
+```
+```{r exercise1_2}
+# Here we use the "sheet=" argument to read specific sheets:
+cpi_table13 <- readxl::read_excel(cpi_excel, sheet = "Table 13")
+cpi_table15 <- readxl::read_excel(cpi_excel, sheet = "Table 15")
+```
+
+# {-}
+
+You will have seen that the output you get in the console says "New names:" a 
+number of times. This is because the tables within each worksheet don't have 
+recognisable headers.
+
+# Dealing with "messy" Excel data (1) {.tabset}
+
+Pretty much all of the sheets in the Excel file in question have formatting
+"issues" that need to be taken into account when reading data from it into R.
+
+## Exercise 2 {.unnumbered}
+
+1. Do some exploration/summaries of the tables you just loaded in, and try to
+list issues that you may need to deal with so it can be used as (well
+structured) dataframe or tibble in R.
+2. Re-load each of the tables as above, but using one or more of the arguments
+available in `read_excel()` to avoid some of the issues.
+3. Repeat the exploration/summary steps you used earlier to demonstrate you have
+addressed the issues you identified.
+
+## Hint {.unnumbered}
+
+1. Looking at the Excel file itself, where does the actual data start? Are
+column names in the first row? Where would R expect them to be? Consider using
+functions like `head()`, `str()` or `names()`.
+2. Have a look at the arguments available for `read_excel()`. Setting a single
+one to a non-default value would get you quite some way.
+3. How have the column names changed? What are the column value types (think
+`str()`?)
+
+## Example answer {.unnumbered}
+
+1. These are some examples of what you might want to use to explore the data you
+loaded for one of the sheets. We suggest you repeat the process yourself for the
+other.
+    ```{r exercise2_1}
+# Note the blank lines at the top of the table. The actual data table does not
+# "start" until row 6, which contains the actual column names.
+head(cpi_table13)
+# Note that column names in the R object have just been inferred, and are not
+# very useful:
+names(cpi_table13)
+# You can have a look at individual columns to see that while these really
+# should all be numbers, because of the layout of the Excel file, some contain
+# words, which means the data gets interpreted as text. The following prints out
+# the first ten (1:10) values of column 4:
+cpi_table13[1:10,4]
+# Using str() allows you to see which columns have been interpreted as what kind
+# of value. Note all columns have been interpreted as character strings (chr):
+str(cpi_table13)
+    ```
+  
+2. You can use the "skip=" argument in `read_excel()` to skip any rows you don't
+need. Looking at the raw Excel file, the first 6 lines of Table 13 are either
+blank or contain descriptions/links. We also note that the Table column names
+are awkwardly distributed across two rows. We here just skip line 6, which is
+one of the column name rows. This is not ideal (we lose some information as this
+data is spread across two calendar years), but we just do this for the sake of
+simplicity here. We'll cover additional ways to handle this at a later on in
+this exercise.  
+By printing the resulting table to screen (last line below), you
+can see that the top lines of the loaded data table now actually  has the
+correct numbers/values.
+
+    ```{r exercise2_2}
+cpi_table13 <- readxl::read_excel(cpi_excel, sheet = "Table 13", skip = 6)
+cpi_table13 
+    ```
+
+
+3. As above. When we've read in the data, we can use `names()` and `str()` again
+to check that this extra approach has certainly helped somewhat - note that the
+core value columns (for each year), have actually been interpreted as numeric
+values. We still have some column names that we need to clean up, but we will
+cover how to do this in a later exercise.
+    ```{r exercise2_3}
+head(cpi_table13)
+str(cpi_table13)
+names(cpi_table13)
+    ```
+
+# Dealing with "messy" Excel data (2) {.tabset}
+
+Sometimes, "formatted" Excel sheets go so far as laying out multiple separate
+tables in a single sheet. Have a look, for example, at sheet 18a, 18b.
+
+## Exercise 3 {.unnumbered}
+
+Read in each of the tables listed on Sheet 18, but without using the "skip="
+argument in `read_excel`.
+Print out some summaries for each table to make sure you have captured to
+correct parts for each.
+
+## Hint {.unnumbered}
+
+Have another look at the arguments list for `read_excel`. What other argument
+could be useful in controlling which parts of a spreadsheet to read?
+
+## Example answer {.unnumbered}
+
+The "range" argument in `read_excel()` can be used to specify what particular
+spreadsheet "range" to read, using the usual Excel syntax to do this. For
+example, "A2:B4" would refer to the block of cells defined by columns A and B,
+and rows 2 and 4.
+
+```{r exercise 3_1}
+cpi_table18a <- readxl::read_excel(cpi_excel, sheet = "18a, 18b", range = "B6:O24")
+cpi_table18b <- readxl::read_excel(cpi_excel, sheet = "18a, 18b", range = "B30:O47")
+head(cpi_table18a)
+head(cpi_table18b)
+str(cpi_table18a)
+str(cpi_table18b)
+
+```
+
+# Reconstructing column headings from specific rows {.tabset}
+
+As noted, in reading the Table 13 above, we skipped one of the rows that
+contained column headers. Essentially the row we skipped has the year number for
+the given month each column refers to. Ideally we would like to include these in
+our column names in R. Now that we know how to read in specific sheet ranges, we
+can apply this knowledge to address this.
+
+## Exercise 4 {.unnumbered}
+
+1. Read the _two_ table column headers in Table 13 into a separate R object. Use
+one of the `read_excel()` arguments to avoid interpreting any of the imported
+data as dataframe column names.
+2. Use `paste()` to combine the two rows (one with years, one with months) in
+the resulting dataframe (or tibble) into a single vector with "Month Year".
+3. Replace the column names in Table 13 with the new vector of "Month Year"
+values; noting that you will have to manually add the names of the first two
+columns (e.g. "code" and "category").
+
+## Hint {.unnumbered}
+
+1. You can use the "range" argument in `read_excel()` as shown above to specify
+which specific rows and columns to read. Also consider using the further
+"col_names" argument to avoid R setting explicit column headers (you just need
+this data to process into new headers, anyway).
+2. Have a look at the `paste()` help page and specifically the examples used.
+3. Remember you simply give a table new column names by assigning `names(table)`
+(or `col_names(table)`; those functions are equivalent) a new vector of values.
+Note that that new vector will need to be the same length as the number of
+columns.
+
+## Example answer {.unnumbered}
+
+First, we can use the Excel range argument to specify which part of the Table 13
+sheet contains the combined column name rows. Second, we can set the "col_names"
+argument to FALSE, to avoid the default behaviour where the first row of a data
+range is interpreted as containing column names. As a result of the latter, we
+get a dataframe of 2 rows and 14 columns. The first row lists year (the first
+part of the column name proper), and the second contains the month (the second
+part of the supposed column name). We print the dataframe to be sure we have
+achieved what we wanted:
+```{r exercise4_1}
+cpi_table13_headers <- readxl::read_excel(cpi_excel, 
+                                          sheet = "Table 13", 
+                                          range = "D6:Q7",
+                                          col_names = FALSE,
+                                          )
+```
+
+It's helpful to have a look at the data you've just loaded:
+```{r exercise4_1_a}
+cpi_table13_headers
+```
+
+Note that you now have a small table with two rows; one with a series of years,
+and one with months in each of those years. It's really the combination of those
+two that should form the column headers.  
+
+We can extract the two rows of the dataframe as separate vectors, just to make
+our lives easier. In the example below we use dataframe indexing (e.g.
+`table[row, column`]) to select each individual row and store them as separate
+vectors.  
+
+We then combine the value of each of these vectors into a single string of 14
+using the `paste()` function. `paste()` takes two character strings (or vectors
+of the same length) and pastes these together into a single character string or
+vector of strings. Note that in this case we want to make something reading
+"Month Year", so we paste them together in that order. `paste()` is a very
+useful function for string operations. Note that by default, it inserts a space
+between the two character strings. To avoid having these in column names (which
+is not good practice), set the argument "sep" to "_". This uses an underscore as
+a separator between the two string values, instead of a space.  
+Again, we print the result so we can see what we've done:
+```{r exercise4_2}
+col_months <- cpi_table13_headers[2,]
+col_years <- cpi_table13_headers[1,]
+new_col_names <- paste(col_months, col_years)
+new_col_names
+```
+Finally, we note that we need to add column names for the first two columns in
+Table 3. We can just add these two strings to the front/top of the column name
+vector we just made (`new_col_names`), using the `c()` function.
+We can now simply replace the existing column names `names(cpi_table13)` with
+the values of `new_col_names`. We can check the top of the table to see the
+result:
+```{r exercise4_3}
+new_col_names <- c("code","category",new_col_names)
+names(cpi_table13) <- new_col_names
+head(cpi_table13)
+```
+
+# Writing a new excel file {.tabset}
+
+Unfortunately, the [readxl](https://readxl.tidyverse.org/) package we have used
+so far does not have functionality to _write_ Excel files. We can however do
+this using either the
+[writexl](https://cran.r-project.org/web/packages/writexl/index.html) package
+(which can write in both `.xls` and `.xlsx` format) or the
+[openxlsx](https://cran.r-project.org/web/packages/openxlsx/) package. We here
+use the latter, and write to `.xlsx` format (as this is a newer file extension
+version).
+
+## Exercise 5 {.unnumbered}
+
+1. Save your new Table 13 as a separate `.xlsx` file. If you can, open it in
+Excel to check your work.
+2. Save tables 18a and 18b as two sheets in another `.xlxs` file. 
+
+## Hint {.unnumbered}
+
+1. Remember to install and load package
+[openxlsx](https://cran.r-project.org/web/packages/openxlsx/) if you haven't
+already done so. You'll need to use function `write.xlsx()`.
+2. Have a look at
+the documentation for `write.xlsx()` to find out how you can write specific
+dataframes (or tibbles) to specific sheets. Basically, instead of giving
+`write.xlsx()` a single table to write, you can give it a named list of tables.
+See [Section 2.4 of the main
+course](../Course_content/Chapter_2_Data_Structures.html) for more information
+on how to deal with lists.
+
+## Example answer {.unnumbered}
+
+> Please note that you'll need to specify an appropriate path to store the data -
+the specific path given below may not work.
+
+```{r, eval = F}
+# Write a new excel file with two sheets
+openxlsx::write.xlsx(cpi_table13, '../Data/my_table_13.xlsx')
+```
+
+```{r, eval = F}
+# Write a new excel file with two sheets
+dataset_names <- list('Table 18a' = cpi_table18a, 'Table 18b' = cpi_table18b)
+openxlsx::write.xlsx(dataset_names, '../Data/my_tables18.xlsx')
+```

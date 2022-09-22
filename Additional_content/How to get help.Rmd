@@ -1,0 +1,148 @@
+---
+title: "Intro to R - Extra Material 1.1 - How to get help"
+output:
+  html_document: 
+    theme: united
+    highlight: textmate
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: no
+    number_sections: true
+---
+
+```{r, echo=FALSE, eval=FALSE}
+htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+In this appendix to the Introduction to R course, we provide some more detailed
+suggestions on how to find help or solve errors/bugs in your R code; it is an
+expansion of Section 5 in [Chapter
+1](../Course_content/Chapter_1_Getting_Started_with_R.html) of the main course.
+
+# Finding a solution for a specific problem
+When you start coding in any language, you feel like you need to memorise
+everything to be able to code. However, this is not how most programmers do it:
+they use Google (or other search engines) to find the a solution to the parts of
+their problem.
+
+An important thing to note: **When searching for R-related questions use use "R
+cran"[^1] instead of just "R". Using just the letter "r" is not very specific for
+obvious reasons.**
+
+[^1]: CRAN is the official online repository for R downloads and packages.
+
+## Error messages
+When using programs and functions you will encounter error messages. One
+important thing to remember is that when something breaks, the **first error
+message is the most/only important one**. This is because the first message is
+the first point at which the problem happened, all subsequent errors are likely
+to be because the first part broke.
+
+Make sure you read the error message thoroughly, it may just be caused by a
+syntax error (missing bracket, semi-colon, etc) which has a very easy fix.  
+
+When you get an error that you don't understand, google the exact error message,
+except for any parts which are machine specific (like the path in your home
+directory where the error occurred). It's important to remember error messages
+exist somewhere in a codebase, it's not just the program making conversation
+with you, so try and find them in the documentation/forums.
+
+## Forums and documentation
+### Documentation
+Documentation for functions and packages are where you can find all the
+specifications that program/function can do. Each function available in R,
+whether that is in the "base" installation or within packages you load
+externally, will have documentation included with it. You can access this in R
+through the methods described in Section 5.2 of [Chapter
+1](../Course_content/Chapter_1_Getting_Started_with_R.html).  
+
+It is important to remember that these are written to be precise and extensive
+and so can be a bit daunting when starting out. However, if you want to go
+deeper and understand all the options and arguments of a function, the
+documentation should have all the information you need.
+
+### Forums
+As highlighted in Section 5.3 of [Chapter
+1](../Course_content/Chapter_1_Getting_Started_with_R.html), online forums such
+as [StackOverflow](https://stackoverflow.com/) are a great place to find
+solutions to common problems. One of the most difficult parts of finding the
+solution to your problem is how to search for it in the first place. Finding the
+specific words that define your problem will save you a lot of looking through
+answers in forums.
+
+For example: if you searched for a "vehicle fixer" would not give you the
+specific results searching for "mechanic" would.
+
+Another key element is using Google keywords that will focus the search engine
+and help it give you more relevant results. These include:
+
+* Use a ```-``` to exclude words: if you searched ```mustang -car``` it would
+give you results that didn't include car-related information.
+* Use the keyword ```search:``` to search within a website: if you searched
+```search:stackoverflow.com R cran read csv``` will look for the search words
+specifically in stackoverflow.com.
+* Use a ```*``` to replace missing words: ```*orientated programming``` would
+allow any word to replace the * which helps when you're not sure which word to
+use.
+* Use double quotation marks ```" "``` to search for words and phrases
+specifically.
+
+These are just examples, see more
+[here](https://www.lifehack.org/articles/technology/20-tips-use-google-search-efficiently.html).
+
+### Asking in forums for help
+Your last resort should be asking online directly (such as posting in
+stackoverflow or project github repo) for help. Particularly when starting out,
+it is very likely that someone else has encountered the same problem as you in
+the past and there is a solution out there.
+
+However, if you really can't find a solution for your error/problem, make sure
+your post provides as much information about it as possible:
+
+* version of the program you are installing
+* your operating system
+* R or Python version
+* the exact error message
+
+If you give a developer the exact error message, they know exactly where the
+error occurred and much more likely to be able to help you. See this extensive
+[guide](https://stackoverflow.com/help/how-to-ask) for further information on
+how to ask questions in forums.
+
+# Finding help for a broader problem
+
+## Tutorials
+What if you don't have a specific error, maybe it's a data science task that you
+don't know how to tackle. The best thing to start with could be a tutorial like
+[this](https://swcarpentry.github.io/r-novice-inflammation/11-supp-read-write-csv/)
+one. Tutorials are useful because they are usually easy to follow and give
+example data. This is an easy way to understand how a function works and how you
+would implement it.
+
+## Break down the problem
+If you are struggling to find a relative tutorial or you're not sure exactly how
+to tackle a problem, the first thing is to break it down as much as possible. It
+might seem trivial but when you can visualise the blocks that make up a problem
+you can immediately start to see how you would do tackle individual part.
+
+For example: You are given an list and you need to return a list that only
+contains the list's even numbers. Theses are some of the questions you should be
+asking yourself:
+
+* How to identify an even number? Divide that number by 2 and see if its
+remainder is 0.
+* What will that list contain? One or more numbers
+* What are the data types of the elements in the list? Numbers
+* What is the end goal? The goal is to return a list of even numbers. If there
+are no even numbers, return an empty list.
+
+By breaking down the problem you will be able to identify individual sections
+that you are struggling with and this is essential to find the help you need to
+proceed.
