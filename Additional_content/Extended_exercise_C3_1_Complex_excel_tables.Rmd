@@ -43,9 +43,9 @@ process is error-prone and leads to numerous versions of the same file.
 
 As introduced in [Section 3.6 of the main
 course](../Course_content/Chapter_3_Importing_and_Exporting_Data.html), there
-are a range of options in R to load Excel data files directly. This exercise
+is a range of options in R to load Excel data files directly. This exercise
 builds on the material and techniques presented earlier. We will explore how to
-load a files from a url, read different sheets, write new excel files, and
+load a file from a url, read different sheets, write new excel files, and
 handle more sophisticated formatting.
 
 We will provide example answers but it is encouraged you come up with your own.
@@ -54,7 +54,7 @@ To work through the exercise, please create a new R script in a suitable place
 in your working environment, and save it with a meaningful name.
 
 # Loading a file from the web {.unnumbered}
-We will first access the data. We have previously shown how to use function
+We will first access the data. We have previously shown how to use the function
 `read_excel()` from package [readxl](https://readxl.tidyverse.org/) to load data
 from a local file. In this case we will get the Consumer Price Index data
 from the Office for National Statistics website. We will use the package `httr`
@@ -297,9 +297,11 @@ using the `paste()` function. `paste()` takes two character strings (or vectors
 of the same length) and pastes these together into a single character string or
 vector of strings. Note that in this case we want to make something reading
 "Month Year", so we paste them together in that order. `paste()` is a very
-useful function for string operations; note that by default, it inserts a space
-between the two character strings. Again, we print the result so we can see what
-we've done:
+useful function for string operations. Note that by default, it inserts a space
+between the two character strings. To avoid having these in column names (which
+is not good practice), set the argument "sep" to "_". This uses an underscore as
+a separator between the two string values, instead of a space.  
+Again, we print the result so we can see what we've done:
 ```{r exercise4_2}
 col_months <- cpi_table13_headers[2,]
 col_years <- cpi_table13_headers[1,]
@@ -339,7 +341,8 @@ Excel to check your work.
 
 1. Remember to install and load package
 [openxlsx](https://cran.r-project.org/web/packages/openxlsx/) if you haven't
-already done so. You'll need to use function `write.xlsx()`. 2. Have a look at
+already done so. You'll need to use function `write.xlsx()`.
+2. Have a look at
 the documentation for `write.xlsx()` to find out how you can write specific
 dataframes (or tibbles) to specific sheets. Basically, instead of giving
 `write.xlsx()` a single table to write, you can give it a named list of tables.

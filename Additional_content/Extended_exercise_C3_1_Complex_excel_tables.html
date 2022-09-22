@@ -1541,9 +1541,9 @@ Excel files to (for example) simpler <code>.csv</code> files before
 loading them into R, this is bad practice as this process is error-prone
 and leads to numerous versions of the same file.</p>
 <p>As introduced in <a href="../Course_content/Chapter_3_Importing_and_Exporting_Data.html">Section
-3.6 of the main course</a>, there are a range of options in R to load
+3.6 of the main course</a>, there is a range of options in R to load
 Excel data files directly. This exercise builds on the material and
-techniques presented earlier. We will explore how to load a files from a
+techniques presented earlier. We will explore how to load a file from a
 url, read different sheets, write new excel files, and handle more
 sophisticated formatting.</p>
 <p>We will provide example answers but it is encouraged you come up with
@@ -1554,7 +1554,7 @@ meaningful name.</p>
 <div id="loading-a-file-from-the-web" class="section level1 unnumbered">
 <h1 class="unnumbered">Loading a file from the web</h1>
 <p>We will first access the data. We have previously shown how to use
-function <code>read_excel()</code> from package <a href="https://readxl.tidyverse.org/">readxl</a> to load data from a
+the function <code>read_excel()</code> from package <a href="https://readxl.tidyverse.org/">readxl</a> to load data from a
 local file. In this case we will get the Consumer Price Index data from
 the Office for National Statistics website. We will use the package
 <code>httr</code> see the documentation <a href="https://httr.r-lib.org/">here</a>.</p>
@@ -2031,7 +2031,10 @@ vector of strings. Note that in this case we want to make something
 reading “Month Year”, so we paste them together in that order.
 <code>paste()</code> is a very useful function for string operations;
 note that by default, it inserts a space between the two character
-strings. Again, we print the result so we can see what we’ve done:</p>
+strings - to avoid having these in column names (which is not good
+practice), set the argument “sep” to “_“. This uses an underscore as a
+separator between the two string values, instad of a space.<br />
+Again, we print the result so we can see what we’ve done:</p>
 <pre class="r"><code>col_months &lt;- cpi_table13_headers[2,]
 col_years &lt;- cpi_table13_headers[1,]
 new_col_names &lt;- paste(col_months, col_years)
@@ -2087,11 +2090,11 @@ file.</li>
 <ol style="list-style-type: decimal">
 <li>Remember to install and load package <a href="https://cran.r-project.org/web/packages/openxlsx/">openxlsx</a> if
 you haven’t already done so. You’ll need to use function
-<code>write.xlsx()</code>. 2. Have a look at the documentation for
-<code>write.xlsx()</code> to find out how you can write specific
-dataframes (or tibbles) to specific sheets. Basically, instead of giving
-<code>write.xlsx()</code> a single table to write, you can give it a
-named list of tables. See <a href="../Course_content/Chapter_2_Data_Structures.html">Section 2.4 of
+<code>write.xlsx()</code>.</li>
+<li>Have a look at the documentation for <code>write.xlsx()</code> to
+find out how you can write specific dataframes (or tibbles) to specific
+sheets. Basically, instead of giving <code>write.xlsx()</code> a single
+table to write, you can give it a named list of tables. See <a href="../Course_content/Chapter_2_Data_Structures.html">Section 2.4 of
 the main course</a> for more information on how to deal with lists.</li>
 </ol>
 </div>
