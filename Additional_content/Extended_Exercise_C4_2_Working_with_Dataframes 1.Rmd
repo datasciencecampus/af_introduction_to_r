@@ -77,13 +77,14 @@ characters?
 
 ### Reading in the data {.unnumbered}
 Note that the path to the file you give to
-[`read_xlsx()`(https://readxl.tidyverse.org/reference/read_excel.html) needs to
+[`read_xlsx()`](https://readxl.tidyverse.org/reference/read_excel.html) needs to
 be correct relative to where you have stored your R script and data file. Using
 relative paths helps, here.
 ```{r exercise 1.1}
-library(readxl)
-cpi_indices <- read_xlsx("../Data/CPI indices example.xlsx")
-cpi_codes <- read_xlsx("../Data/CPI codes and names.xlsx")
+library(readxl)  # For reading data
+library(dplyr)   # For glimpse()
+cpi_indices <- read_xlsx("Data/CPI indices example.xlsx")
+cpi_codes <- read_xlsx("Data/CPI codes and names.xlsx")
 ```
 
 ### Viewing the data {.unnumbered}
