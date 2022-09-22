@@ -1555,10 +1555,11 @@ meaningful name.</p>
 <h1 class="unnumbered">Loading a file from the web</h1>
 <p>We will first access the data. We have previously shown how to use
 function <code>read_excel()</code> from package <a href="https://readxl.tidyverse.org/">readxl</a> to load data from a
-local file. In this case we will get the Consumer Price Inflation data
-from the Office for National Statistics website. We will use the package
+local file. In this case we will get the Consumer Price Index data from
+the Office for National Statistics website. We will use the package
 <code>httr</code> see the documentation <a href="https://httr.r-lib.org/">here</a>.</p>
-<pre class="r"><code>cpi_excel_url &lt;- &#39;https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceinflation/current/consumerpriceinflationdetailedreferencetables.xls&#39;
+<pre class="r"><code>library(httr) # For loading the data
+cpi_excel_url &lt;- &#39;https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceinflation/current/consumerpriceinflationdetailedreferencetables.xls&#39;
 
 get_msg &lt;- httr::GET(cpi_excel_url, write_disk(cpi_excel &lt;- tempfile(fileext = &quot;.xls&quot;)))</code></pre>
 <p>This code will create a temporary file on your machine for the data.
@@ -1571,8 +1572,14 @@ browser, save the file somewhere accessible on your computer, and copy
 the full path to the file to your clipboard. Then assign the variable
 <code>cpi_excel</code> the text path to the file you saved, for
 example:</strong></p>
-<pre class="r"><code>cpi_excel &lt;- &quot;C:/Downloads/myfile.xls&quot;</code></pre>
+<pre class="r"><code>cpi_excel &lt;- &quot;D:\\consumerpriceinflationdetailedreferencetables.xls&quot;</code></pre>
 <p>You should then be able to continue with the examples/code below.</p>
+<blockquote>
+<p>Throughout this exercise, we strongly encourage you to open and
+explore the Excel data file you have downloaded, either in Excel or
+another appropriate spreadsheet app. This will help you understand the
+structure of the data before you load and work with it in R.</p>
+</blockquote>
 </div>
 <div id="listing-sheet-names-and-reading-different-sheets" class="section level1 tabset" number="1">
 <h1 class="tabset"><span class="header-section-number">1</span> Listing
@@ -1775,8 +1782,11 @@ also note that the Table column names are awkwardly distributed across
 two rows. We here just skip line 6, which is one of the column name
 rows. This is not ideal (we lose some information as this data is spread
 across two calendar years), but we just do this for the sake of
-simplicity here. <mark>We’ll cover additional ways to handle this at a
-later point</mark>.</li>
+simplicity here. We’ll cover additional ways to handle this at a later
+on in this exercise.<br />
+By printing the resulting table to screen (last line below), you can see
+that the top lines of the loaded data table now actually has the correct
+numbers/values.</li>
 </ol>
 <pre class="r"><code>cpi_table13 &lt;- readxl::read_excel(cpi_excel, sheet = &quot;Table 13&quot;, skip = 6)</code></pre>
 <pre><code>## New names:
@@ -1785,6 +1795,22 @@ later point</mark>.</li>
 ## * `` -&gt; `...3`
 ## * `Jul` -&gt; `Jul...4`
 ## * `Jul` -&gt; `Jul...16`</code></pre>
+<pre class="r"><code>cpi_table13 </code></pre>
+<pre><code>## # A tibble: 111 x 16
+##    ...1  ...2       ...3 Jul...4   Aug   Sep   Oct   Nov   Dec   Jan   Feb   Mar
+##    &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 L522  CPIH (ov~ 112.    111.  112.  112.   113.  114.  115.  115.  115.  116.
+##  2 &lt;NA&gt;  &lt;NA&gt;       NA      NA    NA    NA     NA    NA    NA    NA    NA    NA 
+##  3 L52F  All goods 108.    108.  109.  109.   111.  112.  113.  113.  114   116.
+##  4 L5JE  Food, al~ 109.    108.  109.  109.   109.  110.  111.  112.  113   114.
+##  5 L5JF  Processe~ 105.    104.  106   106.   106.  107.  108.  109.  110.  110.
+##  6 L5JG  Non-proc~ 103.    102.  103.  103.   104.  105.  107.  107.  108.  108.
+##  7 L5JH  Seasonal~ 106.    105.  105.  106.   107.  108.  110.  111.  112.  111.
+##  8 L52J  Meat       99.6    99.1  99.9  99.5  100.  101.  103.  103.  104.  104.
+##  9 L524  Alcoholi~ 120.    119.  120.  120.   120.  123.  122.  123.  123.  125.
+## 10 &lt;NA&gt;  &lt;NA&gt;       NA      NA    NA    NA     NA    NA    NA    NA    NA    NA 
+## # ... with 101 more rows, and 4 more variables: Apr &lt;dbl&gt;, May &lt;dbl&gt;,
+## #   Jun &lt;dbl&gt;, Jul...16 &lt;dbl&gt;</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>As above. When we’ve read in the data, we can use
 <code>names()</code> and <code>str()</code> again to check that this
@@ -1973,13 +1999,27 @@ have achieved what we wanted:</p>
 ## * `` -&gt; `...12`
 ## * `` -&gt; `...13`
 ## * `` -&gt; `...14`</code></pre>
-<p>We can now extract the two rows of the dataframe as separate vectors,
-just to make our lives easier. We then combine the value of each of
-these vectors into a single string of 14 using the <code>paste()</code>
-function. <code>paste()</code> takes two character strings (or vectors
-of the same length) and pastes these together into a single character
-string or vector of strings. Note that in this case we want to make
-something reading “Month Year”, so we paste them together in that order.
+<p>It’s helpful to have a look at the data you’ve just loaded:</p>
+<pre class="r"><code>cpi_table13_headers</code></pre>
+<pre><code>## # A tibble: 2 x 14
+##    ...1 ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9  ...10 ...11 ...12 ...13
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+## 1  2021 2021  2021  2021  2021  2021  2021  2022  2022  2022  2022  2022  2022 
+## 2    NA Jul   Aug   Sep   Oct   Nov   Dec   Jan   Feb   Mar   Apr   May   Jun  
+## # ... with 1 more variable: ...14 &lt;chr&gt;</code></pre>
+<p>Note that you now have a small table with two rows; one with a series
+of years, and one with months in each of those years. It’s really the
+combination of those two that should form the column headers.</p>
+<p>We can extract the two rows of the dataframe as separate vectors,
+just to make our lives easier. In the example below we use dataframe
+indexing (e.g. <code>table[row, column</code>]) to select each
+individual row and store them as separate vectors.</p>
+<p>We then combine the value of each of these vectors into a single
+string of 14 using the <code>paste()</code> function.
+<code>paste()</code> takes two character strings (or vectors of the same
+length) and pastes these together into a single character string or
+vector of strings. Note that in this case we want to make something
+reading “Month Year”, so we paste them together in that order.
 <code>paste()</code> is a very useful function for string operations;
 note that by default, it inserts a space between the two character
 strings. Again, we print the result so we can see what we’ve done:</p>
@@ -2048,6 +2088,10 @@ the main course</a> for more information on how to deal with lists.</li>
 </div>
 <div id="example-answer-4" class="section level2 unnumbered">
 <h2 class="unnumbered">Example answer</h2>
+<blockquote>
+<p>Please note that you’ll need to specify an appropriate path to store
+the data - the specific path given below may not work.</p>
+</blockquote>
 <pre class="r"><code># Write a new excel file with two sheets
 openxlsx::write.xlsx(cpi_table13, &#39;../Data/my_table_13.xlsx&#39;)</code></pre>
 <pre class="r"><code># Write a new excel file with two sheets

@@ -60,7 +60,8 @@ from a local file. In this case we will get the Consumer Price Index data
 from the Office for National Statistics website. We will use the package `httr`
 see the documentation [here](https://httr.r-lib.org/).
 
-```{r load_from_www, warning=FALSE, message=FALSE}
+```{r load_from_www, warning=FALSE, message=FALSE, eval=FALSE}
+library(httr) # For loading the data
 cpi_excel_url <- 'https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceinflation/current/consumerpriceinflationdetailedreferencetables.xls'
 
 get_msg <- httr::GET(cpi_excel_url, write_disk(cpi_excel <- tempfile(fileext = ".xls")))
@@ -75,10 +76,15 @@ and copy the URL from the above code in your browser, save the file somewhere
 accessible on your computer, and copy the full path to the file to your
 clipboard. Then assign the variable `cpi_excel` the text path to the file you
 saved, for example:__
-```{r, eval = FALSE}
-cpi_excel <- "C:/Downloads/myfile.xls"
+```{r load_from_disk}
+cpi_excel <- "D:\\consumerpriceinflationdetailedreferencetables.xls"
 ```
 You should then be able to continue with the examples/code below.
+
+> Throughout this exercise, we strongly encourage you to open and explore the
+Excel data file you have downloaded, either in Excel or another appropriate
+spreadsheet app. This will help you understand the structure of the data before
+you load and work with it in R.
 
 # Listing sheet names and reading different sheets {.tabset}
 Now we have the data  we want to explore what sheets this excel file contains. 
@@ -166,12 +172,18 @@ blank or contain descriptions/links. We also note that the Table column names
 are awkwardly distributed across two rows. We here just skip line 6, which is
 one of the column name rows. This is not ideal (we lose some information as this
 data is spread across two calendar years), but we just do this for the sake of
-simplicity here. <mark>We'll cover additional ways to handle this at a later
-point</mark>.
+simplicity here. We'll cover additional ways to handle this at a later on in
+this exercise.  
+By printing the resulting table to screen (last line below), you
+can see that the top lines of the loaded data table now actually  has the
+correct numbers/values.
 
 ```{r exercise2_2}
 cpi_table13 <- readxl::read_excel(cpi_excel, sheet = "Table 13", skip = 6)
+cpi_table13 
 ```
+
+
 3. As above. When we've read in the data, we can use `names()` and `str()` again
 to check that this extra approach has certainly helped somewhat - note that the
 core value columns (for each year), have actually been interpreted as numeric
@@ -256,8 +268,20 @@ cpi_table13_headers <- readxl::read_excel(cpi_excel,
                                           )
 ```
 
-We can now extract the two rows of the dataframe as separate vectors, just to
-make our lives easier.
+It's helpful to have a look at the data you've just loaded:
+```{r exercise4_1_a}
+cpi_table13_headers
+```
+
+Note that you now have a small table with two rows; one with a series of years,
+and one with months in each of those years. It's really the combination of those
+two that should form the column headers.  
+
+We can extract the two rows of the dataframe as separate vectors, just to make
+our lives easier. In the example below we use dataframe indexing (e.g.
+`table[row, column`]) to select each individual row and store them as separate
+vectors.  
+
 We then combine the value of each of these vectors into a single string of 14
 using the `paste()` function. `paste()` takes two character strings (or vectors
 of the same length) and pastes these together into a single character string or
@@ -314,6 +338,9 @@ course](../Course_content/Chapter_2_Data_Structures.html) for more information
 on how to deal with lists.
 
 ## Example answer {.unnumbered}
+
+> Please note that you'll need to specify an appropriate path to store the data -
+the specific path given below may not work.
 
 ```{r, eval = F}
 # Write a new excel file with two sheets
