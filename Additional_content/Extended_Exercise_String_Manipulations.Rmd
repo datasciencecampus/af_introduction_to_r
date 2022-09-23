@@ -1,0 +1,64 @@
+---
+title: "Extended Exercise - Manipulating Strings"
+output:
+  html_document: 
+    theme: united
+    highlight: textmate
+    toc: yes
+    toc_float: yes
+    number_sections: true
+---
+
+```{r, echo=FALSE, eval=FALSE}
+htmltools::img(src = knitr::image_uri("./Images/LATree.PNG"),
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:0; padding:10px; width:200px;')
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The aim for this exercise is to familiarise ourselves with common methods of
+standardising text data. This makes it easier to then summarise and compare
+the data. This tutorial will cover lowercasing, removing extra spaces, how to
+replace words and how to split strings.
+
+We will first run through these techniques on a (fairly contrived) dataset
+before giving you the chance to practise on some "real" data.
+
+This first dataset contains a sample of sales data from a juice shop. 
+Unfortunately the barcodes aren't working so the staff have to type in the name
+of the products they've sold, so there are several inconsistencies. We want to
+write some code that counts how many of each type of juice have been sold.
+
+First lets read in the data and take a look at it.
+
+```{r read_juice}
+juice_sales <- read.csv('../Data/juice_sales.csv')
+
+juice_sales
+```
+
+
+
+## Plan
+
+-> first look in xlsx to get a feel for the data and what steps might need to be taken
+
+-> lowercase everything (option to uppercase)
+
+-> removing spaces from start and end
+
+-> single spaces between words
+
+-> replacing synonyms
+
+-> splitting on comma? (when two+ are on one line)
+
+
+exercise: do the same/similar with cause of death data
+```{r read death data}
+cause_of_death = read.csv('../Data/cause_of_death.csv')
+```
