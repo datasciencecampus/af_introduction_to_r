@@ -67,7 +67,7 @@ library(httr) # For loading the data
 cpi_excel_url <- 'https://www.ons.gov.uk/file?uri=/economy/inflationandpriceindices/datasets/consumerpriceinflation/current/consumerpriceinflationdetailedreferencetables.xls'
 
 # Download the file to your Home folder. Change the "path" string as required.
-get_msg <- httr::GET(cpi_excel_url, write_disk(path = "~/consumerpriceinflationdetailedreferencetables.xls"))
+get_msg <- httr::GET(cpi_excel_url, write_disk(path = "~//consumerpriceinflationdetailedreferencetables.xls"))
 ```
 
 This code will create a temporary file on your machine for the data. This is
@@ -80,7 +80,7 @@ accessible on your computer, and copy the full path to the file to your
 clipboard. Then assign the variable `cpi_excel` the text path to the file you
 saved, for example:__
 ```{r load_from_disk}
-cpi_excel <- "~/consumerpriceinflationdetailedreferencetables.xls"
+cpi_excel <- "~//consumerpriceinflationdetailedreferencetables.xls"
 ```
 You should then be able to continue with the examples/code below.
 
