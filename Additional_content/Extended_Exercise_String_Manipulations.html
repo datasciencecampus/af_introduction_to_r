@@ -1522,9 +1522,9 @@ Strings</h1>
 methods of standardising text data. This makes it easier to then
 summarise and compare the data. This tutorial will cover lowercasing,
 removing extra spaces, how to replace words and how to split strings.
-Throughout we will be making use of functions in the
-<code>stringr</code> package, which is part of the wider
-<code>tidyverse</code> collection of packages.</p>
+Throughout we will be making use of functions in the <a href="https://stringr.tidyverse.org/"><code>stringr</code></a> package,
+which is part of the wider <a href="https://www.tidyverse.org/"><code>tidyverse</code></a> collection
+of packages.</p>
 <p>We will first run through these techniques on a (fairly contrived)
 dataset before giving you the chance to practise on some “real”
 data.</p>
@@ -1574,9 +1574,9 @@ juice_sales</code></pre>
 ## 32                                      OJ
 ## 33                            orange juice</code></pre>
 <p>We notice that the data seems to consist of variations of “apple
-juice” and “orange juice”. We can use the <code>count</code> function in
-the <code>dplyr</code> library to try and count how many of each have
-been sold.</p>
+juice” and “orange juice”. We can use the <a href="https://dplyr.tidyverse.org/reference/count.html"><code>count</code></a>
+function in the <a href="https://dplyr.tidyverse.org/"><code>dplyr</code></a> library to
+try and count how many of each have been sold.</p>
 <pre class="r"><code>dplyr::count(juice_sales, juice)</code></pre>
 <pre><code>##                                     juice  n
 ## 1                         Apple   Juice    1
@@ -1601,10 +1601,10 @@ lower-casing</h1>
 dataset. Therefore our first step in standardising the data will be to
 ensure it is all in the same case.</p>
 <p>We have several options for this. We could make the text all
-UPPERCASE using <code>stringr::str_to_upper()</code>, lowercase with
-<code>stringr::str_to_lower()</code>, or Title Case with
-<code>stringr::str_to_title()</code>. This is largely up to personal
-preference so I will use lowercase.</p>
+UPPERCASE using <a href="https://stringr.tidyverse.org/reference/case.html"><code>stringr::str_to_upper()</code></a>,
+lowercase with <a href="https://stringr.tidyverse.org/reference/case.html"><code>stringr::str_to_lower()</code></a>,
+or Title Case with <a href="https://stringr.tidyverse.org/reference/case.html"><code>stringr::str_to_title()</code></a>.
+This is largely up to personal preference so I will use lowercase.</p>
 <pre class="r"><code>juice_sales$juice &lt;- stringr::str_to_lower(juice_sales$juice)
 
 #check counts
@@ -1630,12 +1630,12 @@ Whitespace</h1>
 <p>The next thing we might notice is that some of the entries have extra
 spaces at the start and end, and even in the middle. Again there is a
 selection of functions to use to deal with this.</p>
-<p>The function <code>stringr::str_trim()</code> can be used to remove
-trailing or leading whitespace, or both! The <code>side =</code>
-argument is used to determine this.</p>
-<p>Similarly the function <code>stringr::str_squish()</code> removes
-both leading and trailing spaces, as well as extra spaces between
-words.</p>
+<p>The function <a href="https://stringr.tidyverse.org/reference/str_trim.html"><code>stringr::str_trim()</code></a>
+can be used to remove trailing or leading whitespace, or both! The
+<code>side =</code> argument is used to determine this.</p>
+<p>Similarly the function <a href="https://stringr.tidyverse.org/reference/str_trim.html"><code>stringr::str_squish()</code></a>
+removes both leading and trailing spaces, as well as extra spaces
+between words.</p>
 <p>We will use <code>str_squish()</code> here.</p>
 <pre class="r"><code>juice_sales$juice &lt;- stringr::str_squish(juice_sales$juice)
 
@@ -1658,13 +1658,13 @@ the same thing. For example “juice” appears to be used interchangeably
 with “drink”, and “orange juice” is often abbreviated to “oj”.</p>
 <p>The most straightforward way to overcome this inconsistency is by
 translating some of the entries so as they are all the same. This can be
-achieved using the <code>stringr::str_replace()</code> function. This
-function takes as its arguments the <code>string</code> we are looking
-at, a <code>pattern</code> that is to be replaced if found, and the
-<code>replacement</code> string.</p>
+achieved using the <a href="https://stringr.tidyverse.org/reference/str_replace.html"><code>stringr::str_replace()</code></a>
+function. This function takes as its arguments the <code>string</code>
+we are looking at, a <code>pattern</code> that is to be replaced if
+found, and the <code>replacement</code> string.</p>
 <p>Note however that if the string contains the pattern more than once,
 only the first occurrence will be replaced. If we want all occurrences
-to be replaced we have to use <code>stringr::str_replace_all()</code>.
+to be replaced we have to use <a href="https://stringr.tidyverse.org/reference/str_replace.html"><code>stringr::str_replace_all()</code></a>.
 Since we probably would want this behaviour in our pipeline we will use
 this function.</p>
 <pre class="r"><code>juice_sales$juice &lt;- stringr::str_replace_all(juice_sales$juice,
@@ -1686,11 +1686,11 @@ dplyr::count(juice_sales, juice)</code></pre>
 <div id="splitting-strings" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Splitting strings</h1>
 <p>Finally, it looks like one of our entries is actually three juices
-separated by commas. We can use the function
-<code>stringr::str_split()</code> to split the string into pieces. As
-well as the vector of strings we also pass to this function a
-<code>pattern</code> to split on. Wherever this pattern is found the
-original string is split into multiple strings.</p>
+separated by commas. We can use the function <a href="https://stringr.tidyverse.org/reference/str_split.html"><code>stringr::str_split()</code></a>
+to split the string into pieces. As well as the vector of strings we
+also pass to this function a <code>pattern</code> to split on. Wherever
+this pattern is found the original string is split into multiple
+strings.</p>
 <pre class="r"><code>juice_sales$juice &lt;- stringr::str_split(juice_sales$juice, 
                                         pattern = &#39;, &#39;)
 
@@ -1702,9 +1702,10 @@ dplyr::count(juice_sales, juice)</code></pre>
 <p>This hasn’t quite done what we want it to. This is because after
 splitting the split strings are saved as a list of strings in the same
 row of data. To get the data into our desired format of one juice per
-line we can use <code>tidyr::unnest()</code>. <code>tidyr</code> is
-another package in the tidyverse collection of packages that is used to
-“tidy” messy data.</p>
+line we can use <a href="https://tidyr.tidyverse.org/reference/nest.html"><code>tidyr::unnest()</code></a>.
+<a href="https://tidyr.tidyverse.org/"><code>tidyr</code></a> is another
+package in the tidyverse collection of packages that is used to “tidy”
+messy data.</p>
 <pre class="r"><code>juice_sales &lt;- tidyr::unnest(juice_sales, juice)
 
 #check counts

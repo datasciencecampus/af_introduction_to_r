@@ -24,7 +24,7 @@ The aim for this exercise is to familiarise ourselves with common methods of
 standardising text data. This makes it easier to then summarise and compare
 the data. This tutorial will cover lowercasing, removing extra spaces, how to
 replace words and how to split strings. Throughout we will be making use of
-functions in the `stringr` package, which is part of the wider `tidyverse`
+functions in the [`stringr`](https://stringr.tidyverse.org/) package, which is part of the wider [`tidyverse`](https://www.tidyverse.org/)
 collection of packages.
 
 We will first run through these techniques on a (fairly contrived) dataset
@@ -47,7 +47,7 @@ juice_sales <- read.csv('../Data/juice_sales.csv')
 juice_sales
 ```
 
-We notice that the data seems to consist of variations of "apple juice" and "orange juice". We can use the `count` function in the `dplyr` library to try and count how many of each have been sold.
+We notice that the data seems to consist of variations of "apple juice" and "orange juice". We can use the [`count`](https://dplyr.tidyverse.org/reference/count.html) function in the [`dplyr`](https://dplyr.tidyverse.org/) library to try and count how many of each have been sold.
 
 ```{r initial_count}
 dplyr::count(juice_sales, juice)
@@ -59,7 +59,7 @@ As we might have expected, the different variations have been counted separately
 
 We notice that capital letters are used inconsistently in the dataset. Therefore our first step in standardising the data will be to ensure it is all in the same case. 
 
-We have several options for this. We could make the text all UPPERCASE using `stringr::str_to_upper()`, lowercase with `stringr::str_to_lower()`, or Title Case with `stringr::str_to_title()`. This is largely up to personal preference so I will use lowercase.
+We have several options for this. We could make the text all UPPERCASE using [`stringr::str_to_upper()`](https://stringr.tidyverse.org/reference/case.html), lowercase with [`stringr::str_to_lower()`](https://stringr.tidyverse.org/reference/case.html), or Title Case with [`stringr::str_to_title()`](https://stringr.tidyverse.org/reference/case.html). This is largely up to personal preference so I will use lowercase.
 
 ```{r lowercase}
 juice_sales$juice <- stringr::str_to_lower(juice_sales$juice)
@@ -76,9 +76,9 @@ Can you think of times when you might use `stringr::str_to_title()` instead?
 
 The next thing we might notice is that some of the entries have extra spaces at the start and end, and even in the middle. Again there is a selection of functions to use to deal with this.
 
-The function `stringr::str_trim()` can be used to remove trailing or leading whitespace, or both! The `side =` argument is used to determine this.
+The function [`stringr::str_trim()`](https://stringr.tidyverse.org/reference/str_trim.html) can be used to remove trailing or leading whitespace, or both! The `side =` argument is used to determine this.
 
-Similarly the function `stringr::str_squish()` removes both leading and trailing spaces, as well as extra spaces between words.
+Similarly the function [`stringr::str_squish()`](https://stringr.tidyverse.org/reference/str_trim.html) removes both leading and trailing spaces, as well as extra spaces between words.
 
 We will use `str_squish()` here.
 
@@ -95,9 +95,9 @@ Good! We can again see that more of our similar entries are now being counted to
 
 Next we notice that sometimes different words are used to describe the same thing. For example "juice" appears to be used interchangeably with "drink", and "orange juice" is often abbreviated to "oj".
 
-The most straightforward way to overcome this inconsistency is by translating some of the entries so as they are all the same. This can be achieved using the `stringr::str_replace()` function. This function takes as its arguments the `string` we are looking at, a `pattern` that is to be replaced if found, and the `replacement` string.
+The most straightforward way to overcome this inconsistency is by translating some of the entries so as they are all the same. This can be achieved using the [`stringr::str_replace()`](https://stringr.tidyverse.org/reference/str_replace.html) function. This function takes as its arguments the `string` we are looking at, a `pattern` that is to be replaced if found, and the `replacement` string.
 
-Note however that if the string contains the pattern more than once, only the first occurrence will be replaced. If we want all occurrences to be replaced we have to use `stringr::str_replace_all()`. Since we probably would want this behaviour in our pipeline we will use this function.
+Note however that if the string contains the pattern more than once, only the first occurrence will be replaced. If we want all occurrences to be replaced we have to use [`stringr::str_replace_all()`](https://stringr.tidyverse.org/reference/str_replace.html). Since we probably would want this behaviour in our pipeline we will use this function.
 
 ```{r replace}
 juice_sales$juice <- stringr::str_replace_all(juice_sales$juice,
@@ -116,7 +116,7 @@ Excellent. It looks like we're almost there!
 
 # Splitting strings
 
-Finally, it looks like one of our entries is actually three juices separated by commas. We can use the function `stringr::str_split()` to split the string into pieces. As well as the vector of strings we also pass to this function a `pattern` to split on. Wherever this pattern is found the original string is split into multiple strings.
+Finally, it looks like one of our entries is actually three juices separated by commas. We can use the function [`stringr::str_split()`](https://stringr.tidyverse.org/reference/str_split.html) to split the string into pieces. As well as the vector of strings we also pass to this function a `pattern` to split on. Wherever this pattern is found the original string is split into multiple strings.
 
 ```{r str_split}
 juice_sales$juice <- stringr::str_split(juice_sales$juice, 
@@ -125,7 +125,7 @@ juice_sales$juice <- stringr::str_split(juice_sales$juice,
 dplyr::count(juice_sales, juice)
 ```
 
-This hasn't quite done what we want it to. This is because after splitting the split strings are saved as a list of strings in the same row of data. To get the data into our desired format of one juice per line we can use `tidyr::unnest()`. `tidyr` is another package in the tidyverse collection of packages that is used to "tidy" messy data.
+This hasn't quite done what we want it to. This is because after splitting the split strings are saved as a list of strings in the same row of data. To get the data into our desired format of one juice per line we can use [`tidyr::unnest()`](https://tidyr.tidyverse.org/reference/nest.html). [`tidyr`](https://tidyr.tidyverse.org/) is another package in the tidyverse collection of packages that is used to "tidy" messy data.
 
 ```{r split_tidy}
 juice_sales <- tidyr::unnest(juice_sales, juice)
