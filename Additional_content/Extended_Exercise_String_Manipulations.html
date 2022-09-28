@@ -1664,9 +1664,9 @@ we are looking at, a <code>pattern</code> that is to be replaced if
 found, and the <code>replacement</code> string.</p>
 <p>Note however that if the string contains the pattern more than once,
 only the first occurrence will be replaced. If we want all occurrences
-to be replaced we have to use <a href="https://stringr.tidyverse.org/reference/str_replace.html"><code>stringr::str_replace_all()</code></a>.
-Since we probably would want this behaviour in our pipeline we will use
-this function.</p>
+to be replaced we have to use <a href="https://stringr.tidyverse.org/reference/str_replace.html"><code>stringr::str_replace_all()</code></a>
+. Since we probably would want this behaviour in our pipeline we will
+use this function.</p>
 <pre class="r"><code>juice_sales$juice &lt;- stringr::str_replace_all(juice_sales$juice,
                                               pattern = &#39;oj&#39;,
                                               replacement = &#39;orange juice&#39;)
