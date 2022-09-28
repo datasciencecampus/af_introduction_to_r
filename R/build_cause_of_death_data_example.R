@@ -17,6 +17,7 @@ names(cod_final) <- 'cause'
 write.csv(cod_final, 'Data/cause_of_death.csv', row.names = FALSE)
 
 sales <- c(rep('orange juice', 10),
+           '  orange juice',
            rep('apple juice', 5),
            rep('ORANGE juice', 3),
            rep('OJ',8),

@@ -23,15 +23,21 @@ knitr::opts_chunk$set(echo = TRUE)
 The aim for this exercise is to familiarise ourselves with common methods of
 standardising text data. This makes it easier to then summarise and compare
 the data. This tutorial will cover lowercasing, removing extra spaces, how to
-replace words and how to split strings.
+replace words and how to split strings. Throughout we will be making use of
+functions in the `stringr` package, which is part of the wider `tidyverse`
+collection of packages.
 
 We will first run through these techniques on a (fairly contrived) dataset
 before giving you the chance to practise on some "real" data.
 
+# The Data
+
 This first dataset contains a sample of sales data from a juice shop. 
-Unfortunately the barcodes aren't working so the staff have to type in the name
-of the products they've sold, so there are several inconsistencies. We want to
-write some code that counts how many of each type of juice have been sold.
+Unfortunately the barcodes aren't working so the staff have had to type in the
+name of the products they've sold, so there are several inconsistencies. We
+want to write some code that counts how many of each type of juice have been
+sold.
+
 
 First lets read in the data and take a look at it.
 
@@ -41,24 +47,105 @@ juice_sales <- read.csv('../Data/juice_sales.csv')
 juice_sales
 ```
 
+We notice that the data seems to consist of variations of "apple juice" and "orange juice". We can use the `count` function in the `dplyr` library to try and count how many of each have been sold.
 
+```{r initial_count}
+dplyr::count(juice_sales, juice)
+```
 
-## Plan
+As we might have expected, the different variations have been counted separately. This is because R is only reading the strings as abstract data and is not aware of any of the underlying meaning. We will therefore first need to process the data to get it into a standard format.
 
--> first look in xlsx to get a feel for the data and what steps might need to be taken
+# UPPER- and lower-casing
 
--> lowercase everything (option to uppercase)
+We notice that capital letters are used inconsistently in the dataset. Therefore our first step in standardising the data will be to ensure it is all in the same case. 
 
--> removing spaces from start and end
+We have several options for this. We could make the text all UPPERCASE using `stringr::str_to_upper()`, lowercase with `stringr::str_to_lower()`, or Title Case with `stringr::str_to_title()`. This is largely up to personal preference so I will use lowercase.
 
--> single spaces between words
+```{r lowercase}
+juice_sales$juice <- stringr::str_to_lower(juice_sales$juice)
 
--> replacing synonyms
+#check counts
+dplyr::count(juice_sales, juice)
+```
 
--> splitting on comma? (when two+ are on one line)
+Great! It looks like this has simplified things a little bit. Notice where before we had 10 "orange juice" and 3 "ORANGE juice" we now have 13 "orange juice".
 
+Can you think of times when you might use `stringr::str_to_title()` instead?
 
-exercise: do the same/similar with cause of death data
+# Removing Whitespace
+
+The next thing we might notice is that some of the entries have extra spaces at the start and end, and even in the middle. Again there is a selection of functions to use to deal with this.
+
+The function `stringr::str_trim()` can be used to remove trailing or leading whitespace, or both! The `side =` argument is used to determine this.
+
+Similarly the function `stringr::str_squish()` removes both leading and trailing spaces, as well as extra spaces between words.
+
+We will use `str_squish()` here.
+
+```{r remove_whitespace}
+juice_sales$juice <- stringr::str_squish(juice_sales$juice)
+
+#check counts
+dplyr::count(juice_sales, juice)
+```
+
+Good! We can again see that more of our similar entries are now being counted together.
+
+# Replacing strings
+
+Next we notice that sometimes different words are used to describe the same thing. For example "juice" appears to be used interchangeably with "drink", and "orange juice" is often abbreviated to "oj".
+
+The most straightforward way to overcome this inconsistency is by translating some of the entries so as they are all the same. This can be achieved using the `stringr::str_replace()` function. This function takes as its arguments the `string` we are looking at, a `pattern` that is to be replaced if found, and the `replacement` string.
+
+Note however that if the string contains the pattern more than once, only the first occurrence will be replaced. If we want all occurrences to be replaced we have to use `stringr::str_replace_all()`. Since we probably would want this behaviour in our pipeline we will use this function.
+
+```{r replace}
+juice_sales$juice <- stringr::str_replace_all(juice_sales$juice,
+                                              pattern = 'oj',
+                                              replacement = 'orange juice')
+
+juice_sales$juice <- stringr::str_replace_all(juice_sales$juice,
+                                              pattern = 'drink',
+                                              replacement = 'juice')
+
+#check counts
+dplyr::count(juice_sales, juice)
+```
+
+Excellent. It looks like we're almost there!
+
+# Splitting strings
+
+Finally, it looks like one of our entries is actually three juices separated by commas. We can use the function `stringr::str_split()` to split the string into pieces. As well as the vector of strings we also pass to this function a `pattern` to split on. Wherever this pattern is found the original string is split into multiple strings.
+
+```{r str_split}
+juice_sales$juice <- stringr::str_split(juice_sales$juice, 
+                                        pattern = ', ')
+
+dplyr::count(juice_sales, juice)
+```
+
+This hasn't quite done what we want it to. This is because after splitting the split strings are saved as a list of strings in the same row of data. To get the data into our desired format of one juice per line we can use `tidyr::unnest()`. `tidyr` is another package in the tidyverse collection of packages that is used to "tidy" messy data.
+
+```{r split_tidy}
+juice_sales <- tidyr::unnest(juice_sales, juice)
+
+#check counts
+dplyr::count(juice_sales, juice)
+```
+
+Wonderful! We have managed to process the data so as our count function works as we want it to.
+
+# Exercise
+
+Now we have covered some of the ways to standardise strings, it's your turn to try it out on some "real" data. The file `cause_of_death.csv` contains one column describing the cause of death for individuals who have died. 
+
 ```{r read death data}
 cause_of_death = read.csv('../Data/cause_of_death.csv')
 ```
+
+Can you standardise this data using the methods above so as it is easier to summarise? You may want to summarise using `dplyr::count()`, as above.
+
+## Further Exercise
+
+What other steps do you think could be taken to standardise the strings? Use the documentation and online forums to work out how to do this.

@@ -1521,14 +1521,18 @@ Strings</h1>
 <p>The aim for this exercise is to familiarise ourselves with common
 methods of standardising text data. This makes it easier to then
 summarise and compare the data. This tutorial will cover lowercasing,
-removing extra spaces, how to replace words and how to split
-strings.</p>
+removing extra spaces, how to replace words and how to split strings.
+Throughout we will be making use of functions in the
+<code>stringr</code> package, which is part of the wider
+<code>tidyverse</code> collection of packages.</p>
 <p>We will first run through these techniques on a (fairly contrived)
 dataset before giving you the chance to practise on some “real”
 data.</p>
+<div id="the-data" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> The Data</h1>
 <p>This first dataset contains a sample of sales data from a juice shop.
-Unfortunately the barcodes aren’t working so the staff have to type in
-the name of the products they’ve sold, so there are several
+Unfortunately the barcodes aren’t working so the staff have had to type
+in the name of the products they’ve sold, so there are several
 inconsistencies. We want to write some code that counts how many of each
 type of juice have been sold.</p>
 <p>First lets read in the data and take a look at it.</p>
@@ -1569,17 +1573,166 @@ juice_sales</code></pre>
 ## 31                                      OJ
 ## 32                                      OJ
 ## 33                            orange juice</code></pre>
-<div id="plan" class="section level2" number="0.1">
-<h2><span class="header-section-number">0.1</span> Plan</h2>
-<p>-&gt; first look in xlsx to get a feel for the data and what steps
-might need to be taken</p>
-<p>-&gt; lowercase everything (option to uppercase)</p>
-<p>-&gt; removing spaces from start and end</p>
-<p>-&gt; single spaces between words</p>
-<p>-&gt; replacing synonyms</p>
-<p>-&gt; splitting on comma? (when two+ are on one line)</p>
-<p>exercise: do the same/similar with cause of death data</p>
+<p>We notice that the data seems to consist of variations of “apple
+juice” and “orange juice”. We can use the <code>count</code> function in
+the <code>dplyr</code> library to try and count how many of each have
+been sold.</p>
+<pre class="r"><code>dplyr::count(juice_sales, juice)</code></pre>
+<pre><code>##                                     juice  n
+## 1                         Apple   Juice    1
+## 2                             apple drink  1
+## 3                             apple juice  5
+## 4                                      OJ  8
+## 5                          orange   juice  3
+## 6                            orange drink  1
+## 7                            orange juice 10
+## 8                            ORANGE juice  3
+## 9 orange juice, apple juice, orange juice  1</code></pre>
+<p>As we might have expected, the different variations have been counted
+separately. This is because R is only reading the strings as abstract
+data and is not aware of any of the underlying meaning. We will
+therefore first need to process the data to get it into a standard
+format.</p>
+</div>
+<div id="upper--and-lower-casing" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> UPPER- and
+lower-casing</h1>
+<p>We notice that capital letters are used inconsistently in the
+dataset. Therefore our first step in standardising the data will be to
+ensure it is all in the same case.</p>
+<p>We have several options for this. We could make the text all
+UPPERCASE using <code>stringr::str_to_upper()</code>, lowercase with
+<code>stringr::str_to_lower()</code>, or Title Case with
+<code>stringr::str_to_title()</code>. This is largely up to personal
+preference so I will use lowercase.</p>
+<pre class="r"><code>juice_sales$juice &lt;- stringr::str_to_lower(juice_sales$juice)
+
+#check counts
+dplyr::count(juice_sales, juice)</code></pre>
+<pre><code>##                                     juice  n
+## 1                         apple   juice    1
+## 2                             apple drink  1
+## 3                             apple juice  5
+## 4                                      oj  8
+## 5                          orange   juice  3
+## 6                            orange drink  1
+## 7                            orange juice 13
+## 8 orange juice, apple juice, orange juice  1</code></pre>
+<p>Great! It looks like this has simplified things a little bit. Notice
+where before we had 10 “orange juice” and 3 “ORANGE juice” we now have
+13 “orange juice”.</p>
+<p>Can you think of times when you might use
+<code>stringr::str_to_title()</code> instead?</p>
+</div>
+<div id="removing-whitespace" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Removing
+Whitespace</h1>
+<p>The next thing we might notice is that some of the entries have extra
+spaces at the start and end, and even in the middle. Again there is a
+selection of functions to use to deal with this.</p>
+<p>The function <code>stringr::str_trim()</code> can be used to remove
+trailing or leading whitespace, or both! The <code>side =</code>
+argument is used to determine this.</p>
+<p>Similarly the function <code>stringr::str_squish()</code> removes
+both leading and trailing spaces, as well as extra spaces between
+words.</p>
+<p>We will use <code>str_squish()</code> here.</p>
+<pre class="r"><code>juice_sales$juice &lt;- stringr::str_squish(juice_sales$juice)
+
+#check counts
+dplyr::count(juice_sales, juice)</code></pre>
+<pre><code>##                                     juice  n
+## 1                             apple drink  1
+## 2                             apple juice  6
+## 3                                      oj  8
+## 4                            orange drink  1
+## 5                            orange juice 16
+## 6 orange juice, apple juice, orange juice  1</code></pre>
+<p>Good! We can again see that more of our similar entries are now being
+counted together.</p>
+</div>
+<div id="replacing-strings" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Replacing strings</h1>
+<p>Next we notice that sometimes different words are used to describe
+the same thing. For example “juice” appears to be used interchangeably
+with “drink”, and “orange juice” is often abbreviated to “oj”.</p>
+<p>The most straightforward way to overcome this inconsistency is by
+translating some of the entries so as they are all the same. This can be
+achieved using the <code>stringr::str_replace()</code> function. This
+function takes as its arguments the <code>string</code> we are looking
+at, a <code>pattern</code> that is to be replaced if found, and the
+<code>replacement</code> string.</p>
+<p>Note however that if the string contains the pattern more than once,
+only the first occurrence will be replaced. If we want all occurrences
+to be replaced we have to use <code>stringr::str_replace_all()</code>.
+Since we probably would want this behaviour in our pipeline we will use
+this function.</p>
+<pre class="r"><code>juice_sales$juice &lt;- stringr::str_replace_all(juice_sales$juice,
+                                              pattern = &#39;oj&#39;,
+                                              replacement = &#39;orange juice&#39;)
+
+juice_sales$juice &lt;- stringr::str_replace_all(juice_sales$juice,
+                                              pattern = &#39;drink&#39;,
+                                              replacement = &#39;juice&#39;)
+
+#check counts
+dplyr::count(juice_sales, juice)</code></pre>
+<pre><code>##                                     juice  n
+## 1                             apple juice  7
+## 2                            orange juice 25
+## 3 orange juice, apple juice, orange juice  1</code></pre>
+<p>Excellent. It looks like we’re almost there!</p>
+</div>
+<div id="splitting-strings" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Splitting strings</h1>
+<p>Finally, it looks like one of our entries is actually three juices
+separated by commas. We can use the function
+<code>stringr::str_split()</code> to split the string into pieces. As
+well as the vector of strings we also pass to this function a
+<code>pattern</code> to split on. Wherever this pattern is found the
+original string is split into multiple strings.</p>
+<pre class="r"><code>juice_sales$juice &lt;- stringr::str_split(juice_sales$juice, 
+                                        pattern = &#39;, &#39;)
+
+dplyr::count(juice_sales, juice)</code></pre>
+<pre><code>##                                     juice  n
+## 1                             apple juice  7
+## 2                            orange juice 25
+## 3 orange juice, apple juice, orange juice  1</code></pre>
+<p>This hasn’t quite done what we want it to. This is because after
+splitting the split strings are saved as a list of strings in the same
+row of data. To get the data into our desired format of one juice per
+line we can use <code>tidyr::unnest()</code>. <code>tidyr</code> is
+another package in the tidyverse collection of packages that is used to
+“tidy” messy data.</p>
+<pre class="r"><code>juice_sales &lt;- tidyr::unnest(juice_sales, juice)
+
+#check counts
+dplyr::count(juice_sales, juice)</code></pre>
+<pre><code>## # A tibble: 2 x 2
+##   juice            n
+##   &lt;chr&gt;        &lt;int&gt;
+## 1 apple juice      8
+## 2 orange juice    27</code></pre>
+<p>Wonderful! We have managed to process the data so as our count
+function works as we want it to.</p>
+</div>
+<div id="exercise" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Exercise</h1>
+<p>Now we have covered some of the ways to standardise strings, it’s
+your turn to try it out on some “real” data. The file
+<code>cause_of_death.csv</code> contains one column describing the cause
+of death for individuals who have died.</p>
 <pre class="r"><code>cause_of_death = read.csv(&#39;../Data/cause_of_death.csv&#39;)</code></pre>
+<p>Can you standardise this data using the methods above so as it is
+easier to summarise? You may want to summarise using
+<code>dplyr::count()</code>, as above.</p>
+<div id="further-exercise" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Further Exercise</h2>
+<p>What other steps do you think could be taken to standardise the
+strings? Use the documentation and online forums to work out how to do
+this.</p>
+</div>
 </div>
 
 
