@@ -17,8 +17,6 @@ format:
 
 # Learning Objectives
 
-**The goal of this chapter is to:**
-
 * Understand the importance of argument order in functions.
 * Have an understanding of what packages are.
 * Be able to load and install a package.
@@ -31,31 +29,38 @@ format:
 
 # Functions
 
-We have now used a few functions, we will go through a little bit more information about how they work. Please note that there is a course on Functions, Loops and Control flow on the Learning Hub that covers creating user defined functions in more detail.
+So far we have seen many functions, such as:
 
-You should make it a habit to explore the help files when you are using a function for the first time so you know what the default settings are and to see what things you can control with different function arguments.
+* sqrt()
+* round()
+* c()
+* list()
 
-Functions follow the form:
+You should make it a habit to explore the help files when you are using a function for the first time so you know:
+
+* What required arguments there are.
+* What optional arguments there are.
+* What default arguments there are (some arguments have a value by default so we can exclude them without error). 
+
+Recall that they follow the form:
 
 >functionName(argument1 = value1, argument2 = value2, and so on)
 
-Let's take a look at an example of a function.
 
+## How functions work
 
-## How functions work: the seq() function
-
-Let’s try using seq() which makes regular sequences of numbers.
-
-We used it in creating vectors. 
+The seq() function from chapter 2 is the perfect example to reinforce how functions work, as well as common pitfalls.
 
 Let's take a closer look at the help file for seq().
 
-```{r Helpfile for seq(), eval = FALSE}
-
-# Looking at R help documentation
-# for the sequence function
+```{r, eval = FALSE}
+# Help doc for seq()
 
 ?seq
+
+# or
+
+help(seq)
 
 ```
 
@@ -63,9 +68,9 @@ Let's take a closer look at the help file for seq().
 ![](../Images/seq_helpfile.PNG){fig-alt="Seq() function help file.", width=650px}
 
 
-## Function help files
+### Function help files
 
-Every help file will have a series of sections describing what the function does. I generally focus first on: **Description**, **Usage**, **Arguments**, and **Examples**. 
+Every help file will have a series of sections describing what the function does. It is worth focusing on the description, the usage and especially the arguments first. 
 
 **Description**
 
@@ -73,7 +78,17 @@ For example, in the help file for seq() under **Description**, it tells us it is
 
 **Usage**
 
-We can see that seq() takes the arguments from, to, and by, and the optional arguments length.out and along.with. 
+We can see that seq() takes the required arguments:
+
+* from (which is 1 by default)
+* to (which is 1 by default)
+* by (which is calculated by default)
+
+and the optional arguments:
+
+* length.out 
+* along.with
+
 
 **Arguments**
 
@@ -83,119 +98,95 @@ Here, we can find out what these arguments are:
   - by number: increment of the sequence.
 
 
-## How are function arguments resolved?
+### How are function arguments resolved?
 
-We used this function when creating vectors, like below.
+We used this function when creating vectors, here's a reminder.
 
 ```{r}
-
 # Creating a sequence of numbers
-# Here I am specifying the arguments
 
 seq(from = 2, to = 6, by = 2)
 
 ```
 
-What happens if we try:
+Let's consider what happens instead when we **don't** specify the arguments, just their values:
 
 ```{r}
-# Creating a sequence of numbers
-# Here I am NOT  specifying the arguments
-# When arguments are specified they are matched by position
-# The order of the values matters
+# Creating a sequence of numbers - not specifying arguments
 
 seq(1,10)
+
 ```
 
 This has generated a sequence of numbers from 1 to 10. In this case we did not supply a value for by, so it took the default value, which in this case is 1.
 
-```{r How are function arguments resolved part 1}
+What if we flip 10 and 1 in this case
+
+```{r}
 # Creating a sequence of numbers
-# Here I am NOT  specifying the arguments
-# When arguments are specified they are matched by position
-# The order of the values matters
 
 seq(10,1)
 
 ```
 
-And what about:
+So it is clear that where we place the value is important, because arguments are resolved **by position**, in the order specified in the help documnentation.
 
-```{r How are function arguments resolved part 2}
-# Creating a sequence of numbers
-# Here I am specifying the arguments
-# When arguments are specified, order specified doesnt matter
-# THIS IS HIGLY RECOMMENDED
+So above:
+
+* In the first example, it is assumed that we want a sequence from = 1 that goes to = 10. 
+* Then if we swap the numbers it is assumed we want to sequence from = 10 that goes to = 1. 
+
+However, if we name the arguments **explicitly** using argument = value, the order we specify them does not matter. 
+
+Let's see this in action:
+
+```{r}
+# Reversing arguments but using argument name
 
 seq(to = 10, from = 1)
 
 ```
 
-The above demonstrates something about how R resolves function arguments. 
+You can sometimes run into errors with more complicated functions by taking the arguments for granted. Often there are many optional arguments that are resolved (position wise) before the required ones.
 
-You should always specify arguments in the form name = value . If you do not specify, R will attempt to resolve by position. 
-
-So above, first it is assumed that we want a sequence from = 1 that goes to = 10. Then if we swap the numbers it is assumed we want to sequence from = 10 that goes to = 1. If we name the arguments explicitly using name = value, the order of the arguments doesn't matter. 
-
->**I would encourage you to specify the arguments and parameters as it makes your code easier to understand**
+>**We would encourage you to specify the arguments and parameters as it makes your code easier to understand**
 
 
 # Packages
 
-Our default R installation – often referred to as **“base R”** gives us a lot of functionality.
+Our default R installation,often referred to as **base R** gives us a lot of functionality out of the box.
 
+A lot of this code has been around since R's first implementation in the 90s. 
 
-A lot of this code has been around since R’s early days, back to when it was created in 1993. However, if we want to do more complicated, newer or more exciting things with our code we can install packages to achieve these goals.
+If we want to implore the newest methodologies, adopted by the wider R community, then we need to install packages to achieve this.
 
+>**Packages are a collection of functions, compiled code and sometimes data sets which are stored in a library of code within R.**
 
->**Packages are a collection of functions, compiled code and sometimes data sets which are stored in a “library” of code within R.**
+In order to use a package, we first need to install it:
 
-In order to use a package, we first need to download it.  
-R installs packages from [CRAN](https://cran.r-project.org/) – **The Comprehensive R Archive Network.**
+* R installs packages from [CRAN](https://cran.r-project.org/) **The Comprehensive R Archive Network.** that contains over 20,000 packages.
 
-Your department may have a slightly different way of installing packages.
+* You can install packages from outside of CRAN (such as from [GitHub](https://github.com/)) with specific functions. Please be aware of the source and quality in these cases.
 
-R has over 15,000 packages on CRAN, so it would be impossible to have them all downloaded on your machine. You can also install packages that are not part of CRAN; but please be aware of the source and quality; like any software these can damage your machine if they are malicious.
+Your department may have a slightly different way of installing packages, so clearing this up is a good first port of call.
 
-
-## Cran Task Views
-
-If you want to find what packages you can use for what task, you can use [Cran task Views](https://cran.r-project.org/web/views/), this gives a brief overview of the packages you can use.
-
-
-## ONS Note!
-
-Within ONS we use a mirrored version of CRAN on our software repository called **Artifactory**. 
-
-Behind the scenes our R installation is set to install from *Artifactory* rather than *CRAN*. 
-
-This requires our up to date windows username and password. Without this the package will not install. This is why it is important for ONS staff to make sure their password is up to date in either your settings. Some users with a very old version of R may have a .rprofile - we encourage you to update to the new RStudio bundle.
 
 
 ## Installing Packages
 
-To install a package, we use the code below. 
+To install a package, we use the code below for **each** new package. 
 
+>**install.packages("package_name")**
 
->**It is important we use this WHOLE line of code every time we install a package.**
+>**Important**: You will only need to install packages once, you should either do this in the console, or comment out the line in your script where this is done. 
 
+When installing packages you can either get:
 
-```{r, eval = F}
-# Installing a package
+* A Message - Provides information, such as version.
 
-install.packages(“package_name”, dependencies = TRUE, type = “win.binary”)
+* A Warning - Discusses **masking**, which we will encounter later.
 
-```
-
-When installing packages you can either get a,
-
-* Message
-
-* Warning 
-
-* An error
-
-Generally a message will mean there is no problem, a warning is usually fine (generally) and an error is not fine, means that something is wrong.
+* An error - This means something went wrong and the package did not install. 
 
 
 ### Exercise
@@ -203,37 +194,28 @@ Generally a message will mean there is no problem, a warning is usually fine (ge
 
 ### **Exercise**{-}
 
-1. Try installing the packages below using the **R console.**
+1. Install the packages below using the **R console** one at a time.
 
+* tidyverse
 
-   **Run them line by line – this makes it easy to spot any error messages.**
+* janitor
 
-
-* “tidyverse”
-
-* “janitor”
-
+Note that tidyverse is a collection of R packages that follow the same programming paradigm, so will take quite some time to install. 
 
 ### **Show Answer**{-}
 
 ```{r, eval = F}
 # Installing packages
 
-install.packages("tidyverse", dependencies = TRUE, type = "win.binary")
+install.packages("tidyverse")
 
-install.packages("janitor", dependencies = TRUE, type = "win.binary")
-
+install.packages("janitor")
 
 ```
 
 :::
 
-### {-}
-
-Successful installation should finish with messages as below, the last box, the rest are warnings which you will get sometimes.
-
-**With the default colour theme, installing packages generally displays a lot of ominous red text - this is absolutely fine!**
-
+Successful installation should finish with messages as below, sometimes interspersed with some warnings. 
 
 ```
 ## package 'janitor' successfully unpacked and MD5 sums checked
@@ -248,17 +230,9 @@ Think of packages as owning a book; you purchase (install) the book once, and af
 
 In R we call this loading, and you should always load packages at the very top of your script.
 
-To load a package, use the code below;
+To load a package, use the code:
 
-
-```{r eval=FALSE}
-# Loading a package
-
-library(package_name)
-
-```
-
->**Note here there are no quotes around the package name.**
+>**library(package_name)** where the package name is not a string this time. 
 
 
 ### Exercise
@@ -266,81 +240,42 @@ library(package_name)
 
 ### **Exercise**{-}
 
+Load the packages you installed in the prior exercise:
 
-Now try to load the packages below.
+* tidyverse
 
-* readr
-
-* readxl
-
+* janitor
 
 ### **Show Answer**{-}
 
 ```{r}
-
 # loading packages
 
-library(readr)
+library(tidyverse)
 
-library(readxl)
+library(janitor)
 
 ```
 
 :::
 
-### {-}
+There is almost always some output we get when loading packages. Some options are:
 
-You may see a message that says
+* **package "X" was built under R Version "Y"** - this states that your R version may be lower than the one the package was written using. This is not always an issue, but you should endeavour to remain updated with your software. 
 
-package "X" was built under R Version "Y" - this states that your R version may be lower than the one the package was written using. This doesn't usually cause issues.
-
-You may also see a message about masked objects - this is explained later in this document.
-
-
-Now that we've loaded all of the packages in, there is one point that needs to be made about syntax.
-
-When we start typing in a package name, R Studio will usually pop-up a window displaying the various functions available. The list of functions includes all base R functions along with all the functions from any libraries you have loaded in.
-
-
-```{r, eval = FALSE}
-
-# Press tab after the colons to access the list available functions
-
-readr::
-  
-readxl::
-```
-
-
-We could select the function we want to use from the list and move on. 
-
-However, a problem arises when multiple functions from different libraries have identical names. It is not always clear which function you're referencing and implementing. We can avoid this by specifying the library before the function, like above.
-
-R Studio will then only display functions available from that library. This ensures we are implementing the correct function and makes our code easier to understand for ourselves and others!
-
-It is considered best practice to always spell out where an external function is coming from with **::** , particularly when writing production code.
-
-
-## When to load specific packages
-
-Returning to our book analogy, not all of the books you own are relevant to your project. If you are working on a gardening project, a cookbook isn’t very helpful and you wouldn’t need to use it; it’s exactly the same for your R project.
-
-We’re not using janitor in this session so we are not going to load it yet.
+* **The following objects are masked from "package::package_name":** - this arises when functions from your newly loaded package have identical names to either a function in base R, or from another outside package.
+    * As such, the package you loaded takes precedence, and it's function under that name will be used. 
+    * You can get around this by using the syntax **package_name::function_name** as R will attempt to autofill the functions from that package, and there is no way to misconstrue what package the function comes from. 
 
 
 ## R and Package Versions
 ::: {.panel-tabset}
 
-You may have gotten a message that says,
-
-**package ‘readr’ was built under R version 3.4.4** 
-
-This means that we are using an older version of R than the one the package is built for.
-
+Returning to the versions issue, we may have an older version of R than the one the package was built for.
 
 ### **Check R Version** {-}
 
-We can check our R version by running the command version.
+We can check R version by running this command.
 
 ```{r}
 # To check the version of R
@@ -348,107 +283,109 @@ We can check our R version by running the command version.
 version
 ```
 
+You can see that we are running 4.1.3
 
-I am running version 3.4.4.
+If your version is a little older, this is fine, but we **thoroughly** recommend versions 4.1 and above and discourage versions beginning with a 3.
 
-Dont worry if you are running an older version.
-
-If you are curious on the [release names](https://livefreeordichotomize.com/2017/09/28/r-release-names/), they are references to Peanuts strips/films.
-
-Most packages are fully backwards compatible, so this is something to be aware of but we do not need to worry about it too much.
+Older versions, such as 3.6.3 (which is popular) are no longer supported by the creators, and will conflict with almost all training you will engage with whilst learning. 
 
 
 ### **Check Package Version**{-}
 
-To check the version of a package you can type, the code below;
+Use the packageVersion() function with the package supplied as a string.
 
 ```{r}
 # Checking the package version
 
-packageVersion("dplyr")
+packageVersion("tidyverse")
 ```
 
-If you are working collaboratively you should always check that you are all using the same versions of packages. 
+You see that we have the up to date 2.0.0, this is backwards compatible with some older versions, but beware of argument name changes to functions.
 
-This helps with the reproducibility of your results and allows everyone on a team to work with the code.
+If you are working collaboratively you should always check that you are all using the same versions of packages. 
 
 
 ### **Masked Objects**{-}
 
-Some packages **overwrite or “mask”** functions from other existing packages.
+One of the masks at play with tidyverse is the **filter()** functions:
 
-The filter function from stats deals with Linear Filtering on a Time Series
+* Base R has a filter() function to apply on time series
+* Whereas dplyr (a tidyverse package for data manipulation) has a filter() function to select rows or columns from datasets.
 
-dplyr’s version of filter selects rows based on specific conditions.
+These both take very different parameters, so it is important to know what we have masked. After loading the tidyverse, it will assume we want to use the dplyr version of filter going forward. 
 
-As you can imagine these both take very different parameters – so it is important to know what we have masked. This is because after we have loaded the dplyr package it will assume we want to use the dplyr version of filter – **NOT** the one from the stats package.
+To use the alternative we would need to type 
 
-```{r}
-# Loading the package dplyr
-
-library(dplyr)
-```
+>**stats::filter()**
 
 :::
 
 
 # Tidyverse
 
-So far we have seen a quick introduction to base R with vectors being the building blocks of everything else. 
+Here we will introduce the tidyverse, a collection of R packages that that changed the way many work with R forever. 
 
-Now we will take a slight detour away from base R to the tidyverse which is a collection of various R packages.
+The packages in tidyverse share a common philosophy for data manipulation and exploration so they work well together. 
 
-The packages in tidyverse share a common philosophy for data manipulation and exploration so they work well together. We will see the what the majority of the family of packages in tidyverse have to offer, but not all.
+This philosophy is that of Tidy Data, described first in the [seminal paper](https://vita.had.co.nz/papers/tidy-data.pdf) by Hadley Wickham, the tidyverse's creator. 
 
+## Advantages of the Tidyverse
 
-## Advantages{-}
+The tidyverse is
 
-tidyverse is:
+* Well documented. Each sub-library has its own website containing a 'cheat-sheet' and vignettes. We thoroughly recommend bookmarking these.
+    * The packages panel has links to the documentation of the package version you have
 
-* Well documented. Each sub-library has its own website containing a 'cheat-sheet', as well as examples and a vignette which goes into further detail. We can access the useful information through several methods. The packages panel is links to the help panel if you click on the package name. The package summary below is hyper-linked to their respective website. 
-
-* Established in the R data science community, meaning common issues and queries are already answered on platforms such as Stack Overflow.
+* Well established in the R data science community, meaning common issues and queries are already answered on platforms such as [Stack Overflow](https://stackoverflow.com/questions/tagged/r).
 
 * Designed such that all sub packages follow a core 'philosophy' which encourages best practices. 
 
-* Open-source software and free to use. As are the books written by the tidyverse creator Hadley Wickham. 
+* Open-source software and free to use. As are the books written by the tidyverse creator Hadley Wickham. The highest recommendation we can make is [R for Data Science](https://r4ds.hadley.nz/). 
 
 
-## Disadvantages{-}
+## Disadvantages
 
-* Like R, tidyverse can have a steep learning curve, due to its flexibility. There are several ways to solve the same problem and it's not always clear which is best.
+* Like R, tidyverse can have a steep learning curve, and its reliance on functional programming can confuse beginners. 
+    * It is argued that this is well worth the investment though.
+
+* It is incredibly flexible, which makes it hard to determine which solutions to problems are the best.
+
+* Quite verbose (wordy), which can lead to long scripts. 
 
 
 ## tidyverse Breakdown{-}
 
 Below is a list of the core packages in tidyverse to provide some awareness into what they make possible:
 
-* [`readr`](http://readr.tidyverse.org) - Data Import,
-* [`tibble`](https://tibble.tidyverse.org/) - Tibbles, a modern re-imagining of data frames,
-* [`tidyr`](https://tidyr.tidyverse.org/) - Data Tidying,
-* [`dplyr`](https://dplyr.tidyverse.org/) - General Data Manipulation,
-* [`stringr`](https://stringr.tidyverse.org/) - Strings Manipulation,
-* [`forcats`](https://forcats.tidyverse.org/) - Factors Manipulation,
-* [`ggplot2`](https://ggplot2.tidyverse.org/) - Data Visualisation,
-* [`purrr`](https://purrr.tidyverse.org/) - Functional Programming,
-
-
-Note: The majority of the 'heavy lifting', with respect to data manipulation and exploration, will be done through the functions available through the tidyverse libraries. On some occasions, we will be using functions from other libraries.
+* [readr](http://readr.tidyverse.org) - Data Import
+* [tibble](https://tibble.tidyverse.org/) - Tibbles, a modern re-imagining of data frames
+* [tidyr](https://tidyr.tidyverse.org/) - Data Tidying
+* [dplyr](https://dplyr.tidyverse.org/) - General Data Manipulation
+* [stringr](https://stringr.tidyverse.org/) - Strings Manipulation
+* [forcats](https://forcats.tidyverse.org/) - Factors Manipulation
+* [ggplot2](https://ggplot2.tidyverse.org/) - Data Visualisation
+* [purrr](https://purrr.tidyverse.org/) - Functional Programming
+* [lubridate](https://lubridate.tidyverse.org/) - For dealing with dates and times - included in tidyverse 2.0.0 onwards. 
 
 
 ![\Image showing visual representation of tidyverse packages and workflow](../Images/tidyverse.png){fig-alt="Tidyverse workflow of import, tidy, transform/model/visualise and communicate."}
+
+The first of the core packages we will delve into is **readr** which deals with reading in data. We need an understanding of the working directory beforehand.
 
 
 # Working Directory
 
 R has a powerful notion of the working directory. This is where R looks for files that you ask it to load, and where it will put any files that you ask it to save. 
 
-RStudio shows your current working directory at the top of the console.
+We often refer to this as the "starting point" when R looks for a file you specified the path for.
 
+Thankfully, we are using an **R project**, which makes filepaths and directories reproducible, by ensuring everyone who opens the project has this set by default.
+
+>**If you are not using a project (we recommend you do) you will need to set your own working directory with the [setwd() function](https://www.geeksforgeeks.org/how-to-use-setwd-and-getwd-in-r/) that requires a full path to the directory to change it manually.**
 
 ## Checking Working Directory
 
-You can print this out in R code by running getwd().
+The getwd() function (get working directory) is ideal.
 
 ```{r}
 # Getting the working directory
@@ -456,129 +393,136 @@ You can print this out in R code by running getwd().
 getwd()
 ```
 
+If you are inside the project created within these materials, you should have the same final step in the "path", that of the "Course_content" folder.
 
 > **In Windows file paths are specified using back slashes, but in R a backslash already has a meaning, so we use a forward slash or two back slashes instead.**
 
 
-## Setting Working Directory
+Base R has many functions that allow you to explore directories, such as:
 
-You can use **`setwd()`** function and provide an absolute or relative file path to change the working directory to.
+* dir() - Lists contents of current directory
 
-> **For example `"C:/My_RStudio/Workspace/Intro_to_R"`**
-
-While you are working on this course, we recommend you set your working directory as the same folder as the course materials you downloaded from the learning hub. 
-
-```{r, eval=FALSE}
-# Setting the working directory
-
-setwd("C:/My_RStudio/Workspace/Intro_to_R")
-```
-
->**Alternatively you could use the keyboard short cut CTLR+SHIFT+H.**
-
-Some great base R functions for exploring your directory are:
-
-```{r, eval = FALSE}
-# Exploring the directory using file.choose() function
-
-file.choose()
-
-# Exploring the directory using dir() function
-
-dir()
-
-# Exploring the directory using list.files() function
-
-list.files()
-
-
-```
+which are beyond the scope of what we are currently discussing. 
 
 
 # Reading in Data
 
-There are a variety of ways of reading data into R, in this chapter we will look at reading data using the readr and readxl packages.
+There are a variety of ways of reading data into R, in this chapter we will look at reading data using the packages:
 
-Here are a few other options for various file types:
-
-* haven - SPSS, Stata and SAS files,
-* DBI + dplyr or dbplyr - Databases,
-* jsonlite - json files,
-* httr - Web APIs,
-* rvest - HTML (Web Scraping)
+* readr - loaded with tidyverse
+* readxl - installed with tidyverse, but loaded separately. 
 
 
 ## Readr
 
-The package provides a fast and friendly way to read data from *csv* and *tsv* formats, it converts the data into *tibbles*.
+The package provides a fast and friendly way to read data from:
 
-For this section we are going to use the **`read_csv()`** function.
+* Comma Separated Value (csv) files
+* Tab Separated Value (tsv) files
 
-Before importing your data you need to know,
+converting them to **tibbles**, which are the required data structure in the tidyverse. 
+
+This is done by using a family of functions, which is a set of functions that have the same prefix:
+
+> **read_filetype()**
+
+The most common, and one we will use throughout the course is **read_csv()**
+
+> Before importing your data you need to know:
 
 * Where it is stored?
 
-* What kind of file it is?
+* What kind of file is it?
 
-* Are missing values in the data?
-    + Missing values in R are denoted by **NA**.
+* Are there missing values in the data?
+    * Missing values in R are denoted by **NA**.
 
-The code below demonstrates how you can read csv data.
+The code will take the following form:
 
-```{r, eval=FALSE}
-# Reading in CSV data using readr package and read_csv function
+>**data_name <- read_csv(file_path)**
 
-dataframe_name <- readr::read_csv(file_path)
-```
+and readr will:
 
+* Assume the first row of your data is the headings of the columns.
 
-**Things To Keep in Mind**
-
-readr will assume that the first row of your data is the headings of the columns.
-
-readr will automatically try and guess the data types in your columns, for example:
-
-if a column has only numerical data, it will be classed as numeric or if it only contains logical values it will be classed as logical. If the values do not match then R keeps them as characters. It is good practise to check your column data types, just in case R chose the wrong type automatically.
+* Attempt to guess the datatype of columns, given their content. If a numeric column contains 99 doubles and one character, then the same coercion that happened with vectors will happen again (since columns are vectors) and we get a character column.
+    * One of the first data checks you should do is that the types of the columns match what you expect. 
 
 
-## Example 
+### Example - Our first filepaths
+::: {.panel-tabset}
 
-Load the titanic data using the code below,
+Let's load in the titanic dataset in the "Data" folder. 
 
-You will need to change the file path to where titanic.csv is saved in your files.
+We need to figure out where this is and how to get there from our current working directory, so that we can tell R. 
 
-You will have noticed that we had some parsing information after reading the file in, displayed at the end of the process (as a warning). This is to let us know the data type  for each column. 
+### **Absolute Filepaths**{-}
 
-This is not an error and its useful to inspect the chosen datatypes. 
+An **absolute** or full filepath is constructed as:
+
+>"starting_drive/step_1/step_2/step_3/..../destination
+
+this details the full path taken to reach the file.
+
+To reach "titanic.csv" the absolute filepath for us is 
+
+>"C:/Users/marshj1/af_introduction_to_r/Data/titanic.csv"
+
+### **Relative Filepaths**{-}
+
+A **relative** filepath is the path to reach the file relative to the current working directory. 
+
+Thus we are already part of the way there, and just need to tell R where to go from here:
+
+>"working_directory/step_1/step_2/.../destination
+
+However, in our case our working directory is one level deeper than it should be, inside the course content folder.
+
+As such, we start our relative path by leaving the current folder, or **jumping back a level**, we denote this with two dots, or **../** as the first step of the path.
+
+So, our relative filepath to the dataset here is:
+
+>"../Data/titanic.csv" - Leave the course content folder, go inside the Data folder, select titanic.csv
+
+### **Loading in the data**{-}
+
+Of course, we need to consider where we create our R Projects going forward, as this directly impacts our filepaths. 
 
 ```{r}
-# Reading in CSV data using readr package and read_csv function
+# Read in titanic with read_csv()
 
-titanic <- readr::read_csv("Data/titanic.csv")
+titanic_data <- read_csv("../Data/titanic.csv")
 ```
 
+You will get some information on:
 
-To look at the data in R we use the View command as below.
+* rows and columns
+* lists of each column types
 
+### **Inspect Data**{-}
 
->**Make sure you spell it with a capital V.**
+Running the name of the variable generates a large output, it is better to use inspection functions from base R and the tidyverse. 
 
+One example is View(), which opens a separate tab in the code editor pane with the dataset.
+
+We will see better examples soon.
 
 ```{r eval=FALSE}
-# Viewing the data using the View() function
+# Viewing the data u
 
-View(titanic)
+View(titanic_data)
 ```
 
+:::
 
-## Exercise
+### Exercise
 ::: {panel-tabset}
 
 ### **Exercise**{-}
 
 1. Having read in the titanic data above, have a look at the column Age of passenger.
 
-2. What type of data is this column?
+2. What type of data would you expect this column to be?
 
 3. Use the "str()" function to see the data type R has set it to be.
 
@@ -587,71 +531,52 @@ View(titanic)
 
 1. Have a look at the column Age of passenger.
 
-2. The data is numeric data.
+2. The column looks numeric.
 
 3. 
 ```{r}
 # Using the str() function
 
-str(titanic)
+str(titanic_data)
 ```
 
 We can see that R has classed the column as character because of the **.** and asterisk **(*)** within it.
 
-We can easily correct this by adding an additional argument when the reading the data to specify that . and * are a missing value.
+:::
 
+### Dealing with Missing Values at Read-in
 
-The code below, can be read as;
+Whilst we cannot observe all missing values at this stage, examples that cause columns to be cast to unexpected data types are often spotted quickly.
+
+We can easily correct this by adding an additional argument to the **read_csv()** function.
+
+```{r}
+# Specifying missing values as a vector to read_csv()
+
+titanic_data <- read_csv("../Data/titanic.csv", 
+                           na = c("*", ".", "", "NULL"))
+
+```
+
+This is read as:
 
 > **Where there is the a `.`, `*` and a blank space, class is it as a missing value.**
 
+We can now see that the . and * in the age column have been replaced with NA's and the age column is now numeric.
 
-```{r}
-# Importing CSV data using readr package and read_csv function
-# Specifying missing values by adding a vector, na=c() of what should be 
-# classed as missing values
+You may see all sorts of missing values in practice, deriving from data entry:
 
-titanic <- readr::read_csv("Data/titanic.csv", 
-                           na = c("*", ".", "", "NULL"))
+* negative numbers where it makes no sense
+* abnormally large values such as 999999
 
-
-```
-
-
-We can now see that the . and * in the age column have been replaced with NA's and the data has been read is as numerical data.
-
-On this instance our missing values have been classed as . and *, missing values in other datasets can be classed as other symbols or words. e.g.: -, -9.
-
->**Sometimes there are a few lines of metadata at the top of the file. You can use skip = n to skip the first n lines**
-
-```{r, eval=FALSE}
-# Please NOTE this is not code
-# This will skip the first 5 rows from the csv
-
-dataset_name <- readr::read_csv("file path", 
-                           na = c("*", ".", "", "NULL"), # missing value
-                           skip = 5) # skips the first 5 rows
-```
-
->**Alternatively we can also skip empty rows as below**
-
-```{r, eval=FALSE}
-# Please NOTE this is not code
-# Should blank rows be ignored altogether? i.e. If this option is TRUE then blank rows will not be # represented at all. If it is FALSE then they will be represented by NA values in all the columns.
-
-dataset_name <- readr::read_csv("file path", 
-                           na = c("*", ".", "", "NULL"), # missing value
-                           skip_empty_rows = TRUE) # skips empty rows
-```
+>**There are many other useful arguments you can use when reading in data, check the help documentation for read_csv() for details.**
 
 
 ## Readxl
 
 We use readxl to read excel data into R, it supports both .xls and .xlsx formats.
 
-
 The code below demonstrates how you can read excel data.
-
 
 ```{r eval=FALSE}
 dataframe_name <- readxl::read_excel(file_path)
@@ -668,7 +593,6 @@ We run this function with the code below:
 
 readxl::excel_sheets(file_path)
 ```
-
 
 
 ## Example 
