@@ -65,7 +65,7 @@ help(seq)
 ```
 
 
-![](../Images/seq_helpfile.PNG){fig-alt="Seq() function help file.", width=650px}
+![](../Images/seq_helpfile.PNG){fig-alt="Seq() function help file."}
 
 
 ### Function help files
@@ -353,7 +353,7 @@ The tidyverse is
 * Quite verbose (wordy), which can lead to long scripts. 
 
 
-## tidyverse Breakdown{-}
+## Tidyverse Breakdown
 
 Below is a list of the core packages in tidyverse to provide some awareness into what they make possible:
 
@@ -426,7 +426,9 @@ This is done by using a family of functions, which is a set of functions that ha
 
 > **read_filetype()**
 
-The most common, and one we will use throughout the course is **read_csv()**
+The most common, and one we will use throughout the course is **read_csv()**.
+
+### Considerations to make
 
 > Before importing your data you need to know:
 
@@ -460,7 +462,7 @@ We need to figure out where this is and how to get there from our current workin
 
 An **absolute** or full filepath is constructed as:
 
->"starting_drive/step_1/step_2/step_3/..../destination
+>"starting_drive/step_1/step_2/step_3/..../destination"
 
 this details the full path taken to reach the file.
 
@@ -468,13 +470,15 @@ To reach "titanic.csv" the absolute filepath for us is
 
 >"C:/Users/marshj1/af_introduction_to_r/Data/titanic.csv"
 
+Note that your usernames and drives will differ to ours. 
+
 ### **Relative Filepaths**{-}
 
 A **relative** filepath is the path to reach the file relative to the current working directory. 
 
 Thus we are already part of the way there, and just need to tell R where to go from here:
 
->"working_directory/step_1/step_2/.../destination
+>"working_directory/step_1/step_2/.../destination"
 
 However, in our case our working directory is one level deeper than it should be, inside the course content folder.
 
@@ -482,7 +486,13 @@ As such, we start our relative path by leaving the current folder, or **jumping 
 
 So, our relative filepath to the dataset here is:
 
->"../Data/titanic.csv" - Leave the course content folder, go inside the Data folder, select titanic.csv
+>"../Data/titanic.csv" - Leave the course content folder, go inside the Data folder, select titanic.csv.
+
+Visually, to understand the tree-like folder structure, we have something like the following going on:
+
+![](../Images/folder_structure.jpg){fig-alt="Top level is introduction to R, folders are at level 2, items in the folders are level 3."}
+
+Where we are currently at level 2 on the course content branch, so must follow the path back to the data folder and hence the dataset. 
 
 ### **Loading in the data**{-}
 
@@ -516,7 +526,7 @@ View(titanic_data)
 :::
 
 ### Exercise
-::: {panel-tabset}
+::: {.panel-tabset}
 
 ### **Exercise**{-}
 
@@ -560,7 +570,7 @@ titanic_data <- read_csv("../Data/titanic.csv",
 
 This is read as:
 
-> **Where there is the a `.`, `*` and a blank space, class is it as a missing value.**
+> **Where there is the a ".", "*", NULL value or a blank space, class is it as a missing value.**
 
 We can now see that the . and * in the age column have been replaced with NA's and the age column is now numeric.
 
@@ -576,64 +586,50 @@ You may see all sorts of missing values in practice, deriving from data entry:
 
 We use readxl to read excel data into R, it supports both .xls and .xlsx formats.
 
-The code below demonstrates how you can read excel data.
+Even though it is installed alongside the tidyverse, it must be loaded separately.
 
-```{r eval=FALSE}
-dataframe_name <- readxl::read_excel(file_path)
-```  
+```{r}
+# Load in readxl
 
-One handy thing to know is the **excel_sheets()** function.
-
-As excel files often have multiple sheets, this function will provide the names without having to open the file.
-
-We run this function with the code below:
-
-```{r eval=FALSE}
-# To find out the excel sheet names from excel file
-
-readxl::excel_sheets(file_path)
+library(readxl)
 ```
 
+The code for read in is very similar to the read_csv() example, just using the read_excel() function.
 
-## Example 
+Excel workbooks are more complex than flat files as they are **workbooks**, featuring multiple sheets. 
 
-1. Read in the excel file Police data.
+We can output their names using the excel_sheets() function, which will become important shortly.
+
+
+### Example 
+
+Let's read in the police dataset.
 
 ```{r}
 # Reading in excel data using the readxl package
-# assigning the file name police_data
-# and read_excel function
 
-police_data <- readxl::read_excel("Data/police_data.xlsx")
+police_data <- read_excel("../Data/police_data.xlsx")
+
+View(police_data)
 ```
 
-After reading in the file our data should look like this.
-
-![](../Images/police_data_sheet_1.PNG){fig-alt="Police data with one column describing the content of the dataset."}
-
-This is the first sheet in our excel which is just the "Notes".
-
-If we dont specify which sheet, the default setting from readxl is to give us the first sheet.
-
-
-2. Use the excel_sheets function to see the names of the sheets in the police data.
-
+We see that this is the **first sheet** in our workbook which is just the "Notes". This is the default behaviour of read_excel() unless we specify otherwise.
 
 ```{r}
-# finding out the excel sheet names from excel file
+# Observe sheet names in police data
 
-readxl::excel_sheets("Data/police_data.xlsx")
+excel_sheets("../Data/police_data.xlsx")
 ```
 
 
-## Exercise
+### Exercise
 ::: {.panel-tabset}
 
 ### **Exercise**{-}
 
-Can you add an additional argument in the read_excel() function to read in the second sheet (Table P1) from the police data.
+Use an additional argument in "read_excel()" to read in the second sheet of the police dataset.
 
-**HINT - look at the help documentation!**
+You will need to look at the help documentation for read_excel() to help you with this. 
 
 
 ### Show Answer{-}
@@ -644,30 +640,30 @@ You can use the name of the sheet or the number/index.
 
 # Using the sheet parameter in 2 ways
 
-police_data <- readxl::read_excel("Data/police_data.xlsx",
-                                  sheet = 2)
+police_data <- read_excel("../Data/police_data.xlsx",
+                          sheet = 2)
 
 # Alternatively
 
-police_data <- readxl::read_excel("Data/police_data.xlsx",
-                                  sheet = "Table P1")
+police_data <- read_excel("../Data/police_data.xlsx",
+                          sheet = "Table P1")
 
+View(police_data)
 ```
 
-Our file should now look like this,
+This is better but still not ideal:
 
-![](../Images/sheet_2.PNG){fig-alt="The police dataset with columns using numbers as names."}
+* The top columns are mostly blank with no real significant data.
 
-As we can see the top columns are mostly blank with no real significant data, to get around this we can add in a range of columns and rows that have the data we want to analyse. This sorts out the column names as well.
-
+    * We can get around this by specifying the **range** parameter in read_excel, to denote the range of cells to capture.
 
 ```{r}
-# Using the range parameter as well as sheet
+# Using the range parameter to avoid empty rows
 
 
-police_data <- readxl::read_excel("Data/police_data.xlsx",
-                                  sheet = 2, 
-                                  range = "A5:AA48")
+police_data <- read_excel("../Data/police_data.xlsx",
+                          sheet = 2,
+                          range = "A5:AA48")
 
 ```
 
@@ -675,140 +671,131 @@ police_data <- readxl::read_excel("Data/police_data.xlsx",
 
 # Exporting the Data
 
-When you read a file into R, the data is loaded into memory. This means that any changes you make won't be reflected in the original file you loaded. If you want to preserve the changes you make to the dataset you have to export the data object to a file.
+When you read a file into R, the data is loaded into memory. This means that any changes you make won't be reflected in the original file you loaded. 
 
-Exporting tables works in much the same way as importing it.
+If you want to preserve the changes you make to the dataset you have to export the data object to its own file. 
 
-readr allows us to export to csv file type or equivalent using the **`write.csv()`** function.
+We have a family of functions for this, just like reading in, the **write_filetype()** functions.
 
-As an example we will export the police data we just imported.
+## Example
+
+As an example, let's write out the police data which now has the correct sheet and range as a csv (flat) file instead.
+
+We must supply two arguments to **write_csv()**:
+
+* dataset itself
+* file, which must be the filepath of **where to save your file**. 
+
+The path is constructed similarly as before, but we can choose what folder to save our work in, and must also give the file a name and supply its file extension, for example:
+
+>**"../folder/my_file.csv"**
+
+If you specify a folder that doesn't exist, the function will create it for you. In this case, let's create a separate folder called "outputs". 
 
 ```{r, eval=FALSE}
 # Exporting data using write_csv()
 
-readr::write_csv(police_data, path = "Data/test.csv")
+write_csv(police_data, file = "../outputs/police.csv")
 ```
 
-Our data frame police_data would now be stored as test.csv in the Data/ folder.
-
-
-# A Note on File Paths
-
-You may see some file paths that start with two full stops such as "../Data/titanic.csv" - the .. moves up a level in the folder structure.
-
-We may have a file structure that looks like this:
-
-![](../Images/folder_structure.jpg){fig-alt="Top level is introduction to R, folders are at level 2, items in the folders are level 3."}
-
-Our default working directory may not be in the level 1 location - "Introduction to R". In fact if we create RMarkdown documents our working directory is in the folder the .rmd file is located. Here that would be in the Course Content folder.
-
-From this location "Introduction to R /Course Content" I can move between chapters but I can't move to titanic.csv or img_1.jpg.
-
-If I want to access the titanic file in the Data folder I need to ensure my file path is "../Data/titanic.csv". I need to move up a level in my file structure (using ..) before I can move forwards into the Data folder and my file.
-
-This is explained in more detail in the course in the Introduction to Command Line course on the Learning Hub. 
+This stores our police_data in the outputs folder under the name "police.csv". 
 
 
 # Inspecting  the Data
 
-After importing our data, the first thing we may want to do is have a quick look at it to check it looks how we expect it to.
+After importing our data, the first thing we may want to do is have a quick look at it:
 
-We can do this by typing the various commands in the following exercise.
+* We can check it looks similar to the source file.
+* We can check if there are the same number of rows and columns we expect.
+* We can check if the columns loaded in as the datatype we expect.
+* We can check if there are obvious missing values at the tail ends. 
 
+We can do these checks in a variety of ways, be that from base R, or in the tidyverse.
 
-## Exercise
+## Inspecting Data Functions
 ::: {.panel-tabset}
 
-### **Functions**{-}
+### **Tail Ends**{-}
 
-Have a play around with each command and see if you can figure out what they are doing.
+We can output the first or last 6 rows of the dataset by using the **head()** and **tail()** functions.
 
-```{r eval=FALSE}
-# Inspecting our data
+```{r}
+# Head of titanic
 
-str(titanic)
-
-dplyr::glimpse(titanic)
-
-dplyr::slice_sample(titanic, n = 5)
-
-head(titanic) 
-
-tail(titanic) 
-
-dim(titanic)
-
-nrow(titanic)
-
-ncol(titanic)
-
-names(titanic)
-
-summary(titanic)
-
-titanic[1,1] 
-
-titanic[3:6,] 
-
-# Type the code below and press tab
-
-titanic$
-
-# Note this brings up some columns - you MUST select one before trying the next command or you will get an error
-  
-unique(titanic$Pclass)
-
+head(titanic_data)
 
 ```
 
+```{r}
+# Tail of titanic
 
-### **Show Answer**{-}
-
-```{r eval=FALSE}
-
-library(dplyr)
-
-str(titanic) # Structure of the table
-
-dplyr::glimpse(titanic)  # Similar to str -  but from dplyr package
-
-dplyr::slice_sample(titanic, n = 5) # Selects a random sample of n rows from the dataset
-
-View(titanic)  # Pops file into a Viewer.
-
-head(titanic) # Top of the table
-
-tail(titanic) # Bottom of the table
-
-dim(titanic) # Dimensions
-
-nrow(titanic) # Number of rows
-
-ncol(titanic) # Number of columns
-
-names(titanic) # Names of columns
-
-summary(titanic) # Summary statistics for data
-
-# Selecting elements
-
-titanic[1,1] # Selecting the first row and column
-
-titanic[3:6,] # Selecting row 3 to 6 and all columns
-
-titanic$Fare # Selecting a column from the dataset
-
-unique(titanic$Pclass) # Tells us the unique elements of a variable.
-
+tail(titanic_data)
 
 ```
+
+### **Dimensions**{-}
+
+We can output the number of rows and columns or each separately with the following functions.
+
+```{r}
+# Number of rows in titanic
+
+nrow(titanic_data)
+
+```
+
+```{r}
+# Number of columns in titanic
+
+ncol(titanic_data)
+
+```
+
+```{r}
+# Dimensions - Vector of nrow and ncol
+
+dim(titanic_data)
+
+```
+
+### **Column names**{-}
+
+We can output the column names of a dataset as a vector using the **names()** function.
+
+```{r}
+# Column names in titanic
+
+names(titanic_data)
+
+```
+
+### **Glimpse (dplyr)**{-}
+
+Our dplyr library in the tidyverse provides arguably the best inspection function, known as glimpse().
+
+This gives most of the information the previous base R functions did, alongside some of the structural information from str() we saw previously.
+
+```{r}
+# Have a glimpse at titanic
+
+glimpse(titanic_data)
+```
+
+This gives so much useful information in a condensed output:
+
+* The number of rows and columns
+* Column names
+* Column data types
+* The first 5-10 observations
+
+We recommend using this function after each manipulation you make to the data, as a **sense check**.
 
 :::
 
 # Summary
 
-We have covered a lot material for importing and exporting and yet there is still so much more to cover with the readr package. 
+Well done for working your way through this solid introduction to the readr package in the tidyverse,
 
-By no means are you expected to remember all the above, what is better is that you understand the problems you want to solve and can then use the references or material provided (or you find yourself) to go about solving it.
+By no means are you expected to remember all the above, what is better is that you understand the problems you want to solve and can then use references or provided material to go about solving it.
 
 In the next chapter we will look at data manipulation with the dplyr package from the tidyverse. 
