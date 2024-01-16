@@ -1,0 +1,1661 @@
+---
+title: "Chapter 4 - Tibbles and dplyr"
+format:
+  html:
+    highlight: null
+    theme: default
+    toc: true
+    toc-title: Contents
+    toc-location: right
+    toc-depth: 3
+    number-sections: true 
+    link-external-newwindow: true
+    embed-resources: true
+---
+
+![](../Images/AF_DSC_banner.png){fig-alt="Data Science Campus and Analysis Function logos."}
+
+# Learning Objectives
+
+* Understand the importance of clean variable names.
+
+* Be able to clean column names using the janitor package.
+
+* Understand the use of the pipe operator.
+
+* Be able to sort data with dplyr's **arrange** verb.
+
+* Be able to select data with dplyr's **select** verb.
+
+* Be able to filter data with dplyr's **filter** verb. 
+
+* Be able to transform data with dplyr's **mutate** verb.
+
+* Be able to join datasets together.
+
+
+# Packages and Data
+
+Remember, the first steps when starting a new script are:
+
+* Load in the packages required for the work.
+* Read in datasets required and assign them to a variable in memory.
+
+## Exercise
+::: {.panel-tabset}
+
+### **Exercise**{-}
+
+1. Load the following packages:
+
+* Tidyverse
+* janitor
+
+2. Read in the **titanic.csv** file and assign it to the name "titanic_data". Remember to assign null values properly (as in Chapter 3) using the "na" parameter. 
+
+* Remember that you are in your R project, which sets the working directory to be inside the **Course_content** folder. 
+
+3. Have a glimpse of your dataset. 
+
+
+### **Show Answer**{-}
+
+```{r message = FALSE, warning = FALSE}
+
+# Load packages
+
+library(tidyverse)
+library(janitor)
+
+
+# Read in titanic.csv and set null values to be specific symbols
+
+titanic_data <- read_csv("../Data/titanic.csv", 
+                           na = c("*", ".", "", "NULL"))
+
+# Have a peak
+
+glimpse(titanic_data)
+
+```
+
+:::
+
+
+As a reminder, in the titanic dataset our columns are:
+
+* **Pclass**: Passenger’s class, 1 = 1st (Upper), 2 = 2nd(Middle), 3 = 3rd(Lower)
+* **Survived**: Survived (1) or died (0)
+* **Name**: Passenger’s name
+* **Sex**: Passenger’s sex
+* **Age of Passenger**: Passenger’s age
+* **SibSp**: Number of siblings/spouses aboard (excluding the person)
+* **Parch**: Number of parents/children aboard (excluding the person)
+* **Ticket**: Ticket number
+* **Fare**: Fare
+* **Cabin**: Cabin number
+* **Embarked**: Port of embarkation, C = Cherbourg, Q = Queenstown, S = Southampton
+
+
+We can see more details on the [Data Dictionary](https://www.kaggle.com/c/titanic/data)
+
+
+# Column Names
+
+In the previous session we stated that every column in a tibble is a variable and it is good practice to not have spaces within variable names, as spaces makes it harder for us to call on the variables when we need to use them.
+
+When you enter data in Excel, you most often don’t think too much about what you call each column. After all, you just label them once and as long as they are documented, this isn't given too much thought.
+
+When you are working with variables in R though, you need to type the name of each variable, every time you want to work with it. So, it makes sense to make your column names as simple, but meaningful as possible.
+
+## Retuning columns by name
+
+In base R, to call a column by name and return its contents as a single vector (remember, each column in a tibble is a vector) we use the dollar sign **$** operator.
+
+You will notice the list of column names will pop up and you can move through them with arrow keys and select the one you want. 
+
+### Example
+
+Let's return the column "Pclass".
+
+```{r}
+# Return Pclass with base R
+
+titanic_data$Pclass
+
+```
+
+This returns up to 1000 length vectors, so it would be useful to use **glimpse()** or other inspection functions for a sense check.
+
+```{r}
+# Return Pclass and glimpse
+
+glimpse(titanic_data$Pclass)
+
+```
+
+
+This could already prove frustrating due to needing to remember the capital letters, particularly if the autocomplete is slowing down.
+
+However, it can get worse if spaces are included in the column name.
+
+### Example - Returning column with spaces
+
+Let's take the "name of Passenger" column and try to return it without the auto-complete.
+
+```{r, eval = FALSE}
+
+titanic$name Of Passenger
+
+```
+
+This will throw an error as spaces in syntax are not allowed, R cannot process code in this way as a space should usually denote the end of a line of code. 
+
+To get around this we enclose column names with spaces in **backticks ` `** and you will notice that the autocomplete does the same. This allows the entire column name to be read as one entity.
+
+```{r}
+# Selecting a column with spaces in the names
+
+glimpse(titanic$`name Of Passenger`)
+
+```
+
+Whilst this works, it is bad practice to use capitalisation and spaces, as it complicates things for us as well as others we collaborate with.
+
+### Accessing column names
+
+We can see the column names by using the "names()" function to print a character vector of the column names.
+
+```{r}
+# Getting the column names using the names function
+
+names(titanic)
+```
+
+We will need to do some work on these to remove the use of capitalisation and spaces. 
+
+
+## Cleaning Column Names
+::: {.panel-tabset}
+
+### **janitor Package**{-}
+
+The **janitor** package offers many functions used to manipulate data, such as finding duplicates. In this chapter we will use it to clean column names. 
+
+The function to use is called "clean_names()" and automatically formats the column names as **snake_case**, but this can be altered with an additional parameter.
+
+
+```{r}
+# Clean the column names and overwrite the variable
+
+titanic_data <- clean_names(titanic_data)
+
+# Getting the column names of the dataset
+
+names(titanic_data)
+```
+ 
+### **gsub**{-}
+
+If you want to do this using base R, there is the function **gsub()** which is part of the pattern matching family of functions.
+
+These are for use with character strings, and search for a specific pattern of characters and perform some task, be it:
+
+* Replacement with another pattern
+* Removal
+
+and more. 
+
+The function takes a few arguments:
+
+* pattern - The sequence of characters to search the string for.
+* replacement - What to replace the sequence of characters with.
+* x - The string itself to search.
+
+> For example, the output of gsub(" ", "_", "piece of text") would be "piece_of_text", as we are taking empty spaces, replacing them with underscores.
+
+Let's perform the same steps as clean_names() using this function. Notice that we must overwrite the names() vector output, so it is less user friendly than janitor. 
+
+```{r, eval = F}
+# Using gsub to clean our column names
+
+names(titanic_data) <- gsub(pattern = " ",  
+                            replacement = "_", 
+                            x = names(titanic_data)) 
+```
+
+That's not all though, we also need to lowercase them as well, using another base R function, the **tolower()** function.
+
+```{r, eval = False}
+# We can lower case the names of the data frame.
+
+names(titanic_data) <- tolower(names(titanic_data)) 
+```
+
+Whichever you use depends on your setup and preferences. Janitor is the simplest and most popular, but provides less fine control than doing things step by step, so keep this in mind.
+
+:::
+
+### **dplyr**{-}
+
+We have not formally introduced the data manipulation package dplyr, but it does have 
+
+We can also rename column names. 
+
+The first argument is the data frame to be changed, the second is the column and what it will be changed to.
+
+
+
+```{r}
+# Renaming a column using the package dplyr
+# using the rename() function
+# here we are renaming age_of_passenger with age
+
+titanic_renamed <- dplyr::rename(titanic, age = age_of_passenger)
+
+# To Display the Data
+
+titanic_renamed
+
+```
+
+
+
+# The Data Manipulation Package - **dplyr**
+
+This is one of the most powerful packages in the *tidyverse*, which makes data manipulation simple and code easy to read.
+
+We will look at how to perform the following actions:
+
+1. arrange/sort
+2. select
+3. filter
+4. mutate
+5. joining data
+
+with the aim of the package to provide a function for each basic **verb** of data manipulation. This has led to them being referred to as such in the documentation. 
+
+Each of the verbs have the same structure:
+
+> verb(.data, info,....), note the full stop which is syntax to allow us to reference variables from the dataset (enables auto-completion too!)
+
+and the [cheat sheet](https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf) is incredibly useful for a reference piece. 
+
+
+## Arrange
+
+Our data is displayed in the same order as the source data.
+
+We may want to sort our data, based on specific columns. To do so we use the verb **arrange()**. 
+
+
+### Example - Single column sort
+
+For many of these examples we will create a new variable, as we may not want to overwrite our original data with cleaned names unless we are happy with a permanent change.
+
+It makes it difficult to revert to the original data should we make a mistake if we do not create separate variables. 
+
+However, we must also be careful about cluttering up our environment with variables we will not use again. 
+
+As such, you can run the code in the console to check whether it gives the output you want, and then create a variable once you are sure. 
+
+```{r}
+# Sort titanic by fare
+
+titanic_sorted <- arrange(.data = titanic_data,
+                          fare)
+
+glimpse(titanic_sorted)
+
+```
+
+Using glimpse() is highly recommended after each transformation to check that the output is what you expect.
+
+Notice that by default, arrange() sorted the fare column in **ascending** order.
+
+
+### Example - Desending Order Sort
+
+To sort a column in descending order, we use the **desc()** function and the column name as its input. 
+
+```{r}
+# Sort titanic in descending order 
+
+titanic_sorted <- arrange(.data = titanic_data,
+                          desc(fare)) 
+
+glimpse(titanic_sorted)
+```
+
+
+### Example - Multi-Column Sort
+
+We can also sort by multiple columns, but this creates a chain of **dependence**, in that the first column sort is maintained before the second sort is performed. 
+
+This means that the second sort won't change the order from the first sort.
+
+When this becomes useful is if there are numerous examples of the same value, such as the 0.0000 values in the fare column.
+
+Whilst the position of 0.0000 will not change, the values in the adjacent column will be sorted. Some of those paying £0 fare may have been younger than others, after all. 
+
+```{r}
+# Multi-column sort
+
+titanic_double_sort <- arrange(.data = titanic_data,
+                               fare,
+                               age_of_passenger)
+
+glimpse(titanic_double_sort)
+```
+
+Notice that we were able to just continually reference columns from the data as if they were arguments to the function, and the verb understands that immediately.
+
+This is part of the power of these functions, and why **.data** is recommended for use.
+
+
+### Exercise
+::: {.panel-tabset}
+
+### **Exercise**{-}
+
+Sort the titanic data set by age in **descending** order, then fare in **ascending** order.
+
+### **Show Answer**{-}
+
+
+```{r}
+# Sort by age desc, fare asc
+
+titanic_double_sort <- arrange(.data = titanic_data,
+                               desc(age_of_passenger),
+                                  fare)
+
+glimpse(titanic_double_sort)
+```
+:::
+
+
+## Select
+
+Sometimes we will want to work with smaller tibbles that contain just a subset of available columns.
+
+The **select()** verb is perfect for this, and is dplyr's more feature rich answer to the **$** operator from base R. We will endeavour to continue our use of the tidyverse from here, for consistent and readable code. 
+
+It takes the arguments:
+
+* The first is our dataset, made even simpler with ".data"
+* From here we list as many columns by name as we would like to be retained in our selecting process.
+    * The order in which we specify them is the order they will be in the smaller tibble.
+
+### Example - Single Column
+
+```{r}
+# Selecting data
+
+titanic_one_col <- select(.data = titanic_data, 
+                           name_of_passenger)
+# To display the data
+
+glimpse(titanic_one_col)
+```
+
+Notice that this has returned a tibble with one column, not the vector itself that formed that column as **$** would have.
+
+### Example - Multiple Columns
+
+If we want to select multiple columns, we can continue to list them, separating with commas, as we did with **arrange()**.
+
+```{r}
+# Selecting data
+
+titanic_three_cols <- select(.data = titanic_data,
+                             name_of_passenger, 
+                             age_of_passenger,
+                             pclass)
+
+# To display the data
+
+glimpse(titanic_three_cols)
+```
+
+
+### Example - Columns in a range
+
+We can select consecutive columns (next to one another) with the syntax we used for indexing in chapter 2, the colon **:** operator.
+
+```{r}
+# Selecting from passenger class to the age of passenger in order
+
+titanic_consecutive_cols <- select(.data = titanic,
+                                   pclass:age_of_passenger)
+
+glimpse(titanic_consecutive_cols)
+
+```
+
+Notice that we return the columns from pclass to age_of_passenger in the order of the source data. 
+
+### Selecting with **exclusion**
+
+Up to this point we have selected with **inclusion**, a.k.a we specify the columns we want to include in our smaller tibble.
+
+The real power of select comes from it's flexibility, in that we can reduce the amount of code to write by using **exclusion** instead, a.k.a specify the columns we don't want to include.
+
+Say we want to keep 7 of 9 columns, instead of typing out the names of all 7, we can just exclude the 2 we exclude, as they are equivalent processes. 
+
+### **Example**{-}
+
+To exclude, we use the minus sign operator **-** which signifies "do not select this" or "select, not this".
+
+```{r}
+# Selecting by excluding columns we don't want
+
+titanic_exclude_cols <- select(.data = titanic_data, 
+                               -name_of_passenger, 
+                               -age_of_passenger, 
+                               -pclass)
+
+
+
+glimpse(titanic_exclude_cols)
+
+```
+
+There is an even more streamlined way to do this, by wrapping the columns in a vector with the **c()** function and using one minus sign outside it.
+
+You can think of this as expanding brackets in mathematics:
+
+> "-c(col1, col2) = c(-col1, -col2) = -col1, -col2
+
+```{r}
+# Using a vector for exclusion
+
+titanic_exclude_cols <- select(.data = titanic_data, 
+                               -c(name_of_passenger, 
+                                  age_of_passenger, 
+                                  pclass))
+
+glimpse(titanic_exclude_cols)
+```
+
+### Selecting with Index Position
+
+We can also select the columns using their index position, starting from 1, just like we did with data structures in chapter 2.
+
+Let's select columns 1 to 4, and also column 7.
+
+```{r}
+# Selecting sequential and out of sequence columns with index position
+
+titanic_index_select <- select(.data = titanic_data, 
+                               1:4, 
+                               7)
+
+# To display the data
+
+glimpse(titanic_index_select)
+```
+
+Exclusion works similarly here with the minus sign. 
+
+
+
+### Select Helper Functions
+
+As if **select()** wasn't already helpful enough, it even has helper functions that allow us to select on specific patterns, such as a prefix or suffix in a column name. 
+
+They are as follows:
+
+* starts_with(match): Starts with a prefix.
+* ends_with(match): Ends with a suffix.
+* contains(match): Contains a literal string.
+* matches(match): Matches a [regular expression](https://www.regular-expressions.info/quickstart.html).
+* everything(): Selects all variables.
+* last_col(): Selects the last column.
+
+
+These can be passed instead of column names **and** alongside selected column names as well. 
+
+### **Examples**{-}
+
+Let's return columns that start with an "s".
+
+```{r}
+# Selecting columns
+
+titanic_prefix_select <- select(.data = titanic_data, 
+                                starts_with("s"))
+
+# To Display the data
+
+glimpse(titanic_prefix_select)
+```
+
+As a second example, let's return everything.
+
+```{r}
+# Selecting everything
+
+titanic_every_select <- select(.data = titanic_data,
+                               everything())
+
+glimpse(titanic_every_select)
+
+```
+
+
+### Exercise
+::: {.panel-tabset}
+
+### **Exercise**{-}
+
+
+1. Select the second, third and fourth columns from titanic_data, without typing all three.
+
+
+2. Select all columns except "fare", "cabin" and "embarked" from titanic_data. Note that these are consecutive.
+
+
+3. Select just the last column from titanic_data using a helper function.
+
+
+4. Select the columns that end in the suffix "passenger" using a helper function.
+
+
+### **Show Answer**{-}
+
+1. 
+```{r}
+# Select second, third and fourth column
+
+titanic_select_exercise <-  select(.data = titanic_data, 
+                                   survived:sex_of_passenger)
+
+glimpse(titanic_select_exercise)
+
+```
+
+2. 
+```{r}
+# Using exclusion on a range
+
+titanic_select_exercise <- select(.data = titanic_data, 
+                                  -fare:-embarked)
+
+# OR
+
+# titanic_select_exercise <- select(.data = titanic_data,
+#                                 -c(fare, cabin, embarked))
+
+# OR
+
+# titanic_select_exercise <- select(.data = titanic_data,
+#                                   -fare,
+#                                   -cabin,
+#                                   -embarked)
+
+glimpse(titanic_select_exercise)
+
+```
+
+3. 
+```{r}
+# Selecting last column only
+
+titanic_select_exercise <- select(.data = titanic_data,
+                                  last_col()) 
+
+glimpse(titanic_select_exercise)
+
+```
+
+
+4.
+```{r}
+# Selecting on a suffix
+
+titanic_select_exercise <- select(.data = titanic_data,
+                                  ends_with("passenger")) 
+
+
+glimpse(titanic_select_exercise)
+
+```
+:::
+
+For more advanced ways to select columns:
+
+* Refer to this excellent blog [Data Wrangling Part 1: Basic to Advanced Ways to Select Columns](https://suzan.rbind.io/2018/01/dplyr-tutorial-1/)
+
+
+
+## Filter
+
+Often we are only interesting in groups of rows that adhere to a specific condition, such as:
+
+* Passengers that paid over or under a certain fare.
+* Passengers who are in a particular age threshold.
+* Passengers who embarked from Southhampton
+
+and of course, combinations of the above.
+
+The next verb, **filter()** allows us to subset our rows in this way. To understand this section, we first need to consider conditions.
+
+### Conditional Statements
+
+
+A conditional statement returns `TRUE` if the condition is met. 
+
+To create a logical condition, we have to use the logical operators.
+
+
+
+Logical Operator| Description
+:--------------:|:------------:
+        <       | Less Than
+       <=       | Less Than or Equal To
+       \>       | Greater Than
+       >=       | Greater Than or Equal To
+    ==          | Equal To
+       !=       | Not Equal To
+       \|       | Or
+        &       | And
+        !       | Not
+      any()     | Checks if any value in a logical vector are TRUE
+      all()     | Checks if all values in a logical vector are TRUE
+      is.na()   | Is NA?
+      between() | Is between 2 numbers
+
+
+>**Note: The `!` allows us to flip or invert an expression. Basically, if an expression returns `[TRUE, TRUE, FALSE]`, the same expression with a `!` in front of it will return `[FALSE, FALSE, TRUE]`.**
+
+
+>**Note: `==` is used to test equality and `=` is used to define values to pass into functions.**
+
+
+### Single Conditional Filtering
+
+
+We can filter out a new data set where `pclass` is equal to 2.
+
+This is referred to as single conditional filtering as we only have one condition.
+
+
+```{r}
+# Select passengers (rows) who were in class (pclass) 2.
+
+secondclass <- dplyr::filter(.data = titanic, 
+                             pclass == 2)
+
+#To display the data
+
+secondclass
+```
+
+
+>**A quick way to check that the filter worked is to look at all the unique values, in the data set above, using the `unique()` function.**
+
+
+Note here am using the `$` to select the column pclass.
+
+
+```{r}
+# Returns the set of unique values in the data set.
+# finding out how many unique values 
+# are in the titanic dataset pclass column
+
+unique(titanic$pclass)
+
+
+# finding out how many unique values 
+# are in the secondclass dataset pclass column
+
+unique(secondclass$pclass)
+```
+
+We can see that on the original dataset the titanic, we have three(1,2,3) different unique values in the pclass column and in our new filtered dataset we have one unique value (2).
+
+
+Another example, we can filter out the passengers who paid more than 200.
+
+
+```{r}
+# Select passengers who paid more than 200
+
+fare_more_than_200 <-  dplyr::filter(.data = titanic, 
+                                     fare > 200)
+
+
+# finding out how many unique values 
+# are in the faremorethan200 dataset fare column
+
+unique(fare_more_than_200$fare)
+
+```
+
+
+### Exercise
+::: {.panel-tabset}
+
+### **Exercise**{-}
+
+1. Use filter to show the row for the passenger named: 'Birkeland, Mr. Hans Martin Monsen'
+
+
+2. How many passengers in the dataset are male?
+
+
+3. How many passengers are under 18 years of age?
+
+
+
+##### **Extension Exercise**{-}
+
+
+4. What proportion of passenger in the dataset survived?
+
+
+
+
+##### **Extension Exercise**{-}
+
+
+4. What proportion of passenger in the dataset survived?
+
+   First filter the data - passengers which survived are those with a `1` in  the `survived`         column.
+
+   Then find out the number of rows using **`nrow()`**.
+
+   Then calculate the percentage using the formula **nrow(filtered data)/nrow(full data)*100**.
+
+```{r, eval = FALSE}
+
+# calculating the percentage, by dividing the total number 
+# of rows in new filtered dataset by the total number 
+# of rows in fulldataset then multiplied by 100
+
+percentage_of_passengers_survived <- nrow(titanic_filter_exercise)
+                                     /nrow(titanic)*100
+
+# To display the data
+
+percentage_of_passengers_survived
+```
+
+
+### **Show Answer**{-}
+
+
+1. 
+```{r}
+# filtering the dataset by name_of_passenger
+
+titanic_filter_exercise <- dplyr::filter(.data = titanic, 
+                                         name_of_passenger 
+                                         == 'Birkeland, Mr. Hans Martin Monsen')
+
+# To display the data
+
+titanic_filter_exercise
+```
+
+
+2. 
+```{r}
+# filtering the dataset by sex_of_passenger
+
+titanic_filter_exercise <- dplyr::filter(.data = titanic, 
+                                         sex_of_passenger
+                                         == 'male')
+
+# To display the data
+
+titanic_filter_exercise
+
+# showing the number of rows in our new filtered dataset
+
+nrow(titanic_filter_exercise)
+```
+
+
+
+3. 
+```{r}
+# filtering the dataset by age_of_passenger
+
+titanic_filter_exercise <- dplyr::filter(.data = titanic, 
+                                        age_of_passenger
+                                        < 18)
+
+# To display the data
+
+titanic_filter_exercise
+
+# showing the number of rows in our new filtered dataset
+nrow(titanic_filter_exercise)
+```
+
+
+### **Extension Exercise**{-}
+
+4. 
+```{r}
+# filtering the dataset by survived
+titanic_filter_exercise <- dplyr::filter(.data = titanic, 
+                                          survived == 1)
+
+
+#To display the data
+titanic_filter_exercise
+
+
+# showing the number of rows in our new filtered dataset
+nrow(titanic_filter_exercise)
+
+# calculating the percentage, by dividing the total 
+# number of rows in new filtered dataset by the total 
+# number of rows in fulldataset then multiplied by 100
+percentage_of_passengers_survived <- nrow(titanic_filter_exercise)/nrow(titanic)*100
+
+# To display the data
+percentage_of_passengers_survived
+```
+:::
+
+
+### Multiple Conditional Filtering 
+
+So far, we've only filtered according to individual conditions set on a single column, but there is no reason we can't use multiple conditions to filter by several conditions and/or columns at once. However, we do need to think about how the conditions relate to each other, as we have two options to establish these relationships.
+
+* **and** relationships are given by the **&** symbol. This implies both/all conditions must be met for a row to evaluate to `TRUE`.
+* **or** relationships are given by the **|** symbol. This implies that if _any_ of the conditions can be met a given row evaluates to `TRUE`.
+
+You can think of **`between()`** as being special version of multiple condition filters. **`between()`** is an **and** condition - greater than (or equal to) the lower bound **and** less than (or equal to) the upper bound.
+
+R also implements a multiple 'or' condition in the form `%in%`, where any rows that have a value occurring in a given vector will be included in the output tibble.
+
+
+| Condition 1 | Condition 2  | & (AND) Equates to |  &#124; (OR) Equates to |
+|:-----------:|:------------:|:------------------:|:------------------:|
+|     True    |     True     |        True        |        True        |
+|     True    |     False    |        False       |        True        |
+|    False    |     True     |        False       |        True        |
+|    False    |     False    |        False       |        False       | 
+
+
+
+Let's look at some examples:
+
+```{r}
+# Select passengers who were in class 1 AND female
+
+titanic_filter_example <- dplyr::filter(.data = titanic, 
+                                        pclass == 1 
+                                        & sex_of_passenger == "female")
+
+```
+
+
+```{r}
+# Select passengers who were female OR children (under 18)
+
+titanic_filter_example <- dplyr::filter(.data = titanic, 
+                                        sex_of_passenger == "female" 
+                                        | age_of_passenger < 18)
+
+```
+
+
+```{r}
+# Select passengers who paid more than 100 
+# but less than 250 for their fare.
+
+titanic_filter_example <- dplyr::filter(.data = titanic, 
+                                        between(fare, left = 100, right = 250))
+```
+
+
+```{r}
+# Select passengers who embarked 
+# in Southampton or Cherbourg.
+
+
+titanic_filter_example <- dplyr::filter(.data = titanic,
+                                        embarked == "C" | embarked == "S" )
+
+# If you are filtering more than one value
+# You can use the %in% which is
+# A more compact method of looking 
+# for a set of specific values.
+
+titanic_filter_example <- dplyr::filter(.data = titanic,
+                                        embarked %in% c('S','C'))
+
+# Alternatively if is easier to  not  select  
+# an item, here we are not  selecting  "Q"
+# which leaves us with "S" and  "C"
+
+titanic_filter_example <- dplyr::filter(.data = titanic,
+                                          embarked != "Q")
+```
+
+
+
+
+
+### Exercise
+::: {.panel-tabset}
+
+
+### **Exercise**{-}
+
+1. Select passengers who are in classes 2 or 3, what percentage of passengers is this?
+
+2. How many passengers were travelling alone?
+
+
+### **Extension Exercise**{-}
+
+3. What proportion of passengers who 'embarked' in Cherbourg ('C') or Queenstown ('Q') survived? 
+
+
+### **Show Answer**{-}
+
+1. 
+```{r}
+# filtering the dataset on multiple conditions
+# The | indicates one condition or the other must be TRUE.
+
+titanic_filter_exercise <- dplyr::filter(.data = titanic, 
+                                         pclass == 2 | pclass == 3)
+
+#To display the data
+
+titanic_filter_exercise
+
+# calculating the percentage, by dividing the total 
+# number of rows in new filtered dataset 
+# by the total number of rows in fulldataset then multiplied by 100
+
+nrow(titanic_filter_exercise) / nrow(titanic) * 100 
+```
+
+
+2. 
+```{r}
+# filtering the dataset on multiple conditions
+
+titanic_filter_exercise <- dplyr::filter(.data = titanic,
+                                         sibsp == 0 & parch == 0)
+
+# showing the number of rows in the filtered dataset
+
+nrow(titanic_filter_exercise)
+```
+
+
+### **Extension Exercise**{-}
+
+3. 
+```{r}
+# filtering the dataset on multiple conditions to find the embarked passengers
+
+embarked_cherbourg_and_queenstown <- dplyr::filter(.data = titanic,
+                                                   embarked == 'C' | embarked == 'Q')
+
+# filtering the dataset a single condition to find the survivors
+
+survived <- dplyr::filter(embarked_cherbourg_and_queenstown, 
+                          survived == 1)
+
+# showing the number of rows in the filtered dataset
+
+nrow(survived) / nrow(embarked_cherbourg_and_queenstown) * 100
+
+```
+:::
+
+For more advanced ways to filter columns refer to this excellent blog [Data Wrangling Part 1: Basic to Advanced Ways to Select Columns](https://suzan.rbind.io/2018/02/dplyr-tutorial-3/) which uses additional functions in dplyr that are from the filter family. 
+
+
+
+## Generating New Variables
+
+To create a new variable, or a new column, in our `tibble` we will use the **`dplyr::mutate()`** function.
+
+Code to create a new column follows the pattern below, where we state the name of the new column and the use the = to state what we want to be in that column.
+
+```{r, eval = F}
+# generating new variables
+
+data_frame_name <- dplyr::mutate(data_frame,
+                                 name_of_new_column = contents of new column)
+```
+
+
+### Constant Value Variables
+
+The simplest example would be adding a constant value to each row in our `tibble`. 
+
+```{r}
+# generating new variables
+
+mutate_example <- dplyr::mutate(.data = titanic, 
+                                string_twos = "two")
+
+```
+
+
+### Creating Variables Based on Existing Columns
+
+We can perform mathematical operations and even functions on existing columns in the **`mutate()`** function using column names.
+
+Let's look at some examples:
+
+We can capitalise the sex column.
+
+```{r}
+# Capitalise sex column
+# Here we are over writing the  sex_of_passenger column
+# If you give your new column the same name  as  an existing column 
+# It will overwrite it.
+
+mutate_example <- dplyr::mutate(.data = titanic,
+                                sex_of_passenger = stringr::str_to_upper(sex_of_passenger))
+
+```
+
+
+Another example is creating the family size of the person.
+
+This is the number of siblings or spouses on board (sibsp), the number of parents or children on board (parch), plus 1 (the person themselves).
+
+```{r}
+# Determining family size on board
+
+mutate_example <- dplyr::mutate(.data = titanic,
+                                family_size = parch + sibsp + 1)
+```
+
+
+As well as mathematical operators and functions we can use conditionals. 
+
+```{r}
+# Creating a logical column which is TRUE 
+# if passenger is female, false otherwise.
+
+mutate_example <- dplyr::mutate(.data = titanic,
+                                is_female = (sex_of_passenger == "female"))
+
+
+```
+
+
+The key note from this being, with **`mutate()`**, we can do almost anything to every row in our data frame. 
+
+There are some functions which work with **`mutate()`** and enable us to perform more complicated tasks. **`recode()`** lets us map one value to another throughout the entire column e.g.:
+
+```{r, eval = FALSE}
+# Recoding variables
+# Note Recode does not have a .data argument
+
+dplyr::recode(titanic$survived, 
+              '1' = TRUE, 
+              '0' = FALSE)
+```
+
+To do this in the context of an entire `tibble` we have to use **`recode()`** with **`mutate()`**.
+
+```{r}
+# Generating new variables
+
+recode_example <- dplyr::mutate(.data = titanic,
+                                survived_logical = recode(survived, '1' = TRUE, '0' = FALSE))
+```
+
+
+### Exercise
+::: {.panel-tabset}
+
+### **Exercise**{-}
+
+1. Create a new column, called `fare_dollars`, in this column we should have the fare converted to dollars, the exchange rate is £1 to $1.39.
+
+2. Round the `fare-dollars` column
+
+
+### **Show Answer**{-}
+
+1. 
+```{r}
+# Generating new variables
+
+fare_dollars <- dplyr::mutate(.data = titanic,
+                              fare_dollars = fare * 1.39)
+```
+
+
+2. Round the `fare_dollars` column.
+
+```{r}
+# Generating new variables
+
+round_fare <- dplyr::mutate(.data = titanic,
+                            fare_dollars = round( fare * 1.39))
+```
+:::
+
+
+For more advanced ways to mutate columns refer to this excellent blog [Data Wrangling Part 1: Basic to Advanced Ways to Mutate Columns](https://suzan.rbind.io/2018/02/dplyr-tutorial-2/), which showcases dplyr functions from the mutate() family.
+
+
+
+### Deleting data
+
+We can also use the **`mutate()`** function to delete data.
+
+We can add a new column called `child` to our titanic data set.
+
+We can quickly see the names of our data set using the the **`names()`** function.
+
+```{r}
+# Generating new variables
+
+titanic_mutate_exercise <- dplyr::mutate(.data = titanic,
+                                         child = age_of_passenger < 18)
+# To display the column names
+
+names(titanic_mutate_exercise)
+```
+
+We can delete the column using the code below.
+
+We take the titanic data set and set equal the column we want to delete to `NULL`.
+
+```{r}
+# Setting a column = NULL effectively removes it.
+
+titanic_mutate_exercise <- dplyr::mutate(.data = titanic_mutate_exercise, 
+                                         child = NULL)
+
+# finding out the names of the columns in the dataset
+
+names(titanic_mutate_exercise)
+```
+
+Alternatively, this will work too.
+
+```{r, eval = F}
+
+# selecting a column using the $ sign and assigning 
+# it to NULL
+
+titanic_mutate_exercise$child <- NULL
+```
+
+
+## The Pipe Operator 
+
+The Pipe Operator **`%>%`** makes it possible to chain a sequence of functions. 
+
+In R code **`%>%`** can be read as "AND THEN". It takes the output of one action "AND THEN" uses that as the input of the next action. Where an action could be calling a variable, a function or anything else that returns some information. 
+
+The short cut for this operator is CTL + SHIFT + M
+
+Up until now if we wanted to perform a sequence of actions on data, we'd have do something along the lines of:
+
+```{r}
+
+# Filtering the titanic dataset  
+   
+first_class_survivors <- dplyr::filter(.data = titanic,
+                                        pclass == 1 & survived == 1)
+
+# Selecting only the columns needed 
+# Note here I am using first_class_survivors as my dataset
+  
+selected_first_class_survivors <- dplyr::select(.data = first_class_survivors,
+                                                 name_of_passenger, 
+                                                 age_of_passenger, 
+                                                 embarked, 
+                                                 fare)
+
+# Sorting the data
+# Note here I am using selected_class_survivors as my dataset
+   
+sorted_first_class_survivors <- dplyr::arrange(.data = selected_first_class_survivors,
+                                                desc(age_of_passenger))  
+
+```
+
+Or alternatively this very nested sequence!
+
+
+```{r}
+# This may be very hard to read and understand - the pipe will make this much more readable!
+
+sorted_first_class_survivors <- dplyr::arrange(.data = 
+                                                 dplyr::select(.data = 
+                                                                 dplyr::filter(.data = titanic,
+                                                                  pclass == 1 & survived == 1),
+                                                               name_of_passenger,
+                                                               age_of_passenger,
+                                                               embarked,
+                                                               fare)
+                                               , desc(age_of_passenger))
+
+```
+
+
+With the pipe operator, this simplifies to:
+
+```{r}
+# Chaining dplyr commands
+
+sorted_first_class_survivors <- titanic %>%
+                                dplyr::filter(pclass == 1 & survived == 1) %>% 
+                                dplyr::select(name_of_passenger, 
+                                              age_of_passenger,
+                                              embarked, 
+                                              fare) %>% 
+                                dplyr::arrange(desc(age_of_passenger)) 
+```
+
+
+
+>**Notice how the `select()`, `arrange()` and `filter()` functions don't use the .data argument as it is being piped in from the previous command!**
+
+
+As you can see the pipe operator helps us:
+
+* Structure the sequence of our data operations from left to right, as opposed to from inside to out.
+* Avoid nested function calls and make code more "readable".
+* Reduce the need for local variables.
+* Make it easy to add steps anywhere in the sequence of operations.
+
+
+The pipe operator functionality comes from the `magrittr` package. Its implementation is designed for `tidyverse`, but it also works in some cases outside the `tidyverse`.
+
+
+The pipe function is one of the most powerful features of the `tidyverse`. In fact, having a standardised chain of processing actions is called "a pipeline". Making pipelines for data manipulation is great, because you can apply that pipeline to any incoming data with a given formatting and have your output in a friendly format.
+
+
+### Exercise
+::: {.panel-tabset}
+
+### **Exercise**{-}
+
+Lets practice piping a few dplyr verbs.
+
+
+Can you find the names of the 8 oldest passengers who embarked in Southampton?
+
+
+### **Show Answer**{-}
+
+
+```{r}
+# Chaining dplyr commands using the %>%
+
+southampton_oldest_passengers <- titanic %>%
+                          dplyr::filter(embarked == "S") %>%
+                          dplyr::select(name_of_passenger, age_of_passenger) %>%
+                          dplyr::arrange(desc(age_of_passenger)) %>% 
+                          head(n = 8)
+
+
+#To display the data
+
+southampton_oldest_passengers
+```
+
+
+
+## Joining Data
+
+Often all the data you need to answer a question are not contained within a single dataset, but across several. Datasets can be joined, or 'merged', to allow data to be analysed together, but only **if the two datasets share a common reference or identifier.**
+
+Linking data come in a number of forms and are commonly referred to as 'indexical' data. Some examples include:
+
+* Your NHS number, allowing data linkage across the NHS for primary, secondary, tertiary care episodes and prescribing.
+* Any account number (e.g. banking, utilities, travel card, council tax etc.) can acts as a point of linkage between different sets of data.
+* Your email, phone number, social media handles etc.
+* Your address can also act as a spatial reference, linking you to your neighbourhood, local services etc
+
+
+### Types of Joins
+
+In R we use a group of `join` functions. These are prefixed by the type of join we choose to implement.
+
+Once you have established that two `tibbles` share a reference that will permit a join to be conducted, you will see:
+
+* `inner_join` - Only rows with reference values that appear in both `tibbles` are merged.
+* `full_join` - All data from the left and right `tibble` is retained, matched up where possible.
+* `left_join` - All data from the 'left' `tibble` is retained, and any matching rows are merged from the 'right' `tibble`.
+* `right_join` - All data from the right and anything that matches from the left. Effectively, the reverse of 'Left'.
+
+
+This can be easier to understand graphically:
+
+
+![](../Images/sql-joins.png){fig-alt = "Venn diagrams for each of the prior examples, with the included data shaded."}
+
+
+Lets look at some examples.
+
+We will use the 2 datasets, which come as part of the `dplyr` package. These data sets describe band members of the Beatles and Rolling Stones. 
+
+```{r}
+# To display the data
+
+band_members
+```
+
+You will need to assign it to see it within the environment window as shown below,
+
+```{r}
+# Assigning the data
+
+band_members <- dplyr::band_members
+```
+
+
+```{r}
+# To display the data
+
+band_instruments
+```
+
+Lets assign this one as well. Note that `dplyr` has two slightly different datasets (band_instruments and band_instruments2 - which we will use later on). 
+
+```{r}
+# Assigning the data
+
+band_instruments <- dplyr::band_instruments
+```
+
+
+These data sets have one common column which is `name`, so we can join them based on this.
+
+We can see that **John** and **Paul** appear in both datasets while **Mick** is appears only in the band member and **Keith** in band instruments.
+
+I’m going to say that `band_members` is my “left” data frame, and that `band_instruments` is my “right” data frame.
+
+Let’s look at how we do an **inner join** in code. We’re going to use the function **`inner_join()`**.
+
+
+```{r}
+# The left data frame is given by the argument x
+# The right frame is given by the argument y
+# We need to include the column we would like to join with
+
+band_membership_inner_join <- dplyr::inner_join(x = band_members, 
+                                                y = band_instruments,
+                                                by = "name")
+# To display the data
+
+band_membership_inner_join
+```
+
+We can see that the inner join returned only the 2 members that appear in both datasets.
+
+
+If you don't specify which column to join by, `R` will look to match by any column that matches.
+
+
+We can also use the `pipe operator`, as shown below.
+
+```{r}
+# Joining data using the pipe operator
+# Here the left dataset is specified first
+# Then we can chain our join to it
+
+band_membership_inner_join <- band_members %>% 
+                              dplyr::inner_join(band_instruments, 
+                                                by = "name")
+
+# To display the data
+
+band_membership_inner_join
+```
+ 
+ 
+Now let try a **full join**.
+
+```{r}
+# full join
+
+band_membership_full_join <- band_members %>% 
+                             dplyr::full_join(band_instruments,
+                                              by = "name")
+
+# To display the data
+
+band_membership_full_join
+```
+
+We can see that the full join returned all 4 members with some missing values for those that don't appear in both datasets.
+
+
+Now lets try a **left join**.
+
+```{r}
+# left join
+
+band_membership_left_join <- band_members %>% 
+                             dplyr::left_join(band_instruments, 
+                                              by = "name")
+
+# To display the data
+
+band_membership_left_join
+```
+
+We can see that the left join returns only those that appear or both datasets or left dataset, which is why Keith is missing here.
+
+
+A **right join** is just the opposite of the left join.
+
+```{r}
+# Right join
+
+band_membership_right_join <- band_members %>% 
+                              dplyr::right_join(band_instruments, 
+                                                by = "name")
+
+# To display the data
+
+band_membership_right_join
+```
+
+We can see that the right join returns only those that appear or both datasets or right dataset, which is why Mick is missing here.
+
+
+If we're joining on more than one column we can specify using the parameter `by = c(vector))`.
+
+This is shown below.
+
+```{r, eval = F}
+
+# Joining using multiple columns
+
+join_left <- dplyr::left_join(x = first_dataset, 
+                              y = second_dataset,
+                              by = c("column name", "column name"))
+
+
+```
+
+
+### Exercise
+::: {.panel-tabset}
+
+### **Exercise**{-}
+
+1. Run the code below, can you figure out why its not working. **HINT:Remember what we need to be able to join 2 datasets.**
+
+We will be using band_instruments2 from the `dplyr` package for this exercise, rather than band_instruments as previously. 
+
+```{r, eval=F}
+# Load the data
+
+band_members <- dplyr::band_members
+
+band_instruments2 <- dplyr::band_instruments2
+
+# Full join
+
+band_membership_full_join <- band_members %>% 
+                              dplyr::full_join(band_instruments2)
+
+# To display the data
+
+band_membership_full_join
+```
+
+
+2. Using `band_members` and `band_instruments2` perform a "full" join.
+
+   * Join on *BOTH* the column containing `name` and the column containing `artist`.
+  
+   * Note that the names of these columns may not be the same in both data frames.
+
+   * Use the help function to explore solutions to this. **HINT: look at the example section**
+
+
+### **Show Answer**{-}
+
+1. 
+```{r, eval=F}
+# Load the data
+  # Note later code will run without this step, it has been included to demonstrate that datasets from packages are available 
+
+band_members <- dplyr::band_members
+
+band_instruments2 <- dplyr::band_instruments2
+
+# Full join
+
+band_membership_exercise <- band_members %>% 
+                              dplyr::full_join(band_instruments2)
+
+# To display the data
+
+band_membership_exercise
+```
+
+The code above will give the error message below;
+
+**Error: `by` must be supplied when `x` and `y` have no common variables. i use by = character()` to perform a cross-join. Run `rlang::last_error()` to see where the error occurred.**
+
+This is because the datasets do not have any columns with the same name, band_members has name while band_instruments2 has artist.
+
+```{r}
+# To display the data
+
+band_members
+```
+
+```{r}
+# To display the data
+
+band_instruments2
+```
+
+
+2. 
+```{r}
+# Full join
+# We can join with different column names
+
+band_membership_exercise <- band_members %>% 
+                              dplyr::full_join(band_instruments2,
+                                               by = c("name" = "artist"))
+
+# To display the data
+
+band_membership_exercise
+```
+
+
+### bind_rows()
+
+Another common way in which datasets are combined is by binding them. Unlike the join function, the binding functions do not try to match by a variable, but instead simply combine datasets by appending one set of data to the bottom of the other. If the datasets don’t match by the appropriate dimensions, one obtains an error.
+
+This is where we can add data on to the bottom of an existing data frame, If you have two (or more) data frames that share the same data structure.
+
+You can use the **bind_rows()** function.
+
+```{r}
+# Creating vectors
+
+name <- c("Paul","Katherine", "Almas", "Pragya")
+
+band <- c("Beatles","Beatles", "Stones", "Stones")
+
+# Creating a tibble
+
+new_band_members <- tibble::tibble(name, band)
+```
+
+For example, looking at the 2 data frames below;
+
+```{r}
+# To display the data
+
+band_members
+
+# To display the data
+
+new_band_members
+
+```
+
+
+We can use the **`bind_rows()`** function, which will simply merge two data frames into one by appending the rows.
+
+```{r}
+# Combining 2 dataframes using bind_rows() function
+
+binded_rows_data <- band_members %>% 
+                    dplyr::bind_rows(new_band_members)
+
+# To display the data
+
+binded_rows_data
+
+```
+
+We can see our new additions - Paul, Katherine, Almas and Pragya here now.
+
+Here we’re assigning the output to a new Data Frame – `binded_rows_data.
+
+
+### Union()
+
+Another useful function is  **`union()`** which will merge the data from both data frames but keep only the distinct (unique) rows. That means, any duplicated rows that exist in the target data frames are not going to be brought over to the current data frame
+
+```{r}
+# Combining 2 dataframes using union() function
+
+union_data <- band_members %>% 
+              dplyr::union(new_band_members)
+
+# To display the data
+
+union_data
+
+```
+
+We can see that Paul was duplicated and is not included when we use union instead.
+
+
+# Summary 
+
+We covered alot of content around dplyr here, but the possibilities are nearly endless with this incredible data manipulation library.
+
+By no means are you meant to remember and immediately recall the above. Instead, what is most important is that you understand the problem you are trying to solve, and can use the resources here (or your own) to then solve it.
+
+
+Next up, we will look at aggregating data and obtaining summary statistics.
+
