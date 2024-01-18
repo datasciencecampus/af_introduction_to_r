@@ -628,6 +628,201 @@ For more advanced ways to select columns:
 * Refer to this excellent blog [Data Wrangling Part 1: Basic to Advanced Ways to Select Columns](https://suzan.rbind.io/2018/01/dplyr-tutorial-1/)
 
 
+## The Pipe Operator 
+
+Up until now, we have run verbs one at a time on our dataset, be it to sort or select columns. 
+
+The real power of the tidyverse comes from the ability to chain these functions together in a sequence for more complex data manipulation tasks. 
+
+However, out of the box, this becomes laborious quickly due to the nature of functions. They are an application of the mathematical function, so they will take an input, do something to it and then return an output.
+
+However, to apply many functions to a single output, known as **composition** of functions, we must nest them, with the function applied last being written first, and evaluated from the inside to the outside.
+
+### **Example**{-}
+
+For example, let's take the **sqrt()** and **round()** mathematical functions and apply them together, so that we obtain the square root of a number and hence round it to a specified number of decimal places.
+
+```{r}
+# Compose mathematical functions
+
+round(sqrt(2))
+
+```
+Notice that the functions are evaluated in reverse order (from the inside, out) just as you would with writing this mathematically. You would perform the square root operation first, **then** round the result. 
+
+Should we wish to use an extra parameter, we need to start thinking about the brackets, as they are the opening and closing doors of a function itself.
+
+Thus, the **digits** parameter needs to go inside the round() brackets, not the sqrt() ones.
+
+```{r}
+# Compose mathematical functions with extra parameters
+
+round(sqrt(2), digits = 2)
+
+```
+
+Notice that the input to the function was the output from another function. 
+
+
+### Composition of functions in the tidyverse
+
+This becomes tricky to comprehend when working with the tidyverse functions, as we are effectively performing actions in sequence, such as selecting the columns the want and **then** sorting the result. 
+
+As such, the output of one function is the input to another, as in the following example:
+
+```{r}
+# Select passenger columns and fare then arrange by fare
+
+titanic_demographics_sort <- arrange(.data = select(.data = titanic_data,
+                                                    ends_with("passenger"),
+                                                    fare),
+                                     desc(fare))
+
+glimpse(titanic_demographics_sort)
+```
+
+Notice that the input to arrange was the result of a select operation, so we had to keep track of our brackets and ensure that the desc(fare) was placed within arrange(), **not** select().
+
+Going forward, we will see more verbs that can be applied on top of this, and it becomes laborious and difficult to manage quickly. This is where the pipe operator comes in.
+
+
+### Introducing the Pipe
+
+The Pipe Operator makes it possible to chain a sequence of functions starting with the base data as an input to the sequence.
+
+This removes the need to type the **.data** argument each time. 
+
+* Prior to R 4.1, the pipe operator came from a package known s **magrittr**, which would be loaded alongside the tidyverse, and it took the form **%>>%**.
+
+* From R 4.1 onwards, the operator comes as standard with base R, as it has become the universal standard for functional programming in the language. It now takes the form **|>**, and this option must be turned on in the Tools --> Global Options tab. 
+
+![](../Images/native_pipe.png){fig-alt="The Code, Editing pane with the native pipe operator tick box."}
+
+The shortcut for this operator is **CTRL + SHIFT + M** and is one you will use alot from here on. 
+
+### **Example - Single Value**{-}
+
+Let's return to our square root and rounding functions. Let's apply one, and then both in sequence using our new operator.
+
+First, we write the value or dataset we wish to apply functions to, it is at the entrance to the "pipe" if you will. 
+
+Then, we write the function we wish to use and any additional parameters we may need. The pipe operator **passes** the input to the function, so we do not need to write it within the brackets.
+
+```{r}
+# Our first pipe - with a single value
+
+2 |> sqrt()
+
+```
+
+You can read the pipe operator as "AND THEN". 
+
+It takes the output of one action "AND THEN" uses that as the input of the next action, and so on. 
+
+This means that to chain a sequence of functions, we will use the pipe operator again to pipe our output to our next function as its input. 
+
+```{r}
+# Our first sequence of pipes
+
+2 |> sqrt() |> 
+     round(digits = 2)
+```
+This is quite the shift from what we have done so far, but is more readable in plain english: 
+
+>**To the value 2, apply the square root function, and then, round that output to 2 decimal places.**
+
+Notice, that following the second pipe, we insert a new line, which automatically moves us in a few spaces. This is optional but allows code to read as if it were a list. 
+
+
+### Using the Pipe Operator with the tidyverse
+
+Let's return to our previous example, where we selected passenger demographics and sorted by fare. 
+
+Let's try to do this with pipes instead.
+
+First, we write the dataset we want to apply this sequence of steps to, then pipe that into the **select()** function, specifying what columns we wish to retain.
+
+Then, we pipe that output to the **arrange()** function, so that it can sort by the column we wish, in the order we wish.
+
+```{r}
+# Repeat earlier operation with pipes
+
+titanic_data |> 
+    select(ends_with("passenger"),
+           fare) |> 
+    arrange(desc(fare))
+```
+
+This way, the code is written in the order that it executes, as opposed to the reverse order without the pipe operator. 
+
+>**To the titanic dataset, we select columns that end with "passenger" as well as the fare column, and then, sort that in descending order of fare paid.**
+
+We could also pipe the output to a glimpse() if we do not wish to save the output.
+
+```{r}
+# Pipeline with glimpse
+
+titanic_data |> 
+    select(ends_with("passenger"),
+           fare) |> 
+    arrange(desc(fare)) |> 
+    glimpse()
+
+```
+
+
+### **Variables with tidyverse chains**{-}
+
+Notice that I didn't create a variable in the prior conversion, since it can cause confusion between the assignment operator **<-** and the pipe operator **|>** if not covered separately. 
+
+In front of the previous sequence, known as a **pipeline**, we would write our variable name and assignment operator, which saves the final output in memory.
+
+```{r}
+# Save pipeline as a variable 
+
+titanic_demographics_sort <- titanic_data |> 
+    select(ends_with("passenger"),
+           fare) |> 
+    arrange(desc(fare))
+
+
+titanic_demographics_sort |> 
+    glimpse()
+```
+
+Be careful not to confuse the meaning of the two operators, this will take some practice to get used to. 
+
+
+### Exercise
+::: {.panel-tabset}
+
+### **Exercise**{-}
+
+Speaking of pratice, let's try out our new tool!
+
+Create a pipeline that:
+* Selects the first five columns of the data
+* Arranges them in ascending order of age.
+
+Assign this output to a new variable and glimpse it.
+
+
+### **Show Answer**{-}
+
+```{r}
+# Selecting and ordering by age with pipes
+
+titanic_age_sort <- titanic_data |> 
+    select(pclass:age_of_passenger) |> 
+    arrange(age_of_passenger)
+
+titanic_age_sort |> 
+    glimpse()
+
+```
+
+:::
+
 
 ## Filter
 
@@ -635,19 +830,21 @@ Often we are only interesting in groups of rows that adhere to a specific condit
 
 * Passengers that paid over or under a certain fare.
 * Passengers who are in a particular age threshold.
-* Passengers who embarked from Southhampton
+* Passengers who embarked from Southampton.
 
 and of course, combinations of the above.
 
 The next verb, **filter()** allows us to subset our rows in this way. To understand this section, we first need to consider conditions.
 
+
 ### Conditional Statements
 
+A conditional statement is one that returns **TRUE** or **FALSE** dependent on the outcome. We saw examples of these back in Chapter 1, when we were producing logicals with comparisons. For example:
 
-A conditional statement returns `TRUE` if the condition is met. 
+* 4 < 5 is a condition statement that evaluates to TRUE
+* 4 != 4 is a conditional statement that evaluates to FALSE
 
-To create a logical condition, we have to use the logical operators.
-
+A reminder of the operators we use are
 
 
 Logical Operator| Description
@@ -656,82 +853,86 @@ Logical Operator| Description
        <=       | Less Than or Equal To
        \>       | Greater Than
        >=       | Greater Than or Equal To
-    ==          | Equal To
+       ==       | Equal To
        !=       | Not Equal To
        \|       | Or
         &       | And
         !       | Not
       any()     | Checks if any value in a logical vector are TRUE
       all()     | Checks if all values in a logical vector are TRUE
-      is.na()   | Is NA?
+      is.na()   | Is the value missing (NA)?
       between() | Is between 2 numbers
 
 
 >**Note: The `!` allows us to flip or invert an expression. Basically, if an expression returns `[TRUE, TRUE, FALSE]`, the same expression with a `!` in front of it will return `[FALSE, FALSE, TRUE]`.**
 
-
->**Note: `==` is used to test equality and `=` is used to define values to pass into functions.**
+These statements can of course be much more complex than comparing two single numbers, we can apply them across columns with dplyr's **filter()** verb! 
 
 
 ### Single Conditional Filtering
 
+We will first look at filtering by a single condition, which are constructed as follows:
 
-We can filter out a new data set where `pclass` is equal to 2.
+* We begin with the column to compare with.
+* Next is the logical operator of choice, such as **<**, **>**.
+* Last up is the value to compare each entry in the column to, which generates the set of TRUEs and FALSEs.
 
-This is referred to as single conditional filtering as we only have one condition.
+This is generated in the background, and **filter()** will keep only the rows that return **TRUE** from this comparison. 
 
+> For example, to subset down to only second class passengers, we would write: "pclass == 2". 
 
-```{r}
-# Select passengers (rows) who were in class (pclass) 2.
-
-secondclass <- dplyr::filter(.data = titanic, 
-                             pclass == 2)
-
-#To display the data
-
-secondclass
-```
-
-
->**A quick way to check that the filter worked is to look at all the unique values, in the data set above, using the `unique()` function.**
-
-
-Note here am using the `$` to select the column pclass.
-
+### **Example**{-}
 
 ```{r}
-# Returns the set of unique values in the data set.
-# finding out how many unique values 
-# are in the titanic dataset pclass column
+# Filter to retain only second class passengers
 
-unique(titanic$pclass)
+titanic_second_class <- titanic_data |> 
+    filter(pclass == 2)
 
 
-# finding out how many unique values 
-# are in the secondclass dataset pclass column
-
-unique(secondclass$pclass)
+titanic_second_class |> 
+    glimpse()
 ```
 
-We can see that on the original dataset the titanic, we have three(1,2,3) different unique values in the pclass column and in our new filtered dataset we have one unique value (2).
+A quick way to check that the filter has worked is to use base R's **unique()** function on the column. 
 
+We need to use our **$** here to reference columns by name as this is not a tidyverse method.
 
-Another example, we can filter out the passengers who paid more than 200.
+Let's check the original data first.
 
+```{r}
+# Return unique values from the original data
+
+unique(titanic_data$pclass)
+
+```
+
+We see that the pclass column has 3 unique levels of 1, 2 and 3.
+
+```{r}
+# Return unique values from the filtered data
+
+unique(titanic_second_class$pclass)
+
+```
+
+We see that in the filtered data, we have just second class passengers, as expected. 
+
+### **Example - Numeric**{-}
+
+Let's filter to passengers who paid above �200.
 
 ```{r}
 # Select passengers who paid more than 200
 
-fare_more_than_200 <-  dplyr::filter(.data = titanic, 
-                                     fare > 200)
-
-
-# finding out how many unique values 
-# are in the faremorethan200 dataset fare column
-
-unique(fare_more_than_200$fare)
+titanic_data |> 
+    filter(fare > 200) |> 
+    glimpse()
 
 ```
+Notice that we didn't save this as a variable, as this was just an example, one we will not carry forward in our analysis. 
+
+However, if you are being asked to answer specific questions, then saving the outputs of your manipulation pipelines as variables is very useful, to prevent overwriting the base data.
 
 
 ### Exercise
@@ -739,99 +940,56 @@ unique(fare_more_than_200$fare)
 
 ### **Exercise**{-}
 
-1. Use filter to show the row for the passenger named: 'Birkeland, Mr. Hans Martin Monsen'
+1. Use filter to return the row for the passenger named: 'Birkeland, Mr. Hans Martin Monsen'
 
+2. Filter for passengers that are male and save it as a variable. Can you count how many there were?
 
-2. How many passengers in the dataset are male?
+3. Filter for passengers that are under 18 years of age and save it as a variable. Can you count how many there were?
 
-
-3. How many passengers are under 18 years of age?
-
-
-
-##### **Extension Exercise**{-}
-
-
-4. What proportion of passenger in the dataset survived?
-
-
-
-
-##### **Extension Exercise**{-}
-
-
-4. What proportion of passenger in the dataset survived?
-
-   First filter the data - passengers which survived are those with a `1` in  the `survived`         column.
-
-   Then find out the number of rows using **`nrow()`**.
-
-   Then calculate the percentage using the formula **nrow(filtered data)/nrow(full data)*100**.
-
-```{r, eval = FALSE}
-
-# calculating the percentage, by dividing the total number 
-# of rows in new filtered dataset by the total number 
-# of rows in fulldataset then multiplied by 100
-
-percentage_of_passengers_survived <- nrow(titanic_filter_exercise)
-                                     /nrow(titanic)*100
-
-# To display the data
-
-percentage_of_passengers_survived
-```
+4. **Extension - Harder**: What percentage of passengers in the dataset survived? Remember, to compute a percentage, we must multiply the proportion by 100. 
 
 
 ### **Show Answer**{-}
 
-
 1. 
 ```{r}
-# filtering the dataset by name_of_passenger
+# Filtering to a specific passenger
 
-titanic_filter_exercise <- dplyr::filter(.data = titanic, 
-                                         name_of_passenger 
-                                         == 'Birkeland, Mr. Hans Martin Monsen')
+titanic_data |> 
+    filter(name_of_passenger == 
+               'Birkeland, Mr. Hans Martin Monsen') |> 
+    glimpse()
 
-# To display the data
-
-titanic_filter_exercise
 ```
-
 
 2. 
+
+To display the number of males in the filtered data, we simply need the number of rows, the length of the data!
+
 ```{r}
-# filtering the dataset by sex_of_passenger
+# Males only
 
-titanic_filter_exercise <- dplyr::filter(.data = titanic, 
-                                         sex_of_passenger
-                                         == 'male')
+titanic_male <- titanic_data |> 
+    filter(sex_of_passenger == 'male')
 
-# To display the data
+# Counting the number of males
 
-titanic_filter_exercise
-
-# showing the number of rows in our new filtered dataset
-
-nrow(titanic_filter_exercise)
+nrow(titanic_male)
 ```
 
-
-
 3. 
+
+To display the number of passengers below 18 years of age in the filtered data, we simply need the number of rows, the length of the data!
+
 ```{r}
-# filtering the dataset by age_of_passenger
+# Underage passengers 
 
-titanic_filter_exercise <- dplyr::filter(.data = titanic, 
-                                        age_of_passenger
-                                        < 18)
+titanic_underage <- titanic_data |> 
+    filter(age_of_passenger < 18)
 
-# To display the data
 
-titanic_filter_exercise
+# Counting the number of underage passengers
 
-# showing the number of rows in our new filtered dataset
 nrow(titanic_filter_exercise)
 ```
 
@@ -839,40 +997,50 @@ nrow(titanic_filter_exercise)
 ### **Extension Exercise**{-}
 
 4. 
+
+Firstly, we need to filter the dataset to those who survived, and the percentage would be calculated as:
+
+> Number of those who survived/Number of passengers as a whole * 100
+
+Remember, we can compute the number who survived and the number of passengers, we just need the number of rows in each subsequent tibble.
+
 ```{r}
-# filtering the dataset by survived
-titanic_filter_exercise <- dplyr::filter(.data = titanic, 
-                                          survived == 1)
+# Passengers who survived
 
+titanic_survived <- titanic_data |> 
+    filter(survived == 1)
 
-#To display the data
-titanic_filter_exercise
+# Survival percentage
 
+(nrow(titanic_survived) / nrow(titanic_data)) * 100
 
-# showing the number of rows in our new filtered dataset
-nrow(titanic_filter_exercise)
-
-# calculating the percentage, by dividing the total 
-# number of rows in new filtered dataset by the total 
-# number of rows in fulldataset then multiplied by 100
-percentage_of_passengers_survived <- nrow(titanic_filter_exercise)/nrow(titanic)*100
-
-# To display the data
-percentage_of_passengers_survived
 ```
 :::
 
 
 ### Multiple Conditional Filtering 
 
-So far, we've only filtered according to individual conditions set on a single column, but there is no reason we can't use multiple conditions to filter by several conditions and/or columns at once. However, we do need to think about how the conditions relate to each other, as we have two options to establish these relationships.
+We have thus far filtered on conditions for a single column, but there is no reason we can't use multiple conditions to filter by several conditions and/or columns at once. 
 
-* **and** relationships are given by the **&** symbol. This implies both/all conditions must be met for a row to evaluate to `TRUE`.
-* **or** relationships are given by the **|** symbol. This implies that if _any_ of the conditions can be met a given row evaluates to `TRUE`.
+For example:
 
-You can think of **`between()`** as being special version of multiple condition filters. **`between()`** is an **and** condition - greater than (or equal to) the lower bound **and** less than (or equal to) the upper bound.
+* We want **male** passengers who **survived**.
+* We want **over 18** passengers who embarked from **Southampton**.
 
-R also implements a multiple 'or' condition in the form `%in%`, where any rows that have a value occurring in a given vector will be included in the output tibble.
+However, we do need to think about how the conditions relate to each other, as we have two options to establish these relationships.
+
+### Relationships between conditions
+
+There are two ways we can combine conditions together:
+
+* **AND** relationships are given by the **&** symbol. 
+    * This implies both/all conditions must be met for a row to evaluate to TRUE before the filter is applied.
+    * The **between()** function is a special case of this, ensuring our numerical values are above a lower bound, and below an upper bound. So between(3.5, 7.5) retains rows with values above 3.5 and below 7.5.
+
+* **OR** relationships are given by the **|** symbol. 
+    * This implies that if any of the conditions can be met (one or more) a given row evaluates to TRUE before the filter is applied.
+    * The **%in%** operator is a special case of this, where rows have to contain a value occurring in a given vector (collection) of possible values. This prevents us from writing out an **or** condition for each of the possibilities if just one is enough.
+
 
 
 | Condition 1 | Condition 2  | & (AND) Equates to |  &#124; (OR) Equates to |
@@ -883,13 +1051,12 @@ R also implements a multiple 'or' condition in the form `%in%`, where any rows t
 |    False    |     False    |        False       |        False       | 
 
 
-
-Let's look at some examples:
+### **Example**{-}
 
 ```{r}
 # Select passengers who were in class 1 AND female
 
-titanic_filter_example <- dplyr::filter(.data = titanic, 
+titanic_filter_example <- filter(.data = titanic, 
                                         pclass == 1 
                                         & sex_of_passenger == "female")
 
@@ -899,7 +1066,7 @@ titanic_filter_example <- dplyr::filter(.data = titanic,
 ```{r}
 # Select passengers who were female OR children (under 18)
 
-titanic_filter_example <- dplyr::filter(.data = titanic, 
+titanic_filter_example <- filter(.data = titanic, 
                                         sex_of_passenger == "female" 
                                         | age_of_passenger < 18)
 
@@ -910,7 +1077,7 @@ titanic_filter_example <- dplyr::filter(.data = titanic,
 # Select passengers who paid more than 100 
 # but less than 250 for their fare.
 
-titanic_filter_example <- dplyr::filter(.data = titanic, 
+titanic_filter_example <- filter(.data = titanic, 
                                         between(fare, left = 100, right = 250))
 ```
 
@@ -920,7 +1087,7 @@ titanic_filter_example <- dplyr::filter(.data = titanic,
 # in Southampton or Cherbourg.
 
 
-titanic_filter_example <- dplyr::filter(.data = titanic,
+titanic_filter_example <- filter(.data = titanic,
                                         embarked == "C" | embarked == "S" )
 
 # If you are filtering more than one value
@@ -928,18 +1095,16 @@ titanic_filter_example <- dplyr::filter(.data = titanic,
 # A more compact method of looking 
 # for a set of specific values.
 
-titanic_filter_example <- dplyr::filter(.data = titanic,
+titanic_filter_example <- filter(.data = titanic,
                                         embarked %in% c('S','C'))
 
 # Alternatively if is easier to  not  select  
 # an item, here we are not  selecting  "Q"
 # which leaves us with "S" and  "C"
 
-titanic_filter_example <- dplyr::filter(.data = titanic,
+titanic_filter_example <- filter(.data = titanic,
                                           embarked != "Q")
 ```
-
-
 
 
 
@@ -966,7 +1131,7 @@ titanic_filter_example <- dplyr::filter(.data = titanic,
 # filtering the dataset on multiple conditions
 # The | indicates one condition or the other must be TRUE.
 
-titanic_filter_exercise <- dplyr::filter(.data = titanic, 
+titanic_filter_exercise <- filter(.data = titanic, 
                                          pclass == 2 | pclass == 3)
 
 #To display the data
@@ -985,7 +1150,7 @@ nrow(titanic_filter_exercise) / nrow(titanic) * 100
 ```{r}
 # filtering the dataset on multiple conditions
 
-titanic_filter_exercise <- dplyr::filter(.data = titanic,
+titanic_filter_exercise <- filter(.data = titanic,
                                          sibsp == 0 & parch == 0)
 
 # showing the number of rows in the filtered dataset
@@ -1000,12 +1165,12 @@ nrow(titanic_filter_exercise)
 ```{r}
 # filtering the dataset on multiple conditions to find the embarked passengers
 
-embarked_cherbourg_and_queenstown <- dplyr::filter(.data = titanic,
+embarked_cherbourg_and_queenstown <- filter(.data = titanic,
                                                    embarked == 'C' | embarked == 'Q')
 
 # filtering the dataset a single condition to find the survivors
 
-survived <- dplyr::filter(embarked_cherbourg_and_queenstown, 
+survived <- filter(embarked_cherbourg_and_queenstown, 
                           survived == 1)
 
 # showing the number of rows in the filtered dataset
@@ -1028,7 +1193,7 @@ Code to create a new column follows the pattern below, where we state the name o
 ```{r, eval = F}
 # generating new variables
 
-data_frame_name <- dplyr::mutate(data_frame,
+data_frame_name <- mutate(data_frame,
                                  name_of_new_column = contents of new column)
 ```
 
@@ -1040,7 +1205,7 @@ The simplest example would be adding a constant value to each row in our `tibble
 ```{r}
 # generating new variables
 
-mutate_example <- dplyr::mutate(.data = titanic, 
+mutate_example <- mutate(.data = titanic, 
                                 string_twos = "two")
 
 ```
@@ -1060,8 +1225,8 @@ We can capitalise the sex column.
 # If you give your new column the same name  as  an existing column 
 # It will overwrite it.
 
-mutate_example <- dplyr::mutate(.data = titanic,
-                                sex_of_passenger = stringr::str_to_upper(sex_of_passenger))
+mutate_example <- mutate(.data = titanic,
+                                sex_of_passenger = str_to_upper(sex_of_passenger))
 
 ```
 
@@ -1073,7 +1238,7 @@ This is the number of siblings or spouses on board (sibsp), the number of parent
 ```{r}
 # Determining family size on board
 
-mutate_example <- dplyr::mutate(.data = titanic,
+mutate_example <- mutate(.data = titanic,
                                 family_size = parch + sibsp + 1)
 ```
 
@@ -1084,7 +1249,7 @@ As well as mathematical operators and functions we can use conditionals.
 # Creating a logical column which is TRUE 
 # if passenger is female, false otherwise.
 
-mutate_example <- dplyr::mutate(.data = titanic,
+mutate_example <- mutate(.data = titanic,
                                 is_female = (sex_of_passenger == "female"))
 
 
@@ -1099,7 +1264,7 @@ There are some functions which work with **`mutate()`** and enable us to perform
 # Recoding variables
 # Note Recode does not have a .data argument
 
-dplyr::recode(titanic$survived, 
+recode(titanic$survived, 
               '1' = TRUE, 
               '0' = FALSE)
 ```
@@ -1109,7 +1274,7 @@ To do this in the context of an entire `tibble` we have to use **`recode()`** wi
 ```{r}
 # Generating new variables
 
-recode_example <- dplyr::mutate(.data = titanic,
+recode_example <- mutate(.data = titanic,
                                 survived_logical = recode(survived, '1' = TRUE, '0' = FALSE))
 ```
 
@@ -1130,7 +1295,7 @@ recode_example <- dplyr::mutate(.data = titanic,
 ```{r}
 # Generating new variables
 
-fare_dollars <- dplyr::mutate(.data = titanic,
+fare_dollars <- mutate(.data = titanic,
                               fare_dollars = fare * 1.39)
 ```
 
@@ -1140,7 +1305,7 @@ fare_dollars <- dplyr::mutate(.data = titanic,
 ```{r}
 # Generating new variables
 
-round_fare <- dplyr::mutate(.data = titanic,
+round_fare <- mutate(.data = titanic,
                             fare_dollars = round( fare * 1.39))
 ```
 :::
@@ -1161,7 +1326,7 @@ We can quickly see the names of our data set using the the **`names()`** functio
 ```{r}
 # Generating new variables
 
-titanic_mutate_exercise <- dplyr::mutate(.data = titanic,
+titanic_mutate_exercise <- mutate(.data = titanic,
                                          child = age_of_passenger < 18)
 # To display the column names
 
@@ -1175,7 +1340,7 @@ We take the titanic data set and set equal the column we want to delete to `NULL
 ```{r}
 # Setting a column = NULL effectively removes it.
 
-titanic_mutate_exercise <- dplyr::mutate(.data = titanic_mutate_exercise, 
+titanic_mutate_exercise <- mutate(.data = titanic_mutate_exercise, 
                                          child = NULL)
 
 # finding out the names of the columns in the dataset
@@ -1192,123 +1357,6 @@ Alternatively, this will work too.
 
 titanic_mutate_exercise$child <- NULL
 ```
-
-
-## The Pipe Operator 
-
-The Pipe Operator **`%>%`** makes it possible to chain a sequence of functions. 
-
-In R code **`%>%`** can be read as "AND THEN". It takes the output of one action "AND THEN" uses that as the input of the next action. Where an action could be calling a variable, a function or anything else that returns some information. 
-
-The short cut for this operator is CTL + SHIFT + M
-
-Up until now if we wanted to perform a sequence of actions on data, we'd have do something along the lines of:
-
-```{r}
-
-# Filtering the titanic dataset  
-   
-first_class_survivors <- dplyr::filter(.data = titanic,
-                                        pclass == 1 & survived == 1)
-
-# Selecting only the columns needed 
-# Note here I am using first_class_survivors as my dataset
-  
-selected_first_class_survivors <- dplyr::select(.data = first_class_survivors,
-                                                 name_of_passenger, 
-                                                 age_of_passenger, 
-                                                 embarked, 
-                                                 fare)
-
-# Sorting the data
-# Note here I am using selected_class_survivors as my dataset
-   
-sorted_first_class_survivors <- dplyr::arrange(.data = selected_first_class_survivors,
-                                                desc(age_of_passenger))  
-
-```
-
-Or alternatively this very nested sequence!
-
-
-```{r}
-# This may be very hard to read and understand - the pipe will make this much more readable!
-
-sorted_first_class_survivors <- dplyr::arrange(.data = 
-                                                 dplyr::select(.data = 
-                                                                 dplyr::filter(.data = titanic,
-                                                                  pclass == 1 & survived == 1),
-                                                               name_of_passenger,
-                                                               age_of_passenger,
-                                                               embarked,
-                                                               fare)
-                                               , desc(age_of_passenger))
-
-```
-
-
-With the pipe operator, this simplifies to:
-
-```{r}
-# Chaining dplyr commands
-
-sorted_first_class_survivors <- titanic %>%
-                                dplyr::filter(pclass == 1 & survived == 1) %>% 
-                                dplyr::select(name_of_passenger, 
-                                              age_of_passenger,
-                                              embarked, 
-                                              fare) %>% 
-                                dplyr::arrange(desc(age_of_passenger)) 
-```
-
-
-
->**Notice how the `select()`, `arrange()` and `filter()` functions don't use the .data argument as it is being piped in from the previous command!**
-
-
-As you can see the pipe operator helps us:
-
-* Structure the sequence of our data operations from left to right, as opposed to from inside to out.
-* Avoid nested function calls and make code more "readable".
-* Reduce the need for local variables.
-* Make it easy to add steps anywhere in the sequence of operations.
-
-
-The pipe operator functionality comes from the `magrittr` package. Its implementation is designed for `tidyverse`, but it also works in some cases outside the `tidyverse`.
-
-
-The pipe function is one of the most powerful features of the `tidyverse`. In fact, having a standardised chain of processing actions is called "a pipeline". Making pipelines for data manipulation is great, because you can apply that pipeline to any incoming data with a given formatting and have your output in a friendly format.
-
-
-### Exercise
-::: {.panel-tabset}
-
-### **Exercise**{-}
-
-Lets practice piping a few dplyr verbs.
-
-
-Can you find the names of the 8 oldest passengers who embarked in Southampton?
-
-
-### **Show Answer**{-}
-
-
-```{r}
-# Chaining dplyr commands using the %>%
-
-southampton_oldest_passengers <- titanic %>%
-                          dplyr::filter(embarked == "S") %>%
-                          dplyr::select(name_of_passenger, age_of_passenger) %>%
-                          dplyr::arrange(desc(age_of_passenger)) %>% 
-                          head(n = 8)
-
-
-#To display the data
-
-southampton_oldest_passengers
-```
-
 
 
 ## Joining Data
@@ -1356,7 +1404,7 @@ You will need to assign it to see it within the environment window as shown belo
 ```{r}
 # Assigning the data
 
-band_members <- dplyr::band_members
+band_members <- band_members
 ```
 
 
@@ -1371,7 +1419,7 @@ Lets assign this one as well. Note that `dplyr` has two slightly different datas
 ```{r}
 # Assigning the data
 
-band_instruments <- dplyr::band_instruments
+band_instruments <- band_instruments
 ```
 
 
@@ -1389,7 +1437,7 @@ Let’s look at how we do an **inner join** in code. We’re going to use the fu
 # The right frame is given by the argument y
 # We need to include the column we would like to join with
 
-band_membership_inner_join <- dplyr::inner_join(x = band_members, 
+band_membership_inner_join <- inner_join(x = band_members, 
                                                 y = band_instruments,
                                                 by = "name")
 # To display the data
@@ -1411,7 +1459,7 @@ We can also use the `pipe operator`, as shown below.
 # Then we can chain our join to it
 
 band_membership_inner_join <- band_members %>% 
-                              dplyr::inner_join(band_instruments, 
+                              inner_join(band_instruments, 
                                                 by = "name")
 
 # To display the data
@@ -1426,7 +1474,7 @@ Now let try a **full join**.
 # full join
 
 band_membership_full_join <- band_members %>% 
-                             dplyr::full_join(band_instruments,
+                             full_join(band_instruments,
                                               by = "name")
 
 # To display the data
@@ -1443,7 +1491,7 @@ Now lets try a **left join**.
 # left join
 
 band_membership_left_join <- band_members %>% 
-                             dplyr::left_join(band_instruments, 
+                             left_join(band_instruments, 
                                               by = "name")
 
 # To display the data
@@ -1460,7 +1508,7 @@ A **right join** is just the opposite of the left join.
 # Right join
 
 band_membership_right_join <- band_members %>% 
-                              dplyr::right_join(band_instruments, 
+                              right_join(band_instruments, 
                                                 by = "name")
 
 # To display the data
@@ -1479,7 +1527,7 @@ This is shown below.
 
 # Joining using multiple columns
 
-join_left <- dplyr::left_join(x = first_dataset, 
+join_left <- left_join(x = first_dataset, 
                               y = second_dataset,
                               by = c("column name", "column name"))
 
@@ -1499,14 +1547,14 @@ We will be using band_instruments2 from the `dplyr` package for this exercise, r
 ```{r, eval=F}
 # Load the data
 
-band_members <- dplyr::band_members
+band_members <- band_members
 
-band_instruments2 <- dplyr::band_instruments2
+band_instruments2 <- band_instruments2
 
 # Full join
 
 band_membership_full_join <- band_members %>% 
-                              dplyr::full_join(band_instruments2)
+                              full_join(band_instruments2)
 
 # To display the data
 
@@ -1530,14 +1578,14 @@ band_membership_full_join
 # Load the data
   # Note later code will run without this step, it has been included to demonstrate that datasets from packages are available 
 
-band_members <- dplyr::band_members
+band_members <- band_members
 
-band_instruments2 <- dplyr::band_instruments2
+band_instruments2 <- band_instruments2
 
 # Full join
 
 band_membership_exercise <- band_members %>% 
-                              dplyr::full_join(band_instruments2)
+                             full_join(band_instruments2)
 
 # To display the data
 
@@ -1569,7 +1617,7 @@ band_instruments2
 # We can join with different column names
 
 band_membership_exercise <- band_members %>% 
-                              dplyr::full_join(band_instruments2,
+                              full_join(band_instruments2,
                                                by = c("name" = "artist"))
 
 # To display the data
@@ -1595,7 +1643,7 @@ band <- c("Beatles","Beatles", "Stones", "Stones")
 
 # Creating a tibble
 
-new_band_members <- tibble::tibble(name, band)
+new_band_members <- tibble(name, band)
 ```
 
 For example, looking at the 2 data frames below;
@@ -1618,7 +1666,7 @@ We can use the **`bind_rows()`** function, which will simply merge two data fram
 # Combining 2 dataframes using bind_rows() function
 
 binded_rows_data <- band_members %>% 
-                    dplyr::bind_rows(new_band_members)
+                    bind_rows(new_band_members)
 
 # To display the data
 
@@ -1639,7 +1687,7 @@ Another useful function is  **`union()`** which will merge the data from both da
 # Combining 2 dataframes using union() function
 
 union_data <- band_members %>% 
-              dplyr::union(new_band_members)
+              union(new_band_members)
 
 # To display the data
 
