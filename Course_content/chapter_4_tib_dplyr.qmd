@@ -1140,130 +1140,177 @@ titanic_data |>
 
 ```
 
+#### **The %in% function**{-}
 
+Secondly is the **%in%** function, which checks for membership of the column value in a vector of options we provide. 
 
-For our next example, let's select passengers who embarked from Southampton **OR** Cherbourg. 
+This is similar to an OR relationship, as it allows us to bring through multiple values from a column.
+
+Let's filter to capture those that embarked from Southampton or Cherbourg.
 
 ```{r}
-# Select passengers who embarked from S or C
+# Filter to those that embarked from S or C
 
 titanic_data |> 
-    filter(sex_of_passenger == "female" | 
-               age_of_passenger < 18) |> 
+    filter(embarked %in% c("S", "C")) |> 
+    glimpse()
+
+```
+We can check with **distinct()** whether this accomplished what we were looking for.
+
+```{r}
+# Filter to those that embarked from S or C and check
+
+titanic_data |> 
+    filter(embarked %in% c("S", "C")) |> 
+    distinct(embarked)
+
+```
+
+This process would be equivalent to performing:
+
+> filter(embarked == "S" | embarked == "C") 
+
+and is incredibly useful for larger categorical variables we wish to trim. 
+
+As with between(), we can also combine this with other conditions.
+
+```{r}
+# Select passengers embarking from S or C that were male
+
+titanic_data |> 
+    filter(embarked  %in% c("S", "C"),
+           sex_of_passenger == "male") |> 
     glimpse()
 
 ```
 
+### Negating Conditions
+
+We can also use the negation operator **!** to reverse the outcome of the condition. 
+
+This means that if a condition evaluates to TRUE, if we preceed it with an exclamation mark, it will instead return FALSE.
+
+This is useful for cases where exlcusion is quicker than typing out conditions for inclusion. Say for example you have a categorical variable with 9 unique categories.
+
+You are interested in filtering so that only 8 of the categories remain. Instead of chaining **OR** conditions together, you can instead write the condition that would return **just** that one, and negate it to remove it instead.
+
+### **Example**{-}
+
+Let's see this in action by negating the statement to select passengers who embarked from Southampton, as opposed to writing out filters to retain Cherbourg and Queenstown. 
+
+This isn't laborious for this small dataset, but this is a great time saving measure for more complex datasets.
 
 ```{r}
-# Select passengers who paid more than 100 
-# but less than 250 for their fare.
+# Use negation to filter down to passengers embarking from Cherbourg or Queenstown
 
-titanic_filter_example <- filter(.data = titanic, 
-                                        between(fare, left = 100, right = 250))
+titanic_data |> 
+    filter(!embarked == "S") |> 
+    distinct(embarked)
+
 ```
 
+This is, of course equivalent to using the not equal **!=** comparison in such a simple case:
 
 ```{r}
-# Select passengers who embarked 
-# in Southampton or Cherbourg.
+# Filter for passengers who did not embark from Southampton
 
+titanic_data |> 
+    filter(embarked != "S") |> 
+    distinct(embarked)
 
-titanic_filter_example <- filter(.data = titanic,
-                                        embarked == "C" | embarked == "S" )
-
-# If you are filtering more than one value
-# You can use the %in% which is
-# A more compact method of looking 
-# for a set of specific values.
-
-titanic_filter_example <- filter(.data = titanic,
-                                        embarked %in% c('S','C'))
-
-# Alternatively if is easier to  not  select  
-# an item, here we are not  selecting  "Q"
-# which leaves us with "S" and  "C"
-
-titanic_filter_example <- filter(.data = titanic,
-                                          embarked != "Q")
 ```
 
+Of course, if you negate and **and**/**or** relationships:
+
+* Not only is each individual condition negated
+* The and/or is reversed to or/and respectively
+
+This comes from logical statements in mathematics, specifically, [De Morgan's laws.
+
+![](../Images/demorgans_law.png){fig-alt="De morgans law of negation, where negating a combined statement negates each individual statement, as well as the logical operator combining them."}
+
+#### **More Difficult Example**{-}
+
+Let's take an example we we required those that embarked from Southhampon or paid above £100 in fare.
+
+Mathematically speaking, if we negate this condition, we get:
+
+> !(southampton OR > 100 fare) = (!southampton AND !>100 fare), so we get those that did not embark from Southampton and did not pay more than £100. 
+
+```{r}
+# Harder example
+
+titanic_data |> 
+    filter(!(embarked == "S" | fare > 100)) |> 
+    distinct(embarked)
+
+```
+We see that we have indeed negated the selection of Southampton, as expected.
 
 
 ### Exercise
 ::: {.panel-tabset}
 
-
 ### **Exercise**{-}
 
-1. Select passengers who are in classes 2 or 3, what percentage of passengers is this?
+1. Filter so that only second or third class passengers are included in the data. 
 
-2. How many passengers were travelling alone?
+2. Filter so that only passengers who travelled alone are included in the data. How many were there?
 
 
-### **Extension Exercise**{-}
-
-3. What proportion of passengers who 'embarked' in Cherbourg ('C') or Queenstown ('Q') survived? 
+3. **Extension Exercise** - What percentage of passengers who embarked from Cherbourg or Queenstown and paid a fare more than £100, but less than £350, survived? 
 
 
 ### **Show Answer**{-}
 
 1. 
 ```{r}
-# filtering the dataset on multiple conditions
-# The | indicates one condition or the other must be TRUE.
+# Filter for second or third class passengers
 
-titanic_filter_exercise <- filter(.data = titanic, 
-                                         pclass == 2 | pclass == 3)
+titanic_data |> 
+    filter(pclass  %in% c(2, 3)) |> 
+    glimpse()
 
-#To display the data
-
-titanic_filter_exercise
-
-# calculating the percentage, by dividing the total 
-# number of rows in new filtered dataset 
-# by the total number of rows in fulldataset then multiplied by 100
-
-nrow(titanic_filter_exercise) / nrow(titanic) * 100 
 ```
 
 
 2. 
+
+For those travelling alone, their sibsp and parch values should be 0.
+
 ```{r}
-# filtering the dataset on multiple conditions
+# Filtering for passengers travelling alone
 
-titanic_filter_exercise <- filter(.data = titanic,
-                                         sibsp == 0 & parch == 0)
+lone_passengers <- titanic_data |> 
+    filter(sibsp == 0 &
+               parch == 0) |> 
+    glimpse()
 
-# showing the number of rows in the filtered dataset
+# How many there are
 
-nrow(titanic_filter_exercise)
+nrow(lone_passengers)
 ```
 
 
-### **Extension Exercise**{-}
-
 3. 
+
+This is a multi stage problem, we can filter for all conditions, then compute the final percentage. Since we need all of these conditions to be TRUE, we must use **&** to combine them.
+
 ```{r}
-# filtering the dataset on multiple conditions to find the embarked passengers
+# Filter for those that embarked from C or Q, paid certain fare and survived
 
-embarked_cherbourg_and_queenstown <- filter(.data = titanic,
-                                                   embarked == 'C' | embarked == 'Q')
+cherb_queens_survivors <- titanic_data |> 
+    filter(embarked %in% c("C", "Q") &
+               between(fare, left = 100, right = 350) &
+               survived == 1)
 
-# filtering the dataset a single condition to find the survivors
+# Compute final percentage
 
-survived <- filter(embarked_cherbourg_and_queenstown, 
-                          survived == 1)
-
-# showing the number of rows in the filtered dataset
-
-nrow(survived) / nrow(embarked_cherbourg_and_queenstown) * 100
+round((nrow(cherb_queens_survivors) / nrow(titanic_data)) * 100, digits = 2)
 
 ```
 :::
-
-For more advanced ways to filter columns refer to this excellent blog [Data Wrangling Part 1: Basic to Advanced Ways to Select Columns](https://suzan.rbind.io/2018/02/dplyr-tutorial-3/) which uses additional functions in dplyr that are from the filter family. 
-
 
 
 ## Generating New Variables
