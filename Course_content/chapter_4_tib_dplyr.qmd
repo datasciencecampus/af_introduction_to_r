@@ -694,7 +694,7 @@ This removes the need to type the **.data** argument each time.
 
 * Prior to R 4.1, the pipe operator came from a package known s **magrittr**, which would be loaded alongside the tidyverse, and it took the form **%>>%**.
 
-* From R 4.1 onwards, the operator comes as standard with base R, as it has become the universal standard for functional programming in the language. It now takes the form **|>**, and this option must be turned on in the Tools --> Global Options tab. 
+* From R 4.1 onwards, the operator comes as standard with base R, as it has become the universal standard for data analysis. It now takes the form **|>**, and this option must be turned on in the Tools --> Global Options tab. 
 
 ![](../Images/native_pipe.png){fig-alt="The Code, Editing pane with the native pipe operator tick box."}
 
@@ -930,6 +930,7 @@ titanic_data |>
     glimpse()
 
 ```
+
 Notice that we didn't save this as a variable, as this was just an example, one we will not carry forward in our analysis. 
 
 However, if you are being asked to answer specific questions, then saving the outputs of your manipulation pipelines as variables is very useful, to prevent overwriting the base data.
@@ -1015,6 +1016,8 @@ titanic_survived <- titanic_data |>
 (nrow(titanic_survived) / nrow(titanic_data)) * 100
 
 ```
+So we see that, tragically, only 38% of the passengers aboard the titanic survived.
+
 :::
 
 
@@ -1029,6 +1032,7 @@ For example:
 
 However, we do need to think about how the conditions relate to each other, as we have two options to establish these relationships.
 
+
 ### Relationships between conditions
 
 There are two ways we can combine conditions together:
@@ -1039,11 +1043,12 @@ There are two ways we can combine conditions together:
 
 * **OR** relationships are given by the **|** symbol. 
     * This implies that if any of the conditions can be met (one or more) a given row evaluates to TRUE before the filter is applied.
-    * The **%in%** operator is a special case of this, where rows have to contain a value occurring in a given vector (collection) of possible values. This prevents us from writing out an **or** condition for each of the possibilities if just one is enough.
+    * The **%in%** operator is a special case of this, where rows have to contain a value occurring in a given vector (collection) of possible values. This prevents us from writing out an **or** condition for each of the possibilities if just one is enough. 
+    * For example, %in% c=(1, 2, 3) retains rows that have the value of 1, 2 of 3 in the compared column.
 
+> This does mean that combinations of TRUE and FALSE conditions can lead to different outputs with AND/OR relationships. This is summarised in the table below.
 
-
-| Condition 1 | Condition 2  | & (AND) Equates to |  &#124; (OR) Equates to |
+| Condition 1 | Condition 2  | AND Equates to     | OR Equates to      |
 |:-----------:|:------------:|:------------------:|:------------------:|
 |     True    |     True     |        True        |        True        |
 |     True    |     False    |        False       |        True        |
@@ -1051,24 +1056,101 @@ There are two ways we can combine conditions together:
 |    False    |     False    |        False       |        False       | 
 
 
-### **Example**{-}
+### **Examples**{-}
+
+For our first example, let's filter to first class, female passengers. 
+
+This is an AND relationship, as they must be first class **AND** female. Thus, any row that does not satisfy both of these conditions will be filtered out in the process. 
+
+Remember that AND combinations are very strict, so ensure that the loss of a possibly large amount of data is appropriate for your analysis.
 
 ```{r}
-# Select passengers who were in class 1 AND female
+# Filter to first class female passengers
 
-titanic_filter_example <- filter(.data = titanic, 
-                                        pclass == 1 
-                                        & sex_of_passenger == "female")
+titanic_data |> 
+    filter(pclass == 1 & 
+               sex_of_passenger == "female") |> 
+    glimpse()
+
+```
+
+For our next example, let's select passengers who were male **OR** adults (over 18). 
+
+This means that males under 18 will be kept and adult females will also be kept, as only one of the conditions needs to be true to be retained by filter!
+
+```{r}
+# Filter to males or adults
+
+titanic_data |> 
+    filter(sex_of_passenger == "male" |
+               age_of_passenger > 18) |> 
+    glimpse()
 
 ```
 
 
-```{r}
-# Select passengers who were female OR children (under 18)
+### **Special Cases of AND/OR**{-}
 
-titanic_filter_example <- filter(.data = titanic, 
-                                        sex_of_passenger == "female" 
-                                        | age_of_passenger < 18)
+Whilst the above conventions are easy to read from left to right, when constructing much more complex chains of conditions, it becomes laborious quickly. 
+
+This is particularly the case if we wish to apply multiple conditions on the **same** column, and hence combine that with other conditions across other columns.
+
+To alleviate this, dplyr has some special functions that allow us to streamline cases of numerous conditions.
+
+
+#### **The between() function**{-}
+
+First is the **between()** function, which is similarly to an and relationship for conditions on numeric columns.
+
+It allows us to specify:
+
+* An upper bound for the value in the column, a.k.a the value for which it should not be larger.
+* A lower bound for the value in the column, a.k.a the value for which it should not be smaller.
+
+> For example, between(3.5 and 7.5) will retain values for which the column is greater than or equal to 3.5 and less than or equal to 7.5.
+
+Let's filter to those that paid between £250 and £500 for their tickets.
+
+```{r}
+# Filter to those that paid between two values
+
+titanic_data |> 
+    filter(between(fare,
+                   left = 250,
+                   right = 500)) |> 
+    glimpse()
+
+```
+
+Which is equivalent to saying:
+
+> filter(fare >= 250 & fare <= 500)
+
+Of course, we can combine this with other conditions across columns as well. 
+
+```{r}
+# Filter tho those that paid between £250 and £500 who were female
+
+titanic_data |> 
+    filter(between(fare,
+                   left = 250,
+                   right = 500) &
+               sex_of_passenger == "female") |> 
+    glimpse()
+
+```
+
+
+
+For our next example, let's select passengers who embarked from Southampton **OR** Cherbourg. 
+
+```{r}
+# Select passengers who embarked from S or C
+
+titanic_data |> 
+    filter(sex_of_passenger == "female" | 
+               age_of_passenger < 18) |> 
+    glimpse()
 
 ```
 
