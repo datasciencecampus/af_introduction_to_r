@@ -1313,7 +1313,7 @@ round((nrow(cherb_queens_survivors) / nrow(titanic_data)) * 100, digits = 2)
 :::
 
 
-## Generating New Variables
+## Mutate
 
 To create a new variable, or a new column, in our `tibble` we will use the **`dplyr::mutate()`** function.
 
