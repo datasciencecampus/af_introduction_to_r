@@ -185,7 +185,6 @@ We will need to do some work on these to remove the use of capitalisation and sp
 
 
 ## Cleaning Column Names
-::: {.panel-tabset}
 
 ### **janitor Package**{-}
 
@@ -203,76 +202,10 @@ titanic_data <- clean_names(titanic_data)
 
 names(titanic_data)
 ```
- 
-### **gsub**{-}
-
-If you want to do this using base R, there is the function **gsub()** which is part of the pattern matching family of functions.
-
-These are for use with character strings, and search for a specific pattern of characters and perform some task, be it:
-
-* Replacement with another pattern
-* Removal
-
-and more. 
-
-The function takes a few arguments:
-
-* pattern - The sequence of characters to search the string for.
-* replacement - What to replace the sequence of characters with.
-* x - The string itself to search.
-
-> For example, the output of gsub(" ", "_", "piece of text") would be "piece_of_text", as we are taking empty spaces, replacing them with underscores.
-
-Let's perform the same steps as clean_names() using this function. Notice that we must overwrite the names() vector output, so it is less user friendly than janitor. 
-
-```{r, eval = F}
-# Using gsub to clean our column names
-
-names(titanic_data) <- gsub(pattern = " ",  
-                            replacement = "_", 
-                            x = names(titanic_data)) 
-```
-
-That's not all though, we also need to lowercase them as well, using another base R function, the **tolower()** function.
-
-```{r, eval = False}
-# We can lower case the names of the data frame.
-
-names(titanic_data) <- tolower(names(titanic_data)) 
-```
-
-Whichever you use depends on your setup and preferences. Janitor is the simplest and most popular, but provides less fine control than doing things step by step, so keep this in mind.
-
-:::
-
-### **dplyr**{-}
-
-We have not formally introduced the data manipulation package dplyr, but it does have 
-
-We can also rename column names. 
-
-The first argument is the data frame to be changed, the second is the column and what it will be changed to.
-
-
-
-```{r}
-# Renaming a column using the package dplyr
-# using the rename() function
-# here we are renaming age_of_passenger with age
-
-titanic_renamed <- dplyr::rename(titanic, age = age_of_passenger)
-
-# To Display the Data
-
-titanic_renamed
-
-```
-
-
 
 # The Data Manipulation Package - **dplyr**
 
-This is one of the most powerful packages in the *tidyverse*, which makes data manipulation simple and code easy to read.
+This is one of the most powerful packages in the **tidyverse**, which makes data manipulation simple and code easy to read.
 
 We will look at how to perform the following actions:
 
@@ -290,37 +223,109 @@ Each of the verbs have the same structure:
 
 and the [cheat sheet](https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf) is incredibly useful for a reference piece. 
 
+Before we jump into the verbs, let's see dplyr's version of renaming columns!
+
+
+## Rename
+
+We may wish to remain within the tidyverse when cleaning column names (say, Janitor is not available to you), which invites the use of **rename()**.
+
+This allows you to change column names one at a time using the following syntax:
+
+> rename(.data, new_name = old_name)
+
+As an example, let's rename the age_of_passenger column to simply "age". 
+
+```{r}
+# Rename the age_of_passenger column to age
+
+rename(.data = titanic_data,
+       age = age_of_passenger)
+
+```
+
+If we glimpse the data again:
+
+```{r}
+# Take a peak at titanic data
+
+glimpse(titanic_data)
+
+```
+
+We see that age has not carried through to the underlying dataset.
+
+This is an excellent feature of the tidyverse, in that if we do not:
+* Directly overwrite the variable 
+* Or create a new one
+using assignment **<-**, then it just shows us what that process will do, so we can then make the decision on whether it's what we want. 
+
+
+### Renaming multiple columns
+
+One of the best things about dplyr's functions is that the .data argument clues the function in to the columns themselves, which means we can just continually list them, or make changes to them, without wrapping them in a vector **c()**, like many other libraries. 
+
+As an example, let's create a new variable and rename the "of_passenger" columns.
+
+```{r}
+# Rename of_passenger columns and create a new variable
+
+titanic_renamed <- rename(.data = titanic_data,
+                       name = name_of_passenger,
+                       sex = sex_of_passenger,
+                       age = age_of_passenger)
+
+glimpse(titanic_renamed)
+```
+
+We also didn't need to give them in the order specified either, the function automatically knows what columns we are referring to in the underlying dataset.
+
+You will notice that autocompletion begins to be super useful when using tidyverse libraries, creating a more efficient workflow for us.
+
+There is much more we can say about the structure of these functions, but we will see this as we proceed through the verbs themselves. 
+
 
 ## Arrange
 
 Our data is displayed in the same order as the source data.
 
-We may want to sort our data, based on specific columns. To do so we use the verb **arrange()**. 
+We may want to sort our data based on specific columns. 
 
+To do so, we use the verb **arrange()**. 
 
 ### Example - Single column sort
 
-For many of these examples we will create a new variable, as we may not want to overwrite our original data with cleaned names unless we are happy with a permanent change.
+From here, we will only create a new variable or overwrite the existing one when a change we wish to permanently keep is performed. 
 
-It makes it difficult to revert to the original data should we make a mistake if we do not create separate variables. 
-
-However, we must also be careful about cluttering up our environment with variables we will not use again. 
-
-As such, you can run the code in the console to check whether it gives the output you want, and then create a variable once you are sure. 
+We highly encourage you to do the same, as creating multiple new variables you will never use again will clutter up your environment. 
 
 ```{r}
 # Sort titanic by fare
 
-titanic_sorted <- arrange(.data = titanic_data,
-                          fare)
-
-glimpse(titanic_sorted)
+arrange(.data = titanic_data,
+        fare)
 
 ```
 
-Using glimpse() is highly recommended after each transformation to check that the output is what you expect.
+We get a very large output here that is not easy to navigate to check the manipulation that has been done. We should wrap up our input in **glimpse()** to get an easier look at the result.
+
+```{r}
+# Sort by fare and then glimpse
+
+glimpse(arrange(.data = titanic_data,
+                fare))
+
+```
 
 Notice that by default, arrange() sorted the fare column in **ascending** order.
+
+### **Small Aside - Functions**{-}
+
+Notice that glimpse() is **written first** but **executed last**, since R evaluates function from the inside out.
+
+After all, if glimpse() has no input, we can't see anything at all! 
+
+Keep this in mind as it will become very important later.
 
 
 ### Example - Desending Order Sort
@@ -330,12 +335,10 @@ To sort a column in descending order, we use the **desc()** function and the col
 ```{r}
 # Sort titanic in descending order 
 
-titanic_sorted <- arrange(.data = titanic_data,
-                          desc(fare)) 
+glimpse(arrange(.data = titanic_data,
+                desc(fare))) 
 
-glimpse(titanic_sorted)
 ```
-
 
 ### Example - Multi-Column Sort
 
@@ -343,23 +346,19 @@ We can also sort by multiple columns, but this creates a chain of **dependence**
 
 This means that the second sort won't change the order from the first sort.
 
-When this becomes useful is if there are numerous examples of the same value, such as the 0.0000 values in the fare column.
-
-Whilst the position of 0.0000 will not change, the values in the adjacent column will be sorted. Some of those paying £0 fare may have been younger than others, after all. 
+* When this becomes useful is if there are numerous examples of the same value, such as the 0.0000 values in the fare column.
+    * Whilst the position of 0.0000 will not change, the values in the adjacent column will be sorted. Some of those paying £0 fare may have been younger than others, after all. 
 
 ```{r}
 # Multi-column sort
 
-titanic_double_sort <- arrange(.data = titanic_data,
-                               fare,
-                               age_of_passenger)
+glimpse(arrange(.data = titanic_data,
+                fare,
+                age_of_passenger))
 
-glimpse(titanic_double_sort)
 ```
 
-Notice that we were able to just continually reference columns from the data as if they were arguments to the function, and the verb understands that immediately.
-
-This is part of the power of these functions, and why **.data** is recommended for use.
+Notice that we were able to just continually reference columns from the data as if they were arguments to the function, and the verb understands that immediately, just like with rename().
 
 
 ### Exercise
@@ -367,7 +366,9 @@ This is part of the power of these functions, and why **.data** is recommended f
 
 ### **Exercise**{-}
 
-Sort the titanic data set by age in **descending** order, then fare in **ascending** order.
+Sort the titanic data set by age in **descending** order, then fare in **ascending** order. 
+
+Glimpse the result.
 
 ### **Show Answer**{-}
 
@@ -375,11 +376,10 @@ Sort the titanic data set by age in **descending** order, then fare in **ascendi
 ```{r}
 # Sort by age desc, fare asc
 
-titanic_double_sort <- arrange(.data = titanic_data,
-                               desc(age_of_passenger),
-                                  fare)
+glimpse(arrange(.data = titanic_data,
+                desc(age_of_passenger),
+                fare))
 
-glimpse(titanic_double_sort)
 ```
 :::
 
@@ -388,7 +388,12 @@ glimpse(titanic_double_sort)
 
 Sometimes we will want to work with smaller tibbles that contain just a subset of available columns.
 
-The **select()** verb is perfect for this, and is dplyr's more feature rich answer to the **$** operator from base R. We will endeavour to continue our use of the tidyverse from here, for consistent and readable code. 
+The **select()** verb is perfect for this, as it allows for selection:
+* A single column
+* Multiple columns
+* Sequences of columns
+* De-selection of columns
+and more!
 
 It takes the arguments:
 
@@ -401,11 +406,9 @@ It takes the arguments:
 ```{r}
 # Selecting data
 
-titanic_one_col <- select(.data = titanic_data, 
-                           name_of_passenger)
-# To display the data
+glimpse(select(.data = titanic_data, 
+                name_of_passenger))
 
-glimpse(titanic_one_col)
 ```
 
 Notice that this has returned a tibble with one column, not the vector itself that formed that column as **$** would have.
@@ -417,14 +420,11 @@ If we want to select multiple columns, we can continue to list them, separating 
 ```{r}
 # Selecting data
 
-titanic_three_cols <- select(.data = titanic_data,
-                             name_of_passenger, 
-                             age_of_passenger,
-                             pclass)
+glimpse(select(.data = titanic_data,
+                name_of_passenger, 
+                age_of_passenger,
+                pclass))
 
-# To display the data
-
-glimpse(titanic_three_cols)
 ```
 
 
@@ -435,14 +435,14 @@ We can select consecutive columns (next to one another) with the syntax we used 
 ```{r}
 # Selecting from passenger class to the age of passenger in order
 
-titanic_consecutive_cols <- select(.data = titanic,
-                                   pclass:age_of_passenger)
+glimpse(select(.data = titanic_data,
+                pclass:age_of_passenger))
 
-glimpse(titanic_consecutive_cols)
 
 ```
 
 Notice that we return the columns from pclass to age_of_passenger in the order of the source data. 
+
 
 ### Selecting with **exclusion**
 
@@ -459,14 +459,10 @@ To exclude, we use the minus sign operator **-** which signifies "do not select 
 ```{r}
 # Selecting by excluding columns we don't want
 
-titanic_exclude_cols <- select(.data = titanic_data, 
+glimpse(select(.data = titanic_data, 
                                -name_of_passenger, 
                                -age_of_passenger, 
-                               -pclass)
-
-
-
-glimpse(titanic_exclude_cols)
+                               -pclass))
 
 ```
 
@@ -479,13 +475,13 @@ You can think of this as expanding brackets in mathematics:
 ```{r}
 # Using a vector for exclusion
 
-titanic_exclude_cols <- select(.data = titanic_data, 
+glimpse(select(.data = titanic_data, 
                                -c(name_of_passenger, 
                                   age_of_passenger, 
-                                  pclass))
+                                  pclass)))
 
-glimpse(titanic_exclude_cols)
 ```
+
 
 ### Selecting with Index Position
 
@@ -496,13 +492,10 @@ Let's select columns 1 to 4, and also column 7.
 ```{r}
 # Selecting sequential and out of sequence columns with index position
 
-titanic_index_select <- select(.data = titanic_data, 
+glimpse(select(.data = titanic_data, 
                                1:4, 
-                               7)
+                               7))
 
-# To display the data
-
-glimpse(titanic_index_select)
 ```
 
 Exclusion works similarly here with the minus sign. 
@@ -532,12 +525,9 @@ Let's return columns that start with an "s".
 ```{r}
 # Selecting columns
 
-titanic_prefix_select <- select(.data = titanic_data, 
-                                starts_with("s"))
+glimpse(select(.data = titanic_data, 
+               starts_with("s")))
 
-# To Display the data
-
-glimpse(titanic_prefix_select)
 ```
 
 As a second example, let's return everything.
@@ -545,10 +535,8 @@ As a second example, let's return everything.
 ```{r}
 # Selecting everything
 
-titanic_every_select <- select(.data = titanic_data,
-                               everything())
-
-glimpse(titanic_every_select)
+glimpse(select(.data = titanic_data,
+               everything()))
 
 ```
 
@@ -577,10 +565,8 @@ glimpse(titanic_every_select)
 ```{r}
 # Select second, third and fourth column
 
-titanic_select_exercise <-  select(.data = titanic_data, 
-                                   survived:sex_of_passenger)
-
-glimpse(titanic_select_exercise)
+glimpse(select(.data = titanic_data, 
+                survived:sex_of_passenger))
 
 ```
 
@@ -588,22 +574,20 @@ glimpse(titanic_select_exercise)
 ```{r}
 # Using exclusion on a range
 
-titanic_select_exercise <- select(.data = titanic_data, 
-                                  -fare:-embarked)
+glimpse(select(.data = titanic_data, 
+               -fare:-embarked))
 
 # OR
 
-# titanic_select_exercise <- select(.data = titanic_data,
-#                                 -c(fare, cabin, embarked))
+# glimpse(select(.data = titanic_data,
+#                -c(fare, cabin, embarked)))
 
 # OR
 
-# titanic_select_exercise <- select(.data = titanic_data,
-#                                   -fare,
-#                                   -cabin,
-#                                   -embarked)
-
-glimpse(titanic_select_exercise)
+# glimpse(select(.data = titanic_data,
+#                -fare,
+#                -cabin,
+#                -embarked))
 
 ```
 
@@ -611,10 +595,9 @@ glimpse(titanic_select_exercise)
 ```{r}
 # Selecting last column only
 
-titanic_select_exercise <- select(.data = titanic_data,
-                                  last_col()) 
+glimpse(select(.data = titanic_data,
+               last_col())) 
 
-glimpse(titanic_select_exercise)
 
 ```
 
@@ -623,18 +606,11 @@ glimpse(titanic_select_exercise)
 ```{r}
 # Selecting on a suffix
 
-titanic_select_exercise <- select(.data = titanic_data,
-                                  ends_with("passenger")) 
-
-
-glimpse(titanic_select_exercise)
+glimpse(select(.data = titanic_data,
+               ends_with("passenger"))) 
 
 ```
 :::
-
-For more advanced ways to select columns:
-
-* Refer to this excellent blog [Data Wrangling Part 1: Basic to Advanced Ways to Select Columns](https://suzan.rbind.io/2018/01/dplyr-tutorial-1/)
 
 
 ## The Pipe Operator 
@@ -645,7 +621,9 @@ The real power of the tidyverse comes from the ability to chain these functions 
 
 However, out of the box, this becomes laborious quickly due to the nature of functions. They are an application of the mathematical function, so they will take an input, do something to it and then return an output.
 
-However, to apply many functions to a single output, known as **composition** of functions, we must nest them, with the function applied last being written first, and evaluated from the inside to the outside.
+### Returning to Functions - Composition
+
+As we saw earlier with glimpse(), to apply many functions to a single output, known as **composition** of functions, we must nest them, with the function applied last being written first, and evaluated from the inside to the outside.
 
 ### **Example**{-}
 
@@ -657,6 +635,7 @@ For example, let's take the **sqrt()** and **round()** mathematical functions an
 round(sqrt(2))
 
 ```
+
 Notice that the functions are evaluated in reverse order (from the inside, out) just as you would with writing this mathematically. You would perform the square root operation first, **then** round the result. 
 
 Should we wish to use an extra parameter, we need to start thinking about the brackets, as they are the opening and closing doors of a function itself.
@@ -682,12 +661,11 @@ As such, the output of one function is the input to another, as in the following
 ```{r}
 # Select passenger columns and fare then arrange by fare
 
-titanic_demographics_sort <- arrange(.data = select(.data = titanic_data,
-                                                    ends_with("passenger"),
-                                                    fare),
-                                     desc(fare))
+glimpse(arrange(.data = select(.data = titanic_data,
+                                ends_with("passenger"),
+                                fare),
+                desc(fare)))
 
-glimpse(titanic_demographics_sort)
 ```
 
 Notice that the input to arrange was the result of a select operation, so we had to keep track of our brackets and ensure that the desc(fare) was placed within arrange(), **not** select().
@@ -736,6 +714,7 @@ This means that to chain a sequence of functions, we will use the pipe operator 
 2 |> sqrt() |> 
      round(digits = 2)
 ```
+
 This is quite the shift from what we have done so far, but is more readable in plain english: 
 
 >**To the value 2, apply the square root function, and then, round that output to 2 decimal places.**
@@ -745,9 +724,11 @@ Notice, that following the second pipe, we insert a new line, which automaticall
 
 ### Using the Pipe Operator with the tidyverse
 
+What was done above was an oversimplification of why the pipe was created, in reality if we only needed to use one or two small functions, or simply a glimpse(), then we do not need to invoke the pipe operator. 
+
 Let's return to our previous example, where we selected passenger demographics and sorted by fare. 
 
-Let's try to do this with pipes instead.
+### **Example**{-}
 
 First, we write the dataset we want to apply this sequence of steps to, then pipe that into the **select()** function, specifying what columns we wish to retain.
 
