@@ -134,7 +134,6 @@ glimpse(titanic_data$Pclass)
 
 ```
 
-
 This could already prove frustrating due to needing to remember the capital letters, particularly if the autocomplete is slowing down.
 
 However, it can get worse if spaces are included in the column name.
@@ -161,6 +160,16 @@ glimpse(titanic$`name Of Passenger`)
 ```
 
 Whilst this works, it is bad practice to use capitalisation and spaces, as it complicates things for us as well as others we collaborate with.
+
+### A word of warning
+
+Whilst this is completely fine in Base R, there are unexpected consequences of using this technique, particularly when making changes to a column using assignment. 
+
+* With the tidyverse, when we use its myriad of functions, we can check manipulations on the data without overwriting thew underlying variable unless we **explicitly** ask it to do so with **<-**.
+
+* However, with this method, we can overwrite a column for example and this will **implicitly** and permanently change the underlying variable, which we must be careful of.
+
+Should you make a mistake following this choice, you would have to revert back to the original data and read it back in to start from scratch, as recreating data is a nightmare.
 
 ### Accessing column names
 
@@ -920,7 +929,7 @@ We see that in the filtered data, we have just second class passengers, as expec
 
 ### **Example - Numeric**{-}
 
-Let's filter to passengers who paid above £200.
+Let's filter to passengers who paid above ?200.
 
 ```{r}
 # Select passengers who paid more than 200
@@ -1109,7 +1118,7 @@ It allows us to specify:
 
 > For example, between(3.5 and 7.5) will retain values for which the column is greater than or equal to 3.5 and less than or equal to 7.5.
 
-Let's filter to those that paid between £250 and £500 for their tickets.
+Let's filter to those that paid between ?250 and ?500 for their tickets.
 
 ```{r}
 # Filter to those that paid between two values
@@ -1129,7 +1138,7 @@ Which is equivalent to saying:
 Of course, we can combine this with other conditions across columns as well. 
 
 ```{r}
-# Filter tho those that paid between £250 and £500 who were female
+# Filter tho those that paid between ?250 and ?500 who were female
 
 titanic_data |> 
     filter(between(fare,
@@ -1156,6 +1165,7 @@ titanic_data |>
     glimpse()
 
 ```
+
 We can check with **distinct()** whether this accomplished what we were looking for.
 
 ```{r}
@@ -1232,11 +1242,11 @@ This comes from logical statements in mathematics, specifically, [De Morgan's la
 
 #### **More Difficult Example**{-}
 
-Let's take an example we we required those that embarked from Southhampon or paid above £100 in fare.
+Let's take an example we we required those that embarked from Southhampon or paid above ?100 in fare.
 
 Mathematically speaking, if we negate this condition, we get:
 
-> !(southampton OR > 100 fare) = (!southampton AND !>100 fare), so we get those that did not embark from Southampton and did not pay more than £100. 
+> !(southampton OR > 100 fare) = (!southampton AND !>100 fare), so we get those that did not embark from Southampton and did not pay more than ?100. 
 
 ```{r}
 # Harder example
@@ -1246,6 +1256,7 @@ titanic_data |>
     distinct(embarked)
 
 ```
+
 We see that we have indeed negated the selection of Southampton, as expected.
 
 
@@ -1259,7 +1270,7 @@ We see that we have indeed negated the selection of Southampton, as expected.
 2. Filter so that only passengers who travelled alone are included in the data. How many were there?
 
 
-3. **Extension Exercise** - What percentage of passengers who embarked from Cherbourg or Queenstown and paid a fare more than £100, but less than £350, survived? 
+3. **Extension Exercise** - What percentage of passengers who embarked from Cherbourg or Queenstown and paid a fare more than ?100, but less than ?350, survived? 
 
 
 ### **Show Answer**{-}
@@ -1292,7 +1303,6 @@ lone_passengers <- titanic_data |>
 nrow(lone_passengers)
 ```
 
-
 3. 
 
 This is a multi stage problem, we can filter for all conditions, then compute the final percentage. Since we need all of these conditions to be TRUE, we must use **&** to combine them.
@@ -1315,96 +1325,181 @@ round((nrow(cherb_queens_survivors) / nrow(titanic_data)) * 100, digits = 2)
 
 ## Mutate
 
-To create a new variable, or a new column, in our `tibble` we will use the **`dplyr::mutate()`** function.
+When cleaning and transforming data, we often want to apply changes at the column level, such as:
 
-Code to create a new column follows the pattern below, where we state the name of the new column and the use the = to state what we want to be in that column.
+* Converting to lower case/any character work
+* Rounding to a specified number of dp
+* Converting the datatype
 
-```{r, eval = F}
-# generating new variables
+and we may even want to combine columns mathematically to create ratios, proportions etc, known as **Calculated Columns**.
 
-data_frame_name <- mutate(data_frame,
-                                 name_of_new_column = contents of new column)
-```
+We may also want to create new variables entirely, filled with a specific value or based on a condition (TRUEs and FALSES). 
+
+To accomplish all of the above, we need our next verb, **mutate()**. To create a new column, we use the following syntax:
+
+> mutate(new_column_name = contents_of_column)
 
 
 ### Constant Value Variables
 
-The simplest example would be adding a constant value to each row in our `tibble`. 
+The simplest example would be adding a constant column, which contains the same value all the way down. This effectively adds the same value to each row in the tibble. 
+
+Whilst the applications of this are minimal, it is the best first example for understanding mutate.
 
 ```{r}
-# generating new variables
+# Add a constant character column
 
-mutate_example <- mutate(.data = titanic, 
-                                string_twos = "two")
+titanic_data |> 
+    mutate(character_col = "two") |> # Character column filled with the string "two"
+    glimpse() 
 
 ```
 
-
-### Creating Variables Based on Existing Columns
-
-We can perform mathematical operations and even functions on existing columns in the **`mutate()`** function using column names.
-
-Let's look at some examples:
-
-We can capitalise the sex column.
+As another example, let's add a numeric constant column.
 
 ```{r}
-# Capitalise sex column
-# Here we are over writing the  sex_of_passenger column
-# If you give your new column the same name  as  an existing column 
-# It will overwrite it.
+# Add a constant numeric column
 
-mutate_example <- mutate(.data = titanic,
-                                sex_of_passenger = str_to_upper(sex_of_passenger))
+titanic_data |> 
+    mutate(numeric_col = 3.14) |> # Column of pi
+    glimpse()
 
 ```
 
+### Modifying existing variables
 
-Another example is creating the family size of the person.
+The mutate function is incredibly smart, as it allows us to apply functions to an entire column, with each cell transformed in turn.
 
-This is the number of siblings or spouses on board (sibsp), the number of parents or children on board (parch), plus 1 (the person themselves).
+For example, should we wish to make the name of passenger column lower case, to avoid the sorting issue with capital letters, we can use the **str_to_lower()** function from **stringr**. 
+
+To apply a function to an existing column, our mutate line goes as follows:
+
+> mutate(existing_column = function(existing_column,..))
 
 ```{r}
-# Determining family size on board
+# Convert names column to lower case
 
-mutate_example <- mutate(.data = titanic,
-                                family_size = parch + sibsp + 1)
+titanic_data |> 
+    mutate(name_of_passenger = str_to_lower(name_of_passenger)) |> 
+    glimpse()
+
+```
+ 
+Another example might be to round the age column to the nearest whole number, which could allow for conversion to an integer.
+
+```{r}
+# Round the age column to the nearest whole number
+
+titanic_data |> 
+    mutate(age_of_passenger = round(age_of_passenger)) |> 
+    glimpse()
+
 ```
 
+This has the unexpected consequence of rounding the passenger with an age of 0.1667 (around 2 months) to 0, which makes no sense given the context. As such, it may be better to round to 2 decimal places, with children below 12 months to be considered fairly. 
 
-As well as mathematical operators and functions we can use conditionals. 
+Let's do the same thing to the fare column as well, since money in GBP (¬£) is presented as two decimal places.
+
+```{r}
+# Round the fare column to 2 decimal places
+
+titanic_data |> 
+    mutate(fare = round(fare, digits = 2)) |> 
+    glimpse()
+
+```
+
+Notice that we have forgotten something, as age still has 4 decimal places.
+
+### **Exercise**{-}
+::: {.panel-tabset}
+
+### **Exercise**{-}
+
+Identify the mistake we have made when converting existing columns and fix this mistake so that we permanently update them.
+
+### **Solution**{-}
+
+We did not overwrite and reassign the titanic_data variable, we just observed the changes without permanently making them. 
+
+```{r}
+# Round the fare and age columns to 2 decimal places
+
+titanic_data <- titanic_data |> 
+    mutate(age_of_passenger = round(age_of_passenger, digits = 2),
+           fare = round(fare, digits = 2))
+
+glimpse(titanic_data)
+
+```
+
+:::
+
+Of course, this does not mean we should be overwriting titanic_data everytime, as often we are just overviewing a transformation and sense checking it.
+
+We should only overwrite or create a new variable when we are sure that this is what is required for our task.
+
+
+### Calculated Columns
+
+Let's see an example of creating a bespoke column by combining existing ones. Here we will create the family size of each person. To compute this we need:
+
+* The number of siblings or spouses on board (sibsp)
+* The numbr of parents or children on board (parch)
+* The person themselves, as they aren't factored in to sibsp or parch
+
+
+```{r}
+# Determining family size per passenger
+
+titanic_data <- titanic_data |> 
+    mutate(family_size = sibsp + parch + 1) # Add 1 for the person themselves
+
+glimpse(titanic_data)
+
+```
+
+### Conditional Columns
+
+We can also use conditions like when we filtered, to create a logical column of TRUEs and FALSEs. 
+
+These are very common and are often known as **binary flags** as they denote whether a certain condition is attained or not, which are often very useful for statistical and machine learning purposes.
+
+This is structured as follows:
+
+> mutate(new_col = (condition)) where the condition is "column operator value", such as "fare < 200". 
 
 ```{r}
 # Creating a logical column which is TRUE 
 # if passenger is female, false otherwise.
 
-mutate_example <- mutate(.data = titanic,
-                                is_female = (sex_of_passenger == "female"))
+titanic_data <- titanic_data |> 
+    mutate(is_female = (sex_of_passenger == "female"))
 
+glimpse(titanic_data)
 
 ```
 
+often, with binary flags we want them in numeric form, as most models we use expect numeric coded variables. This means we need to convert TRUE and FALSE to their numeric representations of 0 and 1.
 
-The key note from this being, with **`mutate()`**, we can do almost anything to every row in our data frame. 
+We can use complex functions for matching and converting to perform this step. In particular, the **case_match()** function, which takes the following form:
 
-There are some functions which work with **`mutate()`** and enable us to perform more complicated tasks. **`recode()`** lets us map one value to another throughout the entire column e.g.:
+> case_match(column, 
+             value_to_change ~ new_value,
+             value_to_change ~ new_value)
+
+You may not have seen this notation before with the tilde **~**, this is known as a **formula** in R, where the right hand side is equivalent to the left hand side, and is most commonly used with linear modelling to define the equation. See this [technical article on the tilde](https://medium.com/anu-perumalsamy/what-does-mean-in-r-18cecd1b223f#:~:text='~(tilde)'%20is%20an%20operator%20that%20splits%20the%20left,the%20set%20of%20feature%20variables.&text=In%20the%20above%20example%2C%20df,the%20columns%20wages%20and%20yearsEd.) for more information.
 
 ```{r, eval = FALSE}
-# Recoding variables
-# Note Recode does not have a .data argument
+# Recode is_female to numeric
 
-recode(titanic$survived, 
-              '1' = TRUE, 
-              '0' = FALSE)
-```
+titanic_data <- titanic_data |> 
+    mutate(is_female = case_match(is_female,
+                                  TRUE ~ 1, # Convert instances of TRUE to 1
+                                  FALSE ~ 0)) # Convert instances of FALSE to 0
 
-To do this in the context of an entire `tibble` we have to use **`recode()`** with **`mutate()`**.
+glimpse(titanic_data)
 
-```{r}
-# Generating new variables
-
-recode_example <- mutate(.data = titanic,
-                                survived_logical = recode(survived, '1' = TRUE, '0' = FALSE))
 ```
 
 
@@ -1413,426 +1508,324 @@ recode_example <- mutate(.data = titanic,
 
 ### **Exercise**{-}
 
-1. Create a new column, called `fare_dollars`, in this column we should have the fare converted to dollars, the exchange rate is ¬£1 to $1.39.
+1. Create a new column called "fare_dollars", which converts the fare from GBP (¬£) to USD (\$). The current exchange rate as of January 2024 is:
+> ¬£1 = $1.27
 
-2. Round the `fare-dollars` column
-
+2. Modify your code from question 1 to round the column to 2 decimal places.
 
 ### **Show Answer**{-}
 
 1. 
 ```{r}
-# Generating new variables
+# Convert fare to dollars
 
-fare_dollars <- mutate(.data = titanic,
-                              fare_dollars = fare * 1.39)
+titanic_data <- titanic_data |> 
+    mutate(fare_dollars = fare * 1.39)
+
+glimpse(titanic_data)
+
 ```
 
-
-2. Round the `fare_dollars` column.
-
+2. 
 ```{r}
-# Generating new variables
+# Create fare dollars and rounding the output
 
-round_fare <- mutate(.data = titanic,
-                            fare_dollars = round( fare * 1.39))
+titanic_data <- titanic_data |> 
+    mutate(fare_dollars = round(fare * 1.39, digits = 2))
+
+glimpse(titanic_data)
+
 ```
 :::
 
 
-For more advanced ways to mutate columns refer to this excellent blog [Data Wrangling Part 1: Basic to Advanced Ways to Mutate Columns](https://suzan.rbind.io/2018/02/dplyr-tutorial-2/), which showcases dplyr functions from the mutate() family.
-
-
-
-### Deleting data
-
-We can also use the **`mutate()`** function to delete data.
-
-We can add a new column called `child` to our titanic data set.
-
-We can quickly see the names of our data set using the the **`names()`** function.
-
-```{r}
-# Generating new variables
-
-titanic_mutate_exercise <- mutate(.data = titanic,
-                                         child = age_of_passenger < 18)
-# To display the column names
-
-names(titanic_mutate_exercise)
-```
-
-We can delete the column using the code below.
-
-We take the titanic data set and set equal the column we want to delete to `NULL`.
-
-```{r}
-# Setting a column = NULL effectively removes it.
-
-titanic_mutate_exercise <- mutate(.data = titanic_mutate_exercise, 
-                                         child = NULL)
-
-# finding out the names of the columns in the dataset
-
-names(titanic_mutate_exercise)
-```
-
-Alternatively, this will work too.
-
-```{r, eval = F}
-
-# selecting a column using the $ sign and assigning 
-# it to NULL
-
-titanic_mutate_exercise$child <- NULL
-```
-
-
 ## Joining Data
 
-Often all the data you need to answer a question are not contained within a single dataset, but across several. Datasets can be joined, or 'merged', to allow data to be analysed together, but only **if the two datasets share a common reference or identifier.**
+A very common problem in data analysis is our information being split along multiple smaller datasets, usually containing a column in common.
 
-Linking data come in a number of forms and are commonly referred to as 'indexical' data. Some examples include:
+Much of the information we need to answer questions of interest is featured across the data, so we can **join** or **merge** them together for one cohesive dataset.
 
-* Your NHS number, allowing data linkage across the NHS for primary, secondary, tertiary care episodes and prescribing.
-* Any account number (e.g. banking, utilities, travel card, council tax etc.) can acts as a point of linkage between different sets of data.
-* Your email, phone number, social media handles etc.
-* Your address can also act as a spatial reference, linking you to your neighbourhood, local services etc
-
-
-### Types of Joins
-
-In R we use a group of `join` functions. These are prefixed by the type of join we choose to implement.
-
-Once you have established that two `tibbles` share a reference that will permit a join to be conducted, you will see:
-
-* `inner_join` - Only rows with reference values that appear in both `tibbles` are merged.
-* `full_join` - All data from the left and right `tibble` is retained, matched up where possible.
-* `left_join` - All data from the 'left' `tibble` is retained, and any matching rows are merged from the 'right' `tibble`.
-* `right_join` - All data from the right and anything that matches from the left. Effectively, the reverse of 'Left'.
+We do require something essential for this to be possible, however, a **column in common** such as a unique identifier or reference, such as:
+* NHS number, allowing for data linkage across the NHS.
+* Any account number allows for data linkage aross financial institutions.
+* Email, phone numbers, social media hangles allow for data linkage across social media and online shopping.
+* Addresses allow for spatial data linkage, for geospatial applications
 
 
-This can be easier to understand graphically:
+### Types of Join
 
+Our favourite manipulation library **dplyr** provides a family of **join** functions. They take the form **type_join** where the prefix "type" denotes the type of join itself. 
+
+A naming convention we must establish here is that of the tibbles themselves, namely:
+* The larger dataset, the one we just to join data to, is the **left tibble**.
+* The smaller dataset, the one we want to join to another, is the **right tibble**.
+
+* **inner_join** - A stricter join where only data common to both tibbles is retained.
+* **full_join** - All data from both tibbles is retained, matched up where possible.
+* **left_join** - All data from the left tibble is retained, and only matching rows are merged from the right tibble.
+* **right_join** - All data from the right tibble is retained, and only matching rows are merged from the left tibble. This is the inverse process of the left join.
+* **anti-join** - An example of a filtering join, where all data from the right tibble that does not match in the left tibble is retained. A great way to flag missing values and check for patterns. 
+
+
+Graphically:
 
 ![](../Images/sql-joins.png){fig-alt = "Venn diagrams for each of the prior examples, with the included data shaded."}
 
+There are also Semi Joins and Anti Joins, which you can read about in Hadley Wickhams [R for Data Science Chapter 19](https://r4ds.hadley.nz/joins.html)
 
-Lets look at some examples.
+### Examples
 
-We will use the 2 datasets, which come as part of the `dplyr` package. These data sets describe band members of the Beatles and Rolling Stones. 
+Joins are best explored using examples of each type.
 
-```{r}
-# To display the data
+We will use 2 datasets that come with **dplyr**, they are very small and were made with learning how to join in mind.
 
-band_members
-```
-
-You will need to assign it to see it within the environment window as shown below,
+The first is band_members, which we must assign to a variable to save in the global environment.
 
 ```{r}
-# Assigning the data
 
-band_members <- band_members
+members_data <- band_members
+
+members_data
 ```
 
+The second is band instruments, which seems to have some connection to the prior dataset.
 
 ```{r}
-# To display the data
 
-band_instruments
+instruments_data <- band_instruments
+
+instruments_data
 ```
 
-Lets assign this one as well. Note that `dplyr` has two slightly different datasets (band_instruments and band_instruments2 - which we will use later on). 
+These data sets have one common column which is **name**, so we can join them to have both band and plays in the same dataset. Let's assume that members_data is the left dataset and instruments_data is the right.
+
+Pre-empting what will happen based on the above venn diagrams:
+* John and Paul appear in both datasets, so will be retained for most common joins.
+* Mick only appears in the members_data, so may disappear with stricter joins.
+* Keith only appears in the instruments_data, so may disappear with stricter joins.
+
+
+### **Join Syntax**{-}
+
+The join functions take numerous arguments, with the following being required:
+* x - the left tibble
+* y - the right tibble
+* by - the column to join on
+
+and take the form:
+
+> type_join(x = left_tibble, y = right_tibble, by = join_col) where we can pipe in the left_tibble.
+
+
+### **Inner Join**{-}
+
+Starting with the inner join, this will only retain rows common to both datasets, which would see Mick and Keith removed. 
 
 ```{r}
-# Assigning the data
+# Perform an inner join on band members and instruments data.
 
-band_instruments <- band_instruments
+members_data |> 
+    inner_join(y = instruments_data,
+               by = "name")
+        
 ```
 
+As expected, we kept John and Paul, and now have another column of information about them!
 
-These data sets have one common column which is `name`, so we can join them based on this.
-
-We can see that **John** and **Paul** appear in both datasets while **Mick** is appears only in the band member and **Keith** in band instruments.
-
-I‚Äôm going to say that `band_members` is my ‚Äúleft‚Äù data frame, and that `band_instruments` is my ‚Äúright‚Äù data frame.
-
-Let‚Äôs look at how we do an **inner join** in code. We‚Äôre going to use the function **`inner_join()`**.
-
-
-```{r}
-# The left data frame is given by the argument x
-# The right frame is given by the argument y
-# We need to include the column we would like to join with
-
-band_membership_inner_join <- inner_join(x = band_members, 
-                                                y = band_instruments,
-                                                by = "name")
-# To display the data
-
-band_membership_inner_join
-```
-
-We can see that the inner join returned only the 2 members that appear in both datasets.
-
-
-If you don't specify which column to join by, `R` will look to match by any column that matches.
-
-
-We can also use the `pipe operator`, as shown below.
-
-```{r}
-# Joining data using the pipe operator
-# Here the left dataset is specified first
-# Then we can chain our join to it
-
-band_membership_inner_join <- band_members %>% 
-                              inner_join(band_instruments, 
-                                                by = "name")
-
-# To display the data
-
-band_membership_inner_join
-```
+### **Full Join**{-}
  
- 
-Now let try a **full join**.
+A full join retains all rows across both datasets, but this raises the question of what happens to the entry in the column that they aren't featured? i.e.
+
+* Mick has no plays entry
+* Keith has no band entry
+
+Simply, they are filled with **NA**, as they are missing.
 
 ```{r}
-# full join
+# Perform a full join on instruments and band data
 
-band_membership_full_join <- band_members %>% 
-                             full_join(band_instruments,
-                                              by = "name")
+members_data |> 
+    full_join(y = instruments_data,
+              by = "name")
 
-# To display the data
-
-band_membership_full_join
 ```
 
-We can see that the full join returned all 4 members with some missing values for those that don't appear in both datasets.
+We see that, indeed, Mick has no entry for plays and Keith has no entry in band.
 
+### **Left Join**{-}
 
-Now lets try a **left join**.
+A left join retains all rows in the left tibble, and just the matching data in the right. This means Mick will come along with an **NA** in the plays column, but Keith will be lost entirely.
 
 ```{r}
-# left join
+# Perform left join on band and instruments data
 
-band_membership_left_join <- band_members %>% 
-                             left_join(band_instruments, 
-                                              by = "name")
+members_data |> 
+    left_join(y = instruments_data,
+              by = "name")
 
-# To display the data
-
-band_membership_left_join
 ```
 
-We can see that the left join returns only those that appear or both datasets or left dataset, which is why Keith is missing here.
+### **Right Join**{-}
 
-
-A **right join** is just the opposite of the left join.
+A right join is the opposite of a left join, so we will retain all values in the right tibble, including Keith, but only matching data in the left tibble, which means we will lose Mick.
 
 ```{r}
-# Right join
+# Right join on band and instruments data
 
-band_membership_right_join <- band_members %>% 
-                              right_join(band_instruments, 
-                                                by = "name")
-
-# To display the data
-
-band_membership_right_join
-```
-
-We can see that the right join returns only those that appear or both datasets or right dataset, which is why Mick is missing here.
-
-
-If we're joining on more than one column we can specify using the parameter `by = c(vector))`.
-
-This is shown below.
-
-```{r, eval = F}
-
-# Joining using multiple columns
-
-join_left <- left_join(x = first_dataset, 
-                              y = second_dataset,
-                              by = c("column name", "column name"))
-
+members_data |> 
+    right_join(y = instruments_data,
+               by = "name")
 
 ```
 
+### **Anti Join**{-}
 
-### Exercise
-::: {.panel-tabset}
-
-### **Exercise**{-}
-
-1. Run the code below, can you figure out why its not working. **HINT:Remember what we need to be able to join 2 datasets.**
-
-We will be using band_instruments2 from the `dplyr` package for this exercise, rather than band_instruments as previously. 
-
-```{r, eval=F}
-# Load the data
-
-band_members <- band_members
-
-band_instruments2 <- band_instruments2
-
-# Full join
-
-band_membership_full_join <- band_members %>% 
-                              full_join(band_instruments2)
-
-# To display the data
-
-band_membership_full_join
-```
-
-
-2. Using `band_members` and `band_instruments2` perform a "full" join.
-
-   * Join on *BOTH* the column containing `name` and the column containing `artist`.
-  
-   * Note that the names of these columns may not be the same in both data frames.
-
-   * Use the help function to explore solutions to this. **HINT: look at the example section**
-
-
-### **Show Answer**{-}
-
-1. 
-```{r, eval=F}
-# Load the data
-  # Note later code will run without this step, it has been included to demonstrate that datasets from packages are available 
-
-band_members <- band_members
-
-band_instruments2 <- band_instruments2
-
-# Full join
-
-band_membership_exercise <- band_members %>% 
-                             full_join(band_instruments2)
-
-# To display the data
-
-band_membership_exercise
-```
-
-The code above will give the error message below;
-
-**Error: `by` must be supplied when `x` and `y` have no common variables. i use by = character()` to perform a cross-join. Run `rlang::last_error()` to see where the error occurred.**
-
-This is because the datasets do not have any columns with the same name, band_members has name while band_instruments2 has artist.
+An anti join returns all rows from the left tibble that do not match in the right, so in this case, only Mick will be returned with his band entry, so no joining was actually performed. 
 
 ```{r}
-# To display the data
+# Anti-join to return rows that are missing in the instruments data
 
-band_members
+members_data |> 
+    anti_join(y = instruments_data,
+              by = "name")
+
 ```
+
+### Matching columns with different names
+
+A very common problem that occurs when joining is the matching column in both datasets doesn't match in name. 
+
+This can sometimes be easily rectified with a **rename()**, but there will be cases where modifying the data in this way is not allowed. 
+
+This is where the **join_by()** function from dplyr comes in, providing us a way to specify that two differently named columns are indeed the same. 
+
+### **Example**{-} 
+
+Here we introduce the band_instruments2 data, which is similar to the former but with one key difference.
 
 ```{r}
-# To display the data
+# Instruments data
 
-band_instruments2
+instruments2_data <- band_instruments2
+
+instruments2_data
 ```
 
+The name variable is called "artist" here, which we can either rename or use the excellent tools dplyr has at its disposal for cases where we are not allowed to do so. 
 
-2. 
-```{r}
-# Full join
-# We can join with different column names
+Within join_by(), we must set the column names of note equal to each other, using:
 
-band_membership_exercise <- band_members %>% 
-                              full_join(band_instruments2,
-                                               by = c("name" = "artist"))
+> left_col_name == right_col_name
 
-# To display the data
-
-band_membership_exercise
-```
-
-
-### bind_rows()
-
-Another common way in which datasets are combined is by binding them. Unlike the join function, the binding functions do not try to match by a variable, but instead simply combine datasets by appending one set of data to the bottom of the other. If the datasets don‚Äôt match by the appropriate dimensions, one obtains an error.
-
-This is where we can add data on to the bottom of an existing data frame, If you have two (or more) data frames that share the same data structure.
-
-You can use the **bind_rows()** function.
+Let's join together band_instruments2 with the members data, using the join_by() function.
 
 ```{r}
-# Creating vectors
+# Join columns with names that don't match
 
-name <- c("Paul","Katherine", "Almas", "Pragya")
+members_data |> 
+    full_join(y = band_instruments2,
+              by = join_by(name == artist))
 
-band <- c("Beatles","Beatles", "Stones", "Stones")
-
-# Creating a tibble
-
-new_band_members <- tibble(name, band)
 ```
 
-For example, looking at the 2 data frames below;
+
+### Binding Datasets
+
+Another common way in which datasets are combined is by binding them, where one dataset is appended on top of the other either **row by row** or **column by column**.
+
+With row binding, columns are matched by name automatically, so the positioning of them does not matter. Missing columns will be filled with NA, so we must be careful of this.
+
+With column binding, rows are matched by position, so the tibbles we bind absolutely **must** have the same number of rows, otherwise we will get an error.
+
+### **Binding Rows**{-}
+
+We use the **bind_rows()** function from dplyr to accomplish this. This will widen the dataset by adding more entries.
 
 ```{r}
-# To display the data
+# Row bind the instruments tibbles
 
-band_members
-
-# To display the data
-
-new_band_members
+instruments_data |> 
+    bind_rows(instruments2_data)
 
 ```
 
+Notice that the columns themselves were matched automatically, but since the instruments2 has the name variable and instruments has the artist variable, these are seen as independent, and hence filled with NAs since they don't match.
 
-We can use the **`bind_rows()`** function, which will simply merge two data frames into one by appending the rows.
+### **Binding Columns**{-}
+
+We use the **bind_cols()** function from dplyr to accomplish this. This will lengthen the dataset by adding more variables. 
 
 ```{r}
-# Combining 2 dataframes using bind_rows() function
+# Column bind instruments 1 and 2
 
-binded_rows_data <- band_members %>% 
-                    bind_rows(new_band_members)
-
-# To display the data
-
-binded_rows_data
+instruments_data |> 
+    bind_cols(instruments2_data)
 
 ```
 
-We can see our new additions - Paul, Katherine, Almas and Pragya here now.
+Notice that despite plays being a repeating column, it is binded as we asked, and differentiated by its position, with the second column being "plays...2" and the fourth being "plays...4".
 
-Here we‚Äôre assigning the output to a new Data Frame ‚Äì `binded_rows_data.
+### **Why we bind**{-}
+
+This may have seemed abstract so far, so why do we really want to do this in practice?
+
+When data is collected consistently, it is often in the same form, be that monthly, weekly, annually and so on. 
+
+To create a historic time series, data must be sequentially appended unless separate storage is required. 
+
+This is often part of an automated process where data is ingested and then appended onto the existing, larger, collected dataset. 
 
 
 ### Union()
 
-Another useful function is  **`union()`** which will merge the data from both data frames but keep only the distinct (unique) rows. That means, any duplicated rows that exist in the target data frames are not going to be brought over to the current data frame
+Another very useful function is  **union()** which will merge the data from both data frames but keep only the distinct (unique) rows. 
 
-```{r}
-# Combining 2 dataframes using union() function
+This means that any duplicated rows that exist in the current tibble are not brought over in the process.
 
-union_data <- band_members %>% 
-              union(new_band_members)
+However, this does **NOT** remove duplicated **values**, only entire duplicated rows in the combined data, an important distinction to make. 
 
-# To display the data
+```{r, eval=FALSE}
+# Band members and instruments
 
-union_data
+instruments_data |> 
+    union(instruments2_data)
 
 ```
 
-We can see that Paul was duplicated and is not included when we use union instead.
+You will see that this causes an error, because Union is very strict about it's combination, in that all columns must match. 
+
+Let's create a small tibble with matching columns to test this out.
+
+```{r}
+# Create new entries for instruments data
+
+artist <- c("Mick", "Bono", "Ringo", "John")
+
+plays <- c("guitar", "guitar", "piano", "guitar")
+
+instruments3_data <- tibble(artist = artist, plays = plays)
+
+instruments3_data
+
+```
+
+Now let's union this instruments2, who's columns match exactly:
+
+```{r}
+# Union the instruments datasets
+
+instruments2_data |> 
+    union(instruments3_data)
+
+```
+Notice that John, who would have been duplicated in the combination, was removed as intended by union().
 
 
 # Summary 
 
 We covered alot of content around dplyr here, but the possibilities are nearly endless with this incredible data manipulation library.
 
-By no means are you meant to remember and immediately recall the above. Instead, what is most important is that you understand the problem you are trying to solve, and can use the resources here (or your own) to then solve it.
-
+By no means are you meant to remember and recall the above. Instead, what is most important is that you understand the problem you are trying to solve, and can use the resources here (or your own) to then solve it.
 
 Next up, we will look at aggregating data and obtaining summary statistics.
 
