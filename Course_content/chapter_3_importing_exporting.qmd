@@ -27,7 +27,7 @@ format:
 * Be able to explore data.
 
 
-# Functions
+# Returning to Functions
 
 So far we have seen many functions, such as:
 
@@ -44,7 +44,7 @@ You should make it a habit to explore the help files when you are using a functi
 
 Recall that they follow the form:
 
->functionName(argument1 = value1, argument2 = value2, and so on)
+> **functionName(argument1 = value1, argument2 = value2, and so on)**
 
 
 ## How functions work
@@ -98,7 +98,7 @@ Here, we can find out what these arguments are:
   - by number: increment of the sequence.
 
 
-### How are function arguments resolved?
+### Execution of function arguments
 
 We used this function when creating vectors, here's a reminder.
 
@@ -109,7 +109,9 @@ seq(from = 2, to = 6, by = 2)
 
 ```
 
-Let's consider what happens instead when we **don't** specify the arguments, just their values:
+Let's consider what happens instead when we **don't** specify the arguments, just their values.
+
+### **Example**{-}
 
 ```{r}
 # Creating a sequence of numbers - not specifying arguments
@@ -120,7 +122,7 @@ seq(1,10)
 
 This has generated a sequence of numbers from 1 to 10. In this case we did not supply a value for by, so it took the default value, which in this case is 1.
 
-What if we flip 10 and 1 in this case
+What if we flip 10 and 1 instead?
 
 ```{r}
 # Creating a sequence of numbers
@@ -133,8 +135,8 @@ So it is clear that where we place the value is important, because arguments are
 
 So above:
 
-* In the first example, it is assumed that we want a sequence from = 1 that goes to = 10. 
-* Then if we swap the numbers it is assumed we want to sequence from = 10 that goes to = 1. 
+* In the first example, it is assumed that we want a sequence from  1 that goes to  10. 
+* Then if we swap the numbers it is assumed we want to sequence from 10 that goes to 1. 
 
 However, if we name the arguments **explicitly** using argument = value, the order we specify them does not matter. 
 
@@ -147,16 +149,16 @@ seq(to = 10, from = 1)
 
 ```
 
-You can sometimes run into errors with more complicated functions by taking the arguments for granted. Often there are many optional arguments that are resolved (position wise) before the required ones.
+You can sometimes run into errors with more complicated functions by taking the arguments for granted. 
 
->**We would encourage you to specify the arguments and parameters as it makes your code easier to understand**
+Often there are many optional arguments that are resolved (position wise) before the required ones.
+
+>**We would encourage you to specify the arguments and parameters as it makes your code easier to understand.**
 
 
 # Packages
 
-Our default R installation,often referred to as **base R** gives us a lot of functionality out of the box.
-
-A lot of this code has been around since R's first implementation in the 90s. 
+Our default R installation, often referred to as **base R** gives us a lot of functionality out of the box.
 
 If we want to implore the newest methodologies, adopted by the wider R community, then we need to install packages to achieve this.
 
@@ -168,25 +170,21 @@ In order to use a package, we first need to install it:
 
 * You can install packages from outside of CRAN (such as from [GitHub](https://github.com/)) with specific functions. Please be aware of the source and quality in these cases.
 
-Your department may have a slightly different way of installing packages, so clearing this up is a good first port of call.
-
+Your department may have a slightly different way of installing packages, so clearing this up is a good port of call.
 
 
 ## Installing Packages
 
 To install a package, we use the code below for **each** new package. 
 
->**install.packages("package_name")**
+>**install.packages("package_name", dependencies = TRUE)** where dependencies allows the install to also take into account other packages your chosen one needs to function correctly. 
+
+Dependent on your Operating System, another parameter is also recommended:
+
+* For windows, use **type = win.binary**.
+* For mac, use **type = mac.binary** (this may differ for Apple Silicon).
 
 >**Important**: You will only need to install packages once, you should either do this in the console, or comment out the line in your script where this is done. 
-
-When installing packages you can either get:
-
-* A Message - Provides information, such as version.
-
-* A Warning - Discusses **masking**, which we will encounter later.
-
-* An error - This means something went wrong and the package did not install. 
 
 
 ### Exercise
@@ -204,12 +202,12 @@ Note that tidyverse is a collection of R packages that follow the same programmi
 
 ### **Show Answer**{-}
 
-```{r, eval = F}
+```{r, eval=FALSE}
 # Installing packages
 
-install.packages("tidyverse")
+install.packages("tidyverse", dependencies = TRUE, type = "win.binary")
 
-install.packages("janitor")
+install.packages("janitor", dependencies = TRUE, type = "win.binary")
 
 ```
 
@@ -226,9 +224,9 @@ Successful installation should finish with messages as below, sometimes interspe
 
 ## Loading Packages
 
-Think of packages as owning a book; you purchase (install) the book once, and after that when you need to reference it you can pick it off your bookshelf. 
+Think of packages as owning a book; you purchase (install) the book once, and after that when you need to reference it you can pick it up off your bookshelf. 
 
-In R we call this loading, and you should always load packages at the very top of your script.
+In R we call this **loading**, and you should always load packages at the very top of your script.
 
 To load a package, use the code:
 
@@ -268,7 +266,7 @@ There is almost always some output we get when loading packages. Some options ar
     * You can get around this by using the syntax **package_name::function_name** as R will attempt to autofill the functions from that package, and there is no way to misconstrue what package the function comes from. 
 
 
-## R and Package Versions
+## Checking Versions
 ::: {.panel-tabset}
 
 Returning to the versions issue, we may have an older version of R than the one the package was built for.
@@ -281,6 +279,7 @@ We can check R version by running this command.
 # To check the version of R
 
 version
+
 ```
 
 You can see that we are running 4.1.3
@@ -309,8 +308,8 @@ If you are working collaboratively you should always check that you are all usin
 
 One of the masks at play with tidyverse is the **filter()** functions:
 
-* Base R has a filter() function to apply on time series
-* Whereas dplyr (a tidyverse package for data manipulation) has a filter() function to select rows or columns from datasets.
+* Base R has a filter() function to apply on time series.
+* Whereas dplyr (a tidyverse package for data manipulation) has a filter() function to select rows based on columns.
 
 These both take very different parameters, so it is important to know what we have masked. After loading the tidyverse, it will assume we want to use the dplyr version of filter going forward. 
 
@@ -323,7 +322,7 @@ To use the alternative we would need to type
 
 # Tidyverse
 
-Here we will introduce the tidyverse, a collection of R packages that that changed the way many work with R forever. 
+Here we will introduce the tidyverse, a collection of R packages that changed the way many work with R forever. 
 
 The packages in tidyverse share a common philosophy for data manipulation and exploration so they work well together. 
 
@@ -331,22 +330,20 @@ This philosophy is that of Tidy Data, described first in the [seminal paper](htt
 
 ## Advantages of the Tidyverse
 
-The tidyverse is
+The tidyverse is:
 
 * Well documented. Each sub-library has its own website containing a 'cheat-sheet' and vignettes. We thoroughly recommend bookmarking these.
-    * The packages panel has links to the documentation of the package version you have
 
 * Well established in the R data science community, meaning common issues and queries are already answered on platforms such as [Stack Overflow](https://stackoverflow.com/questions/tagged/r).
 
-* Designed such that all sub packages follow a core 'philosophy' which encourages best practices. 
+* Designed such that all sub packages follow a core 'philosophy' which encourages best practice. 
 
 * Open-source software and free to use. As are the books written by the tidyverse creator Hadley Wickham. The highest recommendation we can make is [R for Data Science](https://r4ds.hadley.nz/). 
 
 
-## Disadvantages
+## Disadvantages of the Tidyverse
 
 * Like R, tidyverse can have a steep learning curve, and its reliance on functional programming can confuse beginners. 
-    * It is argued that this is well worth the investment though.
 
 * It is incredibly flexible, which makes it hard to determine which solutions to problems are the best.
 
@@ -357,20 +354,22 @@ The tidyverse is
 
 Below is a list of the core packages in tidyverse to provide some awareness into what they make possible:
 
-* [readr](http://readr.tidyverse.org) - Data Import
+* [readr](http://readr.tidyverse.org) - Data import
 * [tibble](https://tibble.tidyverse.org/) - Tibbles, a modern re-imagining of data frames
 * [tidyr](https://tidyr.tidyverse.org/) - Data Tidying
-* [dplyr](https://dplyr.tidyverse.org/) - General Data Manipulation
-* [stringr](https://stringr.tidyverse.org/) - Strings Manipulation
-* [forcats](https://forcats.tidyverse.org/) - Factors Manipulation
+* [dplyr](https://dplyr.tidyverse.org/) - General data anipulation
+* [stringr](https://stringr.tidyverse.org/) - String anipulation
+* [forcats](https://forcats.tidyverse.org/) - Factor variables 
 * [ggplot2](https://ggplot2.tidyverse.org/) - Data Visualisation
 * [purrr](https://purrr.tidyverse.org/) - Functional Programming
 * [lubridate](https://lubridate.tidyverse.org/) - For dealing with dates and times - included in tidyverse 2.0.0 onwards. 
 
 
-![\Image showing visual representation of tidyverse packages and workflow](../Images/tidyverse.png){fig-alt="Tidyverse workflow of import, tidy, transform/model/visualise and communicate."}
+![](../Images/tidyverse.png){fig-alt="Tidyverse workflow of import, tidy, transform/model/visualise and communicate."}
 
-The first of the core packages we will delve into is **readr** which deals with reading in data. We need an understanding of the working directory beforehand.
+The first of the core packages we will delve into is **readr**, which deals with reading in data, and by extension **tibbles**, the excellent update to dataframes that the tidyverse provides. 
+
+However, we need an understanding of the working directory beforehand.
 
 
 # Working Directory
@@ -382,6 +381,7 @@ We often refer to this as the "starting point" when R looks for a file you speci
 Thankfully, we are using an **R project**, which makes filepaths and directories reproducible, by ensuring everyone who opens the project has this set by default.
 
 >**If you are not using a project (we recommend you do) you will need to set your own working directory with the [setwd() function](https://www.geeksforgeeks.org/how-to-use-setwd-and-getwd-in-r/) that requires a full path to the directory to change it manually.**
+
 
 ## Checking Working Directory
 
@@ -396,13 +396,6 @@ getwd()
 If you are inside the project created within these materials, you should have the same final step in the "path", that of the "Course_content" folder.
 
 > **In Windows file paths are specified using back slashes, but in R a backslash already has a meaning, so we use a forward slash or two back slashes instead.**
-
-
-Base R has many functions that allow you to explore directories, such as:
-
-* dir() - Lists contents of current directory
-
-which are beyond the scope of what we are currently discussing. 
 
 
 # Reading in Data
@@ -422,7 +415,28 @@ The package provides a fast and friendly way to read data from:
 
 converting them to **tibbles**, which are the required data structure in the tidyverse. 
 
-This is done by using a family of functions, which is a set of functions that have the same prefix:
+Let's formally introduce them now.
+
+### Tibbles
+
+Tibbles are data frames, but they tweak some older behaviours to make life a little easier, R is over 20 years old after all:
+
+* Tibbles complain more when variables do not exist - leads to easier error checking.
+* Tibbles don't change variable names.
+* Tibbles don't tweak variable types from the source data. 
+
+**The key benefits of tibbles are:**
+
+* In addition to its name, each column reports its type.
+
+* The dimensions of the tibble are shown at the top.
+
+* Tibbles have a refined print method that shows only the first 10 rows, and all the columns that fit on screen. This makes it much easier to work with large data.
+
+
+### How readr works
+
+This package reads in datasets we supply by using a **family of functions**, ones that have the same prefix.
 
 > **read_filetype()**
 
@@ -452,11 +466,12 @@ and readr will:
 
 
 ### Example - Our first filepaths
-::: {.panel-tabset}
 
 Let's load in the titanic dataset in the "Data" folder. 
 
 We need to figure out where this is and how to get there from our current working directory, so that we can tell R. 
+
+::: {.panel-tabset}
 
 ### **Absolute Filepaths**{-}
 
@@ -474,7 +489,7 @@ Note that your usernames and drives will differ to ours.
 
 ### **Relative Filepaths**{-}
 
-A **relative** filepath is the path to reach the file relative to the current working directory. 
+A relative filepath is the path to reach the file **relative** to the current working directory. 
 
 Thus we are already part of the way there, and just need to tell R where to go from here:
 
@@ -496,7 +511,7 @@ Where we are currently at level 2 on the course content branch, so must follow t
 
 ### **Loading in the data**{-}
 
-Of course, we need to consider where we create our R Projects going forward, as this directly impacts our filepaths. 
+Let's read in titanic using a relative filepath. 
 
 ```{r}
 # Read in titanic with read_csv()
@@ -507,18 +522,26 @@ titanic_data <- read_csv("../Data/titanic.csv")
 You will get some information on:
 
 * rows and columns
-* lists of each column types
+* Counts of each column datatype
 
 ### **Inspect Data**{-}
 
-Running the name of the variable generates a large output, it is better to use inspection functions from base R and the tidyverse. 
+Let's call the name of the variable we have created to see the output of our first tibble.
 
-One example is View(), which opens a separate tab in the code editor pane with the dataset.
+```{r}
+# Display the titanic data
 
-We will see better examples soon.
+titanic_data
+```
+
+Notice the refined print we get from this, that provides so much more information than the data frame output did in chapter 2. 
+
+It may take more time to read and understand, but prevents you from having to use many additional functions to find out things such as dimensions (rows and cols).
+
+Another example of inspection is with View(), which opens a separate tab in the code editor pane with the dataset in spreadsheet form.
 
 ```{r eval=FALSE}
-# Viewing the data u
+# Viewing the data - Note the capital V
 
 View(titanic_data)
 ```
@@ -550,7 +573,9 @@ View(titanic_data)
 str(titanic_data)
 ```
 
-We can see that R has classed the column as character because of the **.** and asterisk **(*)** within it.
+We can see that R has classed the column as character because of the **.** and asterisk within it.
+
+Notice how much of the information this provides is also represented in the tibble output, very impressive!
 
 :::
 
@@ -558,7 +583,7 @@ We can see that R has classed the column as character because of the **.** and a
 
 Whilst we cannot observe all missing values at this stage, examples that cause columns to be cast to unexpected data types are often spotted quickly.
 
-We can easily correct this by adding an additional argument to the **read_csv()** function.
+We can easily correct this by adding the **na** paramter to the read_csv() function.
 
 ```{r}
 # Specifying missing values as a vector to read_csv()
@@ -570,7 +595,7 @@ titanic_data <- read_csv("../Data/titanic.csv",
 
 This is read as:
 
-> **Where there is the a ".", "*", NULL value or a blank space, class is it as a missing value.**
+> **Where there is the a full stop, asterisk, NULL (entirely empty) value or a blank space, class is it as a missing value.**
 
 We can now see that the . and * in the age column have been replaced with NA's and the age column is now numeric.
 
@@ -588,13 +613,13 @@ We use readxl to read excel data into R, it supports both .xls and .xlsx formats
 
 Even though it is installed alongside the tidyverse, it must be loaded separately.
 
+The code for read in is very similar to the read_csv() example, just using the read_excel() function.
+
 ```{r}
 # Load in readxl
 
 library(readxl)
 ```
-
-The code for read in is very similar to the read_csv() example, just using the read_excel() function.
 
 Excel workbooks are more complex than flat files as they are **workbooks**, featuring multiple sheets. 
 
@@ -632,7 +657,7 @@ Use an additional argument in "read_excel()" to read in the second sheet of the 
 You will need to look at the help documentation for read_excel() to help you with this. 
 
 
-### Show Answer{-}
+### **Show Answer**{-}
 
 You can use the name of the sheet or the number/index. 
 
@@ -648,7 +673,8 @@ police_data <- read_excel("../Data/police_data.xlsx",
 police_data <- read_excel("../Data/police_data.xlsx",
                           sheet = "Table P1")
 
-View(police_data)
+police_data
+
 ```
 
 This is better but still not ideal:
@@ -664,6 +690,8 @@ This is better but still not ideal:
 police_data <- read_excel("../Data/police_data.xlsx",
                           sheet = 2,
                           range = "A5:AA48")
+
+police_data
 
 ```
 
@@ -686,7 +714,7 @@ We must supply two arguments to **write_csv()**:
 * dataset itself
 * file, which must be the filepath of **where to save your file**. 
 
-The path is constructed similarly as before, but we can choose what folder to save our work in, and must also give the file a name and supply its file extension, for example:
+The path is constructed similarly as before
 
 >**"../folder/my_file.csv"**
 
@@ -771,9 +799,11 @@ names(titanic_data)
 
 ### **Glimpse (dplyr)**{-}
 
-Our dplyr library in the tidyverse provides arguably the best inspection function, known as glimpse().
+Up to here, the functions prior were from base R, which the tibble deals with for us with its refined print method.
 
-This gives most of the information the previous base R functions did, alongside some of the structural information from str() we saw previously.
+The tidyverse library has dplyr, a data manipulation package, that provides arguably the best inspection function, known as glimpse().
+
+This refines the print even more, to just a snapshot of the content of the columns themselves. 
 
 ```{r}
 # Have a glimpse at titanic
@@ -781,7 +811,7 @@ This gives most of the information the previous base R functions did, alongside 
 glimpse(titanic_data)
 ```
 
-This gives so much useful information in a condensed output:
+We still retain much of the information from before:
 
 * The number of rows and columns
 * Column names

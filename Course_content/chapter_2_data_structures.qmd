@@ -49,7 +49,7 @@ Suppose you wanted to store more than one value in "my_friends", e.g "hannah", "
 The following seem like possible solutions to this problem, but unfortunately are not the correct way to store multiple data points.
 
 ```{r, eval=FALSE}
-# PLEASE NOTE THIS CODE WILL NOT WORK
+# This code will throw an error
 
 my_friends <- "ian", "hannah", "mike", "almas"
 
@@ -82,9 +82,6 @@ help(c)
 
 ```
 
-![](../Images/combine_function.PNG){fig-alt="The help documentation for the c() function in R."}
-
-
 We can use this function to store multiple elements (data points) in a single variable, with each element **separated by a comma**.
 
 ```{r}
@@ -106,14 +103,12 @@ Let's check the datatype of our new vector.
 typeof(my_friends)
 ```
 
-We see that this is a character vector, a.k.a, a vector containing character data. This is because each element contained within the vector are character data. 
+We see that this is a character vector, a.k.a, a vector containing character data. This is because each element contained within the vector are character type. 
 
 
 ## Vector Definition
 
 A vector is a collection of values that are **all of the same type** (doubles, characters, etc.).
-
-It is the most commonly used basic data structure in R with a lot of useful properties.
 
 Since R insists all elements in a vector have to be of the same type we then can have types of vectors. These are:
 
@@ -122,6 +117,8 @@ Since R insists all elements in a vector have to be of the same type we then can
 * Character vector - contains only character values. 
 
 There are more types of vectors, but for the purpose of our learning these  are sufficient.
+
+Visually:
 
 ![](../Images/vector.png){fig-alt="Diagram of a vector as a column (collection) of the same red rectangle."}
 
@@ -136,7 +133,7 @@ There are several different ways of creating a vector. You can create a vector b
 - The **colon** operator to create a vector of consecutive numbers.
 
 
-### The C() function (combine)
+### The c() function (combine)
 
 Let's create a numeric vector with c() this time!
 
@@ -151,7 +148,7 @@ sample_vector
 
 ```
 
-### The seq() function (Sequence)
+### The seq() function (sequence)
 
 A sequence of values has:
 
@@ -159,7 +156,7 @@ A sequence of values has:
 * An ending point
 * A "step", a.k.a the value we jump by from number to number.
 
-For example, if we start at 2, end at 10 and step by 2 we will have (2, 4, 6, 8, 10) as our final sequence. 
+> For example, if we start at 2, end at 10 and step by 2 we will have (2, 4, 6, 8, 10) as our final sequence. 
 
 The seq() function takes the arguments:
 
@@ -208,7 +205,7 @@ colon_vector
 
 1. Create two vectors, one with numeric data and one with character data and name them appropriately. For example favourite_movies, lucky_numbers.
 
-2. Use the c() function to create a new vector with your vectors as inputs. This is combines the smaller vectors into a larger vector, further showcasing their versatility.
+2. Use the c() function to create a new vector with your vectors as inputs. This combines the smaller vectors into a larger vector, further showcasing their versatility.
 
 3. Find the type of your new vector. Why do you think this is the case?
 
@@ -251,9 +248,11 @@ typeof(movies_and_numbers)
 
 ```
 
-We end up with a character vector as opposed to an error for incompatible types (numeric and character). As vectors are supposed to be of the same data type, R will convert values so that they are all the same datatype. This is called **coercion**.
+:::
 
-This works on a complex hierarchy, as some datatypes are more all encompassing than others. For example:
+We end up with a character vector as opposed to an error for incompatible types (numeric and character). 
+
+As vectors are supposed to be of the same data type, R will convert values so that they are all the same datatype. This is called **coercion**, which works on a complex heirarchy:
 
 * Any datatype can be converted to a character by wrapping it in quotation marks **" "**. 
 * Any integer can be converted to a double by adding in the decimal place, i.e. 1L --> 1.0
@@ -265,7 +264,6 @@ As such, we have:
 
 >**Logical < Integer < Double < Character** and we see that character is the most all encompassing, with logicals being converted from but not to. 
 
-:::
 
 ## Vectorised Language
 
@@ -276,8 +274,6 @@ Vectors aren't just containers for homogeneous data (data of the same type).
 This is not a common behaviour among programming languages and is a key advantage of R's nature as a vectorised language.
 
 This also means that every variable we have created so far have also been vectors with one element, and the operators (such as adding 5 to them) have been vectorised operations. 
-
-The operations scale to a larger sized vector, rather than the individual elements we have worked with thus far. 
 
 Let's see this in practice!
 
@@ -350,8 +346,6 @@ When applying arithmetic to two vectors their lengths should either be equal, or
 
 :::
 
-> **All of the operations we have seen above were performed in an element-wise manner. This means the operation was performed on each respective element from each vector. In R this is implemented with a lot of flexibility. We could perform operations with vectors of different sizes. Other languages may not have the same flexibility and will give you an error.**
-
 
 ## Indexing a Vector 
 
@@ -363,7 +357,9 @@ Elements in a vector can be selected using square brackets **[ ]**.
 
 Note that R indexes start at 1 (not 0 like other languages).
 
-As an example, take the favourite_movies vector from the earlier exercise.
+## **Example - Indexing a single element**{-}
+
+Take the favourite_movies vector from the earlier exercise.
 
 ```{r}
 # To display the vector
@@ -380,9 +376,12 @@ favourite_movies[2]
 ```
 
 Reading this left to right we are:
+
 * From the favourite_movies vector
 * Select [ ]
 * The element at position 2
+
+## **Example - Index Sequentially**{-}
 
 We can also index multiple elements using the colon operator. Remember that this creates a sequence of consecutive numbers, so allows us to index sequentially.
 
@@ -393,6 +392,8 @@ For example, if we wanted to select from "The Lion King" to "The Dark Knight", w
 
 favourite_movies[2:4] 
 ```
+
+## **Example - Index out of sequence**{-}
 
 We can even index **out of sequence**, such as obtaining the elements at indexes 1, 3 and 4. 
 
@@ -466,7 +467,7 @@ days_of_the_week[c(2,4)]
 
 ### **Extension Exercise**{-}
 
-Run the following lines of code one at a time and try to determine what they do.
+Run the following lines of code one at a time and try to determine what is happening.
 
 ```{r, eval=FALSE}
 
@@ -506,7 +507,7 @@ Unlike with vectors, where combining multiple vectors creates one vector, in lis
 
 >**So why do you need lists?** 
 
-A list in R is like a to-do list: the different items on that list most likely differ in length, characteristic, type of activity etc. It enables you to gather a variety of objects under one name in an ordered way.
+Lists enables you to gather a variety of objects with different contents and lengths under one name in an ordered way.
 
 ![](../Images/list.png){fig-alt="Visual of a list, with each element being a collection of boxes with different colours."}
 
@@ -524,10 +525,12 @@ movies_numbers_friends
 ```
 
 Each of the contents will appear on a new line:
+
 * Starting with double-square brackets [[1]], this denotes the first element of the list, since it is a **container of containers** there are 2 levels to select from.
 * Next is the singular square bracket [1] denoting the first element of the numeric vector inside the list. 
 
 This is interesting as indexing from a list is a little more complicated.
+
 
 ## Indexing from a list
 
@@ -571,10 +574,7 @@ movies_numbers_friends[[2]][4]
 So we access the second element of the list, which is a character vector, then the 4th element of the vector. 
 
 
-# Data Frames and Tibbles
-::: {.panel-tabset}
-
-### **DataFrames**{-}
+# Data Frames
 
 Data frames are like the tables we are used to from Excel and other programs, with columns and rows that form a 2 dimensional object.
 
@@ -585,7 +585,7 @@ They are collections of vectors, where:
 
 As a whole, DataFrames have the following features:
 
-* Columns are variable.
+* Columns are variables.
 * Rows are observations (i.e. an entry for each variable forms an observation/row).
 * They can hold variables of different types.
 
@@ -605,45 +605,13 @@ about_me_df <- data.frame(numbers = lucky_numbers,
 
 about_me_df
 ```
-You see that this just prints the column names and content in the console. We would need to investigate the data further to obtain other information about it. 
 
-### **Tibbles**{-}
+You see that this just prints the column names and content in the console. We would need to investigate the data further to obtain other information about it.
 
-From here, we are going to use special type of data frame called a **tibble**.
+When it comes to working with data, these are outdated, and the **tidyverse**, which we will be introduced to in the next chapter, provide us an excellent upgrade to the data frame, known as the **tibble**.
 
-Tibbles are data frames, but they tweak some older behaviours to make life a little easier, R is over 20 years old after all:
+We will see this in the next chapter.
 
-* Tibbles complain more when variables do not exist - leads to easier error checking.
-* Tibbles don't change variable names.
-* Tibbles don't tweak variable types from the source data. 
-
-**The key benefits of tibbles are:**
-
-* In addition to its name, each column reports its type.
-
-* The dimensions of the tibble are shown at the top.
-
-* Tibbles have a refined print method that shows only the first 10 rows, and all the columns that fit on screen. This makes it much easier to work with large data.
-
-
->**Let's see a tibble**
-
-We actually require a package to be loaded in in order to create tibbles and we have yet to cover this. As such, we will use a dataset that is part of R out of the box.
-
-The palmerpenguins data contains size measurements for three penguin species observed on three islands in the Palmer Archipelago, Antarctica.
-
->**Don't worry about running the code here as we will see tibbles in Chapter 3. Just observe the visual difference between them and Data Frames for now.**
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-
-library(palmerpenguins)
-
-penguins
-```
-
-So much more is shown in a print out of a tibble, even some extra information is written when all columns cannot be shown, their types etc. 
-
-:::
 
 # Summary
 

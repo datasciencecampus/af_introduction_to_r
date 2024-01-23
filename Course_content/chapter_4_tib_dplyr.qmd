@@ -125,7 +125,7 @@ titanic_data$Pclass
 
 ```
 
-This returns up to 1000 length vectors, so it would be useful to use **glimpse()** or other inspection functions for a sense check.
+This returns the entire vector (usually up to 1000 entries) so it would be useful to use **glimpse()** or other inspection functions for a sense check.
 
 ```{r}
 # Return Pclass and glimpse
@@ -150,12 +150,14 @@ titanic$name Of Passenger
 
 This will throw an error as spaces in syntax are not allowed, R cannot process code in this way as a space should usually denote the end of a line of code. 
 
-To get around this we enclose column names with spaces in **backticks ` `** and you will notice that the autocomplete does the same. This allows the entire column name to be read as one entity.
+To get around this we enclose column names with spaces in backticks **\` \`** and you will notice that the autocomplete does the same. 
+
+This allows the entire column name to be read as one entity.
 
 ```{r}
 # Selecting a column with spaces in the names
 
-glimpse(titanic$`name Of Passenger`)
+glimpse(titanic_data$`name Of Passenger`)
 
 ```
 
@@ -165,9 +167,9 @@ Whilst this works, it is bad practice to use capitalisation and spaces, as it co
 
 Whilst this is completely fine in Base R, there are unexpected consequences of using this technique, particularly when making changes to a column using assignment. 
 
-* With the tidyverse, when we use its myriad of functions, we can check manipulations on the data without overwriting thew underlying variable unless we **explicitly** ask it to do so with **<-**.
+* With the tidyverse, when we use its myriad of functions, we can check manipulations on the data without overwriting the underlying variable unless we **explicitly** ask it to do so with **<-**.
 
-* However, with this method, we can overwrite a column for example and this will **implicitly** and permanently change the underlying variable, which we must be careful of.
+* However, with the **$** method, we can overwrite a column for example and this will **implicitly** and permanently change the underlying variable, which we must be careful of.
 
 Should you make a mistake following this choice, you would have to revert back to the original data and read it back in to start from scratch, as recreating data is a nightmare.
 
@@ -178,7 +180,7 @@ We can see the column names by using the "names()" function to print a character
 ```{r}
 # Getting the column names using the names function
 
-names(titanic)
+names(titanic_data)
 ```
 
 We will need to do some work on these to remove the use of capitalisation and spaces. 
@@ -186,7 +188,7 @@ We will need to do some work on these to remove the use of capitalisation and sp
 
 ## Cleaning Column Names
 
-### **janitor Package**{-}
+### The Janitor Package
 
 The **janitor** package offers many functions used to manipulate data, such as finding duplicates. In this chapter we will use it to clean column names. 
 
@@ -203,7 +205,8 @@ titanic_data <- clean_names(titanic_data)
 names(titanic_data)
 ```
 
-# The Data Manipulation Package - **dplyr**
+
+# The Data Manipulation Package dplyr 
 
 This is one of the most powerful packages in the **tidyverse**, which makes data manipulation simple and code easy to read.
 
@@ -219,7 +222,7 @@ with the aim of the package to provide a function for each basic **verb** of dat
 
 Each of the verbs have the same structure:
 
-> verb(.data, info,....), note the full stop which is syntax to allow us to reference variables from the dataset (enables auto-completion too!)
+> **verb(.data, info,....)**, note the full stop which is syntax to allow us to reference variables from the dataset (enables auto-completion too!)
 
 and the [cheat sheet](https://nyu-cdsc.github.io/learningr/assets/data-transformation.pdf) is incredibly useful for a reference piece. 
 
@@ -232,7 +235,7 @@ We may wish to remain within the tidyverse when cleaning column names (say, Jani
 
 This allows you to change column names one at a time using the following syntax:
 
-> rename(.data, new_name = old_name)
+> **rename(.data, new_name = old_name)**
 
 As an example, let's rename the age_of_passenger column to simply "age". 
 
@@ -256,9 +259,11 @@ glimpse(titanic_data)
 We see that age has not carried through to the underlying dataset.
 
 This is an excellent feature of the tidyverse, in that if we do not:
+
 * Directly overwrite the variable 
-* Or create a new one
-using assignment **<-**, then it just shows us what that process will do, so we can then make the decision on whether it's what we want. 
+* Or create a new one using assignment **<-**
+
+then it just shows us what that process will do, so we can then make the decision on whether it's what we want. 
 
 
 ### Renaming multiple columns
@@ -273,14 +278,12 @@ As an example, let's create a new variable and rename the "of_passenger" columns
 titanic_renamed <- rename(.data = titanic_data,
                        name = name_of_passenger,
                        sex = sex_of_passenger,
-                       age = age_of_passenger)
+                       age = age_of_passenger) # Notice autocompletion
 
 glimpse(titanic_renamed)
 ```
 
 We also didn't need to give them in the order specified either, the function automatically knows what columns we are referring to in the underlying dataset.
-
-You will notice that autocompletion begins to be super useful when using tidyverse libraries, creating a more efficient workflow for us.
 
 There is much more we can say about the structure of these functions, but we will see this as we proceed through the verbs themselves. 
 
@@ -307,7 +310,9 @@ arrange(.data = titanic_data,
 
 ```
 
-We get a very large output here that is not easy to navigate to check the manipulation that has been done. We should wrap up our input in **glimpse()** to get an easier look at the result.
+We get a larger output here that does not show us all columns at a glance, so checking that the outcome is what we expect is more difficult.
+
+We should instead use **glimpse()** to check the output, which needs to be written first in the code. 
 
 ```{r}
 # Sort by fare and then glimpse
@@ -321,7 +326,7 @@ Notice that by default, arrange() sorted the fare column in **ascending** order.
 
 ### **Small Aside - Functions**{-}
 
-Notice that glimpse() is **written first** but **executed last**, since R evaluates function from the inside out.
+Notice that glimpse() is **written first** but **executed last**, since R evaluates functions from the inside out.
 
 After all, if glimpse() has no input, we can't see anything at all! 
 
@@ -388,14 +393,7 @@ glimpse(arrange(.data = titanic_data,
 
 Sometimes we will want to work with smaller tibbles that contain just a subset of available columns.
 
-The **select()** verb is perfect for this, as it allows for selection:
-* A single column
-* Multiple columns
-* Sequences of columns
-* De-selection of columns
-and more!
-
-It takes the arguments:
+The **select()** verb is perfect for this, and it takes the arguments:
 
 * The first is our dataset, made even simpler with ".data"
 * From here we list as many columns by name as we would like to be retained in our selecting process.
@@ -411,7 +409,7 @@ glimpse(select(.data = titanic_data,
 
 ```
 
-Notice that this has returned a tibble with one column, not the vector itself that formed that column as **$** would have.
+Notice that this has returned a tibble with one column, not the underlying vector itself that **$** would have.
 
 ### Example - Multiple Columns
 
@@ -444,13 +442,13 @@ glimpse(select(.data = titanic_data,
 Notice that we return the columns from pclass to age_of_passenger in the order of the source data. 
 
 
-### Selecting with **exclusion**
+### Selecting with exclusion
 
 Up to this point we have selected with **inclusion**, a.k.a we specify the columns we want to include in our smaller tibble.
 
 The real power of select comes from it's flexibility, in that we can reduce the amount of code to write by using **exclusion** instead, a.k.a specify the columns we don't want to include.
 
-Say we want to keep 7 of 9 columns, instead of typing out the names of all 7, we can just exclude the 2 we exclude, as they are equivalent processes. 
+Say we want to keep 7 of 9 columns, instead of typing out the names of all 7, we can just exclude the 2 we don't want instead. 
 
 ### **Example**{-}
 
@@ -470,7 +468,7 @@ There is an even more streamlined way to do this, by wrapping the columns in a v
 
 You can think of this as expanding brackets in mathematics:
 
-> "-c(col1, col2) = c(-col1, -col2) = -col1, -col2
+> \-c(col1, col2) = c(\-col1, \-col2) = \-col1, \-col2
 
 ```{r}
 # Using a vector for exclusion
@@ -498,8 +496,9 @@ glimpse(select(.data = titanic_data,
 
 ```
 
-Exclusion works similarly here with the minus sign. 
+Exclusion works similarly here with the minus sign.
 
+Note that whilst this may be required in some cases, it is usually better to be **explicit** with the exact column names, if possible. 
 
 
 ### Select Helper Functions
@@ -619,7 +618,7 @@ Up until now, we have run verbs one at a time on our dataset, be it to sort or s
 
 The real power of the tidyverse comes from the ability to chain these functions together in a sequence for more complex data manipulation tasks. 
 
-However, out of the box, this becomes laborious quickly due to the nature of functions. They are an application of the mathematical function, so they will take an input, do something to it and then return an output.
+However, out of the box, this becomes laborious quickly due to the nature of functions. 
 
 ### Returning to Functions - Composition
 
@@ -649,14 +648,14 @@ round(sqrt(2), digits = 2)
 
 ```
 
-Notice that the input to the function was the output from another function. 
+Notice that the input to the function round() was the output from the sqrt() function. 
 
 
 ### Composition of functions in the tidyverse
 
-This becomes tricky to comprehend when working with the tidyverse functions, as we are effectively performing actions in sequence, such as selecting the columns the want and **then** sorting the result. 
+This becomes tricky to comprehend when working with the tidyverse functions, as we are effectively performing actions in sequence, such as selecting the columns we want and **then** sorting the result. 
 
-As such, the output of one function is the input to another, as in the following example:
+As such, the output of one function is the input to another:
 
 ```{r}
 # Select passenger columns and fare then arrange by fare
@@ -670,7 +669,9 @@ glimpse(arrange(.data = select(.data = titanic_data,
 
 Notice that the input to arrange was the result of a select operation, so we had to keep track of our brackets and ensure that the desc(fare) was placed within arrange(), **not** select().
 
-Going forward, we will see more verbs that can be applied on top of this, and it becomes laborious and difficult to manage quickly. This is where the pipe operator comes in.
+Going forward, we will see more verbs that can be applied on top of this, and it becomes difficult to manage. 
+
+This is where the pipe operator comes in.
 
 
 ### Introducing the Pipe
@@ -679,7 +680,7 @@ The Pipe Operator makes it possible to chain a sequence of functions starting wi
 
 This removes the need to type the **.data** argument each time. 
 
-* Prior to R 4.1, the pipe operator came from a package known s **magrittr**, which would be loaded alongside the tidyverse, and it took the form **%>>%**.
+* Prior to R 4.1, the pipe operator came from a package known as **magrittr**, which would be loaded alongside the tidyverse, and it took the form **%>%**.
 
 * From R 4.1 onwards, the operator comes as standard with base R, as it has become the universal standard for data analysis. It now takes the form **|>**, and this option must be turned on in the Tools --> Global Options tab. 
 
@@ -691,9 +692,9 @@ The shortcut for this operator is **CTRL + SHIFT + M** and is one you will use a
 
 Let's return to our square root and rounding functions. Let's apply one, and then both in sequence using our new operator.
 
-First, we write the value or dataset we wish to apply functions to, it is at the entrance to the "pipe" if you will. 
-
-Then, we write the function we wish to use and any additional parameters we may need. The pipe operator **passes** the input to the function, so we do not need to write it within the brackets.
+* First, we write the value or dataset we wish to apply functions to, it is at the entrance to the "pipe" if you will. 
+* Then, we write the function we wish to use and any additional parameters we may need. 
+* The pipe operator **passes** the input to the function, so we do not need to write it within the brackets.
 
 ```{r}
 # Our first pipe - with a single value
@@ -702,9 +703,9 @@ Then, we write the function we wish to use and any additional parameters we may 
 
 ```
 
-You can read the pipe operator as "AND THEN". 
+You can read the pipe operator as **AND THEN**. 
 
-It takes the output of one action "AND THEN" uses that as the input of the next action, and so on. 
+It takes the output of one function AND THEN uses that as the input of the next function, and so on. 
 
 This means that to chain a sequence of functions, we will use the pipe operator again to pipe our output to our next function as its input. 
 
@@ -719,20 +720,26 @@ This is quite the shift from what we have done so far, but is more readable in p
 
 >**To the value 2, apply the square root function, and then, round that output to 2 decimal places.**
 
-Notice, that following the second pipe, we insert a new line, which automatically moves us in a few spaces. This is optional but allows code to read as if it were a list. 
+Notice, that following the second pipe, we insert a new line, which automatically moves us in a few spaces. This is optional but is easier to read as a sequence.
 
 
 ### Using the Pipe Operator with the tidyverse
 
-What was done above was an oversimplification of why the pipe was created, in reality if we only needed to use one or two small functions, or simply a glimpse(), then we do not need to invoke the pipe operator. 
+What was done above was an oversimplification of why the pipe was created, in reality it was created to pipe datasets into functions, as opposed to a single value. 
 
-Let's return to our previous example, where we selected passenger demographics and sorted by fare. 
+Even in the case of datasets, we do not need to pipe if we are only applying a single function such as glimpse().
+
+It is when we are performing a chain of steps that the pipe completely simplifies our code, enhacing readability.
+
 
 ### **Example**{-}
 
-First, we write the dataset we want to apply this sequence of steps to, then pipe that into the **select()** function, specifying what columns we wish to retain.
+Let's return to our previous example, where we selected passenger demographics and sorted by fare. 
 
-Then, we pipe that output to the **arrange()** function, so that it can sort by the column we wish, in the order we wish.
+* First, we write the dataset we want to apply this sequence of steps to.
+* AND THEN pipe that into the **select()** function, specifying what columns we wish to retain.
+* AND THEN pipe that output to the **arrange()** function, so that it can be sorted by whatever column(s) we wish.
+
 
 ```{r}
 # Repeat earlier operation with pipes
@@ -741,13 +748,14 @@ titanic_data |>
     select(ends_with("passenger"),
            fare) |> 
     arrange(desc(fare))
+
 ```
 
 This way, the code is written in the order that it executes, as opposed to the reverse order without the pipe operator. 
 
 >**To the titanic dataset, we select columns that end with "passenger" as well as the fare column, and then, sort that in descending order of fare paid.**
 
-We could also pipe the output to a glimpse() if we do not wish to save the output.
+We could also pipe the output to a glimpse() for easier sense checking.
 
 ```{r}
 # Pipeline with glimpse
@@ -763,7 +771,9 @@ titanic_data |>
 
 ### **Variables with tidyverse chains**{-}
 
-Notice that I didn't create a variable in the prior conversion, since it can cause confusion between the assignment operator **<-** and the pipe operator **|>** if not covered separately. 
+Notice that we didn't create a variable in the prior conversion.
+
+This is because it can cause confusion between the assignment operator **<-** and the pipe operator **|>** if not covered separately. 
 
 In front of the previous sequence, known as a **pipeline**, we would write our variable name and assignment operator, which saves the final output in memory.
 
@@ -778,6 +788,7 @@ titanic_demographics_sort <- titanic_data |>
 
 titanic_demographics_sort |> 
     glimpse()
+
 ```
 
 Be careful not to confuse the meaning of the two operators, this will take some practice to get used to. 
@@ -791,6 +802,7 @@ Be careful not to confuse the meaning of the two operators, this will take some 
 Speaking of pratice, let's try out our new tool!
 
 Create a pipeline that:
+
 * Selects the first five columns of the data
 * Arranges them in ascending order of age.
 
@@ -816,11 +828,11 @@ titanic_age_sort |>
 
 ## Filter
 
-Often we are only interesting in groups of rows that adhere to a specific condition, such as:
+Often, we are only interested in groups of rows that adhere to a specific condition, such as:
 
 * Passengers that paid over or under a certain fare.
 * Passengers who are in a particular age threshold.
-* Passengers who embarked from Southampton.
+* Passengers who embarked from a particular port.
 
 and of course, combinations of the above.
 
@@ -829,13 +841,12 @@ The next verb, **filter()** allows us to subset our rows in this way. To underst
 
 ### Conditional Statements
 
-A conditional statement is one that returns **TRUE** or **FALSE** dependent on the outcome. We saw examples of these back in Chapter 1, when we were producing logicals with comparisons. For example:
+A conditional statement is one that returns **TRUE** or **FALSE** dependent on the outcome. 
+
+We saw examples of these back in Chapter 1, when we were producing logicals with comparisons. For example:
 
 * 4 < 5 is a condition statement that evaluates to TRUE
 * 4 != 4 is a conditional statement that evaluates to FALSE
-
-A reminder of the operators we use are
-
 
 Logical Operator| Description
 :--------------:|:------------:
@@ -854,7 +865,7 @@ Logical Operator| Description
       between() | Is between 2 numbers
 
 
->**Note: The `!` allows us to flip or invert an expression. Basically, if an expression returns `[TRUE, TRUE, FALSE]`, the same expression with a `!` in front of it will return `[FALSE, FALSE, TRUE]`.**
+>**Note: The "!" allows us to flip or invert an expression. Basically, if an expression returns c(TRUE, TRUE, FALSE), the inverted expression (place ! in front of it) will return c(FALSE, FALSE, TRUE).**
 
 These statements can of course be much more complex than comparing two single numbers, we can apply them across columns with dplyr's **filter()** verb! 
 
@@ -869,19 +880,17 @@ We will first look at filtering by a single condition, which are constructed as 
 
 This is generated in the background, and **filter()** will keep only the rows that return **TRUE** from this comparison. 
 
-> For example, to subset down to only second class passengers, we would write: "pclass == 2". 
+> **For example, to subset down to only second class passengers, we would write: "pclass == 2".** 
 
-### **Example**{-}
+### **Example - Categorical**{-}
 
 ```{r}
 # Filter to retain only second class passengers
 
-titanic_second_class <- titanic_data |> 
-    filter(pclass == 2)
-
-
-titanic_second_class |> 
+second_class <- titanic_data |> 
+    filter(pclass == 2) |> 
     glimpse()
+
 ```
 
 A quick way to check that the filter has worked is to use base R's **unique()** function on the column. 
@@ -902,7 +911,7 @@ We see that the pclass column has 3 unique levels of 1, 2 and 3.
 ```{r}
 # Return unique values from the filtered data
 
-unique(titanic_second_class$pclass)
+unique(second_class$pclass)
 
 ```
 
@@ -910,7 +919,7 @@ We see that in the filtered data, we have just second class passengers, as expec
 
 ### **Example - Numeric**{-}
 
-Let's filter to passengers who paid above ?200.
+Let's filter to passengers who paid above £200.
 
 ```{r}
 # Select passengers who paid more than 200
@@ -954,7 +963,6 @@ titanic_data |>
 ```
 
 2. 
-
 To display the number of males in the filtered data, we simply need the number of rows, the length of the data!
 
 ```{r}
@@ -969,7 +977,6 @@ nrow(titanic_male)
 ```
 
 3. 
-
 To display the number of passengers below 18 years of age in the filtered data, we simply need the number of rows, the length of the data!
 
 ```{r}
@@ -981,14 +988,10 @@ titanic_underage <- titanic_data |>
 
 # Counting the number of underage passengers
 
-nrow(titanic_filter_exercise)
+nrow(titanic_underage)
 ```
 
-
-### **Extension Exercise**{-}
-
 4. 
-
 Firstly, we need to filter the dataset to those who survived, and the percentage would be calculated as:
 
 > Number of those who survived/Number of passengers as a whole * 100
@@ -1020,21 +1023,18 @@ For example:
 * We want **male** passengers who **survived**.
 * We want **over 18** passengers who embarked from **Southampton**.
 
-However, we do need to think about how the conditions relate to each other, as we have two options to establish these relationships.
+However, we do need to think about how the conditions relate to each other.
 
 
-### Relationships between conditions
+### **Relationships between conditions**{-}
 
 There are two ways we can combine conditions together:
 
 * **AND** relationships are given by the **&** symbol. 
     * This implies both/all conditions must be met for a row to evaluate to TRUE before the filter is applied.
-    * The **between()** function is a special case of this, ensuring our numerical values are above a lower bound, and below an upper bound. So between(3.5, 7.5) retains rows with values above 3.5 and below 7.5.
-
+    
 * **OR** relationships are given by the **|** symbol. 
     * This implies that if any of the conditions can be met (one or more) a given row evaluates to TRUE before the filter is applied.
-    * The **%in%** operator is a special case of this, where rows have to contain a value occurring in a given vector (collection) of possible values. This prevents us from writing out an **or** condition for each of the possibilities if just one is enough. 
-    * For example, %in% c=(1, 2, 3) retains rows that have the value of 1, 2 of 3 in the compared column.
 
 > This does mean that combinations of TRUE and FALSE conditions can lead to different outputs with AND/OR relationships. This is summarised in the table below.
 
@@ -1046,11 +1046,11 @@ There are two ways we can combine conditions together:
 |    False    |     False    |        False       |        False       | 
 
 
-### **Examples**{-}
+### Examples
 
 For our first example, let's filter to first class, female passengers. 
 
-This is an AND relationship, as they must be first class **AND** female. Thus, any row that does not satisfy both of these conditions will be filtered out in the process. 
+This is an AND relationship, as they must be first class and female. Thus, any row that does not satisfy both of these conditions will be filtered out in the process. 
 
 Remember that AND combinations are very strict, so ensure that the loss of a possibly large amount of data is appropriate for your analysis.
 
@@ -1058,8 +1058,7 @@ Remember that AND combinations are very strict, so ensure that the loss of a pos
 # Filter to first class female passengers
 
 titanic_data |> 
-    filter(pclass == 1 & 
-               sex_of_passenger == "female") |> 
+    filter(pclass == 1 & sex_of_passenger == "female") |> 
     glimpse()
 
 ```
@@ -1072,42 +1071,37 @@ This means that males under 18 will be kept and adult females will also be kept,
 # Filter to males or adults
 
 titanic_data |> 
-    filter(sex_of_passenger == "male" |
-               age_of_passenger > 18) |> 
+    filter(sex_of_passenger == "male" | age_of_passenger > 18) |> 
     glimpse()
 
 ```
 
 
-### **Special Cases of AND/OR**{-}
+### Special Cases of AND/OR
 
 Whilst the above conventions are easy to read from left to right, when constructing much more complex chains of conditions, it becomes laborious quickly. 
 
-This is particularly the case if we wish to apply multiple conditions on the **same** column, and hence combine that with other conditions across other columns.
-
-To alleviate this, dplyr has some special functions that allow us to streamline cases of numerous conditions.
+To alleviate this, dplyr has some special functions that allow us to streamline cases of numerous conditions on the **same** column.
 
 
-#### **The between() function**{-}
+### **The between() function**{-}
 
 First is the **between()** function, which is similarly to an and relationship for conditions on numeric columns.
 
 It allows us to specify:
 
-* An upper bound for the value in the column, a.k.a the value for which it should not be larger.
-* A lower bound for the value in the column, a.k.a the value for which it should not be smaller.
+* An upper bound for the value in the column, a.k.a the value for which it should not be larger than or equal to.
+* A lower bound for the value in the column, a.k.a the value for which it should not be smaller than or equal to.
 
-> For example, between(3.5 and 7.5) will retain values for which the column is greater than or equal to 3.5 and less than or equal to 7.5.
+> For example, between(3.5 and 7.5) will retain values greater than or equal to 3.5 and less than or equal to 7.5.
 
-Let's filter to those that paid between ?250 and ?500 for their tickets.
+Let's filter to those that paid between £250 and £500 for their tickets.
 
 ```{r}
 # Filter to those that paid between two values
 
 titanic_data |> 
-    filter(between(fare,
-                   left = 250,
-                   right = 500)) |> 
+    filter(between(fare, left = 250, right = 500)) |> 
     glimpse()
 
 ```
@@ -1122,15 +1116,14 @@ Of course, we can combine this with other conditions across columns as well.
 # Filter tho those that paid between ?250 and ?500 who were female
 
 titanic_data |> 
-    filter(between(fare,
-                   left = 250,
-                   right = 500) &
-               sex_of_passenger == "female") |> 
+    filter(between(fare, left = 250, right = 500) & 
+                   sex_of_passenger == "female") |> 
     glimpse()
 
 ```
 
-#### **The %in% function**{-}
+
+### **The %in% function**{-}
 
 Secondly is the **%in%** function, which checks for membership of the column value in a vector of options we provide. 
 
@@ -1170,7 +1163,7 @@ As with between(), we can also combine this with other conditions.
 # Select passengers embarking from S or C that were male
 
 titanic_data |> 
-    filter(embarked  %in% c("S", "C"),
+    filter(embarked  %in% c("S", "C") &
            sex_of_passenger == "male") |> 
     glimpse()
 
@@ -1180,17 +1173,18 @@ titanic_data |>
 
 We can also use the negation operator **!** to reverse the outcome of the condition. 
 
-This means that if a condition evaluates to TRUE, if we preceed it with an exclamation mark, it will instead return FALSE.
+This is useful for cases where exclusion is quicker than typing out conditions for inclusion. 
 
-This is useful for cases where exlcusion is quicker than typing out conditions for inclusion. Say for example you have a categorical variable with 9 unique categories.
+Say for example you have a categorical variable with 9 unique categories.
 
 You are interested in filtering so that only 8 of the categories remain. Instead of chaining **OR** conditions together, you can instead write the condition that would return **just** that one, and negate it to remove it instead.
 
 ### **Example**{-}
 
-Let's see this in action by negating the statement to select passengers who embarked from Southampton, as opposed to writing out filters to retain Cherbourg and Queenstown. 
+Let's see this in action by negating the statement to select passengers who embarked from Southampton, 
 
-This isn't laborious for this small dataset, but this is a great time saving measure for more complex datasets.
+This is the opposite of writing out filters to retain Cherbourg and Queenstown. 
+This is a great time saving measure for larger datasets.
 
 ```{r}
 # Use negation to filter down to passengers embarking from Cherbourg or Queenstown
@@ -1212,22 +1206,24 @@ titanic_data |>
 
 ```
 
+### **Example - AND/OR Negation**{-}
+
 Of course, if you negate and **and**/**or** relationships:
 
 * Not only is each individual condition negated
 * The and/or is reversed to or/and respectively
 
-This comes from logical statements in mathematics, specifically, [De Morgan's laws.
+This comes from logical statements in mathematics, specifically, De Morgan's laws.
 
-![](../Images/demorgans_law.png){fig-alt="De morgans law of negation, where negating a combined statement negates each individual statement, as well as the logical operator combining them."}
+![](../Images/demorgans_law.png){fig-alt="Negating a combined statement negates each individual statement, as well as the logical operator combining them."}
 
-#### **More Difficult Example**{-}
-
-Let's take an example we we required those that embarked from Southhampon or paid above ?100 in fare.
+Let's take an example we we required those that embarked from Southampton or paid above £100 in fare.
 
 Mathematically speaking, if we negate this condition, we get:
 
-> !(southampton OR > 100 fare) = (!southampton AND !>100 fare), so we get those that did not embark from Southampton and did not pay more than ?100. 
+> **!(southampton OR > 100 fare) = (!southampton AND !>100 fare)**
+
+It is recommended to wrap your OR/AND condition in brackets, to ensure the negation is carried throughout. 
 
 ```{r}
 # Harder example
@@ -1251,7 +1247,7 @@ We see that we have indeed negated the selection of Southampton, as expected.
 2. Filter so that only passengers who travelled alone are included in the data. How many were there?
 
 
-3. **Extension Exercise** - What percentage of passengers who embarked from Cherbourg or Queenstown and paid a fare more than ?100, but less than ?350, survived? 
+3. **Extension Exercise** - What percentage of passengers who embarked from Cherbourg or Queenstown and paid a fare between £100 and £350 survived? 
 
 
 ### **Show Answer**{-}
@@ -1268,15 +1264,13 @@ titanic_data |>
 
 
 2. 
-
 For those travelling alone, their sibsp and parch values should be 0.
 
 ```{r}
 # Filtering for passengers travelling alone
 
 lone_passengers <- titanic_data |> 
-    filter(sibsp == 0 &
-               parch == 0) |> 
+    filter(sibsp == 0 & parch == 0) |> 
     glimpse()
 
 # How many there are
@@ -1285,16 +1279,17 @@ nrow(lone_passengers)
 ```
 
 3. 
+This is a multi-stage problem, so we must filter for the required conditions (saving it to a variable), then compute the percentage.
 
-This is a multi stage problem, we can filter for all conditions, then compute the final percentage. Since we need all of these conditions to be TRUE, we must use **&** to combine them.
+Since we need all of these conditions to be TRUE, we must use **&** to combine them.
 
 ```{r}
 # Filter for those that embarked from C or Q, paid certain fare and survived
 
 cherb_queens_survivors <- titanic_data |> 
     filter(embarked %in% c("C", "Q") &
-               between(fare, left = 100, right = 350) &
-               survived == 1)
+           between(fare, left = 100, right = 350) &
+           survived == 1)
 
 # Compute final percentage
 
@@ -1311,19 +1306,16 @@ When cleaning and transforming data, we often want to apply changes at the colum
 * Converting to lower case/any character work
 * Rounding to a specified number of dp
 * Converting the datatype
-
-and we may even want to combine columns mathematically to create ratios, proportions etc, known as **Calculated Columns**.
-
-We may also want to create new variables entirely, filled with a specific value or based on a condition (TRUEs and FALSES). 
+* Combine columns into ratios/proportions - known as **calculated columns **
 
 To accomplish all of the above, we need our next verb, **mutate()**. To create a new column, we use the following syntax:
 
-> mutate(new_column_name = contents_of_column)
+> **mutate(new_column_name = contents_of_column)**
 
 
 ### Constant Value Variables
 
-The simplest example would be adding a constant column, which contains the same value all the way down. This effectively adds the same value to each row in the tibble. 
+The simplest example would be adding a constant column, which contains the same value all the way down. 
 
 Whilst the applications of this are minimal, it is the best first example for understanding mutate.
 
@@ -1331,7 +1323,7 @@ Whilst the applications of this are minimal, it is the best first example for un
 # Add a constant character column
 
 titanic_data |> 
-    mutate(character_col = "two") |> # Character column filled with the string "two"
+    mutate(character_col = "two") |> # Column filled with the string "two"
     glimpse() 
 
 ```
@@ -1351,11 +1343,11 @@ titanic_data |>
 
 The mutate function is incredibly smart, as it allows us to apply functions to an entire column, with each cell transformed in turn.
 
-For example, should we wish to make the name of passenger column lower case, to avoid the sorting issue with capital letters, we can use the **str_to_lower()** function from **stringr**. 
+For example, should we wish to make the name of passenger column lower case, we can use the **str_to_lower()** function from **stringr**. 
 
-To apply a function to an existing column, our mutate line goes as follows:
+To apply a function to an existing column:
 
-> mutate(existing_column = function(existing_column,..))
+> **mutate(existing_column = function(existing_column,..))**
 
 ```{r}
 # Convert names column to lower case
@@ -1377,7 +1369,7 @@ titanic_data |>
 
 ```
 
-This has the unexpected consequence of rounding the passenger with an age of 0.1667 (around 2 months) to 0, which makes no sense given the context. As such, it may be better to round to 2 decimal places, with children below 12 months to be considered fairly. 
+This has the unexpected consequence of rounding the passenger with an age of 0.1667 (around 2 months) to 0, which makes no sense given the context. As such, it may be better to round to 2 decimal places.
 
 Let's do the same thing to the fare column as well, since money in GBP (£) is presented as two decimal places.
 
@@ -1418,12 +1410,12 @@ glimpse(titanic_data)
 
 Of course, this does not mean we should be overwriting titanic_data everytime, as often we are just overviewing a transformation and sense checking it.
 
-We should only overwrite or create a new variable when we are sure that this is what is required for our task.
-
 
 ### Calculated Columns
 
-Let's see an example of creating a bespoke column by combining existing ones. Here we will create the family size of each person. To compute this we need:
+Let's see an example of creating a bespoke column by combining existing ones.
+
+Here we will create the family size of each person. To compute this we need:
 
 * The number of siblings or spouses on board (sibsp)
 * The numbr of parents or children on board (parch)
@@ -1444,15 +1436,14 @@ glimpse(titanic_data)
 
 We can also use conditions like when we filtered, to create a logical column of TRUEs and FALSEs. 
 
-These are very common and are often known as **binary flags** as they denote whether a certain condition is attained or not, which are often very useful for statistical and machine learning purposes.
+These are very common and are often known as **binary flags**, as they denote whether a certain condition is attained or not.
 
 This is structured as follows:
 
-> mutate(new_col = (condition)) where the condition is "column operator value", such as "fare < 200". 
+> **mutate(new_col = (condition))** where the condition is "column operator value", such as "fare < 200". 
 
 ```{r}
-# Creating a logical column which is TRUE 
-# if passenger is female, false otherwise.
+# Creating a conditional column on whether passenger is female
 
 titanic_data <- titanic_data |> 
     mutate(is_female = (sex_of_passenger == "female"))
@@ -1461,17 +1452,16 @@ glimpse(titanic_data)
 
 ```
 
-often, with binary flags we want them in numeric form, as most models we use expect numeric coded variables. This means we need to convert TRUE and FALSE to their numeric representations of 0 and 1.
+Usually we want binary flags in numeric form, as most models we supply our data to require numeric variables. 
+
+This means we need to convert TRUE and FALSE to their numeric representations of 0 and 1.
 
 We can use complex functions for matching and converting to perform this step. In particular, the **case_match()** function, which takes the following form:
 
-> case_match(column, 
-             value_to_change ~ new_value,
-             value_to_change ~ new_value)
+> **case_match(column, value_to_change ~ new_value, value_to_change ~ new_value)**
 
-You may not have seen this notation before with the tilde **~**, this is known as a **formula** in R, where the right hand side is equivalent to the left hand side, and is most commonly used with linear modelling to define the equation. See this [technical article on the tilde](https://medium.com/anu-perumalsamy/what-does-mean-in-r-18cecd1b223f#:~:text='~(tilde)'%20is%20an%20operator%20that%20splits%20the%20left,the%20set%20of%20feature%20variables.&text=In%20the%20above%20example%2C%20df,the%20columns%20wages%20and%20yearsEd.) for more information.
 
-```{r, eval = FALSE}
+```{r}
 # Recode is_female to numeric
 
 titanic_data <- titanic_data |> 
@@ -1483,31 +1473,24 @@ glimpse(titanic_data)
 
 ```
 
+You may not have seen this notation before with the tilde **~**, this is known as a **formula** in R, where the right hand side is equivalent to the left hand side.
+
+This is common convention in R, seen most with linear modelling to define the equation. See this [technical article on the tilde](https://medium.com/anu-perumalsamy/what-does-mean-in-r-18cecd1b223f#:~:text='~(tilde)'%20is%20an%20operator%20that%20splits%20the%20left,the%20set%20of%20feature%20variables.&text=In%20the%20above%20example%2C%20df,the%20columns%20wages%20and%20yearsEd.) for more information.
+
 
 ### Exercise
 ::: {.panel-tabset}
 
 ### **Exercise**{-}
 
-1. Create a new column called "fare_dollars", which converts the fare from GBP (£) to USD (\$). The current exchange rate as of January 2024 is:
-> £1 = $1.27
+Create a new column called "fare_dollars", which converts the fare from GBP (£) to USD (\$). The current exchange rate as of January 2024 is:
 
-2. Modify your code from question 1 to round the column to 2 decimal places.
+> **£1 = $1.27**
+
+Ensure that the column is rounded to 2 decimal places.
 
 ### **Show Answer**{-}
 
-1. 
-```{r}
-# Convert fare to dollars
-
-titanic_data <- titanic_data |> 
-    mutate(fare_dollars = fare * 1.39)
-
-glimpse(titanic_data)
-
-```
-
-2. 
 ```{r}
 # Create fare dollars and rounding the output
 
@@ -1522,43 +1505,49 @@ glimpse(titanic_data)
 
 ## Joining Data
 
-A very common problem in data analysis is our information being split along multiple smaller datasets, usually containing a column in common.
-
-Much of the information we need to answer questions of interest is featured across the data, so we can **join** or **merge** them together for one cohesive dataset.
+Much of the information we need to answer questions of interest is featured across multiple smaller datasets, so we can **join** or **merge** them together for one cohesive dataset.
 
 We do require something essential for this to be possible, however, a **column in common** such as a unique identifier or reference, such as:
+
 * NHS number, allowing for data linkage across the NHS.
 * Any account number allows for data linkage aross financial institutions.
 * Email, phone numbers, social media hangles allow for data linkage across social media and online shopping.
 * Addresses allow for spatial data linkage, for geospatial applications
 
 
-### Types of Join
+### **Naming Conventions for Join**{-}
 
-Our favourite manipulation library **dplyr** provides a family of **join** functions. They take the form **type_join** where the prefix "type" denotes the type of join itself. 
+The dplyr package has a family of functions for joins.
+
+They take the form **type_join** where the prefix "type" denotes the type of join itself. 
 
 A naming convention we must establish here is that of the tibbles themselves, namely:
+
 * The larger dataset, the one we just to join data to, is the **left tibble**.
 * The smaller dataset, the one we want to join to another, is the **right tibble**.
 
-* **inner_join** - A stricter join where only data common to both tibbles is retained.
-* **full_join** - All data from both tibbles is retained, matched up where possible.
-* **left_join** - All data from the left tibble is retained, and only matching rows are merged from the right tibble.
-* **right_join** - All data from the right tibble is retained, and only matching rows are merged from the left tibble. This is the inverse process of the left join.
-* **anti-join** - An example of a filtering join, where all data from the right tibble that does not match in the left tibble is retained. A great way to flag missing values and check for patterns. 
+### Types of Join
 
+* **inner_join** - A stricter join where only data common to both tibbles is retained.
+
+* **full_join** - All data from both tibbles is retained, matched up where possible.
+
+* **left_join** - All data from the left tibble is retained, and only matching rows are merged from the right tibble.
+
+* **right_join** - All data from the right tibble is retained, and only matching rows are merged from the left tibble. This is the inverse process of the left join.
 
 Graphically:
 
-![](../Images/sql-joins.png){fig-alt = "Venn diagrams for each of the prior examples, with the included data shaded."}
+![](../Images/sql-joins.png){fig-alt="Venn diagrams for each of the prior examples, with the included data shaded."}
 
-There are also Semi Joins and Anti Joins, which you can read about in Hadley Wickhams [R for Data Science Chapter 19](https://r4ds.hadley.nz/joins.html)
+There are also Semi Joins and Anti Joins for filtering, which you can read about in Hadley Wickhams [R for Data Science Chapter 19](https://r4ds.hadley.nz/joins.html)
+
 
 ### Examples
 
 Joins are best explored using examples of each type.
 
-We will use 2 datasets that come with **dplyr**, they are very small and were made with learning how to join in mind.
+We will use 2 very small datasets that come with **dplyr** to build this up.
 
 The first is band_members, which we must assign to a variable to save in the global environment.
 
@@ -1578,9 +1567,12 @@ instruments_data <- band_instruments
 instruments_data
 ```
 
-These data sets have one common column which is **name**, so we can join them to have both band and plays in the same dataset. Let's assume that members_data is the left dataset and instruments_data is the right.
+These data sets have one common column which is **name**, so we can join them to have both band and plays in the same dataset. 
+
+Let's assume that members_data is the left dataset and instruments_data is the right.
 
 Pre-empting what will happen based on the above venn diagrams:
+
 * John and Paul appear in both datasets, so will be retained for most common joins.
 * Mick only appears in the members_data, so may disappear with stricter joins.
 * Keith only appears in the instruments_data, so may disappear with stricter joins.
@@ -1589,13 +1581,14 @@ Pre-empting what will happen based on the above venn diagrams:
 ### **Join Syntax**{-}
 
 The join functions take numerous arguments, with the following being required:
+
 * x - the left tibble
 * y - the right tibble
 * by - the column to join on
 
 and take the form:
 
-> type_join(x = left_tibble, y = right_tibble, by = join_col) where we can pipe in the left_tibble.
+> **type_join(x = left_tibble, y = right_tibble, by = join_col)** where we can pipe in the left_tibble.
 
 
 ### **Inner Join**{-}
@@ -1659,22 +1652,10 @@ members_data |>
 
 ```
 
-### **Anti Join**{-}
-
-An anti join returns all rows from the left tibble that do not match in the right, so in this case, only Mick will be returned with his band entry, so no joining was actually performed. 
-
-```{r}
-# Anti-join to return rows that are missing in the instruments data
-
-members_data |> 
-    anti_join(y = instruments_data,
-              by = "name")
-
-```
 
 ### Matching columns with different names
 
-A very common problem that occurs when joining is the matching column in both datasets doesn't match in name. 
+A very common problem that occurs when joining is matching columns being named differently.
 
 This can sometimes be easily rectified with a **rename()**, but there will be cases where modifying the data in this way is not allowed. 
 
@@ -1692,11 +1673,11 @@ instruments2_data <- band_instruments2
 instruments2_data
 ```
 
-The name variable is called "artist" here, which we can either rename or use the excellent tools dplyr has at its disposal for cases where we are not allowed to do so. 
+The name variable is called "artist" here.
 
 Within join_by(), we must set the column names of note equal to each other, using:
 
-> left_col_name == right_col_name
+> **join_by(left_col_name == right_col_name)**
 
 Let's join together band_instruments2 with the members data, using the join_by() function.
 
@@ -1714,13 +1695,19 @@ members_data |>
 
 Another common way in which datasets are combined is by binding them, where one dataset is appended on top of the other either **row by row** or **column by column**.
 
-With row binding, columns are matched by name automatically, so the positioning of them does not matter. Missing columns will be filled with NA, so we must be careful of this.
+With row binding: 
 
-With column binding, rows are matched by position, so the tibbles we bind absolutely **must** have the same number of rows, otherwise we will get an error.
+* Columns are matched by name automatically, so the positioning of them does not matter. 
+* Missing columns will be filled with NA, so we must be careful of this.
+
+With column binding:
+
+* Rows are matched by position, so the tibbles we bind absolutely **must** have the same number of rows, otherwise we will get an error.
+
 
 ### **Binding Rows**{-}
 
-We use the **bind_rows()** function from dplyr to accomplish this. This will widen the dataset by adding more entries.
+We use the **bind_rows()** function from dplyr, which will widen the dataset by adding more entries.
 
 ```{r}
 # Row bind the instruments tibbles
@@ -1730,11 +1717,12 @@ instruments_data |>
 
 ```
 
-Notice that the columns themselves were matched automatically, but since the instruments2 has the name variable and instruments has the artist variable, these are seen as independent, and hence filled with NAs since they don't match.
+Since instruments2 has the name variable and instruments has the artist variable, these are seen as independent, and hence filled with NAs since they don't match.
+
 
 ### **Binding Columns**{-}
 
-We use the **bind_cols()** function from dplyr to accomplish this. This will lengthen the dataset by adding more variables. 
+We use the **bind_cols()** function from dplyr, which will lengthen the dataset by adding more variables. 
 
 ```{r}
 # Column bind instruments 1 and 2
@@ -1746,9 +1734,8 @@ instruments_data |>
 
 Notice that despite plays being a repeating column, it is binded as we asked, and differentiated by its position, with the second column being "plays...2" and the fourth being "plays...4".
 
-### **Why we bind**{-}
 
-This may have seemed abstract so far, so why do we really want to do this in practice?
+### **Why we bind**{-}
 
 When data is collected consistently, it is often in the same form, be that monthly, weekly, annually and so on. 
 
@@ -1759,7 +1746,7 @@ This is often part of an automated process where data is ingested and then appen
 
 ### Union()
 
-Another very useful function is  **union()** which will merge the data from both data frames but keep only the distinct (unique) rows. 
+Another very useful function is  **union()** which will stack the data vertically, but keep only the distinct (unique) rows. 
 
 This means that any duplicated rows that exist in the current tibble are not brought over in the process.
 
