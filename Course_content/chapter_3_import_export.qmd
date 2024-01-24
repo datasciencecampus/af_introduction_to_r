@@ -65,7 +65,7 @@ help(seq)
 ```
 
 
-![](../Images/seq_helpfile.PNG){fig-alt="Seq() function help file."}
+![](../Images/seq_helpfile.png){fig-alt="Seq() function help file."}
 
 
 ### Function help files
@@ -483,7 +483,7 @@ this details the full path taken to reach the file.
 
 To reach "titanic.csv" the absolute filepath for us is 
 
->"C:/Users/marshj1/af_introduction_to_r/Data/titanic.csv"
+>"C:/Users/marshj1/af_introduction_to_r/data/titanic.csv"
 
 Note that your usernames and drives will differ to ours. 
 
@@ -495,28 +495,31 @@ Thus we are already part of the way there, and just need to tell R where to go f
 
 >"working_directory/step_1/step_2/.../destination"
 
-However, in our case our working directory is one level deeper than it should be, inside the course content folder.
+However, in our case, our working directory is one level deeper than we'd like to be, in the **course_content** folder.
 
-As such, we start our relative path by leaving the current folder, or **jumping back a level**, we denote this with two dots, or **../** as the first step of the path.
+>To reach the dataset, we must exit this folder to get back to the root, then enter the data folder, and select **titanic.csv**
 
-So, our relative filepath to the dataset here is:
+To do so, we need to know how to go back one folder level, or exit the current directory, this is written as **../** where the two full stops denote going back. 
 
->"../Data/titanic.csv" - Leave the course content folder, go inside the Data folder, select titanic.csv.
+As such, the relative filepath we need to reach the dataset is
+
+>"../data/titanic.csv"
 
 Visually, to understand the tree-like folder structure, we have something like the following going on:
 
 ![](../Images/folder_structure.jpg){fig-alt="Top level is introduction to R, folders are at level 2, items in the folders are level 3."}
 
-Where we are currently at level 2 on the course content branch, so must follow the path back to the data folder and hence the dataset. 
-
 ### **Loading in the data**{-}
 
 Let's read in titanic using a relative filepath. 
 
+We simply need to go into the **data** folder, then select the **titanic.csv** file to load in.
+
 ```{r}
 # Read in titanic with read_csv()
 
-titanic_data <- read_csv("../Data/titanic.csv")
+titanic_data <- read_csv("../data/titanic.csv")
+
 ```
 
 You will get some information on:
@@ -588,7 +591,7 @@ We can easily correct this by adding the **na** paramter to the read_csv() funct
 ```{r}
 # Specifying missing values as a vector to read_csv()
 
-titanic_data <- read_csv("../Data/titanic.csv", 
+titanic_data <- read_csv("../data/titanic.csv", 
                            na = c("*", ".", "", "NULL"))
 
 ```
@@ -633,7 +636,7 @@ Let's read in the police dataset.
 ```{r}
 # Reading in excel data using the readxl package
 
-police_data <- read_excel("../Data/police_data.xlsx")
+police_data <- read_excel("../data/police_data.xlsx")
 
 View(police_data)
 ```
@@ -643,7 +646,7 @@ We see that this is the **first sheet** in our workbook which is just the "Notes
 ```{r}
 # Observe sheet names in police data
 
-excel_sheets("../Data/police_data.xlsx")
+excel_sheets("../data/police_data.xlsx")
 ```
 
 
@@ -665,12 +668,12 @@ You can use the name of the sheet or the number/index.
 
 # Using the sheet parameter in 2 ways
 
-police_data <- read_excel("../Data/police_data.xlsx",
+police_data <- read_excel("../data/police_data.xlsx",
                           sheet = 2)
 
 # Alternatively
 
-police_data <- read_excel("../Data/police_data.xlsx",
+police_data <- read_excel("../data/police_data.xlsx",
                           sheet = "Table P1")
 
 police_data
@@ -687,7 +690,7 @@ This is better but still not ideal:
 # Using the range parameter to avoid empty rows
 
 
-police_data <- read_excel("../Data/police_data.xlsx",
+police_data <- read_excel("../data/police_data.xlsx",
                           sheet = 2,
                           range = "A5:AA48")
 
@@ -716,7 +719,7 @@ We must supply two arguments to **write_csv()**:
 
 The path is constructed similarly as before
 
->**"../folder/my_file.csv"**
+>**"../folder/my_file.csv" as we must back out of the course_content folder first**
 
 If you specify a folder that doesn't exist, the function will create it for you. In this case, let's create a separate folder called "outputs". 
 

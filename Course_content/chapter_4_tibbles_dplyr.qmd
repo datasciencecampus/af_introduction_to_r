@@ -70,7 +70,7 @@ library(janitor)
 
 # Read in titanic.csv and set null values to be specific symbols
 
-titanic_data <- read_csv("../Data/titanic.csv", 
+titanic_data <- read_csv("../data/titanic.csv", 
                            na = c("*", ".", "", "NULL"))
 
 # Have a peak

@@ -40,7 +40,7 @@ library(janitor)
 
 # Prepare the dataset
 
-titanic_data <- read_csv("../Data/titanic.csv", 
+titanic_data <- read_csv("../data/titanic.csv", 
                            na = c("*", ".", "", "NULL"))
 
 titanic_data <- clean_names(titanic_data)

@@ -145,13 +145,13 @@ We can:
 
 ### **Exercise**{-}
 
-Create an R project in an **existing directory**, selecting the root folder of the course materials provided. 
+Create an R project in an **existing directory**, selecting the **course_content** folder provided. 
 
-This is the folder that contains all the sub-folders such as **data**, **course_content** etc. 
+In your own work, saving it one level higher in the root folder is a better approach, but for these materials and filepaths to function correctly, we must save it where we will save our scripts.
 
 We will do the same here as well.
 
-![](../Images/root_folder.png){fig-alt="The root folder showing the .Rproj file alongside the othr folders."}
+![](../Images/rproj_folder.png){fig-alt="The root folder showing the .Rproj file alongside the othr folders."}
 
 After creating the R Project, you automatically open it, ensuring your working directory is consistently set. 
 
@@ -271,6 +271,8 @@ We will see the benefits of these as you type your code throughout the course.
 Realistically, we should be saving our scripts in a folder made for them, where each sub-folder of the project itself containing one type of file. 
 
 This is known as a **tree** structure, where there is a root of the tree, and the sub-folders themselves are the **branches**.
+
+For this course, save your scripts in the root directory (where the .Rproj files are), this will ensure all filepaths for later chapters function as expected. 
 
 To save the script:
 
