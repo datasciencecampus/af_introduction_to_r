@@ -1,4 +1,11 @@
-.Rproj.user
+**/git_ignore
+.DS_STORE
+**/__pycache__
+
+# R cache and setup files
 .Rhistory
+.Rproj.user
 .RData
-.Ruserdata
+
+# Python cache and setup files
+.ipynb_checkpoints
