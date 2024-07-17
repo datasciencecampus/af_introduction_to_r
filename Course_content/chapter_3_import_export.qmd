@@ -1,19 +1,28 @@
 ---
 title: "Chapter 3 - Importing and Exporting Data"
+author: "Government Analysis Function and ONS Data Science Campus"
+engine: knitr
+execute:
+  echo: true
+  eval: false
 format:
-  html:
-    highlight: null
-    theme: default
-    toc: true
-    toc-title: Contents
-    toc-location: right
-    toc-depth: 3
-    number-sections: true 
-    link-external-newwindow: true
-    embed-resources: true
+    html: 
+      highlight: null
+      theme: 
+       light: flatly
+       dark: darkly
+      toc: true
+      toc-title: Contents
+      toc-location: right
+      toc-depth: 3
+      number-sections: true
+      link-external-newwindow: true
+      embed-resources: true
 ---
 
 ![](../Images/AF_DSC_banner.png){fig-alt="Data Science Campus and Analysis Function logos."}
+
+> To switch between light and dark modes, use the toggle in the top right
 
 # Learning Objectives
 

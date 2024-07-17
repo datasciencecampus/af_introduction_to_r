@@ -1,19 +1,28 @@
 ---
 title: "Chapter 1 - Getting Started with R"
+author: "Government Analysis Function and ONS Data Science Campus"
+engine: knitr
+execute:
+  echo: true
+  eval: false
 format:
-  html:
-    highlight: null
-    theme: default
-    toc: true
-    toc-title: Contents
-    toc-location: right
-    toc-depth: 3
-    number-sections: true 
-    link-external-newwindow: true
-    embed-resources: true
+    html: 
+      highlight: null
+      theme: 
+       light: flatly
+       dark: darkly
+      toc: true
+      toc-title: Contents
+      toc-location: right
+      toc-depth: 3
+      number-sections: true
+      link-external-newwindow: true
+      embed-resources: true
 ---
 
 ![](../Images/AF_DSC_banner.png){fig-alt="Data Science Campus and Analysis Function logos."}
+
+> To switch between light and dark modes, use the toggle in the top right
 
 # Learning Objectives
 
@@ -1074,7 +1083,7 @@ Which sections appear can vary from help page to help page, but you can usually 
 
 **Description** - A short summary of what the function does.
 
-**Usage** - An example of how you would type the function. Each argument of the function will appear in the order R expects you to supply it (if you don’t use argument names).
+**Usage** - An example of how you would type the function. Each argument of the function will appear in the order R expects you to supply it (if you don't use argument names).
 
 **Arguments** - A list of each argument the function takes and what to supply to it as a value. You will spend most of your time here, investigating what options are available.
 
