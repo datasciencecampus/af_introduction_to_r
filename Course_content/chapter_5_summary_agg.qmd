@@ -1,0 +1,606 @@
+---
+title: "Chapter 5: Summaries and Aggregation"
+author: "Government Analysis Function and ONS Data Science Campus"
+engine: knitr
+execute:
+  echo: true
+  eval: false
+format:
+    html: 
+      highlight: null
+      theme: 
+       light: flatly
+       dark: darkly
+      toc: true
+      toc-title: Contents
+      toc-location: right
+      toc-depth: 3
+      number-sections: true
+      link-external-newwindow: true
+      embed-resources: true
+---
+
+![](../Images/AF_DSC_banner.png){fig-alt="Data Science Campus and Analysis Function logos."}
+
+> To switch between light and dark modes, use the toggle in the top right
+
+# Learning Objectives
+
+* Describe numeric and categorical data using statistics such as:
+    * Mean
+    * Median
+    * Standard Deviation
+    * Variance
+
+* Aggregate data
+
+
+# Packages and Data 
+
+We will use the titanic dataset and clean its column names with janitor.
+
+```{r message = FALSE, warning = FALSE, include = TRUE}
+
+# Load in packages
+
+library(tidyverse)
+library(janitor)
+
+# Prepare the dataset
+
+titanic_data <- read_csv("../data/titanic.csv", 
+                           na = c("*", ".", "", "NULL"))
+
+titanic_data <- clean_names(titanic_data)
+
+glimpse(titanic_data)
+```
+
+
+# Descriptive Statistics
+
+There are two broad types of data in our tibble:
+
+* Numerical data (i.e. ints and doubles) 
+* Text data (i.e. character strings)
+
+
+## Numerical Data
+
+The **summarise()** verb allows us to create one or more numeric variables summarising the variables we specify. 
+
+There are many summary statistics functions we can use with summarise(): 
+
+* **mean()** - The average (arithmetic mean) data value in the given column.
+* **median()** - The middle value of an ordered vector of values.
+    * If the vector has an odd number of values, it is the exact middle value.
+    * If the vector has an even number of values, there is no middle, so the median is the average of the numbers either side (e.g. if there are 80 values, the median is the average of the 39th and 40th value).
+* **var()** - The variance measures the degree of spread of each point from the mean. It is the square of the standard deviation.
+* **sd()** - The standard deviation (spread) of values in from the mean. It is the square root of the variance. 
+* **quantile()** - Produces sample quantiles corresponding to the given proportions (between 0 and 1). We can compute upper and lower quartiles with this.
+* **min()** - The smallest value in the given column.
+* **max()** - The maximum value in the given column.
+* **n()** - Counts the number of entries (rows).
+* **n_distinct()** - Counts the number of unique entries for a given variable.
+
+
+### **Examples**{-}
+
+Let's compute the mean fare paid by passengers on the titanic. 
+
+The **summarise()** verb takes the following form:
+
+> **summarise(agg_col_name = summary_function(col))** notice that we can name the column as well!
+
+```{r}
+# Calculating the mean fare paid 
+
+titanic_data |> 
+    summarise(mean(fare)) # Compute mean of fare column
+
+```
+
+>**This highlights something very important, that any operation applied to a column containing one or more missing values, produces an average of NA.** 
+
+This is because we are adding something that is Not a Number (it does not exist) to an actual number, which is not defined (think dividing by 0 or adding infinity).
+
+By default, this will throw most of the summary functions, but there is an optional parameter we can turn on, called "**na.rm = TRUE**".
+
+This will omit any NA values in our calculation and produce a more meaningful result, albeit on a subset of observed data.
+
+```{r}
+# Calculating the mean fare paid by passengers, removing NAs
+
+titanic_data |>  
+    summarise(mean(fare, na.rm = TRUE))
+
+```
+
+To assign this a meaningful column name, we'd pass a keyword argument before the summary function used:
+
+>**agg_col_name = summary_function(column, na.rm = TRUE)**
+
+```{r}
+# Calculating the mean fare paid and naming it
+
+titanic_data |> 
+    summarise(mean_fare = mean(fare, na.rm = TRUE))
+
+```
+
+
+If we didn't care about the tibble output summarise generates, we could simply compute using base R syntax:
+
+```{r}
+# Calculating the mean fare with base R
+
+mean(titanic_data$fare, na.rm = TRUE)
+
+```
+
+Like we saw with mutate() and other functions, we can compute multiple statistics through **summarise()**, separating with commas.
+
+```{r}
+# Calculating multiple summary statistics with summarise()
+
+titanic_data |>  
+    summarise(median_fare = median(fare, na.rm = TRUE),
+              mean_fare = mean(fare, na.rm = TRUE),
+              sd_fare = sd(fare, na.rm = TRUE),
+              median_age = median(age_of_passenger, na.rm = TRUE),    
+              mean_age = mean(age_of_passenger, na.rm = TRUE),        
+              sd_age = sd(age_of_passenger, na.rm = TRUE))
+
+```
+
+### Quantiles
+
+We can also calculate quantiles, such as the upper and lower quartile within summarise(). 
+
+To do this, we must specify a value between 0 and 1, which denotes the nth percentile/quantile. For example:
+
+* 0.1 denotes the 10th percentile - All values in order up to the value at the 10% spot.
+* 0.25 denotes the lower quartile - All values in order up to the value at the 25% spot.
+* 0.75 denotes the upper quartile - All values in order up to the value at the 75% spot.
+
+### **Examples**{-}
+
+The quantile function is structured as:
+
+> **quantile(col, probs = c(0,1),..)** where probs should be the value of the quantile you want.
+
+```{r}
+# Computing the lower quartile
+
+titanic_data |> 
+    summarise(fare_lower = quantile(fare, probs = 0.25, na.rm = TRUE))
+
+```
+
+
+```{r}
+# Computing the upper quartile
+
+titanic_data |> 
+    summarise(fare_upper = quantile(fare, probs = 0.75, na.rm = TRUE))
+
+```
+
+
+## Categorical Data 
+
+Simple statistics on qualitative data include:
+
+* **distinct()** - Displays the unique values in a given column. 
+
+* **count()** - Displays the number of occurrences of each unique entry in a given column.
+
+These (of course) will not work well on columns that are almost entirely unique, such as the name of passenger!
+
+
+### **Examples**{-}
+
+Let's start with **count()**, which we can sort with the extra parameter **sort = TRUE** for a descending order output. 
+
+```{r}
+# Calculating frequency of each unique passenger name
+
+titanic_data |> 
+    count(name_of_passenger, sort = TRUE)
+
+```
+
+Compared this to a categorical variable with only a few unique categories, like embarked. 
+
+```{r}
+
+# Calculating the number of passengers embarked from each port
+
+titanic_data |> 
+    count(embarked, sort = TRUE)
+
+```
+
+Let's see distinct() in action:
+
+```{r}
+# Select only unique/distinct rows from the embarked column
+ 
+titanic_data |> 
+    distinct(embarked)
+
+```
+
+
+## Exercise
+::: {.panel-tabset}
+
+### **Exercise**{-}
+
+1. Use summarise() to return the ages of the oldest and youngest passengers on the titanic.
+
+2. Use a summary function for categorical data to determine the number of men and women in the dataset.
+
+### **Show Answer**{-}
+
+1. 
+```{r}
+# Calculating the oldest and youngest
+
+titanic_data |> 
+    summarise(youngest_age = min(age_of_passenger, na.rm = TRUE),
+              oldest_age = max(age_of_passenger, na.rm = TRUE))
+
+```
+
+2. 
+```{r}
+# Calculating the count of men and women on the titanic
+
+titanic_data |> 
+    count(sex_of_passenger)
+
+```
+
+We see that there were almost twice as many men as there were women on the titanic. 
+
+:::
+
+# Aggregation
+
+Aggregation means grouping data together by a particular grouping variable and producing a summary of one or more columns for that grouping variable.
+
+For example, we might want to see the average fare paid **by** sex or **by** port embarked from. 
+
+The **group_by()** function from dplyr is the bread and butter of this section.
+
+## Group By
+
+Group by performs the aggregation necessary so that we can use summarise() from before to obtain numeric summaries by group. 
+
+It is formed on a principle known as **split - summarise - combine**
+
+* Split - The tibble is divided into a set of smaller tibbles, based on the grouping variable.
+    For example, if we use a variable with 3 unique categories, 3 smaller tibbles are created.
+
+* Summarise - An aggregate statistic is applied to each of the groups (such as the mean of their fare paid) and a single row for each group is output.
+
+* Combine - The individual outputs from aggregation are combined into a new tibble.
+
+
+### Example
+
+Let's look at this in code by finding the mean fare for each passenger class.
+
+The sequence of code will go as follows:
+
+> **group_by(col) |> summarise(agg_col = summary_function(col))**
+
+Firstly, let's check how many classes there are:
+
+```{r}
+# How many pclasses are there?
+
+titanic_data |>
+    distinct(pclass)
+
+```
+
+So we should expect three values, one mean fare for each of the passenger classes. 
+
+```{r}
+# Calculate mean fare by passenger class
+
+titanic_data |> 
+    group_by(pclass) |> 
+    summarise(mean_fare = mean(fare, na.rm = TRUE))
+
+```
+
+### The similarity of count() and group_by()
+
+An interesting point to make is that we can use the n() summary statistic to count the number of observations in that group after a group_by.
+
+```{r}
+# Group by and count the number of unique groups
+
+titanic_data |> 
+    group_by(pclass) |> 
+    summarise(n = n())
+```
+
+This looks similar to the output of another function we used!
+
+```{r}
+# Replicate the above result with a different function
+
+titanic_data |> 
+    count(pclass)
+
+```
+
+it is the case the count() is performing the exact same computations in the background as the combination of group_by() and summarise()! 
+
+A great shortcut if a count is all you need. 
+
+## Multiple Aggregation
+
+We can also double aggregate with more complex groupings. For example, we may require the mean fare paid by first class passengers leaving from Southhampton.
+
+We would need to group by both passenger class and embarked to achieve this. 
+
+```{r}
+# Group by pclass and embarked and find mean fare
+
+titanic_data |> 
+    group_by(pclass, embarked) |> 
+    summarise(mean_fare = mean(fare, na.rm = TRUE))
+                    
+```
+
+We see that since there are 3 passenger classes and 4 (with the null value) embarked entries, there are 3 * 4 = 12 possible combinations, with 10 outputting here (there are no second or third class null values).
+
+Order does not matter here as it just determines what the final groupings look like, we will still get the same 12 each time.
+
+The output itself will of course differ as it displays the groups in the order we grouped them:
+
+```{r}
+# Group by embarked and pclass and find mean fare
+
+titanic_data |> 
+    group_by(embarked, pclass) |> 
+    summarise(mean_fare = mean(fare, na.rm = TRUE))
+                    
+```
+
+### Exercise
+::: {.panel-tabset}
+
+### **Exercise**{-}
+
+1. What is the average fare paid by men and women?
+
+
+2. What is the median fare paid by men and women in each passenger class?
+
+
+### **Show Answer**{-}
+
+1. 
+```{r}
+# Calculating the average fare by sex
+
+titanic_data |> 
+    group_by(sex_of_passenger) |> 
+    summarise(mean_fare = mean(fare,
+                               na.rm = TRUE))
+                
+```
+
+2. 
+```{r}
+# Calculating the median fare by sex and passenger class
+
+titanic_data |> 
+    group_by(sex_of_passenger, pclass) |> 
+    summarise(median_fare = median(fare,
+                                   na.rm = TRUE))
+        
+```
+:::
+
+
+## The impact of NAs
+
+Ideally, we don't want the null values being a category of their own and cluttering up our summary tables.
+
+When investigating data, we either:
+
+* Deal with these at read in.
+* Meticulously clean them with imputation methods (fill them in).
+* Drop them entirely (be very careful with this!).
+
+**tidyr** comes to the rescue when we are dealing with NAs as it has some handy functions to work with them:
+
+* drop_na() removes all rows with missing values present.
+* replace_na() fills in the missing values with whatever we specify. 
+
+Let's see a few small examples of this in practice.
+
+### Filling missing values
+
+We should always attempt to understand why values are missing before dealing with them. 
+
+Domain expertise comes into play when deciding whether it makes sense for a value to be missing, think of temperature:
+
+> **A missing temperature reading is not the same as a temperature reading of 0 degrees celsius.**
+    
+As such, it wouldn't make sense to fill the NAs with 0, as we create **bias** by over inflating the number of 0 temperature values.
+
+A better approach in cases such as this is to fill with an **average**, preferably one not impacted by outliers, such as the median.
+
+### **Example**{-}
+
+Let's consider first which numeric variables have missing values. We can check this by using the **is.na()** function.
+
+This returns a vector of TRUEs and FALSEs, one for each cell in the table, for whether they are missing or not. 
+
+We can then sum() these up to find the total number of missing values in that column. 
+
+```{r}
+# Compute number of missing values in age_of_passenger
+
+titanic_data$age_of_passenger |> 
+    is.na() |> 
+    sum()
+
+```
+
+Repeating this for each column becomes laborious quickly, so there are some options for us:
+
+* Use **colSums()** to sum the outputs of a function across columns.
+* Create a **User defined function** or **Anonymous Function** to apply across the columns of the dataset using functional programming in purrr.
+
+Whilst the latter is recommended, it is beyond the scope of this current chapter, and features in later more advanced courses. 
+
+Let's try colSums():
+
+```{r}
+# Use colSums() to find the missing values
+
+titanic_data |> is.na() |> 
+    colSums()
+```
+
+Now that we have understood the number of missing values, let's see some imputation.
+
+### **Filling a numeric column with an average**{-}
+
+We know that age_of_passenger has 267 missing values, but filling these in with 0 makes no sense and will skew the data.
+
+A better approach would be to impute with an average, that way we maximise our attempt to keep the data centralised. 
+
+However, we must also be careful which statistic we use, as some are more robust than others:
+
+* The mean is heavily influenced by outliers (as it includes them in the calculation).
+* The median is a more robust measure as it does not consider the end points of the data (not influenced by outliers).
+    
+#### **Example**{-}
+
+The replace_na() functions takes a few arguments:
+
+* The data itself
+* replace - What to fill the NAs with
+
+Using this effectively requires us to also use **mutate()** as this modifies an existing column, as opposed to us using base R functionality to refer to columns with **$**.
+
+Let's use is.na() and colSums() to check it worked:
+    
+```{r}
+# Impute missing age values with median 
+
+titanic_data <- titanic_data |> # overwrite to save changes
+    mutate(age_of_passenger = replace_na(age_of_passenger,
+                                         replace = median(age_of_passenger,
+                                                          na.rm = TRUE)))
+
+```
+
+Let's check this worked:
+
+```{r}
+# Check imputation
+
+titanic_data |> is.na() |> 
+    colSums()
+
+```
+
+
+### **Filling a categorical column with an average**{-}
+
+With categorical columns, the most robust method we can use to impute is using the most frequently occuring value, or the **mode**. 
+
+There is no built in function for this in base R, requiring an outside package in order to so. However, we can observe the mode with the output from count().
+
+#### **Example**{-}
+
+We saw that embarked had 2 missing values, let's fill them with the mode.
+
+```{r}
+# Find the mode of the embarked column
+
+titanic_data |> 
+    count(embarked)
+
+```
+
+We see that "S" or "Southhampton" was the most commonly departed from port among passengers.
+
+Let's fill this in with replace_na():
+
+```{r}
+# Fill embarked in with the mode
+
+titanic_data <- titanic_data |> 
+    mutate(embarked = replace_na(embarked, replace = "S")) 
+
+```
+
+Let's check again:
+
+```{r}
+# Check that embarked impute worked
+
+titanic_data |> is.na() |> 
+    colSums()
+
+```
+
+Imputation is a very deep topic and goes beyond the scope of the course, but we recommend researching this for other examples.
+
+
+### Dropping Missing Values
+
+We must be very careful about doing this, as we previously noted that there may be a pattern to how or why they are missing, and as such can be treated.
+
+We risk lowering variance across our dataset by removing them, but if analysis determines that there is no easy way to impute them, dropping them might be the only option.
+
+### **Example**{-}
+
+We use the drop_na() function to drop null values remaining. 
+
+* In our example, cabin is roughly 75% missing, and with a variety of categories of all different forms, imputation would be a nightmare. 
+    * As such, we would elect to exclude this column with **select()**.
+
+* Similarly, there is only one missing fare value, which it is more efficient to drop than fill with an average.
+
+```{r}
+# Drop the null values in fare
+
+titanic_data <- titanic_data |> 
+    select(-cabin) |> 
+    drop_na(fare)
+
+```
+
+
+
+# Summary 
+
+Well done for working your way through this whistle stop tour of aggregation and summary statistics!
+
+This is the final compulsory chapter of the course, and as such your next steps are up to you, some recommendations we would make are:
+
+* Complete the additional chapter, chapter 6, which is a case study that tests the skills you've learnt in this course on a new dataset. 
+
+* Complete the Additional Chapter, chapter 7, that covers more advanced concepts, such as:
+    * Pivoting data
+    * Binning numeric columns to categorical columns.
+    * Functional programming tools with purrr.
+    * Extra list functionality.
+
+* Complete any of the R courses that this course is a pre-requisite for on the [Learning Hub](https://learninghub.ons.gov.uk/local/catalogue/index.php), such as:
+    * [Data Visualization in R](https://learninghub.ons.gov.uk/course/view.php?id=553)
+    * [Statistics in R](https://learninghub.ons.gov.uk/course/view.php?id=560)
+    * [Modular Programming in Python and R](https://learninghub.ons.gov.uk/course/view.php?id=574)
