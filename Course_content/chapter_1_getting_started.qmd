@@ -236,17 +236,15 @@ The issue with coding in the console is that you can't save it and it is not eas
 
 ## The Code Editor Pane
 
-This is the top left pane, where you will do the majority of your coding.
+This is the top left pane, where you will do the majority of your coding.  Often this is in the form of R scripts.  A **script** is usually a text file which you write your code in, generally code that is longer than a few lines. It is recommended that you create a few of these as you proceed through the course.
 
-### R Scripts
-
-A **script** is just a text file which you write your code in, generally you will use them to write code that is longer than just a few lines. It is recommended that you create a few of these as you proceed through the course.
-
-### **Creating a new script** {.unnumbered}
+### **Creating a new script**
 
 **Click on File -\> New file -\> R Script**
 
-> **Alternatively you can press the short cut keys Ctrl+Shift+N**
+::: {.callout-note}
+Alternatively you can press the short cut keys Ctrl+Shift+N.
+:::
 
 Scripts execute sequentially from top to bottom, and give you the advantages of:
 
@@ -255,7 +253,7 @@ Scripts execute sequentially from top to bottom, and give you the advantages of:
 
 You will see the benefits of these as you type your code throughout the course.
 
-### **Saving a new script** {.unnumbered}
+### **Saving a new script**
 
 In practice, you would save your scripts in a specific folder. Each sub-folder of the root project would containing one type of file (R scripts, images, notebooks etc).
 
@@ -265,9 +263,11 @@ For this course, save your scripts in the root directory (where the .Rproj files
 
 To save the script click on "File", select "Save as" and choose a location.
 
-> **Alternatively you can press the short cut keys Ctrl + S**.
+::: {.callout-note}
+Alternatively you can press the short cut keys Ctrl + S.
+:::
 
-### **Running code in an R Script** {.unnumbered}
+### **Running code in an R Script**
 
 After typing some code in your R script, there are several ways to run it:
 
@@ -277,7 +277,7 @@ After typing some code in your R script, there are several ways to run it:
 
 You can use keyboard shortcuts to diversify and speed up your workflow if appropriate.
 
-### **Example** {.unnumbered}
+### **Example**
 
 Type the following in your script and run the code:
 
@@ -319,7 +319,9 @@ Comments will be used throughout these course materials to highlight new concept
 
 Add your own if helpful, or edit/remove any that don't help.
 
-> **TIP - Comments can also be used to prevent R from running code that you don't want to delete by typing a hash at the beginning of the line of code.**
+::: {.callout-tip}
+Comments can also be used to prevent R from running code that you don't want to delete by typing a hash at the beginning of the line of code.
+:::
 
 ```{r}
 # Comment out a line of code
@@ -327,7 +329,9 @@ Add your own if helpful, or edit/remove any that don't help.
 # 2 + 2 
 ```
 
-> **Alternatively you highlight line(s) of code and press CTRL + SHIFT + C to comment them out.**
+::: {.callout-note}
+Alternatively you highlight line(s) of code and press CTRL + SHIFT + C to comment them out.
+:::
 
 ### **Multi-line Commentary** {.unnumbered}
 
@@ -381,7 +385,10 @@ To get the best out of R, you need to understand the basic data types and how to
 
 Different data types have different properties; if you try to run:
 
-> **1 + "two"**
+```{r}
+#| error: true
+1 + "two"
+```
 
 you will get an error due to a mismatch of types, since you are adding a number to a word.
 
@@ -421,7 +428,7 @@ You will likely perform mathematical operations with numbers. Here is a list of 
 
 Let's have a play. What do you think the code below does?
 
-### **Example** {.unnumbered}
+### **Example**
 
 ```{r}
 # Numeric operations
@@ -468,7 +475,8 @@ If you must do this, you use one quotation mark to open and close the string and
 
 The following code is incorrect:
 
-```{r, eval=FALSE}
+```{r}
+#| error: true
 # Incorrect character string
 
 "You should be proud of when you typed "Hello World" and ran that code!"
@@ -497,13 +505,17 @@ Notice that the outputs here are slightly different. This is because when inside
 
 This manifests itself as a **backslash \\** which is known as an escape character. It basically tells R to interpret the character that directly follows it as raw text.
 
-> **TIP - If you forget to put quotes around something, you can highlight and press the quote key and it will add quotes to both sides.**
+::: {.callout-tip}
+If you forget to put quotes around something, you can highlight and press the quote key and it will add quotes to both sides.
+:::
 
 ## Logical Data
 
 In R these are written as "TRUE" or "FALSE" and cannot take any other form.
 
-> **They are special R data types - not characters!**
+::: {.callout-note}
+They are special R data types - not characters!
+:::
 
 ### Comparisons to produce logicals
 
@@ -589,7 +601,9 @@ typeof(10L)
 
 R has a range of built-in functions for common operations.
 
-> **Functions are commands that take an input, do something to it, and produce an output. These are essential to R programming and will be covered in detail later.**
+:::{.callout-note}
+Functions are commands that take an input, do something to it, and produce an output. These are essential to R programming and will be covered in detail later.
+:::
 
 Functions in R are written as:
 
@@ -621,7 +635,7 @@ In general this is written as:
 
 > **function(argument = value,..)**
 
-### **More on Arguments** {.unnumbered}
+### **Arguments**
 
 Notice that above you didn't give the argument, you just gave the value. This is acceptable in this case as sqrt() and round() are quite simple functions.
 
@@ -631,9 +645,9 @@ However, functions such as round() can take more than one argument, many are opt
 
 you separate arguments within functions using commas, as follows:
 
--   **func(argument_1 = value_1, argument_2 = value_2,...)**
+> **func(argument_1 = value_1, argument_2 = value_2,...)**
 
-> Let's see an example of using multiple arguments with the round() function.
+Let's see an example of using multiple arguments with the round() function.
 
 ```{r}
 # Round to 2 decimal places
@@ -643,9 +657,11 @@ round(3.6357, digits = 2)
 
 You **must** make sure that the argument name is correct (as defined by the function itself), otherwise you will get an error.
 
-> **Notice that even without the digits argument, the round() function works. This is because digits (like many arguments) is optional, and has a value of 0 by default, rounding to the nearest whole number.**
+:::{.callout-note}
+Notice that even without the digits argument, the round() function works. This is because digits (like many arguments) is optional, and has a value of 0 by default, rounding to the nearest whole number.
+:::
 
-### **Using help documentation with functions** {.unnumbered}
+### **Function documentation**
 
 You can investigate what specific functions do by navigating to the "Help" tab in the bottom right and searching it by name.
 
@@ -661,12 +677,10 @@ you see:
 
 and some other niche notes for more advanced R users.
 
-> The takeaway is: When you are using multiple arguments you should be **explicitly** defining the argument and the value that follows it. you can sometimes exclude the initial argument (usually x), as it tends to always be the first argument.
-
 ## Exercise
 
 ::: panel-tabset
-### **Exercise** {.unnumbered}
+### **Exercise**
 
 What is the data type of the following?
 
@@ -692,7 +706,7 @@ FALSE
 
 ```
 
-### **Show Answer** {.unnumbered}
+### **Show Answer**
 
 The "typeof()" output denotes the (R internal) type or storage mode of any object.
 
@@ -778,11 +792,13 @@ They allow you to store and label data under a specific name, acting as a place 
 
 ## Creating and Returning a Variable
 
-You can assign a value to a variable using the **\<-** operator, which has the keyboard shortcut
+You can assign a value to a variable using the **\<-** operator.
 
-> **ALT - (alt + dash/minus)**
+:::{.callout-tip}
+The keyboard shortcut for this is ALT - (alt + dash/minus).
+:::
 
-for example:
+An example is below:
 
 ```{r}
 # To assign a variable
@@ -803,7 +819,7 @@ Literally typing the name of the variable and running the code returns the value
 weight_kg
 ```
 
-### **Concatenation** {.unnumbered}
+### **Concatenation**
 
 If you wanted to display the weight a bit better, you could use the "cat()" function (concatenate).
 
@@ -825,7 +841,7 @@ age_yrs <- 27
 cat("My weight is", weight_kg, "kg, and I am", age_yrs, "years old.")
 ```
 
-### **Mathematical Operations on Variables** {.unnumbered}
+### **Mathematical Operations on Variables**
 
 You can apply addition, subtraction and other operations to your variables. It is the value assigned to the variable that determines the datatype.
 
@@ -844,7 +860,7 @@ Now let's do some maths.
 weight_kg + 4
 ```
 
-### **Creating new variables based on old ones** {.unnumbered}
+### **Creating new variables from existing**
 
 You can modify the value of a variable in some way and then assign that to a new variable.
 
@@ -860,7 +876,7 @@ weight_lb <- weight_kg * 2.2
 weight_lb
 ```
 
-### **Overwrite and reassign an existing variable** {.unnumbered}
+### **Overwrite and reassign an existing variable**
 
 If you want to reassign a variable you could use the assignment operator again.
 
@@ -924,20 +940,20 @@ Naming variables is another skill important to programming. Some points to consi
 
 Notice above where you wrote "weight_kg", it is a weight value in kg.
 
-### **Cases** {.unnumbered}
+### **Cases**
 
 There are several conventions for construction variable and function names:
 
-snake_case:
+**snake_case**
 
 -   Names are entirely lower case.
 -   Names separate words with underscores \*\*\_\*\*.
 
-There is also camel case:
+**camel case**
 
 -   Names start with a capital letter and each word is separated by them, such as **WeightKg**
 
-There is also period case:
+**period case**
 
 -   Names are separated with full stops, such as **weight.kg**.
 
@@ -948,7 +964,7 @@ There is more detailed information on good variables names in your other course:
 ## Exercise
 
 ::: panel-tabset
-### **Exercise** {.unnumbered}
+### **Exercise**
 
 1.  Why does this code not work?
 
@@ -979,11 +995,13 @@ Then:
 
 4.  Use the remove() and rm() functions to remove the time and distance variables.
 
-### **Show Answer** {.unnumbered}
+### **Show Answer**
 
-1.  You would have got the error below;
+1.  You would have got the error below:
 
-> Error: object 'my_varIable' not found
+:::{.callout-important}
+Error: object 'my_varIable' not found
+:::
 
 Variables are case sensitive, so when you called the variable with a capital "I", it tried to recall a name that didn't exist.
 
