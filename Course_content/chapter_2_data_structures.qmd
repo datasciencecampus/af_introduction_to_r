@@ -4,7 +4,7 @@ author: "Government Analysis Function and ONS Data Science Campus"
 engine: knitr
 execute:
   echo: true
-  eval: false
+  eval: true
 format:
     html: 
       highlight: null

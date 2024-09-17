@@ -2722,12 +2722,18 @@ vertical-align: -.125em;
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># To display the data</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>my_friends</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;ian&quot;    &quot;hannah&quot; &quot;mike&quot;   &quot;almas&quot; </code></pre>
+</div>
 </div>
 <p>Let’s check the datatype of our new vector.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check datatype of my_friends</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_friends)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check datatype of my_friends</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_friends)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;character&quot;</code></pre>
+</div>
 </div>
 <p>We see that this is a character vector, a.k.a, a vector containing character data. This is because each element contained within the vector are character type.</p>
 </section>
@@ -2756,13 +2762,16 @@ vertical-align: -.125em;
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="the-c-function-combine"><span class="header-section-number">3.3.1</span> The c() function (combine)</h3>
 <p>Let’s create a numeric vector with c() this time!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a vector using the combine function</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>sample_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># To display the created vector</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>sample_vector  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a vector using the combine function</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>sample_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># To display the created vector</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>sample_vector  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5</code></pre>
+</div>
 </div>
 </section>
 <section id="the-seq-function-sequence" class="level3" data-number="3.3.2">
@@ -2783,13 +2792,16 @@ vertical-align: -.125em;
 <li>by - the step value</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a vector using the sequence function,</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>sequence_vector <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">6</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># To display the created vector</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>sequence_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a vector using the sequence function,</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>sequence_vector <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">6</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># To display the created vector</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>sequence_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 4 6</code></pre>
+</div>
 </div>
 <p>Earlier we saw in the console the number [1] next to our output. This represents the position of the element to the right of this number in the vector.</p>
 <p>Thus, 2 is element 1 of our vector, 4 is element 2 and so on. This is essential information for later.</p>
@@ -2799,13 +2811,16 @@ vertical-align: -.125em;
 <p>A range of values (i.e., consecutive values) could be generated as a vector using a colon <strong>:</strong> in R.</p>
 <p>Since this is consecutive, we can’t have broken sequences like seq() allows.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a vector using a colon</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>colon_vector <span class="ot">&lt;-</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># To display the created vector</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>colon_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a vector using a colon</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>colon_vector <span class="ot">&lt;-</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># To display the created vector</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>colon_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  6  7  8  9 10</code></pre>
+</div>
 </div>
 </section>
 <section id="exercise" class="level3" data-number="3.3.4">
@@ -2825,39 +2840,51 @@ vertical-align: -.125em;
 <li></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a character vector</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>favourite_movies <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Frozen&quot;</span>, <span class="st">&quot;The Lion King&quot;</span>, <span class="st">&quot;Moana&quot;</span>, <span class="st">&quot;The Dark Knight&quot;</span>) </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># To display the data</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>favourite_movies</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a numeric vector </span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>lucky_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">1</span>)  </span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># To display the data</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>lucky_numbers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a character vector</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>favourite_movies <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Frozen&quot;</span>, <span class="st">&quot;The Lion King&quot;</span>, <span class="st">&quot;Moana&quot;</span>, <span class="st">&quot;The Dark Knight&quot;</span>) </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># To display the data</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>favourite_movies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;Frozen&quot;          &quot;The Lion King&quot;   &quot;Moana&quot;           &quot;The Dark Knight&quot;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a numeric vector </span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>lucky_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">1</span>)  </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># To display the data</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>lucky_numbers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  7 12 15  1</code></pre>
+</div>
 </div>
 <ol start="2" type="1">
 <li></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a vector of vectors</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>movies_and_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(favourite_movies, lucky_numbers)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>movies_and_numbers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a vector of vectors</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>movies_and_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(favourite_movies, lucky_numbers)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>movies_and_numbers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;Frozen&quot;          &quot;The Lion King&quot;   &quot;Moana&quot;           &quot;The Dark Knight&quot;
+[5] &quot;7&quot;               &quot;12&quot;              &quot;15&quot;              &quot;1&quot;              </code></pre>
+</div>
 </div>
 <ol start="3" type="1">
 <li></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the type of vector</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(movies_and_numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking the type of vector</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(movies_and_numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;character&quot;</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -2886,30 +2913,39 @@ vertical-align: -.125em;
 <p>This also means that every variable we have created so far have also been vectors with one element, and the operators (such as adding 5 to them) have been vectorised operations.</p>
 <p>Let’s see this in practice!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add sample and colon vector</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>vector_addition <span class="ot">&lt;-</span> sample_vector <span class="sc">+</span> colon_vector</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>vector_addition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add sample and colon vector</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>vector_addition <span class="ot">&lt;-</span> sample_vector <span class="sc">+</span> colon_vector</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>vector_addition</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  7  9 11 13 15</code></pre>
+</div>
 </div>
 <p>We see that each first element is added, each second element is added and so on, this is an element wise operation (element by element).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiplying vectors (element wise)</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>vector_multiplication <span class="ot">&lt;-</span> sample_vector <span class="sc">*</span> colon_vector</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>vector_multiplication</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiplying vectors (element wise)</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>vector_multiplication <span class="ot">&lt;-</span> sample_vector <span class="sc">*</span> colon_vector</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>vector_multiplication</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  6 14 24 36 50</code></pre>
+</div>
 </div>
 <p>We see that each first element is multiplied, each second element is multiplied and so on.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiply vector by a value</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>sample_vector <span class="ot">&lt;-</span> sample_vector <span class="sc">*</span> <span class="dv">3</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>sample_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiply vector by a value</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>sample_vector <span class="ot">&lt;-</span> sample_vector <span class="sc">*</span> <span class="dv">3</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>sample_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  3  6  9 12 15</code></pre>
+</div>
 </div>
 <p>We see that each element is multiplied by 3, like expanding a bracket!</p>
 <section id="exercise-2" class="level3" data-number="3.4.1">
@@ -2928,12 +2964,17 @@ vertical-align: -.125em;
 <li></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding two vectors of different lengths</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>vector_after_addition <span class="ot">&lt;-</span> sample_vector <span class="sc">+</span> sequence_vector</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>vector_after_addition  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding two vectors of different lengths</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>vector_after_addition <span class="ot">&lt;-</span> sample_vector <span class="sc">+</span> sequence_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in sample_vector + sequence_vector: longer object length is not a
+multiple of shorter object length</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>vector_after_addition  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  5 10 15 14 19</code></pre>
+</div>
 </div>
 <ol start="2" type="1">
 <li>Here we have one vector with 3 elements and one with 5 elements. The number of elements in a vector is referred to as the <strong>length</strong> of the vector, so sample vector has length 5.</li>
@@ -2959,15 +3000,21 @@ vertical-align: -.125em;
 <h2 class="unnumbered anchored" data-anchor-id="example---indexing-a-single-element"><strong>Example - Indexing a single element</strong></h2>
 <p>Take the favourite_movies vector from the earlier exercise.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To display the vector</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>favourite_movies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To display the vector</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>favourite_movies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;Frozen&quot;          &quot;The Lion King&quot;   &quot;Moana&quot;           &quot;The Dark Knight&quot;</code></pre>
+</div>
 </div>
 <p>If we want to select “The Lion King” from this vector, which is at position 2, we need to use the number 2 in square brackets.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting the second element in the vector</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>favourite_movies[<span class="dv">2</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting the second element in the vector</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>favourite_movies[<span class="dv">2</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;The Lion King&quot;</code></pre>
+</div>
 </div>
 <p>Reading this left to right we are:</p>
 <ul>
@@ -2981,9 +3028,12 @@ vertical-align: -.125em;
 <p>We can also index multiple elements using the colon operator. Remember that this creates a sequence of consecutive numbers, so allows us to index sequentially.</p>
 <p>For example, if we wanted to select from “The Lion King” to “The Dark Knight”, we select from index 2 to index 4, i.e. <strong>2:4</strong>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting sequentially</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>favourite_movies[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting sequentially</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>favourite_movies[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;The Lion King&quot;   &quot;Moana&quot;           &quot;The Dark Knight&quot;</code></pre>
+</div>
 </div>
 </section>
 <section id="example---index-out-of-sequence" class="level2 unnumbered">
@@ -2992,9 +3042,12 @@ vertical-align: -.125em;
 <p>This is interesting as most other programming languages require external packages to be able to do this, whereas R does it out of the box.</p>
 <p>To do this, we need to create a vector of values inside the square brackets, using the c() function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting first, third and fourth items</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>favourite_movies[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>)] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting first, third and fourth items</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>favourite_movies[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>)] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;Frozen&quot;          &quot;Moana&quot;           &quot;The Dark Knight&quot;</code></pre>
+</div>
 </div>
 <section id="exercise-4" class="level3" data-number="3.5.1">
 <h3 data-number="3.5.1" class="anchored" data-anchor-id="exercise-4"><span class="header-section-number">3.5.1</span> Exercise</h3>
@@ -3004,15 +3057,15 @@ vertical-align: -.125em;
 <div id="tabset-3-1" class="unnumbered tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <p>Use the vector below containing days of the week (Monday - Sunday), for the exercises.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Days of the week vector</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>days_of_the_week <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Monday&quot;</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Tuesday&quot;</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Wednesday&quot;</span>,</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Thursday&quot;</span>,</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Friday&quot;</span>,</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Saturday&quot;</span>,</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Sunday&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Days of the week vector</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>days_of_the_week <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Monday&quot;</span>,</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Tuesday&quot;</span>,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Wednesday&quot;</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Thursday&quot;</span>,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Friday&quot;</span>,</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Saturday&quot;</span>,</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;Sunday&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol type="1">
 <li><p>Select Wednesday only.</p></li>
@@ -3025,42 +3078,51 @@ vertical-align: -.125em;
 <li></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting Wednesday</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>days_of_the_week[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting Wednesday</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>days_of_the_week[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;Wednesday&quot;</code></pre>
+</div>
 </div>
 <ol start="2" type="1">
 <li></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting the week days</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>days_of_the_week[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting the week days</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>days_of_the_week[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;Monday&quot;    &quot;Tuesday&quot;   &quot;Wednesday&quot; &quot;Thursday&quot;  &quot;Friday&quot;   </code></pre>
+</div>
 </div>
 <ol start="3" type="1">
 <li></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting Tuesday and Thursday</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>days_of_the_week[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting Tuesday and Thursday</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>days_of_the_week[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span>)] </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;Tuesday&quot;  &quot;Thursday&quot;</code></pre>
+</div>
 </div>
 </div>
 <div id="tabset-3-3" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
 <p>Run the following lines of code one at a time and try to determine what is happening.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find out what the code below does</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>days_of_the_week[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Wensday&quot;</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Find out what the code below does</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>days_of_the_week[<span class="fu">c</span>(<span class="sc">-</span><span class="dv">6</span>,<span class="sc">-</span><span class="dv">7</span>)]</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Find out what the code below does</span></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>days_of_the_week[<span class="dv">8</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find out what the code below does</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>days_of_the_week[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Wensday&quot;</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Find out what the code below does</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>days_of_the_week[<span class="fu">c</span>(<span class="sc">-</span><span class="dv">6</span>,<span class="sc">-</span><span class="dv">7</span>)]</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Find out what the code below does</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>days_of_the_week[<span class="dv">8</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-3-4" class="unnumbered tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
@@ -3087,13 +3149,23 @@ vertical-align: -.125em;
 <p><img src="data:image/png;base64,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" class="img-fluid" alt="Visual of a list, with each element being a collection of boxes with different colours."></p>
 <p>To create a list we will use the <strong>list()</strong> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a list</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>movies_numbers_friends <span class="ot">&lt;-</span> <span class="fu">list</span>(favourite_movies, lucky_numbers, my_friends)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># To display the list</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>movies_numbers_friends</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a list</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>movies_numbers_friends <span class="ot">&lt;-</span> <span class="fu">list</span>(favourite_movies, lucky_numbers, my_friends)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="co"># To display the list</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>movies_numbers_friends</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] &quot;Frozen&quot;          &quot;The Lion King&quot;   &quot;Moana&quot;           &quot;The Dark Knight&quot;
+
+[[2]]
+[1]  7 12 15  1
+
+[[3]]
+[1] &quot;ian&quot;    &quot;hannah&quot; &quot;mike&quot;   &quot;almas&quot; </code></pre>
+</div>
 </div>
 <p>Each of the contents will appear on a new line:</p>
 <ul>
@@ -3118,20 +3190,30 @@ vertical-align: -.125em;
 <p><strong>Let’s see this in practice</strong></p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Index to return the collection at position 1</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>movies_numbers_friends[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Index to return the collection at position 1</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>movies_numbers_friends[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;Frozen&quot;          &quot;The Lion King&quot;   &quot;Moana&quot;           &quot;The Dark Knight&quot;</code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Index to return a smaller/sub-list with element 1 only</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>movies_numbers_friends[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Index to return a smaller/sub-list with element 1 only</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>movies_numbers_friends[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] &quot;Frozen&quot;          &quot;The Lion King&quot;   &quot;Moana&quot;           &quot;The Dark Knight&quot;</code></pre>
+</div>
 </div>
 <p>We can even <strong>double-select</strong> to select the collection with double brackets, and then a specific element or collection of elements from there.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access &quot;The Dark Knight&quot; from the list</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>movies_numbers_friends[[<span class="dv">2</span>]][<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access &quot;The Dark Knight&quot; from the list</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>movies_numbers_friends[[<span class="dv">2</span>]][<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
 </div>
 <p>So we access the second element of the list, which is a character vector, then the 4th element of the vector.</p>
 </section>
@@ -3157,12 +3239,19 @@ vertical-align: -.125em;
 </blockquote>
 <p>Within this function, the argument we assign the vectors to becomes the column name, providing us a handy shortcut to doing these tasks separately.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dataframe with favourite movies and numbers</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>about_me_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">numbers =</span> lucky_numbers,</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">movies =</span> favourite_movies)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>about_me_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a dataframe with favourite movies and numbers</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>about_me_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">numbers =</span> lucky_numbers,</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">movies =</span> favourite_movies)</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>about_me_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  numbers          movies
+1       7          Frozen
+2      12   The Lion King
+3      15           Moana
+4       1 The Dark Knight</code></pre>
+</div>
 </div>
 <p>You see that this just prints the column names and content in the console. We would need to investigate the data further to obtain other information about it.</p>
 <p>When it comes to working with data, these are outdated, and the <strong>tidyverse</strong>, which we will be introduced to in the next chapter, provide us an excellent upgrade to the data frame, known as the <strong>tibble</strong>.</p>
