@@ -67,7 +67,7 @@ There are several reasons for this trend:
 
 R is a programming language that runs computations, while R Studio is an integrated development environment (IDE) that provides an interface by adding many convenient features and tools.
 
-You do not have to use R Studio to code in R, however it was built specifically to get the best out of the language and is highly recommended.
+You do not have to use R Studio to code in R, however it was built specifically to get the best out of the language and is highly recommended. If you cannot get access to R Studio desktop edition, you could consider using Posit Cloud (the new name for R Studio Cloud).  Instructions for this are in a separate html guide.
 
 Other IDEs that work with R include:
 
