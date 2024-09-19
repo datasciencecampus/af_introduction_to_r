@@ -465,7 +465,9 @@ To use either of these functions all we need is to provide the file path list an
 
 >**Please note that when we use the function inside lapply or map we don't include the brackets as we are not passing any inputs into the function, hence we read_csv instead of read_csv(), so lapply/map is the function and read_csv is like an input/argument**
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+#| 
 # Using lapply to load multiple files
 my_datasets <- lapply(file_paths, read_csv)
  
@@ -485,7 +487,8 @@ Our other type of loops is the `while` loop.
 `for` loops iterate a set amount of times, or over a set number of things. A `while` loop iterates until it no longer meets a certain condition.
 
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 
 # Create an empty output
 # Which we will fill when the loop runs
@@ -494,7 +497,7 @@ result <- c()
 
 # Creating the loop
 
-while (logical condition) { 
+while (logical_condition) { 
   
   result <- commands
   
@@ -506,7 +509,6 @@ result
 
 ```
 
-<br>
 
 * So we start with creating an empty vector for our output
 
@@ -516,8 +518,6 @@ result
 
 * and then `{}`, which surrounds our commands. These commands will be run repeatedly in order as long as the specified condition is `TRUE`.
 
-
-<br>
 
 ### Example
 
@@ -564,7 +564,9 @@ result
 
 Can you guess what would happen if we removed the `stop_value <- stop_value + 1` ?
 
-```{r,eval=FALSE}
+```{r}
+#| eval: false
+
 # Create an empty output
 # Which we will fill when the loop runs
 
@@ -612,17 +614,14 @@ example_vector <- 1:5
 sqrt(example_vector)
 ```
 
-<br>
 
 To make this calculation, there is no need for a loop. However, not all functions work this way. 
 
+## Exercise
 
-<br>
+::: {.panel-tabset}
 
-## Exercise {.tabset .tabset-fade}
-
-
-### **Exercise**{-}
+### Exercise
 
 1. Code a `while` loop with the following characteristics:
 
@@ -634,24 +633,13 @@ To make this calculation, there is no need for a loop. However, not all function
 
 - The next command should decrease the `temperature` by `2` and assign this new value to `temperature` again.
 
-***
-
-<br>
 
 
-### **Hint**{-}
+### Hint
 
-1. Code a `while` loop with the following characteristics:
+```{r}
+#| eval: false
 
-- Assign the value of a variable `temperature` to be 40.
-
-- The condition of the `while` loop should check if the temperature is higher than `20`
-
-- The first command in the body should print out `"Its way too hot!"`
-
-- The next command should decrease the `temperature` by `2` and assign this new value to `temperature` again.
-
-```{r, eval=FALSE}
 # Create an empty output
 # Which we will fill when the loop runs
 
@@ -678,20 +666,7 @@ result
 ```
 
 
-<br>
-
-
-### **Show Answer**{-}
-
-1. Code a `while` loop with the following characteristics:
-
-- Assign the value of a variable `temperature` to be 40.
-
-- The condition of the `while` loop should check if the temperature is higher than `20`
-
-- The first command in the body should print out `"Its way too hot!"`
-
-- The next command should decrease the `temperature` by `2` and assign this new value to `temperature` again.
+### Show Answer
 
 ```{r}
 # Create an empty output
@@ -721,12 +696,9 @@ result
 
 ```
 
-
-<hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1">  
+::: 
 
 # Conditional Statements
-
-<hr style="width:75%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.75"> 
 
 ## If, else if, else
 
@@ -742,12 +714,7 @@ For example when we go shopping and choose fruits, we normally want to buy the o
 
 As we pick up our fruit and inspect it, we are actually using control flow.
 
-<br>
-
 ![Conditional statements checking whether a fruit is suitable to purchase](../Images/control_flow_image.png)\
-
-<br>
-
 
 In order to move through this decision process, we need to answer either "Yes" or "No" to each question.
 
@@ -758,8 +725,6 @@ This links in with the logical or Boolean data types that we covered in **Chapte
 To evaluate these we use comparison operators which we used in **Chapter 4 Working With Dataframes** where we used the `filter()` function.
 
 These comparison and logical operators allow us to control the flow of our code.
-
-<br>
 
 **Comparison Operators.**
 
@@ -773,8 +738,6 @@ These comparison and logical operators allow us to control the flow of our code.
 | >=     | greater than or equal to|
 
 
-<br>
-
 
 **Logical Operators.**
 
@@ -786,10 +749,6 @@ These comparison and logical operators allow us to control the flow of our code.
 
 
 
-<br>
-
-<br>
-
 | Condition 1 | Condition 2  | & (AND) Equates to |  &#124; (OR) Equates to |
 |:-----------:|:------------:|:------------------:|:------------------:|
 |     True    |     True     |        True        |        True        |
@@ -797,8 +756,6 @@ These comparison and logical operators allow us to control the flow of our code.
 |    False    |     True     |        False       |        True        |
 |    False    |     False    |        False       |        False       | 
 
-
-<br>
 
 Our example above shows that we can make a decision by answering "Yes" or "No" at two key points. But often this will not be the case - we might have only a single question, or we might want to add some more branches to our responses.
 
@@ -827,30 +784,27 @@ Finally, if none of the conditions are met, the `else` condition's associated ac
 
 We separate out out different command blocks relating to each condition using curly brackets `{}` around the corresponding block of code.
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 
-if (first condition) { 
+if (first_condition) { 
   
-    Commands - executed if the first condition is true
+    execute_this
   
-} else if (second condition) { 
+} else if (second_condition) { 
   
-    Commands - executed if the first condition is false and the second condition is true
+    execute_this
   
 } else {
   
-    Commands - executed if all conditions are false
+    execute_this
   
 }
 ```
 
 > **It’s important that the `else if` keyword comes on the same line as the closing bracket of the previous part of the control structure.**
 
-<br>
-
 ![Simple if, else if, and else diagram](../Images/control_flow_if_elseif_and_else.png)\
-
-<br>
 
 Let's look at an example.
 
@@ -871,8 +825,6 @@ if (height == 5) {
 }
 
 ```
-
-<br>
 
 Remember our `if`, `else if` and `else` statements take a condition so we need a double equals sign `==` for checking equivalence.
 
@@ -900,12 +852,6 @@ if (height == 5) {
 
 ```
 
-
-
-<br>
-
-
-
 Within our condition we can use the logical operators too: `&` (and); `|` (or), in order to make more complex conditions.
 
 
@@ -930,9 +876,6 @@ if (height == 5) {
 }
 
 ```
-
-
-<br>
 
 It’s important to know how the `if`, `else if`, `else` works.
 
@@ -968,11 +911,6 @@ if (height == 5) {
 
 >**A good practical example of if and else statements can be seen here [PHE](https://github.com/publichealthengland/excess-deaths/blob/master/R/function_visualisations.R)**
 
-***
-
-<br>
-
-<hr style="width:75%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.75"> 
 
 ## Loops and Conditional Statements
 
@@ -1005,18 +943,12 @@ for (number in number_of_takeaways_ordered) {
 
 ```
 
-***
 
-<br>
+### Extension Exercise: FizzBuzz
 
-<hr style="width:50%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.5"> 
+::: {.panel-tabset}
 
-
-### Entension Exercise: FizzBuzz{.tabset .tabset-fade}
-
-
-
-#### **Exercise**{-}
+#### Exercise
 
 1. Can you write a loop with an `if`, `else if` and `else` statement, that loops through the numbers from 1 to 30.
 
@@ -1048,42 +980,29 @@ For example checking if something is divisible by 3 we can do:
 
 ```
 
-***
 
-<br>
+#### Hint
 
+```{r}
+#| eval: false
 
-#### **Hint**{-}
-
-1. Can you write a loop with an `if`, `else if` and `else` statement, that loops through the numbers from 1 to 30.
-
-   If the number is a multiple of both 3 and 5, print "FizzBuzz".
-
-   If the number is a multiple of 3, print the word "Fizz".
-
-   If the number is a multiple of 5, print the word "Buzz".
-
-   For all other values print the number.
-
-```{r, eval=FALSE}
-
-for (each number in vector) { 
+for (each_number in vector) { 
   
-    if (first conditions) {
+    if (first_conditions) {
     
         output
     
-  } else if (second condition) {
+  } else if (second_condition) {
     
              output
     
-  } else if (third condition) { 
+  } else if (third_condition) { 
     
              output
     
   } else {
     
-            print(each number)
+            print(each_number)
     
   }
   
@@ -1091,21 +1010,8 @@ for (each number in vector) {
 
 ```
 
-***
 
-<br>
-
-#### **Show Answer**{-}
-
-1. Can you write a loop with an `if`, `else if` and `else` statement, that loops through the numbers from 1 to 30.
-
-   If the number is a multiple of both 3 and 5, print "FizzBuzz".
-
-   If the number is a multiple of 3, print the word "Fizz".
-
-   If the number is a multiple of 5, print the word "Buzz".
-
-   For all other values print the number.
+#### Show Answer
 
 
 ```{r}
@@ -1139,9 +1045,7 @@ for (each_number in 1:30) {
 
 ```
 
-## {-}
-
-<hr style="width:75%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.75"> 
+:::
 
 ## dplyr if_else()
 
@@ -1179,8 +1083,6 @@ The value that the new column should take if the comparison operator is `TRUE`. 
 3. **false**
 The value that the new column should take if the comparison operator is `FALSE`. Like the second argument, it can be anything you specify.
 
-<br>
-
 
 Lets look at an example.
 
@@ -1213,9 +1115,6 @@ colSums(is.na(titanic))
 # Part of the summary data shows number of missing values.
 
 summary(titanic$age_of_passenger)
-
-
-
 ```
 
 We can see that the column `age_of_passenger` has 267 missing values.
@@ -1226,17 +1125,13 @@ Here we are going to use the mean value for `age_of_passenger`.
 
 > **Please refer to the Editing and Imputation Course for details on how to best impute your missing data, this is for demonstration purposes only.** 
 
-<!-- Nice -JM -->
-
-<br>
-
 The mutate() function from the dplyr package is useful in creating a new variable. This is covered in detail in chapter 4 of the Introduction to R course.
 
 We don't necessarily want to change the original column so we instead create a new column which contains the age data, but with the missing values imputed.
 
 Here my new column name is **imputed_age_of_passenger**.
 
-The `if_else()` function takes that single comparison operator **condition = is.na(age_of_passenger)** and vectorizes it.
+The `if_else()` function takes that single comparison operator **condition = is.na(age_of_passenger)** and vectorise it.
 
 
 ```{r}
@@ -1260,9 +1155,9 @@ colSums(is.na(imputed_titanic))
 
 ```
 
-<br>
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
 
 imputed_titanic %>% 
   relocate(pclass:age_of_passenger, imputed_age_of_passenger) %>% 
@@ -1271,12 +1166,6 @@ imputed_titanic %>%
   scroll_box(width = "100", height = "500px")
  
 ```
-
-<br>
-
-<hr style="width:75%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.75"> 
-
-<br>
 
 ## dplyr case_when()
 
@@ -1328,9 +1217,11 @@ case_when_example <- titanic %>%
   )
 
 ```
-<!-- love seeing this in action, is it worth mentioning the similarity with recode() in this example -JM -->
 
-```{r echo = FALSE, message = FALSE, warning = FALSE}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
 
 # To display just part of the dataset
 
@@ -1342,12 +1233,6 @@ case_when_example %>%
   scroll_box(width = "100", height = "500px")
 ```
 
-
-
-
-<br>
-
-
 `case_when()` statements are two-sided formulas where the left-hand side is a logical condition and the right-hand side is the value to assign when that test is `TRUE`, with the two sides separated by a **~**.
 
 Values that are never matched by any of the logical test's within the statement get a default replacement value: NA. 
@@ -1358,17 +1243,13 @@ The left-hand side must evaluate to a logical vector.
 
 The right-hand side does not need to be logical but it must evaluate to the same type of vector.
 
-<br>
-
 You could also use the recode function here - this is also covered in Introduction to R, Chapter 4.
 
-<hr style="width:50%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.50"> 
+### Exercise: Case When
 
-<br>
+::: {.panel-tabset}
 
-### Exercise: Case When{.tabset .tabset-fade}
-
-#### **Exercise**{-}
+#### Exercise
 
 1. Use the `case_when()` function to create a new column in the titanic dataset called **fare_level**. 
 
@@ -1380,26 +1261,13 @@ This new column should have 5 levels total:
 * Greater than or equal to 300: "very expensive"
 * Otherwise : "unknown"
 
-  
-
-<br>
-
-
-#### **Hint**{-}
-
-1. Use the case_when() function to create a new column in the titanic dataset called **fare_level**. 
-
-This new column should have 5 levels total:
-
-* If fare is less than 100, fare_level should be "cheap"
-* Between 100 and 200: "middling"
-* Between 200 and 300: "expensive"
-* Greater than or equal to 300: "very expensive"
-* Otherwise : "unknown"
+#### Hint
 
 Assign your tibble to the variable **titanic_fare_level**.
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 # PLEASE NOTE: THIS IS NOT REAL CODE
 # The example hint shows the structure of a case_when() 
 # FOR MORE INFORMATION USE THE R HELP DOCUMENTATION
@@ -1421,22 +1289,7 @@ titanic_fare_level
 
 ```
 
-
-<br>
-
-
-#### **Show Answer**{-}
-
-1. Use the case_when() function to create a new column in the titanic dataset called **fare_level**. 
-
-This new column should have 4 levels total:
-
-* If fare is less than 100, fare_level should be "cheap"
-* Between 100 and 200: "middling"
-* Between 200 and 300: "expensive"
-* Greater than or equal to 300: "very expensive"
-
-Assign your tibble to the variable **titanic_fare_level**.
+#### Show Answer
 
 ```{r}
 # Using case_when
@@ -1458,7 +1311,10 @@ titanic_fare_level <- titanic %>%
 
 
 
-```{r echo = FALSE, message = FALSE, warning = FALSE}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
 
 # To display just part of the dataset
 
@@ -1469,7 +1325,7 @@ titanic_fare_level %>%
   scroll_box(width = "100", height = "500px")
 
 ```
-<br>
+
 
 I can do a count of my data, we can see below that we have one unknown level.
 
@@ -1485,16 +1341,13 @@ titanic_fare_level %>%
         dplyr::count(fare_level, sort = TRUE)
 ```
 
-#{-}
+:::
 
-<br>
+### Extension Exercise Case When
 
-<hr style="width:50%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.5"> 
+::: {.panel-tabset}
 
-### Extension Exercise Case When{.tabset .tabset-fade}
-
-#### **Exercise**{-}
-
+#### Exercise
 
 Building on from the earlier exercise when we imputed missing values using the mean value of the of the age_of_passenger column.
 
@@ -1510,33 +1363,16 @@ In this column we should have,
 
 As a guide the mean value for female passenger is 28.6 and for male passengers is 30.5.
 
-
-***
-
-<br>
-
-
-#### **Hint**{-}
-
-Building on from the earlier exercise when we imputed missing values using the mean value of the of the age_of_passenger column.
-
-Use the case_when function to create a new column in the titanic dataset called **imputed_age_of_passenger**.
-
-In this column we should have,
-
-* wherever the value of the sex_of_passenger is "male" and age of passenger value is missing the imputed value should be the mean age_of_passenger of only the male passengers.
-
-* wherever the value sex_of_passenger is "female" and age of passenger value is missing the imputed value should be imputed with the mean age_of_passenger of only the female passengers.
-
-* otherwise, take the value of the age_of_passenger.
+#### Hint
 
 As a guide the mean value for female passenger is 28.6 and for male passengers is 30.5.
 
-```{r,eval=FALSE}
+```{r}
+#| eval: false
 
 # Please NOTE, this is not code, shows the steps required 
 
-Calculate the mean values for male and female passengers
+# Calculate the mean values for male and female passengers
 
 # Use case_when within a mutate to add the new column
 
@@ -1550,15 +1386,7 @@ titanic_imputed_mean_values <- titanic %>%
 
 ```
 
-
-
-
-***
-
-<br>
-
-
-#### **Show Answer**{-}
+#### Show Answer
 
 Building on from the earlier exercise when we imputed missing values using the mean value of the of the age_of_passenger column.
 
@@ -1573,9 +1401,6 @@ In this column we should have,
 * otherwise, take the value of the age_of_passenger.
 
 As a guide the mean value for female passenger is 28.6 and for male passengers is 30.5.
-
-
-
 
 
 ```{r}
@@ -1615,7 +1440,6 @@ titanic_imputed_mean_values <- titanic %>%
 
 ```
 
-<br>
 
 ```{r echo = FALSE, message = FALSE, warning = FALSE}
 
@@ -1628,11 +1452,7 @@ titanic_imputed_mean_values %>%
 
 ```
 
-# {-}
-
-<br>
-
-<hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1">  
+::: 
 
 # Functions
 
@@ -1643,9 +1463,6 @@ Base R includes numerous built-in functions and there are thousands more R funct
 We have previously used ready-made functions (from Base R or from packages), e.g. **`mutate()`**, **`help()`**,**`round()`**,**`clean_names()`**, **`mean()`**.
 
 We can also write your own functions, called “user-defined functions”.
-
-
-<hr style="width:75%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.75"> 
 
 ## Why we use functions
 
@@ -1663,8 +1480,6 @@ We can avoid messy code by organising it into chunks of reusable code called fun
 
 
 In addition to this, we use functions to do everything in R - from making a vector to creating models and plots. Having more hands on experience with functions can give you a greater appreciation for how the functions, we heavily depend on, are implemented.
-
-<!--This description is really good -JM -->
 
 We can take one complicated operation and wrap it up inside a function and use it wherever we need. 
 
@@ -1693,8 +1508,6 @@ Using the mean function is much easier.
 
 Another example here is when we clean our column names, it is much easier to use the `janitor::clean_names()` function than to run the multiple lines of code using `gsub()`
 
-<hr style="width:75%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.75"> 
-
 ## Types of Functions
 
 In R we have three types of functions:
@@ -1712,23 +1525,22 @@ In R we have three types of functions:
 
    Still user defined - generally one line functions used within a larger piece of code, they have name, but still do specific tasks.
 
-
 In this section we’re going to focus on User Defined functions.
-
-<hr style="width:75%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.75"> 
 
 ## How to write a function
 
 The basic structure of a function looks like this:
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+
 # Basic structure of a function
 
 function_name <- function(input) { 
   
-                 statements of what the function is doing
+                 code_statements
   
-                 return(the function output)
+                 return(output)
 }
 
 ```
@@ -1748,8 +1560,6 @@ The **`return()`** function will return whatever value is after it. When this is
 
 Note that the keyword return is not necessary; but any function without a `return` statement will return the final variable called - this is functionally the same as using a return statement, but more implicit and therefore less clear. If we do not give a variable to be returned, or state one at the end of our function we will get no value returned from our function. This could be useful in some cases, for example if you just want to print out some results to the console, or display a graph, without returning any data.
 
-<hr style="width:75%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.75"> 
-
 ## Example of a basic function
 
 ```{r}
@@ -1765,10 +1575,6 @@ sum_two_values <- function(value_1, value_2) {
 ```
 
 Our new function **`sum_two_values()`** will exist in our global environment which can be seen in the panel on the right hand side.
-
-<br>
-
-<hr style="width:75%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.75"> 
 
 ## Calling Functions
 
@@ -1795,12 +1601,11 @@ result
 >**TIP - If you have written a chunk of code that you want to turn into a function, highlight the code chunk and press `Ctrl + ALt + x` on windows  or `control + option X` on a Mac.
 A pop up will appear that will ask you to select a function name and the inputs and code structure needed to turn your code into a function will be added automatically.**
 
+## Exercise: Basic Functions
 
-<hr style="width:75%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.75"> 
+::: {.panel-tabset}
 
-## Exercise: Basic Functions{.tabset .tabset-fade}
-
-### **Exercise** {-}
+### Exercise
 
 1. The **`range()`** in R, doesn't show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called **`range_difference()`** which returns the difference between the highest value and the lowest value?
 
@@ -1815,7 +1620,6 @@ range(age_vector)
 
 ```
 
-<br>
 
 2. Write a function which:
 
@@ -1834,15 +1638,13 @@ Check it performs how you expect using the examples:
 
 * `fahrenheit_to_degrees_celsius(81.3)` returns: 
     + [1] 27.4
-    
 
-<br>
 
-### **Hint**{-}
+### Hint
 
-1. The **`range()`** in R, doesn't show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called **`range_difference()`** which returns the difference between the highest value and the lowest value?
+```{r}
+#| eval: false
 
-```{r, eval=FALSE}
 # Creating my function
 
 range_difference <-  function(input){
@@ -1862,14 +1664,6 @@ my_range(input)
 ```
 
 
-<br>
-
-2. Write a function which:
-
-   **Converts from Fahrenheit to degrees Celsius using the equation below.**
-
-$$C=\frac{5}{9}(F-32)$$
-
 ```{r, eval=FALSE}
 
 # Creating our function
@@ -1887,9 +1681,7 @@ fahrenheit_to_degrees_celsius(32)
 ```
 
 
-### **Show Answer**{-}
-
-1. The **`range()`** in R, doesn't show the difference between the highest value and the lowest value, but rather shows the highest value and lowest values, can you create a function called **`range_difference()`** which returns the difference between the highest value and the lowest value?
+### Show Answer
 
 ```{r}
 # Creating my function
@@ -1912,15 +1704,6 @@ range_difference(age_vector)
 ```
 
 
-<br>
-
-2. Write a function which:
-
-   **Converts from Fahrenheit to degrees Celsius using the equation below.**
-
-
-$$C=\frac{5}{9}(F-32)$$
-
 ```{r}
 
 # Creating our function
@@ -1936,9 +1719,8 @@ fahrenheit_to_degrees_celsius <- function(fahrenheit) {
 
 fahrenheit_to_degrees_celsius(32)
 ```
-## {-}
 
-<hr style="width:75%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.75"> 
+:::
 
 ## Scope
 
@@ -1965,7 +1747,9 @@ scope_function = function(){
 
 ```
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+#| 
 # To display the result
 # This will not work as z does not exist outside the function
 
@@ -1977,16 +1761,11 @@ This will give the error message below,
 
 **Error: object 'weight_kg' not found**
 
-
-<hr style="width:75%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.75"> 
-
 ## Arguments
 
 In short, arguments are things you pass to a function, when you call it, to enable the function to perform it’s task.
 
-<hr style="width:50%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.50"> 
-
-### Required Arguments{-}
+### Required Arguments
 
 Like the name suggests, these are arguments which are required by a function and must be passed in the correct order.
 
@@ -2005,10 +1784,7 @@ arithmetic(a = 4, b = 9)
 
 `a` and `b` are both required arguments. We would get a missing error if we did not pass both arguments. 
 
-
-<hr style="width:50%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.50"> 
-
-### Default arguments{-}
+### Default arguments
 
 This is where, in the function declaration, the value of the parameter is pre-set. The function will retain this value unless it is changed when the function is called.
     
@@ -2033,9 +1809,7 @@ arithmetic(a = 5, b = 2)
     
 In the first example above the function will take `a = 5` and use the default value `b = 1`. Whereas, in the second example, we overwrite `b = 1` by passing the argument `2`.
 
-<hr style="width:50%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:0.50"> 
-
-### Dot-dot-dot arguments{-}
+### Dot-dot-dot arguments
 
 This is also known as the ellipsis argument.
 
@@ -2073,11 +1847,6 @@ We can also include a digits argument within this function which is coming from 
 
 fahrenheit_to_degrees_celsius(fahrenheit = 36, digits = 4)
 ```
-
-
-<hr style="width:100%;height:4px;border-width:0;color:gray;background-color:#dd4814; opacity:1"> 
-
-<br>
 
 # Summary
 
