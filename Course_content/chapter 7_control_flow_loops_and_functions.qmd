@@ -1,5 +1,5 @@
 ---
-title: "R Control Flow, Loops and Functions "
+title: "Chapter 7 - Control Flow, Loops and Functions"
 author: "Government Analysis Function and ONS Data Science Campus"
 engine: knitr
 execute:
@@ -1441,8 +1441,10 @@ titanic_imputed_mean_values <- titanic %>%
 ```
 
 
-```{r echo = FALSE, message = FALSE, warning = FALSE}
-
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
 
 titanic_imputed_mean_values %>%
   select(sex_of_passenger,age_of_passenger, imputed_age_of_passenger, everything()) %>% 
@@ -1664,7 +1666,8 @@ my_range(input)
 ```
 
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
 
 # Creating our function
 
@@ -1749,7 +1752,7 @@ scope_function = function(){
 
 ```{r}
 #| eval: false
-#| 
+
 # To display the result
 # This will not work as z does not exist outside the function
 
