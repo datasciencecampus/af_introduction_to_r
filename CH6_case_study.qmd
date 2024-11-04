@@ -1,0 +1,384 @@
+---
+title: "Chapter 6 - Case Study"
+author: "Government Analysis Function and ONS Data Science Campus"
+engine: knitr
+execute:
+  echo: true
+  eval: false
+---
+
+> To switch between light and dark modes, use the toggle in the top left
+
+# Introduction
+
+By the end of this case study, you should have more confidence with manipulating data and using techniques from the first five chapters of Intro to R, as such, they are a **pre-requisite** for it.
+
+These data sets and question are designed to be an initial springboard for you to continue with your data journey. 
+
+Answers are provided; but these may only show one or two ways of solving the issue. 
+
+>**Your answers may differ slightly from ours, this is fine if the output is consistent, but consider whether you could achieve your answer with less or better written code.** 
+
+
+## Structure:
+
+Questions will be presented in tabs.
+
+* Tab 1 will contain the question 
+* Tab 2 will contain the solution in R.
+
+Please choose the tab with the language you wish to use.
+An example is below.
+
+## Example 
+::: {.panel-tabset}
+
+### **Question**{-}
+
+This is an example question.
+
+### **Solution**{-} 
+```{r}
+# Solution cell
+
+"Insert code here"
+
+```
+:::
+
+
+# Question 1: Packages
+::: {.panel-tabset}
+
+## **Question**{-}
+
+Load the following packages:
+
+* tidyverse
+* janitor
+
+## **Show Answer**{-}
+
+```{r }
+# load packages
+
+library(tidyverse)
+library(janitor)
+
+```
+:::
+
+# Question 2: Data 
+::: {.panel-tabset}
+
+## **Question**{-}
+
+Read in the two files from the **data** folder below, assigning them to the variables suggested:
+
+netflix - nextflix_data.csv
+imdb_scores - imdb_scores.csv
+
+Note - The data is sourced from [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday) and directly from IMDB.
+
+Some data has been altered to suit the difficulty level of this course. This is a training dataset, and so shouldn't be relied upon for 100% accuracy.
+
+## **Show Answer**{-}
+
+```{r}
+# Read in imdb and netflix data
+
+netflix <- readr::read_csv("Data/netflix_data.csv")
+
+imdb_scores <- readr::read_csv("Data/imdb_scores.csv")
+
+```
+:::
+
+# Question 3 
+::: {.panel-tabset}
+
+## **Question**{-}
+
+Clean up the column names of imdb_scores
+
+## **Show Answer**{-}
+
+```{r}
+# Use janitor to clean names of imdb data
+
+imdb_scores <- clean_names(imdb_scores)
+
+names(imdb_scores)
+
+```
+:::
+
+# Question 4 
+::: {.panel-tabset}
+
+## **Question**{-}
+
+What are the dimensions of the Netflix data?
+
+See if you can output them in a sentence.
+
+## **Show Answer**{-}
+
+```{r}
+# Find the dimensions with dim()
+
+dim(netflix) # Rows and columns
+
+```
+
+```{r}
+# Output a sentence with the dimensions
+
+cat("There are", nrow(netflix), "rows and", ncol(netflix), "columns in the neflix dataset.")
+```
+:::
+
+# Question 5 
+::: {.panel-tabset}
+
+## **Question**{-}
+
+Use an inspection function to determine the datatypes of the columns in the Netflix data.
+
+## **Show Answer**{-}
+
+```{r}
+# Have a glimpse of netflix
+
+glimpse(netflix)
+
+```
+:::
+ 
+# Question 6 
+::: {.panel-tabset}
+
+## **Question**{-}
+
+How many missing values do we have in each dataset?
+
+## **Show Answer**{-}
+
+```{r}
+# Number of missings in the netflix data
+
+
+colSums(is.na(netflix))
+
+```
+
+
+```{r}
+# Number of missings in imdb data
+
+colSums(is.na(imdb_scores))
+
+```
+:::
+
+# Question 7 
+::: {.panel-tabset}
+
+## **Question**{-}
+
+How many times does each unique country occur in the dataset? 
+
+## **Show Answer**  {-}
+
+```{r}
+# Number of unique categories in primary_country
+
+netflix |> 
+    count(primary_country)
+
+```
+:::
+
+# Question 8
+::: {.panel-tabset}
+
+## **Question**{-}
+
+Create a new tibble "netflix_movies" by filtering the netflix tibble to contain only "Movie". 
+
+## **Show Answer**{-}
+
+```{r}
+# Create a tibble with "Movie"s only
+
+netflix_movies <- netflix |> 
+    filter(type == "Movie")
+
+glimpse(netflix_movies)
+    
+```
+:::
+
+# Question 9 
+::: {.panel-tabset}
+
+## **Question**{-}
+
+Using your netflix_movies tibble, clean the duration column by:
+
+* Removing the suffix "min".
+* Converting the resulting column to an integer
+
+Following this, rename the column to "duration_mins".
+
+> Note, you can do this in one pipeline!
+
+Ensuring that you overwrite and reassign the dataset!
+
+## **Show Answer**{-}
+
+```{r}
+# Use mutate to clean the duration column
+
+netflix_movies <- netflix_movies |> 
+    mutate(duration = as.integer(str_replace(duration, 
+                                             pattern = "min",
+                                             replacement = ""))) |> 
+    rename(duration_mins = duration)
+
+glimpse(netflix_movies)
+
+```
+:::
+
+# Question 10
+::: {.panel-tabset}
+
+## **Question**{-}
+
+Using your netflix_movies tibble, compute:
+
+* The mean and median duration of the movies
+* The mean and standard deviation of the cast numbers.
+
+## **Show Answer**{-}
+
+```{r}
+# Compute summary statistics of duration and cast number
+
+netflix_movies |> 
+    summarise(mean_duration = mean(duration_mins, na.rm = TRUE),
+              median_duration = median(duration_mins, na.rm = TRUE),
+              mean_cast = mean(num_cast, na.rm = TRUE),
+              std_cast = sd(num_cast, na.rm = TRUE))
+
+```
+:::
+
+# Question 11 
+::: {.panel-tabset}
+
+## **Question**{-}
+
+Using your netflix_movies tibble:
+
+* Select the title, duration, director and cast numbers
+* Sort in descending order of duration
+
+Which movie was the longest, and who directed it?
+ 
+## **Show Answer**{-}
+
+```{r}
+# Pipeline for longest movie
+
+netflix_movies |> 
+    select(title, duration_mins, director, num_cast) |> 
+    arrange(desc(duration_mins)) |> 
+    glimpse()
+
+```
+The longest movie on Netflix is Black Mirror: Bandersnatch, at 312 minutes, with no recorded director.
+
+:::
+
+# Question 12 
+::: {.panel-tabset}
+
+## **Question**{-}
+
+Using your netflix_movies tibble:
+
+Group by primary_country and obtain the median cast number.
+ 
+## **Show Answer**{-}
+
+```{r}
+# Group by country
+
+netflix_movies |> 
+    group_by(primary_country) |> 
+    summarise(var_cast = median(num_cast, na.rm = TRUE))
+
+```
+:::
+
+# Question 13 
+::: {.panel-tabset}
+
+## **Question**{-}
+
+Using your netflix_movies tibble:
+
+Group by type and rating of the movie, producing the mean duration.
+ 
+## **Show Answer**{-}
+
+```{r}
+# Group by type and rating
+
+netflix_movies |> 
+    group_by(type, rating) |> 
+    summarise(mean_duration = mean(duration_mins, na.rm = TRUE))
+
+```
+:::
+
+# Question 14
+::: {.panel-tabset}
+
+## **Question**{-}
+
+Left join the imdb_scores data to the **original** netflix data.
+
+Create a new variable netflix_imdb to contain this.
+
+
+## **Show Answer**{-}
+
+```{r}
+# Join imdb and netflix
+
+netflix_imdb <- netflix |> 
+    left_join(y = imdb_scores,
+              by = "title")
+
+glimpse(netflix_imdb)
+
+```
+:::
+
+# Summary 
+
+In this case study you have had the opportunity to apply data analysis techniques with the tidyverse to some additional datasets. 
+
+This is not exhaustive; have a look at the data and experiment with other techniques you can use.
+
+This data has been provided for you to experiment with; however there is nothing better than learning with data that is meaningful to you.
+
+For additional datasets we recommend exploring:
+
+* [Kaggle](https://www.kaggle.com/)
+* [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday)
+* [Data.gov](https://data.gov.uk/)
+

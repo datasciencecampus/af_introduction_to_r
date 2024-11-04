@@ -10,3 +10,5 @@
 # Python cache and setup files
 .ipynb_checkpoints
 
+
+/.quarto/
