@@ -6,13 +6,14 @@
 .Rhistory
 .Rproj.user
 .RData
+.Rprofile
 
 # Python cache and setup files
 .ipynb_checkpoints
 
 # Quarto
 /.quarto/
-/docs/
+_site/
 
 # Mac users
 .DS_STORE
