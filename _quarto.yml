@@ -3,6 +3,9 @@ project:
 
 website:
   title: "Introduction to R"
+  repo-url: https://github.com/datasciencecampus/af_introduction_to_r
+  repo-actions: [source, issue]
+  reader-mode: true
   sidebar:
     logo-href: /index.html
     style: "docked"

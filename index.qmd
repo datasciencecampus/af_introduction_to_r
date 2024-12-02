@@ -5,6 +5,7 @@ engine: knitr
 execute:
   echo: true
   eval: false
+  freeze: auto  # re-render only when source changes
 format:
     html: 
       highlight: null
@@ -34,17 +35,13 @@ It is essential that you have frequent opportunities to practice what you have l
 
 # Course Materials
 
-A folder containing the dataset and teaching files for the course will be provided or can be downloaded from the Learning Hub, please download and unzip this to folder you are familiar with.
+The course materials come in several formats:
 
-The course materials are in several folders:
+* HTML pages such as the one you are reading now
 
-* Additional Content - Documents etc to support the course.
+* Data [](datasets.qmd) we will use during the course.  **It's highly recommended you create a project with a 'data' folder and download all the required datasets before starting the course**
 
-* Data - contains the data we will use during the course.
-
-* Course Content - Contains the learning Documents which are in html format.
-
-* Pre Course Information - Contains documents with instructions on how prepare for the course.
+You can also navigate to the course Github Repository and clone or fork the website structure for yourself.  If you are new to programming and version control, we recommend you remain on the website to gain the best experience.
 
 
 # Software Requirements

@@ -5,6 +5,7 @@ engine: knitr
 execute:
   echo: true
   eval: true
+  freeze: auto  # re-render only when source changes
 ---
 
 > To switch between light and dark modes, use the toggle in the top left
