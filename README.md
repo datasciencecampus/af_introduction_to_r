@@ -17,12 +17,12 @@ These courses will be updated and maintained on an ongoing basis, there should y
 
 # Course Structure
 
-[Course Information](https://datasciencecampus.github.io/af_introduction_to_r/)
-[R Studio Cloud](https://datasciencecampus.github.io/af_introduction_to_r/R_Studio_Cloud.html)
-[Chapter 1 - Getting Started](CH1_getting_started.qmd)
-[Chapter 2 - Data Structures](https://datasciencecampus.github.io/af_introduction_to_r/)
-[Chapter 3 - Import & Export](https://datasciencecampus.github.io/af_introduction_to_r/)
-[Chapter 4 - Tibbles & Dplyr](https://datasciencecampus.github.io/af_introduction_to_r/)
-[Chapter 5 - Summary Statistics & Aggregation](https://datasciencecampus.github.io/af_introduction_to_r/)
-[Chapter 6 - Case Study](https://datasciencecampus.github.io/af_introduction_to_r/)
-[Chapter 7 - Control Flow, Loops & Functions](https://datasciencecampus.github.io/af_introduction_to_r/)
+- [Course Information](https://datasciencecampus.github.io/af_introduction_to_r/)
+- [R Studio Cloud](https://datasciencecampus.github.io/af_introduction_to_r/R_Studio_Cloud.html)
+- [Chapter 1 - Getting Started](https://datasciencecampus.github.io/af_introduction_to_r/CH1_getting_started.html)
+- [Chapter 2 - Data Structures](https://datasciencecampus.github.io/af_introduction_to_r/CH2_data_structures.html)
+- [Chapter 3 - Import & Export](https://datasciencecampus.github.io/af_introduction_to_r/CH3_import_export.html)
+- [Chapter 4 - Tibbles & Dplyr](https://datasciencecampus.github.io/af_introduction_to_r/CH4_tibbles_dplyr.html)
+- [Chapter 5 - Summary Statistics & Aggregation](https://datasciencecampus.github.io/af_introduction_to_r/CH5_summary_agg.html)
+- [Chapter 6 - Case Study](https://datasciencecampus.github.io/af_introduction_to_r/CH6_case_study.html)
+- [Chapter 7 - Control Flow, Loops & Functions](https://datasciencecampus.github.io/af_introduction_to_r/CH7_control_flow_loops_and_functions.html)
