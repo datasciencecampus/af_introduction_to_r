@@ -1,7 +1,16 @@
-# Introduction to R Course Website
+# Introduction to R Training
 
-This repo has now been repurposed to host a Github Pages website hosting the ONS Introduction to R training programme.
+Courses and guidance provided by the Analysis Function and ONS Data Science Campus to help you get started with using R for data analysis.
 
-Currently this is a pilot to demonstrate delivery of these materials through a new platform, making them open-source and more accessible.
+The course was developed for those working at ONS and across the Government Statistical Service (GSS). However, we hope these resources will also be useful for anyone else who integrates programming and statistics.
 
-Please note that the course materials themselves are still undergoing review with a release due in December 2024.
+There are several ways to access the course materials:
+
+1. Navigate to the website link located in the 'About' section on the right side of the page.
+2. Clone a copy of the repository to your machine
+3. Download a ZIP file containing the website materials
+4. Fork the repository
+
+The training is covered by the Open Government Licence (OGL) giving you freedom to use the materials as set out in the licence tab.
+
+These courses will be updated and maintained on an ongoing basis, there should you come across any issues with the course or simply have a suggestion, please raise a ticket in the Issues tab and provide as much detail as possible.
