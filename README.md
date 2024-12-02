@@ -14,3 +14,15 @@ There are several ways to access the course materials:
 The training is covered by the Open Government Licence (OGL) giving you freedom to use the materials as set out in the licence tab.
 
 These courses will be updated and maintained on an ongoing basis, there should you come across any issues with the course or simply have a suggestion, please raise a ticket in the Issues tab and provide as much detail as possible.
+
+# Course Structure
+
+[Course Information](https://datasciencecampus.github.io/af_introduction_to_r/)
+[R Studio Cloud](https://datasciencecampus.github.io/af_introduction_to_r/R_Studio_Cloud.html)
+[Chapter 1 - Getting Started](CH1_getting_started.qmd)
+[Chapter 2 - Data Structures](https://datasciencecampus.github.io/af_introduction_to_r/)
+[Chapter 3 - Import & Export](https://datasciencecampus.github.io/af_introduction_to_r/)
+[Chapter 4 - Tibbles & Dplyr](https://datasciencecampus.github.io/af_introduction_to_r/)
+[Chapter 5 - Summary Statistics & Aggregation](https://datasciencecampus.github.io/af_introduction_to_r/)
+[Chapter 6 - Case Study](https://datasciencecampus.github.io/af_introduction_to_r/)
+[Chapter 7 - Control Flow, Loops & Functions](https://datasciencecampus.github.io/af_introduction_to_r/)
