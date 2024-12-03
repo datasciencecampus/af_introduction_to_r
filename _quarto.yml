@@ -14,21 +14,23 @@ website:
       - text: "Course Information"
         href: index.qmd
       - text: "R-Studio Cloud"
-        href: R_Studio_Cloud.qmd
-      - text: "Chapter 1 - Getting Started"
+        href: Posit_Cloud.qmd
+      - text: "1 - Getting Started"
         href: CH1_getting_started.qmd
-      - text: "Chapter 2 - Data Structures"
+      - text: "2 - Data Structures"
         href: CH2_data_structures.qmd
-      - text: "Chapter 3 - Import & Export"
+      - text: "3 - Import & Export"
         href: CH3_import_export.qmd
-      - text: "Chapter 4 - Tibbles & Dplyr"
+      - text: "4 - Tibbles & Dplyr"
         href: CH4_tibbles_dplyr.qmd
-      - text: "Chapter 5 - Summary Statistics & Aggregation"
+      - text: "5 - Summary Statistics & Aggregation"
         href: CH5_summary_agg.qmd
-      - text: "Chapter 6 - Case Study"
+      - text: "6 - Case Study"
         href: CH6_case_study.qmd
-      - text: "Chapter 7 - Control Flow, Loops & Functions"
+      - text: "7 - Control Flow, Loops & Functions"
         href: CH7_control_flow_loops_and_functions.qmd
+      - text: "Datasets"
+        href: datasets.qmd       
 
 format:
   html:
