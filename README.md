@@ -13,7 +13,7 @@ There are several ways to access the course materials:
 
 The training is covered by the Open Government Licence (OGL) giving you freedom to use the materials as set out in the licence tab.
 
-These courses will be updated and maintained on an ongoing basis, there should you come across any issues with the course or simply have a suggestion, please raise a ticket in the Issues tab and provide as much detail as possible.
+These courses will be updated and maintained on an ongoing basis, should you come across any issues with the course or simply have a suggestion, please raise a ticket in the Issues tab and provide as much detail as possible.
 
 # Course Website
 
