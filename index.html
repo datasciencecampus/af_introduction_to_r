@@ -4742,6 +4742,11 @@ vertical-align: -.125em;
       <a href="./">Introduction to R</a> 
         <div class="sidebar-tools-main">
   <a href class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
     </div>
       </div>
@@ -4760,50 +4765,56 @@ vertical-align: -.125em;
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./R_Studio_Cloud.html" class="sidebar-item-text sidebar-link">
+  <a href="./Posit_Cloud.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R-Studio Cloud</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./CH1_getting_started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 1 - Getting Started</span></a>
+ <span class="menu-text">1 - Getting Started</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./CH2_data_structures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 2 - Data Structures</span></a>
+ <span class="menu-text">2 - Data Structures</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./CH3_import_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 3 - Import &amp; Export</span></a>
+ <span class="menu-text">3 - Import &amp; Export</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./CH4_tibbles_dplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 4 - Tibbles &amp; Dplyr</span></a>
+ <span class="menu-text">4 - Tibbles &amp; Dplyr</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./CH5_summary_agg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 5 - Summary Statistics &amp; Aggregation</span></a>
+ <span class="menu-text">5 - Summary Statistics &amp; Aggregation</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./CH6_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 6 - Case Study</span></a>
+ <span class="menu-text">6 - Case Study</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./CH7_control_flow_loops_and_functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 7 - Control Flow, Loops &amp; Functions</span></a>
+ <span class="menu-text">7 - Control Flow, Loops &amp; Functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
   </div>
 </li>
     </ul>
@@ -4823,7 +4834,7 @@ vertical-align: -.125em;
   <li><a href="#pre-course-check-list" id="toc-pre-course-check-list" class="nav-link" data-scroll-target="#pre-course-check-list"><span class="header-section-number">5</span> Pre-Course Check-list:</a></li>
   <li><a href="#course-overview" id="toc-course-overview" class="nav-link" data-scroll-target="#course-overview"><span class="header-section-number">6</span> Course Overview</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/datasciencecampus/af_introduction_to_r/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/datasciencecampus/af_introduction_to_r/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -4865,14 +4876,12 @@ vertical-align: -.125em;
 </section>
 <section id="course-materials" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Course Materials</h1>
-<p>A folder containing the dataset and teaching files for the course will be provided or can be downloaded from the Learning Hub, please download and unzip this to folder you are familiar with.</p>
-<p>The course materials are in several folders:</p>
+<p>The course materials come in several formats:</p>
 <ul>
-<li><p>Additional Content - Documents etc to support the course.</p></li>
-<li><p>Data - contains the data we will use during the course.</p></li>
-<li><p>Course Content - Contains the learning Documents which are in html format.</p></li>
-<li><p>Pre Course Information - Contains documents with instructions on how prepare for the course.</p></li>
+<li><p>HTML pages such as the one you are reading now</p></li>
+<li><p>Data <a href="./datasets.html"></a> we will use during the course. <strong>It’s highly recommended you create a project with a ‘data’ folder and download all the required datasets before starting the course</strong></p></li>
 </ul>
+<p>You can also navigate to the course Github Repository and clone or fork the website structure for yourself. If you are new to programming and version control, we recommend you remain on the website to gain the best experience.</p>
 </section>
 <section id="software-requirements" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Software Requirements</h1>
@@ -5203,7 +5212,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/datasciencecampus\.github\.io\/af_introduction_to_r\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -5541,4 +5550,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/datasciencecampus/af_introduction_to_r/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/datasciencecampus/af_introduction_to_r/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

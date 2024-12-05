@@ -4743,6 +4743,11 @@ vertical-align: -.125em;
       <a href="./">Introduction to R</a> 
         <div class="sidebar-tools-main">
   <a href class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
     </div>
       </div>
@@ -4761,50 +4766,56 @@ vertical-align: -.125em;
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./R_Studio_Cloud.html" class="sidebar-item-text sidebar-link">
+  <a href="./Posit_Cloud.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R-Studio Cloud</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./CH1_getting_started.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 1 - Getting Started</span></a>
+ <span class="menu-text">1 - Getting Started</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./CH2_data_structures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 2 - Data Structures</span></a>
+ <span class="menu-text">2 - Data Structures</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./CH3_import_export.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 3 - Import &amp; Export</span></a>
+ <span class="menu-text">3 - Import &amp; Export</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./CH4_tibbles_dplyr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 4 - Tibbles &amp; Dplyr</span></a>
+ <span class="menu-text">4 - Tibbles &amp; Dplyr</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./CH5_summary_agg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 5 - Summary Statistics &amp; Aggregation</span></a>
+ <span class="menu-text">5 - Summary Statistics &amp; Aggregation</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./CH6_case_study.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 6 - Case Study</span></a>
+ <span class="menu-text">6 - Case Study</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./CH7_control_flow_loops_and_functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Chapter 7 - Control Flow, Loops &amp; Functions</span></a>
+ <span class="menu-text">7 - Control Flow, Loops &amp; Functions</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Datasets</span></a>
   </div>
 </li>
     </ul>
@@ -4828,7 +4839,7 @@ vertical-align: -.125em;
   <li><a href="#about-the-open-government-licence" id="toc-about-the-open-government-licence" class="nav-link" data-scroll-target="#about-the-open-government-licence"><span class="header-section-number">1.7</span> About the Open Government Licence</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/datasciencecampus/af_introduction_to_r/blob/main/licence.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/datasciencecampus/af_introduction_to_r/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
@@ -5147,7 +5158,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/datasciencecampus\.github\.io\/af_introduction_to_r\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -5485,4 +5496,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/datasciencecampus/af_introduction_to_r/blob/main/licence.md" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/datasciencecampus/af_introduction_to_r/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
