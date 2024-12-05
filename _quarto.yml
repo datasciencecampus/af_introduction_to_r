@@ -1,5 +1,8 @@
 project:
   type: website
+  resources: 
+    - "*.csv"
+    - "*.xlsx"
 
 website:
   title: "Introduction to R"

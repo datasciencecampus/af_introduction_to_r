@@ -11,16 +11,16 @@ execute:
 
 The datasets listed below are used throughout the course.
 
-<p>Download the <a href ="" download="https://github.com/datasciencecampus/af_introduction_to_r/blob/master/Data/bikes_data_set.csv" style="text-decoration:none"><span style="text-decoration:underline">bikes data</span> (CSV, 54 KB)</a></p>
+<p>Download the <a href="/Data/bikes_data_set.csv" style="text-decoration:none"><span style="text-decoration:underline">bikes data</span> (CSV, 54 KB)</a></p>
 
-<p>Download the <a href="/data/imdb_scores.csv" style="text-decoration:none"><span style="text-decoration:underline">imbd scores</span> (CSV, 204 KB)</a></p>
+<p>Download the <a href="/Data/imdb_scores.csv" style="text-decoration:none"><span style="text-decoration:underline">imbd scores</span> (CSV, 204 KB)</a></p>
 
-<p>Download the <a href="/data/netflix_data.csv" style="text-decoration:none"><span style="text-decoration:underline">netflix data</span> (CSV, 3.6 MB )</a></p>
+<p>Download the <a href="/Data/netflix_data.csv" style="text-decoration:none"><span style="text-decoration:underline">netflix data</span> (CSV, 3.6 MB )</a></p>
 
-<p>Download the <a href="/data/police_data.csv" style="text-decoration:none"><span style="text-decoration:underline">police data</span> (XLSX, 77 KB)</a></p>
+<p>Download the <a href="/Data/police_data.csv" style="text-decoration:none"><span style="text-decoration:underline">police data</span> (XLSX, 77 KB)</a></p>
 
-<p>Download the <a href="/data/revenue_data_set.csv" style="text-decoration:none"><span style="text-decoration:underline">revenue data</span> (CSV, 1 KB)</a></p>
+<p>Download the <a href="/Data/revenue_data_set.csv" style="text-decoration:none"><span style="text-decoration:underline">revenue data</span> (CSV, 1 KB)</a></p>
 
-<p>Download the <a href="/data/titanic_clean.csv" style="text-decoration:none"><span style="text-decoration:underline">titanic cleaned data</span> (CSV, 84 KB)</a></p>
+<p>Download the <a href="/Data/titanic_clean.csv" style="text-decoration:none"><span style="text-decoration:underline">titanic cleaned data</span> (CSV, 84 KB)</a></p>
 
-<p>Download the <a href="/data/titanic.csv" style="text-decoration:none"><span style="text-decoration:underline">titanic data</span> (CSV, 86 KB)</a></p>
+<p>Download the <a href="/Data/titanic.csv" style="text-decoration:none"><span style="text-decoration:underline">titanic data</span> (CSV, 86 KB)</a></p>
