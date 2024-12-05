@@ -13,7 +13,7 @@ website:
     contents:
       - text: "Course Information"
         href: index.qmd
-      - text: "R-Studio Cloud"
+      - text: "Posit Cloud"
         href: Posit_Cloud.qmd
       - text: "1 - Getting Started"
         href: CH1_getting_started.qmd
