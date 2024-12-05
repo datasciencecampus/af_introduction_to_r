@@ -1,0 +1,48 @@
+project:
+  type: website
+
+website:
+  title: "Introduction to R"
+  repo-url: https://github.com/datasciencecampus/af_introduction_to_r
+  repo-actions: [source, issue]
+  reader-mode: true
+  sidebar:
+    logo-href: /index.html
+    style: "docked"
+    search: true
+    contents:
+      - text: "Course Information"
+        href: index.qmd
+      - text: "R-Studio Cloud"
+        href: Posit_Cloud.qmd
+      - text: "1 - Getting Started"
+        href: CH1_getting_started.qmd
+      - text: "2 - Data Structures"
+        href: CH2_data_structures.qmd
+      - text: "3 - Import & Export"
+        href: CH3_import_export.qmd
+      - text: "4 - Tibbles & Dplyr"
+        href: CH4_tibbles_dplyr.qmd
+      - text: "5 - Summary Statistics & Aggregation"
+        href: CH5_summary_agg.qmd
+      - text: "6 - Case Study"
+        href: CH6_case_study.qmd
+      - text: "7 - Control Flow, Loops & Functions"
+        href: CH7_control_flow_loops_and_functions.qmd
+      - text: "Datasets"
+        href: datasets.qmd       
+
+format:
+  html:
+    highlight: null
+    theme: 
+      light: flatly
+      dark: darkly
+    toc: true
+    toc-title: Contents
+    toc-location: right
+    toc-depth: 3
+    number-sections: true
+    link-external-newwindow: true
+    embed-resources: true
+    css: styles.css
