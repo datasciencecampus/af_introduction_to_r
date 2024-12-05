@@ -6,7 +6,7 @@
     "section": "",
     "text": "1 Introduction\nIf you are having issues installing R Studio or are having issues with installing package as a back up we will prompt you to use Posit Cloud.\nPosit Cloud is a hosted version of RStudio in the cloud that makes it easy for professionals, hobbyists, trainers, teachers and students to do, share, teach and learn data science using R.\nCreate your analyses using RStudio directly from your browser - there is no software to install and nothing to configure on your computer.\n\n\n2 Set Up\nYou will be sent a link to a created project, firstly you will need to register for an account, click on the link below.\nPosit Cloud Sign up\nWhich will look like below, Please sign in your personal email address.\n\nOnce signed up, it will take a while to load. You will see the message “Deploying Project” for a couple of minutes while it creates your Workspace.\n\nA project has been already created called Intro to R.\nWhen you access a project created by someone else, Posit Cloud automatically creates a temporary copy of the original project for you. You can play with and make edits to it, but none of your changes will be reflected in the original.\nSave a copy of the project for yourself by pressing the Save a Permanent Copy button. Which is in the top right corner.\nThen you will end up with something that looks like the image below, feel free to amend some settings as outlined in Chapter 1 Getting Started with R section 2.2.",
     "crumbs": [
-      "R-Studio Cloud"
+      "Posit Cloud"
     ]
   },
   {
