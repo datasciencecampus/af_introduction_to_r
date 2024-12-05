@@ -1,0 +1,1 @@
+Sitemap: https://datasciencecampus.github.io/af_introduction_to_r/sitemap.xml
