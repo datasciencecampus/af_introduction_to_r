@@ -6,7 +6,7 @@ The course was developed for those working at ONS and across the Government Stat
 
 There are several ways to access the course materials:
 
-1. Navigate to the website link located in the 'About' section on the right side of the page.
+1. Navigate to the website (explained below).
 2. Clone a copy of the repository to your machine
 3. Download a ZIP file containing the website materials
 4. Fork the repository
